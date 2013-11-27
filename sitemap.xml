@@ -1,12 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>http://kamranayub.github.io/blog/2013/11/27/test/</loc>
+        <lastmod>2013-11-27T17:15:04-06:00</lastmod>
+    </url>
+    <url>
         <loc>http://kamranayub.github.io/blog/archives/</loc>
-        <lastmod>2013-11-27T16:53:28-06:00</lastmod>
+        <lastmod>2013-11-27T17:15:04-06:00</lastmod>
     </url>
     <url>
         <loc>http://kamranayub.github.io/</loc>
-        <lastmod>2013-11-27T16:53:28-06:00</lastmod>
+        <lastmod>2013-11-27T17:15:04-06:00</lastmod>
     </url>
     <url>
         <loc>http://kamranayub.github.io/robots.txt</loc>
