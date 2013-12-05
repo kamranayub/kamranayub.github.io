@@ -94,7 +94,7 @@ disqus_short_name: kamranicus
 disqus_show_comment_count: true
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-1203259-13
 
 # Facebook Like
 facebook_like: false
