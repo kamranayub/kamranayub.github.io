@@ -9,7 +9,7 @@
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="I&rsquo;ve written a [long] article for Tech.pro on how to use Quartz.NET to build an end-to-end background worker on AppHarbor. I plan to write a &hellip;">
+  <meta name="description" content="I just ran into and solved this problem so I thought I&rsquo;d share (I&rsquo;ll also be talking about this at my upcoming talk). Anti-Forgery in MVC &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,103 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/70/protip-using-anti-forgery-token-with-aspnet-web-ap">Protip: Using Anti-Forgery Token With ASP.NET Web API on MVC 4 on AppHarbor</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-24T05:14:06-05:00" pubdate data-updated="true">Apr 24<span>th</span>, 2013</time>
+        
+           | <a href="/blog/posts/70/protip-using-anti-forgery-token-with-aspnet-web-ap#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/70/protip-using-anti-forgery-token-with-aspnet-web-ap">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I just ran into and solved this problem so I thought I&rsquo;d share (I&rsquo;ll also be talking about this at my upcoming talk).</p>
+
+<h3>Anti-Forgery in MVC</h3>
+
+<p>In vanilla MVC, you&rsquo;d do anti-forgery like this in your Razor view:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>@Html.AntiForgeryToken()
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then in a controller (POST):</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[ValidateAntiForgeryToken]</span>
+</span><span class='line'><span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">DoSomething</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Cool. But what about Web API? It uses a totally different pipeline and likely you&rsquo;re interacting with it via JQuery or other AJAX framework.</p>
+
+<h3>ValidateHttpAntiForgeryToken</h3>
+
+<p>Here are some references I used when trying to implement Anti-Forgery with Web API:</p>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/11725988/problems-implementing-validatingantiforgerytoken-attribute-for-web-api-with-mvc">Problems implementing ValidatingAntiForgeryToken attribute for Web API with MVC 4 RC</a></li>
+<li><a href="http://stackoverflow.com/questions/11476883/web-api-and-validateantiforgerytoken">Web API and ValidateAntiForgeryToken</a></li>
+<li><a href="http://www.asp.net/web-api/overview/security/preventing-cross-site-request-forgery-%28csrf%29-attacks">Preventing Cross-Site Request Forgery (CSRF) Attacks</a></li>
+<li>MVC 4 SPA template</li>
+</ul>
+
+
+<p>Here&rsquo;s the rub: the two SO posts above implement this quite differently than the MVC 4 SPA template and the last article referenced. Both approaches actually worked locally for me, but both failed once I deployed to AppHarbor.</p>
+
+<p>The long and short of it is that I was using the HTTP header <code>__RequestVerificationToken</code>. This is a no-no and I&rsquo;m sort of the dumb one here in that I should <em>know</em> not to use custom headers like that.</p>
+
+<p>My friends, the <em>proper</em> way is to use the <code>X-*</code> convention, so the HTTP header in your AJAX requests become <code>X-XSRF-Token</code> instead.</p>
+
+<p>Apparently, AppHarbor was stripping off the other header on AJAX POST. I was receiving an error about the given header could not be found.</p>
+
+<p>The working solution is below:</p>
+
+<script src="https://gist.github.com/kamranayub/5449779.js"></script>
+
+
+<p>The <code>machineKey</code> thing is also key to remember on a cloud host/web farm environment.</p>
+
+<p>I hope that helps somebody out there.</p>
+
+<h3>Aside</h3>
+
+<p>In the last article referenced, the <code>AntiForgery.GetTokens()</code> didn&rsquo;t work for me on AH. I kept getting the error:</p>
+
+<pre><code>System.Web.Mvc.HttpAntiForgeryException (0x80004005): The required anti-forgery cookie "__RequestVerificationToken" is not present.
+</code></pre>
+
+<p>I didn&rsquo;t get far enough to see what actual cookies were present because I switched to the other method outlined in the two SO posts. I just thought you should know that it just didn&rsquo;t work. I believe it&rsquo;s because <code>GetTokens</code> does not create a new cookie if the <code>cookieToken</code> has a value where as using <code>@Html.AntiForgeryToken()</code> does. The <a href="http://aspnetwebstack.codeplex.com/SourceControl/changeset/view/9a83b63f3f889e3f2c979274fe3e8f7610e06b98#src/System.Web.WebPages/Helpers/AntiXsrf/AntiForgeryWorker.cs">source code</a> makes that clear in the comments. Why it worked locally I have no idea and at this point, don&rsquo;t care!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -890,159 +987,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/59/using-knockout-bindings-in-your-winjs-application">Using Knockout Bindings in Your WinJS Application</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-01T17:08:38-06:00" pubdate data-updated="true">Dec 1<span>st</span>, 2012</time>
-        
-           | <a href="/blog/posts/59/using-knockout-bindings-in-your-winjs-application#disqus_thread"
-             data-disqus-identifier="http://kamranayub.github.io/blog/posts/59/using-knockout-bindings-in-your-winjs-application">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you&rsquo;ve done any serious Windows 8 development with WinJS, you&rsquo;ve probably come across this wall:</p>
-
-<blockquote><p>I need to do some custom logic and data binding on this element and I wish I could just use <code>win-data-bind</code> to do it.</p></blockquote>
-
-<p>In my case, all I wanted to do was toggle a CSS class based on my view model&rsquo;s property. In WinJS bindings, there is no way to call a custom binding converter with parameters nor can you access the DOM element from a converter, as far as I can tell.</p>
-
-<p>Technically, you could call a function using <code>markSupportedForProcessing</code> and pass in these parameters, like this:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- Template --&gt;</span>
-</span><span class='line'><span class="nt">&lt;div</span> <span class="na">data-win-bind=</span><span class="s">&quot;className: myprop Converters.toggleClass&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="c1">// JS</span>
-</span><span class='line'><span class="nx">WinJS</span><span class="p">.</span><span class="nx">Namespace</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;Converters&quot;</span><span class="p">,</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">toggleClass</span><span class="o">:</span> <span class="nx">WinJS</span><span class="p">.</span><span class="nx">Utilities</span><span class="p">.</span><span class="nx">markSupportedForProcessing</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">source</span><span class="p">,</span> <span class="nx">sourceProperties</span><span class="p">,</span> <span class="nx">dest</span><span class="p">,</span> <span class="nx">destProperties</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="nx">source</span><span class="p">[</span><span class="nx">sourceProperties</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">===</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>            <span class="nx">WinJS</span><span class="p">.</span><span class="nx">Utilities</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">dest</span><span class="p">,</span> <span class="nx">sourceProperties</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">return</span> <span class="nx">dest</span><span class="p">.</span><span class="nx">className</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">})</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>But I am not sure that&rsquo;s a great idea (as the base.js source code has a lot of extra stuff around this method, which is why they expose an easier <code>WinJS.Binding.coverter</code>).</p>
-
-<h2>Mix N&#8217; Match</h2>
-
-<p>It turns out, it <em>seems</em> to be relatively straight-forward to make KO and WinJS work together. Why would you want to? Well, WinJS has a lot of useful features like WinJS.Promises, utilities, controls, templates, and lots of other stuff. You lose all that if you use a 3rd party library (like KO or jQuery) exclusively.</p>
-
-<p>With this approach, you can choose what works best. You could go all out and use KO to bind all your stuff and then use WinJS for whatever else you need. I chose to just leverage the custom binding functionality.</p>
-
-<h2>Let&rsquo;s do it!</h2>
-
-<p>Once you have Knockout installed (via Nuget or what have you), be sure it&rsquo;s included in your page:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>default.html
-</span><span class='line'>
-</span><span class='line'><span class="c">&lt;!-- WinJS references --&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;//Microsoft.WinJS.1.0/css/ui-dark.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//Microsoft.WinJS.1.0/js/base.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//Microsoft.WinJS.1.0/js/ui.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/scripts/knockout-2.2.0.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I put it in default.html so it&rsquo;s globally accessible.</p>
-
-<p>Now, all we are going to do is <strong>replace</strong> the call to <code>WinJS.Binding.processAll</code> with a function that intercepts the call and calls <code>ko.applyBindings</code>, then continues to call the built in WinJS function.</p>
-
-<p>Create a new file, I named mine <em>*ko-winjs.js</em>:</p>
-
-<script src="https://gist.github.com/4183235.js?file=ko-winjs.js"></script>
-
-
-<p>Then, just include this before <strong>default.js</strong> in your HTML file:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>default.html
-</span><span class='line'>
-</span><span class='line'><span class="c">&lt;!-- WinJS references --&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;//Microsoft.WinJS.1.0/css/ui-dark.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//Microsoft.WinJS.1.0/js/base.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//Microsoft.WinJS.1.0/js/ui.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/scripts/knockout-2.2.0.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/scripts/ko-winjs.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And you&rsquo;re all set! Now you can do this in your templates:</p>
-
-<script src="https://gist.github.com/4183235.js?file=template.html"></script>
-
-
-<p>Pretty awesome!</p>
-
-<h2>Disclaimer</h2>
-
-<p>I have no idea how inefficient this is, but my guess is that this adds extra processing time (plus, binding cache issues?). I have a small application so I&rsquo;m not too worried about it and it&rsquo;s the best thing I could come up with on short notice.</p>
-
-<p>That said, if someone smarter than me and more familiar with KO and WinJS in general could take a peek at this&hellip; I&rsquo;d be super grateful, since I think this is a killer feature. If WinJS could just support KO-style binding syntax, I&rsquo;d be totally cool with that too!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1077,6 +1021,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/04/kamranicus-now-with-100-percent-more-octopress/">Kamranicus: Now With 100% More Octopress</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a>
       </li>
     
@@ -1090,10 +1038,6 @@
     
       <li class="post">
         <a href="/blog/posts/76/minnesota-developer-conference-2013-connected-apps">Minnesota Developer Conference 2013: Connected Apps</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/posts/75/test-retina-images-without-a-retina-screen">Test Retina Images Without a Retina Screen</a>
       </li>
     
   </ul>

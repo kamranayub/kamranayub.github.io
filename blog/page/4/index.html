@@ -9,7 +9,7 @@
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="As you may know, the next version of Visual Studio dubbed VS11 is available in Beta form right now for developers worldwide to complain about go wild &hellip;">
+  <meta name="description" content="I just installed VS 2012 RC (previous codename VS11) to make sure I am on the latest and greatest and I&rsquo;d like to mention a few gotchas I ran &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,137 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/48/tips-for-updating-from-webapi-beta-to-webapi-rc">Tips for Updating From WebAPI Beta to WebAPI RC</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-01T05:59:01-05:00" pubdate data-updated="true">Jun 1<span>st</span>, 2012</time>
+        
+           | <a href="/blog/posts/48/tips-for-updating-from-webapi-beta-to-webapi-rc#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/48/tips-for-updating-from-webapi-beta-to-webapi-rc">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I just installed VS 2012 RC (previous codename VS11) to make sure I am on the latest and greatest and I&rsquo;d like to mention a few gotchas I ran into along the way while upgrading <a href="http://keeptrackofmygames.com">Keep Track of My Games</a>.</p>
+
+<h2>Nuget Packages</h2>
+
+<p>One of the first things I did when opening the solution was to compile and run. WHAM. You will get a MissingMethodException:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[MissingMethodException: Method not found: 'Void System.Net.Http.Headers.HttpHeaders.AddWithoutValidation(System.String, System.Collections.Generic.IEnumerable`1&lt;System.String&gt;)'.]
+</span><span class='line'>   System.Web.Http.WebHost.HttpControllerHandler.AddHeaderToHttpRequestMessage(HttpRequestMessage httpRequestMessage, String headerName, String[] headerValues) +0
+</span><span class='line'>   System.Web.Http.WebHost.HttpControllerHandler.ConvertRequest(HttpContextBase httpContextBase) +248
+</span><span class='line'>   System.Web.Http.WebHost.HttpControllerHandler.BeginProcessRequest(HttpContextBase httpContextBase, AsyncCallback callback, Object state) +79
+</span><span class='line'>   System.Web.Http.WebHost.HttpControllerHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state) +48
+</span><span class='line'>   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +268
+</span><span class='line'>   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) +155</span></code></pre></td></tr></table></div></figure>
+
+
+<p>First issue: Web API had also been updated along with VS 2012&rsquo;s install. That means your previous beta Nuget packages are out of date. Unfortunately, if you go into <em>Manage Nuget Packages</em> you&rsquo;ll find no help in the Updates panel.</p>
+
+<p>Turns out, the IDs have changed! Search for <code>Microsoft.AspNet.WebApi</code> and you&rsquo;ll find the RC packages again. In my solution, I am using:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.AspNet.Mvc&quot;</span> <span class="na">version=</span><span class="s">&quot;4.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.AspNet.Razor&quot;</span> <span class="na">version=</span><span class="s">&quot;2.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.AspNet.WebApi.Client&quot;</span> <span class="na">version=</span><span class="s">&quot;4.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.AspNet.WebApi.Core&quot;</span> <span class="na">version=</span><span class="s">&quot;4.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.AspNet.WebApi.WebHost&quot;</span> <span class="na">version=</span><span class="s">&quot;4.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.AspNet.WebPages&quot;</span> <span class="na">version=</span><span class="s">&quot;2.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.Net.Http&quot;</span> <span class="na">version=</span><span class="s">&quot;2.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.Web.Infrastructure&quot;</span> <span class="na">version=</span><span class="s">&quot;1.0.0.0&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Once you uninstall your beta packages and install the new RC, you will likely run into a few more issues&hellip;</p>
+
+<h2>Dependency Injection</h2>
+
+<p>I am using Ninject for dependency injection. You will need to adapt this solution to your needs if you <em>aren&rsquo;t</em> using Ninject. You will <a href="http://www.strathweb.com/2012/05/using-ninject-with-the-latest-asp-net-web-api-source/">need to use a new way</a> of setting the DependencyResolver, see this GitHub source repository: <a href="https://github.com/filipw/Ninject-resolver-for-ASP.NET-Web-API">https://github.com/filipw/Ninject-resolver-for-ASP.NET-Web-API</a></p>
+
+<p>Thanks Filip!</p>
+
+<h2>No more generic HttpResponseMessage</h2>
+
+<p>If you had previously been using code like this:</p>
+
+<pre><code>new HttpResponseMessage&lt;T&gt;(someValue)
+</code></pre>
+
+<p>You will get compilation errors. The new way to handle this is via the <code>Request</code> property in your controllers:</p>
+
+<pre><code>Request.CreateResponse(HttpStatusCode.OK, result);
+</code></pre>
+
+<p>You will need to change any return types from <code>HttpResponseMessage&lt;T&gt;</code> to <code>HttpResponseMessage</code>.</p>
+
+<h2>No need for custom JSON.NET formatter</h2>
+
+<p>If you had previously been using a variant of <a href="http://www.west-wind.com/weblog/posts/2012/Mar/09/Using-an-alternate-JSON-Serializer-in-ASPNET-Web-API">Rick Strahl&rsquo;s JSON.NET formatter</a>, you do not need it anymore as Web API defaults to JSON.NET now. However, if you, like me, want to customize the settings used, you can still do so:</p>
+
+<p><strong>Global.asax or App_Start</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="kt">var</span> <span class="n">formatter</span> <span class="p">=</span> <span class="n">GlobalConfiguration</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">Formatters</span><span class="p">.</span><span class="n">OfType</span><span class="p">&lt;</span><span class="n">JsonMediaTypeFormatter</span><span class="p">&gt;().</span><span class="n">First</span><span class="p">();</span>
+</span><span class='line'><span class="n">formatter</span><span class="p">.</span><span class="n">SerializerSettings</span><span class="p">.</span><span class="n">NullValueHandling</span> <span class="p">=</span> <span class="n">NullValueHandling</span><span class="p">.</span><span class="n">Ignore</span><span class="p">;</span>
+</span><span class='line'><span class="n">formatter</span><span class="p">.</span><span class="n">SerializerSettings</span><span class="p">.</span><span class="n">Converters</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">StringEnumConverter</span><span class="p">());</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Thanks to Matt in the comments for trimming the fat off what I had previously.</p>
+
+<h2>No more GetUserPrincipal</h2>
+
+<p>I had previously been using the extension method <code>GetUserPrincipal</code> in my custom Authorize attribute. No more! You can now use <code>System.Threading.Thread.CurrentPrincipal.Identity</code> if you need the current principal in Web API. There&rsquo;s also a convenient <code>User</code> property in the <code>ApiController</code> base class.</p>
+
+<h2>That&rsquo;s it!</h2>
+
+<p>That&rsquo;s about all I ran into. I am also happy to report that <a href="https://github.com/mccalltd/AttributeRouting">AttributeRouting</a> still seems to work fine against the Web API RC and MVC 4 RC! I did some limited browsing around on my site with heavy AJAX calls and everything seemed to work.</p>
+
+<p>Hope this saves you some time!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -748,83 +879,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/38/can-i-use-signalr-to-design-a-typical-single-page">Can I Use SignalR to Design a &#8220;Typical&#8221; Single Page Application?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-29T16:25:00-05:00" pubdate data-updated="true">Mar 29<span>th</span>, 2012</time>
-        
-           | <a href="/blog/posts/38/can-i-use-signalr-to-design-a-typical-single-page#disqus_thread"
-             data-disqus-identifier="http://kamranayub.github.io/blog/posts/38/can-i-use-signalr-to-design-a-typical-single-page">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This post is a stream of conciousness kind of post. I know I may be totally off base on some things but I need somewhere to write this so I can review and think about it, maybe pose it to people and see where my thinking is flawed or if there&rsquo;s an obvious thing I&rsquo;m not seeing.</p>
-
-<h2>The Context</h2>
-
-<p>You&rsquo;re designing some sort of client-based application that communicates via AJAX (it can be Backbone, it can be Knockout, whatever). You&rsquo;re using ASP.NET MVC as the back end, maybe even the new fancy Web API.</p>
-
-<h2>The Problem</h2>
-
-<p>Let&rsquo;s say your API is supposed to be only used by your application; you have no intention of making it available for all to use. The problem is that no matter what measures you take, it&rsquo;s all HTTP and it&rsquo;s all public. For many of us, that isn&rsquo;t what we really want. If I make a URL <code>/api/users/{id}</code>, I really don&rsquo;t want other people requesting that URL.</p>
-
-<p>So far in my Googling and experience, there are a few things you can do to <strong>reduce</strong> malicious abuse of your API:</p>
-
-<ol>
-<li>Issue session-based or cookie-based tokens with timeouts</li>
-<li>Include Anti-CSRF tokens in your AJAX headers</li>
-<li>Make sure people are authenticated before issuing authorizable requests</li>
-<li>Do checks and throttle requests (no more than x requests from this user per second)</li>
-</ol>
-
-
-<p>I think these are problems we generally face even in a &ldquo;non-rich&rdquo; application (simple server-side design). I could easily issue 100 Fiddler requests per second against a page on your site and maybe bring it down. Including an AntiXssToken might help with that. Maybe we don&rsquo;t care about that. However, it seems the problem is exacerbated, or at least more apparent, when we&rsquo;re talking about AJAX requests because we&rsquo;re exposing our data in an easy-to-consume format (JSON/XML/etc). If not properly designed and secured, Joe Developer can write a client that consumes your API. For public APIs, this is great! For APIs you just want to use for your application&hellip; not so great.</p>
-
-<p>One of the things I&rsquo;m not sure about is how site agnostic these defensive measures are and why it&rsquo;s so hard to find information on how to implement them. Can ASP.NET Web API bake these into the framework? Why or why not? Is this not so common as to warrant more real-world articles/tutorials on how to do it? Am I not searching correctly? Do most people not care?</p>
-
-<blockquote><p>All I want is a not-so-public API my browser-based app can consume</p></blockquote>
-
-<h2>What about SignalR?</h2>
-
-<p>This is just me thinking out loud. Could a library like SignalR help with this? By using a single connection, no longer will I have to create easily consumable URLs like <code>/api/x</code>. Instead, I could create hubs with my API methods I want, and call them in my client code. Authorizing the requests would work as they usually have in the past.</p>
-
-<p>On the surface it sounds like a better idea, but am I missing something? Does it help at all? I could see it providing other benefits, like being able to easily implement multi-user interaction if I wanted in the future.</p>
-
-<p>Would the problem just shift? Now as Joe Developer could I simply reference the generated SignalR scripts and write my own client app? Is it harder or easier to abuse SignalR vs. HTTP URLs?</p>
-
-<p>I don&rsquo;t know yet but I&rsquo;d like to research the topic more; learn more about REST security using tokens and session-based methods.</p>
-
-<h2>Is this even an issue?</h2>
-
-<p>Let&rsquo;s say I implemented and took measures to reduce the likelihood of abuse in my exposed API. Is this even an issue anymore? From what I gather, general consensus is that you can&rsquo;t eliminate the ability for an undesirable user to abuse your API, you can only try to mitigate it as best you can. I still wish it was &ldquo;that easy&rdquo; to secure it. Am I missing something obvious here?</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -859,6 +913,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/04/kamranicus-now-with-100-percent-more-octopress/">Kamranicus: Now With 100% More Octopress</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a>
       </li>
     
@@ -872,10 +930,6 @@
     
       <li class="post">
         <a href="/blog/posts/76/minnesota-developer-conference-2013-connected-apps">Minnesota Developer Conference 2013: Connected Apps</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/posts/75/test-retina-images-without-a-retina-screen">Test Retina Images Without a Retina Screen</a>
       </li>
     
   </ul>

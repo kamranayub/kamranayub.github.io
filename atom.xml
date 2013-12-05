@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranayub.github.io/atom.xml" rel="self"/>
   <link href="http://kamranayub.github.io/"/>
-  <updated>2013-12-04T23:03:48-06:00</updated>
+  <updated>2013-12-04T23:22:34-06:00</updated>
   <id>http://kamranayub.github.io/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Kamranicus: Now With 100% More Octopress]]></title>
+    <link href="http://kamranayub.github.io/blog/2013/12/04/kamranicus-now-with-100-percent-more-octopress/"/>
+    <updated>2013-12-04T23:18:28-06:00</updated>
+    <id>http://kamranayub.github.io/blog/2013/12/04/kamranicus-now-with-100-percent-more-octopress</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve just pushed a new version of Kamranicus that is built using the static site generator, <a href="http://octopress.org">Octopress</a>. Octopress uses <a href="http://jekyllrb.com/">Jekyll</a> to generate static sites.</p>
+
+<p>I decided to switch because I can leverage GitHub Pages which are <strong>free</strong> and I can use a custom domain. It&rsquo;s a perfect fit because I can just piggyback on GitHub&rsquo;s cloud hosting for free and not worry about incurring any downtime due to database issues (something that happened more than a few times with the last ASP.NET MVC and SQL-based site).</p>
+
+<p>I really enjoyed setting up Octopress, it was easy to migrate my posts. I highly recommend it! It would be even better to have a .NET/C#-based static site generator that supported all of Jekyll&rsquo;s configuration options, except with Razor-based layouts and templating. Mmmm, that sounds pretty good. Someone get on that.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Just Pushed: Blackjack Sample Game]]></title>
@@ -799,129 +812,6 @@
 <p>The icing on the cake was that it took 5 days for this to fail. I&rsquo;m sure it goes into a queue and that the actual time to perform &ldquo;content compliance&rdquo; is an hour or so but even knowing that, it just made it worse since now I have to wait an additional X days for something I shouldn&rsquo;t have had to wait for in the first place.</p>
 
 <p>There&rsquo;s nothing else I can really do about it, though. I re-submitted it, I added extra emphasis in the Notes field, but what else is there? Just pray it works this time, I guess. Disappointing first-time experience, to say the least.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Using Knockout Bindings in Your WinJS Application]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/59/using-knockout-bindings-in-your-winjs-application"/>
-    <updated>2012-12-01T17:08:38-06:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/59/using-knockout-bindings-in-your-winjs-application</id>
-    <content type="html"><![CDATA[<p>If you&rsquo;ve done any serious Windows 8 development with WinJS, you&rsquo;ve probably come across this wall:</p>
-
-<blockquote><p>I need to do some custom logic and data binding on this element and I wish I could just use <code>win-data-bind</code> to do it.</p></blockquote>
-
-<p>In my case, all I wanted to do was toggle a CSS class based on my view model&rsquo;s property. In WinJS bindings, there is no way to call a custom binding converter with parameters nor can you access the DOM element from a converter, as far as I can tell.</p>
-
-<p>Technically, you could call a function using <code>markSupportedForProcessing</code> and pass in these parameters, like this:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- Template --&gt;</span>
-</span><span class='line'><span class="nt">&lt;div</span> <span class="na">data-win-bind=</span><span class="s">&quot;className: myprop Converters.toggleClass&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="c1">// JS</span>
-</span><span class='line'><span class="nx">WinJS</span><span class="p">.</span><span class="nx">Namespace</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;Converters&quot;</span><span class="p">,</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">toggleClass</span><span class="o">:</span> <span class="nx">WinJS</span><span class="p">.</span><span class="nx">Utilities</span><span class="p">.</span><span class="nx">markSupportedForProcessing</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">source</span><span class="p">,</span> <span class="nx">sourceProperties</span><span class="p">,</span> <span class="nx">dest</span><span class="p">,</span> <span class="nx">destProperties</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="nx">source</span><span class="p">[</span><span class="nx">sourceProperties</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">===</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>            <span class="nx">WinJS</span><span class="p">.</span><span class="nx">Utilities</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">dest</span><span class="p">,</span> <span class="nx">sourceProperties</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">return</span> <span class="nx">dest</span><span class="p">.</span><span class="nx">className</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">})</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>But I am not sure that&rsquo;s a great idea (as the base.js source code has a lot of extra stuff around this method, which is why they expose an easier <code>WinJS.Binding.coverter</code>).</p>
-
-<h2>Mix N&#8217; Match</h2>
-
-<p>It turns out, it <em>seems</em> to be relatively straight-forward to make KO and WinJS work together. Why would you want to? Well, WinJS has a lot of useful features like WinJS.Promises, utilities, controls, templates, and lots of other stuff. You lose all that if you use a 3rd party library (like KO or jQuery) exclusively.</p>
-
-<p>With this approach, you can choose what works best. You could go all out and use KO to bind all your stuff and then use WinJS for whatever else you need. I chose to just leverage the custom binding functionality.</p>
-
-<h2>Let&rsquo;s do it!</h2>
-
-<p>Once you have Knockout installed (via Nuget or what have you), be sure it&rsquo;s included in your page:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>default.html
-</span><span class='line'>
-</span><span class='line'><span class="c">&lt;!-- WinJS references --&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;//Microsoft.WinJS.1.0/css/ui-dark.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//Microsoft.WinJS.1.0/js/base.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//Microsoft.WinJS.1.0/js/ui.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/scripts/knockout-2.2.0.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I put it in default.html so it&rsquo;s globally accessible.</p>
-
-<p>Now, all we are going to do is <strong>replace</strong> the call to <code>WinJS.Binding.processAll</code> with a function that intercepts the call and calls <code>ko.applyBindings</code>, then continues to call the built in WinJS function.</p>
-
-<p>Create a new file, I named mine <em>*ko-winjs.js</em>:</p>
-
-<script src="https://gist.github.com/4183235.js?file=ko-winjs.js"></script>
-
-
-<p>Then, just include this before <strong>default.js</strong> in your HTML file:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>default.html
-</span><span class='line'>
-</span><span class='line'><span class="c">&lt;!-- WinJS references --&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;//Microsoft.WinJS.1.0/css/ui-dark.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//Microsoft.WinJS.1.0/js/base.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//Microsoft.WinJS.1.0/js/ui.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/scripts/knockout-2.2.0.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/scripts/ko-winjs.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And you&rsquo;re all set! Now you can do this in your templates:</p>
-
-<script src="https://gist.github.com/4183235.js?file=template.html"></script>
-
-
-<p>Pretty awesome!</p>
-
-<h2>Disclaimer</h2>
-
-<p>I have no idea how inefficient this is, but my guess is that this adds extra processing time (plus, binding cache issues?). I have a small application so I&rsquo;m not too worried about it and it&rsquo;s the best thing I could come up with on short notice.</p>
-
-<p>That said, if someone smarter than me and more familiar with KO and WinJS in general could take a peek at this&hellip; I&rsquo;d be super grateful, since I think this is a killer feature. If WinJS could just support KO-style binding syntax, I&rsquo;d be totally cool with that too!</p>
 ]]></content>
   </entry>
   

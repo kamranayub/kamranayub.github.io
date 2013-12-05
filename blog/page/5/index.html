@@ -9,7 +9,7 @@
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="The Knockout template binding documentation does a good job explaining how to use KO with jQuery Templates and even Underscore templates, however, it &hellip;">
+  <meta name="description" content="This post is a stream of conciousness kind of post. I know I may be totally off base on some things but I need somewhere to write this so I can &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,83 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/38/can-i-use-signalr-to-design-a-typical-single-page">Can I Use SignalR to Design a &#8220;Typical&#8221; Single Page Application?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-29T16:25:00-05:00" pubdate data-updated="true">Mar 29<span>th</span>, 2012</time>
+        
+           | <a href="/blog/posts/38/can-i-use-signalr-to-design-a-typical-single-page#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/38/can-i-use-signalr-to-design-a-typical-single-page">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This post is a stream of conciousness kind of post. I know I may be totally off base on some things but I need somewhere to write this so I can review and think about it, maybe pose it to people and see where my thinking is flawed or if there&rsquo;s an obvious thing I&rsquo;m not seeing.</p>
+
+<h2>The Context</h2>
+
+<p>You&rsquo;re designing some sort of client-based application that communicates via AJAX (it can be Backbone, it can be Knockout, whatever). You&rsquo;re using ASP.NET MVC as the back end, maybe even the new fancy Web API.</p>
+
+<h2>The Problem</h2>
+
+<p>Let&rsquo;s say your API is supposed to be only used by your application; you have no intention of making it available for all to use. The problem is that no matter what measures you take, it&rsquo;s all HTTP and it&rsquo;s all public. For many of us, that isn&rsquo;t what we really want. If I make a URL <code>/api/users/{id}</code>, I really don&rsquo;t want other people requesting that URL.</p>
+
+<p>So far in my Googling and experience, there are a few things you can do to <strong>reduce</strong> malicious abuse of your API:</p>
+
+<ol>
+<li>Issue session-based or cookie-based tokens with timeouts</li>
+<li>Include Anti-CSRF tokens in your AJAX headers</li>
+<li>Make sure people are authenticated before issuing authorizable requests</li>
+<li>Do checks and throttle requests (no more than x requests from this user per second)</li>
+</ol>
+
+
+<p>I think these are problems we generally face even in a &ldquo;non-rich&rdquo; application (simple server-side design). I could easily issue 100 Fiddler requests per second against a page on your site and maybe bring it down. Including an AntiXssToken might help with that. Maybe we don&rsquo;t care about that. However, it seems the problem is exacerbated, or at least more apparent, when we&rsquo;re talking about AJAX requests because we&rsquo;re exposing our data in an easy-to-consume format (JSON/XML/etc). If not properly designed and secured, Joe Developer can write a client that consumes your API. For public APIs, this is great! For APIs you just want to use for your application&hellip; not so great.</p>
+
+<p>One of the things I&rsquo;m not sure about is how site agnostic these defensive measures are and why it&rsquo;s so hard to find information on how to implement them. Can ASP.NET Web API bake these into the framework? Why or why not? Is this not so common as to warrant more real-world articles/tutorials on how to do it? Am I not searching correctly? Do most people not care?</p>
+
+<blockquote><p>All I want is a not-so-public API my browser-based app can consume</p></blockquote>
+
+<h2>What about SignalR?</h2>
+
+<p>This is just me thinking out loud. Could a library like SignalR help with this? By using a single connection, no longer will I have to create easily consumable URLs like <code>/api/x</code>. Instead, I could create hubs with my API methods I want, and call them in my client code. Authorizing the requests would work as they usually have in the past.</p>
+
+<p>On the surface it sounds like a better idea, but am I missing something? Does it help at all? I could see it providing other benefits, like being able to easily implement multi-user interaction if I wanted in the future.</p>
+
+<p>Would the problem just shift? Now as Joe Developer could I simply reference the generated SignalR scripts and write my own client app? Is it harder or easier to abuse SignalR vs. HTTP URLs?</p>
+
+<p>I don&rsquo;t know yet but I&rsquo;d like to research the topic more; learn more about REST security using tokens and session-based methods.</p>
+
+<h2>Is this even an issue?</h2>
+
+<p>Let&rsquo;s say I implemented and took measures to reduce the likelihood of abuse in my exposed API. Is this even an issue anymore? From what I gather, general consensus is that you can&rsquo;t eliminate the ability for an undesirable user to abuse your API, you can only try to mitigate it as best you can. I still wish it was &ldquo;that easy&rdquo; to secure it. Am I missing something obvious here?</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1110,532 +1187,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/27/using-cassette-for-semi-complicated-scenarios-upda">Using Cassette for Semi-complicated Scenarios [Updated 1/9/12]</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-22T21:24:19-06:00" pubdate data-updated="true">Dec 22<span>nd</span>, 2011</time>
-        
-           | <a href="/blog/posts/27/using-cassette-for-semi-complicated-scenarios-upda#disqus_thread"
-             data-disqus-identifier="http://kamranayub.github.io/blog/posts/27/using-cassette-for-semi-complicated-scenarios-upda">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I love <a href="http://getcassette.net">Cassette</a>. You should too, because as of today, the project has gone MIT licensed which means <strong>you</strong>, my dear reader, can use it right now.</p>
-
-<p>It&rsquo;s alright, I&rsquo;ll wait while you download it via Nuget. Done? Great.</p>
-
-<h3>Updates</h3>
-
-<ul>
-<li><strong>1/9/12</strong>: Added print media example</li>
-<li><strong>1/9/12</strong>: <a href="https://github.com/andrewdavey/cassette/issues/121">Issue #121</a> that I opened was fixed in the latest Cassette update, 1.0.1. I&rsquo;ve updated my samples accordingly.</li>
-</ul>
-
-
-<h3>More than a simple case</h3>
-
-<p>Cassette is <a href="http://hanselminutes.com/260/net-api-design-that-optimizes-for-programmer-joy-with-jonathan-carter">optimized for programmer happiness</a>. It&rsquo;s easy to use and there&rsquo;s a lot of small features that make it stand out from the crowd (SquishIt, Combres, etc.). If you want to get started using Cassette out of the box, you only need to do a couple things and those things are outlined well <a href="http://getcassette.net/documentation/getting-started">in the documentation</a>.</p>
-
-<p>What I love about Cassette is the flexibility you have when you need to go beyond the simplest use case. For example, let&rsquo;s consider the file structure I am working with on a project right now:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Web Project
-</span><span class='line'> |_ Public
-</span><span class='line'>   |_ images
-</span><span class='line'>   |_ print
-</span><span class='line'>     |_ print.css
-</span><span class='line'>   |_ scripts
-</span><span class='line'>     |_ i8n
-</span><span class='line'>       |_ en-US
-</span><span class='line'>       |_ zh-CN
-</span><span class='line'>     |_ special
-</span><span class='line'>       |_ modernizer-2.0.6.js
-</span><span class='line'>     |_ vendor
-</span><span class='line'>       |_ jquery-1.7.1.js
-</span><span class='line'>       |_ other framework files...
-</span><span class='line'>     |_ pages
-</span><span class='line'>       |_ page1.js
-</span><span class='line'>       |_ page2.js
-</span><span class='line'>     |_ app.js
-</span><span class='line'>   |_ themes
-</span><span class='line'>     |_ jquery.ui.core.css
-</span><span class='line'>     |_ other jQuery UI files
-</span><span class='line'>   |_ base.css
-</span><span class='line'>   |_ layout.css
-</span><span class='line'>   |_ otherfiles...</span></code></pre></td></tr></table></div></figure>
-
-
-<p>For the most part, this is how the project was organized and I needed to adapt Cassette to work here. I&rsquo;ll walk through a few things I needed to do first.</p>
-
-<h3>File organization</h3>
-
-<p>Before implementing Cassette, <a href="http://modernizr.com">Modernizr</a> was also in the <em>vendor</em> folder. In addition, the localized JS files in <em>i8n</em> were not in sub-folders according to their culture, they were just in <em>i8n</em>.</p>
-
-<p>In the <em>vendor</em> folder, we have both minified and non-minified JS files (mostly from Nuget). We don&rsquo;t want Cassette to minify an already minified file. I&rsquo;ll show you how I avoided that later on.</p>
-
-<p>I point this out because Cassette works better when things are organized so that they are &ldquo;bundlable.&rdquo; For that reason, I moved the files around so the structure looks like above. Since Modernizr has to be included in the page&rsquo;s <code>&lt;head&gt;</code> (it needs to load before the page loads to set up Respond media queries and HTML5 elements) and all other scripts can be included before the <code>&lt;/body&gt;</code> tag, I separated it into the <em>special</em> folder.</p>
-
-<p>As for the <em>pages</em> scripts, these need to be only included on a per-page basis. If areas of your site need multiple assets, I would definitely move them into sub-folders (I would go a step farther perhaps and even include them by convention, the same way MVC plays with Views and Controllers but that&rsquo;s for another blog post!).</p>
-
-<h3>Configuring the bundles</h3>
-
-<p>I&rsquo;ll walk you through my Cassette configuration file. If you pull down Cassette via Nuget, you will have a new <code>CassetteConfiguration</code> file and class. This is what Cassette picks up and uses to bundle your files. You can move it wherever you want, Cassette magically picks it up. It is important to realize that if you want full control over how Cassette bundles your assets, you&rsquo;ll need to do some configuration. Luckily, it&rsquo;s not bad!</p>
-
-<h4>Excluding directories, minified, and VSDoc files</h4>
-
-<p>Out-of-the-box, Cassette does not provide an easy mechanism to exclude directories when adding bundles per sub-directory. The reason I think this is important is because we want to set up a general &ldquo;catch-all&rdquo; method to deal with bundling, namely: treat each directory as a bundle. That way we can add folders/files and have them bundled automatically for us. This creates less work for the team.</p>
-
-<p>I also wanted to ignore any pre-minified or -vsdoc files (Cassette by default ignores vsdoc files).</p>
-
-<p>To solve this issue, I just derived a class from <code>FileSearch</code> and added my own requirements:</p>
-
-<script src="https://gist.github.com/1583784.js"></script>
-
-
-<p>I could have also implemented my own <code>IFileSearch</code>, perhaps one that used a fluent interface to exclude directories or file suffixes, but for my limited needs, this would do well and I really only needed to build upon the out-of-the-box <code>FileSearch</code> class. Maybe I will implement a fluent search interface as a fun project.</p>
-
-<p>The other thing I needed to add into the <em>Regex</em> was the ability to exclude any files ending in &ldquo;.min&rdquo; or &ldquo;-min&rdquo; (just in case). Cassette recommends you simply delete minified files. That&rsquo;s a good tip, except they&rsquo;ll just be back when you do a Nuget update, so why not just ignore them by default as well (<em>ahem</em>)?</p>
-
-<p><em>Side note: It seems more efficient to me to allow Cassette to reference minified files but to bypass minification of them. Perhaps this will be implemented in the future?</em></p>
-
-<h4>Configuring stylesheets</h4>
-
-<p>For our project, we need to include Google Web Fonts in the page, in addition to the CSS files in the <em>public</em> directory. We keep the jQuery UI themes separate in case we update via Nuget so we can simply overwrite them.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">private</span> <span class="k">void</span> <span class="nf">ConfigureStylesheets</span><span class="p">(</span><span class="n">BundleCollection</span> <span class="n">bundles</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="c1">// Sub-folder bundled CSS</span>
-</span><span class='line'>    <span class="n">bundles</span><span class="p">.</span><span class="n">AddPerSubDirectory</span><span class="p">&lt;</span><span class="n">StylesheetBundle</span><span class="p">&gt;(</span><span class="s">&quot;Public&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="k">new</span> <span class="nf">ExcludeDirectorySearch</span><span class="p">(</span><span class="s">&quot;*.css&quot;</span><span class="p">,</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="s">&quot;scripts&quot;</span> <span class="p">}));</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// Print media bundle</span>
-</span><span class='line'>    <span class="n">bundles</span><span class="p">.</span><span class="n">Get</span><span class="p">&lt;</span><span class="n">StylesheetBundle</span><span class="p">&gt;(</span><span class="s">&quot;~/public/print&quot;</span><span class="p">).</span><span class="n">Media</span> <span class="p">=</span> <span class="s">&quot;print&quot;</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// Google Web fonts</span>
-</span><span class='line'>    <span class="n">bundles</span><span class="p">.</span><span class="n">AddUrlWithAlias</span><span class="p">&lt;</span><span class="n">StylesheetBundle</span><span class="p">&gt;(</span>
-</span><span class='line'>        <span class="n">Scheme</span> <span class="p">+</span> <span class="s">&quot;://fonts.googleapis.com/css?family=Droid+Sans|Montserrat&quot;</span><span class="p">,</span> <span class="s">&quot;Fonts&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The first line tells Cassette to add a bundle per sub-directory, so the following bundles will be made:</p>
-
-<ul>
-<li>public (our CSS)</li>
-<li>public\themes (jQuery UI)</li>
-<li>public\print (print media)</li>
-</ul>
-
-
-<p>It also uses the class above and excludes the &ldquo;scripts&rdquo; directory from search, for good measure.</p>
-
-<p>One of the caveats to the directory exclude is that it technically does <em>not</em> exclude directories; Cassette still creates empty bundles. Thus, if you tried to add a <code>~/public/print</code> bundle, you&rsquo;d get an exception saying that it already exists. So, we <em>cannot</em> exclude the <code>print</code> directory. Instead, you can reference it directly after it&rsquo;s been added and manually set the <code>Media</code> to print. Problem solved! Ideally, Cassette should not be creating empty bundles.</p>
-
-<p>The second line includes the direct Google stylesheet reference aliased as <em>Fonts</em> (in references, <code>~/Fonts</code>). In this project, our site is behind a load balancer so SSL is terminated at the balancer. This means you can&rsquo;t just use the built-in ASP.NET <code>Request.IsSecureConnection</code> because by the time the request even hits the web server, SSL is not there. <strike>Therefore, I utilize one of the utilities we have to check if SSL is enabled via server headers that the balancer sets.</strike> The scheme is not identifiable yet in our <code>Application_Start</code>, so we cannot use this method, but I will leave it here for posterity. We switched to always using SSL since our site is under SSL to the user. <strong>Note:</strong> You can simply include fonts normally using the Google Font Loader or by a direct <code>&lt;link&gt;</code> reference, however, why not use Cassette if you&rsquo;re already going that route?</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="c1">// Also in CassetteConfiguration.cs</span>
-</span><span class='line'><span class="k">private</span> <span class="kt">string</span> <span class="n">Scheme</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">Utilities</span><span class="p">.</span><span class="n">SharedUtils</span><span class="p">.</span><span class="n">IsSecureConnection</span><span class="p">()</span> <span class="p">?</span> <span class="s">&quot;https&quot;</span> <span class="p">:</span> <span class="s">&quot;http&quot;</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In our <em>Layout.cshtml</em> file, we now need to reference these two bundles and render them to the page.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>@{
-</span><span class='line'>    Bundles.Reference(&quot;public&quot;); // Our CSS
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'><span class="nt">&lt;head&gt;</span>
-</span><span class='line'>    @Bundles.RenderStylesheets()
-</span><span class='line'><span class="nt">&lt;/head&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>So how does Cassette understand in what order to put these references? First, Cassette goes by the order in which you call <code>@Bundles.Reference</code>. To make things easier though, I edited our main <em>layout.css</em> file to add Cassette-compatible references.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="c">/* For Cassette */</span>
-</span><span class='line'><span class="c">/* @reference ~/Fonts base.css skeleton.css themes */</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>When Cassette parses <em>layout.css</em>, it will detect these references. Since all files are included in our <em>public</em> bundle, everything goes great and the <code>&lt;link&gt;</code>&rsquo;s are added in order:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;http://fonts.googleapis.com/css?family=Droid+Sans|Montserrat&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/_cassette/asset/Public/themes/jquery.ui.button.css?165be2c1b488debc298a8dbaa77347b326a0d2a2&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/_cassette/asset/Public/themes/jquery.ui.core.css?e5bc0be5bec6729cd338579a99e89c39c844c181&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/_cassette/asset/Public/themes/jquery.ui.datepicker.css?6243e68daf6d6b3c03ce47d66abef2feba488d94&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/_cassette/asset/Public/themes/jquery.ui.dialog.css?45faa27d7c66d72df00c39c40506da46bed885e3&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/_cassette/asset/Public/themes/jquery.ui.resizable.css?a1bf026ec6d01daa0f7853215774c9e3aeb8afa9&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/_cassette/asset/Public/themes/jquery.ui.theme.css?83294a0e12785f8dac8d3f0de4bf65f481b55f13&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/_cassette/asset/Public/base.css?6401a75dfde8196c81d8bb39c3e5fb25dab89ad1&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/_cassette/asset/Public/skeleton.css?d7414571707853cafb3028441861d31291d60789&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/_cassette/asset/Public/layout.css?0ac01597826664dcc3a6c031a61c11ffa17fdd3d&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>Configuring Javascript</h4>
-
-<p>The Javascript assets were a bit harder to configure; we needed to do a couple things:</p>
-
-<ul>
-<li>Auto-bundle everything except a few special cases</li>
-<li>Have a &ldquo;special&rdquo; folder for <code>&lt;head&gt;</code> references</li>
-<li>Avoid editing vendor file references so a Nuget update won&rsquo;t blow the changes away</li>
-</ul>
-
-
-<p>Here is my Javascript configuration:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">private</span> <span class="k">void</span> <span class="nf">ConfigureJavascript</span><span class="p">(</span><span class="n">BundleCollection</span> <span class="n">bundles</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="c1">// Localized JS - i8n/{culture}</span>
-</span><span class='line'>    <span class="n">bundles</span><span class="p">.</span><span class="n">AddPerSubDirectory</span><span class="p">&lt;</span><span class="n">ScriptBundle</span><span class="p">&gt;(</span><span class="s">&quot;Public/scripts/i8n&quot;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// Per-page JS (eventually may want separate folders as well)</span>
-</span><span class='line'>    <span class="n">bundles</span><span class="p">.</span><span class="n">AddPerIndividualFile</span><span class="p">&lt;</span><span class="n">ScriptBundle</span><span class="p">&gt;(</span><span class="s">&quot;Public/scripts/pages&quot;</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// Bundle all scripts except special cases above</span>
-</span><span class='line'>    <span class="n">bundles</span><span class="p">.</span><span class="n">AddPerSubDirectory</span><span class="p">&lt;</span><span class="n">ScriptBundle</span><span class="p">&gt;(</span><span class="s">&quot;Public/scripts&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="k">new</span> <span class="nf">ExcludeDirectorySearch</span><span class="p">(</span><span class="s">&quot;*.js&quot;</span><span class="p">,</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="s">&quot;i8n&quot;</span><span class="p">,</span> <span class="s">&quot;pages&quot;</span> <span class="p">}));</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Our configuration code above does exactly what we need. We can double check by browsing to <em>/_cassette</em> and seeing what Cassette decided to turn into bundles:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span>
-</span><span class='line'>    <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">pages</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">special</span>
-</span><span class='line'>    <span class="n">modernizr</span><span class="p">-</span><span class="m">2.0</span><span class="p">.</span><span class="m">6.</span><span class="n">js</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">vendor</span>
-</span><span class='line'>    <span class="n">jquery</span><span class="p">-</span><span class="m">1.7</span><span class="p">.</span><span class="m">1.</span><span class="n">js</span>
-</span><span class='line'>    <span class="n">jquery</span><span class="p">-</span><span class="n">ui</span><span class="p">-</span><span class="m">1.8</span><span class="p">.</span><span class="m">16.</span><span class="n">js</span>
-</span><span class='line'>    <span class="n">jQuery</span><span class="p">.</span><span class="n">tmpl</span><span class="p">.</span><span class="n">js</span>
-</span><span class='line'>    <span class="n">jquery</span><span class="p">.</span><span class="n">validate</span><span class="p">.</span><span class="n">js</span>
-</span><span class='line'>    <span class="n">jquery</span><span class="p">.</span><span class="n">validate</span><span class="p">.</span><span class="n">unobtrusive</span><span class="p">.</span><span class="n">js</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">i8n</span><span class="p">/</span><span class="n">zh</span><span class="p">-</span><span class="n">CN</span>
-</span><span class='line'>    <span class="n">jquery</span><span class="p">.</span><span class="n">ui</span><span class="p">.</span><span class="n">datepicker</span><span class="p">-</span><span class="n">zh</span><span class="p">-</span><span class="n">CN</span><span class="p">.</span><span class="n">js</span>
-</span><span class='line'>    <span class="n">jquery</span><span class="p">.</span><span class="n">validate</span><span class="p">-</span><span class="n">zh</span><span class="p">-</span><span class="n">CN</span><span class="p">.</span><span class="n">js</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">i8n</span><span class="p">/</span><span class="n">es</span><span class="p">-</span><span class="n">MX</span>
-</span><span class='line'>    <span class="n">jquery</span><span class="p">.</span><span class="n">ui</span><span class="p">.</span><span class="n">datepicker</span><span class="p">-</span><span class="n">es</span><span class="p">-</span><span class="n">MX</span><span class="p">.</span><span class="n">js</span>
-</span><span class='line'>    <span class="n">jquery</span><span class="p">.</span><span class="n">validate</span><span class="p">-</span><span class="n">es</span><span class="p">-</span><span class="n">MX</span><span class="p">.</span><span class="n">js</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">pages</span><span class="p">/</span><span class="n">page1</span><span class="p">.</span><span class="n">js</span>
-</span><span class='line'>    <span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">pages</span><span class="p">/</span><span class="n">page1</span><span class="p">.</span><span class="n">js</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">pages</span><span class="p">/</span><span class="n">page2</span><span class="p">.</span><span class="n">js</span>
-</span><span class='line'>    <span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">pages</span><span class="p">/</span><span class="n">page2</span><span class="p">.</span><span class="n">js</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You can see the exclusions worked, since the <em>pages</em> folder is blank (i.e. not bundled up) and each page script is made later on a per-file basis.</p>
-
-<p>The reason I like this is because now I can just add folders to <em>scripts</em> without worrying about adding a manual Cassette bundle; it will just do it automatically and ignore the two folders I need to make a special case for.</p>
-
-<p><strong>Including the script assets</strong></p>
-
-<p>Remember I said Modernizr should be included in <code>&lt;head&gt;</code> but all the rest of the scripts should be before <code>&lt;/body&gt;</code>? We can do that easily with Cassette.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="err">@</span><span class="p">*</span> <span class="n">_Layout</span><span class="p">.</span><span class="n">cshtml</span> <span class="p">*</span><span class="err">@</span>
-</span><span class='line'><span class="err">@</span><span class="p">{</span>
-</span><span class='line'>    <span class="c1">// CSS</span>
-</span><span class='line'>    <span class="n">Bundles</span><span class="p">.</span><span class="n">Reference</span><span class="p">(</span><span class="s">&quot;public&quot;</span><span class="p">);</span>
-</span><span class='line'>  
-</span><span class='line'>    <span class="c1">// Scripts (vendor first!)</span>
-</span><span class='line'>    <span class="n">Bundles</span><span class="p">.</span><span class="n">Reference</span><span class="p">(</span><span class="s">&quot;public/scripts/special&quot;</span><span class="p">,</span> <span class="s">&quot;head&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">Bundles</span><span class="p">.</span><span class="n">Reference</span><span class="p">(</span><span class="s">&quot;public/scripts&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;!</span><span class="n">DOCTYPE</span> <span class="n">html</span><span class="p">&gt;</span>
-</span><span class='line'><span class="p">&lt;</span><span class="n">html</span><span class="p">&gt;</span>
-</span><span class='line'><span class="p">&lt;</span><span class="n">head</span><span class="p">&gt;</span>
-</span><span class='line'>    <span class="n">@Bundles</span><span class="p">.</span><span class="n">RenderStylesheets</span><span class="p">()</span>
-</span><span class='line'>  
-</span><span class='line'>    <span class="err">@</span><span class="p">*</span> <span class="n">Modernizr</span> <span class="n">needs</span> <span class="n">to</span> <span class="n">be</span> <span class="n">first</span> <span class="p">*</span><span class="err">@</span>
-</span><span class='line'>    <span class="n">@Bundles</span><span class="p">.</span><span class="n">RenderScripts</span><span class="p">(</span><span class="s">&quot;head&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="p">&lt;/</span><span class="n">head</span><span class="p">&gt;</span>
-</span><span class='line'><span class="p">&lt;</span><span class="n">body</span><span class="p">&gt;</span>
-</span><span class='line'>  
-</span><span class='line'>    <span class="err">@</span><span class="p">*</span> <span class="n">All</span> <span class="n">other</span> <span class="n">scripts</span> <span class="p">*</span><span class="err">@</span>
-</span><span class='line'>    <span class="n">@Bundles</span><span class="p">.</span><span class="n">RenderScripts</span><span class="p">()</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="err">@</span><span class="p">*</span> <span class="n">Localized</span> <span class="n">scripts</span> <span class="p">*</span><span class="err">@</span>
-</span><span class='line'>    <span class="n">@RazorHelpers</span><span class="p">.</span><span class="n">LocalizedScripts</span><span class="p">()</span>
-</span><span class='line'><span class="p">&lt;/</span><span class="n">body</span><span class="p">&gt;</span>
-</span><span class='line'><span class="p">&lt;/</span><span class="n">html</span><span class="p">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Notice the reference for Modernizr. I am using the overloaded <code>Reference</code> that accepts a <code>pageLocation</code> argument. This is the same as how you can include Razor sections in MVC3. The location is just a string you use when you call <code>@Bundles.RenderScripts({pageLocation})</code>. <strong>Tip:</strong> You can also specify <code>pageLocation</code> when you create a bundle in your <code>CassetteConfiguration</code> class. I did not, since I only needed one script in the <code>head</code> tag, but if you have multiple folders or bundles that need to be in separate locations, you don&rsquo;t have to specify a page location in your view files.</p>
-
-<p>As with our stylesheets, we need a way to tell Cassette how to order the vendor scripts since we typically have plugins that depend on each other (such as jQuery). You <em>could</em> edit each vendor file and manually add file references to them, but that&rsquo;s no fun is it? In order to reduce headaches and maintenance, create a <a href="http://getcassette.net/documentation/configuration/bundle-descriptor-file">Bundle Descriptor File</a> instead. That way, you will only need to keep that file up-to-date as you add more vendor plugins.</p>
-
-<p>In the <em>vendors</em> folder, I simply made a <em>bundle.txt</em> file:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">jquery</span><span class="p">-</span><span class="m">1.7</span><span class="p">.</span><span class="m">1.</span><span class="n">js</span>
-</span><span class='line'><span class="n">jquery</span><span class="p">-</span><span class="n">ui</span><span class="p">-</span><span class="m">1.8</span><span class="p">.</span><span class="m">16.</span><span class="n">js</span>
-</span><span class='line'><span class="n">jQuery</span><span class="p">.</span><span class="n">tmpl</span><span class="p">.</span><span class="n">js</span>
-</span><span class='line'><span class="n">jquery</span><span class="p">.</span><span class="n">validate</span><span class="p">.</span><span class="n">js</span>
-</span><span class='line'><span class="n">jquery</span><span class="p">.</span><span class="n">validate</span><span class="p">.</span><span class="n">unobtrusive</span><span class="p">.</span><span class="n">js</span>
-</span><span class='line'><span class="p">*</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The wildcard at the end tells Cassette, &ldquo;Yo, do whatever you want for the rest of the scripts you find.&rdquo; How useful! Now there&rsquo;s even <em>less</em> maintenance (didn&rsquo;t I tell you this baby was optimized for happiness?).</p>
-
-<p>For localization, I just created a Razor helper to include the right culture files for me (this shows you that you can use the <code>Bundles</code> object anywhere in your Razor views and Cassette will include the references):</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="c1">//</span>
-</span><span class='line'><span class="c1">// ~/App_Code/RazorHelpers.cshtml</span>
-</span><span class='line'><span class="c1">//</span>
-</span><span class='line'><span class="n">@helper</span> <span class="nf">LocalizedScripts</span><span class="p">()</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>    <span class="kt">string</span> <span class="n">cultureName</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">CurrentCulture</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">cultureName</span> <span class="p">!=</span> <span class="n">Constants</span><span class="p">.</span><span class="n">DefaultCulture</span><span class="p">)</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="n">Bundles</span><span class="p">.</span><span class="n">Reference</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;/public/scripts/i8n/{0}&quot;</span><span class="p">,</span> <span class="n">cultureName</span><span class="p">));</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And on individual views, I can now included page-specific JS:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="err">@</span><span class="p">*</span> <span class="n">Views</span><span class="err">\</span><span class="n">Controller1</span><span class="err">\</span><span class="n">View1</span><span class="p">.</span><span class="n">cshtml</span> <span class="p">*</span><span class="err">@</span>
-</span><span class='line'><span class="err">@</span><span class="p">{</span>
-</span><span class='line'>    <span class="n">Bundles</span><span class="p">.</span><span class="n">Reference</span><span class="p">(</span><span class="s">&quot;~/public/scripts/pages/page1.js&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Cassette is smart and will include the JS automatically in the <em>Layout.cshtml</em> file <em>and</em> in the proper order (in my case, just at the end. If you had references inside, Cassette would know).</p>
-
-<h4>To debug or not to debug, that is the question!</h4>
-
-<p>In our environment, we don&rsquo;t necessarily want to turn off Cassette as soon as the web.config&rsquo;s <code>debug</code> flag turns to <em>false</em>. Instead, we have different environments where it might make sense to leave Cassette on. When the site goes out to QA, then it makes sense to turn on Cassette&rsquo;s Release mode, but while developing locally and in staging, we may need to debug a bit more.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">void</span> <span class="nf">Configure</span><span class="p">(</span><span class="n">BundleCollection</span> <span class="n">bundles</span><span class="p">,</span> <span class="n">CassetteSettings</span> <span class="n">settings</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="c1">// Debug locally and in staging</span>
-</span><span class='line'>  <span class="n">settings</span><span class="p">.</span><span class="n">IsDebuggingEnabled</span> <span class="p">=</span>
-</span><span class='line'>      <span class="n">Server</span><span class="p">.</span><span class="n">CurrentEnvironment</span> <span class="p">==</span> <span class="n">Server</span><span class="p">.</span><span class="n">ServerEnvironment</span><span class="p">.</span><span class="n">Developer</span> <span class="p">||</span>
-</span><span class='line'>      <span class="n">Server</span><span class="p">.</span><span class="n">CurrentEnvironment</span> <span class="p">==</span> <span class="n">Server</span><span class="p">.</span><span class="n">ServerEnvironment</span><span class="p">.</span><span class="n">Development</span><span class="p">;</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="n">ConfigureStylesheets</span><span class="p">(</span><span class="n">bundles</span><span class="p">);</span>
-</span><span class='line'>  <span class="n">ConfigureJavascript</span><span class="p">(</span><span class="n">bundles</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And there&rsquo;s my full <code>CassetteConfiguration</code> class!</p>
-
-<h3>So what are you waiting for?</h3>
-
-<p>Cassette is awesome and I hope you learned a couple tips for doing things in a semi-complex environment. Let me know if you&rsquo;ve found any more good tips &amp; tricks, or if you notice I missed an optimization or hidden feature.</p>
-
-<p>I would really like to do some performance testing with Cassette. It <em>does</em> add to your overhead on the site, but in my Firebug timings, I noticed much less time being spent on CSS files and more time being spent on JS files. If you are worried about performance on a massive scale, it will <strong>always</strong> be faster to minify and concatenate your files at compile or build time because then IIS is serving the files directly. Components like Cassette are meant to ease your burden by handling that for you, at the expense of some milliseconds. Remember that due to caching and aggressive expiration headers, the browser should <em>not</em> be requesting assets anyway after the first request.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -1670,6 +1221,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/04/kamranicus-now-with-100-percent-more-octopress/">Kamranicus: Now With 100% More Octopress</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a>
       </li>
     
@@ -1683,10 +1238,6 @@
     
       <li class="post">
         <a href="/blog/posts/76/minnesota-developer-conference-2013-connected-apps">Minnesota Developer Conference 2013: Connected Apps</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/posts/75/test-retina-images-without-a-retina-screen">Test Retina Images Without a Retina Screen</a>
       </li>
     
   </ul>
