@@ -9,7 +9,7 @@
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="I love KnockoutJS. I&rsquo;ve been using it for awhile now and I really enjoy it. That said, there are a few oddities with it, one such being the &hellip;">
+  <meta name="description" content="Update: In Knockout 3+, this issue is solved with the new checkedValue binding. Read the documentation for details. You can still use my workaround &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -107,7 +107,9 @@
   </header>
 
 
-<div class="entry-content"><p>I love KnockoutJS. I&rsquo;ve been using it for awhile now and I really enjoy it. That said, there are a few oddities with it, one such being the <code>checked</code> binding.</p>
+<div class="entry-content"><blockquote><p><strong>Update</strong>: In Knockout 3+, this issue is solved with the new <code>checkedValue</code> binding. Read the <a href="http://knockoutjs.com/documentation/checked-binding.html">documentation</a> for details. You can still use my workaround for KO 2.x and below.</p></blockquote>
+
+<p>I love KnockoutJS. I&rsquo;ve been using it for awhile now and I really enjoy it. That said, there are a few oddities with it, one such being the <code>checked</code> binding.</p>
 
 <p>Let&rsquo;s say you have this scenario (as I do now):</p>
 
@@ -342,7 +344,9 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://kamranicus.com/blog/posts/61/a-smarter-checked-binding-for-knockoutjs';
+        
+        var disqus_identifier = '61';
+        
         var disqus_url = 'http://kamranicus.com/blog/posts/61/a-smarter-checked-binding-for-knockoutjs';
         var disqus_script = 'embed.js';
       
