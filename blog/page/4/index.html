@@ -9,7 +9,20 @@
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="I just installed VS 2012 RC (previous codename VS11) to make sure I am on the latest and greatest and I&rsquo;d like to mention a few gotchas I ran &hellip;">
+  <meta name="description" content="Have you ever done this before? 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+&lt;!-- Decide what CSS class to use for layout --&gt;
+@if (Model.Format == Formats.Table &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +91,150 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/49/use-enums-to-reduce-markup-maintenance-mvc">Use Enums to Reduce Markup Maintenance [MVC]</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-08T04:49:33-05:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time>
+        
+           | <a href="/blog/posts/49/use-enums-to-reduce-markup-maintenance-mvc#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/49/use-enums-to-reduce-markup-maintenance-mvc">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Have you ever done this before?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- Decide what CSS class to use for layout --&gt;</span>
+</span><span class='line'>@if (Model.Format == Formats.Table) {
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo foo-layout-table&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>} else if (Model.Format == Formats.Grid) {
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo foo-layout-grid&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>} else if (Model.Format == Formats.Paragraph) {
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo foo-layout-paragraph&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>  <span class="c">&lt;!-- Markup --&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Or some other variant of the same idea (trying to assign a CSS class based on some branch logic)?</p>
+
+<p>If you find yourself doing this, I have a pro tip for you: wherever you can, utilize your enum directly in the CSS class name. Why? Because in 2 weeks when you add another layout, you will need to go back into this if statement and add another branch. The other reason is, frankly, this is ugly and not very Razor-ish.</p>
+
+<p>Instead, I&rsquo;d advocate doing it this way:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo foo-layout-@Model.Format&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="c">&lt;!-- Markup --&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Simple! I found that to be much more intuitive and is the way I&rsquo;ve always approached this. You can use this approach with an Enum, string, or other type where a <code>.ToString()</code> outputs a simple value (booleans!).</p>
+
+<p><em>But Kamran, my logic is much more complex than that.</em> This is when I&rsquo;d recommend pulling out that logic into a view model, creating a <code>@helper</code>, or as a last resort, inline.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- Helper --&gt;</span>
+</span><span class='line'>@helper LayoutCss() {
+</span><span class='line'>  if (Model.Format == Formats.Table) {
+</span><span class='line'>      @:foo-layout-table
+</span><span class='line'>  } else if (Model.Format == Formats.Grid) {
+</span><span class='line'>      @:foo-layout-grid
+</span><span class='line'>  } else if (Model.Format == Formats.Paragraph) {
+</span><span class='line'>      @:foo-layout-paragraph
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo @LayoutCss()&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&lt;!-- Inline --&gt;</span>
+</span><span class='line'>@{
+</span><span class='line'>  var layoutCssClass = &quot;&quot;;
+</span><span class='line'>
+</span><span class='line'>  if (Model.Format == Formats.Table) {
+</span><span class='line'>      layoutCssClass = &quot;foo-layout-table&quot;;
+</span><span class='line'>  } else if (Model.Format == Formats.Grid) {
+</span><span class='line'>      layoutCssClass = &quot;foo-layout-grid&quot;;
+</span><span class='line'>  } else if (Model.Format == Formats.Paragraph) {
+</span><span class='line'>      layoutCssClass = &quot;foo-layout-paragraph&quot;;
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo @layoutCssClass&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The point is to decouple your CSS class logic from your markup as much as you can, so your markup isn&rsquo;t crufted up. What other tips do you have for reducing CSS class headaches?</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -791,94 +948,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/39/a-few-hours-with-webapi-mvc-the-good-and-the-bad">A Few Hours With WebAPI + MVC, the Good and the Bad</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-03T13:42:13-05:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2012</time>
-        
-           | <a href="/blog/posts/39/a-few-hours-with-webapi-mvc-the-good-and-the-bad#disqus_thread"
-             data-disqus-identifier="http://kamranayub.github.io/blog/posts/39/a-few-hours-with-webapi-mvc-the-good-and-the-bad">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&rsquo;m working on the next version of <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> and it&rsquo;s an opportunity to upgrade to and play with MVC 4, especially the new <a href="http://asp.net/web-api">WebAPI</a>.</p>
-
-<h2>Getting WebAPI</h2>
-
-<p>This was not super apparent from the tutorials on asp.net but to get the WebAPI, you can simply obtain it from Nuget. Most of the tutorials start with File > New Project, but I wanted to incorporate it into a newly upgraded MVC 4 project. <em>Fun fact:</em> MVC4 is also available on Nuget, score!</p>
-
-<p><img src="/blog/images/37.png" alt="Nuget" /></p>
-
-<p>Which one?! Since there&rsquo;s no description or information regarding the &ldquo;Data&rdquo; package (assuming it will make it easy to integrate with EF), I went with the <strong>ASP.NET Web API (Beta)</strong> package.</p>
-
-<h2>WebAPI is Not MVC</h2>
-
-<p>I dislike things that cause friction. Unfortunately, there&rsquo;s some friction with using WebAPI for the first time. I&rsquo;m not sure if all of it can be removed, but hopefully some of it can be mitigated. If you haven&rsquo;t used WebAPI before, it&rsquo;s important to know <strong>WebAPI is not MVC</strong>.</p>
-
-<p>Here&rsquo;s what I struggled with:</p>
-
-<ol>
-<li><p>Configuration is separate. You have to use the not-very-intuitively-named <code>GlobalConfiguration.Configuration</code> singleton to configure WebAPI. Seriously? Why not <code>HttpConfiguration</code> or even better, <code>ApiConfiguration</code>? To match typical MVC conventions (GlobalFilters.Filters, RouteTable.Routes), I&rsquo;d propose <code>HttpApi.Api</code> or something along those lines.</p></li>
-<li><p>Routing is separate. I use <a href="https://github.com/mccalltd/AttributeRouting">AttributeRouting</a> and while I haven&rsquo;t explicitly tried it with WebAPI, I don&rsquo;t think it will work, but maybe it will. You register routes using the <code>MapHttpRoute</code> extension.</p></li>
-<li><p>It doesn&rsquo;t plug into MVC&rsquo;s <code>DependencyResolver</code>. This was annoying. I use Ninject.MVC3 for my DI container, but that doesn&rsquo;t automatically make it available to WebAPI. Nay, <a href="http://haacked.com/archive/2012/03/11/itrsquos-the-little-things-about-asp-net-mvc-4.aspx">you have to jump through some hoops</a> to get it to work. Once you do, it works just as you&rsquo;d expect. <strong>Update:</strong> At a presentation today at Twin Cities Code Camp, Matt Milner presented on Web API and I saw he used a simpler method to plug Ninject into Web API:</p>
-
-<pre><code> configuration.SetResolver(t =&gt; kernel.TryGet(t), t =&gt; kernel.GetAll(t));
-</code></pre></li>
-<li><p>Attributes are different. Do you have a custom <code>[Authorize]</code> attribute in MVC? You&rsquo;ll have to port it to WebAPI. This isn&rsquo;t a bad thing, it&rsquo;s just not apparent when you see this:</p>
-
-<pre><code> [Authorize]
- Product GetProductById(int id) { }
-</code></pre>
-
-<p> To follow the convention, I prefixed my custom attributes with <code>Http</code> to make it more apparent they&rsquo;re different.</p></li>
-<li><p>JSON.NET <em>will be</em> the default JSON serializer, but it&rsquo;s not <em>yet</em>. This means you have to register a custom formatter. I used the one <a href="http://www.west-wind.com/weblog/posts/2012/Mar/09/Using-an-alternate-JSON-Serializer-in-ASPNET-Web-API">on Rick Strahl&rsquo;s blog</a> (with some modifications) but you could try the several JsonNet Nuget packages for WebAPI (<a href="http://nuget.org/packages/WebAPIContrib.Formatters.JsonNet/0.6.0">WebAPIContrib.Formatters.JsonNet</a> or <a href="http://nuget.org/packages/netfx-WebApi.JsonNetFormatter/1.0.0.11">NetFx</a>).</p></li>
-</ol>
-
-
-<p>And that&rsquo;s about it. Once I overcame those &ldquo;frictions&rdquo; everything started to go smoothly. I haven&rsquo;t played with it a ton, but I&rsquo;m sure I&rsquo;ll write about it as I use it more.</p>
-
-<h2>Removing the friction</h2>
-
-<p>While I understand WebAPI is separate (but equal?) from MVC to allow for self-hosting or MVC-independent use cases, let&rsquo;s be honest: who are going to be the majority consumers of the API? MVC peeps. If there isn&rsquo;t already, there needs to be a &ldquo;bridge&rdquo; that makes it easier to use for MVC consumers.</p>
-
-<p>The bridge should:</p>
-
-<ol>
-<li><strike>Plug into routing (so AttributeRouting sees it?)</strike> <a href="https://github.com/mccalltd/AttributeRouting/pull/57">I&rsquo;ve added Web API support</a> to AttributeRouting directly. It will be in v2.</li>
-<li>Plug into whatever dependency resolver you have set</li>
-<li>Do something else I haven&rsquo;t run into yet</li>
-</ol>
-
-
-<p>A Nuget package that added a WebActivator start up wouldn&rsquo;t be too hard. Maybe it doesn&rsquo;t even need to &ldquo;plug&rdquo; into the pipeline, it can simply make it easier to see and configure WebAPI. The auto-DI integration alone would be a big win.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -913,6 +982,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/">MiniProfiler RavenDB Pull Request Accepted</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/04/kamranicus-now-with-100-percent-more-octopress/">Kamranicus: Now With 100% More Octopress</a>
       </li>
     
@@ -926,10 +999,6 @@
     
       <li class="post">
         <a href="/blog/posts/77/tccc15-leveling-up-your-windows-phone-app">TCCC15: Leveling Up Your Windows Phone App</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/posts/76/minnesota-developer-conference-2013-connected-apps">Minnesota Developer Conference 2013: Connected Apps</a>
       </li>
     
   </ul>

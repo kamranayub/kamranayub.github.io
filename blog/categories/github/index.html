@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Getting Cassette's Compiled Knockout Templates to Work in KO 2.0 - Kamranicus</title>
+  <title>Category: GitHub - Kamranicus</title>
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="The Knockout template binding documentation does a good job explaining how to use KO with jQuery Templates and even Underscore templates, however, it &hellip;">
+  <meta name="description" content="Category: GitHub">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://kamranayub.github.io/blog/posts/37/getting-cassettes-compiled-knockout-templates-to-w">
+  <link rel="canonical" href="http://kamranayub.github.ioblog/categories/github">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
@@ -77,101 +77,36 @@
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">Getting Cassette's Compiled Knockout Templates to Work in KO 2.0</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-21T19:57:31-05:00" pubdate data-updated="true">Mar 21<span>st</span>, 2012</time>
-        
-           | <a href="#disqus_thread"
-             data-disqus-identifier="http://kamranayub.github.io">Comments</a>
-        
-      </p>
+    <h1 class="entry-title">Category: GitHub</h1>
     
   </header>
-
-
-<div class="entry-content"><p>The Knockout <a href="http://knockoutjs.com/documentation/template-binding.html#note_4_dynamically_choosing_which_template_is_used">template binding</a> documentation does a good job explaining how to use KO with jQuery Templates and even Underscore templates, however, it does not explain how (or if) you can use compiled templates outside of the HTML markup.</p>
-
-<p><a href="http://getcassette.net/documentation/html-templates/knockoutjs-jquery-tmpl">Cassette</a> offers functionality to automatically compile and bundle your HTML templates, making it an excellent tool for more advanced Knockout development where you want to separate your templates. Unfortunately, in KO 2.0.0, it&rsquo;s broken!</p>
-
-<p>The fix is to extend KO&rsquo;s built in jQuery Template engine with some logic to check and see if the named template is already precompiled. KO assumes that the name in a template binding refers to a DOM element with the given ID. Unfortunately, in our case, it refers to the precompiled template name.</p>
-
-<p>Here is a plugin I wrote that fixes this issue. I&rsquo;ve tested it in a limited capacity and I do wonder if <code>text</code> needs to be stubbed out more, but so far this hasn&rsquo;t caused any issues. This should work for adding compiled template support <em>in general</em> to Knockout (for jquery.tmpl), not just Cassette.</p>
-
-<script src="https://gist.github.com/2151977.js?file=knockout.compiledTemplateSource.js"></script>
-
-</div>
-
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Kamran</span></span>
-
-      
-
-
-
-
-
+  <div id="blog-archives" class="category">
 
 
 
   
+  <h2>2013</h2>
+
+<article>
+  
+<h1><a href="/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/">MiniProfiler RavenDB Pull Request Accepted</a></h1>
+<time datetime="2013-12-05T08:32:08-06:00" pubdate><span class='month'>Dec</span> <span class='day'>05</span> <span class='year'>2013</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/github/'>GitHub</a>, <a class='category' href='/blog/categories/oss/'>OSS</a></span>
+</footer>
 
 
-<time datetime="2012-03-21T19:57:31-05:00" pubdate data-updated="true">Mar 21<span>st</span>, 2012</time>
-      
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://kamranayub.github.io/blog/posts/37/getting-cassettes-compiled-knockout-templates-to-w" data-via="kamranayub" data-counturl="http://kamranayub.github.io/blog/posts/37/getting-cassettes-compiled-knockout-templates-to-w" >Tweet</a>
-  
-  
-  <div class="g-plusone" data-size="medium"></div>
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/posts/35/working-with-computed-columns-in-ef-43" title="Previous Post: Working with Computed Columns in EF 4.3">&laquo; Working with Computed Columns in EF 4.3</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/posts/38/can-i-use-signalr-to-design-a-typical-single-page" title="Next Post: Can I Use SignalR to Design a "Typical" Single Page Application?">Can I Use SignalR to Design a "Typical" Single Page Application? &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-  </section>
+
+  
+</article>
 
 </div>
 
@@ -280,10 +215,7 @@
       var disqus_shortname = 'kamranicus';
       
         
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://kamranayub.github.io/blog/posts/37/getting-cassettes-compiled-knockout-templates-to-w';
-        var disqus_url = 'http://kamranayub.github.io/blog/posts/37/getting-cassettes-compiled-knockout-templates-to-w';
-        var disqus_script = 'embed.js';
+        var disqus_script = 'count.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

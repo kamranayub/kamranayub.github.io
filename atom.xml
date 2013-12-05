@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranayub.github.io/atom.xml" rel="self"/>
   <link href="http://kamranayub.github.io/"/>
-  <updated>2013-12-04T23:22:34-06:00</updated>
+  <updated>2013-12-05T08:56:48-06:00</updated>
   <id>http://kamranayub.github.io/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,65 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[MiniProfiler RavenDB Pull Request Accepted]]></title>
+    <link href="http://kamranayub.github.io/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/"/>
+    <updated>2013-12-05T08:32:08-06:00</updated>
+    <id>http://kamranayub.github.io/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted</id>
+    <content type="html"><![CDATA[<p>I just got a notification that my <a href="https://github.com/MiniProfiler/dotnet/pull/15">pull request</a> for
+adding RavenDB support to MiniProfiler went through! It&rsquo;s always really cool to see your contributions
+get pulled in. The MiniProfiler guys were really easy-going, <a href="https://github.com/yellis">@yellis</a> was even kind enough to take on
+the testing. That kind of acceptance for pull requests is great to see because it makes me feel good
+about contributing and is a bit less intimidating.</p>
+
+<!-- More -->
+
+
+<p>The &ldquo;official&rdquo; MiniProfiler RavenDB plugin does several things:</p>
+
+<ul>
+<li>Integrates with all existing MiniProfiler settings</li>
+<li>Displays the query duration just like you&rsquo;d expect in a separate raven column
+
+<ul>
+<li>This let&rsquo;s you see the raven percentage individually just like SQL</li>
+<li>It matches the experience of using EF with MiniProfiler exactly</li>
+</ul>
+</li>
+<li>Allows you to dig into the exact request details ala EF integration</li>
+<li>(not included) It&rsquo;s possible to also include the <em>results</em> of the request but in my pull request I don&rsquo;t because it was way too much
+overhead to include the full response in the web interface (displaying 50 complex objects in JSON slowed down the UI too much)
+
+<ul>
+<li>You can just copy the query to see the results in Raven Studio anyway</li>
+<li>Possibly you could just display the query URL and open the request in a new tab</li>
+</ul>
+</li>
+</ul>
+
+
+<p>I have only just begun my exploration of RavenDB but one of the downsides from moving from EF was
+the excellent MiniProfiler integration. I was really surprised to find adding the same level
+of support to Raven was pretty straightforward in the latest iteration of MiniProfiler.</p>
+
+<p>There are two packages I found that added profiling to Raven, the <a href="https://github.com/ravendb/ravendb/tree/master/Raven.Client.MvcIntegration">&ldquo;official&rdquo; Raven profiler</a> and another
+<a href="http://blog.csainty.com/MvcMiniProfiler.RavenDb/">MiniProfiler plugin</a>, but both of those are lacking. The official one didn&rsquo;t seem to handle AJAX requests
+and the other only seemed to add profiling steps; it didn&rsquo;t provide any details about the request.
+I wanted <strong>full</strong> integration with MiniProfiler on the same level as EF and I didn&rsquo;t want to enable <em>two</em> profilers at once. I was
+already using MiniProfiler to profile my MVC app, I didn&rsquo;t want to enable Raven Profiler and MiniProfiler
+at the same time.</p>
+
+<p>There is <a href="https://github.com/ravendb/ravendb.contrib/tree/master/src/Raven.Client.Contrib.Profiling">a RavenDb.Contrib project</a> that added MiniProfiler integration on the level I wanted, but unfortunately it was not integrated
+tightly into the MiniProfiler codebase (it was using reflection and other hacks) and it also was not built against the latest version of the codebase
+that simplified the steps to create a new custom timing. Still, credit is due, because some of the formatting logic and general direction of my pull
+request was taken from that contrib project.</p>
+
+<p>I do not know what the release schedule is like for the next version of MiniProfiler, but I have my
+RavenDB-based branch compiled and am using it for my site currently. You can bring down my fork
+and compile it yourself too, if you&rsquo;re really interested in using it right now.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Kamranicus: Now With 100% More Octopress]]></title>
@@ -777,41 +836,6 @@
 
 
 <p>As you can see, now it works as you&rsquo;d expect! You can bind the <code>id</code> property to the list. You can also bind <code>$data</code> and you&rsquo;ll have the full object in your selected list.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Disappointed in the Windows Store Submission Process]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/60/disappointed-in-the-windows-store-submission-proce"/>
-    <updated>2012-12-15T02:29:55-06:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/60/disappointed-in-the-windows-store-submission-proce</id>
-    <content type="html"><![CDATA[<p>I&rsquo;m disappointed I have to write about this, because I shouldn&rsquo;t have to. I&rsquo;ve been a Microsoft-stack guy for a long time and I was <em>really</em> excited to release my <a href="http://steamhubapp.com">first app</a> for Windows 8. I&rsquo;m even more excited to also work on a Windows Phone app. That&rsquo;s why I bought a Surface RT and a new HTC 8X. I&rsquo;m all in.</p>
-
-<p>So imagine my disappointment when, after five days, I receive this email:</p>
-
-<blockquote><p>Windows Store: we couldn&rsquo;t certify your app</p></blockquote>
-
-<p>Boo. <em>Okay,</em> I thought, <em>I must have missed something, no big deal.</em> Clearly the testers must have found something that I missed, since I ran my app through memory profiling and performance testing both on my PC and Surface. I even poured over the certification checklist and common points of failure. What did I miss?</p>
-
-<p><strong>Nothing.</strong></p>
-
-<p>Here&rsquo;s what the tester&rsquo;s note said on the report:</p>
-
-<blockquote><p>F:: It is unclear how to create an account for this app to be reviewed. This prevented us from completing our review of this app.</p></blockquote>
-
-<p><em>What?</em> &ldquo;Unclear&rdquo;? You mean, the first sentence of my &ldquo;Instructions to Testers&rdquo; wasn&rsquo;t clear enough?</p>
-
-<blockquote><p>Please use my account (***) to test the app with.</p></blockquote>
-
-<p><em>So. Frustrating.</em> I could understand if I had perhaps put that information at the bottom of my note, forgot to include it, or something else&hellip; but I <em>put it at the top of the instructions</em> to avoid this very problem. How can I feel confident in this testing process if the testers don&rsquo;t read our instructions? It just seems to contribute to my overall view that the Windows Store is lacking in several areas and &ldquo;just isn&rsquo;t there&rdquo; yet but I suppose that rant is for another day.</p>
-
-<p>What makes it worse is that the tutorial video I include in the app (that is accessible on the first screen) <strong>uses my account to demo.</strong> It just boggles my mind.</p>
-
-<p><img src="http://ragemaker.net/images/Stupidity/seriouslyChan.png" alt="Seriously?" /></p>
-
-<p>The icing on the cake was that it took 5 days for this to fail. I&rsquo;m sure it goes into a queue and that the actual time to perform &ldquo;content compliance&rdquo; is an hour or so but even knowing that, it just made it worse since now I have to wait an additional X days for something I shouldn&rsquo;t have had to wait for in the first place.</p>
-
-<p>There&rsquo;s nothing else I can really do about it, though. I re-submitted it, I added extra emphasis in the Notes field, but what else is there? Just pray it works this time, I guess. Disappointing first-time experience, to say the least.</p>
 ]]></content>
   </entry>
   
