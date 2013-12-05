@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Kamranicus]]></title>
-  <link href="http://kamranayub.github.io/atom.xml" rel="self"/>
-  <link href="http://kamranayub.github.io/"/>
-  <updated>2013-12-05T08:56:48-06:00</updated>
-  <id>http://kamranayub.github.io/</id>
+  <link href="http://kamranicus.com/atom.xml" rel="self"/>
+  <link href="http://kamranicus.com/"/>
+  <updated>2013-12-05T09:35:07-06:00</updated>
+  <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[MiniProfiler RavenDB Pull Request Accepted]]></title>
-    <link href="http://kamranayub.github.io/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/"/>
+    <link href="http://kamranicus.com/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/"/>
     <updated>2013-12-05T08:32:08-06:00</updated>
-    <id>http://kamranayub.github.io/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted</id>
+    <id>http://kamranicus.com/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted</id>
     <content type="html"><![CDATA[<p>I just got a notification that my <a href="https://github.com/MiniProfiler/dotnet/pull/15">pull request</a> for
 adding RavenDB support to MiniProfiler went through! It&rsquo;s always really cool to see your contributions
 get pulled in. The MiniProfiler guys were really easy-going, <a href="https://github.com/yellis">@yellis</a> was even kind enough to take on
@@ -74,9 +74,9 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[Kamranicus: Now With 100% More Octopress]]></title>
-    <link href="http://kamranayub.github.io/blog/2013/12/04/kamranicus-now-with-100-percent-more-octopress/"/>
+    <link href="http://kamranicus.com/blog/2013/12/04/kamranicus-now-with-100-percent-more-octopress/"/>
     <updated>2013-12-04T23:18:28-06:00</updated>
-    <id>http://kamranayub.github.io/blog/2013/12/04/kamranicus-now-with-100-percent-more-octopress</id>
+    <id>http://kamranicus.com/blog/2013/12/04/kamranicus-now-with-100-percent-more-octopress</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve just pushed a new version of Kamranicus that is built using the static site generator, <a href="http://octopress.org">Octopress</a>. Octopress uses <a href="http://jekyllrb.com/">Jekyll</a> to generate static sites.</p>
 
 <p>I decided to switch because I can leverage GitHub Pages which are <strong>free</strong> and I can use a custom domain. It&rsquo;s a perfect fit because I can just piggyback on GitHub&rsquo;s cloud hosting for free and not worry about incurring any downtime due to database issues (something that happened more than a few times with the last ASP.NET MVC and SQL-based site).</p>
@@ -87,14 +87,14 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[Just Pushed: Blackjack Sample Game]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/79/just-pushed-blackjack-sample-game"/>
+    <link href="http://kamranicus.com/blog/posts/79/just-pushed-blackjack-sample-game"/>
     <updated>2013-12-03T03:09:04-06:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/79/just-pushed-blackjack-sample-game</id>
+    <id>http://kamranicus.com/blog/posts/79/just-pushed-blackjack-sample-game</id>
     <content type="html"><![CDATA[<p>It&rsquo;s finally done! I sat down today and dug through my backups to find my original WPF BlackJack game I wrote way back when WPF was really cool. I converted it to VS 2013, made sure it still ran, organized the solution, and hit deploy. It&rsquo;s now up on GitHub for your learning pleasure. There are no Nuget packages here! This was before Nuget where I had to find code to learn from and, ahem, copy. The deck is also something I found online. If I find the source, I&rsquo;ll be sure to attribute it properly.</p>
 
 <p><strong>Code:</strong> <a href="https://github.com/kamranayub/blackjack/">https://github.com/kamranayub/blackjack/</a></p>
 
-<iframe src="http://kamranayub.github.io//player.vimeo.com/video/5122176" width="500" height="338" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<iframe src="http://kamranicus.com//player.vimeo.com/video/5122176" width="500" height="338" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
 
 <p>This was a sample game I wrote to learn OO design and WPF. There&rsquo;s some cool animations, sound effects, and a pretty fun Blackjack implementation. It&rsquo;s very &ldquo;simple&rdquo; and should be easy to digest. I never got around to implementing all the cool AI but now that it&rsquo;s on GitHub for all to see, maybe someone will pick it up.</p>
@@ -105,12 +105,12 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[TCCC15: See You Again in April!]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/78/tccc15-see-you-again-in-april"/>
+    <link href="http://kamranicus.com/blog/posts/78/tccc15-see-you-again-in-april"/>
     <updated>2013-10-20T21:11:30-05:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/78/tccc15-see-you-again-in-april</id>
+    <id>http://kamranicus.com/blog/posts/78/tccc15-see-you-again-in-april</id>
     <content type="html"><![CDATA[<p>Well, that was a blast. Yesterday was <a href="http://twincitiescodecamp.com">TCCC15</a> and it was great. Many awesome sessions, including several by my fellow co-workers <a href="http://twitter.com/ErikOnarhem">Erik Onarheim</a> and <a href="http://twitter.com/StephenErstad">Stephen Erstad</a>.</p>
 
-<p>Thanks to all who attended <a href="http://kamranayub.github.io/Blog/Posts/77/tccc15-leveling-up-your-windows-phone-app">my talk</a>! I got +10 votes on the code camp speaker site and 9 llamas, which made me feel pretty good!</p>
+<p>Thanks to all who attended <a href="http://kamranicus.com/Blog/Posts/77/tccc15-leveling-up-your-windows-phone-app">my talk</a>! I got +10 votes on the code camp speaker site and 9 llamas, which made me feel pretty good!</p>
 
 <p>Please send me feedback at my email or leave a comment here with your thoughts. The code will be available (soon) at <a href="http://github.com/kamranayub/wp-bowling">http://github.com/kamranayub/wp-bowling</a>. It&rsquo;ll be released under an open license but is meant to be educational. The app will also be available soon in the Windows Phone store.</p>
 
@@ -122,10 +122,10 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[TCCC15: Leveling Up Your Windows Phone App]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/77/tccc15-leveling-up-your-windows-phone-app"/>
+    <link href="http://kamranicus.com/blog/posts/77/tccc15-leveling-up-your-windows-phone-app"/>
     <updated>2013-10-17T15:17:14-05:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/77/tccc15-leveling-up-your-windows-phone-app</id>
-    <content type="html"><![CDATA[<p>It&rsquo;s talk time again! I&rsquo;m lucky to be giving yet another talk at Twin Cities Code Camp (my second one!). Last time was a lot of fun! This time, we&rsquo;re <a href="http://kamranayub.github.io/Blog/Posts/66/about-my-web-api-session-at-twin-cities-code-camp">leaving the Web API pasture</a> and exploring the fun world of Windows Phone development.</p>
+    <id>http://kamranicus.com/blog/posts/77/tccc15-leveling-up-your-windows-phone-app</id>
+    <content type="html"><![CDATA[<p>It&rsquo;s talk time again! I&rsquo;m lucky to be giving yet another talk at Twin Cities Code Camp (my second one!). Last time was a lot of fun! This time, we&rsquo;re <a href="http://kamranicus.com/Blog/Posts/66/about-my-web-api-session-at-twin-cities-code-camp">leaving the Web API pasture</a> and exploring the fun world of Windows Phone development.</p>
 
 <p>TCCC15 is October 19 and I&rsquo;ll be <a href="http://twincitiescodecamp.com/TCCC/Fall2013/Schedule.aspx">speaking in Rapson 45 at 2:15pm</a>, so come say hi!</p>
 
@@ -151,9 +151,9 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[Minnesota Developer Conference 2013: Connected Apps]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/76/minnesota-developer-conference-2013-connected-apps"/>
+    <link href="http://kamranicus.com/blog/posts/76/minnesota-developer-conference-2013-connected-apps"/>
     <updated>2013-09-24T18:58:10-05:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/76/minnesota-developer-conference-2013-connected-apps</id>
+    <id>http://kamranicus.com/blog/posts/76/minnesota-developer-conference-2013-connected-apps</id>
     <content type="html"><![CDATA[<p><strong>Update:</strong> My session slides are available online at <a href="https://speakerdeck.com/kamranayub/bending-apis-to-your-will-using-windows-phone">SpeakerDeck</a>. If you attended, I hope you enjoyed it!</p>
 
 <p>Will you be attending <a href="http://mdc.ilmservice.com">Minnesota Developer Conference</a>? Come see me at 12:45pm if you want to get jump started with creating connected Windows Phone apps. I&rsquo;ll be talking about how to connect to APIs and useful patterns I&rsquo;ve learned throughout my (limited) development experience. Even if you <em>have</em> developed an app, I hope to share some tips that might help improve your app and it&rsquo;ll definitely provide a jumping off point if you haven&rsquo;t started yet.</p>
@@ -166,9 +166,9 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[Test Retina Images Without a Retina Screen]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/75/test-retina-images-without-a-retina-screen"/>
+    <link href="http://kamranicus.com/blog/posts/75/test-retina-images-without-a-retina-screen"/>
     <updated>2013-07-25T21:36:22-05:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/75/test-retina-images-without-a-retina-screen</id>
+    <id>http://kamranicus.com/blog/posts/75/test-retina-images-without-a-retina-screen</id>
     <content type="html"><![CDATA[<p>This comes directly from a tip <a href="https://coderwall.com/p/engjbw">Mike Zarandona posted on Coderwall</a>, which I&rsquo;m posting here to keep track of it:</p>
 
 <hr />
@@ -195,9 +195,9 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[Debounced After Render Pattern for Knockout.js]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/74/debounced-after-render-pattern-for-knockoutjs"/>
+    <link href="http://kamranicus.com/blog/posts/74/debounced-after-render-pattern-for-knockoutjs"/>
     <updated>2013-06-05T19:18:28-05:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/74/debounced-after-render-pattern-for-knockoutjs</id>
+    <id>http://kamranicus.com/blog/posts/74/debounced-after-render-pattern-for-knockoutjs</id>
     <content type="html"><![CDATA[<p>When dealing with Knockout-based lists, I think the built-in events/callbacks provided by Knockout leave a bit to be desired. For example, a common case I here people complain about is that the <code>afterRender</code> callback for the <code>foreach/template</code> bindings executes for each item in the array, not after all the elements have been rendered.</p>
 
 <p>There are probably better ways to <em>resolve</em> this using Promises (pun intended), but here&rsquo;s one way to attack it using <a href="http://underscorejs.org/docs/underscore.html#section-65">Underscore.js</a>&rsquo;s <code>debounce</code> method that&rsquo;s easy to understand and use.</p>
@@ -221,9 +221,9 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[Slides and Resources for TCCC14 Web API Talk]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/73/slides-and-resources-for-tccc14-web-api-talk"/>
+    <link href="http://kamranicus.com/blog/posts/73/slides-and-resources-for-tccc14-web-api-talk"/>
     <updated>2013-04-29T22:39:24-05:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/73/slides-and-resources-for-tccc14-web-api-talk</id>
+    <id>http://kamranicus.com/blog/posts/73/slides-and-resources-for-tccc14-web-api-talk</id>
     <content type="html"><![CDATA[<p>I gave a talk this past weekend at Twin Cities Code Camp; it was my first public talk (hopefully the first of many?). It was a deep dive on selected ASP.NET Web API topics (as voted on by the audience) and you can view it on <a href="https://speakerdeck.com/kamranayub/diving-into-the-deep-wih-asp-dot-net">SpeakerDeck</a>.</p>
 
 <p>You can also <a href="http://sdrv.ms/ZgUuGI">download the notes</a> (i.e. links, comments, resources) from my SkyDrive.</p>
@@ -242,9 +242,9 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[I Was a UX Expert When I Was 13]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/72/i-was-a-ux-expert-when-i-was-13"/>
+    <link href="http://kamranicus.com/blog/posts/72/i-was-a-ux-expert-when-i-was-13"/>
     <updated>2013-04-26T02:05:48-05:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/72/i-was-a-ux-expert-when-i-was-13</id>
+    <id>http://kamranicus.com/blog/posts/72/i-was-a-ux-expert-when-i-was-13</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve been reading Word documents on my computer that I&rsquo;ve had since I was a teen. I&rsquo;ve been keeping them all through my PC upgrades for no particular reason except for times like these when I need to laugh at myself.</p>
 
 <p>I just found this nugget in some random debate outline, I was 13 when I wrote it (I had just started working in web design):</p>
@@ -257,9 +257,9 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[Anecdote: I Frustrate Easily]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/71/anecdote-i-frustrate-easily"/>
+    <link href="http://kamranicus.com/blog/posts/71/anecdote-i-frustrate-easily"/>
     <updated>2013-04-24T20:59:46-05:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/71/anecdote-i-frustrate-easily</id>
+    <id>http://kamranicus.com/blog/posts/71/anecdote-i-frustrate-easily</id>
     <content type="html"><![CDATA[<p>When I first started my &ldquo;real job&rdquo; where I&rsquo;m at I was put on an internal site. It was a beast, it had a lot of history, and more importantly, it was <strong>damn ugly and sometimes hard to use</strong>. The site was used by developers and no one on the team had much UI experience. I was frustrated. I couldn&rsquo;t work on this thing and have it be ugly, why should we have a tool that gets used every day that&rsquo;s a bear to use? &ldquo;Because it&rsquo;s always been that way&rdquo; wasn&rsquo;t good enough for me. For about a month I worked outside of work, off the sprint, and I re-tooled the CSS, markup, and UX while still maintaining the overall functionality and behavior. No one asked, I just did it <strong>because I was frustrated.</strong> Sure, at some points, people were sort of wondering what the heck I was doing but in the end, everyone loved the changes and everyone keeps mentioning how great the changes have been since. I believe it was also the start of a bigger push to make things easy to use internally but I suppose correlation does not equal causation :)</p>
 
 <p>I think that&rsquo;s what <a href="http://zachholman.com/">Zach Holman</a> means when he says to <a href="https://speakerdeck.com/holman/keeping-people?slide=31">hire people who frustrate easily</a> and that&rsquo;s what triggered this anecdote.</p>
@@ -268,9 +268,9 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[Protip: Using Anti-Forgery Token With ASP.NET Web API on MVC 4 on AppHarbor]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/70/protip-using-anti-forgery-token-with-aspnet-web-ap"/>
+    <link href="http://kamranicus.com/blog/posts/70/protip-using-anti-forgery-token-with-aspnet-web-ap"/>
     <updated>2013-04-24T05:14:06-05:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/70/protip-using-anti-forgery-token-with-aspnet-web-ap</id>
+    <id>http://kamranicus.com/blog/posts/70/protip-using-anti-forgery-token-with-aspnet-web-ap</id>
     <content type="html"><![CDATA[<p>I just ran into and solved this problem so I thought I&rsquo;d share (I&rsquo;ll also be talking about this at my upcoming talk).</p>
 
 <h3>Anti-Forgery in MVC</h3>
@@ -335,9 +335,9 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[Put the Cloud to Work, Pt 1: Create a Background Worker Using Quartz.NET]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/69/put-the-cloud-to-work-pt-1-create-a-background-wor"/>
+    <link href="http://kamranicus.com/blog/posts/69/put-the-cloud-to-work-pt-1-create-a-background-wor"/>
     <updated>2013-04-23T18:02:22-05:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/69/put-the-cloud-to-work-pt-1-create-a-background-wor</id>
+    <id>http://kamranicus.com/blog/posts/69/put-the-cloud-to-work-pt-1-create-a-background-wor</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve written a [long] article for Tech.pro on <a href="http://tech.pro/tutorial/1222/put-the-cloud-to-work-pt-1-create-a-background-worker-using-quartznet">how to use Quartz.NET to build an end-to-end background worker on AppHarbor</a>.</p>
 
 <p>I plan to write a couple more follow-ups about more advanced usage of Quartz with a pretty big finale (I don&rsquo;t want to get anyone&rsquo;s hopes up though).</p>
@@ -361,9 +361,9 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[Upcoming Events: RWD Workshop, Code Camp, and dotNetConf [Updated]]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/68/upcoming-events-rwd-workshop-code-camp-and-dotnetc"/>
+    <link href="http://kamranicus.com/blog/posts/68/upcoming-events-rwd-workshop-code-camp-and-dotnetc"/>
     <updated>2013-04-18T14:38:02-05:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/68/upcoming-events-rwd-workshop-code-camp-and-dotnetc</id>
+    <id>http://kamranicus.com/blog/posts/68/upcoming-events-rwd-workshop-code-camp-and-dotnetc</id>
     <content type="html"><![CDATA[<p>Just a quick set of FYIs. I will be attending 3 upcoming events, two in-person and one virtually.</p>
 
 <h3>RWD Workshop with Tim Kadlec</h3>
@@ -372,7 +372,7 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
 
 <h3>Code Camp</h3>
 
-<p><a href="http://twincitiescodecamp.com">Twin Cities Code Camp</a> is a free conference put together by local volunteers and is a great event to go to if you like to see people&rsquo;s code or share your own. I will be <a href="http://kamranayub.github.io/Blog/Posts/66/about-my-web-api-session-at-twin-cities-code-camp">talking about Web API</a> and opening up my closed-source project (Keep Track of My Games v2) for all to see. It&rsquo;s going to be interesting, for sure.</p>
+<p><a href="http://twincitiescodecamp.com">Twin Cities Code Camp</a> is a free conference put together by local volunteers and is a great event to go to if you like to see people&rsquo;s code or share your own. I will be <a href="http://kamranicus.com/Blog/Posts/66/about-my-web-api-session-at-twin-cities-code-camp">talking about Web API</a> and opening up my closed-source project (Keep Track of My Games v2) for all to see. It&rsquo;s going to be interesting, for sure.</p>
 
 <h3>dotNetConf</h3>
 
@@ -386,9 +386,9 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[I've Released My First Windows Phone App: Centwise]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/67/ive-released-my-first-windows-phone-app-centwise"/>
+    <link href="http://kamranicus.com/blog/posts/67/ive-released-my-first-windows-phone-app-centwise"/>
     <updated>2013-04-11T22:47:42-05:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/67/ive-released-my-first-windows-phone-app-centwise</id>
+    <id>http://kamranicus.com/blog/posts/67/ive-released-my-first-windows-phone-app-centwise</id>
     <content type="html"><![CDATA[<p>I&rsquo;m excited to talk about my latest project that just went live a couple weeks ago: <a href="http://centwiseapp.com">Centwise</a>. Centwise is a Windows Phone 7 &amp; 8 app client for a service that I use regularly, <a href="http://splitwise.com">Splitwise</a>.</p>
 
 <p>You can download the app to your Windows Phone below:</p>
@@ -513,11 +513,11 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
 
 <p><strong>Commit Activity</strong></p>
 
-<p><img src="http://kamranayub.github.io/blog/images/72.png" alt="I am insane" /></p>
+<p><img src="http://kamranicus.com/blog/images/72.png" alt="I am insane" /></p>
 
 <p>Let me break it down for you: I am insane.</p>
 
-<p><img src="http://kamranayub.github.io/blog/images/73.png" alt="Seriously, insane" /></p>
+<p><img src="http://kamranicus.com/blog/images/73.png" alt="Seriously, insane" /></p>
 
 <p>You can forgive me if I plan to take it a bit slower with updates. I was hoping to finish in time for the Next App Star challenge but unfortunately even spending countless hours during the week, the app just wasn&rsquo;t in a good state in time for that deadline.</p>
 
@@ -595,9 +595,9 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[About My Web API Session at Twin Cities Code Camp]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/66/about-my-web-api-session-at-twin-cities-code-camp"/>
+    <link href="http://kamranicus.com/blog/posts/66/about-my-web-api-session-at-twin-cities-code-camp"/>
     <updated>2013-03-05T20:59:46-06:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/66/about-my-web-api-session-at-twin-cities-code-camp</id>
+    <id>http://kamranicus.com/blog/posts/66/about-my-web-api-session-at-twin-cities-code-camp</id>
     <content type="html"><![CDATA[<p><strong>Update:</strong> I&rsquo;ll be in the 12:45pm track, come see me crash and burn!</p>
 
 <p>Yay! I was just informed by TCCC that I&rsquo;ve made it onto the <a href="http://twincitiescodecamp.com/TCCC/Spring2013/Sessions.aspx#s22">Sessions list</a> so I guess I&rsquo;m officially a speaker. This would be the very first time I&rsquo;m giving a public talk <em>on my own</em>. I was part of a session at MinneWebCon when I spoke about my work on the Student Unions &amp; Activities touch-screen directory, so I have <em>at least</em> 15 minutes under my belt.</p>
@@ -648,9 +648,9 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[BindableAppBar for Caliburn Micro]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/64/bindableappbar-for-caliburn-micro"/>
+    <link href="http://kamranicus.com/blog/posts/64/bindableappbar-for-caliburn-micro"/>
     <updated>2013-03-05T19:07:28-06:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/64/bindableappbar-for-caliburn-micro</id>
+    <id>http://kamranicus.com/blog/posts/64/bindableappbar-for-caliburn-micro</id>
     <content type="html"><![CDATA[<p><strong>Update:</strong> Matteo Pagani has a <a href="http://wp.qmatteoq.com/first-steps-with-caliburn-micro-the-application-bar/">great introduction</a> on setting up the BindableAppBar. Thanks Matteo!</p>
 
 <p>Anyone who has done Windows Phone development will tell you: the appbar sucks.</p>
@@ -679,9 +679,9 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[I Forked fastJSON]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/65/i-forked-fastjson"/>
+    <link href="http://kamranicus.com/blog/posts/65/i-forked-fastjson"/>
     <updated>2013-03-05T17:00:00-06:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/65/i-forked-fastjson</id>
+    <id>http://kamranicus.com/blog/posts/65/i-forked-fastjson</id>
     <content type="html"><![CDATA[<p>My Windows Phone app mainly deals with talking to a web API. I&rsquo;ve previously had good experience using RestSharp but now with the new <code>async/await</code> features, I&rsquo;ve been trying to only use <code>Task</code>-based stuff. I gotta say, I&rsquo;m loving it.</p>
 
 <p>RestSharp for WP does not natively support async/await but you can wrap it yourself. However, why not just use <code>HttpClient</code>? So that&rsquo;s what I did. I ripped out RestSharp and replaced it with <a href="https://github.com/neuecc/AsyncOAuth">AsyncOAuth</a> (which depends on HttpClient).</p>
@@ -706,9 +706,9 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[RenderRoutes: Expose Your Routes to Your Javascript]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/62/renderroutes-expose-your-routes-to-your-javascript"/>
+    <link href="http://kamranicus.com/blog/posts/62/renderroutes-expose-your-routes-to-your-javascript"/>
     <updated>2013-01-02T22:03:43-06:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/62/renderroutes-expose-your-routes-to-your-javascript</id>
+    <id>http://kamranicus.com/blog/posts/62/renderroutes-expose-your-routes-to-your-javascript</id>
     <content type="html"><![CDATA[<p>When you&rsquo;re working on an AJAX-enabled application, you&rsquo;ll soon discover it can be a pain to manage URLs. In fact, when you&rsquo;re working with ASP.NET MVC in general, working with routes is a pain. As soon as you want to change one, you have to go and find everywhere it&rsquo;s used.</p>
 
 <p>I came up with a solution that works well for me and may for you.</p>
@@ -737,7 +737,7 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
 
 <p>However, in the default MVC world, you would need to create these entries in your Global ASAX or wherever you set up your routes, and once you have enough, it will quickly get out of hand.</p>
 
-<p>Awhile back, I started using <a href="http://attributerouting.net">AttributeRouting</a> to help organize my routing and remove the shackles of the default MVC routing experience. I even <a href="http://kamranayub.github.io/Blog/Posts/43/attributerouting-now-supports-web-api">contributed the first Web API implementation</a> to the project.</p>
+<p>Awhile back, I started using <a href="http://attributerouting.net">AttributeRouting</a> to help organize my routing and remove the shackles of the default MVC routing experience. I even <a href="http://kamranicus.com/Blog/Posts/43/attributerouting-now-supports-web-api">contributed the first Web API implementation</a> to the project.</p>
 
 <p>One of the bonuses of using AR is that it uses a standard interface for any routes it creates, <code>IAttributeRoute</code>. I knew that when I started using Web API more that I needed an easy way to bring my server-side routes to my client-side in a way that was easy to use and that I didn&rsquo;t need to manually maintain.</p>
 
@@ -762,9 +762,9 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[A Smarter `checked` Binding for KnockoutJS]]></title>
-    <link href="http://kamranayub.github.io/blog/posts/61/a-smarter-checked-binding-for-knockoutjs"/>
+    <link href="http://kamranicus.com/blog/posts/61/a-smarter-checked-binding-for-knockoutjs"/>
     <updated>2012-12-31T09:48:04-06:00</updated>
-    <id>http://kamranayub.github.io/blog/posts/61/a-smarter-checked-binding-for-knockoutjs</id>
+    <id>http://kamranicus.com/blog/posts/61/a-smarter-checked-binding-for-knockoutjs</id>
     <content type="html"><![CDATA[<p>I love KnockoutJS. I&rsquo;ve been using it for awhile now and I really enjoy it. That said, there are a few oddities with it, one such being the <code>checked</code> binding.</p>
 
 <p>Let&rsquo;s say you have this scenario (as I do now):</p>

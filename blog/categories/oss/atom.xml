@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: OSS | Kamranicus]]></title>
-  <link href="http://kamranayub.github.io/blog/categories/oss/atom.xml" rel="self"/>
-  <link href="http://kamranayub.github.io/"/>
-  <updated>2013-12-05T08:56:48-06:00</updated>
-  <id>http://kamranayub.github.io/</id>
+  <link href="http://kamranicus.com/blog/categories/oss/atom.xml" rel="self"/>
+  <link href="http://kamranicus.com/"/>
+  <updated>2013-12-05T09:35:07-06:00</updated>
+  <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[MiniProfiler RavenDB Pull Request Accepted]]></title>
-    <link href="http://kamranayub.github.io/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/"/>
+    <link href="http://kamranicus.com/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/"/>
     <updated>2013-12-05T08:32:08-06:00</updated>
-    <id>http://kamranayub.github.io/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted</id>
+    <id>http://kamranicus.com/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted</id>
     <content type="html"><![CDATA[<p>I just got a notification that my <a href="https://github.com/MiniProfiler/dotnet/pull/15">pull request</a> for
 adding RavenDB support to MiniProfiler went through! It&rsquo;s always really cool to see your contributions
 get pulled in. The MiniProfiler guys were really easy-going, <a href="https://github.com/yellis">@yellis</a> was even kind enough to take on
