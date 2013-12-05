@@ -1,26 +1,57 @@
 /*****************************************************************
+* CORE                                                           *
+*****************************************************************/
+
+a
+{
+    text-decoration: none;
+}
+a:hover
+{
+    text-decoration: underline;
+}
+
+/*****************************************************************
+* ENTRY HEADER                                                   *
+*****************************************************************/
+.hentry 
+{
+	header
+	{
+		border-bottom: 1px solid #ddd;
+    	margin-bottom: 10px;
+		background: none;
+
+		.entry-title
+		{
+		    color: $link-color;
+		}
+	}
+}
+
+/*****************************************************************
 * CONTENT                                                        *
 *****************************************************************/
-.html-content 
+.entry-content 
 {
     font-size: 1.2em;
 	line-height: 1.6em;
 }
 
-.html-content a {
+.entry-content a {
     text-decoration: underline;
 }    
 
-.html-content a:hover {
+.entry-content a:hover {
     text-decoration: none;
 }
 
-.html-content h1,
-.html-content h2,
-.html-content h3,
-.html-content h4,
-.html-content h5,
-.html-content h6
+.entry-content h1,
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.entry-content h5,
+.entry-content h6
 {
     font-family: 'Kreon', Georgia, Century, "Times New Roman", Serif;
     color:#333;
@@ -28,36 +59,36 @@
     margin-bottom: 10px;
 }
 
-.html-content h1
+.entry-content h1
 {
     font-size: 2.3em;
     line-height: 1.48em;
 }
-.html-content h2
+.entry-content h2
 {
     font-size: 2em;
     line-height: 1.48em;
 }
-.html-content h3
+.entry-content h3
 {
     font-size: 1.7em;
     line-height: 1.48em;    
 }
-.html-content ul,
-.html-content ol
+.entry-content ul,
+.entry-content ol
 {
     margin: 0 0 1em 1em;
     padding: 0 0 0 1em;
 }
 
-.html-content img
+.entry-content img
 {
     max-width: 700px;
     border: 1px solid #ccc;
     padding: 5px;
 }
 
-.html-content blockquote {
+.entry-content blockquote {
     margin: 0 2em 1em 2em;
     background: #ebebeb;
     border-top: 3px solid #ccc;
@@ -66,11 +97,18 @@
     padding: 1em 1em 0.01% 1em;
 }
 
-.html-content .post-edited 
+.entry-content hr {
+	border-collapse: collapse;
+	border: 3px solid #ccc;
+	height: 0px;
+	margin-bottom: 1.5em;
+}
+
+.entry-content .post-edited 
 {
     clear: both;
 }    
-.html-content .post-edited span
+.entry-content .post-edited span
 {
     font-style: italic;
     color: #777;
@@ -205,22 +243,22 @@ p.post-num-comments a:hover
 {
     text-decoration: none;
 }
-div.post .html-content
+div.post .entry-content
 {
     clear: both;
 }
-div.post .html-content.preview 
+div.post .entry-content.preview 
 {
     padding: 1em;
     background: #fff;
 }
 
-div.post .html-content h1,
-div.post .html-content h2,
-div.post .html-content h3,
-div.post .html-content h4,
-div.post .html-content h5,
-div.post .html-content h6
+div.post .entry-content h1,
+div.post .entry-content h2,
+div.post .entry-content h3,
+div.post .entry-content h4,
+div.post .entry-content h5,
+div.post .entry-content h6
 {
     margin-left: -25px;
     padding-left: 15px;
@@ -310,7 +348,7 @@ h3.post-comments
     background: #fff;
     margin-bottom: 1em;
 }
-.post-comment .html-content
+.post-comment .entry-content
 {
     float: left;
     font-size: 1.1em;
@@ -318,7 +356,7 @@ h3.post-comments
     width: 720px;
 }
 
-.half .post-comment .html-content
+.half .post-comment .entry-content
 {
     width: 220px;
 }
