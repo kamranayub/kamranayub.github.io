@@ -1,0 +1,309 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Using SquishIt Without Writing to the File System - Kamranicus</title>
+  <meta name="author" content="Kamran">
+
+  
+  <meta name="description" content="I&rsquo;m a big fan of SquishIt, which is a library that compresses and minifies CSS and JS. It automatically keeps thing uncompressed locally and &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kamranayub.github.io/blog/posts/11/using-squishit-without-writing-to-the-file-system">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Kamranicus</a></h1>
+  
+    <h2>Kamran Ayub is a developer and designer in Minneapolis, Minnesota. He specializes in .NET development with a dash of client-side and is passionate about UX.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/Kamranicus" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=Kamranicus" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:kamranayub.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Using SquishIt Without Writing to the File System</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-22T14:16:11-05:00" pubdate data-updated="true">Jun 22<span>nd</span>, 2011</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&rsquo;m a big fan of <a href="https://github.com/jetheredge/SquishIt/">SquishIt</a>, which is a library that compresses and minifies CSS and JS. It automatically keeps thing uncompressed locally and then on your web server, versions and compresses your files. The versioning is based on a checksum of your files so it automatically handles any changes you make, it&rsquo;s gold.</p>
+
+<p>The thing that I don&rsquo;t like is that by default, it writes to your file system which is usually a no-no on shared hosts or even enterprise applications.</p>
+
+<p>I asked if you could use SquishIt programmatically and you can! I <a href="https://github.com/jetheredge/SquishIt/wiki/Using-SquishIt-programmatically-without-the-file-system">wrote up a wiki article</a> on their project page to show how it&rsquo;s done.</p>
+
+<p>If you haven&rsquo;t used SquishIt, I&rsquo;d highly recommend it!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Kamran</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-22T14:16:11-05:00" pubdate data-updated="true">Jun 22<span>nd</span>, 2011</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://kamranayub.github.io/blog/posts/11/using-squishit-without-writing-to-the-file-system" data-via="kamranayub" data-counturl="http://kamranayub.github.io/blog/posts/11/using-squishit-without-writing-to-the-file-system" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/posts/10/released-nuget-package-of-json" title="Previous Post: Released NuGet package of .JSON">&laquo; Released NuGet package of .JSON</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/posts/12/pass-in-your-variables-to-consolelog-as-parameters" title="Next Post: Pass in your variables to console.log as parameters to make them navigable">Pass in your variables to console.log as parameters to make them navigable &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  	<h1>About Me</h1>
+
+  	<p><img src="http://gravatar.com/avatar/8303c4eb9f9099df39adbc3d8c634746?s=120" alt="My Headshot" title="My ugly mug" /></p>
+
+  	<p>Hi, my name is Kamran. I am a web developer and designer, residing in Minnesota. I've been programming since 2001 and I am familiar with many different languages, both web-based and server-based. I love to tinker around and think of new ways to solve problems.</p>
+
+	<p>If you wanna talk, tweet <strong><a href="http://twitter.com/kamranayub" target="_blank">@kamranayub</a></strong> or send me an email at my <strong>full name</strong> at <strong>gmail.com</strong></p>
+</section>
+<section>
+  	<h1>Apps</h1>
+
+  	<ul>
+  		<li><a href="http://centwiseapp.com/">Centwise</a></li>
+  		<li><a href="http://keeptrackofmygames.com/">Keep Track of My Games</a></li>
+  	</ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/78/tccc15-see-you-again-in-april">TCCC15: See You Again in April!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/77/tccc15-leveling-up-your-windows-phone-app">TCCC15: Leveling Up Your Windows Phone App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/76/minnesota-developer-conference-2013-connected-apps">Minnesota Developer Conference 2013: Connected Apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/75/test-retina-images-without-a-retina-screen">Test Retina Images Without a Retina Screen</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/kamranayub">@kamranayub</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'kamranayub',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/104789622697290911192?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Kamran -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://kamranayub.github.io/blog/posts/11/using-squishit-without-writing-to-the-file-system';
+        var disqus_url = 'http://kamranayub.github.io/blog/posts/11/using-squishit-without-writing-to-the-file-system';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

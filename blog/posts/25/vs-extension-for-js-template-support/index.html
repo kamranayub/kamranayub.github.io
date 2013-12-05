@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Vs Extension for JS Template Support - Kamranicus</title>
+  <meta name="author" content="Kamran">
+
+  
+  <meta name="description" content="I am thinking of embarking on a journey that involves Backbone.js in my MVC 3 project. This would involve heavy use of templating. After thinking &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kamranayub.github.io/blog/posts/25/vs-extension-for-js-template-support">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Kamranicus</a></h1>
+  
+    <h2>Kamran Ayub is a developer and designer in Minneapolis, Minnesota. He specializes in .NET development with a dash of client-side and is passionate about UX.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/Kamranicus" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=Kamranicus" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:kamranayub.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Vs Extension for JS Template Support</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-14T14:27:33-06:00" pubdate data-updated="true">Dec 14<span>th</span>, 2011</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I am thinking of embarking on a journey that involves <a href="http://documentcloud.github.com/backbone/">Backbone.js</a> in my MVC 3 project. This would involve heavy use of templating. After thinking about it a bit and doing some Googling, I realized that <strong>there is no JS template extension for Visual Studio.</strong></p>
+
+<p>I realize that you could just name your template files &ldquo;.html&rdquo; and be done with it. However, I feel like that isn&rsquo;t &ldquo;cool&rdquo; enough.</p>
+
+<p>Based on some <a href="http://stackoverflow.com/questions/3253205/how-do-i-visual-studio-syntax-highlighting-extension">preliminary research</a>, it seems to me it would not be impossible to add support for common JS template syntax highlighting&hellip; and perhaps even Intellisense.</p>
+
+<p>In fact, VS 11 <a href="http://blogs.msdn.com/b/webdevtools/archive/2011/09/15/new-javascript-editing-features-for-web-development-in-visual-studio-11-developer-preview.aspx">will support jQuery Template syntax highlighting</a>, but not only is jquery-tmpl <a href="http://weblogs.asp.net/stevewellens/archive/2011/12/01/goodby-jquery-templates-hello-jsrender.aspx">obsolete</a>, it is also not the <a href="http://jsperf.com/dom-vs-innerhtml-based-templating/112">only kind of templating system</a>.</p>
+
+<p>Why am I making this post? I am not sure. Part of me wants to attempt to make such an extension, probably starting out with a simple template syntax like <a href="http://mustache.github.com/">Mustache</a> (or <a href="http://www.handlebarsjs.com/">Handlebars</a>). I would be happy with an extension that was pretty much an HTML highlighter that also highlighted tokens (e.g. &ldquo;, &rdquo;, etc.) just like VS does for Razor. Bonus points awarded if it [somehow] does Intellisense. In my dream world, it would act very much like MVC Razor does right now, where you declare the &ldquo;model&rdquo; for the template and that is its context for Intellisense. To me, that seems reasonable for a no-logic template system like Mustache but may prove unwieldy once you allow for normal JS expressions like in jquery-tmpl. That kind of syntax may also not make sense in the first place considering you could pass in whatever you wanted into a template&rsquo;s context.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Kamran</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-14T14:27:33-06:00" pubdate data-updated="true">Dec 14<span>th</span>, 2011</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://kamranayub.github.io/blog/posts/25/vs-extension-for-js-template-support" data-via="kamranayub" data-counturl="http://kamranayub.github.io/blog/posts/25/vs-extension-for-js-template-support" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/posts/24/skyrim-mod-request-compilation" title="Previous Post: Skyrim Mod Request Compilation">&laquo; Skyrim Mod Request Compilation</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/posts/26/tips-when-using-backbonejs-in-a-net-world" title="Next Post: Tips When Using Backbone.js in a .NET world">Tips When Using Backbone.js in a .NET world &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  	<h1>About Me</h1>
+
+  	<p><img src="http://gravatar.com/avatar/8303c4eb9f9099df39adbc3d8c634746?s=120" alt="My Headshot" title="My ugly mug" /></p>
+
+  	<p>Hi, my name is Kamran. I am a web developer and designer, residing in Minnesota. I've been programming since 2001 and I am familiar with many different languages, both web-based and server-based. I love to tinker around and think of new ways to solve problems.</p>
+
+	<p>If you wanna talk, tweet <strong><a href="http://twitter.com/kamranayub" target="_blank">@kamranayub</a></strong> or send me an email at my <strong>full name</strong> at <strong>gmail.com</strong></p>
+</section>
+<section>
+  	<h1>Apps</h1>
+
+  	<ul>
+  		<li><a href="http://centwiseapp.com/">Centwise</a></li>
+  		<li><a href="http://keeptrackofmygames.com/">Keep Track of My Games</a></li>
+  	</ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/78/tccc15-see-you-again-in-april">TCCC15: See You Again in April!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/77/tccc15-leveling-up-your-windows-phone-app">TCCC15: Leveling Up Your Windows Phone App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/76/minnesota-developer-conference-2013-connected-apps">Minnesota Developer Conference 2013: Connected Apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/75/test-retina-images-without-a-retina-screen">Test Retina Images Without a Retina Screen</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/kamranayub">@kamranayub</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'kamranayub',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/104789622697290911192?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Kamran -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://kamranayub.github.io/blog/posts/25/vs-extension-for-js-template-support';
+        var disqus_url = 'http://kamranayub.github.io/blog/posts/25/vs-extension-for-js-template-support';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

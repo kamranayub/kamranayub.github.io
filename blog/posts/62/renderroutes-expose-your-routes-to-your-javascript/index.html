@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>RenderRoutes: Expose Your Routes to Your Javascript - Kamranicus</title>
+  <meta name="author" content="Kamran">
+
+  
+  <meta name="description" content="When you&rsquo;re working on an AJAX-enabled application, you&rsquo;ll soon discover it can be a pain to manage URLs. In fact, when you&rsquo;re &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kamranayub.github.io/blog/posts/62/renderroutes-expose-your-routes-to-your-javascript">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Kamranicus</a></h1>
+  
+    <h2>Kamran Ayub is a developer and designer in Minneapolis, Minnesota. He specializes in .NET development with a dash of client-side and is passionate about UX.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/Kamranicus" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=Kamranicus" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:kamranayub.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">RenderRoutes: Expose Your Routes to Your Javascript</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-02T22:03:43-06:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2013</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>When you&rsquo;re working on an AJAX-enabled application, you&rsquo;ll soon discover it can be a pain to manage URLs. In fact, when you&rsquo;re working with ASP.NET MVC in general, working with routes is a pain. As soon as you want to change one, you have to go and find everywhere it&rsquo;s used.</p>
+
+<p>I came up with a solution that works well for me and may for you.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="c1">// Are you writing code like this?</span>
+</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span> <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;/products/&quot;</span> <span class="o">+</span> <span class="nx">productId</span> <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Wouldn&#39;t you rather write this?</span>
+</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span> <span class="nx">url</span><span class="o">:</span> <span class="nx">Router</span><span class="p">.</span><span class="nx">url</span><span class="p">(</span><span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="nx">productId</span><span class="p">)</span> <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In MVC, you have the notion of &ldquo;named&rdquo; routes, like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">routes</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="p">{</span> <span class="n">RouteName</span> <span class="p">=</span> <span class="s">&quot;product&quot;</span><span class="p">,</span> <span class="n">Url</span> <span class="p">=</span> <span class="s">&quot;product/{productId}&quot;</span> <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(<em>Side Protip: <a href="http://kamranicus.com/Blog/Posts/23/mvc-pro-tip-dont-use-the-id-url-parameter-in-your">Don&rsquo;t use &ldquo;{id}&rdquo; in MVC routes</a></em>)</p>
+
+<p>However, in the default MVC world, you would need to create these entries in your Global ASAX or wherever you set up your routes, and once you have enough, it will quickly get out of hand.</p>
+
+<p>Awhile back, I started using <a href="http://attributerouting.net">AttributeRouting</a> to help organize my routing and remove the shackles of the default MVC routing experience. I even <a href="/Blog/Posts/43/attributerouting-now-supports-web-api">contributed the first Web API implementation</a> to the project.</p>
+
+<p>One of the bonuses of using AR is that it uses a standard interface for any routes it creates, <code>IAttributeRoute</code>. I knew that when I started using Web API more that I needed an easy way to bring my server-side routes to my client-side in a way that was easy to use and that I didn&rsquo;t need to manually maintain.</p>
+
+<p>Thus was born my <code>RenderRoutes</code> extension:</p>
+
+<script src="https://gist.github.com/4438411.js"></script>
+
+
+<p>In order to use this properly in your Javascript, you&rsquo;ll need to create a helper utility. The one that I use is very simplistic, doing basic search and replace on parameters, which is the only thing I really need with my routes.</p>
+
+<p>The dependencies my solution has are:</p>
+
+<ul>
+<li><a href="http://attributerouting.net">AttributeRouting</a></li>
+<li><a href="http://underscorejs.org">Underscore.js</a></li>
+</ul>
+
+
+<p>That&rsquo;s only because it was easier to leverage my existing dependencies. A more intrepid soul might be willing to de-couple my solution from these dependencies, and if you do, let me know so I can update my Gist. In fact, you should just fork my gist. Hmm, that sounds wrong.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Kamran</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-02T22:03:43-06:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://kamranayub.github.io/blog/posts/62/renderroutes-expose-your-routes-to-your-javascript" data-via="kamranayub" data-counturl="http://kamranayub.github.io/blog/posts/62/renderroutes-expose-your-routes-to-your-javascript" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/posts/61/a-smarter-checked-binding-for-knockoutjs" title="Previous Post: A Smarter `checked` Binding for KnockoutJS">&laquo; A Smarter `checked` Binding for KnockoutJS</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/posts/65/i-forked-fastjson" title="Next Post: I forked fastJSON">I forked fastJSON &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  	<h1>About Me</h1>
+
+  	<p><img src="http://gravatar.com/avatar/8303c4eb9f9099df39adbc3d8c634746?s=120" alt="My Headshot" title="My ugly mug" /></p>
+
+  	<p>Hi, my name is Kamran. I am a web developer and designer, residing in Minnesota. I've been programming since 2001 and I am familiar with many different languages, both web-based and server-based. I love to tinker around and think of new ways to solve problems.</p>
+
+	<p>If you wanna talk, tweet <strong><a href="http://twitter.com/kamranayub" target="_blank">@kamranayub</a></strong> or send me an email at my <strong>full name</strong> at <strong>gmail.com</strong></p>
+</section>
+<section>
+  	<h1>Apps</h1>
+
+  	<ul>
+  		<li><a href="http://centwiseapp.com/">Centwise</a></li>
+  		<li><a href="http://keeptrackofmygames.com/">Keep Track of My Games</a></li>
+  	</ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/78/tccc15-see-you-again-in-april">TCCC15: See You Again in April!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/77/tccc15-leveling-up-your-windows-phone-app">TCCC15: Leveling Up Your Windows Phone App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/76/minnesota-developer-conference-2013-connected-apps">Minnesota Developer Conference 2013: Connected Apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/75/test-retina-images-without-a-retina-screen">Test Retina Images Without a Retina Screen</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/kamranayub">@kamranayub</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'kamranayub',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/104789622697290911192?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Kamran -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://kamranayub.github.io/blog/posts/62/renderroutes-expose-your-routes-to-your-javascript';
+        var disqus_url = 'http://kamranayub.github.io/blog/posts/62/renderroutes-expose-your-routes-to-your-javascript';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

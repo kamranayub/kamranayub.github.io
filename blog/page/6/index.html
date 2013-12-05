@@ -1,0 +1,1452 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Kamranicus</title>
+  <meta name="author" content="Kamran">
+
+  
+  <meta name="description" content="I am learning Backbone.js so I can re-write the main GUI for KTOMG. I am still learning and I&rsquo;ve run into a couple gotchas that I hope I can &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kamranayub.github.io/blog/page/6">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Kamranicus</a></h1>
+  
+    <h2>Kamran Ayub is a developer and designer in Minneapolis, Minnesota. He specializes in .NET development with a dash of client-side and is passionate about UX.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/Kamranicus" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=Kamranicus" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:kamranayub.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/26/tips-when-using-backbonejs-in-a-net-world">Tips When Using Backbone.js in a .NET World</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-15T20:37:51-06:00" pubdate data-updated="true">Dec 15<span>th</span>, 2011</time>
+        
+           | <a href="/blog/posts/26/tips-when-using-backbonejs-in-a-net-world#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/26/tips-when-using-backbonejs-in-a-net-world">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I am learning <a href="http://documentcloud.github.com/backbone/">Backbone.js</a> so I can re-write the main GUI for <a href="http://keeptrackofmygames.com">KTOMG</a>. I am still learning and I&rsquo;ve run into a couple gotchas that I hope I can clear up for anyone else that dares to tread in these woods. Still, I&rsquo;ve been able to rewrite the listing of a user&rsquo;s library in one night using Backbone and all my existing back-end code (the farthest up I edited was my controller). Very impressive for a Backbone n00b!</p>
+
+<h2>Backbone IS your application</h2>
+
+<p>After watching the <a href="http://peepcode.com/products/backbone-iii">PeepCode screencasts</a> (I, II, and III), I have realized something about Backbone.</p>
+
+<blockquote><p>Backbone will pretty much replace your MVC views and controller logic.</p></blockquote>
+
+<p>This didn&rsquo;t hit me until the last episode and at first, this felt threatening. I am working in ASP.NET MVC and it feels wrong to not utilize it. After thinking about it some more, however, there were a few important points to consider:</p>
+
+<ol>
+<li>Backbone doesn&rsquo;t <em>necessarily</em> have to be your whole app. In fact, right now I am only using Backbone for the main &ldquo;library&rdquo; interface and I am keeping the rest of the site in plain-old MVC 3.</li>
+<li>You still use your controllers and could even use your Razor views as HTML templates.</li>
+</ol>
+
+
+<p>Considering those points, I felt a lot better about using Backbone. Not only will it be a great experience, it&rsquo;ll also make the most important part of my application very responsive and robust, without needing to worry a ton about the plumbing.</p>
+
+<p>Who knows? Maybe KTOMG will be running on Node.js by the end of the month.</p>
+
+<h2>Tips When Using Backbone with ASP.NET MVC</h2>
+
+<p>There were a few gotchas I ran into when using Backbone in my typical .NET environment.</p>
+
+<h3>Use AttributeRouting, like, now</h3>
+
+<p><a href="https://github.com/mccalltd/AttributeRouting">AttributeRouting</a> is one of my new favorite packages. It axes the mostly-confusing, mostly-convoluted Global.asax way of handling routes in favor of a more-discoverable (I feel) way of doing routes by decorating actual controller methods:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">using</span> <span class="nn">AttributeRouting</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">[RoutePrefix(&quot;games&quot;)]</span>
+</span><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">GamesController</span> <span class="p">:</span> <span class="n">Controller</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">//</span>
+</span><span class='line'>  <span class="c1">// GET: /games/</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p">[</span><span class="n">GET</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Index</span><span class="p">()</span> <span class="p">{}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">//</span>
+</span><span class='line'>  <span class="c1">// POST: /games/</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p">[</span><span class="n">POST</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">New</span><span class="p">(</span><span class="n">Model</span> <span class="n">model</span><span class="p">)</span> <span class="p">{}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Hopefully you will see why this is useful. Backbone is opinionated in that it assumes you&rsquo;re using a RESTful interface for your API. In normal vanilla MVC, this could turn your Global.asax into a routing nightmare. However, with AttributeRouting, it&rsquo;s easy! Here&rsquo;s an example of a <a href="http://stackoverflow.com/a/6263133/109458">Backbone-compatible REST controller</a>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">using</span> <span class="nn">AttributeRouting</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">[RoutePrefix(&quot;api/games&quot;)]</span>
+</span><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">GamesApiController</span> <span class="p">:</span> <span class="n">Controller</span> <span class="p">{</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="c1">//</span>
+</span><span class='line'>  <span class="c1">// GET: /api/games/</span>
+</span><span class='line'><span class="na"> </span>
+</span><span class='line'><span class="na"> [GET(&quot;&quot;)]</span>
+</span><span class='line'>  <span class="k">public</span> <span class="n">JsonResult</span> <span class="nf">Index</span><span class="p">()</span> <span class="p">{}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">//</span>
+</span><span class='line'>  <span class="c1">// POST: /api/games/</span>
+</span><span class='line'><span class="na"> </span>
+</span><span class='line'><span class="na"> [POST(&quot;&quot;)]</span>
+</span><span class='line'>  <span class="k">public</span> <span class="n">JsonResult</span> <span class="nf">Create</span><span class="p">()</span> <span class="p">{}</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="c1">//</span>
+</span><span class='line'>  <span class="c1">// GET: /api/games/{id}</span>
+</span><span class='line'><span class="na"> </span>
+</span><span class='line'><span class="na"> [GET(&quot;{id}&quot;)]</span>
+</span><span class='line'>  <span class="k">public</span> <span class="n">JsonResult</span> <span class="nf">Show</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="p">{}</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="c1">//</span>
+</span><span class='line'>  <span class="c1">// PUT: /api/games/{id}</span>
+</span><span class='line'><span class="na"> </span>
+</span><span class='line'><span class="na"> [PUT(&quot;{id}&quot;)]</span>
+</span><span class='line'>  <span class="k">public</span> <span class="n">JsonResult</span> <span class="nf">Update</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="p">{}</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="c1">//</span>
+</span><span class='line'>  <span class="c1">// DELETE: /api/games/{id}</span>
+</span><span class='line'><span class="na"> </span>
+</span><span class='line'><span class="na"> [DELETE(&quot;{id}&quot;)]</span>
+</span><span class='line'>  <span class="k">public</span> <span class="n">JsonResult</span> <span class="nf">Delete</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="p">{}</span>
+</span><span class='line'>  
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Good fodder for a T4 template. If you have a larger site, consider using an <code>Api</code> MVC Area for cleaner separation.</p>
+
+<h3>Be careful when serializing your objects</h3>
+
+<p>I ran into two gotchas with serializing my objects.</p>
+
+<p>First, if you have an <code>Id</code> property/field, Backbone will not be happy. <strike>It needs to be lowercase id</strike>. You should utilize the <a href="https://github.com/documentcloud/backbone/blob/master/backbone.js#L153https://github.com/documentcloud/backbone/blob/master/backbone.js#L153"><code>idAttribute</code></a> option on your Backbone model to override the property name. It took me forever to figure out why nothing was happening when I deleted a model.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kr">class</span> <span class="nx">MyModel</span> <span class="kr">extends</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span>
+</span><span class='line'>  <span class="nx">idAttribute</span><span class="o">:</span> <span class="s2">&quot;Id&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Second, if you are going to serialize EF entities when proxying or lazy-loading is enabled, you need to use a serialization framework like <a href="http://json.codeplex.com/">JSON.NET</a> <strong>or</strong> you need to make flat DTO objects (or view models). I opted for the latter approach first because it was quick, but I am in the process of implementing JSON.NET to do serialization of my entities for me.</p>
+
+<p>For EF serialization, you need to use a custom <code>ContractResolver</code>. I borrowed <a href="http://stackoverflow.com/questions/6991596/serializing-ef4-1-entities-using-json-net">this one</a>. Furthermore, I also needed to set the <code>ReferenceLoopHandling</code> to <code>Ignore</code> on a new <code>JsonSerializerSettings</code> object so it would avoid circular references.</p>
+
+<p>Finally, this is optional but considering the first gotcha, I highly recommend you inherit the EF contract resolver above from <code>CamelCasePropertyNamesContractResolver</code> so your JSON is serialized with camelCase properties.</p>
+
+<h3>Consider leveraging Razor/ASPX partial views for your templates</h3>
+
+<p>I haven&rsquo;t actually tried this, but I don&rsquo;t see why it wouldn&rsquo;t work. In a Backbone project you&rsquo;ll typically have plenty of templates. Right now I have 3 but I expect it to grow quite a bit in the future. I was planning on moving all these templates to <code>.cshtml</code> files and then using <code>@Html.Partial("_TemplateName")</code> to include them in my main layout. I may even create a small extension method to wrap that in a <code>&lt;script&gt;</code> tag. I will update this post if I do.</p>
+
+<p>If you happen to be working on an OSS project, you should be using <a href="http://getcassette.net">Cassette</a> because it can package up your HTML/Knockout templates and <a href="http://getcassette.net/documentation/html-templates">include them all in your page for you</a> <strong>automagically</strong>. If I wasn&rsquo;t using AppHarbor and I was using a dedicated server, I would buy Cassette in a second. I wish they had per-site licenses.</p>
+
+<h3>Use those organization skills</h3>
+
+<p>ASP.NET MVC comes with a friendly and intuitive file layout out-of-the-box:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">Project</span>
+</span><span class='line'> <span class="o">|</span><span class="nx">_</span> <span class="nx">Controllers</span>
+</span><span class='line'> <span class="o">|</span><span class="nx">_</span> <span class="nx">Models</span>
+</span><span class='line'> <span class="o">|</span><span class="nx">_</span> <span class="nx">Scripts</span>
+</span><span class='line'> <span class="o">|</span><span class="nx">_</span> <span class="nx">Styles</span>
+</span><span class='line'> <span class="o">|</span><span class="nx">_</span> <span class="nx">Views</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I&rsquo;ve shortened mine, plus I&rsquo;ve made my scripts directory a bit more Backbone friendly:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">Project</span>
+</span><span class='line'> <span class="o">|</span><span class="nx">_</span> <span class="nx">Controllers</span>
+</span><span class='line'> <span class="o">|</span><span class="nx">_</span> <span class="nx">Models</span>
+</span><span class='line'> <span class="o">|</span><span class="nx">_</span> <span class="nx">Public</span>
+</span><span class='line'>   <span class="o">|</span><span class="nx">_</span> <span class="nx">Images</span>
+</span><span class='line'>   <span class="o">|</span><span class="nx">_</span> <span class="nx">Scripts</span>
+</span><span class='line'>     <span class="o">|</span><span class="nx">_</span> <span class="nx">App</span>
+</span><span class='line'>       <span class="o">|</span><span class="nx">_</span> <span class="nx">Collections</span><span class="p">.</span><span class="nx">coffee</span>
+</span><span class='line'>       <span class="o">|</span><span class="nx">_</span> <span class="nx">Backbone</span> <span class="nx">CoffeeScript</span> <span class="nx">files</span>
+</span><span class='line'>     <span class="o">|</span><span class="nx">_</span> <span class="nx">Framework</span> <span class="p">(</span><span class="nx">or</span> <span class="nx">Vendor</span><span class="p">)</span>
+</span><span class='line'>   <span class="o">|</span><span class="nx">_</span> <span class="nx">scss</span> <span class="nx">files</span><span class="p">...</span>
+</span><span class='line'> <span class="o">|</span><span class="nx">_</span> <span class="nx">Views</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It&rsquo;s up to you how you like to organize, and perhaps you&rsquo;d even like to separate it further down into modules.</p>
+
+<h3>Learn CoffeeScript and SASS</h3>
+
+<p>This technically does not have anything to do with .NET or Backbone. However, your life will be <em>easier</em> if you learn CoffeeScript as that makes using Backbone that much more pleasant:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kr">class</span> <span class="nx">GameView</span> <span class="kr">extends</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span>
+</span><span class='line'>  <span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;game&#39;</span>
+</span><span class='line'>  <span class="nx">template</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#game-template&quot;</span><span class="p">).</span><span class="nx">html</span><span class="p">())</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">initialize</span><span class="o">:</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="o">-&gt;</span>
+</span><span class='line'>    <span class="err">@</span><span class="nx">model</span><span class="p">.</span><span class="nx">bind</span> <span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="err">@</span><span class="nx">render</span><span class="p">,</span> <span class="err">@</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">render</span><span class="o">:</span> <span class="o">-&gt;</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="err">@</span><span class="nx">el</span><span class="p">).</span><span class="nx">html</span> <span class="err">@</span><span class="nx">template</span><span class="p">()</span>
+</span><span class='line'>    <span class="err">@</span> <span class="err">#</span> <span class="nx">Never</span> <span class="nx">forget</span> <span class="k">this</span> <span class="nx">line</span> <span class="k">in</span> <span class="nx">render</span><span class="p">()</span> <span class="nx">or</span> <span class="nx">you</span><span class="err">&#39;</span><span class="nx">ll</span> <span class="nx">regret</span> <span class="nx">it</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(<em>Disclaimer:</em> This is not real and won&rsquo;t run; it&rsquo;s meant as an illustration of Backbone in CoffeeScript)</p>
+
+<p>It&rsquo;s much nicer to write in Backbone without all those pesky parenthesis and manual <code>bindAll</code> or <code>extend</code> shenanigans. Again, I&rsquo;d recommend <a href="http://peepcode.com/products/coffeescript">PeepCode&rsquo;s CoffeeScript screencast</a>, that&rsquo;s about all it takes to learn it properly.</p>
+
+<p><img src="http://www.mindscapehq.com/upload/web-workbench/preview.png" alt="Mindscape Example" /></p>
+
+<p>If you do decide to take the plunge (it&rsquo;s worth it!), get yourself <a href="http://www.mindscapehq.com/products/web-workbench">Mindscape Web Workbench</a> and you&rsquo;ll be a much happier camper when working with Coffee, SASS, and LESS in Visual Studio.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/25/vs-extension-for-js-template-support">Vs Extension for JS Template Support</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-14T14:27:33-06:00" pubdate data-updated="true">Dec 14<span>th</span>, 2011</time>
+        
+           | <a href="/blog/posts/25/vs-extension-for-js-template-support#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/25/vs-extension-for-js-template-support">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I am thinking of embarking on a journey that involves <a href="http://documentcloud.github.com/backbone/">Backbone.js</a> in my MVC 3 project. This would involve heavy use of templating. After thinking about it a bit and doing some Googling, I realized that <strong>there is no JS template extension for Visual Studio.</strong></p>
+
+<p>I realize that you could just name your template files &ldquo;.html&rdquo; and be done with it. However, I feel like that isn&rsquo;t &ldquo;cool&rdquo; enough.</p>
+
+<p>Based on some <a href="http://stackoverflow.com/questions/3253205/how-do-i-visual-studio-syntax-highlighting-extension">preliminary research</a>, it seems to me it would not be impossible to add support for common JS template syntax highlighting&hellip; and perhaps even Intellisense.</p>
+
+<p>In fact, VS 11 <a href="http://blogs.msdn.com/b/webdevtools/archive/2011/09/15/new-javascript-editing-features-for-web-development-in-visual-studio-11-developer-preview.aspx">will support jQuery Template syntax highlighting</a>, but not only is jquery-tmpl <a href="http://weblogs.asp.net/stevewellens/archive/2011/12/01/goodby-jquery-templates-hello-jsrender.aspx">obsolete</a>, it is also not the <a href="http://jsperf.com/dom-vs-innerhtml-based-templating/112">only kind of templating system</a>.</p>
+
+<p>Why am I making this post? I am not sure. Part of me wants to attempt to make such an extension, probably starting out with a simple template syntax like <a href="http://mustache.github.com/">Mustache</a> (or <a href="http://www.handlebarsjs.com/">Handlebars</a>). I would be happy with an extension that was pretty much an HTML highlighter that also highlighted tokens (e.g. &ldquo;, &rdquo;, etc.) just like VS does for Razor. Bonus points awarded if it [somehow] does Intellisense. In my dream world, it would act very much like MVC Razor does right now, where you declare the &ldquo;model&rdquo; for the template and that is its context for Intellisense. To me, that seems reasonable for a no-logic template system like Mustache but may prove unwieldy once you allow for normal JS expressions like in jquery-tmpl. That kind of syntax may also not make sense in the first place considering you could pass in whatever you wanted into a template&rsquo;s context.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/24/skyrim-mod-request-compilation">Skyrim Mod Request Compilation</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-14T16:41:56-06:00" pubdate data-updated="true">Nov 14<span>th</span>, 2011</time>
+        
+           | <a href="/blog/posts/24/skyrim-mod-request-compilation#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/24/skyrim-mod-request-compilation">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>These are for ideas for myself to explore or for others to get ideas from (or help make!). I&rsquo;m not a modder, really, I&rsquo;ve never done a TES mod before. Skyrim, however, has motivated me to at least explore the option of making mods. I can&rsquo;t design a model worth crap, so many of my ideas will be focused on stuff I could possibly do myself. I&rsquo;ll note ones that I think other people might want to tackle (<strong>§ denotes someone else should please make it</strong>).</p>
+
+<p>I will be keeping this updated for myself, mostly, but I could also add mods people suggest underneath if I think I could possibly do them (I can handle scripting/tweak/UI mods I think, just not art-based ones). I&rsquo;d love constructive feedback (either <em>why</em> my idea sucks or <em>how</em> it could be improved).</p>
+
+<h3>Updates</h3>
+
+<ul>
+<li><strong>[11/15/11]</strong> Added chest categories, linked inventory sorting</li>
+<li><strong>[11/14/11]</strong> Initial list</li>
+</ul>
+
+
+<h2>Possibly Possible Mods</h2>
+
+<p>Mods that should be possible given what I know about past TES mods.</p>
+
+<p><strong>Non-Levelled Epic Loot</strong></p>
+
+<p>In the words of my friend, &ldquo;It saddens me to realize that the Cuirass of the Savior&rsquo;s Hide that I just found will be worthless after the next 10 levels I grow.&rdquo; Epic loot should be epic and possibly protected by insane bosses to keep some semblance of balance. This is one big thing that disappoints me about Skyrim.</p>
+
+<p><strong>Poisoned Food</strong></p>
+
+<p>Mostly a for-fun mod. Poison apples were awesome in Oblivion and I&rsquo;m surprised you can&rsquo;t apply poison to food.</p>
+
+<p><strong>Follower Bonuses</strong></p>
+
+<p>Like Fallout. Followers all have different skill/perk bonuses that you get when you have them in your party. If perk unlocking isn&rsquo;t possible, maybe simply stat-based (i.e. Lydia gives you +10% to One-Handed and +5% to Blocking). This would make followers a bit more strategic.</p>
+
+<p><strong>Follower Home Base</strong> §</p>
+
+<p>Like Fallout, if this isn&rsquo;t already in the game, followers you recruit should return to your home (if it&rsquo;s big enough). Easier to find them if you dismiss them plus makes you feel loved and a true Dovahkiin. &ldquo;Sorry, honey, we&rsquo;ll be having guests over&hellip; for awhile.&rdquo;</p>
+
+<p><strong>Follower Map Indicator</strong></p>
+
+<p>Like Fallout (right?), show followers on your map so it&rsquo;s easier to find them when they&rsquo;re lost. Or to be immersive, a spell ala Clairvoyance?</p>
+
+<p><strong>Horse Whistle</strong></p>
+
+<p>Already suggested. An item that summons your horse ala Red Dead (except probably instant due to modding capability).</p>
+
+<p><strong>Salvage Weapons and Apparel</strong> §</p>
+
+<p>I don&rsquo;t know what the official term is, but the ability to break down weapons/apparel into their component parts (&ldquo;Salvage&rdquo;?). To keep balance, I&rsquo;d add a percent chance based on your smithing skill. Should be realistic based on actual weapon (sword yields more steel than a dagger).</p>
+
+<p><strong>Enchanted Pickaxes</strong></p>
+
+<p>Pickaxes can be enchanted or can be found randomly, that have enhanced chance to find treasure (rubies, gems, etc).</p>
+
+<p><strong>Family</strong> §</p>
+
+<p>When married, you can hit the bed and have children ala Fable. Kids grow into teens into adults (adult vs. teen doesn&rsquo;t seem to be differentiated in Skyrim), they have random jobs, and maybe can turn into followers (complicated?). There&rsquo;s probably much more to this I am not thinking of right now, as far as potential gameplay additions.</p>
+
+<p><strong>Notice/Bounty Boards</strong> §</p>
+
+<p>Talking to inn keepers to get bounties is cool but I loved Dragon Age&rsquo;s notice boards at the Chantry. I think the ability to randomize quests using Radiant AI would make this a sweet, sweet mod for adventurers like me. Quests could be: fetch items, kill bandits, clear out caves, help farmers, collect crafting items, deliver goods, etc.</p>
+
+<p><strong>Multi-Ring</strong></p>
+
+<p><a href="http://www.reddit.com/r/skyrimmods/comments/meivy/request_allow_more_than_one_ring_to_be_equipped/">Already suggested</a>. I&rsquo;m sure this wasn&rsquo;t included due to balance. I&rsquo;d like to wear at least two rings, and maybe disable stacking (i.e. wearing two +20% health regen rings).</p>
+
+<p><strong>Multi-enchant</strong></p>
+
+<p>I could be wrong but I don&rsquo;t think you can have more than 1 enchantment on an item. Again, perhaps for balance. I&rsquo;d love to see the ability to do this, maybe depending on enchantment skill/perk.</p>
+
+<p><strong>More Jobs</strong> §</p>
+
+<p>This would probably need to be done by someone who can do animations/modeling. I&rsquo;d love to see more jobs you can do, maybe that have to do with fishing, clothing, hunting, etc. You know, what people would do for a living in Skyrim!</p>
+
+<p><strong>Harder Dragons</strong></p>
+
+<p>Is it just me or are the low-level dragons way too easy? It only takes 5-8 hits of my two-handed warhammer to kill one&hellip; that seems too little. Dragons should be, &ldquo;Shit I have to use up all these potions and take cover and blah blah CRAP CRAP&rdquo; encounters&hellip; like a Draugr Overlord.</p>
+
+<p><strong>Huge castle/house</strong> §</p>
+
+<p>No doubt someone will do this. I&rsquo;d like to see mannequins, display cases, and stuff so I can show off every cool item I find. It&rsquo;s also great for people like me who wish to collect every piece of armor and weapon to have one of each in a &ldquo;museum&rdquo; type setting.</p>
+
+<p><strong>Build-a-town</strong> §</p>
+
+<p>A large undertaking. Basically the equivalent of your home settlement in Assassin&rsquo;s Creed where you can buy shops, etc. Invest/upgrade them, hire people, etc. for cash flow. Bandits can attack and destroy stores. Shopkeepers can steal money from you. Dragons can attack. Guards can be hired (maybe quests for each kind, like do something for the Jarl to gain his trust and send over guards). Your home can be expanded. This would be one epic mod but boy, oh boy, would it be awesome.</p>
+
+<p><strong>Better Bookcases</strong></p>
+
+<p>Anyone else disappointed in the built-in bookcases for your home? How come only 9 books can be on a shelf when clearly there is more room for at least 4-5 more? I don&rsquo;t want to come off as a slob to my wife or followers.</p>
+
+<p><strong>Better Housing Equipment</strong> §</p>
+
+<p>While you can add a lab to some houses, I&rsquo;d like to also invest in an armory (smithing) and extra storage (chests) for my house. This I&rsquo;m sure will be the way the huge housing mods go, though, but I&rsquo;d rather earn that stuff than have it just appear in my house because of a mod. Make me pay 5000 gold for an armory, that&rsquo;s pretty motivating. To make it even sweeter, like Fallout, add some bonuses you get for using your own equipment.</p>
+
+<p><strong>Crafting Recipes</strong></p>
+
+<p>Is it just me or is it a little weird that all I need is a perk to create entire sets of items? This is fun but I was thinking it might be more challenging to require every item to have a recipe you need to find out in the world/merchants instead. Just like Fallout blueprints. Or, generate a recipe on an item you already own.</p>
+
+<h2>Possibly Impossible Mods</h2>
+
+<p>Mods that may or may not be possible, but seems like they won&rsquo;t be.</p>
+
+<p><strong>Vanity Mod</strong></p>
+
+<p><a href="http://www.reddit.com/r/skyrimmods/comments/m2quz/request_vanity_mod_for_inventory_screen/">Already suggested by me</a>, one of the top-voted requests that I&rsquo;ve seen on /r/skyrimmods. Ability to see your character, somehow, when equipping items. Workaround is to use 3rd person and position the camera but this can only be done with your weapon sheathed.</p>
+
+<p><strong>Better Custom Map Markers</strong></p>
+
+<p>I like that you can add a map marker as a waypoint, but I better like the idea of Morrowind&rsquo;s custom markers that I can add notes to. Ability to add any number of custom markers to world/local map and add a note/caption.</p>
+
+<p><strong>Follower Back Stories</strong> §</p>
+
+<p>This was one of the more fun things in Dragon Age. Followers actually had back stories and you could do quests for them to retrieve a family heirloom, save them from assassins, etc. In a game like Skyrim or DA where everyone is voiced&hellip; this seems like a lot of work, especially because it would seem weird to have followers have a different voice.</p>
+
+<p><strong>Follower Salesman</strong></p>
+
+<p>This was an idea from my friend. Borrow the mechanic from Torchlight where you can send your follower back to the closest major city and sell all the goods he&rsquo;s carrying (excepting &ldquo;equipped&rdquo; items probably). I <em>think</em> this is possible but I assume it&rsquo;d take a lot of scripting work. Add a cooldown same as Torchlight where your companion will be gone for awhile before returning. The companion can be carrying the gold he/she got from the transaction or just have it added automatically. If possible, this should be a perk, perhaps in the Speech tree.</p>
+
+<p><strong>Better Container States</strong></p>
+
+<p>I love how Fallout and beyond show what containers are &ldquo;Empty.&rdquo; However, I&rsquo;m a little peeved they also don&rsquo;t show you what&rsquo;s been searched. To be immersive, perhaps all one has to do is make a mod that keeps containers in the &ldquo;open&rdquo; state after you look at them, but at the least, it should show a &ldquo;Searched&rdquo; status when you hover over just like Empty.</p>
+
+<p><strong>Item Sets</strong></p>
+
+<p>Favorites are cool but I&rsquo;d love to see item set capability, maybe as &ldquo;favoritable&rdquo; themselves or a separate menu. Basically, I typically play 3 ways in combat: brawler, mage murderer, and ranger. I&rsquo;d love to make it even easier by adding apparel to equip in addition to weapons for those situations. For example, for my mage murderer situation: equip my custom weapon, Mage Bane that does a ton of magicka damage on hit, equip an armor piece(s) that give me magicka resistance, etc. For brawler, equip my warhammer, armor that regens stamina faster or fortifies it, etc. You get the idea. Maybe this is as simple as allowing one number to be associated to multiple items. This seems like a code change, though.</p>
+
+<p><strong>Quest Vicinities</strong></p>
+
+<p>Because disabling map markers and your compass could easily make things a huge pain in the ass, even though it&rsquo;s &ldquo;immersive&rdquo;, I think a good balance would be the ability to disable quest markers and &ldquo;unvisited&rdquo; locations and instead present a Red Dead Redemption like &ldquo;vicinity&rdquo; on the map (circular areas) where the quest marker/location lies somewhere within. Locations you&rsquo;ve visited still show up on compass/map, but &ldquo;unvisited&rdquo; locations do not. Since UI modding is possible, I am not sure to what extent we can mod the map like this and whether or not enabling a bunch of active quests will make this too noisy.</p>
+
+<p><strong>Item Sorting</strong></p>
+
+<p><a href="http://www.reddit.com/r/skyrimmods/comments/ma5v2/request_improved_inventory_sorting/">Already suggested</a>. Ability to sort your inventory/containers by weight/price at the least. Always takes me too long to figure out what to give to my pack mule for carrying or dropping.</p>
+
+<p><strong>Chest Categories</strong></p>
+
+<p><a href="http://www.reddit.com/r/skyrimmods/comments/mb2sm/request_chest_sorting/">Already suggested</a>. Ability for chests to have categories ala characters.</p>
+
+<p><strong>Quick Compare</strong></p>
+
+<p>Already suggested. Ability to see if a weapon/apparel is better than your current by viewing in the gameworld (hover) or in a chest (in the details or bottoms status bar).</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/23/mvc-pro-tip-dont-use-the-id-url-parameter-in-your">MVC Pro Tip: Don&#8217;t Use the &#8220;Id&#8221; URL Parameter in Your Routes</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-02T14:25:08-05:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2011</time>
+        
+           | <a href="/blog/posts/23/mvc-pro-tip-dont-use-the-id-url-parameter-in-your#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/23/mvc-pro-tip-dont-use-the-id-url-parameter-in-your">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>By default, MVC will use a route layout like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">routes</span><span class="p">.</span><span class="n">MapRoute</span><span class="p">(</span>
+</span><span class='line'>  <span class="s">&quot;Default&quot;</span><span class="p">,</span> <span class="c1">// Route name</span>
+</span><span class='line'>  <span class="s">&quot;{controller}/{action}/{id}&quot;</span><span class="p">,</span> <span class="c1">// URL with parameters</span>
+</span><span class='line'>  <span class="k">new</span> <span class="p">{</span> <span class="n">controller</span> <span class="p">=</span> <span class="s">&quot;Home&quot;</span><span class="p">,</span> <span class="n">action</span> <span class="p">=</span> <span class="s">&quot;Index&quot;</span><span class="p">,</span> <span class="n">id</span> <span class="p">=</span> <span class="n">UrlParameter</span><span class="p">.</span><span class="n">Optional</span> <span class="p">}</span> <span class="c1">// Parameter defaults</span>
+</span><span class='line'><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Besides the fact that you shouldn&rsquo;t use the default route (use named routes!), there&rsquo;s another issue.</p>
+
+<p>Do you have any domain models like this?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">public</span> <span class="kt">int</span> <span class="n">Id</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, let&rsquo;s say you wanted to add a new Edit method for this model:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="n">FooController</span> <span class="p">{</span>
+</span><span class='line'><span class="na">    [HttpPost]</span>
+</span><span class='line'>    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Edit</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="n">Foo</span> <span class="n">foo</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There will be a problem here if you expect to be able to change this ID (rare but it happens). MVC will model bind the route&rsquo;s <code>id</code> parameter to your model&rsquo;s ID, possibly breaking your code. This is because MVC does not differentiate your two <code>id</code> and <code>Id</code> parameters, it sees them as one in the same (this has to do with the underlying <code>Request</code> collection).</p>
+
+<h3>Fix it!</h3>
+
+<p>It&rsquo;s simple to fix. Instead of using <code>id</code> as a URL parameter throughout your application, use something else! I typically use <code>identifier</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">routes</span><span class="p">.</span><span class="n">MapRoute</span><span class="p">(</span>
+</span><span class='line'>  <span class="s">&quot;Default&quot;</span><span class="p">,</span> <span class="c1">// Route name</span>
+</span><span class='line'>  <span class="s">&quot;{controller}/{action}/{identifier}&quot;</span><span class="p">,</span> <span class="c1">// URL with parameters</span>
+</span><span class='line'>  <span class="k">new</span> <span class="p">{</span> <span class="n">controller</span> <span class="p">=</span> <span class="s">&quot;Home&quot;</span><span class="p">,</span> <span class="n">action</span> <span class="p">=</span> <span class="s">&quot;Index&quot;</span><span class="p">,</span> <span class="n">identifier</span> <span class="p">=</span> <span class="n">UrlParameter</span><span class="p">.</span><span class="n">Optional</span> <span class="p">}</span> <span class="c1">// Parameter defaults</span>
+</span><span class='line'><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Controller</span>
+</span><span class='line'><span class="k">public</span> <span class="n">FooController</span> <span class="p">{</span>
+</span><span class='line'><span class="na">    [HttpPost]</span>
+</span><span class='line'>    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Edit</span><span class="p">(</span><span class="kt">int</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">Foo</span> <span class="n">foo</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Voila. No more model binding issues!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/22/whats-the-most-efficient-way-to-read-config-settin">What&#8217;s the Most Efficient Way to Read Config Settings in .NET?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-20T20:33:09-05:00" pubdate data-updated="true">Oct 20<span>th</span>, 2011</time>
+        
+           | <a href="/blog/posts/22/whats-the-most-efficient-way-to-read-config-settin#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/22/whats-the-most-efficient-way-to-read-config-settin">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In a project I&rsquo;m contributing to, I saw some code like this (simplified but boiling down to):</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="n">ConfigValue</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">get</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">System</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">ConfigurationManager</span><span class="p">.</span><span class="n">AppSettings</span><span class="p">[</span><span class="s">&quot;ConfigValue&quot;</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Is there anything wrong with this? It&rsquo;s a static read-only property. That seems pretty reasonable!</p>
+
+<h3>Storage matters</h3>
+
+<p>The issue that I saw was that there&rsquo;s no real reason to do this. You could do this just as easily:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">static</span> <span class="k">readonly</span> <span class="kt">string</span> <span class="n">ConfigValue</span> <span class="p">=</span>
+</span><span class='line'>     <span class="n">System</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">ConfigurationManager</span><span class="p">.</span><span class="n">AppSettings</span><span class="p">[</span><span class="s">&quot;ConfigValue&quot;</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>So, who cares? It looks the same to me!</em> As far as I can tell, you should care, even a little bit. Check this out:</p>
+
+<p><img src="/blog/images/34.png" alt="Perf Timer" /></p>
+
+<p>Notice anything? The <code>static readonly</code> field is far and away faster than any other approach (400 <em>nanoseconds</em>). The other three approaches are pretty similar, ranging from 95ms to 104ms. I&rsquo;ll do the math for you:</p>
+
+<blockquote><p><strong>A <code>static readonly</code> field is upwards of 200x faster</strong> than the equivalent property implementation.</p></blockquote>
+
+<p>The reason is simple: <code>get/set</code> are translated into methods by the compiler. A field is simply a field. Any property will incur some penalty for wrapping methods, so a field will always be faster! I use properties all the time but sometimes it might make sense to forgo a property in favor of a field.</p>
+
+<h3>The test case</h3>
+
+<p>Will you ever notice differences this small? I doubt it (the test was 100000 iterations). I did this for a learning experiment and for future reference. <strike>However, reading a config file is I/O at its core. To me, that says you should care about minimizing possible calls to the disk. Under a substantial load test, perhaps this would incur a visible penalty to page load time depending on how many calls you had to your settings wrapper.</strike> (<strong>Update:</strong> One of my colleagues pointed out that app config is probably loaded on start-up, so there shouldn&rsquo;t any disk I/O happening.)</p>
+
+<p><strong>Performance matters</strong> but this is probably so picky that you really don&rsquo;t ever need to worry about it. As my co-worker said to me after reading this:</p>
+
+<blockquote><p>&ldquo;A single call to a suboptimal EF/NHibernate/SQL query is far more damaging than 100,000 calls to these simple properties/fields. If a query took 1 second it would be roughly equivalent to 1,000,000 calls to the most inefficient property implementation. I would say spend your time where you get the biggest bang for your buck.&rdquo;</p></blockquote>
+
+<p>Couldn&rsquo;t have said it better myself! If you&rsquo;re doing perf testing, make changes where it matters. This is only a microscopic change compared to some that would make more of a difference (such as how you handle <code>Regex</code>).</p>
+
+<p>Here&rsquo;s the test case. I am not entirely positive if there&rsquo;s unseen overhead but the other three examples are common things I&rsquo;ve seen or even done in regards to this type of pattern:</p>
+
+<script src="https://gist.github.com/1302236.js?file=PerfTestCaseBackingMethods.cs"></script>
+
+
+<p>Let me know if I made a mistake in the test case that&rsquo;s skewing results and I&rsquo;ll fix it.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/21/integrated-disqus-comment-system-into-kamranicus">Integrated Disqus Comment System Into Kamranicus</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-07T14:41:16-05:00" pubdate data-updated="true">Oct 7<span>th</span>, 2011</time>
+        
+           | <a href="/blog/posts/21/integrated-disqus-comment-system-into-kamranicus#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/21/integrated-disqus-comment-system-into-kamranicus">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When I wrote Kamranicus, I wanted a simple blog where I could use Markdown and copy/paste images. I achieved that but I also built a simple comment system.</p>
+
+<p>While fun and a good exercise in using OpenID, I should have thought to check if there is any universal comment system available. There is. It&rsquo;s called <a href="http://disqus.com">Disqus</a>. Unfortunately, I discovered it after I made Kamranicus.</p>
+
+<p>As you can see now, Disqus is now the comment backend for Kamranicus&#8217; posts. Now I can allow anyone to comment using whatever provider they want, moderate comments, have comment threads, trackbacks, and loads of other useful features.</p>
+
+<p>It was easy to integrate. Check it out if you are in the same situation as me.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/20/some-thoughts-on-the-new-mileage-stats-net-sample">Some Thoughts on the New Mileage Stats .NET Sample Application</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-20T18:35:42-05:00" pubdate data-updated="true">Sep 20<span>th</span>, 2011</time>
+        
+           | <a href="/blog/posts/20/some-thoughts-on-the-new-mileage-stats-net-sample#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/20/some-thoughts-on-the-new-mileage-stats-net-sample">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;m [still] reading through the docs on the new Mileage Stats application that was just released by Microsoft. It looks pretty cool! A little more real-world than typical sample applications.</p>
+
+<h3>But I have some questions&hellip;</h3>
+
+<p>No application design is perfect but as I read some of this documentation, I am wondering about a couple things. <strong>I haven&rsquo;t finished reading all of the docs yet,</strong> so these are just some random thoughts:</p>
+
+<h4>BackboneJS</h4>
+
+<p>It seems like for a sample MVC application that needs to support progressive enhancement and work in JS/non-JS environments, <a href="http://backbonejs.com/">BackboneJS</a> would be a suitable alternative to the jQuery UI widget + jQuery BBQ implementation they are using.</p>
+
+<p><strong>Update</strong>:</p>
+
+<p>Hah, further down the same Readme page I was looking at, they mentioned BackboneJS or Knockout as alternative considerations:</p>
+
+<blockquote><p>A design the Project Silk team is interested in investigating in the future involves the use of jQuery UI Widgets that can be data bound within an MVVM implementation such as Knockout.js.</p></blockquote>
+
+<p>I wonder why they didn&rsquo;t want to do that for the sample itself? From the reading, it sounds like it was because they wanted to minimize external dependencies. Perhaps it could also be seen as an official endorsement of whatever library they could have chosen (even though they explicitly state for jqPlot that it shouldn&rsquo;t be taken as an &ldquo;official&rdquo; recommendation).</p>
+
+<h4>AmplifyJS</h4>
+
+<p>Client side data manager is a big emphasis in this application. It says in the Readme that:</p>
+
+<blockquote><p>&ldquo;Data is cached in a JavaScript object, rather than using HTML5 local storage or similar APIs, in order to meet the cross-browser requirements of the application.&rdquo;</p></blockquote>
+
+<p>Hmm, well, won&rsquo;t <a href="http://amplifyjs.com">AmplifyJs</a> cover data management needs then? It supports all browsers and <a href="http://amplifyjs.com/api/store/">unifies the storage mechanism APIs</a>. It <a href="http://amplifyjs.com/api/pubsub/">does some pub/sub stuff</a> for you as well. In old browsers, a non-standard way will be used to store data but on modern browsers, localStorage and sessionStorage will be used.</p>
+
+<p>I wonder if the team took a look&mdash;and if they did, what they thought of it. From the surface, it looks like it would be better than rolling your own storage and pub/sub routines.</p>
+
+<h3>That&rsquo;s all for now</h3>
+
+<p>Like I said, I&rsquo;m still reading/learning it. I&rsquo;ll update this as I read more.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/19/immersive-ui-in-rpgs-thoughts-concerns-et-al">Immersive UI in RPGs - Thoughts, Concerns, Et Al.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-15T00:56:52-05:00" pubdate data-updated="true">Sep 15<span>th</span>, 2011</time>
+        
+           | <a href="/blog/posts/19/immersive-ui-in-rpgs-thoughts-concerns-et-al#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/19/immersive-ui-in-rpgs-thoughts-concerns-et-al">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you don&rsquo;t know, I&rsquo;m a pretty avid fan of video games. Actually, &ldquo;avid&rdquo; is probably an understatement. Video games are a passion of mine, not only for pleasure but also in terms of software development. I&rsquo;ve tried my hand at game programming, even some modeling. I don&rsquo;t think I&rsquo;m cut out for it. That said, I think there are still things I can comment on from a user experience perspective. Games are just software. Virtual worlds, sure, but underneath they are still running on 1&rsquo;s and 0&rsquo;s and made with programming languages and frameworks. Therefore, it follows that as pieces of software, they still must rely on common usability and user experience practices, especially if they display UI (as most do).</p>
+
+<h3>RPGs and UI</h3>
+
+<p>I&rsquo;m going to talk about an upcoming RPG, <a href="http://elderscrolls.com">The Elder Scrolls V: Skyrim</a>, since it represents RPGs pretty well in that they are some of the most UI-intensive of all games. I&rsquo;m also going to talk about it because I&rsquo;m insanely excited for it and I want to talk about immersion; Bethesda RPGs are mainly about immersive worlds. Dialog, questing, inventory management, spell management, looting, skill trees, equipment, maps, etc. Lots of UI for displaying information to the user. In an RPG, usually (every time?) you are on an epic quest. As a user (player), I don&rsquo;t want to think too much about managing all this information, I want to go on quests and use bigger swords and badder spells. Still, I&rsquo;m going to have to use the UI no matter what. I have to talk to people. I have to store my big swords. I have to learn spells. I have to navigate the world.</p>
+
+<p>As I look at screenshots and watch gameplay demos of Skyrim, it got me thinking about their UI decisions and RPG UIs in general. If your goal is to create an immersive world, how come you don&rsquo;t also create immersive UIs? Shouldn&rsquo;t you be trying your darndest to get rid of the dialog- and window-based UI of &ldquo;regular&rdquo; software? Or at the very least, to fit your UI into the story or context of the game? It&rsquo;s an interesting idea to think about&mdash;how do you decide what will be immersive and what will be a typical dialog/window-based UI?</p>
+
+<h3>Elder Scrolls vs. Fallout</h3>
+
+<p><img src="/blog/images/18.png" alt="Pipboy 3000" /></p>
+
+<p>When I look at Fallout 3, it strikes me as genius how well they were able to keep the immersion with the &ldquo;menu&rdquo; by using the Pipboy. Not only did it perfectly fit into the storyline but it also made total sense in the context of the game. Here you are, a quaint vault dweller, and the PipBoy is given to you at age 10 like every other resident. As an NPC chides, &ldquo;It&rsquo;ll be your best friend.&rdquo; It fits perfectly and is a natural way to introduce a way to get at all the information you&rsquo;d need in a futuristic, post-apocalyptic RPG. Not only that, but it was also usable. A couple clicks would bring you to the maps, one more, equipment, etc. It is the perfect example of an immersive, usable game UI.</p>
+
+<p>I can&rsquo;t recall a fantasy RPG that was successfully able to use an immersive, believable, and usable menu system like Fallout 3. Fable III tried hard to break the bonds of windows and menus by letting you transport to a &ldquo;safe house&rdquo; of sorts. I guess that&rsquo;s close to what I&rsquo;m talking about and it was serviceable; I was able to play the game to completion without pulling most of my hair out, but it was still cumbersome to be transported to a &ldquo;virtual menu system&rdquo; and go around to find and do things like check the map, equip weapons, etc. It fit the bill of being believable and not pulling you out of the game but I would argue it was not efficient in terms of getting things done quickly. It also got old hearing John Cleese say the same quip every time you needed to check your map.</p>
+
+<p>So, this leaves me wondering: <strong>how can a fantasy RPG like Elder Scrolls achieve a similar immersive menu UI like Fallout 3 that is believeable, efficient, and immersive?</strong> Here are some of my thoughts.</p>
+
+<h3>Managing Skills</h3>
+
+<p>In an RPG, you typically play a lonesome hero or hero leader that has a set of skills and powers they can use. Some are passive (as in Elder Scrolls) and others can be used like items (Titan Quest, Diablo, MMOs, etc.).</p>
+
+<p>In most games, viewing your skills usually involves opening a dialog with a large tree of skills where you can invest points in acquiring or leveling up skills. There are many variations on this core design.</p>
+
+<p><img src="/blog/images/24.png" alt="Star Wars: The Old Republic" /></p>
+
+<p>In Fallout, when you level up you&rsquo;re presented with a dialog where you can pick your &ldquo;perk&rdquo; and invest skill points. Here, the game diverges from an immersive UI and falls back on a regular dialog box UI. As a player, this never bothered me and I think is a good example of where a choice was made to use a familiar UI that, while immersion-breaking, made it easy to use.</p>
+
+<p>In Skyrim, I think they did a good job making this experience immersive and fitting it into the world story. Instead of opening a special menu, your character &ldquo;looks to the heavens&rdquo;. There, you can view constellations that correspond to specific skill trees. When you view a constellation, you can see each star, which is associated with a skill. It&rsquo;s exactly what I&rsquo;m getting at: believable, immersive, and usable.</p>
+
+<p><img src="/blog/images/25.png" alt="Skyrim skill system" /></p>
+
+<p>As far as leveling up in Skyrim, I don&rsquo;t think we&rsquo;ve seen what that looks like. I&rsquo;d imagine something similar will happen where you can &ldquo;look to the sky&rdquo; and there you&rsquo;ll be presented with some choices of what to do.</p>
+
+<h3>Managing Inventory</h3>
+
+<p>In Harry Potter, the inventory question has already been solved. If you&rsquo;ve read the books or seen the movies, you know Hermione carries around a bottomless purse which contains everything she needs, from textbooks to tents. It&rsquo;s believable in a magic world, so why shouldn&rsquo;t a game like Elder Scrolls implement something similar?</p>
+
+<p>I would imagine an animation where your character pulls out a sack from his waist and peers down into it after which you&rsquo;re presented with some sort of UI. Here, you could present a regular table/list-based UI or even 3D visuals of your items.</p>
+
+<h3>Magic &amp; Spells</h3>
+
+<p>What immediately jumps to mind is a spellbook your character carries around. You could base the UI off of an open spellbook interface. Many other games do this to good effect. This example is from King&rsquo;s Bounty (which I haven&rsquo;t played so I can&rsquo;t speak to its usability):</p>
+
+<p><img src="/blog/images/26.png" alt="King's Bounty" /></p>
+
+<h3>Quests</h3>
+
+<p><img src="/blog/images/19.png" alt="Quest Journal" /></p>
+
+<p>In The Elder Scrolls III: Morrowind, your quests and conversations were recorded in a Journal. While it was sometimes difficult to use, it is still a great idea and other games have played off a quest journal type interface.</p>
+
+<p>In Skyrim, I do not think we&rsquo;ve seen how quests are managed. Interestingly, I did notice that once your character reached a certain point in the cave in one of the recent demos, a message displayed saying, &ldquo;Quest Started: xxx&rdquo; telling me that either you overheard a new quest or an active quest can be triggered by going to some special area. You can also cast a spell called &ldquo;Clairvoyant&rdquo; to do a Fable-style glowing trail to your closest objective.</p>
+
+<h3>Map</h3>
+
+<p>In many RPGs with HUDs, a mini-map is displayed in the corner. In Bethesda RPGs, you&rsquo;ve always had to enter a menu to pull up a map (world or local). In Skyrim they&rsquo;ve focused on using as little screen real estate as possible for the HUD which is <em>awesome</em> and in Bethesda&rsquo;s games I haven&rsquo;t ever really felt the need for a minimap (personally) although I liked how in Morrowind you could choose to have one if you wanted.</p>
+
+<p><img src="/blog/images/28.png" alt="Dragon Age: Origins Minimap" /></p>
+
+<p>In Skyrim, when you open the map, the camera quickly zooms out and gives you a bird&rsquo;s eye view of the landscape, in fully rendered 3D. It&rsquo;s quite a sight. The only thing that stops it from meeting all of our criteria is that it isn&rsquo;t believable (How can you see that far? Are you a bird? Did you cast a spell? Are you God?).</p>
+
+<p><img src="/blog/images/27.png" alt="Skyrim's Fully 3D In-Game Map" /></p>
+
+<p>Since this a fantasy land and as an adventurer you&rsquo;d probably carry around a map, we could merge the idea of a &ldquo;crystal ball&rdquo; with a paper/cloth map. Your character would pull out a small snowglobe-sized object and peer into it, revealing the 3D world map just as Skyrim has it implemented now. Any sort of animation involving a map or compass or globe would be a perfect combination to the new world map feature.</p>
+
+<h3>Favorites &amp; Bookmarking</h3>
+
+<p>In action-oriented or item-oriented RPGs, typically you can assign items to hotkeys. In Fallout 3, you could assign guns and items to numbered slots on the keyboard.</p>
+
+<p><img src="/blog/images/29.png" alt="Dragon Age: Origins Shortcut Bar" /></p>
+
+<p>In Skyrim, it appears it is more &ldquo;bookmark&rdquo;-based which I think is an interesting idea pulled from our daily lives: browsing the Internet. When you think about it, it makes total sense to implement a bookmark system in an RPG that can contain thousands of items.</p>
+
+<p>The only issue is that this doesn&rsquo;t really fit into the story at all; it&rsquo;s there purely for organizational purposes. This is exactly the kind of place where a discussion of immersion vs. usability comes into play. You could provide the context of a &ldquo;belt&rdquo; and that in your belt you can take out an item in your inventory and place it there for easy access (hotkeys/shortcuts). Assuming your belt was a magical belt, it could &ldquo;favorite&rdquo; any number of items.</p>
+
+<p><img src="/blog/images/30.png" alt="Skyrim left-hand favorites" /></p>
+
+<p>In Skyrim, there is a single favorites menu and you equip the item in your left/right hand depending on which trigger you pull, as far as I&rsquo;ve seen. At least one preview noted that the favorites system was &ldquo;<a href="http://www.vg247.com/2011/09/27/crouching-spider-hidden-dragon-hands-on-with-skyrim/http://www.vg247.com/2011/09/27/crouching-spider-hidden-dragon-hands-on-with-skyrim/">slightly clunky</a>&rdquo;.</p>
+
+<p>You could also just argue that your character is &ldquo;summoning&rdquo; an item from his inventory; perhaps the cue for this needs only to be a simple sound effect or animation that plays when you hit a hotkey or choose an item. If I had the ability to use magic, it would make sense that I&rsquo;d probably &ldquo;tag&rdquo; items in my bag to be available for summoning at will (or take the Harry Potter approach and say a simple spell, &ldquo;Accio Sword of Monster Slaying&rdquo;).</p>
+
+<p>I am not sure what the best approach here is; but what is important to remember is that this feature is crucial to keeping players immersed and outside of menus, so whether it is immersive or not, it should be easy to use.</p>
+
+<h3>Looting</h3>
+
+<p>Every open-world RPG I&rsquo;ve played has resorted to a dialog system for one of its core systems: looting.</p>
+
+<p>If you think about how a loot system works in terms of development, it makes sense. An object can hold either a set or random assortment of items, maybe placed on entering a dungeon or when the game starts. The easiest and most straight-forward way is to present a list of the items to the player in a popup dialog box.</p>
+
+<p>As a player, I&rsquo;ve always been mostly satisfied with looting UI except when a game takes away the single most important shortcut of all: <strong>Take All</strong>.</p>
+
+<p>Sometimes, even as a player, you don&rsquo;t know you want a feature until another game implements it, which is why I&rsquo;m fairly excited to see <em>Kingdoms of Amalur</em> implements a &ldquo;junk&rdquo; system where you can mark items as junk and sell them in one button press to merchants.</p>
+
+<p><img src="/blog/images/20.png" alt="KOA Looting System" /></p>
+
+<p>I always thought it would be neat to have an animation where you literally look inside the object you&rsquo;re looting (except maybe bodies). You open a chest, you look in, then a UI that looks like the inside of a chest shows up and you see 3D models of whatever is in it. Then you can &ldquo;take all&rdquo; or click/select the items you want. This would work great for chests, barrels, boxes, closets, etc. Not only would this not break the immersion but it would force much more realistic contents for containers. For bodies, something similar to LA Noire where you literally examine the body would be cool but also not very useful for looting quick (thus the immediate &lsquo;Take All&rsquo; button). For a body, I&rsquo;d even be happy with a view of the body with a list of the items found on the side. Then when you hover over each item, the camera could focus on where on the body it&rsquo;s located. It doesn&rsquo;t have to, if it doesn&rsquo;t make sense (people holding unusually large/small items?).</p>
+
+<p>Here&rsquo;s a crappy wireframe of what I&rsquo;m talking about:</p>
+
+<p><img src="http://i.imgur.com/sdNhn.png" alt="Wireframe" /></p>
+
+<p>It always struck me as odd how Elder Scrolls, where every item has a 3D world model, couldn&rsquo;t do this. If you already have a model for every item, why <em>not</em> be creative in how you do looting? Some top-down RPGs like Diablo will let loot fall out of corpses and containers onto the ground; these games had it right and used immersive loot systems. Why couldn&rsquo;t open-world sandbox RPGs do the same, especially when items are already strewn about the world free for immediate pick up. The only RPG with a robust loot system I can think of that used in-game objects for containers was <em>Borderlands</em> where loot would magically pop out of lockers, rock piles or corpses but then again, Borderlands didn&rsquo;t have the same item scope as Elder Scrolls. Still, it&rsquo;s a place to start, isn&rsquo;t it?</p>
+
+<p>At any rate, I think there&rsquo;s more that can be done in RPGs to achieve a more immersive loot UI. I&rsquo;m positive there&rsquo;s a lot of fun things game designers can do nowadays.</p>
+
+<h3>Buying/Selling</h3>
+
+<p><img src="/blog/images/32.png" alt="Well, this is intuitive..." /></p>
+
+<p>Buying and selling items in RPGs has always been a dialog-based system, as far as I&rsquo;m aware. I understand why it&rsquo;s always been a de-facto standard that merchants carry every item they own (programming, code maintenance, item lists, etc.). The weird thing (for Bethesda games in particular) is why can&rsquo;t I buy things I see in a store? In Morrowind, a shop owner would have items strewn around the store that you could <em>steal</em> but never buy. It never made sense. I also don&rsquo;t think items disappeared when you bought them (they might have been tied to chests or the NPC themselves). Thus, there seemed to be a disconnect between what the merchant had on them and the items visible in the store. In Fallout, it made a little more sense that traveling traders carried their stock on their pack Brahmin (mules). I could see using a UI for that.</p>
+
+<p>An interactive in-world store-front would be an awesome idea and it&rsquo;s not new. In Zelda games, you could go to a trader and see 3D models of items you could buy. In this context, that approach probably isn&rsquo;t good for RPGs that deal with dozens of items per merchant but the idea is what is important (seeing and picking items in a store).</p>
+
+<p><img src="/blog/images/31.png" alt="Who says you can't put 50 pearls on a table?" /></p>
+
+<p>For an open-world sandbox like Skyrim, you could simply just have the items in a store on shelves like a normal real-life store. It&rsquo;s not like it hasn&rsquo;t been possible in the past&hellip; Morrowind (above) and Oblivion both had items in the store, but like I said, you could never pick one and buy it, only steal it. Make sense? Not really. You could just extend that same design but make all items available in the store marked as &ldquo;tradable&rdquo; so you could exchange an item on the spot or buy a new item. Perhaps implement some customer service AI and have the storekeeper follow you or check on you, allowing faster access to talking to him and selling items. This would throw a wrench into stealthy stealing, though, so maybe don&rsquo;t do this (Oblivion shop owners who followed me around made me angry when I tried to break into their store/bedrooms, even though at first it was &ldquo;kind of cool&rdquo;).</p>
+
+<p>This immersive storefront experience would not replace the existing efficiency (or proposed efficiency) of current designs of talking to merchants and entering a trade UI. For people that need to just get in and get out, every store could post a piece of paper tacked onto the door or counter that lists everything they sell. This would be the typical buy/sell UI. For selling, you&rsquo;d talk to the merchant, tell him you want to sell, and enter this familiar UI, but at least it would be explained in the world.</p>
+
+<p>The most recent game I played that used a believable immersive trading UI is <em>Deus Ex: Human Revolution</em>:</p>
+
+<p><img src="/blog/images/33.png" alt="alternate title" /></p>
+
+<p>Merchants would be standing next to a computer. You talk to the merchant and he directs you to the monitor where you use a faux-OS UI to buy and sell. It was immersive, believable (except you had no idea where the items were stored), and usable (there were some quirks like not being able to use the WASD keys to navigate). In a fantasy game, that computer is probably a (magical?) piece of paper. Maybe there&rsquo;s something even more magical/fantastical that would make better sense.</p>
+
+<p>At the least, Bethesda, do what you&rsquo;re doing right now, just <em>let me buy items in the world too instead of only allowing me to steal them</em>. You&rsquo;re going to let me buy the item when I talk to a merchant, why make me go through that UI navigation process if I am literally staring at the item I want? Yes, there are people that buy things rather than steal them every time. Yes, there are people would swear they&rsquo;ve never bought an honest item in their adventure. Cater to both audiences equally efficiently.</p>
+
+<p><strong>Note:</strong> Since Skyrim is yet to be released, I have not seen or heard how merchants work in the game. Perhaps they&rsquo;ve already done this! I&rsquo;m referencing Oblivion and Morrowind where the technology was there, just not implemented.</p>
+
+<h3>Talking to people</h3>
+
+<p>Dialog is always hard because you need to offer the player a list of responses or topics. I think what they are doing in Skyrim is pretty streamlined and concise, not forcing you to listen but showing topics on the side, out of the way. I can&rsquo;t think of a fully-immersive way of presenting textual choices, it seems like it&rsquo;ll break the immersion every time but at least Skyrim is less intrusive than Oblivion/Morrowind/Fallout.</p>
+
+<p>As a player, conversation systems have never bothered me much and actually, Dragon Age: Origins and Mass Effect (i.e. Bioware RPGs) have always felt like the best systems I&rsquo;ve used as they are cinematic, enjoyable, and felt like they belonged there.</p>
+
+<p>In terms of usability, the best feature I&rsquo;ve seen is in Bioware conversations: they will show (in text) the last thing someone said to you. This is so important I can&rsquo;t even properly express it. It reminds me of what David Sirlin talks about in <a href="http://www.gamasutra.com/view/feature/1935/saving_the_day_save_systems_in_.php">his piece of about save systems in games</a>:</p>
+
+<blockquote><p>&ldquo;Games are not for game designers and their ivory-tower ideals&mdash;games are for players. Players have lives outside of our games and we should respect those lives and design our games accordingly, rather than expect our players to design their lives around us.&rdquo; &ndash; David Sirlin</p></blockquote>
+
+<p>I liked this quote because I keep it in mind even when I suggest outlandish ideas like a virtual storefront. In the end, players just want to easily get things done.</p>
+
+<h3>Other UX considerations</h3>
+
+<h4>Timing and animations</h4>
+
+<p>I should clarify: when I talk about animations (for inventory or maps or whatever) I am talking about animations 1-3 seconds long. Anything longer and you&rsquo;re going to run into &ldquo;OMG JUST LET ME DO THIS QUICK&rdquo; territory and then your beautiful menu system is going to seem clunky and slow (<strong>cough</strong>FableIII<strong>cough</strong>). The Fallout 3 Pipboy animation was perfect: it was fast, you could follow it, you knew what just happened, and it made sense. We live in a world where web pages need to come up in less than 100ms and we can&rsquo;t wait those extra 5 seconds for our download to finish. Keep it short, simple, and believable. You could also use animations to mask processing time; if it takes 100-300ms to load up a player&rsquo;s inventory, an animation would hide that CPU time. I&rsquo;ve never programmed a game in my life but on the web, for AJAX requests showing the loading animation even for quick calls is crucial for immediate feedback.</p>
+
+<p>Timing should be one of&mdash;if not the&mdash;highest priorities when designing a usable menu system. Ultimately, people want to get things done in your game. That&rsquo;s why you saw me say again and again for storefronts, let power users use the inventory list to buy/sell quickly. It doesn&rsquo;t <em>have</em> to be totally immersion-breaking. For those of us who sometimes enjoy strolling through a vendor&rsquo;s inventory visually, we can do that. Efficiency is the name of the game (that&rsquo;s why God invented the <em>Take All</em> command).</p>
+
+<p>I don&rsquo;t think timing and immersive UI are mutually exclusive. Pipboy is my case in point. Borderlands looting is another case. Game designers are by their nature creative people. Use that creativity to prove that you can make an immersive UI without sacrificing efficiency.</p>
+
+<h4>Providing critical information at a glance</h4>
+
+<p>One thing I noticed about the menu system in Skyrim that I&rsquo;m not super-enthused about is the lack of critical information without &ldquo;hovering&rdquo; or selecting an item (as seen here):</p>
+
+<p><img src="/blog/images/21.png" alt="Skyrim Inventory" /></p>
+
+<p>One thing I liked about Oblivion was that they showed some critical information in a table format&hellip; so I could sort by damage or weight or see at a glance what the armor rating was for items I held. In Morrowind, you had to do a similar hovering to see stats.</p>
+
+<p><img src="/blog/images/22.png" alt="Oblivion Inventory" /></p>
+
+<p>I could see the UI discussion both ways. When I want to equip an item, I don&rsquo;t care about all that other information. However, when I want to sell an item or see if the new item I picked up is any good, I <strong>do</strong> care about that information. The lack of information in the new UI is both a good thing (clean) and bad thing (lack of information at a glance). I don&rsquo;t know what to think of it yet as I haven&rsquo;t used it but it could turn out OK given some tools to effectively manage my inventory. I&rsquo;d also like to believe that the console UI is simpler than the usually-more-heavy PC UI.</p>
+
+<h4>Providing quick comparisons</h4>
+
+<p>The other thing I didn&rsquo;t see (I think) was a quick compare type UI/popup. Bethesda RPGs have never done this. It boggles my mind. If I find an item in the world, I would immediately like to see if it&rsquo;s better than my current equipped weapons (preferably by simply hovering over it or inside of a loot UI, selecting it). If I am browsing my inventory, I&rsquo;d like to see an immediate comparison to my equipped weapons. One of the best games that did this was Borderlands and is how I&rsquo;d love to see it in an Elder Scrolls game; as soon as you found an item it was easily apparent what was better/worse about it:</p>
+
+<p><img src="/blog/images/23.png" alt="Borderlands Looting" /></p>
+
+<h4>Remote trading</h4>
+
+<p>I don&rsquo;t know if this is a good idea. But&hellip; stay with me. In Torchlight, while you are out adventuring, you can send your pet (who doubles as a pack mule) back to town to sell whatever he&rsquo;s carrying. No bartering, no nonsense, he comes back in a certain time depending on how much you sold. It&rsquo;s genius, I think. How many times have you been stuck in a dungeon, with a fricking sweet axe in front of you, put it in your inventory and&hellip; now you can&rsquo;t move (or in newer Bethesda games, move at 1in/hr). The very dedicated among us might endure the 5 mile long walk moving at the speed of a snail but why should we? In Torchlight you had a pet with a backpack. It totally makes sense to say to Rufus, &ldquo;Hey boy, take my crap back so I can carry more. There&rsquo;s a good dog.&rdquo; In a lone-wolf type game like Elder Scrolls it might make more sense to magically send items to a merchant or&hellip; <em>just open a portal</em>. Hey, you could teleport in Morrowind, it&rsquo;s not a new idea. In Diablo/Torchlight you can open a town portal. That solves the issue, albeit you still have to walk to the merchant, enter the UI, trade, etc. Extend that a bit and you have the ability to remotely buy (or simply sell) items on the spot. Game balance, difficulty, etc. should all be considered in a feature like this but <em>Oh God Wouldn&rsquo;t This Be Useful</em>?</p>
+
+<p>I could see some arguments saying that this would make inventory management too easy. Maybe&hellip; but isn&rsquo;t that what you want? You <em>can&rsquo;t</em> tell me you haven&rsquo;t cursed the weight system in Elder Scrolls. I hate to break it to you but now that we&rsquo;ve got fast travel, what&rsquo;s a little town portal added to the mix? In Morrowind, one of the first things I do is enchant two amulets: one with Divine Intervention and one with Almsivi Intervention. I pay <em>cash monies</em> to do it straight away because it makes my life so much easier. I can teleport pretty close to town no matter where I am.</p>
+
+<p>Anyway, I doubt you&rsquo;d use this system to just sell your awesome items all the time&hellip; you probably want to hang them up in your modded Dracula castle display cases (like me). You probably don&rsquo;t need all those shiny treasures you&rsquo;re carrying, taking up precious space, that you&rsquo;re just going to sell for cash. You want to carry good stuff that you need for a quest or side project (crafting?). I think this would just make it easier to get rid of stuff you don&rsquo;t need fast and easy.</p>
+
+<p>With new systems like fast travel, this is less of an issue until you&rsquo;re deep inside a dungeon and forgot to empty your rucksack before your curiosity got the better of you and you just <em>had</em> to enter that underwater cave&hellip;</p>
+
+<h3>Closing thoughts</h3>
+
+<p><strong>I&rsquo;m not saying Skyrim&rsquo;s UI is bad or is wrong</strong>. But as someone who continuously works on building better user experiences at work and at home, I always look at my projects and go, &ldquo;Man, I could really do this and this and this to make it even easier.&rdquo; That&rsquo;s all I want to do with this&mdash;point out, as an outsider and future player&mdash;what concerns and thoughts I had regarding what I&rsquo;ve seen so far.</p>
+
+<p>I&rsquo;m just wondering why designers/developers don&rsquo;t try harder to make their UIs more immersive and &ldquo;make sense&rdquo; within the context of their game. I <em>know</em> it&rsquo;s possible, I&rsquo;ve seen it with my own two eyes. I keep referencing Fallout 3, but it&rsquo;s because I was amazed at how well it all just made sense. Pipboy? Sure why not! Sure, dialog/buying/selling went through typical dialog windows but at least they all matched. Even there you could do similar things to what I was saying, maybe with an interactive storefront. Borderlands is a great example of immersive looting, as well as many top-down RPGs.</p>
+
+<p>I also want to be clear and say that while I think having an immersive UI is best, <strong>it&rsquo;s also important to let people just get things done.</strong> What I mean is, have the sweet &amp; snazzy immersive visual storefront with items laying around to buy, but cater to the power users and keep the quick buy/trade UI. See Windows 8 Metro UI v. classic Windows 7 UI.</p>
+
+<p>I also think you can go too far and just make things clunky and unintuitive. It&rsquo;s a line that&rsquo;s hard to see, I think, and since it&rsquo;s a game and a piece of software, it doesn&rsquo;t all have to be &ldquo;realistic&rdquo; and immersive. If it works and is easy to use, that&rsquo;s probably good enough. Going the extra mile to include visual detail is definitely a win in my book, though. What matters in the end is that the player is happy to use your menu system and doesn&rsquo;t curse it until the day they die.</p>
+
+<p>I&rsquo;m interested in hearing other people&rsquo;s suggestions; after all, we&rsquo;re the ones that play the games to death. I&rsquo;m just really surprised Bethesda went with a sort of &ldquo;contemporary&rdquo; (Apple-like) UI rather than an immersive one like F3 or even a stylized one found in Blizzard games. It&rsquo;s also important to remember that what we&rsquo;ve seen so far of Skyrim has been on 360 not on PC and Bethesda could have done UX optimizations for the mouse rather than the controller-oriented design we&rsquo;ve seen so far.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/16/i-love-github-so-much-im-a-paying-member-now">I Love GitHub So Much, I&#8217;m a Paying Member Now</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-26T14:41:02-05:00" pubdate data-updated="true">Jul 26<span>th</span>, 2011</time>
+        
+           | <a href="/blog/posts/16/i-love-github-so-much-im-a-paying-member-now#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/16/i-love-github-so-much-im-a-paying-member-now">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As you might know, I released <a href="/Blog/Posts/15/announcing-keep-track-of-my-games">a new site, Keep Track of My Games</a> a couple days ago.</p>
+
+<p>I started out with a remote Git repository on AppHarbor, then switched to <a href="http://bitbucket.org">BitBucket</a> because it supported free private repositories.</p>
+
+<p>BitBucket is really nice but after trying to use the Issues list I really missed GitHub&rsquo;s clean issues &amp; milestones management. Really, really missed it.</p>
+
+<p><img src="/blog/images/17.png" alt="BitBucket issues" /></p>
+
+<p>BitBucket&rsquo;s issues list is table-based and displays issue titles in a column. That column gets really small when you have a lot of issues, making it hard to read. I started out typing user stories as the titles but when I went to GH, I made them shorter, task-oriented titles and put the stories inside of them. I think this helps clean up the UI a bit:</p>
+
+<p><img src="/blog/images/15.png" alt="Issues List" /></p>
+
+<p>Much easier to read and browse and filter issues, in my opinion. I have a system where items I work on are assigned to me, the rest are considered &ldquo;future&rdquo; items. I also have a couple milestones set up to track progress. I create labels for major components of the site and then can assign multiple ones to issues.</p>
+
+<p>I will be updating my <a href="http://keeptrackofmygames.com/roadmap">Roadmap</a> to use GH&rsquo;s REST service and query the issues to display. The nice thing about labels is that I will be able to filter out issues that shouldn&rsquo;t be very public (i.e. security tasks?).</p>
+
+<p><img src="/blog/images/16.png" alt="Milestones" /></p>
+
+<p>Beautiful.</p>
+
+<p>So I bit the bullet and said what the hell? and signed up for a micro plan. I feel pretty good about it. I love GitHub, it&rsquo;s no secret (case in point, this site). It makes me feel good to support them and show them some well-deserved love. I hope my small contribution helps them keep a clean site and awesome user experience.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/15/announcing-keep-track-of-my-games">Announcing Keep Track of My Games</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-24T17:44:08-05:00" pubdate data-updated="true">Jul 24<span>th</span>, 2011</time>
+        
+           | <a href="/blog/posts/15/announcing-keep-track-of-my-games#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/15/announcing-keep-track-of-my-games">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I am working on a new side project, <a href="http://keeptrackofmygames.com/about">Keep Track of My Games</a>.</p>
+
+<p><img src="/blog/images/10.png" alt="Yes." /></p>
+
+<h3>The Rundown</h3>
+
+<p>The goal is simple: <strong>Manage your collection of games and track games that haven&rsquo;t been released.</strong></p>
+
+<p>You can read the tour on my <a href="http://blog.keeptrackofmygames.com/post/8003937025/what-is-keep-track-of-my-games">introduction blog post</a>.</p>
+
+<p>I&rsquo;ve setup several social outlets:</p>
+
+<ul>
+<li><a href="http://twitter.com/keeptrackgames">@keeptrackgames</a></li>
+<li><a href="http://blog.keeptrackofmygames.com/">Blog</a></li>
+<li><a href="http://getsatisfaction.com/keeptrack">GetSatisfaction</a></li>
+</ul>
+
+
+<p>I&rsquo;m also providing a public look into my development cycle via the <a href="http://keeptrackofmygames.com/roadmap">Roadmap</a> page.</p>
+
+<h3>The Technology</h3>
+
+<p>I am using MVC 3 with EF 4.1 and SQL Server 2008 deployed via Mercurial, BitBucket, and AppHarbor. I am using the JSON API from <a href="http://api.giantbomb.com">GiantBomb</a> to fetch search results than caching them locally to the database. I&rsquo;m not super enthused with the performance but hopefully I can make it better in the coming weeks.</p>
+
+<p>I use <a href="http://twilio.com">Twilio</a> for SMS and for now, regular old SMTP for emails but I may upgrade depending on load. I use a &ldquo;scheduled&rdquo; job that runs through the database and figures out if games are coming out soon or are released or if their release dates have changed.</p>
+
+<h3>The Architecture</h3>
+
+<p>I have a pretty straightforward and simple architecture: everything goes through application services that do not have any web dependency.</p>
+
+<p><img src="/blog/images/11.png" alt="Layer Diagram" /></p>
+
+<p>My controllers are pretty stupid; they ask the services for information and process the results:</p>
+
+<p><img src="/blog/images/12.png" alt="Adding item to library" /></p>
+
+<p>The key is my <code>ActionConfirmation</code> class which I borrowed from my co-worker. I thought it was awesome for Service => Controller communication. The reason being I can pass error messages / validation results cleanly.</p>
+
+<p>For example, in this action, if an error occurred when saving tracking settings, I need to go and get the current tracking settings to add some view-specific logic (like, whether or not to show the email/phone checkboxes):</p>
+
+<p><img src="/blog/images/13.png" alt="Saving tracking settings" /></p>
+
+<p>The <code>currentTracking</code> is of type <code>ActionConfirmation&lt;TrackingViewModel&gt;</code>. So, if a service call was successful, I can retrieve the result via <code>currentTracking.Value</code>. I also use a non-generic <code>ActionConfirmation</code> class that doesn&rsquo;t require any return value.</p>
+
+<p>Here&rsquo;s an example of the service code returning <code>ActionConfirmation</code>s:</p>
+
+<p><img src="/blog/images/14.png" alt="ActionConfirmation results" /></p>
+
+<p>I am not 100% OK with this because for complex business validation, the results are coming back one at a time. I will be refactoring later to avoid this.</p>
+
+<h3>The &ldquo;Open&rdquo; Source Agenda</h3>
+
+<p>I have been playing around with making this source code public. Only a few things prevent me from doing so:</p>
+
+<ol>
+<li>I need a way to hide secret tokens for APIs and my passwords for some services.</li>
+<li>If people know the code, they&rsquo;ll see all the security holes and it&rsquo;s possible someone could exploit them and steal my user&rsquo;s data (not cool).</li>
+</ol>
+
+
+<p>Really item #2 is the big decider. I am using OpenID and DotNetOpenAuth but that doesn&rsquo;t mean the site is totally secure. The worst information that could be obtained is someone&rsquo;s email and phone number, both of which I plan to encrypt for extra safety (once I figure out how that works with EF).</p>
+
+<p>I am thinking instead of totally making it open source, to allow select contributors I trust into the codebase for reviews and patches.</p>
+
+<p>If you would be interested in doing that, I have a tester system setup so <a href="http://twitter.com/kamranayub">let me know</a> and we&rsquo;ll talk.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/7/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/5/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  	<h1>About Me</h1>
+
+  	<p><img src="http://gravatar.com/avatar/8303c4eb9f9099df39adbc3d8c634746?s=120" alt="My Headshot" title="My ugly mug" /></p>
+
+  	<p>Hi, my name is Kamran. I am a web developer and designer, residing in Minnesota. I&#8217;ve been programming since 2001 and I am familiar with many different languages, both web-based and server-based. I love to tinker around and think of new ways to solve problems.</p>
+
+	<p>If you wanna talk, tweet <strong><a href="http://twitter.com/kamranayub" target="_blank">@kamranayub</a></strong> or send me an email at my <strong>full name</strong> at <strong>gmail.com</strong></p>
+</section>
+<section>
+  	<h1>Apps</h1>
+
+  	<ul>
+  		<li><a href="http://centwiseapp.com/">Centwise</a></li>
+  		<li><a href="http://keeptrackofmygames.com/">Keep Track of My Games</a></li>
+  	</ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/78/tccc15-see-you-again-in-april">TCCC15: See You Again in April!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/77/tccc15-leveling-up-your-windows-phone-app">TCCC15: Leveling Up Your Windows Phone App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/76/minnesota-developer-conference-2013-connected-apps">Minnesota Developer Conference 2013: Connected Apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/75/test-retina-images-without-a-retina-screen">Test Retina Images Without a Retina Screen</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/kamranayub">@kamranayub</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'kamranayub',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/104789622697290911192?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Kamran -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

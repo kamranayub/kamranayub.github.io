@@ -1,0 +1,373 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>A Smarter `checked` Binding for KnockoutJS - Kamranicus</title>
+  <meta name="author" content="Kamran">
+
+  
+  <meta name="description" content="I love KnockoutJS. I&rsquo;ve been using it for awhile now and I really enjoy it. That said, there are a few oddities with it, one such being the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kamranayub.github.io/blog/posts/61/a-smarter-checked-binding-for-knockoutjs">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Kamranicus</a></h1>
+  
+    <h2>Kamran Ayub is a developer and designer in Minneapolis, Minnesota. He specializes in .NET development with a dash of client-side and is passionate about UX.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/Kamranicus" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=Kamranicus" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:kamranayub.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">A Smarter `checked` Binding for KnockoutJS</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-31T09:48:04-06:00" pubdate data-updated="true">Dec 31<span>st</span>, 2012</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I love KnockoutJS. I&rsquo;ve been using it for awhile now and I really enjoy it. That said, there are a few oddities with it, one such being the <code>checked</code> binding.</p>
+
+<p>Let&rsquo;s say you have this scenario (as I do now):</p>
+
+<p>You want to <code>foreach</code> a list of items, each one having a checkbox. You want to store the checked items in a list, for use throughout the view model (bulk updates, select all, deselect all, etc.). How do you go about doing this?</p>
+
+<p>The &ldquo;recommended&rdquo; approach would be to add an observable property, <code>isSelected</code>, to each of your items. Then, in your markup, you can bind to that property:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul</span> <span class="na">data-bind=</span><span class="s">&quot;foreach: tasks&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;input</span> <span class="na">type=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">data-bind=</span><span class="s">&quot;checked: isSelected&quot;</span><span class="nt">&gt;&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That is OK. It&rsquo;s OK because what if you need to use that item (assuming you&rsquo;re using a &ldquo;class&rdquo; or other reusable object) somewhere else where you don&rsquo;t need that property. You could just attach it where you need it. It also makes it a bit tricky to manage the list of selected items (you&rsquo;d probably end up creating a <code>computed</code> array), as well as making it difficult to dynamically bind a checkbox list to a computed array.</p>
+
+<p>What you may decide to do (like me) is to try and bind the <code>checked</code> to your own observable array, and assign the <code>value</code> of the checkbox to a model property like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">data-bind=</span><span class="s">&quot;checked: $root.selectedTaskIds, value: id&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>However, if you do this, you&rsquo;ll soon discover a few oddities:</p>
+
+<ol>
+<li>When you check the checkbox, the <em>string</em> value of your model property will be placed into the array.</li>
+<li>Your model property <em>will change to this new string value</em> essentially changing your original model.</li>
+</ol>
+
+
+<p>There are reasons for these two crazy happenings, which I discovered:</p>
+
+<ol>
+<li>The <code>checked</code> binding bases its value on the <em>element&rsquo;s</em> value, which is stored as a string.</li>
+<li>The <code>value</code> binding keeps the property you are bound to and the <em>element&rsquo;s value</em> in-sync, which is why your model&rsquo;s ID becomes a string.</li>
+</ol>
+
+
+<p>It turns out, we&rsquo;re suffering from some mental model breakdown. If you look at the KO documentation for <code>checked</code>, it&rsquo;s easy to believe the above syntax should work, after all, it says:</p>
+
+<blockquote><p>Special consideration is given if your parameter resolves to an array. In this case, KO will set the element to be checked if the <strong>value</strong> matches an item in the array, and unchecked if it is not contained in the array.</p></blockquote>
+
+<p>If the <em>value</em> matches&hellip; &ldquo;Cool!&rdquo; so I can just bind the <code>value:</code> to my model property? NOPE. You&rsquo;ll run into the aforementioned issues if you try.</p>
+
+<h3>Making a smarter <code>checked</code> binding</h3>
+
+<p>Since I didn&rsquo;t want to add <code>isSelected</code> properties everywhere, I decided to &ldquo;monkey patch&rdquo; the <code>checked</code> and <code>value</code> bindings to play nice together.</p>
+
+<p>Essentially, all my patch does is two things:</p>
+
+<ol>
+<li>In the <code>checked</code> binding, if it finds a <code>value</code> binding, it binds to that value rather than the element&rsquo;s value.</li>
+<li>In the <code>value</code> binding, it completely ignores any changes if the <code>checked</code> binding is present, essentially nullifying the binding.</li>
+</ol>
+
+
+<p>Here are the new binding definitions:</p>
+
+<script src="https://gist.github.com/4418574.js"></script>
+
+
+<p>And you can see it in action here:</p>
+
+<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/kamranayub/G8YZU/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+
+<p>As you can see, now it works as you&rsquo;d expect! You can bind the <code>id</code> property to the list. You can also bind <code>$data</code> and you&rsquo;ll have the full object in your selected list.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Kamran</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-31T09:48:04-06:00" pubdate data-updated="true">Dec 31<span>st</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://kamranayub.github.io/blog/posts/61/a-smarter-checked-binding-for-knockoutjs" data-via="kamranayub" data-counturl="http://kamranayub.github.io/blog/posts/61/a-smarter-checked-binding-for-knockoutjs" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/posts/60/disappointed-in-the-windows-store-submission-proce" title="Previous Post: Disappointed in the Windows Store Submission Process">&laquo; Disappointed in the Windows Store Submission Process</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/posts/62/renderroutes-expose-your-routes-to-your-javascript" title="Next Post: RenderRoutes: Expose your routes to your Javascript">RenderRoutes: Expose your routes to your Javascript &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  	<h1>About Me</h1>
+
+  	<p><img src="http://gravatar.com/avatar/8303c4eb9f9099df39adbc3d8c634746?s=120" alt="My Headshot" title="My ugly mug" /></p>
+
+  	<p>Hi, my name is Kamran. I am a web developer and designer, residing in Minnesota. I've been programming since 2001 and I am familiar with many different languages, both web-based and server-based. I love to tinker around and think of new ways to solve problems.</p>
+
+	<p>If you wanna talk, tweet <strong><a href="http://twitter.com/kamranayub" target="_blank">@kamranayub</a></strong> or send me an email at my <strong>full name</strong> at <strong>gmail.com</strong></p>
+</section>
+<section>
+  	<h1>Apps</h1>
+
+  	<ul>
+  		<li><a href="http://centwiseapp.com/">Centwise</a></li>
+  		<li><a href="http://keeptrackofmygames.com/">Keep Track of My Games</a></li>
+  	</ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/78/tccc15-see-you-again-in-april">TCCC15: See You Again in April!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/77/tccc15-leveling-up-your-windows-phone-app">TCCC15: Leveling Up Your Windows Phone App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/76/minnesota-developer-conference-2013-connected-apps">Minnesota Developer Conference 2013: Connected Apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/75/test-retina-images-without-a-retina-screen">Test Retina Images Without a Retina Screen</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/kamranayub">@kamranayub</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'kamranayub',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/104789622697290911192?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Kamran -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://kamranayub.github.io/blog/posts/61/a-smarter-checked-binding-for-knockoutjs';
+        var disqus_url = 'http://kamranayub.github.io/blog/posts/61/a-smarter-checked-binding-for-knockoutjs';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

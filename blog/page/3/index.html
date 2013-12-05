@@ -1,0 +1,1272 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Kamranicus</title>
+  <meta name="author" content="Kamran">
+
+  
+  <meta name="description" content="The title of this post might be confusing, so let me describe our scenario: I am working on a responsive layout, specifically one right now that has &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kamranayub.github.io/blog/page/3">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Kamranicus</a></h1>
+  
+    <h2>Kamran Ayub is a developer and designer in Minneapolis, Minnesota. He specializes in .NET development with a dash of client-side and is passionate about UX.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/Kamranicus" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=Kamranicus" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:kamranayub.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/58/using-calc-and-media-queries-to-create-a-combinati">Using Calc() and Media Queries to Create a Combination Variable + Fixed Sidebar</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-02T20:27:12-05:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2012</time>
+        
+           | <a href="/blog/posts/58/using-calc-and-media-queries-to-create-a-combinati#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/58/using-calc-and-media-queries-to-create-a-combinati">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The title of this post might be confusing, so let me describe our scenario:</p>
+
+<p>I am working on a responsive layout, specifically one right now that has two columns, a content area and a right sidebar. This right sidebar needs to be flexible <em>up to a certain point</em> and then it needs to become fixed. In addition, both columns could be variable height, and on top of that, the two columns are sometimes split into two separate rows to achieve proper HTML markup order.</p>
+
+<p>The reason the sidebar needs to have a minimum width is mostly due to the ads we&rsquo;re working with, since they have a fixed size. It might actually be possible to hack at the styles and make them pseudo-responsive, but I still want to share my tip with you, even if I don&rsquo;t end up using it.</p>
+
+<p>I thought this was an interesting challenge because of two issues: the need for both flex <em>and</em> fixed for the same column.</p>
+
+<h3>The Demo</h3>
+
+<p>Here is the Fiddle I came up with where you can view the result:</p>
+
+<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/kamranayub/mHvtM/4/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+
+<h3>The Markup</h3>
+
+<p>The markup is straightforward and simple. I essentially need two rows of two columns, where the right columns line up and <em>appear</em> to be a single sidebar. When I get down to the smaller breakpoints, both columns stop floating and stack vertically (but that is neither here nor there).</p>
+
+<h3>The Styles</h3>
+
+<p>Here&rsquo;s where it gets interesting. I start out the design with a 60% left column and 40% right column. However, I need the right column to stop being variable at 300px, and I need the left column to take up the remaining space.</p>
+
+<p>The way I achieved this was by using a media query and the CSS3 <code>calc()</code> unit. I wanted to avoid Javascript at all costs.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="k">@media</span> <span class="o">(</span><span class="nt">max-width</span><span class="o">:</span> <span class="nt">750px</span><span class="o">)</span> <span class="p">{</span> <span class="c">/* min-width / % = (300 / 0.4) = 750 */</span>
+</span><span class='line'>    <span class="nc">.alpha</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">width</span><span class="o">:</span> <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">calc</span><span class="p">(</span><span class="m">100</span><span class="o">%</span> <span class="o">-</span> <span class="m">300px</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">width</span><span class="o">:</span> <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">calc</span><span class="p">(</span><span class="m">100</span><span class="o">%</span> <span class="o">-</span> <span class="m">300px</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">width</span><span class="o">:</span> <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">calc</span><span class="p">(</span><span class="m">100</span><span class="o">%</span> <span class="o">-</span> <span class="m">300px</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">width</span><span class="o">:</span> <span class="n">calc</span><span class="p">(</span><span class="m">100</span><span class="o">%</span> <span class="o">-</span> <span class="m">300px</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="nc">.beta</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">width</span><span class="o">:</span> <span class="m">300px</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">background</span><span class="o">:</span> <span class="nb">orange</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Turns out, pretty simple!</p>
+
+<h3>Gotchas</h3>
+
+<p>Of course this world isn&rsquo;t perfect and neither is CSS3 support. According to <a href="http://caniuse.com/#feat=calc">Can I Use</a>, <code>calc</code> isn&rsquo;t supported in: IE &lt; 9, iOS &lt; 6.0, Android, Opera, or BB &lt; 10.0. That&rsquo;s lot of non-support.</p>
+
+<p>So what to do? Well, in our case, it&rsquo;s not essential we maintain the fixed minimum-width. Especially if we can workaround the ads. If you <strong>must</strong> have the support, I don&rsquo;t know what to tell you. You could test for <code>calc</code> support using <a href="https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css-calc.js">Modernizr</a>, then decide what to do in browsers that don&rsquo;t have that support (for example, throwing in the towel and just convert the layout to single column). You could also use a Javascript-based solution (which you might as well, if you&rsquo;re relying on Modernizr).</p>
+
+<h3>Have a better solution?</h3>
+
+<p>I&rsquo;d like to know. I&rsquo;m not a front-end expert, so there may be a more clever way to achieve this and maximize browser support. If you know of any way to do this better, please let me know down below.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/57/enter-a-windows-8-contest-just-do-it">Enter a Windows 8 Contest, Just Do It!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-03T17:41:20-05:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2012</time>
+        
+           | <a href="/blog/posts/57/enter-a-windows-8-contest-just-do-it#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/57/enter-a-windows-8-contest-just-do-it">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There are at least a couple app contests I know of for Windows 8: <a href="http://apptivate.ms">Apptivate</a> and <a href="http://www.generationapp.com/giveaway/">GenerationApp</a>.</p>
+
+<p>The prizes are cool and all you need to do is make an app. In fact, for Apptivate at least, <em>your app doesn&rsquo;t even need to be complete to win</em>!</p>
+
+<p>Can&rsquo;t think of an app to make? No worries, just ask yourself: what site do you like and would you like to bring it to Windows 8 or WinRT? Then ask, does it have an API or feed or enough of <em>something</em> to make a usable app? If the answer is <strong>Yes</strong> to both of those questions, you have your app.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/56/what-would-a-windows-8-halo-app-look-like">What Would a Windows 8 Halo App Look Like?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-02T22:49:51-05:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2012</time>
+        
+           | <a href="/blog/posts/56/what-would-a-windows-8-halo-app-look-like#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/56/what-would-a-windows-8-halo-app-look-like">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>Update (10/24)</strong>: There&rsquo;s a good indication there&rsquo;ll be an API. If you log into <a href="http://dewxp.com">DewXP</a> with your Xbox Live account, it will display your spartan player model using a URL I haven&rsquo;t seen before:</p>
+
+<blockquote><p><a href="https://stats.svc.halowaypoint.com/players/subkamran/h4/spartans/fullbody">https://stats.svc.halowaypoint.com/players/subkamran/h4/spartans/fullbody</a></p></blockquote>
+
+<p>Nothing is at the root of that URL, but I assume the <strong>h4</strong> is for Halo 4-related stats. It also looked like it used OAuth to allow the DewXP &ldquo;app&rdquo; access to my profile. This is a good sign!</p>
+
+<hr />
+
+<p>I&rsquo;m a Halo fan. I enjoy playing with my friends, it&rsquo;s fun to be competitive and it&rsquo;s fun to compete against each other. One of the things me and my friends love is the ability to view our stats and history. It&rsquo;s all about bragging rights. Bungie used to have a <em>fan-fucking-tastic</em> site to view stats. Since the handover to 343, seeing stats has just not been the same nor as in-depth, though the core features have remained.</p>
+
+<p>There are mixed reactions to this in the community, I would say leaning more on the negative side, even among my friends. However, after seeing all the footage of Halo 4, I have high hopes for the game as long as it continues to be competitive and to provide a source of stats and feedback.</p>
+
+<p>So what does Halo have to do with Windows 8? Well, before Bungie handed the franchise off, they worked on releasing Halo Waypoint to several devices including <a href="http://itunes.apple.com/us/app/halo-waypoint/id468457600?mt=8">iOS</a>, <a href="https://play.google.com/store/apps/details?id=com.halo.companion&amp;hl=en">Android</a>, and <a href="http://www.shacknews.com/article/71466/halo-waypoint-premium-mobile-app-add-on-features-real-time">Windows Phone</a>. These apps are great for people like us who like to see our stats on the go or when we&rsquo;re not at the computer (like in front of the Xbox). I wanted to build a similar app for Windows 8 that just showed stats of my friends or other players. Simple, right? Wrong.</p>
+
+<p>Bungie had originally released a <a href="http://www.bungie.net/fanclub/statsapi/Group/Resources/Article.aspx?cid=545064">poorly documented</a> (it&rsquo;s true) public API for their Halo stats but <em>at least</em> it was an API. Fan sites were able to run with this, creating sites like <a href="http://halotracker.com">HaloTracker</a>. The problem is, since 343i came into the picture, there has been no effort that we can see to provide an API (the old Bungie one is deprecated). This leaves site developers to resort to less-than-savory tactics to get at the stats, including screen scraping.</p>
+
+<p>The only glimmering light on the horizon is that there are <a href="https://forums.halo.xbox.com/yaf_postst97564_Probably-confirmation-of-a-Halo-4-API.aspx">rumblings</a> of a Halo 4 API, which would be a god-send for the community. But it&rsquo;s just that, a hope and no confirmation.</p>
+
+<h2>There must be an API somewhere, though</h2>
+
+<p>There is. If you can get at the traffic on your mobile device that has Halo Waypoint, and you can get as far as seeing where that traffic goes, you&rsquo;ll discover there <em>is indeed a JSON web service</em>. Unfortunately, it requires authentication to the xbox.com domain, because the authentication cookie is sent on every request. In other words, it&rsquo;s not public and 343 probably doesn&rsquo;t want us using it.</p>
+
+<p>I&rsquo;m not sure if WinRT&rsquo;s <a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh750287.aspx">Web Authentication Broker</a> could help in this case, but as far as I can tell, Xbox Live does not have an authentication endpoint. There must be <em>something</em>, as the Windows 8 Games app can connect to Xbox Live but I&rsquo;m assuming this isn&rsquo;t available to just anyone and that there&rsquo;s black magic involved. Even if you could somehow manage to authenticate and pass those headers into the WinJS XHR calls, there&rsquo;s still the tiny problem that we probably aren&rsquo;t <em>supposed</em> to be able to use this Waypoint API.</p>
+
+<h2>My plea to 343</h2>
+
+<p>343: you need to have an API. If the rumors are true that Halo 4 will be getting an API, that&rsquo;s <em>excellent</em> news because I strongly feel that if you want to build a community around the game, you really should let us go wild with the data.</p>
+
+<p>Even if that pipe dream does come to pass, there&rsquo;s still the issue of previous Halo games. We know you have the stats. We know you have the API. Just figure out a way to make it public! Release the Waypoint API so we can start somewhere; secure it with API keys or OAuth or whatever else you need to do.</p>
+
+<p>Because if you don&rsquo;t? People can&rsquo;t have an app like this unless <em>you</em> release it, and let&rsquo;s be honest: wouldn&rsquo;t you rather spend resources creating a great API to view stats and then let us do the dirty work and build around it?</p>
+
+<p><img src="/blog/images/69.png" alt="MetroHalo" /></p>
+
+<p><img src="/blog/images/70.png" alt="MetroHalo Lookup" /></p>
+
+<p><img src="/blog/images/71.png" alt="MetroHalo Search" /></p>
+
+<p>This is a real app, living on my hard drive right now. It can fetch any player&rsquo;s data, integrates with Search, and is pretty sexy to see in motion. Unfortunately, none of you reading this post will ever get to see it, simply because it violates the Terms of Service. It screen-scrapes the Halo Waypoint site to get this data, which is not an acceptable way of getting data.</p>
+
+<p>343, if you <em>are</em> planning to release a Windows 8 application, good on you! But my point still stands: this took me a couple days to put together and you didn&rsquo;t spend a dime on it, or assign Joe Bob 50% to innovation, or call your agency and have them put together mockups and charge you thousands of dollars. I did this in two evenings with a little bit of free time. There are so many things that are possible with a platform like Windows 8:</p>
+
+<ul>
+<li>Leaderboards among your friends</li>
+<li>Live tile updates of your games</li>
+<li>Beautiful high-res imagery of medals, ranks, and your spartan models</li>
+<li>Awesome win/lose charts and game history</li>
+<li>Map breakdowns</li>
+<li>Weapon overviews and tips</li>
+<li>Clan or group management</li>
+<li>Delivering video and other rich content to your users</li>
+</ul>
+
+
+<p>And that&rsquo;s what I could think of on-the-spot, I&rsquo;m sure after seeing these screenshots people could think of a lot more.</p>
+
+<p>Release an API, 343. Your community will thank you for it.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/54/2-computers-1-desk">2 Computers, 1 Desk</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-17T20:54:51-05:00" pubdate data-updated="true">Aug 17<span>th</span>, 2012</time>
+        
+           | <a href="/blog/posts/54/2-computers-1-desk#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/54/2-computers-1-desk">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>At home, I have two main computers and one desk. I use one for my main everyday tasks and for gaming, and I use the other one as a server/development machine.</p>
+
+<p>As you might guess, this is logistically difficult to manage on a small desk that is meant for only a single PC. You need to have two keyboards/mice and, if you like sound, two sets of speakers. Furthermore, if you&rsquo;re like me, you want to see both computers at once if you have two screens. Personally, I like dual-monitors for my main machine and am fine with only using a single monitor for development.</p>
+
+<h2>Two PC&rsquo;s, One Mouse and Keyboard</h2>
+
+<p>The first logistical item to eliminate is how to control both computers with one keyboard and one mouse. There are a couple options:</p>
+
+<ol>
+<li>Use a hardware KVM switch</li>
+<li>Use a software KVM switch</li>
+</ol>
+
+
+<p>Going with option 1 requires some more cables, but is handy in that you purposefully switch to the device you want to use, plus it is using actual hardware, rather than software emulation (which may have issues on Windows 8, see below).</p>
+
+<p>I went with option 2, using the open source software <a href="http://synergy-foss.org/">Synergy</a>. I have a Windows 7 host (gaming PC) and my server as the client (Windows 8 RTM). If you make sure Synergy starts as a service and is elevated, you won&rsquo;t have issues with starting up and logging in on the client PC.</p>
+
+<p><em>Notice for Windows 8 users</em>: You may run into an issue with any KVM software out right now, which is being unable to see your mouse cursor. If you do not have any mouse plugged in to the computer, I believe Windows 8 hides the cursor because it assumes a touch interface by default. There are two workarounds: 1) Enable &ldquo;<a href="http://windows.microsoft.com/is-IS/windows7/Use-Mouse-Keys-to-move-the-mouse-pointer">MouseKeys</a>&rdquo; but I had to enable this almost every time I restarted or, 2) Plug in a mouse. I opted for #2, with a wireless mouse/kb. This gives me some flexibility where I can use a physical mouse/kb if I really want.</p>
+
+<h2>Two PC&rsquo;s One Set of Speakers</h2>
+
+<p>This is the more interesting problem. Is it possible to play both computers through one set of speakers? I am happy to report: yes! However, there is a caveat&hellip;</p>
+
+<p>In order to pull this off, your &ldquo;main&rdquo; PC needs to have the ability to accept an input device (like a Digital/SPDIF/Optical-In). My gaming PC has a Sound Blaster X-Fi Elite Pro, so I have a big external console that accepts all kinds of inputs.</p>
+
+<p>My server has a modern motherboard which can output either SPDIF or Optical. I had an extra SPDIF cable lying around, so I wired it from the server to my X-Fi&rsquo;s console.</p>
+
+<p>There are a couple things to do in Windows to get this to work:</p>
+
+<ol>
+<li><p>Right-click your sound icon and go to Playback Devices.</p></li>
+<li><p>Make sure SPDIF is the default playback device:</p>
+
+<p> <img src="/blog/images/66.png" alt="SPDIF" /></p></li>
+<li><p>On the main PC, you can &ldquo;listen&rdquo; to any recording device, which plays whatever&rsquo;s being sent to the main playback device. Listen to whatever input you&rsquo;re using to send the output of the client PC:</p>
+
+<p> <img src="/blog/images/68.png" alt="Listen" /></p></li>
+</ol>
+
+
+<p>Voila! As soon as you hit &ldquo;Apply&rdquo;, you&rsquo;ll start hearing Iron Maiden blasting through your single set of speakers as you code!</p>
+
+<p><strong>Note:</strong> This problem can also be solved if the monitor you use has speakers. If you use HDMI to connect your monitor to your client, audio and video will pass through (or you can use one of those speaker-jack cables). It&rsquo;ll sound like crap, though!</p>
+
+<h2>Two PCs, Two Monitors</h2>
+
+<p>This is straightforward enough. As long as your main monitor accepts multiple inputs (DVI, VGA, HDMI, DisplayPort), you just need to find the right cable from your client to the monitor.</p>
+
+<p>For example, my gaming PC has a DVI cable to my monitor. My server uses an HDMI cable. You&rsquo;re going to have a tougher time if your display doesn&rsquo;t accept multiple digital inputs (for example, only DVI and VGA&hellip;). It&rsquo;ll work, but analog signals look like crap on your nice 1080p display.</p>
+
+<p>When I am developing, I set my secondary monitor (which is to the right of my main monitor) as the primary monitor for my gaming PC. That way, I can still use my other PC as I&rsquo;m using my development machine.</p>
+
+<h2>The End Result</h2>
+
+<p>&hellip; is awesome! My desk isn&rsquo;t cluttered with multiple sets of things, and the only manual thing I really have to do is switch my monitor input when I need to switch to using one PC more than the other.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/53/how-to-install-a-ssl-certificate-into-appharbor">How to Install a SSL Certificate Into AppHarbor</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-03T15:10:58-05:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2012</time>
+        
+           | <a href="/blog/posts/53/how-to-install-a-ssl-certificate-into-appharbor#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/53/how-to-install-a-ssl-certificate-into-appharbor">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I am mostly writing this for my own benefit because every year I tend to forget what I did before. It&rsquo;s not hard, there&rsquo;s just a handful of steps. I use RapidSSL as my provider, so my steps are based on what RapidSSL gives me.</p>
+
+<p>This guide assumes you are using SNI SSL (I am not sure if the steps differ for IP/hostname-based SSL on AppHarbor).</p>
+
+<ol>
+<li><p>Create a new Certificate Signing Request on your local IIS box (the machine doesn&rsquo;t matter, just use your dev machine)</p>
+
+<p> <img src="/blog/images/55.png" alt="Certificates in IIS" /></p>
+
+<p> <img src="/blog/images/65.png" alt="Enter your information" /></p>
+
+<p> <img src="/blog/images/57.png" alt="Don't need to change this" /></p>
+
+<p> <img src="/blog/images/58.png" alt="Save somewhere" /></p>
+
+<p> Be sure to remember the <em>Common Name</em> you entered as that is important. I use my domain name because it&rsquo;s easy to remember.</p></li>
+<li><p>On your SSL provider (e.g. RapidSSL), they will ask you to paste in your CSR. Open the TXT file IIS made and copy <em>everything</em> and paste it in when your provider asks for it.</p></li>
+<li><p>Wait until your provider completes your order. RapidSSL will send you an email with some certificates in the email, but all you need right now is the Intermediary Certificate.</p></li>
+<li><p>Copy the Intermediary Certificate from your provider and install it into AppHarbor:</p>
+
+<p> <img src="/blog/images/59.png" alt="Copy this" /></p>
+
+<p> Be sure to copy everything including the header and footer.</p>
+
+<p> <img src="/blog/images/60.png" alt="Enter the IC" /></p></li>
+<li><p>Now, for RapidSSL, you will let you download either the X.509 certificate or a PKCS#7 file. With IIS, you need to download the X.509 certificate. At the end of the order email, there&rsquo;s a link to the order portal where you enter your order info and you can then download your certificate. Download your X.509 certificate file, which will probably end in a <em>.crt</em> extension. Put it in the same place as your CSR to keep track of it.</p>
+
+<p> <img src="/blog/images/61.png" alt="Download cert" /></p></li>
+<li><p>Back in IIS, on the same machine you generated the CSR with, you must &ldquo;Complete a Certificate Signing Request&hellip;&rdquo;. You need to browse to the cer file (you may need to change the dialog to All Files).</p>
+
+<p> <img src="/blog/images/62.png" alt="Complete the CSR" /></p></li>
+<li><p>Once completed, IIS will list your certificate. You now need to select it and export it as a <em>.pfx</em> file. You need to enter a passphrase for the PFX file which you&rsquo;ll need for AppHarbor.</p>
+
+<p> <img src="/blog/images/63.png" alt="Export" /></p>
+
+<p> <img src="/blog/images/64.png" alt="Enter a passphrase" /></p></li>
+<li><p>Finally! On AppHarbor, go to your certificates and add a new certificate. Specify you want to use a PFX file. Now enter the Common Name you&rsquo;ve been keeping the same throughout the process (e.g. whatever.com) and enter the password you just used in IIS.</p></li>
+</ol>
+
+
+<p>ALL DONE. That wasn&rsquo;t so bad, was it?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/52/experiences-in-the-wild-away-signs-and-picture-fra">Experiences in the Wild: Away Signs and Picture Frames</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-15T17:44:35-05:00" pubdate data-updated="true">Jun 15<span>th</span>, 2012</time>
+        
+           | <a href="/blog/posts/52/experiences-in-the-wild-away-signs-and-picture-fra#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/52/experiences-in-the-wild-away-signs-and-picture-fra">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Inspired by a lot of the research and learning lately I&rsquo;ve been doing around experience design (which has always been a passion for me), I decided it might be fun to start sharing the little things I run into in daily life that frustrate me as a user or that give me some joy.</p>
+
+<p>The big catalyst for deciding to do this was <a href="http://twitter.com/aral">Aral Balkan</a>&rsquo;s amazing keynote at the Norwegian Developer Conference 2012 in Oslo, Norway:</p>
+
+<iframe src="http://player.vimeo.com/video/43524962" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+<p> <p><a href="http://vimeo.com/43524962">NDC2012 &ndash; Opening and Keynote &ldquo;A happy grain of sand&rdquo; by Aral Balkan</a> from <a href="http://vimeo.com/ndcoslo">NDCOslo</a> on <a href="http://vimeo.com">Vimeo</a>.</p></p>
+
+<p>If you haven&rsquo;t seen it, <strong>you must watch it now</strong> if you do any development or design. It may just change how you think about what you do.</p>
+
+<p>I may or may not commit to doing these kinds of posts each week, but I will try! Since Google+ instantly uploads my camera photos from my phone to my profile, I don&rsquo;t have much of an excuse not to share my feelings.</p>
+
+<p>The last thing I want to say is that I want to approach this from the standpoint of a user, <strong>myself</strong> and how I felt. When something is frustrating, we like to blame ourselves. The fact is that in the majority (all?) cases, there&rsquo;s an aspect of bad design at work. When something makes us happy, we should take note of what it was that caused it!</p>
+
+<p>I&rsquo;d highly recommend reading <a href="http://www.amazon.com/Design-Everyday-Things-Donald-Norman/dp/0465067107">The Design of Everyday Things</a>, as it should cause you to take a deeper look at the things you use every day and question whether or not they show aspects of good or bad design.</p>
+
+<h2>The Away Sign</h2>
+
+<p>I went to work today to pick up some prints I requested (I will talk about the job request form in another post!). When I approached the print desk I was greeted with this:</p>
+
+<p><img src="https://lh5.googleusercontent.com/-qKsASX3hclo/T9tqFrwh4VI/AAAAAAAABTs/f-si5HCrjD8/s0-d/12%2B-%2B3" alt="Away" /></p>
+
+<p>First off, this is better than nothing! At least I know that from the time I see this sign to 5 minutes from <em>now</em>, they should be back. This made me feel good.</p>
+
+<p>What I want to point out is that <em>there&rsquo;s an even better option.</em></p>
+
+<p>When I went shopping for a new place to live, we visited a ton of leasing offices. Rental agents have to give tours of the model or vacant apartments <em>every day</em> practically. It makes sense they should give feedback to people who arrive early to their appointments.</p>
+
+<p>Can you guess what they did?</p>
+
+<p><img src="http://www.littleclockshop.com/images/products/will_return_clock.jpg" alt="Be Back Clock" /><br/>
+(Source: <a href="http://www.littleclockshop.com/images/products/will_return_clock.jpg">LittleClockShop</a>)</p>
+
+<p><strong>Yes! That makes me happy!</strong> Not only do I know the folks are away, I know when to expect their return so I can plan accordingly: Do I wait in the car? Do I leave a message? Do I simply wait?</p>
+
+<p>The problem with saying &ldquo;Be back in 5 minutes&rdquo; is that when a customer arrives, they don&rsquo;t know what 5 minutes means. The 5 minutes was relative to when you posted the sign, not relative to when a customer arrives. It&rsquo;s OK to not know the exact time you&rsquo;ll be back, but it&rsquo;s still better than a relative time.</p>
+
+<h2>The IKEA Picture Frame</h2>
+
+<p>I love IKEA. I understand that I will probably need to replace a lot of the things I buy from them in a year or two, but I like their philosophy.</p>
+
+<p>I usually have no frustrating experiences with IKEA, even with their absurdly large <strike>warehouse</strike> store.</p>
+
+<p>Today, however, was different. I needed to purchase low-cost 8.5x11&#8221; frames for a project I&rsquo;m doing. IKEA to the rescue! I found this great NYTTJIA frame for a measly $2:</p>
+
+<p><a href="http://www.ikea.com/us/en/catalog/products/50186500/"><img src="http://www.ikea.com/us/en/images/products/nyttja-frame__0109048_PE258703_S4.JPG" alt="Frame" /></a></p>
+
+<p>Excellent. I headed over to my local IKEA store, ran in, and ran out with 8 of them.</p>
+
+<p><img src="https://lh6.googleusercontent.com/-EjFXc7qBt3g/T9tqFi_vulI/AAAAAAAABT8/5Zmfp-o2yhc/s0-d/12%2B-%2B4" alt="What it looks like" /></p>
+
+<p>Looks fine to me! Fast forward to when I arrived home and decided to put my pictures in the frames. The frames are wrapped in plastic, so I tore them off easily. I opened up the back of the frame, cool, this is easy. I get down to the included backing paper and take it out to reveal the laminate cover.</p>
+
+<p>Then, what I saw made me get angry.</p>
+
+<p><img src="https://lh5.googleusercontent.com/-T3cyOTpaGXU/T9tqFjcqpHI/AAAAAAAABUE/8PB5WqfG9JY/s0-d/12%2B-%2B2" alt="What the hell" /></p>
+
+<p><strong>The plastic cover has stupid recycling symbols on it, rendering it completely useless for covering and protecting my photos.</strong></p>
+
+<p>Let&rsquo;s take a closer look, shall we?</p>
+
+<p><img src="https://lh6.googleusercontent.com/-LGe7iNqhtgs/T9tqFl3bTuI/AAAAAAAABUI/gK_o_XtJSjM/s0-d/12%2B-%2B1" alt="Ugh" /></p>
+
+<p><strong>What. The. Hell.</strong></p>
+
+<p>Why would you do this IKEA? WHY? I understand I paid $2 cheap dollars for this, but why render the plastic covering totally useless? I don&rsquo;t understand&hellip; am I supposed to assume I needed to buy coverings separately?</p>
+
+<p>You <a href="http://www.ikea.com/us/en/catalog/products/50186500/">totally didn&rsquo;t make it seem that way</a>:</p>
+
+<blockquote><p>Front protection in durable plastic; makes the frame safer to use.</p></blockquote>
+
+<p>NO! NO IT DOES NOT! I can&rsquo;t use it! I would get stupid little symbols over my photo.</p>
+
+<h3>Wait a second&hellip;</h3>
+
+<p>When I originally wrote this post 5 minutes ago, I posted the story above. After re-reading it, a sudden thought occurred to me!</p>
+
+<blockquote><p>What if it&rsquo;s just a thin covering?</p></blockquote>
+
+<p>Well, what have we here!</p>
+
+<p><img src="https://lh6.googleusercontent.com/-ABfUr6W62dY/T9t3jhZc7dI/AAAAAAAABUU/hXiHGWQPAgQ/s0-d/IMG_20120615_125721.jpg" alt="WHAT?" /></p>
+
+<p>So it turns out my rage against this frame was misplaced. It turns out, IKEA <em>did</em> do something right: they protected their protective cover.</p>
+
+<p>But now I want to talk about why this design sucks.</p>
+
+<h3>My Mental Model</h3>
+
+<p>So why would I make this mistake? Why didn&rsquo;t I realize that the symbols I saw when I bought the frame were on the plastic and not on the paper? Why didn&rsquo;t I realize right away it was only a thin covering I could peel off?</p>
+
+<ol>
+<li>In the store, I unconsciously assumed the symbols were on the paper, not the plastic</li>
+<li>At home, I unconsciously assumed the symbols were printed on the plastic</li>
+</ol>
+
+
+<p>My mental model was based on past experiences with picture frames, all of which had included a plastic or glass cover that had no marks or symbols on them. There was no reason to suspect this frame would be any different.</p>
+
+<p>The issue was that IKEA took it one step further, becoming clever. That cleverness translated into frustration for me when I didn&rsquo;t see the cleverness right away.</p>
+
+<p>Now that we know what the problem was, is there a solution? I think so, it&rsquo;s called a hint! I think the standard term for this is an <em><a href="http://en.wikipedia.org/wiki/Affordance">affordance</a></em>:</p>
+
+<p><img src="/Blog/Posts/Image/54/Small" alt="Peel hint" /><br/>
+Source: <a href="http://wpcornerpeelplugin.com/html/">http://wpcornerpeelplugin.com/html/</a></p>
+
+<p>That is essentially all IKEA needed to do to prevent this problem. By folding a corner, providing a colored peel tab, or using any other myriad of techniques we see every day, they could have avoided my frustration and automatic assumption that they hated me.</p>
+
+<h2>So there you have it</h2>
+
+<p>One fairly pleasing experience, one frustrating experience and that was just this morning. Oh what fun me and you will have in the coming days! I will try to keep it balanced in each post, showcasing something that made me happy and something that did not.</p>
+
+<p>If you came across something that made you happy or frustrated today, share it!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/51/protip-show-db-usage-in-your-ef-application">Protip: Show DB Usage in Your EF Application</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-15T06:19:29-05:00" pubdate data-updated="true">Jun 15<span>th</span>, 2012</time>
+        
+           | <a href="/blog/posts/51/protip-show-db-usage-in-your-ef-application#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/51/protip-show-db-usage-in-your-ef-application">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>My staging application is on <a href="http://appharbor.com">AppHarbor</a> so I gave it the shared Yocto SQL database which has a limit of 20MB. That&rsquo;s not much, so I wanted a way to display my current usage level in staging when I test the site in case I want to flush it out. It was fairly easy (with a gotcha)!</p>
+
+<p><strong>MVC Layout</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>@if (AppSettings.RuntimeEnvironment != RuntimeEnvironment.P)
+</span><span class='line'>{
+</span><span class='line'>    <span class="nt">&lt;p&gt;</span>DB Usage: @{ Html.RenderAction(&quot;DbUsage&quot;, &quot;Stats&quot;); }<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I am rendering an action since I need to call out to my service layer.</p>
+
+<p><strong>StatsController</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[ChildActionOnly]</span>
+</span><span class='line'><span class="na">[GET(&quot;stats/dbusage&quot;)]</span>
+</span><span class='line'><span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">DbUsage</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">AppSettings</span><span class="p">.</span><span class="n">RuntimeEnvironment</span> <span class="p">!=</span> <span class="n">RuntimeEnvironment</span><span class="p">.</span><span class="n">P</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nf">Content</span><span class="p">(</span><span class="n">SomeAbstraction</span><span class="p">.</span><span class="n">GetDatabaseUsageStat</span><span class="p">());</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="k">new</span> <span class="nf">EmptyResult</span><span class="p">();</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I am using <a href="https://github.com/mccalltd/AttributeRouting">AttributeRouting</a>, and if you use <code>RenderAction</code> you should know it requires a route to be made. I use <code>ChildActionOnly</code> to prevent browsing to the action. I also return an empty result if it&rsquo;s production (I only have 3 states).</p>
+
+<p><strong>IRepository</strong></p>
+
+<p>In my project, I have a application service layer that uses an injectable repository. I&rsquo;ve found this makes integration testing pretty easy as my controllers are dumb as heck and leave all the logic up to the service layer where there&rsquo;s no need to mock any HTTP stuff.</p>
+
+<p>I&rsquo;ll skip to the repository since that&rsquo;s where the actual code is.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="kt">string</span> <span class="nf">GetDbUsage</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">try</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">IEnumerable</span> <span class="n">dt</span> <span class="p">=</span> <span class="n">_dbContext</span><span class="p">.</span><span class="n">Database</span><span class="p">.</span><span class="n">SqlQuery</span><span class="p">(</span><span class="k">typeof</span> <span class="p">(</span><span class="n">DbUsage</span><span class="p">),</span> <span class="s">&quot;sp_spaceused&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">dt</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="s">&quot;Unknown&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kt">var</span> <span class="n">usage</span> <span class="p">=</span> <span class="n">dt</span><span class="p">.</span><span class="n">OfType</span><span class="p">&lt;</span><span class="n">DbUsage</span><span class="p">&gt;().</span><span class="n">FirstOrDefault</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">return</span> <span class="n">usage</span><span class="p">.</span><span class="n">database_size</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span> <span class="k">catch</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="s">&quot;Unknown&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">private</span> <span class="k">class</span> <span class="nc">DbUsage</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">public</span> <span class="kt">string</span> <span class="n">database_name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">public</span> <span class="kt">string</span> <span class="n">database_size</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This just executes the stored proc <code>sp_spaceused</code> and coerces it into the <code>DbUsage</code> type. The gotcha is that there&rsquo;s another column, &ldquo;unallocated space&rdquo; which <strong>for some ungodly, inconsistent reason</strong> has a space in it. I cannot figure out how to get it without resorting to an ADO.NET data reader. I&rsquo;d appreciate any advice on how to grab that additional column as well.</p>
+
+<p>If you want to log an error, you should, but I don&rsquo;t really care if I can&rsquo;t access the size&hellip; so I just ignore it. It&rsquo;s only for debugging.</p>
+
+<p>And as for the result? Handy!</p>
+
+<p><img src="/blog/images/53.png" alt="DB Usage" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/50/frustration-with-the-vs2012-team-explorer-tool-win">Frustration With the VS2012 Team Explorer Tool Window</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-12T18:32:52-05:00" pubdate data-updated="true">Jun 12<span>th</span>, 2012</time>
+        
+           | <a href="/blog/posts/50/frustration-with-the-vs2012-team-explorer-tool-win#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/50/frustration-with-the-vs2012-team-explorer-tool-win">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I would just like to quickly comment on something I noticed while using VS2012 and Team Explorer (we use TFS at work). Below is a screenshot of the window as it stands in the RC.</p>
+
+<p><strong>Can you tell me what role the black text in the window plays?</strong></p>
+
+<p><img src="/blog/images/48.png" alt="Team Explorer 2012" /></p>
+
+<p>If you said &ldquo;headings,&rdquo; I would not blame you because <em>that&rsquo;s exactly what I thought at first.</em> In fact, they are <strong>links</strong> to the common tasks you&rsquo;ll do in TFS. I didn&rsquo;t realize this until my mouse happened to hover over the tasks and then it became underlined with the pointer cursor. There&rsquo;s a pretty clear violation of the Gestalt principle of color here; why are some links blue and the most common ones bold and black? Unconsciously, this matches my typical assumption of headings, when in fact the true intention is to make the common tasks stand out.</p>
+
+<p>We see this header/nav paradigm all over the web. Here&rsquo;s what Apple&rsquo;s footer navigation is styled like:</p>
+
+<p><img src="/blog/images/49.png" alt="Apple Nav" /></p>
+
+<p>My automatic assumption is enforced by the fact that the <em>Home</em> heading is also black and bold, the only difference being the size.</p>
+
+<p>This is even a paradigm <em>within VS2012 itself</em>. Here&rsquo;s an example on the start page:</p>
+
+<p><img src="/blog/images/50.png" alt="Getting Started" /></p>
+
+<p>Or, the Start tasks&hellip;</p>
+
+<p><img src="/blog/images/51.png" alt="Start" /></p>
+
+<p>The other thing that frustrated me the first time was figuring out how to change team projects. It&rsquo;s not easy to figure out. You need to click the team project name, which looks like a label except for the arrow on the far right edge.</p>
+
+<p><img src="/blog/images/52.png" alt="Changing team projects" /></p>
+
+<p>I like what the team is trying to do here, I just think the navigation needs to be gone over again to reduce the confusion.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/49/use-enums-to-reduce-markup-maintenance-mvc">Use Enums to Reduce Markup Maintenance [MVC]</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-08T04:49:33-05:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time>
+        
+           | <a href="/blog/posts/49/use-enums-to-reduce-markup-maintenance-mvc#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/49/use-enums-to-reduce-markup-maintenance-mvc">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Have you ever done this before?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- Decide what CSS class to use for layout --&gt;</span>
+</span><span class='line'>@if (Model.Format == Formats.Table) {
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo foo-layout-table&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>} else if (Model.Format == Formats.Grid) {
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo foo-layout-grid&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>} else if (Model.Format == Formats.Paragraph) {
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo foo-layout-paragraph&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>  <span class="c">&lt;!-- Markup --&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Or some other variant of the same idea (trying to assign a CSS class based on some branch logic)?</p>
+
+<p>If you find yourself doing this, I have a pro tip for you: wherever you can, utilize your enum directly in the CSS class name. Why? Because in 2 weeks when you add another layout, you will need to go back into this if statement and add another branch. The other reason is, frankly, this is ugly and not very Razor-ish.</p>
+
+<p>Instead, I&rsquo;d advocate doing it this way:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo foo-layout-@Model.Format&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="c">&lt;!-- Markup --&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Simple! I found that to be much more intuitive and is the way I&rsquo;ve always approached this. You can use this approach with an Enum, string, or other type where a <code>.ToString()</code> outputs a simple value (booleans!).</p>
+
+<p><em>But Kamran, my logic is much more complex than that.</em> This is when I&rsquo;d recommend pulling out that logic into a view model, creating a <code>@helper</code>, or as a last resort, inline.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- Helper --&gt;</span>
+</span><span class='line'>@helper LayoutCss() {
+</span><span class='line'>  if (Model.Format == Formats.Table) {
+</span><span class='line'>      @:foo-layout-table
+</span><span class='line'>  } else if (Model.Format == Formats.Grid) {
+</span><span class='line'>      @:foo-layout-grid
+</span><span class='line'>  } else if (Model.Format == Formats.Paragraph) {
+</span><span class='line'>      @:foo-layout-paragraph
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo @LayoutCss()&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&lt;!-- Inline --&gt;</span>
+</span><span class='line'>@{
+</span><span class='line'>  var layoutCssClass = &quot;&quot;;
+</span><span class='line'>
+</span><span class='line'>  if (Model.Format == Formats.Table) {
+</span><span class='line'>      layoutCssClass = &quot;foo-layout-table&quot;;
+</span><span class='line'>  } else if (Model.Format == Formats.Grid) {
+</span><span class='line'>      layoutCssClass = &quot;foo-layout-grid&quot;;
+</span><span class='line'>  } else if (Model.Format == Formats.Paragraph) {
+</span><span class='line'>      layoutCssClass = &quot;foo-layout-paragraph&quot;;
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo @layoutCssClass&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The point is to decouple your CSS class logic from your markup as much as you can, so your markup isn&rsquo;t crufted up. What other tips do you have for reducing CSS class headaches?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/48/tips-for-updating-from-webapi-beta-to-webapi-rc">Tips for Updating From WebAPI Beta to WebAPI RC</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-01T05:59:01-05:00" pubdate data-updated="true">Jun 1<span>st</span>, 2012</time>
+        
+           | <a href="/blog/posts/48/tips-for-updating-from-webapi-beta-to-webapi-rc#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/48/tips-for-updating-from-webapi-beta-to-webapi-rc">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I just installed VS 2012 RC (previous codename VS11) to make sure I am on the latest and greatest and I&rsquo;d like to mention a few gotchas I ran into along the way while upgrading <a href="http://keeptrackofmygames.com">Keep Track of My Games</a>.</p>
+
+<h2>Nuget Packages</h2>
+
+<p>One of the first things I did when opening the solution was to compile and run. WHAM. You will get a MissingMethodException:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[MissingMethodException: Method not found: 'Void System.Net.Http.Headers.HttpHeaders.AddWithoutValidation(System.String, System.Collections.Generic.IEnumerable`1&lt;System.String&gt;)'.]
+</span><span class='line'>   System.Web.Http.WebHost.HttpControllerHandler.AddHeaderToHttpRequestMessage(HttpRequestMessage httpRequestMessage, String headerName, String[] headerValues) +0
+</span><span class='line'>   System.Web.Http.WebHost.HttpControllerHandler.ConvertRequest(HttpContextBase httpContextBase) +248
+</span><span class='line'>   System.Web.Http.WebHost.HttpControllerHandler.BeginProcessRequest(HttpContextBase httpContextBase, AsyncCallback callback, Object state) +79
+</span><span class='line'>   System.Web.Http.WebHost.HttpControllerHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state) +48
+</span><span class='line'>   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +268
+</span><span class='line'>   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) +155</span></code></pre></td></tr></table></div></figure>
+
+
+<p>First issue: Web API had also been updated along with VS 2012&rsquo;s install. That means your previous beta Nuget packages are out of date. Unfortunately, if you go into <em>Manage Nuget Packages</em> you&rsquo;ll find no help in the Updates panel.</p>
+
+<p>Turns out, the IDs have changed! Search for <code>Microsoft.AspNet.WebApi</code> and you&rsquo;ll find the RC packages again. In my solution, I am using:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.AspNet.Mvc&quot;</span> <span class="na">version=</span><span class="s">&quot;4.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.AspNet.Razor&quot;</span> <span class="na">version=</span><span class="s">&quot;2.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.AspNet.WebApi.Client&quot;</span> <span class="na">version=</span><span class="s">&quot;4.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.AspNet.WebApi.Core&quot;</span> <span class="na">version=</span><span class="s">&quot;4.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.AspNet.WebApi.WebHost&quot;</span> <span class="na">version=</span><span class="s">&quot;4.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.AspNet.WebPages&quot;</span> <span class="na">version=</span><span class="s">&quot;2.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.Net.Http&quot;</span> <span class="na">version=</span><span class="s">&quot;2.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.Web.Infrastructure&quot;</span> <span class="na">version=</span><span class="s">&quot;1.0.0.0&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Once you uninstall your beta packages and install the new RC, you will likely run into a few more issues&hellip;</p>
+
+<h2>Dependency Injection</h2>
+
+<p>I am using Ninject for dependency injection. You will need to adapt this solution to your needs if you <em>aren&rsquo;t</em> using Ninject. You will <a href="http://www.strathweb.com/2012/05/using-ninject-with-the-latest-asp-net-web-api-source/">need to use a new way</a> of setting the DependencyResolver, see this GitHub source repository: <a href="https://github.com/filipw/Ninject-resolver-for-ASP.NET-Web-API">https://github.com/filipw/Ninject-resolver-for-ASP.NET-Web-API</a></p>
+
+<p>Thanks Filip!</p>
+
+<h2>No more generic HttpResponseMessage</h2>
+
+<p>If you had previously been using code like this:</p>
+
+<pre><code>new HttpResponseMessage&lt;T&gt;(someValue)
+</code></pre>
+
+<p>You will get compilation errors. The new way to handle this is via the <code>Request</code> property in your controllers:</p>
+
+<pre><code>Request.CreateResponse(HttpStatusCode.OK, result);
+</code></pre>
+
+<p>You will need to change any return types from <code>HttpResponseMessage&lt;T&gt;</code> to <code>HttpResponseMessage</code>.</p>
+
+<h2>No need for custom JSON.NET formatter</h2>
+
+<p>If you had previously been using a variant of <a href="http://www.west-wind.com/weblog/posts/2012/Mar/09/Using-an-alternate-JSON-Serializer-in-ASPNET-Web-API">Rick Strahl&rsquo;s JSON.NET formatter</a>, you do not need it anymore as Web API defaults to JSON.NET now. However, if you, like me, want to customize the settings used, you can still do so:</p>
+
+<p><strong>Global.asax or App_Start</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="kt">var</span> <span class="n">formatter</span> <span class="p">=</span> <span class="n">GlobalConfiguration</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">Formatters</span><span class="p">.</span><span class="n">OfType</span><span class="p">&lt;</span><span class="n">JsonMediaTypeFormatter</span><span class="p">&gt;().</span><span class="n">First</span><span class="p">();</span>
+</span><span class='line'><span class="n">formatter</span><span class="p">.</span><span class="n">SerializerSettings</span><span class="p">.</span><span class="n">NullValueHandling</span> <span class="p">=</span> <span class="n">NullValueHandling</span><span class="p">.</span><span class="n">Ignore</span><span class="p">;</span>
+</span><span class='line'><span class="n">formatter</span><span class="p">.</span><span class="n">SerializerSettings</span><span class="p">.</span><span class="n">Converters</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">StringEnumConverter</span><span class="p">());</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Thanks to Matt in the comments for trimming the fat off what I had previously.</p>
+
+<h2>No more GetUserPrincipal</h2>
+
+<p>I had previously been using the extension method <code>GetUserPrincipal</code> in my custom Authorize attribute. No more! You can now use <code>System.Threading.Thread.CurrentPrincipal.Identity</code> if you need the current principal in Web API. There&rsquo;s also a convenient <code>User</code> property in the <code>ApiController</code> base class.</p>
+
+<h2>That&rsquo;s it!</h2>
+
+<p>That&rsquo;s about all I ran into. I am also happy to report that <a href="https://github.com/mccalltd/AttributeRouting">AttributeRouting</a> still seems to work fine against the Web API RC and MVC 4 RC! I did some limited browsing around on my site with heavy AJAX calls and everything seemed to work.</p>
+
+<p>Hope this saves you some time!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/4/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/2/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  	<h1>About Me</h1>
+
+  	<p><img src="http://gravatar.com/avatar/8303c4eb9f9099df39adbc3d8c634746?s=120" alt="My Headshot" title="My ugly mug" /></p>
+
+  	<p>Hi, my name is Kamran. I am a web developer and designer, residing in Minnesota. I&#8217;ve been programming since 2001 and I am familiar with many different languages, both web-based and server-based. I love to tinker around and think of new ways to solve problems.</p>
+
+	<p>If you wanna talk, tweet <strong><a href="http://twitter.com/kamranayub" target="_blank">@kamranayub</a></strong> or send me an email at my <strong>full name</strong> at <strong>gmail.com</strong></p>
+</section>
+<section>
+  	<h1>Apps</h1>
+
+  	<ul>
+  		<li><a href="http://centwiseapp.com/">Centwise</a></li>
+  		<li><a href="http://keeptrackofmygames.com/">Keep Track of My Games</a></li>
+  	</ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/78/tccc15-see-you-again-in-april">TCCC15: See You Again in April!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/77/tccc15-leveling-up-your-windows-phone-app">TCCC15: Leveling Up Your Windows Phone App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/76/minnesota-developer-conference-2013-connected-apps">Minnesota Developer Conference 2013: Connected Apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/75/test-retina-images-without-a-retina-screen">Test Retina Images Without a Retina Screen</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/kamranayub">@kamranayub</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'kamranayub',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/104789622697290911192?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Kamran -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

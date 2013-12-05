@@ -1,0 +1,380 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Some Thoughts on the VS11 Beta/RC/RTM Interface - Kamranicus</title>
+  <meta name="author" content="Kamran">
+
+  
+  <meta name="description" content="As you may know, the next version of Visual Studio dubbed VS11 is available in Beta form right now for developers worldwide to complain about go wild &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kamranayub.github.io/blog/posts/47/some-thoughts-on-the-vs11-betarcrtm-interface">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Kamranicus</a></h1>
+  
+    <h2>Kamran Ayub is a developer and designer in Minneapolis, Minnesota. He specializes in .NET development with a dash of client-side and is passionate about UX.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/Kamranicus" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=Kamranicus" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:kamranayub.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Some Thoughts on the VS11 Beta/RC/RTM Interface</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-31T14:07:00-05:00" pubdate data-updated="true">May 31<span>st</span>, 2012</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>As you may know, the next version of Visual Studio dubbed VS11 <a href="http://www.microsoft.com/visualstudio/11/en-us">is available in Beta form</a> right now for developers worldwide to <strike>complain about</strike> go wild and test against.</p>
+
+<p>While you can learn more about what VS11 offers in terms of new features, I think the biggest thing you&rsquo;ll hear about is feedback regarding it&rsquo;s new user interface style. I want to write down some thoughts I had as a heavy Visual Studio user and self-professed user experience (UX) <em>aficionado</em>.</p>
+
+<h3>Please don&rsquo;t hurt me</h3>
+
+<p>I want to be clear that I am not here to bash on Visual Studio nor complain about the new interface. Rather, I&rsquo;d like to take a constructive look at a couple of the cosmetic changes in store for us.</p>
+
+<h3>I HEARD U LIEK ALL CAPS</h3>
+
+<p>I think the biggest thing I see on the tubes these days are comments about the ALL CAPS menu change from the Beta to the RC as you can see below (this is the Dark Theme):</p>
+
+<p><strong>Beta:</strong><br/>
+<img src="/blog/images/42.png" alt="Beta Main Menu" /></p>
+
+<p><strong>RC:</strong><br/>
+<img src="/blog/images/41.png" alt="All Caps RC Main Menu" /></p>
+
+<p><strong>What People Are Saying</strong></p>
+
+<p>Why is the main menu SHOUTING AT ME? This is terrible!</p>
+
+<p><strong>What People Are Missing</strong></p>
+
+<p>Whether or not you believe a fundamental user experience principle has been violated here, I think the underlying issue all along has been: why are there <em>so many damn options</em>?</p>
+
+<p>All caps or not, I think the team should be aiming to reduce the amount of time I even need to look at the main menu and even better, totally eliminate or consolidate some of those menus. If I had to list what menus I used the most it would be:</p>
+
+<ol>
+<li>Edit &ndash; to get to some advanced options that I can&rsquo;t remember hotkeys for</li>
+<li>View &ndash; to see a window I closed at some point or find a window</li>
+<li>Build &ndash; to Rebuild/Clean sometimes or build my current project (vs. the entire solution)</li>
+<li>Tools &ndash; to get to extension manager for updates or new extensions</li>
+<li>File &ndash; to open a project when I&rsquo;m not on the start screen</li>
+</ol>
+
+
+<p>That&rsquo;s about it. So, in other words, I use about 5 out of the 16 total menu options regularly. Does that sound like the Pareto Principle (80/20 rule) at work here? It should at least have crossed your mind. Admittedly, this is <em>just for me</em> but no matter the person, I would expect to find that the typical Visual Studio user does <strong>not</strong> use all the menu options every day or very often.</p>
+
+<p>One of the nice things about VS is that you can totally customize the menu. For example, here&rsquo;s mine right now:</p>
+
+<p><img src="/blog/images/47.png" alt="My Menu" /></p>
+
+<p>Unfortunately, I can&rsquo;t do much more because VS2010 crashes if I try to modify the menus themselves, otherwise I&rsquo;d move Theme, Resharper, Sitecore, and Mindscape into the Tools menu reducing my total menus to only 6. Finally, I&rsquo;d like the ability to hit Alt to enable the menu, otherwise it should be hidden (see Sublime Text). I don&rsquo;t know if there&rsquo;s an extension that enables that.</p>
+
+<p>Just because I have the control to move my menu commands around doesn&rsquo;t mean it solves this problem. There are so many commands in Visual Studio the team could expose but don&rsquo;t simply for that reason, there&rsquo;s just too many. A different kind of menu should be considered that doesn&rsquo;t rely on the &ldquo;classic&rdquo; menu bar pattern.</p>
+
+<p>Is it too crazy to think about a menu inside Visual Studio that acted like the Windows OS menu? It could list my most recent actions or actions I pin, it could group different tasks or let me open an advanced panel to see more tasks. The useful Ctrl-3 shortcut in one of the power tool extensions lets you start typing to search the menu system (and I believe that is what the search box in the top right of VS11 also does); why not build that into a single menu ala Windows 7 Start Menu? Dare I even mention&hellip; a ribbon (<em>shudder</em>)?</p>
+
+<h3>Monochrome is the New Color</h3>
+
+<p>In the VS11 beta, probably the first thing you&rsquo;ll notice is the distinct lack of color. Where&rsquo;d all the pretty icons go?! If you asked me how I felt when I opened it up for the first time, the word &ldquo;depressed&rdquo; probably would make the cut. I know that sounds extreme, but when you talk about how we as humans perceive colors, certain schemes evoke certain emotions.</p>
+
+<p>Again, let&rsquo;s take a look at the dark theme (since it exacerbates the effect):</p>
+
+<p><img src="/blog/images/43.png" alt="Dark Theme in Beta" /></p>
+
+<p>Now, work has been done since the beta to add color back to VS which I believe makes it look <em>so</em> much better:</p>
+
+<p><img src="/blog/images/44.png" alt="Dark Theme in RTM" /></p>
+
+<p>The added color in the icons really makes a difference and I was glad to see it back for the RC and RTM. I also think it&rsquo;s very admirable that the team will release the vector versions alongside Visual Studio for use in our own apps. In this day and age where images need to be scaled for different form factors and &ldquo;Retina&rdquo; displays, I think we&rsquo;ll be seeing more emphasis on vector-based icons. GitHub even <a href="https://github.com/blog/1106-say-hello-to-octicons">created their own font</a> to address the issue. You could argue they may have jumped the gun a bit but hopefully font rendering will continue to improve in modern browsers.</p>
+
+<p>My one criticism is that not all icons will be mono&rsquo;d right away, so with some extensions you&rsquo;ll see something like this:</p>
+
+<p><img src="/blog/images/45.png" alt="Ugh" /></p>
+
+<p>I know they specifically fixed this icon in RC, but I&rsquo;m sure there will be more instances of this, especially in the New File dialog:</p>
+
+<p><img src="/blog/images/46.png" alt="File icons" /></p>
+
+<p>This can be fixed by extension developers, but I hope (as an extension developer myself) that it is not too painful to provide iconography for both the VS2010 and VS11 version of an extension.</p>
+
+<h3>Other Thoughts</h3>
+
+<p>In general, I think those are the two big topics I see while reading blog posts and seeing comments. I may have other thoughts for the overall experience but I&rsquo;ll save them for future posts as I use VS11 more and more.</p>
+
+<p>As always, let me know what you think! Do you have other criticisms of the interface? If you&rsquo;re going to just go on about how you hate M$ and VS11 is terrible, don&rsquo;t bother responding. The VS team would benefit more from constructive feedback.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Kamran</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-31T14:07:00-05:00" pubdate data-updated="true">May 31<span>st</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://kamranayub.github.io/blog/posts/47/some-thoughts-on-the-vs11-betarcrtm-interface" data-via="kamranayub" data-counturl="http://kamranayub.github.io/blog/posts/47/some-thoughts-on-the-vs11-betarcrtm-interface" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/posts/46/please-go-watch-the-pluralsight-ux-fundamentals-of" title="Previous Post: Please Go Watch the Pluralsight UX Fundamentals of Design Course">&laquo; Please Go Watch the Pluralsight UX Fundamentals of Design Course</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/posts/48/tips-for-updating-from-webapi-beta-to-webapi-rc" title="Next Post: Tips for Updating From WebAPI Beta to WebAPI RC">Tips for Updating From WebAPI Beta to WebAPI RC &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  	<h1>About Me</h1>
+
+  	<p><img src="http://gravatar.com/avatar/8303c4eb9f9099df39adbc3d8c634746?s=120" alt="My Headshot" title="My ugly mug" /></p>
+
+  	<p>Hi, my name is Kamran. I am a web developer and designer, residing in Minnesota. I've been programming since 2001 and I am familiar with many different languages, both web-based and server-based. I love to tinker around and think of new ways to solve problems.</p>
+
+	<p>If you wanna talk, tweet <strong><a href="http://twitter.com/kamranayub" target="_blank">@kamranayub</a></strong> or send me an email at my <strong>full name</strong> at <strong>gmail.com</strong></p>
+</section>
+<section>
+  	<h1>Apps</h1>
+
+  	<ul>
+  		<li><a href="http://centwiseapp.com/">Centwise</a></li>
+  		<li><a href="http://keeptrackofmygames.com/">Keep Track of My Games</a></li>
+  	</ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/78/tccc15-see-you-again-in-april">TCCC15: See You Again in April!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/77/tccc15-leveling-up-your-windows-phone-app">TCCC15: Leveling Up Your Windows Phone App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/76/minnesota-developer-conference-2013-connected-apps">Minnesota Developer Conference 2013: Connected Apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/75/test-retina-images-without-a-retina-screen">Test Retina Images Without a Retina Screen</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/kamranayub">@kamranayub</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'kamranayub',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/104789622697290911192?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Kamran -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://kamranayub.github.io/blog/posts/47/some-thoughts-on-the-vs11-betarcrtm-interface';
+        var disqus_url = 'http://kamranayub.github.io/blog/posts/47/some-thoughts-on-the-vs11-betarcrtm-interface';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

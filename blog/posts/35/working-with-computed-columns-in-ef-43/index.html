@@ -1,0 +1,494 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Working With Computed Columns in EF 4.3 - Kamranicus</title>
+  <meta name="author" content="Kamran">
+
+  
+  <meta name="description" content="There&rsquo;s not a ton of information out there on how to handle computed columns in EF. It turns out it is pretty straightforward if you know what &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kamranayub.github.io/blog/posts/35/working-with-computed-columns-in-ef-43">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Kamranicus</a></h1>
+  
+    <h2>Kamran Ayub is a developer and designer in Minneapolis, Minnesota. He specializes in .NET development with a dash of client-side and is passionate about UX.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/Kamranicus" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=Kamranicus" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:kamranayub.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Working With Computed Columns in EF 4.3</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-17T23:38:15-05:00" pubdate data-updated="true">Mar 17<span>th</span>, 2012</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>There&rsquo;s not a ton of information out there on how to handle computed columns in EF. It turns out it is pretty straightforward if you know what to do.</p>
+
+<h2>Telling EF about your computed column</h2>
+
+<p>First, if all you want to do is manually create a function and use it in a column, you only need to decorate your model property with <code>[DatabaseGenerated(DatabaseGeneratedOption.Computed)]</code> as seen here:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">public</span> <span class="kt">string</span> <span class="n">FirstName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">public</span> <span class="kt">string</span> <span class="n">LastName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]</span>
+</span><span class='line'>    <span class="k">public</span> <span class="kt">string</span> <span class="n">FullName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You should know that <strong>if possible, try to keep &ldquo;computed&rdquo; values in your application.</strong> This is my opinion from an ease of use POV, not a design POV. I say it because unless you really <em>need</em> a computed column, you could just as easily create a read-only property that EF ignores.</p>
+
+<p>However, in some cases, a computed column is a viable option such as when you need to sort (on the database-side) against a computed value. That was my own reason for using a computed.</p>
+
+<h2>Manually adding the function and column</h2>
+
+<p>We&rsquo;ve told EF to ignore our property and treat it as a computed column. Now how do we actually <em>create</em> the column? Well, what I did previous to EF Migrations was to just do it all manually through SQL Management Studio. This is entirely OK to do, you just need to make sure you save the script somewhere or remember to do it anytime you create a new database for your application.</p>
+
+<p>You can now go into SSMS and delete the column EF generated (or add it if it&rsquo;s new). Make sure you create your function first:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">CREATE</span> <span class="k">FUNCTION</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">GetFullName</span><span class="p">]</span>
+</span><span class='line'><span class="p">(</span>
+</span><span class='line'>    <span class="c1">-- Add the parameters for the function here</span>
+</span><span class='line'>    <span class="o">@</span><span class="n">FirstName</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+</span><span class='line'>    <span class="o">@</span><span class="n">LastName</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'><span class="k">RETURNS</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
+</span><span class='line'><span class="k">AS</span>
+</span><span class='line'><span class="k">BEGIN</span>
+</span><span class='line'>    <span class="k">DECLARE</span> <span class="o">@</span><span class="n">FullName</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">SELECT</span> <span class="o">@</span><span class="n">FullName</span> <span class="o">=</span> <span class="o">@</span><span class="n">FirstName</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="o">@</span><span class="n">LastName</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">RETURN</span> <span class="o">@</span><span class="n">FullName</span><span class="p">;</span>
+</span><span class='line'><span class="k">END</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That approach worked fine for me, since I use Schema Compare (or used to!) to migrate my database between environments.</p>
+
+<h2>Using EF Migrations</h2>
+
+<p>Now that EF 4.3 has been released, we can all enjoy the benefit of <a href="http://blogs.msdn.com/b/adonet/archive/2012/02/09/ef-4-3-automatic-migrations-walkthrough.aspx">Database Migrations</a>. What I like about this approach is that it&rsquo;s very deliberate and discoverable. I could clone my repository onto a new PC and run the <code>Update-Database</code> command to do <em>everything</em>, plus now we can migrate backwards if needed. It&rsquo;s excellent!</p>
+
+<p>I am using automatic migrations for <a href="http://keeptrackofmygames.com">KTOMG</a>, so what I had to do first was manually create a new migration in the Package Manager console:</p>
+
+<pre><code>$&gt; Add-Migration CustomFunction
+</code></pre>
+
+<p>This will scaffold a new, empty migration:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">partial</span> <span class="k">class</span> <span class="nc">CustomFunction</span> <span class="p">:</span> <span class="n">DbMigration</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Up</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Down</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now we can be really cool cats. In this migration, all we have to do is execute our <code>CREATE FUNCTION</code> SQL statement in the <code>Up</code> method, along with dropping and re-adding the column:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Up</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="c1">// Create function</span>
+</span><span class='line'>    <span class="n">Sql</span><span class="p">(</span><span class="s">@&quot;</span>
+</span><span class='line'><span class="s">CREATE FUNCTION [dbo].[GetFullName] </span>
+</span><span class='line'><span class="s">(</span>
+</span><span class='line'><span class="s">-- Add the parameters for the function here</span>
+</span><span class='line'><span class="s">@FirstName varchar(50),</span>
+</span><span class='line'><span class="s">@LastName varchar(50)</span>
+</span><span class='line'><span class="s">)</span>
+</span><span class='line'><span class="s">RETURNS varchar(255)</span>
+</span><span class='line'><span class="s">AS</span>
+</span><span class='line'><span class="s">BEGIN</span>
+</span><span class='line'><span class="s">DECLARE @FullName varchar(255);</span>
+</span><span class='line'>
+</span><span class='line'><span class="s">SELECT @FullName = @FirstName + &#39; &#39; + @LastName;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s">RETURN @FullName;</span>
+</span><span class='line'><span class="s">END</span>
+</span><span class='line'><span class="s">&quot;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// Add the computed column</span>
+</span><span class='line'>    <span class="n">DropColumn</span><span class="p">(</span><span class="s">&quot;Person&quot;</span><span class="p">,</span> <span class="s">&quot;FullName&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">Sql</span><span class="p">(</span><span class="s">@&quot;</span>
+</span><span class='line'><span class="s">ALTER TABLE [dbo].[Person]</span>
+</span><span class='line'><span class="s">ADD [FullName] AS ([dbo].[GetFullName]([FirstName],[LastName]));</span>
+</span><span class='line'><span class="s">&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Take note of the <code>true</code> parameter at the end of the <code>Sql()</code> call. This explicitly tells EF <em>not</em> to include the statement in the migration transaction. If you don&rsquo;t do this, SQL Server will complain that the CREATE FUNCTION statement must be the only one in the batch.</p>
+
+<p>Now let&rsquo;s scaffold our tear down step. We should drop the column first, drop the function, and then finally re-add the basic column back.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Down</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">DropColumn</span><span class="p">(</span><span class="s">&quot;Person&quot;</span><span class="p">,</span> <span class="s">&quot;FullName&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">Sql</span><span class="p">(</span><span class="s">&quot;DROP FUNCTION [dbo].[GetFullName]&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">AddColumn</span><span class="p">(</span><span class="s">&quot;Person&quot;</span><span class="p">,</span> <span class="s">&quot;FullName&quot;</span><span class="p">,</span> <span class="n">c</span> <span class="p">=&gt;</span> <span class="n">c</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="n">nullable</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span> <span class="n">maxLength</span><span class="p">:</span> <span class="m">255</span><span class="p">));</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I would take care to make sure the column is re-created using the original schema EF created.</p>
+
+<p>Now we can tell EF to migrate to the latest version:</p>
+
+<pre><code>$&gt; Update-Database -Verbose (or -Script, to preview)
+</code></pre>
+
+<p>Voila, you should now have a brand spankin&#8217; new computed column.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Kamran</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-17T23:38:15-05:00" pubdate data-updated="true">Mar 17<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://kamranayub.github.io/blog/posts/35/working-with-computed-columns-in-ef-43" data-via="kamranayub" data-counturl="http://kamranayub.github.io/blog/posts/35/working-with-computed-columns-in-ef-43" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/posts/34/i-wish-i-could-do-all-the-things" title="Previous Post: I wish I could do all the things">&laquo; I wish I could do all the things</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/posts/37/getting-cassettes-compiled-knockout-templates-to-w" title="Next Post: Getting Cassette's compiled Knockout templates to work in KO 2.0">Getting Cassette's compiled Knockout templates to work in KO 2.0 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  	<h1>About Me</h1>
+
+  	<p><img src="http://gravatar.com/avatar/8303c4eb9f9099df39adbc3d8c634746?s=120" alt="My Headshot" title="My ugly mug" /></p>
+
+  	<p>Hi, my name is Kamran. I am a web developer and designer, residing in Minnesota. I've been programming since 2001 and I am familiar with many different languages, both web-based and server-based. I love to tinker around and think of new ways to solve problems.</p>
+
+	<p>If you wanna talk, tweet <strong><a href="http://twitter.com/kamranayub" target="_blank">@kamranayub</a></strong> or send me an email at my <strong>full name</strong> at <strong>gmail.com</strong></p>
+</section>
+<section>
+  	<h1>Apps</h1>
+
+  	<ul>
+  		<li><a href="http://centwiseapp.com/">Centwise</a></li>
+  		<li><a href="http://keeptrackofmygames.com/">Keep Track of My Games</a></li>
+  	</ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/78/tccc15-see-you-again-in-april">TCCC15: See You Again in April!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/77/tccc15-leveling-up-your-windows-phone-app">TCCC15: Leveling Up Your Windows Phone App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/76/minnesota-developer-conference-2013-connected-apps">Minnesota Developer Conference 2013: Connected Apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/75/test-retina-images-without-a-retina-screen">Test Retina Images Without a Retina Screen</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/kamranayub">@kamranayub</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'kamranayub',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/104789622697290911192?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Kamran -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://kamranayub.github.io/blog/posts/35/working-with-computed-columns-in-ef-43';
+        var disqus_url = 'http://kamranayub.github.io/blog/posts/35/working-with-computed-columns-in-ef-43';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,368 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Announcing Keep Track of My Games - Kamranicus</title>
+  <meta name="author" content="Kamran">
+
+  
+  <meta name="description" content="I am working on a new side project, Keep Track of My Games. The Rundown The goal is simple: Manage your collection of games and track games that &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kamranayub.github.io/blog/posts/15/announcing-keep-track-of-my-games">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Kamranicus</a></h1>
+  
+    <h2>Kamran Ayub is a developer and designer in Minneapolis, Minnesota. He specializes in .NET development with a dash of client-side and is passionate about UX.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/Kamranicus" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=Kamranicus" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:kamranayub.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Announcing Keep Track of My Games</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-24T17:44:08-05:00" pubdate data-updated="true">Jul 24<span>th</span>, 2011</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I am working on a new side project, <a href="http://keeptrackofmygames.com/about">Keep Track of My Games</a>.</p>
+
+<p><img src="/blog/images/10.png" alt="Yes." /></p>
+
+<h3>The Rundown</h3>
+
+<p>The goal is simple: <strong>Manage your collection of games and track games that haven&rsquo;t been released.</strong></p>
+
+<p>You can read the tour on my <a href="http://blog.keeptrackofmygames.com/post/8003937025/what-is-keep-track-of-my-games">introduction blog post</a>.</p>
+
+<p>I&rsquo;ve setup several social outlets:</p>
+
+<ul>
+<li><a href="http://twitter.com/keeptrackgames">@keeptrackgames</a></li>
+<li><a href="http://blog.keeptrackofmygames.com/">Blog</a></li>
+<li><a href="http://getsatisfaction.com/keeptrack">GetSatisfaction</a></li>
+</ul>
+
+
+<p>I&rsquo;m also providing a public look into my development cycle via the <a href="http://keeptrackofmygames.com/roadmap">Roadmap</a> page.</p>
+
+<h3>The Technology</h3>
+
+<p>I am using MVC 3 with EF 4.1 and SQL Server 2008 deployed via Mercurial, BitBucket, and AppHarbor. I am using the JSON API from <a href="http://api.giantbomb.com">GiantBomb</a> to fetch search results than caching them locally to the database. I&rsquo;m not super enthused with the performance but hopefully I can make it better in the coming weeks.</p>
+
+<p>I use <a href="http://twilio.com">Twilio</a> for SMS and for now, regular old SMTP for emails but I may upgrade depending on load. I use a &ldquo;scheduled&rdquo; job that runs through the database and figures out if games are coming out soon or are released or if their release dates have changed.</p>
+
+<h3>The Architecture</h3>
+
+<p>I have a pretty straightforward and simple architecture: everything goes through application services that do not have any web dependency.</p>
+
+<p><img src="/blog/images/11.png" alt="Layer Diagram" /></p>
+
+<p>My controllers are pretty stupid; they ask the services for information and process the results:</p>
+
+<p><img src="/blog/images/12.png" alt="Adding item to library" /></p>
+
+<p>The key is my <code>ActionConfirmation</code> class which I borrowed from my co-worker. I thought it was awesome for Service => Controller communication. The reason being I can pass error messages / validation results cleanly.</p>
+
+<p>For example, in this action, if an error occurred when saving tracking settings, I need to go and get the current tracking settings to add some view-specific logic (like, whether or not to show the email/phone checkboxes):</p>
+
+<p><img src="/blog/images/13.png" alt="Saving tracking settings" /></p>
+
+<p>The <code>currentTracking</code> is of type <code>ActionConfirmation&lt;TrackingViewModel&gt;</code>. So, if a service call was successful, I can retrieve the result via <code>currentTracking.Value</code>. I also use a non-generic <code>ActionConfirmation</code> class that doesn&rsquo;t require any return value.</p>
+
+<p>Here&rsquo;s an example of the service code returning <code>ActionConfirmation</code>s:</p>
+
+<p><img src="/blog/images/14.png" alt="ActionConfirmation results" /></p>
+
+<p>I am not 100% OK with this because for complex business validation, the results are coming back one at a time. I will be refactoring later to avoid this.</p>
+
+<h3>The &ldquo;Open&rdquo; Source Agenda</h3>
+
+<p>I have been playing around with making this source code public. Only a few things prevent me from doing so:</p>
+
+<ol>
+<li>I need a way to hide secret tokens for APIs and my passwords for some services.</li>
+<li>If people know the code, they&rsquo;ll see all the security holes and it&rsquo;s possible someone could exploit them and steal my user&rsquo;s data (not cool).</li>
+</ol>
+
+
+<p>Really item #2 is the big decider. I am using OpenID and DotNetOpenAuth but that doesn&rsquo;t mean the site is totally secure. The worst information that could be obtained is someone&rsquo;s email and phone number, both of which I plan to encrypt for extra safety (once I figure out how that works with EF).</p>
+
+<p>I am thinking instead of totally making it open source, to allow select contributors I trust into the codebase for reviews and patches.</p>
+
+<p>If you would be interested in doing that, I have a tester system setup so <a href="http://twitter.com/kamranayub">let me know</a> and we&rsquo;ll talk.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Kamran</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-24T17:44:08-05:00" pubdate data-updated="true">Jul 24<span>th</span>, 2011</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://kamranayub.github.io/blog/posts/15/announcing-keep-track-of-my-games" data-via="kamranayub" data-counturl="http://kamranayub.github.io/blog/posts/15/announcing-keep-track-of-my-games" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/posts/14/resolving-http-500-errors-when-deploying-to-apphar" title="Previous Post: Resolving HTTP 500 errors when deploying to AppHarbor">&laquo; Resolving HTTP 500 errors when deploying to AppHarbor</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/posts/16/i-love-github-so-much-im-a-paying-member-now" title="Next Post: I love GitHub so much, I'm a paying member now">I love GitHub so much, I'm a paying member now &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  	<h1>About Me</h1>
+
+  	<p><img src="http://gravatar.com/avatar/8303c4eb9f9099df39adbc3d8c634746?s=120" alt="My Headshot" title="My ugly mug" /></p>
+
+  	<p>Hi, my name is Kamran. I am a web developer and designer, residing in Minnesota. I've been programming since 2001 and I am familiar with many different languages, both web-based and server-based. I love to tinker around and think of new ways to solve problems.</p>
+
+	<p>If you wanna talk, tweet <strong><a href="http://twitter.com/kamranayub" target="_blank">@kamranayub</a></strong> or send me an email at my <strong>full name</strong> at <strong>gmail.com</strong></p>
+</section>
+<section>
+  	<h1>Apps</h1>
+
+  	<ul>
+  		<li><a href="http://centwiseapp.com/">Centwise</a></li>
+  		<li><a href="http://keeptrackofmygames.com/">Keep Track of My Games</a></li>
+  	</ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/78/tccc15-see-you-again-in-april">TCCC15: See You Again in April!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/77/tccc15-leveling-up-your-windows-phone-app">TCCC15: Leveling Up Your Windows Phone App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/76/minnesota-developer-conference-2013-connected-apps">Minnesota Developer Conference 2013: Connected Apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/75/test-retina-images-without-a-retina-screen">Test Retina Images Without a Retina Screen</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/kamranayub">@kamranayub</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'kamranayub',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/104789622697290911192?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Kamran -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://kamranayub.github.io/blog/posts/15/announcing-keep-track-of-my-games';
+        var disqus_url = 'http://kamranayub.github.io/blog/posts/15/announcing-keep-track-of-my-games';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

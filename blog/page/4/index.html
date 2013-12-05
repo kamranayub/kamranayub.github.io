@@ -1,0 +1,968 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Kamranicus</title>
+  <meta name="author" content="Kamran">
+
+  
+  <meta name="description" content="As you may know, the next version of Visual Studio dubbed VS11 is available in Beta form right now for developers worldwide to complain about go wild &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kamranayub.github.io/blog/page/4">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Kamranicus</a></h1>
+  
+    <h2>Kamran Ayub is a developer and designer in Minneapolis, Minnesota. He specializes in .NET development with a dash of client-side and is passionate about UX.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/Kamranicus" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=Kamranicus" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:kamranayub.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/47/some-thoughts-on-the-vs11-betarcrtm-interface">Some Thoughts on the VS11 Beta/RC/RTM Interface</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-31T14:07:00-05:00" pubdate data-updated="true">May 31<span>st</span>, 2012</time>
+        
+           | <a href="/blog/posts/47/some-thoughts-on-the-vs11-betarcrtm-interface#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/47/some-thoughts-on-the-vs11-betarcrtm-interface">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As you may know, the next version of Visual Studio dubbed VS11 <a href="http://www.microsoft.com/visualstudio/11/en-us">is available in Beta form</a> right now for developers worldwide to <strike>complain about</strike> go wild and test against.</p>
+
+<p>While you can learn more about what VS11 offers in terms of new features, I think the biggest thing you&rsquo;ll hear about is feedback regarding it&rsquo;s new user interface style. I want to write down some thoughts I had as a heavy Visual Studio user and self-professed user experience (UX) <em>aficionado</em>.</p>
+
+<h3>Please don&rsquo;t hurt me</h3>
+
+<p>I want to be clear that I am not here to bash on Visual Studio nor complain about the new interface. Rather, I&rsquo;d like to take a constructive look at a couple of the cosmetic changes in store for us.</p>
+
+<h3>I HEARD U LIEK ALL CAPS</h3>
+
+<p>I think the biggest thing I see on the tubes these days are comments about the ALL CAPS menu change from the Beta to the RC as you can see below (this is the Dark Theme):</p>
+
+<p><strong>Beta:</strong><br/>
+<img src="/blog/images/42.png" alt="Beta Main Menu" /></p>
+
+<p><strong>RC:</strong><br/>
+<img src="/blog/images/41.png" alt="All Caps RC Main Menu" /></p>
+
+<p><strong>What People Are Saying</strong></p>
+
+<p>Why is the main menu SHOUTING AT ME? This is terrible!</p>
+
+<p><strong>What People Are Missing</strong></p>
+
+<p>Whether or not you believe a fundamental user experience principle has been violated here, I think the underlying issue all along has been: why are there <em>so many damn options</em>?</p>
+
+<p>All caps or not, I think the team should be aiming to reduce the amount of time I even need to look at the main menu and even better, totally eliminate or consolidate some of those menus. If I had to list what menus I used the most it would be:</p>
+
+<ol>
+<li>Edit &ndash; to get to some advanced options that I can&rsquo;t remember hotkeys for</li>
+<li>View &ndash; to see a window I closed at some point or find a window</li>
+<li>Build &ndash; to Rebuild/Clean sometimes or build my current project (vs. the entire solution)</li>
+<li>Tools &ndash; to get to extension manager for updates or new extensions</li>
+<li>File &ndash; to open a project when I&rsquo;m not on the start screen</li>
+</ol>
+
+
+<p>That&rsquo;s about it. So, in other words, I use about 5 out of the 16 total menu options regularly. Does that sound like the Pareto Principle (80/20 rule) at work here? It should at least have crossed your mind. Admittedly, this is <em>just for me</em> but no matter the person, I would expect to find that the typical Visual Studio user does <strong>not</strong> use all the menu options every day or very often.</p>
+
+<p>One of the nice things about VS is that you can totally customize the menu. For example, here&rsquo;s mine right now:</p>
+
+<p><img src="/blog/images/47.png" alt="My Menu" /></p>
+
+<p>Unfortunately, I can&rsquo;t do much more because VS2010 crashes if I try to modify the menus themselves, otherwise I&rsquo;d move Theme, Resharper, Sitecore, and Mindscape into the Tools menu reducing my total menus to only 6. Finally, I&rsquo;d like the ability to hit Alt to enable the menu, otherwise it should be hidden (see Sublime Text). I don&rsquo;t know if there&rsquo;s an extension that enables that.</p>
+
+<p>Just because I have the control to move my menu commands around doesn&rsquo;t mean it solves this problem. There are so many commands in Visual Studio the team could expose but don&rsquo;t simply for that reason, there&rsquo;s just too many. A different kind of menu should be considered that doesn&rsquo;t rely on the &ldquo;classic&rdquo; menu bar pattern.</p>
+
+<p>Is it too crazy to think about a menu inside Visual Studio that acted like the Windows OS menu? It could list my most recent actions or actions I pin, it could group different tasks or let me open an advanced panel to see more tasks. The useful Ctrl-3 shortcut in one of the power tool extensions lets you start typing to search the menu system (and I believe that is what the search box in the top right of VS11 also does); why not build that into a single menu ala Windows 7 Start Menu? Dare I even mention&hellip; a ribbon (<em>shudder</em>)?</p>
+
+<h3>Monochrome is the New Color</h3>
+
+<p>In the VS11 beta, probably the first thing you&rsquo;ll notice is the distinct lack of color. Where&rsquo;d all the pretty icons go?! If you asked me how I felt when I opened it up for the first time, the word &ldquo;depressed&rdquo; probably would make the cut. I know that sounds extreme, but when you talk about how we as humans perceive colors, certain schemes evoke certain emotions.</p>
+
+<p>Again, let&rsquo;s take a look at the dark theme (since it exacerbates the effect):</p>
+
+<p><img src="/blog/images/43.png" alt="Dark Theme in Beta" /></p>
+
+<p>Now, work has been done since the beta to add color back to VS which I believe makes it look <em>so</em> much better:</p>
+
+<p><img src="/blog/images/44.png" alt="Dark Theme in RTM" /></p>
+
+<p>The added color in the icons really makes a difference and I was glad to see it back for the RC and RTM. I also think it&rsquo;s very admirable that the team will release the vector versions alongside Visual Studio for use in our own apps. In this day and age where images need to be scaled for different form factors and &ldquo;Retina&rdquo; displays, I think we&rsquo;ll be seeing more emphasis on vector-based icons. GitHub even <a href="https://github.com/blog/1106-say-hello-to-octicons">created their own font</a> to address the issue. You could argue they may have jumped the gun a bit but hopefully font rendering will continue to improve in modern browsers.</p>
+
+<p>My one criticism is that not all icons will be mono&rsquo;d right away, so with some extensions you&rsquo;ll see something like this:</p>
+
+<p><img src="/blog/images/45.png" alt="Ugh" /></p>
+
+<p>I know they specifically fixed this icon in RC, but I&rsquo;m sure there will be more instances of this, especially in the New File dialog:</p>
+
+<p><img src="/blog/images/46.png" alt="File icons" /></p>
+
+<p>This can be fixed by extension developers, but I hope (as an extension developer myself) that it is not too painful to provide iconography for both the VS2010 and VS11 version of an extension.</p>
+
+<h3>Other Thoughts</h3>
+
+<p>In general, I think those are the two big topics I see while reading blog posts and seeing comments. I may have other thoughts for the overall experience but I&rsquo;ll save them for future posts as I use VS11 more and more.</p>
+
+<p>As always, let me know what you think! Do you have other criticisms of the interface? If you&rsquo;re going to just go on about how you hate M$ and VS11 is terrible, don&rsquo;t bother responding. The VS team would benefit more from constructive feedback.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/46/please-go-watch-the-pluralsight-ux-fundamentals-of">Please Go Watch the Pluralsight UX Fundamentals of Design Course</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-30T20:26:06-05:00" pubdate data-updated="true">May 30<span>th</span>, 2012</time>
+        
+           | <a href="/blog/posts/46/please-go-watch-the-pluralsight-ux-fundamentals-of#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/46/please-go-watch-the-pluralsight-ux-fundamentals-of">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://blog.pluralsight.com/2012/05/30/free-training-on-user-experiences-fundamental-design-principles-by-billy-hollis/">Pluralsight is having a deal right now</a> where if you follow them on Twitter and follow Billy Hollis, you get a free token to watch the <a href="http://www.pluralsight-training.net/microsoft/Courses/TableOfContents?courseName=cux-designprinciples">UX fundamentals course</a>.</p>
+
+<p>After having finished the course (a full 4 hours plus exercises), and while I normally don&rsquo;t like contests that require you to follow people, I would heavily encourage you to take advantage of this offer if you don&rsquo;t have a Pluralsight license.</p>
+
+<p>Whether you&rsquo;re a full-on developer, front-end developer, interaction designer, or a plumber, I think you should watch this course. It&rsquo;s chock full of awesome advice and design guidance, especially aimed at .NET developers and enterprise developers.</p>
+
+<p>I&rsquo;ve already learned some neat techniques I can start using immediately while I&rsquo;m developing the next version of Keep Track of My Games.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/45/sitecore-and-net-framework-45">Sitecore and .NET Framework 4.5</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-11T13:24:25-05:00" pubdate data-updated="true">May 11<span>th</span>, 2012</time>
+        
+           | <a href="/blog/posts/45/sitecore-and-net-framework-45#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/45/sitecore-and-net-framework-45">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>Update 1 (8/28/2012)</strong>: As of Sitecore CMS 6.5.0 rev. 120706 (6.5.0 Update-5), this issue should have been fixed. <a href="http://sdn.sitecore.net/Products/Sitecore%20V5/Sitecore%20CMS%206/ReleaseNotes/ChangeLog.aspx#650update5">See here</a> under &ldquo;Miscellaneous&rdquo; fixes.</p>
+
+<p>Just a quick note that as of this post, Sitecore (6.5.x) does not yet support .NET Framework 4.5. If you try to install Sitecore, you will be able to access the homepage and login page, but you won&rsquo;t be able to login. You&rsquo;ll see an error like this:</p>
+
+<p><img src="/blog/images/40.png" alt="Error" /></p>
+
+<blockquote><p>Object of type &lsquo;System.Int32&rsquo; cannot be converted to type &lsquo;System.Web.Security.Cryptography.Purpose&rsquo;</p></blockquote>
+
+<p>This is because in .NET 4.5 there are some new namespaces in <code>System.Web</code> that I guess return a different value than what Sitecore was expecting (or previous .NET 4 consumers).</p>
+
+<p>I googled this error to no avail. Sitecore knows about it but I am posting it in case anyone else (which there will be more soon) run into this.</p>
+
+<h2>Fix it</h2>
+
+<p>Unfortunately, this requires you to (in this order):</p>
+
+<ul>
+<li>Uninstall VS11 if you have it installed</li>
+<li>Uninstall .NET 4.5 (Multi-Targeting and the core one)</li>
+<li>Reinstall .NET 4 (yes, you need to)</li>
+</ul>
+
+
+<p>I&rsquo;m a bit sad since a few of my projects are MVC4 so in order to use SC locally I now can&rsquo;t work on those projects on this computer. If you have the ability to use a VM or equivalent, I&rsquo;d go that route to avoid having to muck up your main work environment.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/44/why-am-i-forced-to-store-my-users-contact-informat">Why Am I Forced to Store My User&#8217;s Contact Information?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-18T23:44:51-05:00" pubdate data-updated="true">Apr 18<span>th</span>, 2012</time>
+        
+           | <a href="/blog/posts/44/why-am-i-forced-to-store-my-users-contact-informat#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/44/why-am-i-forced-to-store-my-users-contact-informat">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>OpenID and OpenAuth are cool. What&rsquo;s not cool about either approach is that I have no way to say, &ldquo;Notify this user by whatever means available.&rdquo; Instead, I am forced to collect that information and figure out a way to store it that is safe from prying eyes.</p>
+
+<p>What I&rsquo;d like to see, and tell me if this exists, is a way to not only have people <em>authenticate</em> using their service of choice, but also to be <em>notified</em> via that service. In other words, OpenID already lets me ask for a user&rsquo;s email or phone but even that isn&rsquo;t really standard (see Google). That is not <em>exactly</em> what I want, though. I just want a way to notify the user. That might be email, it might be phone, it might be proprietary (Facebook notification). Just tell me what&rsquo;s available to me and I can decide based on that what to send (small message for phones, email for email).</p>
+
+<p>As I understand the landscape, the only way to get around storing information myself is to buy into an infrastructure like Facebook to handle it for me&hellip; except that not everyone is enthused about being forced to use Facebook to use my app and it&rsquo;s not in my best interest to alienate my user base.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/43/attributerouting-now-supports-web-api">AttributeRouting Now Supports Web API</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-17T16:08:22-05:00" pubdate data-updated="true">Apr 17<span>th</span>, 2012</time>
+        
+           | <a href="/blog/posts/43/attributerouting-now-supports-web-api#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/43/attributerouting-now-supports-web-api">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you&rsquo;re <em>not</em> using <a href="https://github.com/mccalltd/AttributeRouting">AttributeRouting</a> you&rsquo;re missing out. I&rsquo;m serious, I am not sure how any ASP.NET MVC application can live without this library. Like <a href="http://getcassette.net">Cassette</a>, it&rsquo;s become a standard in my .NET tool belt.</p>
+
+<h3>AttributeRouting at a Glance</h3>
+
+<p>If you&rsquo;re like me, you hate being stuck in this <code>{controller}/{action}</code> world that is the default MVC experience. I&rsquo;d rather have URLs like this:</p>
+
+<ul>
+<li>/library/1 (GET, POST)</li>
+<li>/library/1/games/1 (GET, POST, PUT, DELETE)</li>
+<li>/search/?q=keyword (GET)</li>
+<li>/register (GET, POST)</li>
+</ul>
+
+
+<p>In other words, more control over my URLs. Sure, you <em>could</em> be a caveman and use Global.asax for all of that, but I think you&rsquo;ll find it quickly growing out of hand unless you create methods to take care of different controllers.</p>
+
+<p>Instead, wouldn&rsquo;t this be easier and more discoverable?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[RoutePrefix(&quot;library&quot;)]</span>
+</span><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">LibraryController</span> <span class="p">:</span> <span class="n">Controller</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// GET: /</span>
+</span><span class='line'>    <span class="c1">// GET: /library</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">    [GET(&quot;&quot;, RouteName = &quot;default&quot;, IsAbsoluteUrl = true)]</span>
+</span><span class='line'><span class="na">    [GET(&quot;&quot;, RouteName = &quot;library&quot;)]</span>
+</span><span class='line'>    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Index</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// GET: /library/{userId}</span>
+</span><span class='line'><span class="na">    [GET(&quot;{userId}&quot;)]</span>
+</span><span class='line'>    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">ByUser</span><span class="p">(</span><span class="kt">int</span> <span class="n">userId</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// POST: /library</span>
+</span><span class='line'><span class="na">    [POST(&quot;&quot;)]</span>
+</span><span class='line'>    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Filter</span><span class="p">(</span><span class="n">Criteria</span> <span class="n">criteria</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That is exactly what AttributeRouting lets you do (and more!).</p>
+
+<h3>Web API</h3>
+
+<p>Now what if you want to do the same thing with ASP.NET Web API (or self-hosted Web API)? The short answer is <strong>now you can</strong>, though a week ago you couldn&rsquo;t. Having embarked on using Web API for my latest project, I decided that since I couldn&rsquo;t live without AR in MVC, I also couldn&rsquo;t live without it for Web API. So I forked the project, <a href="https://github.com/mccalltd/AttributeRouting/pull/57">did my thing</a>, and now it&rsquo;s in v2.0 which is <a href="http://nuget.org/packages?q=attributerouting">out now on Nuget</a>.</p>
+
+<p>I tried hard to keep the exact same convention and syntax:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[RoutePrefix(&quot;library&quot;)]</span>
+</span><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">LibraryController</span> <span class="p">:</span> <span class="n">ApiController</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">  [GET(&quot;&quot;)]</span>
+</span><span class='line'>  <span class="k">public</span> <span class="n">LibraryViewModel</span> <span class="nf">Get</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">  [HttpRoute(&quot;custom&quot;, HttpMethod.Get, HttpMethod.Post)]</span>
+</span><span class='line'>  <span class="k">public</span> <span class="n">HttpResponseMessage</span> <span class="nf">Custom</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Using Web API in a self-hosted environment? Not a problem, I made sure self-hosted works the same way, just grab the <a href="http://nuget.org/packages/AttributeRouting.WebApi.Hosted">appropriate Nuget package</a>.</p>
+
+<p>It was a fun project and I learned a lot about generics. The end result was that I didn&rsquo;t even need to use generics and that sometimes generics are a hindrance rather than a help (such as having classes that require 7-8 generic arguments). I was also able to <a href="/32/using-nuspec-inheritance-to-reduce-nuget-maintenan">use what I learned</a> from contributing to Cassette and bring it to AttributeRouting.</p>
+
+<p>It seems Tim is a happy camper and it always gives me a warm, fuzzy feeling whenever someone appreciates help:</p>
+
+<p><img src="/blog/images/39.png" alt="Appreciation Goes A Long Way" /></p>
+
+<p>If you haven&rsquo;t contributed to a project you love, you should give it a chance, you always learn something!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/42/windows-8-windows-phone-7-and-ktomg">Windows 8, Windows Phone 7, and KTOMG</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-14T17:40:51-05:00" pubdate data-updated="true">Apr 14<span>th</span>, 2012</time>
+        
+           | <a href="/blog/posts/42/windows-8-windows-phone-7-and-ktomg#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/42/windows-8-windows-phone-7-and-ktomg">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>You may have remembered me saying in the last few posts I&rsquo;ve been working on v2 of <a href="http://keeptrackofmygames.com">KTOMG</a>. It&rsquo;s going well and progress is being made. I also recently acquired a Windows Phone for agreeing to release an app before June. Funnily enough, I learned from Jeff Brand today while at <a href="http://twincitiescodecamp.com">Twin Cities Code Camp</a> that there will be some accelerator labs in May that will provide a way to quickly get up and running on Windows 8. Needless to say, I decided that it would be good to target both platforms, which means I have even more work to do in the next couple months (like I need more?).</p>
+
+<p>This is pretty exciting. I have big plans for KTOMG and I really hope it pans out. The plan is to release v2 on 3 platforms and to be on the Windows 8 app store on day one. It will be technically interesting to see how separation of the codebase will be done on all three of these different platforms. For WP7, I&rsquo;m sure I&rsquo;ll need to write a XAML front-end but with Windows 8, I can probably reuse most of my existing web code. It&rsquo;ll also be interesting to take advantage of each platform&rsquo;s unique abilities (push notifications, camera, etc.).</p>
+
+<p>Bring it on!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/41/jqueryformatxml-plugin">jquery.formatXml Plugin</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-09T19:42:53-05:00" pubdate data-updated="true">Apr 9<span>th</span>, 2012</time>
+        
+           | <a href="/blog/posts/41/jqueryformatxml-plugin#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/41/jqueryformatxml-plugin">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Awhile ago I wrote a <a href="https://github.com/kamranayub/jQuery-XML-Helper">shim for jQuery to add pseudo-XML compatibility</a> that makes it easier to manipulate and read XML cross-browser on the client. I did it because I was working on a legacy application that decided it was a good idea to store the model in XML in a hidden input. No, I can&rsquo;t switch to Knockout, as much as I&rsquo;d want to.</p>
+
+<p>However, I really liked the trick of showing a JSON output of a Knockout view model on a page while debugging on another project since it made it easier to see what was happening behind the scenes.</p>
+
+<p>I came back to do some work on this legacy app and missed that in-your-face feedback. So I wrote an extension to my own plugin that traverses an XML jquery object and creates a tree to output to the page:</p>
+
+<script src="https://gist.github.com/2346014.js?file=jquery.formatXml.js"></script>
+
+
+<p>Here&rsquo;s a jsFiddle of the output:</p>
+
+<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/kamranayub/XJGLe/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/40/ux-applies-to-api-design-too">UX Applies to API Design Too</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-03T15:05:22-05:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2012</time>
+        
+           | <a href="/blog/posts/40/ux-applies-to-api-design-too#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/40/ux-applies-to-api-design-too">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;m working on enhancing a component we use for cryptography at work today. Previously it had a lot of useful methods, but no documentation. I was able to add XML documentation and now it&rsquo;s fully Intellisense-friendly:</p>
+
+<p><img src="/blog/images/38.png" alt="Intellisense" /></p>
+
+<p>That&rsquo;s one step for making your API friendly, even though it&rsquo;s a little more work.</p>
+
+<p>What I want to point out is that I also made exceptions friendly. Cryptography is not an easy thing to understand and even I don&rsquo;t understand all of it. We have a method that lets you generate a new key for a given algorithm (the API defaults to <code>RijndaelManaged</code> as best practice), but it also lets you specify a key size.</p>
+
+<p>I did a couple things:</p>
+
+<ol>
+<li><p>The argument accepts key size in bits, as that is what the .NET API uses and is what you see online (&ldquo;128 bit&rdquo;).</p></li>
+<li><p>The API will tell you if the key size is invalid. Not only that, it will list out what the acceptable key sizes are.</p></li>
+</ol>
+
+
+<p>Check it out:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Test method SymmetricEncryption_Should_Throw_Exception_For_Invalid_Key_Sizes threw exception:
+</span><span class='line'>
+</span><span class='line'>System.ArgumentException: 56 bits is not a valid key size for RijndaelManaged. Valid key sizes: 128 bits, 192 bits, 256 bits
+</span><span class='line'>
+</span><span class='line'>Parameter name: keySize</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And it didn&rsquo;t even take much code:</p>
+
+<script src="https://gist.github.com/2292726.js?file=SymmetricEncryption.cs"></script>
+
+
+<p>Never forget:</p>
+
+<blockquote><p>UX is just as important for API design</p></blockquote>
+
+<p>Put yourself in your consumer&rsquo;s shoes and design it with them in mind. They&rsquo;ll thank you for it, trust me.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/39/a-few-hours-with-webapi-mvc-the-good-and-the-bad">A Few Hours With WebAPI + MVC, the Good and the Bad</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-03T13:42:13-05:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2012</time>
+        
+           | <a href="/blog/posts/39/a-few-hours-with-webapi-mvc-the-good-and-the-bad#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/39/a-few-hours-with-webapi-mvc-the-good-and-the-bad">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;m working on the next version of <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> and it&rsquo;s an opportunity to upgrade to and play with MVC 4, especially the new <a href="http://asp.net/web-api">WebAPI</a>.</p>
+
+<h2>Getting WebAPI</h2>
+
+<p>This was not super apparent from the tutorials on asp.net but to get the WebAPI, you can simply obtain it from Nuget. Most of the tutorials start with File > New Project, but I wanted to incorporate it into a newly upgraded MVC 4 project. <em>Fun fact:</em> MVC4 is also available on Nuget, score!</p>
+
+<p><img src="/blog/images/37.png" alt="Nuget" /></p>
+
+<p>Which one?! Since there&rsquo;s no description or information regarding the &ldquo;Data&rdquo; package (assuming it will make it easy to integrate with EF), I went with the <strong>ASP.NET Web API (Beta)</strong> package.</p>
+
+<h2>WebAPI is Not MVC</h2>
+
+<p>I dislike things that cause friction. Unfortunately, there&rsquo;s some friction with using WebAPI for the first time. I&rsquo;m not sure if all of it can be removed, but hopefully some of it can be mitigated. If you haven&rsquo;t used WebAPI before, it&rsquo;s important to know <strong>WebAPI is not MVC</strong>.</p>
+
+<p>Here&rsquo;s what I struggled with:</p>
+
+<ol>
+<li><p>Configuration is separate. You have to use the not-very-intuitively-named <code>GlobalConfiguration.Configuration</code> singleton to configure WebAPI. Seriously? Why not <code>HttpConfiguration</code> or even better, <code>ApiConfiguration</code>? To match typical MVC conventions (GlobalFilters.Filters, RouteTable.Routes), I&rsquo;d propose <code>HttpApi.Api</code> or something along those lines.</p></li>
+<li><p>Routing is separate. I use <a href="https://github.com/mccalltd/AttributeRouting">AttributeRouting</a> and while I haven&rsquo;t explicitly tried it with WebAPI, I don&rsquo;t think it will work, but maybe it will. You register routes using the <code>MapHttpRoute</code> extension.</p></li>
+<li><p>It doesn&rsquo;t plug into MVC&rsquo;s <code>DependencyResolver</code>. This was annoying. I use Ninject.MVC3 for my DI container, but that doesn&rsquo;t automatically make it available to WebAPI. Nay, <a href="http://haacked.com/archive/2012/03/11/itrsquos-the-little-things-about-asp-net-mvc-4.aspx">you have to jump through some hoops</a> to get it to work. Once you do, it works just as you&rsquo;d expect. <strong>Update:</strong> At a presentation today at Twin Cities Code Camp, Matt Milner presented on Web API and I saw he used a simpler method to plug Ninject into Web API:</p>
+
+<pre><code> configuration.SetResolver(t =&gt; kernel.TryGet(t), t =&gt; kernel.GetAll(t));
+</code></pre></li>
+<li><p>Attributes are different. Do you have a custom <code>[Authorize]</code> attribute in MVC? You&rsquo;ll have to port it to WebAPI. This isn&rsquo;t a bad thing, it&rsquo;s just not apparent when you see this:</p>
+
+<pre><code> [Authorize]
+ Product GetProductById(int id) { }
+</code></pre>
+
+<p> To follow the convention, I prefixed my custom attributes with <code>Http</code> to make it more apparent they&rsquo;re different.</p></li>
+<li><p>JSON.NET <em>will be</em> the default JSON serializer, but it&rsquo;s not <em>yet</em>. This means you have to register a custom formatter. I used the one <a href="http://www.west-wind.com/weblog/posts/2012/Mar/09/Using-an-alternate-JSON-Serializer-in-ASPNET-Web-API">on Rick Strahl&rsquo;s blog</a> (with some modifications) but you could try the several JsonNet Nuget packages for WebAPI (<a href="http://nuget.org/packages/WebAPIContrib.Formatters.JsonNet/0.6.0">WebAPIContrib.Formatters.JsonNet</a> or <a href="http://nuget.org/packages/netfx-WebApi.JsonNetFormatter/1.0.0.11">NetFx</a>).</p></li>
+</ol>
+
+
+<p>And that&rsquo;s about it. Once I overcame those &ldquo;frictions&rdquo; everything started to go smoothly. I haven&rsquo;t played with it a ton, but I&rsquo;m sure I&rsquo;ll write about it as I use it more.</p>
+
+<h2>Removing the friction</h2>
+
+<p>While I understand WebAPI is separate (but equal?) from MVC to allow for self-hosting or MVC-independent use cases, let&rsquo;s be honest: who are going to be the majority consumers of the API? MVC peeps. If there isn&rsquo;t already, there needs to be a &ldquo;bridge&rdquo; that makes it easier to use for MVC consumers.</p>
+
+<p>The bridge should:</p>
+
+<ol>
+<li><strike>Plug into routing (so AttributeRouting sees it?)</strike> <a href="https://github.com/mccalltd/AttributeRouting/pull/57">I&rsquo;ve added Web API support</a> to AttributeRouting directly. It will be in v2.</li>
+<li>Plug into whatever dependency resolver you have set</li>
+<li>Do something else I haven&rsquo;t run into yet</li>
+</ol>
+
+
+<p>A Nuget package that added a WebActivator start up wouldn&rsquo;t be too hard. Maybe it doesn&rsquo;t even need to &ldquo;plug&rdquo; into the pipeline, it can simply make it easier to see and configure WebAPI. The auto-DI integration alone would be a big win.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/38/can-i-use-signalr-to-design-a-typical-single-page">Can I Use SignalR to Design a &#8220;Typical&#8221; Single Page Application?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-29T16:25:00-05:00" pubdate data-updated="true">Mar 29<span>th</span>, 2012</time>
+        
+           | <a href="/blog/posts/38/can-i-use-signalr-to-design-a-typical-single-page#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io/blog/posts/38/can-i-use-signalr-to-design-a-typical-single-page">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This post is a stream of conciousness kind of post. I know I may be totally off base on some things but I need somewhere to write this so I can review and think about it, maybe pose it to people and see where my thinking is flawed or if there&rsquo;s an obvious thing I&rsquo;m not seeing.</p>
+
+<h2>The Context</h2>
+
+<p>You&rsquo;re designing some sort of client-based application that communicates via AJAX (it can be Backbone, it can be Knockout, whatever). You&rsquo;re using ASP.NET MVC as the back end, maybe even the new fancy Web API.</p>
+
+<h2>The Problem</h2>
+
+<p>Let&rsquo;s say your API is supposed to be only used by your application; you have no intention of making it available for all to use. The problem is that no matter what measures you take, it&rsquo;s all HTTP and it&rsquo;s all public. For many of us, that isn&rsquo;t what we really want. If I make a URL <code>/api/users/{id}</code>, I really don&rsquo;t want other people requesting that URL.</p>
+
+<p>So far in my Googling and experience, there are a few things you can do to <strong>reduce</strong> malicious abuse of your API:</p>
+
+<ol>
+<li>Issue session-based or cookie-based tokens with timeouts</li>
+<li>Include Anti-CSRF tokens in your AJAX headers</li>
+<li>Make sure people are authenticated before issuing authorizable requests</li>
+<li>Do checks and throttle requests (no more than x requests from this user per second)</li>
+</ol>
+
+
+<p>I think these are problems we generally face even in a &ldquo;non-rich&rdquo; application (simple server-side design). I could easily issue 100 Fiddler requests per second against a page on your site and maybe bring it down. Including an AntiXssToken might help with that. Maybe we don&rsquo;t care about that. However, it seems the problem is exacerbated, or at least more apparent, when we&rsquo;re talking about AJAX requests because we&rsquo;re exposing our data in an easy-to-consume format (JSON/XML/etc). If not properly designed and secured, Joe Developer can write a client that consumes your API. For public APIs, this is great! For APIs you just want to use for your application&hellip; not so great.</p>
+
+<p>One of the things I&rsquo;m not sure about is how site agnostic these defensive measures are and why it&rsquo;s so hard to find information on how to implement them. Can ASP.NET Web API bake these into the framework? Why or why not? Is this not so common as to warrant more real-world articles/tutorials on how to do it? Am I not searching correctly? Do most people not care?</p>
+
+<blockquote><p>All I want is a not-so-public API my browser-based app can consume</p></blockquote>
+
+<h2>What about SignalR?</h2>
+
+<p>This is just me thinking out loud. Could a library like SignalR help with this? By using a single connection, no longer will I have to create easily consumable URLs like <code>/api/x</code>. Instead, I could create hubs with my API methods I want, and call them in my client code. Authorizing the requests would work as they usually have in the past.</p>
+
+<p>On the surface it sounds like a better idea, but am I missing something? Does it help at all? I could see it providing other benefits, like being able to easily implement multi-user interaction if I wanted in the future.</p>
+
+<p>Would the problem just shift? Now as Joe Developer could I simply reference the generated SignalR scripts and write my own client app? Is it harder or easier to abuse SignalR vs. HTTP URLs?</p>
+
+<p>I don&rsquo;t know yet but I&rsquo;d like to research the topic more; learn more about REST security using tokens and session-based methods.</p>
+
+<h2>Is this even an issue?</h2>
+
+<p>Let&rsquo;s say I implemented and took measures to reduce the likelihood of abuse in my exposed API. Is this even an issue anymore? From what I gather, general consensus is that you can&rsquo;t eliminate the ability for an undesirable user to abuse your API, you can only try to mitigate it as best you can. I still wish it was &ldquo;that easy&rdquo; to secure it. Am I missing something obvious here?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/5/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/3/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  	<h1>About Me</h1>
+
+  	<p><img src="http://gravatar.com/avatar/8303c4eb9f9099df39adbc3d8c634746?s=120" alt="My Headshot" title="My ugly mug" /></p>
+
+  	<p>Hi, my name is Kamran. I am a web developer and designer, residing in Minnesota. I&#8217;ve been programming since 2001 and I am familiar with many different languages, both web-based and server-based. I love to tinker around and think of new ways to solve problems.</p>
+
+	<p>If you wanna talk, tweet <strong><a href="http://twitter.com/kamranayub" target="_blank">@kamranayub</a></strong> or send me an email at my <strong>full name</strong> at <strong>gmail.com</strong></p>
+</section>
+<section>
+  	<h1>Apps</h1>
+
+  	<ul>
+  		<li><a href="http://centwiseapp.com/">Centwise</a></li>
+  		<li><a href="http://keeptrackofmygames.com/">Keep Track of My Games</a></li>
+  	</ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/78/tccc15-see-you-again-in-april">TCCC15: See You Again in April!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/77/tccc15-leveling-up-your-windows-phone-app">TCCC15: Leveling Up Your Windows Phone App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/76/minnesota-developer-conference-2013-connected-apps">Minnesota Developer Conference 2013: Connected Apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/75/test-retina-images-without-a-retina-screen">Test Retina Images Without a Retina Screen</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/kamranayub">@kamranayub</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'kamranayub',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/104789622697290911192?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Kamran -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

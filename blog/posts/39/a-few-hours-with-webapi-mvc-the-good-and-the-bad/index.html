@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>A Few Hours With WebAPI + MVC, the Good and the Bad - Kamranicus</title>
+  <meta name="author" content="Kamran">
+
+  
+  <meta name="description" content="I&rsquo;m working on the next version of Keep Track of My Games and it&rsquo;s an opportunity to upgrade to and play with MVC 4, especially the new &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kamranayub.github.io/blog/posts/39/a-few-hours-with-webapi-mvc-the-good-and-the-bad">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Kamranicus</a></h1>
+  
+    <h2>Kamran Ayub is a developer and designer in Minneapolis, Minnesota. He specializes in .NET development with a dash of client-side and is passionate about UX.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/Kamranicus" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=Kamranicus" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:kamranayub.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">A Few Hours With WebAPI + MVC, the Good and the Bad</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-03T13:42:13-05:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2012</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&rsquo;m working on the next version of <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> and it&rsquo;s an opportunity to upgrade to and play with MVC 4, especially the new <a href="http://asp.net/web-api">WebAPI</a>.</p>
+
+<h2>Getting WebAPI</h2>
+
+<p>This was not super apparent from the tutorials on asp.net but to get the WebAPI, you can simply obtain it from Nuget. Most of the tutorials start with File > New Project, but I wanted to incorporate it into a newly upgraded MVC 4 project. <em>Fun fact:</em> MVC4 is also available on Nuget, score!</p>
+
+<p><img src="/blog/images/37.png" alt="Nuget" /></p>
+
+<p>Which one?! Since there&rsquo;s no description or information regarding the &ldquo;Data&rdquo; package (assuming it will make it easy to integrate with EF), I went with the <strong>ASP.NET Web API (Beta)</strong> package.</p>
+
+<h2>WebAPI is Not MVC</h2>
+
+<p>I dislike things that cause friction. Unfortunately, there&rsquo;s some friction with using WebAPI for the first time. I&rsquo;m not sure if all of it can be removed, but hopefully some of it can be mitigated. If you haven&rsquo;t used WebAPI before, it&rsquo;s important to know <strong>WebAPI is not MVC</strong>.</p>
+
+<p>Here&rsquo;s what I struggled with:</p>
+
+<ol>
+<li><p>Configuration is separate. You have to use the not-very-intuitively-named <code>GlobalConfiguration.Configuration</code> singleton to configure WebAPI. Seriously? Why not <code>HttpConfiguration</code> or even better, <code>ApiConfiguration</code>? To match typical MVC conventions (GlobalFilters.Filters, RouteTable.Routes), I&rsquo;d propose <code>HttpApi.Api</code> or something along those lines.</p></li>
+<li><p>Routing is separate. I use <a href="https://github.com/mccalltd/AttributeRouting">AttributeRouting</a> and while I haven&rsquo;t explicitly tried it with WebAPI, I don&rsquo;t think it will work, but maybe it will. You register routes using the <code>MapHttpRoute</code> extension.</p></li>
+<li><p>It doesn&rsquo;t plug into MVC&rsquo;s <code>DependencyResolver</code>. This was annoying. I use Ninject.MVC3 for my DI container, but that doesn&rsquo;t automatically make it available to WebAPI. Nay, <a href="http://haacked.com/archive/2012/03/11/itrsquos-the-little-things-about-asp-net-mvc-4.aspx">you have to jump through some hoops</a> to get it to work. Once you do, it works just as you&rsquo;d expect. <strong>Update:</strong> At a presentation today at Twin Cities Code Camp, Matt Milner presented on Web API and I saw he used a simpler method to plug Ninject into Web API:</p>
+
+<pre><code> configuration.SetResolver(t =&gt; kernel.TryGet(t), t =&gt; kernel.GetAll(t));
+</code></pre></li>
+<li><p>Attributes are different. Do you have a custom <code>[Authorize]</code> attribute in MVC? You&rsquo;ll have to port it to WebAPI. This isn&rsquo;t a bad thing, it&rsquo;s just not apparent when you see this:</p>
+
+<pre><code> [Authorize]
+ Product GetProductById(int id) { }
+</code></pre>
+
+<p> To follow the convention, I prefixed my custom attributes with <code>Http</code> to make it more apparent they&rsquo;re different.</p></li>
+<li><p>JSON.NET <em>will be</em> the default JSON serializer, but it&rsquo;s not <em>yet</em>. This means you have to register a custom formatter. I used the one <a href="http://www.west-wind.com/weblog/posts/2012/Mar/09/Using-an-alternate-JSON-Serializer-in-ASPNET-Web-API">on Rick Strahl&rsquo;s blog</a> (with some modifications) but you could try the several JsonNet Nuget packages for WebAPI (<a href="http://nuget.org/packages/WebAPIContrib.Formatters.JsonNet/0.6.0">WebAPIContrib.Formatters.JsonNet</a> or <a href="http://nuget.org/packages/netfx-WebApi.JsonNetFormatter/1.0.0.11">NetFx</a>).</p></li>
+</ol>
+
+
+<p>And that&rsquo;s about it. Once I overcame those &ldquo;frictions&rdquo; everything started to go smoothly. I haven&rsquo;t played with it a ton, but I&rsquo;m sure I&rsquo;ll write about it as I use it more.</p>
+
+<h2>Removing the friction</h2>
+
+<p>While I understand WebAPI is separate (but equal?) from MVC to allow for self-hosting or MVC-independent use cases, let&rsquo;s be honest: who are going to be the majority consumers of the API? MVC peeps. If there isn&rsquo;t already, there needs to be a &ldquo;bridge&rdquo; that makes it easier to use for MVC consumers.</p>
+
+<p>The bridge should:</p>
+
+<ol>
+<li><strike>Plug into routing (so AttributeRouting sees it?)</strike> <a href="https://github.com/mccalltd/AttributeRouting/pull/57">I&rsquo;ve added Web API support</a> to AttributeRouting directly. It will be in v2.</li>
+<li>Plug into whatever dependency resolver you have set</li>
+<li>Do something else I haven&rsquo;t run into yet</li>
+</ol>
+
+
+<p>A Nuget package that added a WebActivator start up wouldn&rsquo;t be too hard. Maybe it doesn&rsquo;t even need to &ldquo;plug&rdquo; into the pipeline, it can simply make it easier to see and configure WebAPI. The auto-DI integration alone would be a big win.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Kamran</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-03T13:42:13-05:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://kamranayub.github.io/blog/posts/39/a-few-hours-with-webapi-mvc-the-good-and-the-bad" data-via="kamranayub" data-counturl="http://kamranayub.github.io/blog/posts/39/a-few-hours-with-webapi-mvc-the-good-and-the-bad" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/posts/38/can-i-use-signalr-to-design-a-typical-single-page" title="Previous Post: Can I Use SignalR to Design a "Typical" Single Page Application?">&laquo; Can I Use SignalR to Design a "Typical" Single Page Application?</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/posts/40/ux-applies-to-api-design-too" title="Next Post: UX applies to API design too">UX applies to API design too &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  	<h1>About Me</h1>
+
+  	<p><img src="http://gravatar.com/avatar/8303c4eb9f9099df39adbc3d8c634746?s=120" alt="My Headshot" title="My ugly mug" /></p>
+
+  	<p>Hi, my name is Kamran. I am a web developer and designer, residing in Minnesota. I've been programming since 2001 and I am familiar with many different languages, both web-based and server-based. I love to tinker around and think of new ways to solve problems.</p>
+
+	<p>If you wanna talk, tweet <strong><a href="http://twitter.com/kamranayub" target="_blank">@kamranayub</a></strong> or send me an email at my <strong>full name</strong> at <strong>gmail.com</strong></p>
+</section>
+<section>
+  	<h1>Apps</h1>
+
+  	<ul>
+  		<li><a href="http://centwiseapp.com/">Centwise</a></li>
+  		<li><a href="http://keeptrackofmygames.com/">Keep Track of My Games</a></li>
+  	</ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/78/tccc15-see-you-again-in-april">TCCC15: See You Again in April!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/77/tccc15-leveling-up-your-windows-phone-app">TCCC15: Leveling Up Your Windows Phone App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/76/minnesota-developer-conference-2013-connected-apps">Minnesota Developer Conference 2013: Connected Apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/75/test-retina-images-without-a-retina-screen">Test Retina Images Without a Retina Screen</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/kamranayub">@kamranayub</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'kamranayub',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/104789622697290911192?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Kamran -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://kamranayub.github.io/blog/posts/39/a-few-hours-with-webapi-mvc-the-good-and-the-bad';
+        var disqus_url = 'http://kamranayub.github.io/blog/posts/39/a-few-hours-with-webapi-mvc-the-good-and-the-bad';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

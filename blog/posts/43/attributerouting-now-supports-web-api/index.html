@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>AttributeRouting Now Supports Web API - Kamranicus</title>
+  <meta name="author" content="Kamran">
+
+  
+  <meta name="description" content="If you&rsquo;re not using AttributeRouting you&rsquo;re missing out. I&rsquo;m serious, I am not sure how any ASP.NET MVC application can live &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kamranayub.github.io/blog/posts/43/attributerouting-now-supports-web-api">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Kamranicus</a></h1>
+  
+    <h2>Kamran Ayub is a developer and designer in Minneapolis, Minnesota. He specializes in .NET development with a dash of client-side and is passionate about UX.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/Kamranicus" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=Kamranicus" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:kamranayub.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">AttributeRouting Now Supports Web API</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-17T16:08:22-05:00" pubdate data-updated="true">Apr 17<span>th</span>, 2012</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>If you&rsquo;re <em>not</em> using <a href="https://github.com/mccalltd/AttributeRouting">AttributeRouting</a> you&rsquo;re missing out. I&rsquo;m serious, I am not sure how any ASP.NET MVC application can live without this library. Like <a href="http://getcassette.net">Cassette</a>, it&rsquo;s become a standard in my .NET tool belt.</p>
+
+<h3>AttributeRouting at a Glance</h3>
+
+<p>If you&rsquo;re like me, you hate being stuck in this <code>{controller}/{action}</code> world that is the default MVC experience. I&rsquo;d rather have URLs like this:</p>
+
+<ul>
+<li>/library/1 (GET, POST)</li>
+<li>/library/1/games/1 (GET, POST, PUT, DELETE)</li>
+<li>/search/?q=keyword (GET)</li>
+<li>/register (GET, POST)</li>
+</ul>
+
+
+<p>In other words, more control over my URLs. Sure, you <em>could</em> be a caveman and use Global.asax for all of that, but I think you&rsquo;ll find it quickly growing out of hand unless you create methods to take care of different controllers.</p>
+
+<p>Instead, wouldn&rsquo;t this be easier and more discoverable?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[RoutePrefix(&quot;library&quot;)]</span>
+</span><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">LibraryController</span> <span class="p">:</span> <span class="n">Controller</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// GET: /</span>
+</span><span class='line'>    <span class="c1">// GET: /library</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">    [GET(&quot;&quot;, RouteName = &quot;default&quot;, IsAbsoluteUrl = true)]</span>
+</span><span class='line'><span class="na">    [GET(&quot;&quot;, RouteName = &quot;library&quot;)]</span>
+</span><span class='line'>    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Index</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// GET: /library/{userId}</span>
+</span><span class='line'><span class="na">    [GET(&quot;{userId}&quot;)]</span>
+</span><span class='line'>    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">ByUser</span><span class="p">(</span><span class="kt">int</span> <span class="n">userId</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// POST: /library</span>
+</span><span class='line'><span class="na">    [POST(&quot;&quot;)]</span>
+</span><span class='line'>    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Filter</span><span class="p">(</span><span class="n">Criteria</span> <span class="n">criteria</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That is exactly what AttributeRouting lets you do (and more!).</p>
+
+<h3>Web API</h3>
+
+<p>Now what if you want to do the same thing with ASP.NET Web API (or self-hosted Web API)? The short answer is <strong>now you can</strong>, though a week ago you couldn&rsquo;t. Having embarked on using Web API for my latest project, I decided that since I couldn&rsquo;t live without AR in MVC, I also couldn&rsquo;t live without it for Web API. So I forked the project, <a href="https://github.com/mccalltd/AttributeRouting/pull/57">did my thing</a>, and now it&rsquo;s in v2.0 which is <a href="http://nuget.org/packages?q=attributerouting">out now on Nuget</a>.</p>
+
+<p>I tried hard to keep the exact same convention and syntax:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[RoutePrefix(&quot;library&quot;)]</span>
+</span><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">LibraryController</span> <span class="p">:</span> <span class="n">ApiController</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">  [GET(&quot;&quot;)]</span>
+</span><span class='line'>  <span class="k">public</span> <span class="n">LibraryViewModel</span> <span class="nf">Get</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">  [HttpRoute(&quot;custom&quot;, HttpMethod.Get, HttpMethod.Post)]</span>
+</span><span class='line'>  <span class="k">public</span> <span class="n">HttpResponseMessage</span> <span class="nf">Custom</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Using Web API in a self-hosted environment? Not a problem, I made sure self-hosted works the same way, just grab the <a href="http://nuget.org/packages/AttributeRouting.WebApi.Hosted">appropriate Nuget package</a>.</p>
+
+<p>It was a fun project and I learned a lot about generics. The end result was that I didn&rsquo;t even need to use generics and that sometimes generics are a hindrance rather than a help (such as having classes that require 7-8 generic arguments). I was also able to <a href="/32/using-nuspec-inheritance-to-reduce-nuget-maintenan">use what I learned</a> from contributing to Cassette and bring it to AttributeRouting.</p>
+
+<p>It seems Tim is a happy camper and it always gives me a warm, fuzzy feeling whenever someone appreciates help:</p>
+
+<p><img src="/blog/images/39.png" alt="Appreciation Goes A Long Way" /></p>
+
+<p>If you haven&rsquo;t contributed to a project you love, you should give it a chance, you always learn something!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Kamran</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-17T16:08:22-05:00" pubdate data-updated="true">Apr 17<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://kamranayub.github.io/blog/posts/43/attributerouting-now-supports-web-api" data-via="kamranayub" data-counturl="http://kamranayub.github.io/blog/posts/43/attributerouting-now-supports-web-api" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/posts/42/windows-8-windows-phone-7-and-ktomg" title="Previous Post: Windows 8, Windows Phone 7, and KTOMG">&laquo; Windows 8, Windows Phone 7, and KTOMG</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/posts/44/why-am-i-forced-to-store-my-users-contact-informat" title="Next Post: Why am I forced to store my user's contact information?">Why am I forced to store my user's contact information? &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  	<h1>About Me</h1>
+
+  	<p><img src="http://gravatar.com/avatar/8303c4eb9f9099df39adbc3d8c634746?s=120" alt="My Headshot" title="My ugly mug" /></p>
+
+  	<p>Hi, my name is Kamran. I am a web developer and designer, residing in Minnesota. I've been programming since 2001 and I am familiar with many different languages, both web-based and server-based. I love to tinker around and think of new ways to solve problems.</p>
+
+	<p>If you wanna talk, tweet <strong><a href="http://twitter.com/kamranayub" target="_blank">@kamranayub</a></strong> or send me an email at my <strong>full name</strong> at <strong>gmail.com</strong></p>
+</section>
+<section>
+  	<h1>Apps</h1>
+
+  	<ul>
+  		<li><a href="http://centwiseapp.com/">Centwise</a></li>
+  		<li><a href="http://keeptrackofmygames.com/">Keep Track of My Games</a></li>
+  	</ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/78/tccc15-see-you-again-in-april">TCCC15: See You Again in April!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/77/tccc15-leveling-up-your-windows-phone-app">TCCC15: Leveling Up Your Windows Phone App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/76/minnesota-developer-conference-2013-connected-apps">Minnesota Developer Conference 2013: Connected Apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/75/test-retina-images-without-a-retina-screen">Test Retina Images Without a Retina Screen</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/kamranayub">@kamranayub</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'kamranayub',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/104789622697290911192?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Kamran -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://kamranayub.github.io/blog/posts/43/attributerouting-now-supports-web-api';
+        var disqus_url = 'http://kamranayub.github.io/blog/posts/43/attributerouting-now-supports-web-api';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

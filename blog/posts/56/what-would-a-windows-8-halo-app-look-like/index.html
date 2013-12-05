@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>What Would a Windows 8 Halo App Look Like? - Kamranicus</title>
+  <meta name="author" content="Kamran">
+
+  
+  <meta name="description" content="Update (10/24): There&rsquo;s a good indication there&rsquo;ll be an API. If you log into DewXP with your Xbox Live account, it will display your &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kamranayub.github.io/blog/posts/56/what-would-a-windows-8-halo-app-look-like">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Kamranicus</a></h1>
+  
+    <h2>Kamran Ayub is a developer and designer in Minneapolis, Minnesota. He specializes in .NET development with a dash of client-side and is passionate about UX.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/Kamranicus" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=Kamranicus" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:kamranayub.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">What Would a Windows 8 Halo App Look Like?</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-02T22:49:51-05:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2012</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://kamranayub.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><strong>Update (10/24)</strong>: There&rsquo;s a good indication there&rsquo;ll be an API. If you log into <a href="http://dewxp.com">DewXP</a> with your Xbox Live account, it will display your spartan player model using a URL I haven&rsquo;t seen before:</p>
+
+<blockquote><p><a href="https://stats.svc.halowaypoint.com/players/subkamran/h4/spartans/fullbody">https://stats.svc.halowaypoint.com/players/subkamran/h4/spartans/fullbody</a></p></blockquote>
+
+<p>Nothing is at the root of that URL, but I assume the <strong>h4</strong> is for Halo 4-related stats. It also looked like it used OAuth to allow the DewXP &ldquo;app&rdquo; access to my profile. This is a good sign!</p>
+
+<hr />
+
+<p>I&rsquo;m a Halo fan. I enjoy playing with my friends, it&rsquo;s fun to be competitive and it&rsquo;s fun to compete against each other. One of the things me and my friends love is the ability to view our stats and history. It&rsquo;s all about bragging rights. Bungie used to have a <em>fan-fucking-tastic</em> site to view stats. Since the handover to 343, seeing stats has just not been the same nor as in-depth, though the core features have remained.</p>
+
+<p>There are mixed reactions to this in the community, I would say leaning more on the negative side, even among my friends. However, after seeing all the footage of Halo 4, I have high hopes for the game as long as it continues to be competitive and to provide a source of stats and feedback.</p>
+
+<p>So what does Halo have to do with Windows 8? Well, before Bungie handed the franchise off, they worked on releasing Halo Waypoint to several devices including <a href="http://itunes.apple.com/us/app/halo-waypoint/id468457600?mt=8">iOS</a>, <a href="https://play.google.com/store/apps/details?id=com.halo.companion&amp;hl=en">Android</a>, and <a href="http://www.shacknews.com/article/71466/halo-waypoint-premium-mobile-app-add-on-features-real-time">Windows Phone</a>. These apps are great for people like us who like to see our stats on the go or when we&rsquo;re not at the computer (like in front of the Xbox). I wanted to build a similar app for Windows 8 that just showed stats of my friends or other players. Simple, right? Wrong.</p>
+
+<p>Bungie had originally released a <a href="http://www.bungie.net/fanclub/statsapi/Group/Resources/Article.aspx?cid=545064">poorly documented</a> (it&rsquo;s true) public API for their Halo stats but <em>at least</em> it was an API. Fan sites were able to run with this, creating sites like <a href="http://halotracker.com">HaloTracker</a>. The problem is, since 343i came into the picture, there has been no effort that we can see to provide an API (the old Bungie one is deprecated). This leaves site developers to resort to less-than-savory tactics to get at the stats, including screen scraping.</p>
+
+<p>The only glimmering light on the horizon is that there are <a href="https://forums.halo.xbox.com/yaf_postst97564_Probably-confirmation-of-a-Halo-4-API.aspx">rumblings</a> of a Halo 4 API, which would be a god-send for the community. But it&rsquo;s just that, a hope and no confirmation.</p>
+
+<h2>There must be an API somewhere, though</h2>
+
+<p>There is. If you can get at the traffic on your mobile device that has Halo Waypoint, and you can get as far as seeing where that traffic goes, you&rsquo;ll discover there <em>is indeed a JSON web service</em>. Unfortunately, it requires authentication to the xbox.com domain, because the authentication cookie is sent on every request. In other words, it&rsquo;s not public and 343 probably doesn&rsquo;t want us using it.</p>
+
+<p>I&rsquo;m not sure if WinRT&rsquo;s <a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh750287.aspx">Web Authentication Broker</a> could help in this case, but as far as I can tell, Xbox Live does not have an authentication endpoint. There must be <em>something</em>, as the Windows 8 Games app can connect to Xbox Live but I&rsquo;m assuming this isn&rsquo;t available to just anyone and that there&rsquo;s black magic involved. Even if you could somehow manage to authenticate and pass those headers into the WinJS XHR calls, there&rsquo;s still the tiny problem that we probably aren&rsquo;t <em>supposed</em> to be able to use this Waypoint API.</p>
+
+<h2>My plea to 343</h2>
+
+<p>343: you need to have an API. If the rumors are true that Halo 4 will be getting an API, that&rsquo;s <em>excellent</em> news because I strongly feel that if you want to build a community around the game, you really should let us go wild with the data.</p>
+
+<p>Even if that pipe dream does come to pass, there&rsquo;s still the issue of previous Halo games. We know you have the stats. We know you have the API. Just figure out a way to make it public! Release the Waypoint API so we can start somewhere; secure it with API keys or OAuth or whatever else you need to do.</p>
+
+<p>Because if you don&rsquo;t? People can&rsquo;t have an app like this unless <em>you</em> release it, and let&rsquo;s be honest: wouldn&rsquo;t you rather spend resources creating a great API to view stats and then let us do the dirty work and build around it?</p>
+
+<p><img src="/blog/images/69.png" alt="MetroHalo" /></p>
+
+<p><img src="/blog/images/70.png" alt="MetroHalo Lookup" /></p>
+
+<p><img src="/blog/images/71.png" alt="MetroHalo Search" /></p>
+
+<p>This is a real app, living on my hard drive right now. It can fetch any player&rsquo;s data, integrates with Search, and is pretty sexy to see in motion. Unfortunately, none of you reading this post will ever get to see it, simply because it violates the Terms of Service. It screen-scrapes the Halo Waypoint site to get this data, which is not an acceptable way of getting data.</p>
+
+<p>343, if you <em>are</em> planning to release a Windows 8 application, good on you! But my point still stands: this took me a couple days to put together and you didn&rsquo;t spend a dime on it, or assign Joe Bob 50% to innovation, or call your agency and have them put together mockups and charge you thousands of dollars. I did this in two evenings with a little bit of free time. There are so many things that are possible with a platform like Windows 8:</p>
+
+<ul>
+<li>Leaderboards among your friends</li>
+<li>Live tile updates of your games</li>
+<li>Beautiful high-res imagery of medals, ranks, and your spartan models</li>
+<li>Awesome win/lose charts and game history</li>
+<li>Map breakdowns</li>
+<li>Weapon overviews and tips</li>
+<li>Clan or group management</li>
+<li>Delivering video and other rich content to your users</li>
+</ul>
+
+
+<p>And that&rsquo;s what I could think of on-the-spot, I&rsquo;m sure after seeing these screenshots people could think of a lot more.</p>
+
+<p>Release an API, 343. Your community will thank you for it.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Kamran</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-02T22:49:51-05:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://kamranayub.github.io/blog/posts/56/what-would-a-windows-8-halo-app-look-like" data-via="kamranayub" data-counturl="http://kamranayub.github.io/blog/posts/56/what-would-a-windows-8-halo-app-look-like" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/posts/54/2-computers-1-desk" title="Previous Post: 2 Computers, 1 Desk">&laquo; 2 Computers, 1 Desk</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/posts/57/enter-a-windows-8-contest-just-do-it" title="Next Post: Enter a Windows 8 contest, just do it!">Enter a Windows 8 contest, just do it! &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  	<h1>About Me</h1>
+
+  	<p><img src="http://gravatar.com/avatar/8303c4eb9f9099df39adbc3d8c634746?s=120" alt="My Headshot" title="My ugly mug" /></p>
+
+  	<p>Hi, my name is Kamran. I am a web developer and designer, residing in Minnesota. I've been programming since 2001 and I am familiar with many different languages, both web-based and server-based. I love to tinker around and think of new ways to solve problems.</p>
+
+	<p>If you wanna talk, tweet <strong><a href="http://twitter.com/kamranayub" target="_blank">@kamranayub</a></strong> or send me an email at my <strong>full name</strong> at <strong>gmail.com</strong></p>
+</section>
+<section>
+  	<h1>Apps</h1>
+
+  	<ul>
+  		<li><a href="http://centwiseapp.com/">Centwise</a></li>
+  		<li><a href="http://keeptrackofmygames.com/">Keep Track of My Games</a></li>
+  	</ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/78/tccc15-see-you-again-in-april">TCCC15: See You Again in April!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/77/tccc15-leveling-up-your-windows-phone-app">TCCC15: Leveling Up Your Windows Phone App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/76/minnesota-developer-conference-2013-connected-apps">Minnesota Developer Conference 2013: Connected Apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/posts/75/test-retina-images-without-a-retina-screen">Test Retina Images Without a Retina Screen</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/kamranayub">@kamranayub</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'kamranayub',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/104789622697290911192?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Kamran -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://kamranayub.github.io/blog/posts/56/what-would-a-windows-8-halo-app-look-like';
+        var disqus_url = 'http://kamranayub.github.io/blog/posts/56/what-would-a-windows-8-halo-app-look-like';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
