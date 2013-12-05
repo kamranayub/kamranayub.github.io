@@ -4,7 +4,7 @@
 
 url: http://kamranayub.github.io
 title: Kamranicus
-subtitle: kamranayub's personal blog
+subtitle: Kamran Ayub is a developer and designer in Minneapolis, Minnesota. He specializes in .NET development with a dash of client-side and is passionate about UX.
 author: Kamran Ayub
 simple_search: http://google.com/search
 description:
@@ -16,8 +16,8 @@ description:
 date_format: "ordinal"
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
-subscribe_rss: /atom.xml
-subscribe_email:
+subscribe_rss: http://feeds.feedburner.com/Kamranicus
+subscribe_email: http://feedburner.google.com/fb/a/mailverify?uri=Kamranicus
 # RSS feeds can list your email address if you like
 email:
 
@@ -90,8 +90,8 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
-disqus_show_comment_count: false
+disqus_short_name: kamranicus
+disqus_show_comment_count: true
 
 # Google Analytics
 google_analytics_tracking_id:

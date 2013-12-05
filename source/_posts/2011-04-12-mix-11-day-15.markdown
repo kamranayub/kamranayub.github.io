@@ -1,0 +1,34 @@
+---
+layout: post
+title: "MIX 11, Day 1.5"
+date: 2011-04-12 21:57:55 -0500
+comments: true
+categories:
+permalink: /blog/posts/6/mix-11-day-15
+---
+
+This is the first time I've ever been to Vegas. I think that one guy on Twitter had it right, "everything in Vegas is fake." That said, it's still pretty neat. We walked to the Bellagio last night and saw Celine Dion's water display. My heart *did* go on.
+
+## Open Source Fest
+
+The open source fest went swimmingly. I had been afraid I wouldn't meet anyone or no one would like [my library](http://github.com/kamranayub/.JSON) but that wasn't the case.
+
+I met John Sheehan from [RestSharp](http://restsharp.org/), Sam Saffron and other developers from Stackoverflow, Jonathan Marbutt from the [Opus Silverlight framework](http://opus.codeplex.com/), and Jeff Weber from the [Farseer Physics Engine](http://farseerphysics.codeplex.com/). I also met lots of lovely people who were kind enough to throw some chips my way.
+
+From the SO team I also acquired a black StackOverflow tee, which I am geeked out about.
+
+I got a lot of awesome feedback on my little library, including plenty of questions about whether it works in Silverlight. Looks like I may have some investigating to do.
+
+## Thoughts on the Keynote
+
+![Keynote stage](http://desmond.yfrog.com/Himg620/scaled.php?tn=0&server=620&filename=zjpwp.jpg&xsize=640&ysize=640)
+
+I [posted a picture](http://yfrog.com/h8zjpwpj) of what the MIX stage looked like at the keynote. It looked like a stage for a rock concert, it was pretty awesome.
+
+The content of the keynote seemed to generate mixed feelings. Several times the speaker had expected an eruption of applause but the audience wasn't forthcoming. Maybe they had all lost their money the night before?
+
+The first half was all about IE and how it's so great and excellent and other browsers (**Chrome**) can't keep up. Personally, I like all the new improvements IE provided and hope to see other browsers play catch-up in terms of hardware acceleration. But the fact that only IE can perform hardware accelerated tasks sort of diminishes the value of the feature, since users not using IE9 (a *significant* portion of people) lose out. It's a value judgement you have to make (and in an ideal world, *shouldn't* have to make...). I don't know if that's any different than the decisions we've had to make previously as designers about how to tackle issues that other browsers sans IE support, though.
+
+Notably missing was talk about Silverlight. Microsoft seems to be undecided in what to sell... on one hand they are focusing hard on HTML5 and rich web experiences but on the other they are selling Windows Phone 7 which builds on Silverlight. The rest of the non-MS world has shown it is entirely behind HTML5, so at least on the web, I feel like Silverlight is a losing battle... not that SL is bad by any means, just that more tooling may come out surrounding HTML5 than SL.
+
+I thought the keynote was "interesting" and that's probably where I'll stick. I didn't expect half the time to be spent on IE but then I really didn't know what I should be expecting.
