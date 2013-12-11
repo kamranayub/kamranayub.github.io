@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2013-12-05T09:46:02-06:00</updated>
+  <updated>2013-12-10T21:22:02-06:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Just Released: Bowling Calculator App]]></title>
+    <link href="http://kamranicus.com/blog/2013/12/10/just-released-bowling-calculator-app/"/>
+    <updated>2013-12-10T21:02:26-06:00</updated>
+    <id>http://kamranicus.com/blog/2013/12/10/just-released-bowling-calculator-app</id>
+    <content type="html"><![CDATA[<p><img src="http://cdn.marketplaceimages.windowsphone.com/v8/images/4eb4e175-0dd5-4e48-860b-639e6796b01b?rotation=90" alt="Screenshot" /></p>
+
+<p>I just released my second Windows Phone app, <a href="http://www.windowsphone.com/en-us/store/app/bowling-calculator/9287a99a-6068-4ff4-925b-988c8c99dbf6">Bowling Calculator</a>. It&rsquo;s an <a href="http://github.com/kamranayub/wp-bowling">open source app</a> that I created when <a href="http://kamranicus.com/blog/posts/77/tccc15-leveling-up-your-windows-phone-app">I gave my talk at TCCC15</a>.
+If you&rsquo;re a fellow developer, feel free to send me a pull request with any bug fixes or enhancements. I want to keep it focused on
+the simple use case of scoring a bowling game; I don&rsquo;t need it to track multiple games or keep track of history. It&rsquo;s purpose is to serve
+as a production-ready sample app and to also be good at what it aims to do.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[MiniProfiler RavenDB Pull Request Accepted]]></title>
@@ -757,87 +771,6 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
 
 
 <p>That&rsquo;s only because it was easier to leverage my existing dependencies. A more intrepid soul might be willing to de-couple my solution from these dependencies, and if you do, let me know so I can update my Gist. In fact, you should just fork my gist. Hmm, that sounds wrong.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[A Smarter `checked` Binding for KnockoutJS]]></title>
-    <link href="http://kamranicus.com/blog/posts/61/a-smarter-checked-binding-for-knockoutjs"/>
-    <updated>2012-12-31T09:48:04-06:00</updated>
-    <id>http://kamranicus.com/blog/posts/61/a-smarter-checked-binding-for-knockoutjs</id>
-    <content type="html"><![CDATA[<blockquote><p><strong>Update</strong>: In Knockout 3+, this issue is solved with the new <code>checkedValue</code> binding. Read the <a href="http://knockoutjs.com/documentation/checked-binding.html">documentation</a> for details. You can still use my workaround for KO 2.x and below.</p></blockquote>
-
-<p>I love KnockoutJS. I&rsquo;ve been using it for awhile now and I really enjoy it. That said, there are a few oddities with it, one such being the <code>checked</code> binding.</p>
-
-<p>Let&rsquo;s say you have this scenario (as I do now):</p>
-
-<p>You want to <code>foreach</code> a list of items, each one having a checkbox. You want to store the checked items in a list, for use throughout the view model (bulk updates, select all, deselect all, etc.). How do you go about doing this?</p>
-
-<p>The &ldquo;recommended&rdquo; approach would be to add an observable property, <code>isSelected</code>, to each of your items. Then, in your markup, you can bind to that property:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul</span> <span class="na">data-bind=</span><span class="s">&quot;foreach: tasks&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;input</span> <span class="na">type=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">data-bind=</span><span class="s">&quot;checked: isSelected&quot;</span><span class="nt">&gt;&lt;/li&gt;</span>
-</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>That is OK. It&rsquo;s OK because what if you need to use that item (assuming you&rsquo;re using a &ldquo;class&rdquo; or other reusable object) somewhere else where you don&rsquo;t need that property. You could just attach it where you need it. It also makes it a bit tricky to manage the list of selected items (you&rsquo;d probably end up creating a <code>computed</code> array), as well as making it difficult to dynamically bind a checkbox list to a computed array.</p>
-
-<p>What you may decide to do (like me) is to try and bind the <code>checked</code> to your own observable array, and assign the <code>value</code> of the checkbox to a model property like this:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">data-bind=</span><span class="s">&quot;checked: $root.selectedTaskIds, value: id&quot;</span><span class="nt">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>However, if you do this, you&rsquo;ll soon discover a few oddities:</p>
-
-<ol>
-<li>When you check the checkbox, the <em>string</em> value of your model property will be placed into the array.</li>
-<li>Your model property <em>will change to this new string value</em> essentially changing your original model.</li>
-</ol>
-
-
-<p>There are reasons for these two crazy happenings, which I discovered:</p>
-
-<ol>
-<li>The <code>checked</code> binding bases its value on the <em>element&rsquo;s</em> value, which is stored as a string.</li>
-<li>The <code>value</code> binding keeps the property you are bound to and the <em>element&rsquo;s value</em> in-sync, which is why your model&rsquo;s ID becomes a string.</li>
-</ol>
-
-
-<p>It turns out, we&rsquo;re suffering from some mental model breakdown. If you look at the KO documentation for <code>checked</code>, it&rsquo;s easy to believe the above syntax should work, after all, it says:</p>
-
-<blockquote><p>Special consideration is given if your parameter resolves to an array. In this case, KO will set the element to be checked if the <strong>value</strong> matches an item in the array, and unchecked if it is not contained in the array.</p></blockquote>
-
-<p>If the <em>value</em> matches&hellip; &ldquo;Cool!&rdquo; so I can just bind the <code>value:</code> to my model property? NOPE. You&rsquo;ll run into the aforementioned issues if you try.</p>
-
-<h3>Making a smarter <code>checked</code> binding</h3>
-
-<p>Since I didn&rsquo;t want to add <code>isSelected</code> properties everywhere, I decided to &ldquo;monkey patch&rdquo; the <code>checked</code> and <code>value</code> bindings to play nice together.</p>
-
-<p>Essentially, all my patch does is two things:</p>
-
-<ol>
-<li>In the <code>checked</code> binding, if it finds a <code>value</code> binding, it binds to that value rather than the element&rsquo;s value.</li>
-<li>In the <code>value</code> binding, it completely ignores any changes if the <code>checked</code> binding is present, essentially nullifying the binding.</li>
-</ol>
-
-
-<p>Here are the new binding definitions:</p>
-
-<script src="https://gist.github.com/4418574.js"></script>
-
-
-<p>And you can see it in action here:</p>
-
-<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/kamranayub/G8YZU/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
-
-<p>As you can see, now it works as you&rsquo;d expect! You can bind the <code>id</code> property to the list. You can also bind <code>$data</code> and you&rsquo;ll have the full object in your selected list.</p>
 ]]></content>
   </entry>
   
