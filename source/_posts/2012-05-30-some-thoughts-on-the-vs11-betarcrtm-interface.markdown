@@ -5,6 +5,7 @@ date: 2012-05-31 14:07:00 -0500
 comments: true
 categories:
 permalink: /blog/posts/47/some-thoughts-on-the-vs11-betarcrtm-interface
+disqus_identifier: 47
 ---
 
 As you may know, the next version of Visual Studio dubbed VS11 [is available in Beta form](http://www.microsoft.com/visualstudio/11/en-us) right now for developers worldwide to <strike>complain about</strike> go wild and test against.

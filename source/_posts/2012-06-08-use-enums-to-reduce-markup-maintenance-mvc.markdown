@@ -5,6 +5,7 @@ date: 2012-06-08 04:49:33 -0500
 comments: true
 categories:
 permalink: /blog/posts/49/use-enums-to-reduce-markup-maintenance-mvc
+disqus_identifier: 49
 ---
 
 Have you ever done this before?

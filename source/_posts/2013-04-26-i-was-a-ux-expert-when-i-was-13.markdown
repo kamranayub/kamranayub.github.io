@@ -5,6 +5,7 @@ date: 2013-04-26 02:05:48 -0500
 comments: true
 categories:
 permalink: /blog/posts/72/i-was-a-ux-expert-when-i-was-13
+disqus_identifier: 72
 ---
 
 I've been reading Word documents on my computer that I've had since I was a teen. I've been keeping them all through my PC upgrades for no particular reason except for times like these when I need to laugh at myself.

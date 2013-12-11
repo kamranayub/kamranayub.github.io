@@ -5,6 +5,7 @@ date: 2012-04-18 23:44:51 -0500
 comments: true
 categories:
 permalink: /blog/posts/44/why-am-i-forced-to-store-my-users-contact-informat
+disqus_identifier: 44
 ---
 
 OpenID and OpenAuth are cool. What's not cool about either approach is that I have no way to say, "Notify this user by whatever means available." Instead, I am forced to collect that information and figure out a way to store it that is safe from prying eyes.

@@ -5,6 +5,7 @@ date: 2011-04-07 13:54:05 -0500
 comments: true
 categories:
 permalink: /blog/posts/3/a-better-mvc-label-helper
+disqus_identifier: 3
 ---
 
 I have high standards for web-based forms, after having spent the last 7 months ankle deep in them at work.

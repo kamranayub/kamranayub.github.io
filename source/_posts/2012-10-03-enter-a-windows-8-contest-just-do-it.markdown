@@ -5,6 +5,7 @@ date: 2012-10-03 17:41:20 -0500
 comments: true
 categories:
 permalink: /blog/posts/57/enter-a-windows-8-contest-just-do-it
+disqus_identifier: 57
 ---
 
 There are at least a couple app contests I know of for Windows 8: [Apptivate](http://apptivate.ms) and [GenerationApp](http://www.generationapp.com/giveaway/).

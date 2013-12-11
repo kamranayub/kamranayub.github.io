@@ -5,6 +5,7 @@ date: 2011-12-14 14:27:33 -0600
 comments: true
 categories:
 permalink: /blog/posts/25/vs-extension-for-js-template-support
+disqus_identifier: 25
 ---
 
 I am thinking of embarking on a journey that involves [Backbone.js](http://documentcloud.github.com/backbone/) in my MVC 3 project. This would involve heavy use of templating. After thinking about it a bit and doing some Googling, I realized that **there is no JS template extension for Visual Studio.**

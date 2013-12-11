@@ -5,6 +5,7 @@ date: 2013-10-17 15:17:14 -0500
 comments: true
 categories:
 permalink: /blog/posts/77/tccc15-leveling-up-your-windows-phone-app
+disqus_identifier: 77
 ---
 
 It's talk time again! I'm lucky to be giving yet another talk at Twin Cities Code Camp (my second one!). Last time was a lot of fun! This time, we're [leaving the Web API pasture](/Blog/Posts/66/about-my-web-api-session-at-twin-cities-code-camp) and exploring the fun world of Windows Phone development.

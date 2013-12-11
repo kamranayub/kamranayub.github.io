@@ -5,6 +5,7 @@ date: 2012-04-03 15:05:22 -0500
 comments: true
 categories:
 permalink: /blog/posts/40/ux-applies-to-api-design-too
+disqus_identifier: 40
 ---
 
 I'm working on enhancing a component we use for cryptography at work today. Previously it had a lot of useful methods, but no documentation. I was able to add XML documentation and now it's fully Intellisense-friendly:

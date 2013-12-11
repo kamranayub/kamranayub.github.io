@@ -5,6 +5,7 @@ published: false
 comments: true
 categories:
 permalink: /blog/posts/36/what-it-was-like-to-add-net-35-compability-to-cass
+disqus_identifier: 36
 ---
 
 As you may have heard, [Cassette](http://getcassette.net) now supports .NET 3.5. What you may not know is that [I had a pretty big hand](https://github.com/andrewdavey/cassette/pull/191) in making that happen (with the help of Andrew, of course!). I wanted to talk about what that experience was like since it was my first time making a *big* contribution to an open source project. I've sent bug fixes or small enhancements to projects I've used before, but never took on anything this big.

@@ -5,6 +5,7 @@ date: 2012-12-01 17:08:38 -0600
 comments: true
 categories:
 permalink: /blog/posts/59/using-knockout-bindings-in-your-winjs-application
+disqus_identifier: 59
 ---
 
 If you've done any serious Windows 8 development with WinJS, you've probably come across this wall:

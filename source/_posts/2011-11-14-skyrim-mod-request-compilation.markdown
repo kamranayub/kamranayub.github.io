@@ -5,6 +5,7 @@ date: 2011-11-14 16:41:56 -0600
 comments: true
 categories:
 permalink: /blog/posts/24/skyrim-mod-request-compilation
+disqus_identifier: 24
 ---
 
 These are for ideas for myself to explore or for others to get ideas from (or help make!). I'm not a modder, really, I've never done a TES mod before. Skyrim, however, has motivated me to at least explore the option of making mods. I can't design a model worth crap, so many of my ideas will be focused on stuff I could possibly do myself. I'll note ones that I think other people might want to tackle (**§ denotes someone else should please make it**).

@@ -5,6 +5,7 @@ date: 2012-05-30 20:26:06 -0500
 comments: true
 categories:
 permalink: /blog/posts/46/please-go-watch-the-pluralsight-ux-fundamentals-of
+disqus_identifier: 46
 ---
 
 [Pluralsight is having a deal right now](http://blog.pluralsight.com/2012/05/30/free-training-on-user-experiences-fundamental-design-principles-by-billy-hollis/) where if you follow them on Twitter and follow Billy Hollis, you get a free token to watch the [UX fundamentals course](http://www.pluralsight-training.net/microsoft/Courses/TableOfContents?courseName=cux-designprinciples).

@@ -5,6 +5,7 @@ date: 2013-06-05 19:18:28 -0500
 comments: true
 categories:
 permalink: /blog/posts/74/debounced-after-render-pattern-for-knockoutjs
+disqus_identifier: 74
 ---
 
 When dealing with Knockout-based lists, I think the built-in events/callbacks provided by Knockout leave a bit to be desired. For example, a common case I here people complain about is that the `afterRender` callback for the `foreach/template` bindings executes for each item in the array, not after all the elements have been rendered.

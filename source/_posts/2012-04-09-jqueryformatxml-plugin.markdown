@@ -5,6 +5,7 @@ date: 2012-04-09 19:42:53 -0500
 comments: true
 categories:
 permalink: /blog/posts/41/jqueryformatxml-plugin
+disqus_identifier: 41
 ---
 
 Awhile ago I wrote a [shim for jQuery to add pseudo-XML compatibility](https://github.com/kamranayub/jQuery-XML-Helper) that makes it easier to manipulate and read XML cross-browser on the client. I did it because I was working on a legacy application that decided it was a good idea to store the model in XML in a hidden input. No, I can't switch to Knockout, as much as I'd want to.

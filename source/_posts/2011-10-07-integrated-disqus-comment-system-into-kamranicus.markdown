@@ -5,6 +5,7 @@ date: 2011-10-07 14:41:16 -0500
 comments: true
 categories:
 permalink: /blog/posts/21/integrated-disqus-comment-system-into-kamranicus
+disqus_identifier: 21
 ---
 
 When I wrote Kamranicus, I wanted a simple blog where I could use Markdown and copy/paste images. I achieved that but I also built a simple comment system.

@@ -5,6 +5,7 @@ date: 2011-10-20 20:33:09 -0500
 comments: true
 categories:
 permalink: /blog/posts/22/whats-the-most-efficient-way-to-read-config-settin
+disqus_identifier: 22
 ---
 
 In a project I'm contributing to, I saw some code like this (simplified but boiling down to):

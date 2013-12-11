@@ -5,6 +5,7 @@ date: 2011-06-27 14:24:54 -0500
 comments: true
 categories:
 permalink: /blog/posts/12/pass-in-your-variables-to-consolelog-as-parameters
+disqus_identifier: 12
 ---
 
 I was helping a co-worker debug a JSON issue when I saw he was trying to use `console.log`. I asked how he was passing it in and he was doing exactly what you'd think should work:

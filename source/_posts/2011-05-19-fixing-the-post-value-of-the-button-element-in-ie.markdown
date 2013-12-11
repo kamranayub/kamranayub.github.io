@@ -5,6 +5,7 @@ date: 2011-05-19 18:07:48 -0500
 comments: true
 categories:
 permalink: /blog/posts/9/fixing-the-post-value-of-the-button-element-in-ie
+disqus_identifier: 9
 ---
 
 Please [see this write up](http://www.peterbe.com/plog/button-tag-in-IE) for the exact issue. Basically, IE 7 and below do not properly submit the "value" of the `<button>` tag, opting instead to submit the `innerText`. We just hit this issue while testing with our users who used IE7 on a project I'm on.

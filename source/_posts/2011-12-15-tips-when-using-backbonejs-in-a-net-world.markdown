@@ -5,6 +5,7 @@ date: 2011-12-15 20:37:51 -0600
 comments: true
 categories:
 permalink: /blog/posts/26/tips-when-using-backbonejs-in-a-net-world
+disqus_identifier: 26
 ---
 
 I am learning [Backbone.js](http://documentcloud.github.com/backbone/) so I can re-write the main GUI for [KTOMG](http://keeptrackofmygames.com). I am still learning and I've run into a couple gotchas that I hope I can clear up for anyone else that dares to tread in these woods. Still, I've been able to rewrite the listing of a user's library in one night using Backbone and all my existing back-end code (the farthest up I edited was my controller). Very impressive for a Backbone n00b!

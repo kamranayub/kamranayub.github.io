@@ -5,7 +5,10 @@ date: 2012-12-31 09:48:04 -0600
 comments: true
 categories:
 permalink: /blog/posts/61/a-smarter-checked-binding-for-knockoutjs
+disqus_identifier: 61
 ---
+
+> **Update**: In Knockout 3+, this issue is solved with the new `checkedValue` binding. Read the [documentation](http://knockoutjs.com/documentation/checked-binding.html) for details. You can still use my workaround for KO 2.x and below.
 
 I love KnockoutJS. I've been using it for awhile now and I really enjoy it. That said, there are a few oddities with it, one such being the `checked` binding.
 

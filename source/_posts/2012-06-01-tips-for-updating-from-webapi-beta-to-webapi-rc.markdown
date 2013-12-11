@@ -5,6 +5,7 @@ date: 2012-06-01 05:59:01 -0500
 comments: true
 categories:
 permalink: /blog/posts/48/tips-for-updating-from-webapi-beta-to-webapi-rc
+disqus_identifier: 48
 ---
 
 I just installed VS 2012 RC (previous codename VS11) to make sure I am on the latest and greatest and I'd like to mention a few gotchas I ran into along the way while upgrading [Keep Track of My Games](http://keeptrackofmygames.com).

@@ -5,6 +5,7 @@ date: 2012-10-02 22:49:51 -0500
 comments: true
 categories:
 permalink: /blog/posts/56/what-would-a-windows-8-halo-app-look-like
+disqus_identifier: 56
 ---
 
 **Update (10/24)**: There's a good indication there'll be an API. If you log into [DewXP](http://dewxp.com) with your Xbox Live account, it will display your spartan player model using a URL I haven't seen before:

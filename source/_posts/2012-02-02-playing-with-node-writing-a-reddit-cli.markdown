@@ -5,6 +5,7 @@ date: 2012-02-02 15:21:04 -0600
 comments: true
 categories:
 permalink: /blog/posts/30/playing-with-node-writing-a-reddit-cli
+disqus_identifier: 30
 ---
 
 This is not a complete post about how to write a fully featured CLI application for Reddit, like [Cortex](http://cortex.glacicle.org/). However, I think it demonstrates the ease and simplicity in making such an application.

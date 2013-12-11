@@ -5,6 +5,7 @@ date: 2011-06-28 17:38:24 -0500
 comments: true
 categories:
 permalink: /blog/posts/13/my-git-workflow-for-net-based-projects
+disqus_identifier: 13
 ---
 
 When I was new to Git, it was very confusing for me to get up and running with how to deal with the command-line interface (if you're fancy and use a GUI, leave now). Once you do get the hang of it, it's super nice and fluid. I used to do terminal CVS at my last job so I'm not out of touch with using version control from a console.

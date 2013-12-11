@@ -5,6 +5,7 @@ date: 2012-03-29 16:25:00 -0500
 comments: true
 categories:
 permalink: /blog/posts/38/can-i-use-signalr-to-design-a-typical-single-page
+disqus_identifier: 38
 ---
 
 This post is a stream of conciousness kind of post. I know I may be totally off base on some things but I need somewhere to write this so I can review and think about it, maybe pose it to people and see where my thinking is flawed or if there's an obvious thing I'm not seeing.

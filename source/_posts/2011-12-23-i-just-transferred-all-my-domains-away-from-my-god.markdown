@@ -5,6 +5,7 @@ date: 2011-12-23 19:12:45 -0600
 comments: true
 categories:
 permalink: /blog/posts/28/i-just-transferred-all-my-domains-away-from-my-god
+disqus_identifier: 28
 ---
 
 Since I started hosting my own domains and doing web work, I've been using a website aptly named [Cheap-DomainRegistration.com](http://cheap-domainregistration.com). I also read today that [GoDaddy supports SOPA](http://www.reddit.com/r/politics/comments/nntxp/godaddys_response_to_the_boycott_go_daddy_has/). This is a Bad Thing<sup>TM</sup>. The proposed [SOPA legislation is bad](http://americancensorship.org/), just like drinking anti-freeze is bad for dogs.

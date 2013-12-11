@@ -5,6 +5,7 @@ date: 2012-01-23 15:44:30 -0600
 comments: true
 categories:
 permalink: /blog/posts/29/programming-is-difficult-business-it-should-never
+disqus_identifier: 29
 ---
 
 > "Programming is difficult business. It should never be undertaken in ignorance." - *Javascript: The Good Parts*, Douglas Crockford

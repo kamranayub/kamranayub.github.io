@@ -5,6 +5,7 @@ date: 2011-04-08 15:47:57 -0500
 comments: true
 categories:
 permalink: /blog/posts/5/all-the-code-you-write-is-wrong
+disqus_identifier: 5
 ---
 
 Every time I read about a "best practice" or the opinions of highly regarded (to many) developers, I always am amazed at the different opinions in response. This isn't bad. In fact, I think it's pretty cool we all share differing opinions and what works for one person may not work for someone else. I find it refreshing to see all sorts of opinions that propose different ways of doing the same thing.

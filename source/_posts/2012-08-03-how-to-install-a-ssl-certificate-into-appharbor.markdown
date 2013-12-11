@@ -5,6 +5,7 @@ date: 2012-08-03 15:10:58 -0500
 comments: true
 categories:
 permalink: /blog/posts/53/how-to-install-a-ssl-certificate-into-appharbor
+disqus_identifier: 53
 ---
 
 I am mostly writing this for my own benefit because every year I tend to forget what I did before. It's not hard, there's just a handful of steps. I use RapidSSL as my provider, so my steps are based on what RapidSSL gives me.

@@ -5,6 +5,7 @@ date: 2011-04-06 16:11:44 -0500
 comments: true
 categories:
 permalink: /blog/posts/2/befriending-appharbor-and-making-it-work-for-you
+disqus_identifier: 2
 ---
 
 I chose to partially host my site on [AppHarbor](http://appharbor.com) because it affords several luxuries for **free**:

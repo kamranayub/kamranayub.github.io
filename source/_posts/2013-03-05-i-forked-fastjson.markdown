@@ -5,6 +5,7 @@ date: 2013-03-05 17:00:00 -0600
 comments: true
 categories:
 permalink: /blog/posts/65/i-forked-fastjson
+disqus_identifier: 65
 ---
 
 My Windows Phone app mainly deals with talking to a web API. I've previously had good experience using RestSharp but now with the new `async/await` features, I've been trying to only use `Task`-based stuff. I gotta say, I'm loving it.

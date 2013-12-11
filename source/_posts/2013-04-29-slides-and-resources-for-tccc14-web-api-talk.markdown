@@ -5,6 +5,7 @@ date: 2013-04-29 22:39:24 -0500
 comments: true
 categories:
 permalink: /blog/posts/73/slides-and-resources-for-tccc14-web-api-talk
+disqus_identifier: 73
 ---
 
 I gave a talk this past weekend at Twin Cities Code Camp; it was my first public talk (hopefully the first of many?). It was a deep dive on selected ASP.NET Web API topics (as voted on by the audience) and you can view it on [SpeakerDeck](https://speakerdeck.com/kamranayub/diving-into-the-deep-wih-asp-dot-net).

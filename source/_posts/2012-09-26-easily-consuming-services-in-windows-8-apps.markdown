@@ -5,6 +5,7 @@ published: false
 comments: true
 categories:
 permalink: /blog/posts/55/easily-consuming-services-in-windows-8-apps
+disqus_identifier: 55
 ---
 
 I've been dabbling a bit in Windows 8 application development, in the minimal amount of time I have. Moreso, I've been absorbing all the resources I can on the topic, going to dev camps around town, and generally just being a sponge. Like anything else, though, it helps even more when you just dive in and play.

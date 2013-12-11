@@ -5,6 +5,7 @@ date: 2011-06-16 19:49:32 -0500
 comments: true
 categories:
 permalink: /blog/posts/10/released-nuget-package-of-json
+disqus_identifier: 10
 ---
 
 Yesterday I released my [.JSON](http://github.com/kamranayub/.JSON) library as a NuGet package (about time). It is named **DotJson.Source** to follow current conventions. If you need me to, I can also release it as a compiled DLL.

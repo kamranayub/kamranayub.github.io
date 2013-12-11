@@ -5,6 +5,7 @@ date: 2013-12-03 03:09:04 -0600
 comments: true
 categories:
 permalink: /blog/posts/79/just-pushed-blackjack-sample-game
+disqus_identifier: 79
 ---
 
 It's finally done! I sat down today and dug through my backups to find my original WPF BlackJack game I wrote way back when WPF was really cool. I converted it to VS 2013, made sure it still ran, organized the solution, and hit deploy. It's now up on GitHub for your learning pleasure. There are no Nuget packages here! This was before Nuget where I had to find code to learn from and, ahem, copy. The deck is also something I found online. If I find the source, I'll be sure to attribute it properly.

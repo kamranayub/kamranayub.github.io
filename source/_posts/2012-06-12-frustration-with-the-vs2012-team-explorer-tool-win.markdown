@@ -5,6 +5,7 @@ date: 2012-06-12 18:32:52 -0500
 comments: true
 categories:
 permalink: /blog/posts/50/frustration-with-the-vs2012-team-explorer-tool-win
+disqus_identifier: 50
 ---
 
 I would just like to quickly comment on something I noticed while using VS2012 and Team Explorer (we use TFS at work). Below is a screenshot of the window as it stands in the RC. 

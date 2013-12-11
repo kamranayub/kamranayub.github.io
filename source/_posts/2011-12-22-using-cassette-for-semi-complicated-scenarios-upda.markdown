@@ -5,6 +5,7 @@ date: 2011-12-22 21:24:19 -0600
 comments: true
 categories:
 permalink: /blog/posts/27/using-cassette-for-semi-complicated-scenarios-upda
+disqus_identifier: 27
 ---
 
 I love [Cassette](http://getcassette.net). You should too, because as of today, the project has gone MIT licensed which means **you**, my dear reader, can use it right now.

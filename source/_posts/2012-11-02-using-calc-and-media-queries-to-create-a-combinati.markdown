@@ -5,6 +5,7 @@ date: 2012-11-02 20:27:12 -0500
 comments: true
 categories:
 permalink: /blog/posts/58/using-calc-and-media-queries-to-create-a-combinati
+disqus_identifier: 58
 ---
 
 The title of this post might be confusing, so let me describe our scenario:

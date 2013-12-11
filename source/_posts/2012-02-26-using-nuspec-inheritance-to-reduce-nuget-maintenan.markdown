@@ -5,6 +5,7 @@ date: 2012-02-26 20:16:16 -0600
 comments: true
 categories:
 permalink: /blog/posts/32/using-nuspec-inheritance-to-reduce-nuget-maintenan
+disqus_identifier: 32
 ---
 
 I've been [helping Cassette support .NET 3.5](https://github.com/andrewdavey/cassette/pull/191) and it's the biggest open source contribution I've ever made. Granted, I started it so that we could use Cassette at work but I did it of my own accord. I learned a lot in the process (which I'll write another post on) but I thought I'd talk about a cool trick I came up with to help ease Cassette's Nuget packaging burden.

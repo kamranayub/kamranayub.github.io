@@ -5,6 +5,7 @@ date: 2013-04-23 18:02:22 -0500
 comments: true
 categories:
 permalink: /blog/posts/69/put-the-cloud-to-work-pt-1-create-a-background-wor
+disqus_identifier: 69
 ---
 
 I've written a [long] article for Tech.pro on [how to use Quartz.NET to build an end-to-end background worker on AppHarbor](http://tech.pro/tutorial/1222/put-the-cloud-to-work-pt-1-create-a-background-worker-using-quartznet).

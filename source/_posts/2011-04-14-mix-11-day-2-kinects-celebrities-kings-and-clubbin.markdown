@@ -5,6 +5,7 @@ date: 2011-04-14 21:45:12 -0500
 comments: true
 categories:
 permalink: /blog/posts/7/mix-11-day-2-kinects-celebrities-kings-and-clubbin
+disqus_identifier: 7
 ---
 
 Have you ever had a day where everything that happens just comes together to create the greatest day ever? Well, let me tell you about mine.

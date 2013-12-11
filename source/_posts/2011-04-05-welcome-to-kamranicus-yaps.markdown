@@ -5,6 +5,7 @@ date: 2011-04-05 23:10:57 -0500
 comments: true
 categories:
 permalink: /blog/posts/1/welcome-to-kamranicus-yaps
+disqus_identifier: 1
 ---
 
 # YAPS (Yet Another Personal Site)

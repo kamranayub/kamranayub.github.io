@@ -5,6 +5,7 @@ date: 2011-04-12 21:57:55 -0500
 comments: true
 categories:
 permalink: /blog/posts/6/mix-11-day-15
+disqus_identifier: 6
 ---
 
 This is the first time I've ever been to Vegas. I think that one guy on Twitter had it right, "everything in Vegas is fake." That said, it's still pretty neat. We walked to the Bellagio last night and saw Celine Dion's water display. My heart *did* go on.

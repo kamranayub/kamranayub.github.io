@@ -5,6 +5,7 @@ date: 2012-06-15 17:44:35 -0500
 comments: true
 categories:
 permalink: /blog/posts/52/experiences-in-the-wild-away-signs-and-picture-fra
+disqus_identifier: 52
 ---
 
 Inspired by a lot of the research and learning lately I've been doing around experience design (which has always been a passion for me), I decided it might be fun to start sharing the little things I run into in daily life that frustrate me as a user or that give me some joy.

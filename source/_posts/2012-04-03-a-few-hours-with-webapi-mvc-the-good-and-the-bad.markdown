@@ -5,6 +5,7 @@ date: 2012-04-03 13:42:13 -0500
 comments: true
 categories:
 permalink: /blog/posts/39/a-few-hours-with-webapi-mvc-the-good-and-the-bad
+disqus_identifier: 39
 ---
 
 I'm working on the next version of [Keep Track of My Games](http://keeptrackofmygames.com) and it's an opportunity to upgrade to and play with MVC 4, especially the new [WebAPI](http://asp.net/web-api).

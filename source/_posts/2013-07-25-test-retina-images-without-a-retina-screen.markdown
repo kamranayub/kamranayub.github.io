@@ -5,6 +5,7 @@ date: 2013-07-25 21:36:22 -0500
 comments: true
 categories:
 permalink: /blog/posts/75/test-retina-images-without-a-retina-screen
+disqus_identifier: 75
 ---
 
 This comes directly from a tip [Mike Zarandona posted on Coderwall](https://coderwall.com/p/engjbw), which I'm posting here to keep track of it:

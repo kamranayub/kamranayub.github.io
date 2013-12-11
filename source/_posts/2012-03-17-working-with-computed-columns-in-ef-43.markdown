@@ -5,6 +5,7 @@ date: 2012-03-17 23:38:15 -0500
 comments: true
 categories:
 permalink: /blog/posts/35/working-with-computed-columns-in-ef-43
+disqus_identifier: 35
 ---
 
 There's not a ton of information out there on how to handle computed columns in EF. It turns out it is pretty straightforward if you know what to do.

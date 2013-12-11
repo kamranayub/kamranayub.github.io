@@ -5,6 +5,7 @@ date: 2013-04-24 05:14:06 -0500
 comments: true
 categories:
 permalink: /blog/posts/70/protip-using-anti-forgery-token-with-aspnet-web-ap
+disqus_identifier: 70
 ---
 
 I just ran into and solved this problem so I thought I'd share (I'll also be talking about this at my upcoming talk).
@@ -32,7 +33,7 @@ Here are some references I used when trying to implement Anti-Forgery with Web A
 
 - [Problems implementing ValidatingAntiForgeryToken attribute for Web API with MVC 4 RC](http://stackoverflow.com/questions/11725988/problems-implementing-validatingantiforgerytoken-attribute-for-web-api-with-mvc)
 - [Web API and ValidateAntiForgeryToken](http://stackoverflow.com/questions/11476883/web-api-and-validateantiforgerytoken)
-- [Preventing Cross-Site Request Forgery (CSRF) Attacks](http://www.asp.net/web-api/overview/security/preventing-cross-site-request-forgery-%28csrf%29-attacks)
+- [Preventing Cross-Site Request Forgery (CSRF) Attacks](http://www.asp.net/web-api/overview/security/preventing-cross-site-request-forgery-(csrf)-attacks)
 - MVC 4 SPA template
 
 Here's the rub: the two SO posts above implement this quite differently than the MVC 4 SPA template and the last article referenced. Both approaches actually worked locally for me, but both failed once I deployed to AppHarbor.

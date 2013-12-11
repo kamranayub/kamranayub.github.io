@@ -5,6 +5,7 @@ date: 2012-03-16 16:29:32 -0500
 comments: true
 categories:
 permalink: /blog/posts/34/i-wish-i-could-do-all-the-things
+disqus_identifier: 34
 ---
 
 Do you ever have the problem where you have so many "cool" ideas you want to work on, but don't have enough time? When I started out in web development, I had a ton of time, being a high school student. I ran out of ideas by the time I was in college, but now after some time working "in the real world," I've lately had a torrent of ideas that I wish I could spend time on. For some, I've started on them, but I find it hard to make time for them.

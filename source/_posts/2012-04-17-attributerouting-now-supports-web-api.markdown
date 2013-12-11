@@ -5,6 +5,7 @@ date: 2012-04-17 16:08:22 -0500
 comments: true
 categories:
 permalink: /blog/posts/43/attributerouting-now-supports-web-api
+disqus_identifier: 43
 ---
 
 If you're *not* using [AttributeRouting](https://github.com/mccalltd/AttributeRouting) you're missing out. I'm serious, I am not sure how any ASP.NET MVC application can live without this library. Like [Cassette](http://getcassette.net), it's become a standard in my .NET tool belt.

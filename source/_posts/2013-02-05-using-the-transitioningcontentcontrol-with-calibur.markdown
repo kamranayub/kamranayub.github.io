@@ -5,6 +5,7 @@ published: false
 comments: true
 categories:
 permalink: /blog/posts/63/using-the-transitioningcontentcontrol-with-calibur
+disqus_identifier: 63
 ---
 
 I've been working on a Windows Phone app, so expect to see an influx of posts as I find time to write and record my experiences developing an app. It's been a learning experience, coming primarily from a web background. Once upon a time, I did write a Blackjack app in WPF but that was awhile ago. Still, most of what I know of XAML came from WPF.

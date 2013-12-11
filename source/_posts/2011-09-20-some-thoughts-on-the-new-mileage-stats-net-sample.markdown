@@ -5,6 +5,7 @@ date: 2011-09-20 18:35:42 -0500
 comments: true
 categories:
 permalink: /blog/posts/20/some-thoughts-on-the-new-mileage-stats-net-sample
+disqus_identifier: 20
 ---
 
 I'm [still] reading through the docs on the new Mileage Stats application that was just released by Microsoft. It looks pretty cool! A little more real-world than typical sample applications.

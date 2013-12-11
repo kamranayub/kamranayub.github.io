@@ -5,6 +5,7 @@ date: 2011-07-24 17:44:08 -0500
 comments: true
 categories:
 permalink: /blog/posts/15/announcing-keep-track-of-my-games
+disqus_identifier: 15
 ---
 
 I am working on a new side project, [Keep Track of My Games](http://keeptrackofmygames.com/about).

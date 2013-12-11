@@ -5,6 +5,7 @@ date: 2012-08-17 20:54:51 -0500
 comments: true
 categories:
 permalink: /blog/posts/54/2-computers-1-desk
+disqus_identifier: 54
 ---
 
 At home, I have two main computers and one desk. I use one for my main everyday tasks and for gaming, and I use the other one as a server/development machine.

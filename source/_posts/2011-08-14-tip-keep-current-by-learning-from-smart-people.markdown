@@ -5,6 +5,7 @@ published: false
 comments: true
 categories:
 permalink: /blog/posts/18/tip-keep-current-by-learning-from-smart-people
+disqus_identifier: 18
 ---
 
 A team member posed a question to the rest of us at work about how we keep up with changes in the web/.NET arena. For me, it was a simple answer, **follow people that are smarter than me.**

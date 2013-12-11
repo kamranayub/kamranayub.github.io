@@ -5,6 +5,7 @@ date: 2012-12-15 02:29:55 -0600
 comments: true
 categories:
 permalink: /blog/posts/60/disappointed-in-the-windows-store-submission-proce
+disqus_identifier: 60
 ---
 
 I'm disappointed I have to write about this, because I shouldn't have to. I've been a Microsoft-stack guy for a long time and I was *really* excited to release my [first app](http://steamhubapp.com) for Windows 8. I'm even more excited to also work on a Windows Phone app. That's why I bought a Surface RT and a new HTC 8X. I'm all in.

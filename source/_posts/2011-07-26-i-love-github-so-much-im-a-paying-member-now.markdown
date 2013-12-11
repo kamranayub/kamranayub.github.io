@@ -5,6 +5,7 @@ date: 2011-07-26 14:41:02 -0500
 comments: true
 categories:
 permalink: /blog/posts/16/i-love-github-so-much-im-a-paying-member-now
+disqus_identifier: 16
 ---
 
 As you might know, I released [a new site, Keep Track of My Games](/Blog/Posts/15/announcing-keep-track-of-my-games) a couple days ago.

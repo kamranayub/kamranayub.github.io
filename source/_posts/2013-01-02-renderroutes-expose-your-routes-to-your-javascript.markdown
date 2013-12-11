@@ -5,6 +5,7 @@ date: 2013-01-02 22:03:43 -0600
 comments: true
 categories:
 permalink: /blog/posts/62/renderroutes-expose-your-routes-to-your-javascript
+disqus_identifier: 62
 ---
 
 When you're working on an AJAX-enabled application, you'll soon discover it can be a pain to manage URLs. In fact, when you're working with ASP.NET MVC in general, working with routes is a pain. As soon as you want to change one, you have to go and find everywhere it's used.

@@ -5,6 +5,7 @@ date: 2011-04-07 15:14:55 -0500
 comments: true
 categories:
 permalink: /blog/posts/4/come-visit-me-at-mix-11
+disqus_identifier: 4
 ---
 
 I am extremely excited (and thankful) to be visiting [MIX 11](http://live.visitmix.com/) next week. Hopefully I can garner some "cred" with the .NET community and I hope I can meet some of my .NET community idols as well.

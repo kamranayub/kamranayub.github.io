@@ -5,6 +5,7 @@ date: 2011-06-22 14:16:11 -0500
 comments: true
 categories:
 permalink: /blog/posts/11/using-squishit-without-writing-to-the-file-system
+disqus_identifier: 11
 ---
 
 I'm a big fan of [SquishIt](https://github.com/jetheredge/SquishIt/), which is a library that compresses and minifies CSS and JS. It automatically keeps thing uncompressed locally and then on your web server, versions and compresses your files. The versioning is based on a checksum of your files so it automatically handles any changes you make, it's gold.

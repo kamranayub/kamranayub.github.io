@@ -5,6 +5,7 @@ date: 2012-06-15 06:19:29 -0500
 comments: true
 categories:
 permalink: /blog/posts/51/protip-show-db-usage-in-your-ef-application
+disqus_identifier: 51
 ---
 
 My staging application is on [AppHarbor](http://appharbor.com) so I gave it the shared Yocto SQL database which has a limit of 20MB. That's not much, so I wanted a way to display my current usage level in staging when I test the site in case I want to flush it out. It was fairly easy (with a gotcha)!

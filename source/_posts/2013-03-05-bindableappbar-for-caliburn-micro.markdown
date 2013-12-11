@@ -5,6 +5,7 @@ date: 2013-03-05 19:07:28 -0600
 comments: true
 categories:
 permalink: /blog/posts/64/bindableappbar-for-caliburn-micro
+disqus_identifier: 64
 ---
 
 **Update:** Matteo Pagani has a [great introduction](http://wp.qmatteoq.com/first-steps-with-caliburn-micro-the-application-bar/) on setting up the BindableAppBar. Thanks Matteo!

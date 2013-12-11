@@ -5,6 +5,7 @@ date: 2011-09-15 00:56:52 -0500
 comments: true
 categories:
 permalink: /blog/posts/19/immersive-ui-in-rpgs-thoughts-concerns-et-al
+disqus_identifier: 19
 ---
 
 If you don't know, I'm a pretty avid fan of video games. Actually, "avid" is probably an understatement. Video games are a passion of mine, not only for pleasure but also in terms of software development. I've tried my hand at game programming, even some modeling. I don't think I'm cut out for it. That said, I think there are still things I can comment on from a user experience perspective. Games are just software. Virtual worlds, sure, but underneath they are still running on 1's and 0's and made with programming languages and frameworks. Therefore, it follows that as pieces of software, they still must rely on common usability and user experience practices, especially if they display UI (as most do).

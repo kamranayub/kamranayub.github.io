@@ -5,6 +5,7 @@ date: 2011-11-02 14:25:08 -0500
 comments: true
 categories:
 permalink: /blog/posts/23/mvc-pro-tip-dont-use-the-id-url-parameter-in-your
+disqus_identifier: 23
 ---
 
 By default, MVC will use a route layout like this:

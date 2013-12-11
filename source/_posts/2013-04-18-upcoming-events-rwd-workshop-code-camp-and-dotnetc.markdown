@@ -5,6 +5,7 @@ date: 2013-04-18 14:38:02 -0500
 comments: true
 categories:
 permalink: /blog/posts/68/upcoming-events-rwd-workshop-code-camp-and-dotnetc
+disqus_identifier: 68
 ---
 
 Just a quick set of FYIs. I will be attending 3 upcoming events, two in-person and one virtually.

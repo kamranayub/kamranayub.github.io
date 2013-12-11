@@ -5,6 +5,7 @@ date: 2013-03-05 20:59:46 -0600
 comments: true
 categories:
 permalink: /blog/posts/66/about-my-web-api-session-at-twin-cities-code-camp
+disqus_identifier: 66
 ---
 
 **Update:** I'll be in the 12:45pm track, come see me crash and burn!

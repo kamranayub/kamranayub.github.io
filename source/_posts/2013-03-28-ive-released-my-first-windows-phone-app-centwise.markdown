@@ -5,6 +5,7 @@ date: 2013-04-11 22:47:42 -0500
 comments: true
 categories:
 permalink: /blog/posts/67/ive-released-my-first-windows-phone-app-centwise
+disqus_identifier: 67
 ---
 
 I'm excited to talk about my latest project that just went live a couple weeks ago: [Centwise](http://centwiseapp.com). Centwise is a Windows Phone 7 & 8 app client for a service that I use regularly, [Splitwise](http://splitwise.com).

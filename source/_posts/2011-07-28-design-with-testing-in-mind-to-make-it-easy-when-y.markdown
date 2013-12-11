@@ -5,6 +5,7 @@ published: false
 comments: true
 categories:
 permalink: /blog/posts/17/design-with-testing-in-mind-to-make-it-easy-when-y
+disqus_identifier: 17
 ---
 
 While developing the first version of [Keep Track of My Games](http://keeptrackofmygames.com/) I made a conscious decision: I want to roll out the most basic functionality in a week.

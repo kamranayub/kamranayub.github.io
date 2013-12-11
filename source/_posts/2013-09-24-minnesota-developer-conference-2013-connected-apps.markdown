@@ -5,6 +5,7 @@ date: 2013-09-24 18:58:10 -0500
 comments: true
 categories:
 permalink: /blog/posts/76/minnesota-developer-conference-2013-connected-apps
+disqus_identifier: 76
 ---
 
 **Update:** My session slides are available online at [SpeakerDeck](https://speakerdeck.com/kamranayub/bending-apis-to-your-will-using-windows-phone). If you attended, I hope you enjoyed it!

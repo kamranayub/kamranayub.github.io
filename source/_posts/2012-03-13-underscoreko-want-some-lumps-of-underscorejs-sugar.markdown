@@ -5,6 +5,7 @@ date: 2012-03-13 14:33:19 -0500
 comments: true
 categories:
 permalink: /blog/posts/33/underscoreko-want-some-lumps-of-underscorejs-sugar
+disqus_identifier: 33
 ---
 
 I've been using [Knockout](http://knockoutjs.com/) at work for a MVC3 project and I have also been using [Backbone.js](http://documentcloud.github.com/backbone/) in some personal projects at home. I really love [Underscore](http://documentcloud.github.com/underscore/) and the array manipulation it offers for Node and the browser. I also liked how it was integrated into Backbone collections.

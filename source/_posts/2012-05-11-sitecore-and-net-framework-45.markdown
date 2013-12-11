@@ -5,6 +5,7 @@ date: 2012-05-11 13:24:25 -0500
 comments: true
 categories:
 permalink: /blog/posts/45/sitecore-and-net-framework-45
+disqus_identifier: 45
 ---
 
 **Update 1 (8/28/2012)**: As of Sitecore CMS 6.5.0 rev. 120706 (6.5.0 Update-5), this issue should have been fixed. [See here](http://sdn.sitecore.net/Products/Sitecore%20V5/Sitecore%20CMS%206/ReleaseNotes/ChangeLog.aspx#650update5) under "Miscellaneous" fixes. 

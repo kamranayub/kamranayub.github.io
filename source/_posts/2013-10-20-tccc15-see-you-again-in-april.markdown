@@ -5,6 +5,7 @@ date: 2013-10-20 21:11:30 -0500
 comments: true
 categories:
 permalink: /blog/posts/78/tccc15-see-you-again-in-april
+disqus_identifier: 78
 ---
 
 Well, that was a blast. Yesterday was [TCCC15](http://twincitiescodecamp.com) and it was great. Many awesome sessions, including several by my fellow co-workers [Erik Onarheim](http://twitter.com/ErikOnarhem) and [Stephen Erstad](http://twitter.com/StephenErstad).
