@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2013-12-10T21:22:02-06:00</updated>
+  <updated>2013-12-18T23:34:34-06:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Get Your CI on With Travis CI]]></title>
+    <link href="http://kamranicus.com/blog/2013/12/18/get-your-ci-on-with-travis-ci/"/>
+    <updated>2013-12-18T23:10:10-06:00</updated>
+    <id>http://kamranicus.com/blog/2013/12/18/get-your-ci-on-with-travis-ci</id>
+    <content type="html"><![CDATA[<p>I just published an article on Tech.pro that <a href="http://tech.pro/tutorial/1749/get-your-ci-on-with-travis-ci">walks through getting started with Travis CI</a>. We use it for Excalibur.js and that was my first
+time configuring it, so I thought I might as well write up a nice tutorial for other people. It&rsquo;s really an awesome service, especially
+for open source projects.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Just Released: Bowling Calculator App]]></title>
@@ -715,62 +726,6 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
 <p>The name variance is interesting. In R#, the code was written to <code>yield return</code> each variant so as soon as one matches, it returns. In fastJSON, the matching is done in the opposite direction, fastJSON will try to match the JSON key to an object&rsquo;s properties&hellip; so it makes it difficult to use what R# had written originally. I modified the code to allow for optional variant matching to speed things up. Without that, the name variance increased deserialization time by <strong>a ton</strong>. However, in my case, I really only needed ProperCase matching&hellip; which only increases the time by about 2x.</p>
 
 <p>That&rsquo;s why I made the decision to opt-out of name variance by default and when enabled, only enable ProperCase by default as that&rsquo;s probably the most common.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[RenderRoutes: Expose Your Routes to Your Javascript]]></title>
-    <link href="http://kamranicus.com/blog/posts/62/renderroutes-expose-your-routes-to-your-javascript"/>
-    <updated>2013-01-02T22:03:43-06:00</updated>
-    <id>http://kamranicus.com/blog/posts/62/renderroutes-expose-your-routes-to-your-javascript</id>
-    <content type="html"><![CDATA[<p>When you&rsquo;re working on an AJAX-enabled application, you&rsquo;ll soon discover it can be a pain to manage URLs. In fact, when you&rsquo;re working with ASP.NET MVC in general, working with routes is a pain. As soon as you want to change one, you have to go and find everywhere it&rsquo;s used.</p>
-
-<p>I came up with a solution that works well for me and may for you.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="c1">// Are you writing code like this?</span>
-</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span> <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;/products/&quot;</span> <span class="o">+</span> <span class="nx">productId</span> <span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// Wouldn&#39;t you rather write this?</span>
-</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span> <span class="nx">url</span><span class="o">:</span> <span class="nx">Router</span><span class="p">.</span><span class="nx">url</span><span class="p">(</span><span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="nx">productId</span><span class="p">)</span> <span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In MVC, you have the notion of &ldquo;named&rdquo; routes, like this:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">routes</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="p">{</span> <span class="n">RouteName</span> <span class="p">=</span> <span class="s">&quot;product&quot;</span><span class="p">,</span> <span class="n">Url</span> <span class="p">=</span> <span class="s">&quot;product/{productId}&quot;</span> <span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>(<em>Side Protip: <a href="http://kamranicus.com/Blog/Posts/23/mvc-pro-tip-dont-use-the-id-url-parameter-in-your">Don&rsquo;t use &ldquo;{id}&rdquo; in MVC routes</a></em>)</p>
-
-<p>However, in the default MVC world, you would need to create these entries in your Global ASAX or wherever you set up your routes, and once you have enough, it will quickly get out of hand.</p>
-
-<p>Awhile back, I started using <a href="http://attributerouting.net">AttributeRouting</a> to help organize my routing and remove the shackles of the default MVC routing experience. I even <a href="http://kamranicus.com/Blog/Posts/43/attributerouting-now-supports-web-api">contributed the first Web API implementation</a> to the project.</p>
-
-<p>One of the bonuses of using AR is that it uses a standard interface for any routes it creates, <code>IAttributeRoute</code>. I knew that when I started using Web API more that I needed an easy way to bring my server-side routes to my client-side in a way that was easy to use and that I didn&rsquo;t need to manually maintain.</p>
-
-<p>Thus was born my <code>RenderRoutes</code> extension:</p>
-
-<script src="https://gist.github.com/4438411.js"></script>
-
-
-<p>In order to use this properly in your Javascript, you&rsquo;ll need to create a helper utility. The one that I use is very simplistic, doing basic search and replace on parameters, which is the only thing I really need with my routes.</p>
-
-<p>The dependencies my solution has are:</p>
-
-<ul>
-<li><a href="http://attributerouting.net">AttributeRouting</a></li>
-<li><a href="http://underscorejs.org">Underscore.js</a></li>
-</ul>
-
-
-<p>That&rsquo;s only because it was easier to leverage my existing dependencies. A more intrepid soul might be willing to de-couple my solution from these dependencies, and if you do, let me know so I can update my Gist. In fact, you should just fork my gist. Hmm, that sounds wrong.</p>
 ]]></content>
   </entry>
   
