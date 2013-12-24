@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Using Calc() and Media Queries to Create a Combination Variable + Fixed Sidebar - Kamranicus</title>
+  <title>Just Released: Have I Been Pwned? - Kamranicus</title>
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="The title of this post might be confusing, so let me describe our scenario: I am working on a responsive layout, specifically one right now that has &hellip;">
+  <meta name="description" content="I just released Have I Been Pwned? to the Windows Phone store. It&rsquo;s a tiny, tiny app that only took me a couple hours to build. You can find &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://kamranicus.com/blog/posts/58/using-calc-and-media-queries-to-create-a-combinati">
+  <link rel="canonical" href="http://kamranicus.com/blog/2013/12/24/just-released-have-i-been-pwned">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
@@ -81,7 +81,7 @@
   
   <header>
     
-      <h1 class="entry-title">Using Calc() and Media Queries to Create a Combination Variable + Fixed Sidebar</h1>
+      <h1 class="entry-title">Just Released: Have I Been Pwned?</h1>
     
     
       <p class="meta">
@@ -97,7 +97,7 @@
   
 
 
-<time datetime="2012-11-02T20:27:12-05:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2012</time>
+<time datetime="2013-12-24T15:33:00-06:00" pubdate data-updated="true">Dec 24<span>th</span>, 2013</time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://kamranicus.com">Comments</a>
@@ -107,69 +107,24 @@
   </header>
 
 
-<div class="entry-content"><p>The title of this post might be confusing, so let me describe our scenario:</p>
-
-<p>I am working on a responsive layout, specifically one right now that has two columns, a content area and a right sidebar. This right sidebar needs to be flexible <em>up to a certain point</em> and then it needs to become fixed. In addition, both columns could be variable height, and on top of that, the two columns are sometimes split into two separate rows to achieve proper HTML markup order.</p>
-
-<p>The reason the sidebar needs to have a minimum width is mostly due to the ads we&rsquo;re working with, since they have a fixed size. It might actually be possible to hack at the styles and make them pseudo-responsive, but I still want to share my tip with you, even if I don&rsquo;t end up using it.</p>
-
-<p>I thought this was an interesting challenge because of two issues: the need for both flex <em>and</em> fixed for the same column.</p>
-
-<h3>The Demo</h3>
-
-<p>Here is the Fiddle I came up with where you can view the result:</p>
-
-<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/kamranayub/mHvtM/4/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<div class="entry-content"><iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2149403&authkey=AEgpdW0TqRxZH0o" width="192" height="320" frameborder="0" scrolling="no"></iframe>
 
 
-<h3>The Markup</h3>
-
-<p>The markup is straightforward and simple. I essentially need two rows of two columns, where the right columns line up and <em>appear</em> to be a single sidebar. When I get down to the smaller breakpoints, both columns stop floating and stack vertically (but that is neither here nor there).</p>
-
-<h3>The Styles</h3>
-
-<p>Here&rsquo;s where it gets interesting. I start out the design with a 60% left column and 40% right column. However, I need the right column to stop being variable at 300px, and I need the left column to take up the remaining space.</p>
-
-<p>The way I achieved this was by using a media query and the CSS3 <code>calc()</code> unit. I wanted to avoid Javascript at all costs.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="k">@media</span> <span class="o">(</span><span class="nt">max-width</span><span class="o">:</span> <span class="nt">750px</span><span class="o">)</span> <span class="p">{</span> <span class="c">/* min-width / % = (300 / 0.4) = 750 */</span>
-</span><span class='line'>    <span class="nc">.alpha</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">width</span><span class="o">:</span> <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">calc</span><span class="p">(</span><span class="m">100</span><span class="o">%</span> <span class="o">-</span> <span class="m">300px</span><span class="p">);</span>
-</span><span class='line'>        <span class="k">width</span><span class="o">:</span> <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">calc</span><span class="p">(</span><span class="m">100</span><span class="o">%</span> <span class="o">-</span> <span class="m">300px</span><span class="p">);</span>
-</span><span class='line'>        <span class="k">width</span><span class="o">:</span> <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">calc</span><span class="p">(</span><span class="m">100</span><span class="o">%</span> <span class="o">-</span> <span class="m">300px</span><span class="p">);</span>
-</span><span class='line'>        <span class="k">width</span><span class="o">:</span> <span class="n">calc</span><span class="p">(</span><span class="m">100</span><span class="o">%</span> <span class="o">-</span> <span class="m">300px</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="nc">.beta</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">width</span><span class="o">:</span> <span class="m">300px</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">background</span><span class="o">:</span> <span class="nb">orange</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Turns out, pretty simple!</p>
+<iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2149404&authkey=AICb-R354Pi1e38" width="192" height="320" frameborder="0" scrolling="no"></iframe>
 
-<h3>Gotchas</h3>
 
-<p>Of course this world isn&rsquo;t perfect and neither is CSS3 support. According to <a href="http://caniuse.com/#feat=calc">Can I Use</a>, <code>calc</code> isn&rsquo;t supported in: IE &lt; 9, iOS &lt; 6.0, Android, Opera, or BB &lt; 10.0. That&rsquo;s lot of non-support.</p>
 
-<p>So what to do? Well, in our case, it&rsquo;s not essential we maintain the fixed minimum-width. Especially if we can workaround the ads. If you <strong>must</strong> have the support, I don&rsquo;t know what to tell you. You could test for <code>calc</code> support using <a href="https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css-calc.js">Modernizr</a>, then decide what to do in browsers that don&rsquo;t have that support (for example, throwing in the towel and just convert the layout to single column). You could also use a Javascript-based solution (which you might as well, if you&rsquo;re relying on Modernizr).</p>
 
-<h3>Have a better solution?</h3>
+<iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2149405&authkey=AOyaP0QJsviTcw4" width="192" height="320" frameborder="0" scrolling="no"></iframe>
 
-<p>I&rsquo;d like to know. I&rsquo;m not a front-end expert, so there may be a more clever way to achieve this and maximize browser support. If you know of any way to do this better, please let me know down below.</p>
+
+<p>I just released <a href="http://www.windowsphone.com/en-us/store/app/have-i-been-pwned/43ca9526-4db2-40ba-9125-60d7abe62b40">Have I Been Pwned?</a> to the Windows Phone store. It&rsquo;s a tiny, tiny app that only took me a couple hours to build. You can find the source code on <a href="https://github.com/kamranayub/HaveIBeenPwned">GitHub</a>.</p>
+
+<p><a href="http://haveibeenpwned.com">HaveIBeenPwned.com</a> is a website created by <a href="http://www.troyhunt.com/">Troy Hunt</a>, a security MVP, that checks to see if your email address appears in a database of all the breached email addresses in prominent hacks like Gawker, Sony, and Adobe. I&rsquo;ve definitely been pwned, so it&rsquo;s a good service to use to quickly see if you need to change your passwords.</p>
+
+<p>I plan to add the background task soon but I wanted the initial release out there so that I can just submit updates to it. If you want to contribute, send me a pull request!</p>
 </div>
 
 
@@ -192,15 +147,21 @@
   
 
 
-<time datetime="2012-11-02T20:27:12-05:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2012</time>
+<time datetime="2013-12-24T15:33:00-06:00" pubdate data-updated="true">Dec 24<span>th</span>, 2013</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/app/'>App</a>, <a class='category' href='/blog/categories/windows-phone/'>Windows Phone</a>
+  
+</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://kamranicus.com/blog/posts/58/using-calc-and-media-queries-to-create-a-combinati" data-via="kamranayub" data-counturl="http://kamranicus.com/blog/posts/58/using-calc-and-media-queries-to-create-a-combinati" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://kamranicus.com/blog/2013/12/24/just-released-have-i-been-pwned/" data-via="kamranayub" data-counturl="http://kamranicus.com/blog/2013/12/24/just-released-have-i-been-pwned/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -211,10 +172,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/posts/57/enter-a-windows-8-contest-just-do-it" title="Previous Post: Enter a Windows 8 contest, just do it!">&laquo; Enter a Windows 8 contest, just do it!</a>
+        <a class="basic-alignment left" href="/blog/2013/12/18/get-your-ci-on-with-travis-ci/" title="Previous Post: Get Your CI On with Travis CI">&laquo; Get Your CI On with Travis CI</a>
       
-      
-        <a class="basic-alignment right" href="/blog/posts/59/using-knockout-bindings-in-your-winjs-application" title="Next Post: Using Knockout bindings in your WinJS application">Using Knockout bindings in your WinJS application &raquo;</a>
       
     </p>
   </footer>
@@ -336,9 +295,9 @@
         
         // var disqus_developer = 1;
         
-        var disqus_identifier = '58';
+        var disqus_identifier = 'http://kamranicus.com/blog/2013/12/24/just-released-have-i-been-pwned/';
         
-        var disqus_url = 'http://kamranicus.com/blog/posts/58/using-calc-and-media-queries-to-create-a-combinati';
+        var disqus_url = 'http://kamranicus.com/blog/2013/12/24/just-released-have-i-been-pwned/';
         var disqus_script = 'embed.js';
       
     (function () {

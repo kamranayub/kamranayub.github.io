@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: App | Kamranicus]]></title>
+  <link href="http://kamranicus.com/blog/categories/app/atom.xml" rel="self"/>
+  <link href="http://kamranicus.com/"/>
+  <updated>2013-12-24T15:34:43-06:00</updated>
+  <id>http://kamranicus.com/</id>
+  <author>
+    <name><![CDATA[Kamran]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Just Released: Have I Been Pwned?]]></title>
+    <link href="http://kamranicus.com/blog/2013/12/24/just-released-have-i-been-pwned/"/>
+    <updated>2013-12-24T15:33:00-06:00</updated>
+    <id>http://kamranicus.com/blog/2013/12/24/just-released-have-i-been-pwned</id>
+    <content type="html"><![CDATA[<iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2149403&authkey=AEgpdW0TqRxZH0o" width="192" height="320" frameborder="0" scrolling="no"></iframe>
+
+
+
+
+<iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2149404&authkey=AICb-R354Pi1e38" width="192" height="320" frameborder="0" scrolling="no"></iframe>
+
+
+
+
+<iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2149405&authkey=AOyaP0QJsviTcw4" width="192" height="320" frameborder="0" scrolling="no"></iframe>
+
+
+<p>I just released <a href="http://www.windowsphone.com/en-us/store/app/have-i-been-pwned/43ca9526-4db2-40ba-9125-60d7abe62b40">Have I Been Pwned?</a> to the Windows Phone store. It&rsquo;s a tiny, tiny app that only took me a couple hours to build. You can find the source code on <a href="https://github.com/kamranayub/HaveIBeenPwned">GitHub</a>.</p>
+
+<p><a href="http://haveibeenpwned.com">HaveIBeenPwned.com</a> is a website created by <a href="http://www.troyhunt.com/">Troy Hunt</a>, a security MVP, that checks to see if your email address appears in a database of all the breached email addresses in prominent hacks like Gawker, Sony, and Adobe. I&rsquo;ve definitely been pwned, so it&rsquo;s a good service to use to quickly see if you need to change your passwords.</p>
+
+<p>I plan to add the background task soon but I wanted the initial release out there so that I can just submit updates to it. If you want to contribute, send me a pull request!</p>
+]]></content>
+  </entry>
+  
+</feed>

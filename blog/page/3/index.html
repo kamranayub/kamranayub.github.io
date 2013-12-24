@@ -9,7 +9,7 @@
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="When you&rsquo;re working on an AJAX-enabled application, you&rsquo;ll soon discover it can be a pain to manage URLs. In fact, when you&rsquo;re &hellip;">
+  <meta name="description" content="My Windows Phone app mainly deals with talking to a web API. I&rsquo;ve previously had good experience using RestSharp but now with the new async/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,63 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/65/i-forked-fastjson">I Forked fastJSON</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-05T17:00:00-06:00" pubdate data-updated="true">Mar 5<span>th</span>, 2013</time>
+        
+           | <a href="/blog/posts/65/i-forked-fastjson#disqus_thread"
+             data-disqus-identifier="http://kamranicus.com/blog/posts/65/i-forked-fastjson">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>My Windows Phone app mainly deals with talking to a web API. I&rsquo;ve previously had good experience using RestSharp but now with the new <code>async/await</code> features, I&rsquo;ve been trying to only use <code>Task</code>-based stuff. I gotta say, I&rsquo;m loving it.</p>
+
+<p>RestSharp for WP does not natively support async/await but you can wrap it yourself. However, why not just use <code>HttpClient</code>? So that&rsquo;s what I did. I ripped out RestSharp and replaced it with <a href="https://github.com/neuecc/AsyncOAuth">AsyncOAuth</a> (which depends on HttpClient).</p>
+
+<p>Besides OAuth, the other issue you&rsquo;ll run into is what serializer/deserializer to use. You could go with JSON.NET, or ServiceStack, but those are two extremes&hellip; one being very flexible and other being very inflexible. I needed an in-between but also something very fast and that&rsquo;s exactly what <a href="http://www.codeproject.com/Articles/159450/fastJSON">fastJSON</a> is.</p>
+
+<p>Of course, it&rsquo;s fast because of the same reason SS is fast: it doesn&rsquo;t do any fancy property matching. When you&rsquo;re dealing with APIs, it&rsquo;s rare that the response they send back matches exactly with your object model and properties (especially C#). That&rsquo;s why the name variance feature of the larger libraries is awesome.</p>
+
+<p>So, I did what any good developer would, I dug in and added it. I also added <code>rootElement</code> support (for contained responses).</p>
+
+<p>You can find my changes in my <a href="https://github.com/kamranayub/fastJSON">fastJSON fork</a> on GitHub. I also went ahead and organized the solution a bit, as the original source was a bit hard to get running. I also created a Nuget package for my changes and pushed that (<a href="https://nuget.org/packages/fastJSON-kayub">fastJSON-kayub</a>).</p>
+
+<p>I don&rsquo;t necessarily intend to keep my changes in-sync. It would be preferable if my changes were pulled into the original&hellip; and it wouldn&rsquo;t hurt to use my new organization (since it&rsquo;s easy for others to pull down and build), but if that never happens, I&rsquo;m fine with that.</p>
+
+<h3>Note on Name Variance</h3>
+
+<p>The name variance is interesting. In R#, the code was written to <code>yield return</code> each variant so as soon as one matches, it returns. In fastJSON, the matching is done in the opposite direction, fastJSON will try to match the JSON key to an object&rsquo;s properties&hellip; so it makes it difficult to use what R# had written originally. I modified the code to allow for optional variant matching to speed things up. Without that, the name variance increased deserialization time by <strong>a ton</strong>. However, in my case, I really only needed ProperCase matching&hellip; which only increases the time by about 2x.</p>
+
+<p>That&rsquo;s why I made the decision to opt-out of name variance by default and when enabled, only enable ProperCase by default as that&rsquo;s probably the most common.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -906,158 +963,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/52/experiences-in-the-wild-away-signs-and-picture-fra">Experiences in the Wild: Away Signs and Picture Frames</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-15T17:44:35-05:00" pubdate data-updated="true">Jun 15<span>th</span>, 2012</time>
-        
-           | <a href="/blog/posts/52/experiences-in-the-wild-away-signs-and-picture-fra#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/52/experiences-in-the-wild-away-signs-and-picture-fra">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Inspired by a lot of the research and learning lately I&rsquo;ve been doing around experience design (which has always been a passion for me), I decided it might be fun to start sharing the little things I run into in daily life that frustrate me as a user or that give me some joy.</p>
-
-<p>The big catalyst for deciding to do this was <a href="http://twitter.com/aral">Aral Balkan</a>&rsquo;s amazing keynote at the Norwegian Developer Conference 2012 in Oslo, Norway:</p>
-
-<iframe src="http://player.vimeo.com/video/43524962" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-
-
-<p> <p><a href="http://vimeo.com/43524962">NDC2012 &ndash; Opening and Keynote &ldquo;A happy grain of sand&rdquo; by Aral Balkan</a> from <a href="http://vimeo.com/ndcoslo">NDCOslo</a> on <a href="http://vimeo.com">Vimeo</a>.</p></p>
-
-<p>If you haven&rsquo;t seen it, <strong>you must watch it now</strong> if you do any development or design. It may just change how you think about what you do.</p>
-
-<p>I may or may not commit to doing these kinds of posts each week, but I will try! Since Google+ instantly uploads my camera photos from my phone to my profile, I don&rsquo;t have much of an excuse not to share my feelings.</p>
-
-<p>The last thing I want to say is that I want to approach this from the standpoint of a user, <strong>myself</strong> and how I felt. When something is frustrating, we like to blame ourselves. The fact is that in the majority (all?) cases, there&rsquo;s an aspect of bad design at work. When something makes us happy, we should take note of what it was that caused it!</p>
-
-<p>I&rsquo;d highly recommend reading <a href="http://www.amazon.com/Design-Everyday-Things-Donald-Norman/dp/0465067107">The Design of Everyday Things</a>, as it should cause you to take a deeper look at the things you use every day and question whether or not they show aspects of good or bad design.</p>
-
-<h2>The Away Sign</h2>
-
-<p>I went to work today to pick up some prints I requested (I will talk about the job request form in another post!). When I approached the print desk I was greeted with this:</p>
-
-<p><img src="https://lh5.googleusercontent.com/-qKsASX3hclo/T9tqFrwh4VI/AAAAAAAABTs/f-si5HCrjD8/s0-d/12%2B-%2B3" alt="Away" /></p>
-
-<p>First off, this is better than nothing! At least I know that from the time I see this sign to 5 minutes from <em>now</em>, they should be back. This made me feel good.</p>
-
-<p>What I want to point out is that <em>there&rsquo;s an even better option.</em></p>
-
-<p>When I went shopping for a new place to live, we visited a ton of leasing offices. Rental agents have to give tours of the model or vacant apartments <em>every day</em> practically. It makes sense they should give feedback to people who arrive early to their appointments.</p>
-
-<p>Can you guess what they did?</p>
-
-<p><img src="http://www.littleclockshop.com/images/products/will_return_clock.jpg" alt="Be Back Clock" /><br/>
-(Source: <a href="http://www.littleclockshop.com/images/products/will_return_clock.jpg">LittleClockShop</a>)</p>
-
-<p><strong>Yes! That makes me happy!</strong> Not only do I know the folks are away, I know when to expect their return so I can plan accordingly: Do I wait in the car? Do I leave a message? Do I simply wait?</p>
-
-<p>The problem with saying &ldquo;Be back in 5 minutes&rdquo; is that when a customer arrives, they don&rsquo;t know what 5 minutes means. The 5 minutes was relative to when you posted the sign, not relative to when a customer arrives. It&rsquo;s OK to not know the exact time you&rsquo;ll be back, but it&rsquo;s still better than a relative time.</p>
-
-<h2>The IKEA Picture Frame</h2>
-
-<p>I love IKEA. I understand that I will probably need to replace a lot of the things I buy from them in a year or two, but I like their philosophy.</p>
-
-<p>I usually have no frustrating experiences with IKEA, even with their absurdly large <strike>warehouse</strike> store.</p>
-
-<p>Today, however, was different. I needed to purchase low-cost 8.5x11&#8221; frames for a project I&rsquo;m doing. IKEA to the rescue! I found this great NYTTJIA frame for a measly $2:</p>
-
-<p><a href="http://www.ikea.com/us/en/catalog/products/50186500/"><img src="http://www.ikea.com/us/en/images/products/nyttja-frame__0109048_PE258703_S4.JPG" alt="Frame" /></a></p>
-
-<p>Excellent. I headed over to my local IKEA store, ran in, and ran out with 8 of them.</p>
-
-<p><img src="https://lh6.googleusercontent.com/-EjFXc7qBt3g/T9tqFi_vulI/AAAAAAAABT8/5Zmfp-o2yhc/s0-d/12%2B-%2B4" alt="What it looks like" /></p>
-
-<p>Looks fine to me! Fast forward to when I arrived home and decided to put my pictures in the frames. The frames are wrapped in plastic, so I tore them off easily. I opened up the back of the frame, cool, this is easy. I get down to the included backing paper and take it out to reveal the laminate cover.</p>
-
-<p>Then, what I saw made me get angry.</p>
-
-<p><img src="https://lh5.googleusercontent.com/-T3cyOTpaGXU/T9tqFjcqpHI/AAAAAAAABUE/8PB5WqfG9JY/s0-d/12%2B-%2B2" alt="What the hell" /></p>
-
-<p><strong>The plastic cover has stupid recycling symbols on it, rendering it completely useless for covering and protecting my photos.</strong></p>
-
-<p>Let&rsquo;s take a closer look, shall we?</p>
-
-<p><img src="https://lh6.googleusercontent.com/-LGe7iNqhtgs/T9tqFl3bTuI/AAAAAAAABUI/gK_o_XtJSjM/s0-d/12%2B-%2B1" alt="Ugh" /></p>
-
-<p><strong>What. The. Hell.</strong></p>
-
-<p>Why would you do this IKEA? WHY? I understand I paid $2 cheap dollars for this, but why render the plastic covering totally useless? I don&rsquo;t understand&hellip; am I supposed to assume I needed to buy coverings separately?</p>
-
-<p>You <a href="http://www.ikea.com/us/en/catalog/products/50186500/">totally didn&rsquo;t make it seem that way</a>:</p>
-
-<blockquote><p>Front protection in durable plastic; makes the frame safer to use.</p></blockquote>
-
-<p>NO! NO IT DOES NOT! I can&rsquo;t use it! I would get stupid little symbols over my photo.</p>
-
-<h3>Wait a second&hellip;</h3>
-
-<p>When I originally wrote this post 5 minutes ago, I posted the story above. After re-reading it, a sudden thought occurred to me!</p>
-
-<blockquote><p>What if it&rsquo;s just a thin covering?</p></blockquote>
-
-<p>Well, what have we here!</p>
-
-<p><img src="https://lh6.googleusercontent.com/-ABfUr6W62dY/T9t3jhZc7dI/AAAAAAAABUU/hXiHGWQPAgQ/s0-d/IMG_20120615_125721.jpg" alt="WHAT?" /></p>
-
-<p>So it turns out my rage against this frame was misplaced. It turns out, IKEA <em>did</em> do something right: they protected their protective cover.</p>
-
-<p>But now I want to talk about why this design sucks.</p>
-
-<h3>My Mental Model</h3>
-
-<p>So why would I make this mistake? Why didn&rsquo;t I realize that the symbols I saw when I bought the frame were on the plastic and not on the paper? Why didn&rsquo;t I realize right away it was only a thin covering I could peel off?</p>
-
-<ol>
-<li>In the store, I unconsciously assumed the symbols were on the paper, not the plastic</li>
-<li>At home, I unconsciously assumed the symbols were printed on the plastic</li>
-</ol>
-
-
-<p>My mental model was based on past experiences with picture frames, all of which had included a plastic or glass cover that had no marks or symbols on them. There was no reason to suspect this frame would be any different.</p>
-
-<p>The issue was that IKEA took it one step further, becoming clever. That cleverness translated into frustration for me when I didn&rsquo;t see the cleverness right away.</p>
-
-<p>Now that we know what the problem was, is there a solution? I think so, it&rsquo;s called a hint! I think the standard term for this is an <em><a href="http://en.wikipedia.org/wiki/Affordance">affordance</a></em>:</p>
-
-<p><img src="/Blog/Posts/Image/54/Small" alt="Peel hint" /><br/>
-Source: <a href="http://wpcornerpeelplugin.com/html/">http://wpcornerpeelplugin.com/html/</a></p>
-
-<p>That is essentially all IKEA needed to do to prevent this problem. By folding a corner, providing a colored peel tab, or using any other myriad of techniques we see every day, they could have avoided my frustration and automatic assumption that they hated me.</p>
-
-<h2>So there you have it</h2>
-
-<p>One fairly pleasing experience, one frustrating experience and that was just this morning. Oh what fun me and you will have in the coming days! I will try to keep it balanced in each post, showcasing something that made me happy and something that did not.</p>
-
-<p>If you came across something that made you happy or frustrated today, share it!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -1093,6 +998,10 @@ Source: <a href="http://wpcornerpeelplugin.com/html/">http://wpcornerpeelplugin.
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/24/just-released-have-i-been-pwned/">Just Released: Have I Been Pwned?</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/18/get-your-ci-on-with-travis-ci/">Get Your CI on With Travis CI</a>
       </li>
     
@@ -1106,10 +1015,6 @@ Source: <a href="http://wpcornerpeelplugin.com/html/">http://wpcornerpeelplugin.
     
       <li class="post">
         <a href="/blog/2013/12/04/kamranicus-now-with-100-percent-more-octopress/">Kamranicus: Now With 100% More Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2013-12-18T23:34:34-06:00</updated>
+  <updated>2013-12-24T15:34:43-06:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Just Released: Have I Been Pwned?]]></title>
+    <link href="http://kamranicus.com/blog/2013/12/24/just-released-have-i-been-pwned/"/>
+    <updated>2013-12-24T15:33:00-06:00</updated>
+    <id>http://kamranicus.com/blog/2013/12/24/just-released-have-i-been-pwned</id>
+    <content type="html"><![CDATA[<iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2149403&authkey=AEgpdW0TqRxZH0o" width="192" height="320" frameborder="0" scrolling="no"></iframe>
+
+
+
+
+<iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2149404&authkey=AICb-R354Pi1e38" width="192" height="320" frameborder="0" scrolling="no"></iframe>
+
+
+
+
+<iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2149405&authkey=AOyaP0QJsviTcw4" width="192" height="320" frameborder="0" scrolling="no"></iframe>
+
+
+<p>I just released <a href="http://www.windowsphone.com/en-us/store/app/have-i-been-pwned/43ca9526-4db2-40ba-9125-60d7abe62b40">Have I Been Pwned?</a> to the Windows Phone store. It&rsquo;s a tiny, tiny app that only took me a couple hours to build. You can find the source code on <a href="https://github.com/kamranayub/HaveIBeenPwned">GitHub</a>.</p>
+
+<p><a href="http://haveibeenpwned.com">HaveIBeenPwned.com</a> is a website created by <a href="http://www.troyhunt.com/">Troy Hunt</a>, a security MVP, that checks to see if your email address appears in a database of all the breached email addresses in prominent hacks like Gawker, Sony, and Adobe. I&rsquo;ve definitely been pwned, so it&rsquo;s a good service to use to quickly see if you need to change your passwords.</p>
+
+<p>I plan to add the background task soon but I wanted the initial release out there so that I can just submit updates to it. If you want to contribute, send me a pull request!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Get Your CI on With Travis CI]]></title>
@@ -699,33 +725,6 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
 <p><strong>Introducing the Caliburn.Micro.BindableAppBar</strong>: you can enjoy the fruits of my labor on <a href="https://nuget.org/packages/Caliburn.Micro.BindableAppBar/">Nuget</a> or at the <a href="https://github.com/kamranayub/CaliburnBindableAppBar">GitHub</a> repository. Here&rsquo;s hoping Rob brings this into core so it&rsquo;ll just &ldquo;be there&rdquo; and integrated more into the overall Caliburn system.</p>
 
 <p>The big benefit is the ability to easily use multiple appbars on a single view <strong>and</strong> in conducted Pivot/Panorama views. In my case, I do both, because one pivot page has two states (a selection state and a browsing state) and both requires two different appbars. The other pivot page doesn&rsquo;t need all the cruft of the first pivot&rsquo;s appbar, so only one button is present on it.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[I Forked fastJSON]]></title>
-    <link href="http://kamranicus.com/blog/posts/65/i-forked-fastjson"/>
-    <updated>2013-03-05T17:00:00-06:00</updated>
-    <id>http://kamranicus.com/blog/posts/65/i-forked-fastjson</id>
-    <content type="html"><![CDATA[<p>My Windows Phone app mainly deals with talking to a web API. I&rsquo;ve previously had good experience using RestSharp but now with the new <code>async/await</code> features, I&rsquo;ve been trying to only use <code>Task</code>-based stuff. I gotta say, I&rsquo;m loving it.</p>
-
-<p>RestSharp for WP does not natively support async/await but you can wrap it yourself. However, why not just use <code>HttpClient</code>? So that&rsquo;s what I did. I ripped out RestSharp and replaced it with <a href="https://github.com/neuecc/AsyncOAuth">AsyncOAuth</a> (which depends on HttpClient).</p>
-
-<p>Besides OAuth, the other issue you&rsquo;ll run into is what serializer/deserializer to use. You could go with JSON.NET, or ServiceStack, but those are two extremes&hellip; one being very flexible and other being very inflexible. I needed an in-between but also something very fast and that&rsquo;s exactly what <a href="http://www.codeproject.com/Articles/159450/fastJSON">fastJSON</a> is.</p>
-
-<p>Of course, it&rsquo;s fast because of the same reason SS is fast: it doesn&rsquo;t do any fancy property matching. When you&rsquo;re dealing with APIs, it&rsquo;s rare that the response they send back matches exactly with your object model and properties (especially C#). That&rsquo;s why the name variance feature of the larger libraries is awesome.</p>
-
-<p>So, I did what any good developer would, I dug in and added it. I also added <code>rootElement</code> support (for contained responses).</p>
-
-<p>You can find my changes in my <a href="https://github.com/kamranayub/fastJSON">fastJSON fork</a> on GitHub. I also went ahead and organized the solution a bit, as the original source was a bit hard to get running. I also created a Nuget package for my changes and pushed that (<a href="https://nuget.org/packages/fastJSON-kayub">fastJSON-kayub</a>).</p>
-
-<p>I don&rsquo;t necessarily intend to keep my changes in-sync. It would be preferable if my changes were pulled into the original&hellip; and it wouldn&rsquo;t hurt to use my new organization (since it&rsquo;s easy for others to pull down and build), but if that never happens, I&rsquo;m fine with that.</p>
-
-<h3>Note on Name Variance</h3>
-
-<p>The name variance is interesting. In R#, the code was written to <code>yield return</code> each variant so as soon as one matches, it returns. In fastJSON, the matching is done in the opposite direction, fastJSON will try to match the JSON key to an object&rsquo;s properties&hellip; so it makes it difficult to use what R# had written originally. I modified the code to allow for optional variant matching to speed things up. Without that, the name variance increased deserialization time by <strong>a ton</strong>. However, in my case, I really only needed ProperCase matching&hellip; which only increases the time by about 2x.</p>
-
-<p>That&rsquo;s why I made the decision to opt-out of name variance by default and when enabled, only enable ProperCase by default as that&rsquo;s probably the most common.</p>
 ]]></content>
   </entry>
   

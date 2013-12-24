@@ -9,8 +9,7 @@
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="I just published an article on Tech.pro that walks through getting started with Travis CI. We use it for Excalibur.js and that was my first
-time &hellip;">
+  <meta name="description" content="I just released Have I Been Pwned? to the Windows Phone store. It&rsquo;s a tiny, tiny app that only took me a couple hours to build. You can find &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +78,62 @@ time &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/24/just-released-have-i-been-pwned/">Just Released: Have I Been Pwned?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-24T15:33:00-06:00" pubdate data-updated="true">Dec 24<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/12/24/just-released-have-i-been-pwned/#disqus_thread"
+             data-disqus-identifier="http://kamranicus.com/blog/2013/12/24/just-released-have-i-been-pwned/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2149403&authkey=AEgpdW0TqRxZH0o" width="192" height="320" frameborder="0" scrolling="no"></iframe>
+
+
+
+
+<iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2149404&authkey=AICb-R354Pi1e38" width="192" height="320" frameborder="0" scrolling="no"></iframe>
+
+
+
+
+<iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2149405&authkey=AOyaP0QJsviTcw4" width="192" height="320" frameborder="0" scrolling="no"></iframe>
+
+
+<p>I just released <a href="http://www.windowsphone.com/en-us/store/app/have-i-been-pwned/43ca9526-4db2-40ba-9125-60d7abe62b40">Have I Been Pwned?</a> to the Windows Phone store. It&rsquo;s a tiny, tiny app that only took me a couple hours to build. You can find the source code on <a href="https://github.com/kamranayub/HaveIBeenPwned">GitHub</a>.</p>
+
+<p><a href="http://haveibeenpwned.com">HaveIBeenPwned.com</a> is a website created by <a href="http://www.troyhunt.com/">Troy Hunt</a>, a security MVP, that checks to see if your email address appears in a database of all the breached email addresses in prominent hacks like Gawker, Sony, and Adobe. I&rsquo;ve definitely been pwned, so it&rsquo;s a good service to use to quickly see if you need to change your passwords.</p>
+
+<p>I plan to add the background task soon but I wanted the initial release out there so that I can just submit updates to it. If you want to contribute, send me a pull request!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -514,62 +569,6 @@ about contributing and is a bit less intimidating.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/74/debounced-after-render-pattern-for-knockoutjs">Debounced After Render Pattern for Knockout.js</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-06-05T19:18:28-05:00" pubdate data-updated="true">Jun 5<span>th</span>, 2013</time>
-        
-           | <a href="/blog/posts/74/debounced-after-render-pattern-for-knockoutjs#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/74/debounced-after-render-pattern-for-knockoutjs">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When dealing with Knockout-based lists, I think the built-in events/callbacks provided by Knockout leave a bit to be desired. For example, a common case I here people complain about is that the <code>afterRender</code> callback for the <code>foreach/template</code> bindings executes for each item in the array, not after all the elements have been rendered.</p>
-
-<p>There are probably better ways to <em>resolve</em> this using Promises (pun intended), but here&rsquo;s one way to attack it using <a href="http://underscorejs.org/docs/underscore.html#section-65">Underscore.js</a>&rsquo;s <code>debounce</code> method that&rsquo;s easy to understand and use.</p>
-
-<p>The <code>debounce</code> method:</p>
-
-<blockquote><p>Returns a function, that, as long as it continues to be invoked, will not be triggered. The function will be called after it stops being called for N milliseconds. If immediate is passed, trigger the function on the leading edge, instead of the trailing.</p></blockquote>
-
-<p>This is useful for high-octane events like rendering elements, window resizing, or capture mouse events.</p>
-
-<p>Here&rsquo;s a Fiddle that demonstrates a way to execute a callback after all the elements in a list have been rendered (and filters them to only <code>li</code> DOM elements):</p>
-
-<iframe width="100%" height="300" src="http://jsfiddle.net/kamranayub/yEhEt/3/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
-
-<p>This can be cleaned up multiple ways, I think a cleaner way to implement this would be through resolving a promise and then overriding the <code>foreach</code> and <code>template</code> binding to support it, for example, <code>afterAllRender</code> or something.</p>
-
-<p>But this gets the job done and is easy to implement!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -603,6 +602,10 @@ about contributing and is a bit less intimidating.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/24/just-released-have-i-been-pwned/">Just Released: Have I Been Pwned?</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/18/get-your-ci-on-with-travis-ci/">Get Your CI on With Travis CI</a>
       </li>
     
@@ -616,10 +619,6 @@ about contributing and is a bit less intimidating.</p>
     
       <li class="post">
         <a href="/blog/2013/12/04/kamranicus-now-with-100-percent-more-octopress/">Kamranicus: Now With 100% More Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a>
       </li>
     
   </ul>

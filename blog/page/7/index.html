@@ -9,7 +9,7 @@
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="I&rsquo;m [still] reading through the docs on the new Mileage Stats application that was just released by Microsoft. It looks pretty cool! A little &hellip;">
+  <meta name="description" content="When I wrote Kamranicus, I wanted a simple blog where I could use Markdown and copy/paste images. I achieved that but I also built a simple comment &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,51 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/21/integrated-disqus-comment-system-into-kamranicus">Integrated Disqus Comment System Into Kamranicus</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-07T14:41:16-05:00" pubdate data-updated="true">Oct 7<span>th</span>, 2011</time>
+        
+           | <a href="/blog/posts/21/integrated-disqus-comment-system-into-kamranicus#disqus_thread"
+             data-disqus-identifier="http://kamranicus.com/blog/posts/21/integrated-disqus-comment-system-into-kamranicus">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When I wrote Kamranicus, I wanted a simple blog where I could use Markdown and copy/paste images. I achieved that but I also built a simple comment system.</p>
+
+<p>While fun and a good exercise in using OpenID, I should have thought to check if there is any universal comment system available. There is. It&rsquo;s called <a href="http://disqus.com">Disqus</a>. Unfortunately, I discovered it after I made Kamranicus.</p>
+
+<p>As you can see now, Disqus is now the comment backend for Kamranicus&#8217; posts. Now I can allow anyone to comment using whatever provider they want, moderate comments, have comment threads, trackbacks, and loads of other useful features.</p>
+
+<p>It was easy to integrate. Check it out if you are in the same situation as me.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -969,56 +1014,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/9/fixing-the-post-value-of-the-button-element-in-ie">Fixing the POST Value of the Button Element in IE 7 and Below</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-05-19T18:07:48-05:00" pubdate data-updated="true">May 19<span>th</span>, 2011</time>
-        
-           | <a href="/blog/posts/9/fixing-the-post-value-of-the-button-element-in-ie#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/9/fixing-the-post-value-of-the-button-element-in-ie">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Please <a href="http://www.peterbe.com/plog/button-tag-in-IE">see this write up</a> for the exact issue. Basically, IE 7 and below do not properly submit the &ldquo;value&rdquo; of the <code>&lt;button&gt;</code> tag, opting instead to submit the <code>innerText</code>. We just hit this issue while testing with our users who used IE7 on a project I&rsquo;m on.</p>
-
-<p>Here is the fix I&rsquo;m using which I prefer to all the other alternatives I saw in the comments of that post. It meets two of my objectives:</p>
-
-<ul>
-<li>It&rsquo;s totally transparent</li>
-<li>It&rsquo;s only for IE 7 and 6</li>
-</ul>
-
-
-<script src="https://gist.github.com/981360.js?file=iebuttonfix.js"></script>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -1054,6 +1049,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/24/just-released-have-i-been-pwned/">Just Released: Have I Been Pwned?</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/18/get-your-ci-on-with-travis-ci/">Get Your CI on With Travis CI</a>
       </li>
     
@@ -1067,10 +1066,6 @@
     
       <li class="post">
         <a href="/blog/2013/12/04/kamranicus-now-with-100-percent-more-octopress/">Kamranicus: Now With 100% More Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a>
       </li>
     
   </ul>
