@@ -9,7 +9,7 @@
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="Inspired by a lot of the research and learning lately I&rsquo;ve been doing around experience design (which has always been a passion for me), I &hellip;">
+  <meta name="description" content="I am mostly writing this for my own benefit because every year I tend to forget what I did before. It&rsquo;s not hard, there&rsquo;s just a handful &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,85 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/53/how-to-install-a-ssl-certificate-into-appharbor">How to Install a SSL Certificate Into AppHarbor</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-03T15:10:58-05:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2012</time>
+        
+           | <a href="/blog/posts/53/how-to-install-a-ssl-certificate-into-appharbor#disqus_thread"
+             data-disqus-identifier="http://kamranicus.com/blog/posts/53/how-to-install-a-ssl-certificate-into-appharbor">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I am mostly writing this for my own benefit because every year I tend to forget what I did before. It&rsquo;s not hard, there&rsquo;s just a handful of steps. I use RapidSSL as my provider, so my steps are based on what RapidSSL gives me.</p>
+
+<p>This guide assumes you are using SNI SSL (I am not sure if the steps differ for IP/hostname-based SSL on AppHarbor).</p>
+
+<ol>
+<li><p>Create a new Certificate Signing Request on your local IIS box (the machine doesn&rsquo;t matter, just use your dev machine)</p>
+
+<p> <img src="/blog/images/55.png" alt="Certificates in IIS" /></p>
+
+<p> <img src="/blog/images/65.png" alt="Enter your information" /></p>
+
+<p> <img src="/blog/images/57.png" alt="Don't need to change this" /></p>
+
+<p> <img src="/blog/images/58.png" alt="Save somewhere" /></p>
+
+<p> Be sure to remember the <em>Common Name</em> you entered as that is important. I use my domain name because it&rsquo;s easy to remember.</p></li>
+<li><p>On your SSL provider (e.g. RapidSSL), they will ask you to paste in your CSR. Open the TXT file IIS made and copy <em>everything</em> and paste it in when your provider asks for it.</p></li>
+<li><p>Wait until your provider completes your order. RapidSSL will send you an email with some certificates in the email, but all you need right now is the Intermediary Certificate.</p></li>
+<li><p>Copy the Intermediary Certificate from your provider and install it into AppHarbor:</p>
+
+<p> <img src="/blog/images/59.png" alt="Copy this" /></p>
+
+<p> Be sure to copy everything including the header and footer.</p>
+
+<p> <img src="/blog/images/60.png" alt="Enter the IC" /></p></li>
+<li><p>Now, for RapidSSL, you will let you download either the X.509 certificate or a PKCS#7 file. With IIS, you need to download the X.509 certificate. At the end of the order email, there&rsquo;s a link to the order portal where you enter your order info and you can then download your certificate. Download your X.509 certificate file, which will probably end in a <em>.crt</em> extension. Put it in the same place as your CSR to keep track of it.</p>
+
+<p> <img src="/blog/images/61.png" alt="Download cert" /></p></li>
+<li><p>Back in IIS, on the same machine you generated the CSR with, you must &ldquo;Complete a Certificate Signing Request&hellip;&rdquo;. You need to browse to the cer file (you may need to change the dialog to All Files).</p>
+
+<p> <img src="/blog/images/62.png" alt="Complete the CSR" /></p></li>
+<li><p>Once completed, IIS will list your certificate. You now need to select it and export it as a <em>.pfx</em> file. You need to enter a passphrase for the PFX file which you&rsquo;ll need for AppHarbor.</p>
+
+<p> <img src="/blog/images/63.png" alt="Export" /></p>
+
+<p> <img src="/blog/images/64.png" alt="Enter a passphrase" /></p></li>
+<li><p>Finally! On AppHarbor, go to your certificates and add a new certificate. Specify you want to use a PFX file. Now enter the Common Name you&rsquo;ve been keeping the same throughout the process (e.g. whatever.com) and enter the password you just used in IIS.</p></li>
+</ol>
+
+
+<p>ALL DONE. That wasn&rsquo;t so bad, was it?</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -983,149 +1062,6 @@ Source: <a href="http://wpcornerpeelplugin.com/html/">http://wpcornerpeelplugin.
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/43/attributerouting-now-supports-web-api">AttributeRouting Now Supports Web API</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-17T16:08:22-05:00" pubdate data-updated="true">Apr 17<span>th</span>, 2012</time>
-        
-           | <a href="/blog/posts/43/attributerouting-now-supports-web-api#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/43/attributerouting-now-supports-web-api">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you&rsquo;re <em>not</em> using <a href="https://github.com/mccalltd/AttributeRouting">AttributeRouting</a> you&rsquo;re missing out. I&rsquo;m serious, I am not sure how any ASP.NET MVC application can live without this library. Like <a href="http://getcassette.net">Cassette</a>, it&rsquo;s become a standard in my .NET tool belt.</p>
-
-<h3>AttributeRouting at a Glance</h3>
-
-<p>If you&rsquo;re like me, you hate being stuck in this <code>{controller}/{action}</code> world that is the default MVC experience. I&rsquo;d rather have URLs like this:</p>
-
-<ul>
-<li>/library/1 (GET, POST)</li>
-<li>/library/1/games/1 (GET, POST, PUT, DELETE)</li>
-<li>/search/?q=keyword (GET)</li>
-<li>/register (GET, POST)</li>
-</ul>
-
-
-<p>In other words, more control over my URLs. Sure, you <em>could</em> be a caveman and use Global.asax for all of that, but I think you&rsquo;ll find it quickly growing out of hand unless you create methods to take care of different controllers.</p>
-
-<p>Instead, wouldn&rsquo;t this be easier and more discoverable?</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[RoutePrefix(&quot;library&quot;)]</span>
-</span><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">LibraryController</span> <span class="p">:</span> <span class="n">Controller</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// GET: /</span>
-</span><span class='line'>    <span class="c1">// GET: /library</span>
-</span><span class='line'>
-</span><span class='line'><span class="na">    [GET(&quot;&quot;, RouteName = &quot;default&quot;, IsAbsoluteUrl = true)]</span>
-</span><span class='line'><span class="na">    [GET(&quot;&quot;, RouteName = &quot;library&quot;)]</span>
-</span><span class='line'>    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Index</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// GET: /library/{userId}</span>
-</span><span class='line'><span class="na">    [GET(&quot;{userId}&quot;)]</span>
-</span><span class='line'>    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">ByUser</span><span class="p">(</span><span class="kt">int</span> <span class="n">userId</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// POST: /library</span>
-</span><span class='line'><span class="na">    [POST(&quot;&quot;)]</span>
-</span><span class='line'>    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Filter</span><span class="p">(</span><span class="n">Criteria</span> <span class="n">criteria</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>That is exactly what AttributeRouting lets you do (and more!).</p>
-
-<h3>Web API</h3>
-
-<p>Now what if you want to do the same thing with ASP.NET Web API (or self-hosted Web API)? The short answer is <strong>now you can</strong>, though a week ago you couldn&rsquo;t. Having embarked on using Web API for my latest project, I decided that since I couldn&rsquo;t live without AR in MVC, I also couldn&rsquo;t live without it for Web API. So I forked the project, <a href="https://github.com/mccalltd/AttributeRouting/pull/57">did my thing</a>, and now it&rsquo;s in v2.0 which is <a href="http://nuget.org/packages?q=attributerouting">out now on Nuget</a>.</p>
-
-<p>I tried hard to keep the exact same convention and syntax:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[RoutePrefix(&quot;library&quot;)]</span>
-</span><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">LibraryController</span> <span class="p">:</span> <span class="n">ApiController</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'><span class="na">  [GET(&quot;&quot;)]</span>
-</span><span class='line'>  <span class="k">public</span> <span class="n">LibraryViewModel</span> <span class="nf">Get</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="na">  [HttpRoute(&quot;custom&quot;, HttpMethod.Get, HttpMethod.Post)]</span>
-</span><span class='line'>  <span class="k">public</span> <span class="n">HttpResponseMessage</span> <span class="nf">Custom</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Using Web API in a self-hosted environment? Not a problem, I made sure self-hosted works the same way, just grab the <a href="http://nuget.org/packages/AttributeRouting.WebApi.Hosted">appropriate Nuget package</a>.</p>
-
-<p>It was a fun project and I learned a lot about generics. The end result was that I didn&rsquo;t even need to use generics and that sometimes generics are a hindrance rather than a help (such as having classes that require 7-8 generic arguments). I was also able to <a href="/32/using-nuspec-inheritance-to-reduce-nuget-maintenan">use what I learned</a> from contributing to Cassette and bring it to AttributeRouting.</p>
-
-<p>It seems Tim is a happy camper and it always gives me a warm, fuzzy feeling whenever someone appreciates help:</p>
-
-<p><img src="/blog/images/39.png" alt="Appreciation Goes A Long Way" /></p>
-
-<p>If you haven&rsquo;t contributed to a project you love, you should give it a chance, you always learn something!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -1161,6 +1097,10 @@ Source: <a href="http://wpcornerpeelplugin.com/html/">http://wpcornerpeelplugin.
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/01/29/5-tips-to-improve-your-mvc-site/">5 Tips to Improve Your ASP.NET MVC Codebase</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/24/just-released-have-i-been-pwned/">Just Released: Have I Been Pwned?</a>
       </li>
     
@@ -1174,10 +1114,6 @@ Source: <a href="http://wpcornerpeelplugin.com/html/">http://wpcornerpeelplugin.
     
       <li class="post">
         <a href="/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/">MiniProfiler RavenDB Pull Request Accepted</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/04/kamranicus-now-with-100-percent-more-octopress/">Kamranicus: Now With 100% More Octopress</a>
       </li>
     
   </ul>
@@ -1230,7 +1166,7 @@ Source: <a href="http://wpcornerpeelplugin.com/html/">http://wpcornerpeelplugin.
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Kamran -
+  Copyright &copy; 2014 - Kamran -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

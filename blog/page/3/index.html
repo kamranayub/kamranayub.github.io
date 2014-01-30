@@ -9,7 +9,7 @@
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="My Windows Phone app mainly deals with talking to a web API. I&rsquo;ve previously had good experience using RestSharp but now with the new async/ &hellip;">
+  <meta name="description" content="Update: Matteo Pagani has a great introduction on setting up the BindableAppBar. Thanks Matteo! Anyone who has done Windows Phone development will &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,67 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/64/bindableappbar-for-caliburn-micro">BindableAppBar for Caliburn Micro</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-05T19:07:28-06:00" pubdate data-updated="true">Mar 5<span>th</span>, 2013</time>
+        
+           | <a href="/blog/posts/64/bindableappbar-for-caliburn-micro#disqus_thread"
+             data-disqus-identifier="http://kamranicus.com/blog/posts/64/bindableappbar-for-caliburn-micro">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>Update:</strong> Matteo Pagani has a <a href="http://wp.qmatteoq.com/first-steps-with-caliburn-micro-the-application-bar/">great introduction</a> on setting up the BindableAppBar. Thanks Matteo!</p>
+
+<p>Anyone who has done Windows Phone development will tell you: the appbar sucks.</p>
+
+<p>It sucks for several reasons:</p>
+
+<ul>
+<li>It&rsquo;s not a <code>DependencyObject</code> so you can&rsquo;t use binding</li>
+<li>It doesn&rsquo;t support commands</li>
+<li>It&rsquo;s hard to make it dynamic because it must be maniuplated in code</li>
+<li>It sucks</li>
+</ul>
+
+
+<p>Given those reasons, it&rsquo;s no surprise people have come up with &ldquo;bindable app bars&rdquo; that are basically wrappers around the appbar that allow binding, manipulation, and such.</p>
+
+<p>Unfortunately, none of those solutions have come to Caliburn. Caliburn <em>does</em> provide basic message binding support and IsEnabled guarding, but that&rsquo;s it.</p>
+
+<p>So, given that I <strong>really</strong> wanted to start binding some appbars hardcore, I decided to spend a day and make it happen.</p>
+
+<p><strong>Introducing the Caliburn.Micro.BindableAppBar</strong>: you can enjoy the fruits of my labor on <a href="https://nuget.org/packages/Caliburn.Micro.BindableAppBar/">Nuget</a> or at the <a href="https://github.com/kamranayub/CaliburnBindableAppBar">GitHub</a> repository. Here&rsquo;s hoping Rob brings this into core so it&rsquo;ll just &ldquo;be there&rdquo; and integrated more into the overall Caliburn system.</p>
+
+<p>The big benefit is the ability to easily use multiple appbars on a single view <strong>and</strong> in conducted Pivot/Panorama views. In my case, I do both, because one pivot page has two states (a selection state and a browsing state) and both requires two different appbars. The other pivot page doesn&rsquo;t need all the cruft of the first pivot&rsquo;s appbar, so only one button is present on it.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -884,85 +945,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/53/how-to-install-a-ssl-certificate-into-appharbor">How to Install a SSL Certificate Into AppHarbor</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-03T15:10:58-05:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2012</time>
-        
-           | <a href="/blog/posts/53/how-to-install-a-ssl-certificate-into-appharbor#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/53/how-to-install-a-ssl-certificate-into-appharbor">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I am mostly writing this for my own benefit because every year I tend to forget what I did before. It&rsquo;s not hard, there&rsquo;s just a handful of steps. I use RapidSSL as my provider, so my steps are based on what RapidSSL gives me.</p>
-
-<p>This guide assumes you are using SNI SSL (I am not sure if the steps differ for IP/hostname-based SSL on AppHarbor).</p>
-
-<ol>
-<li><p>Create a new Certificate Signing Request on your local IIS box (the machine doesn&rsquo;t matter, just use your dev machine)</p>
-
-<p> <img src="/blog/images/55.png" alt="Certificates in IIS" /></p>
-
-<p> <img src="/blog/images/65.png" alt="Enter your information" /></p>
-
-<p> <img src="/blog/images/57.png" alt="Don't need to change this" /></p>
-
-<p> <img src="/blog/images/58.png" alt="Save somewhere" /></p>
-
-<p> Be sure to remember the <em>Common Name</em> you entered as that is important. I use my domain name because it&rsquo;s easy to remember.</p></li>
-<li><p>On your SSL provider (e.g. RapidSSL), they will ask you to paste in your CSR. Open the TXT file IIS made and copy <em>everything</em> and paste it in when your provider asks for it.</p></li>
-<li><p>Wait until your provider completes your order. RapidSSL will send you an email with some certificates in the email, but all you need right now is the Intermediary Certificate.</p></li>
-<li><p>Copy the Intermediary Certificate from your provider and install it into AppHarbor:</p>
-
-<p> <img src="/blog/images/59.png" alt="Copy this" /></p>
-
-<p> Be sure to copy everything including the header and footer.</p>
-
-<p> <img src="/blog/images/60.png" alt="Enter the IC" /></p></li>
-<li><p>Now, for RapidSSL, you will let you download either the X.509 certificate or a PKCS#7 file. With IIS, you need to download the X.509 certificate. At the end of the order email, there&rsquo;s a link to the order portal where you enter your order info and you can then download your certificate. Download your X.509 certificate file, which will probably end in a <em>.crt</em> extension. Put it in the same place as your CSR to keep track of it.</p>
-
-<p> <img src="/blog/images/61.png" alt="Download cert" /></p></li>
-<li><p>Back in IIS, on the same machine you generated the CSR with, you must &ldquo;Complete a Certificate Signing Request&hellip;&rdquo;. You need to browse to the cer file (you may need to change the dialog to All Files).</p>
-
-<p> <img src="/blog/images/62.png" alt="Complete the CSR" /></p></li>
-<li><p>Once completed, IIS will list your certificate. You now need to select it and export it as a <em>.pfx</em> file. You need to enter a passphrase for the PFX file which you&rsquo;ll need for AppHarbor.</p>
-
-<p> <img src="/blog/images/63.png" alt="Export" /></p>
-
-<p> <img src="/blog/images/64.png" alt="Enter a passphrase" /></p></li>
-<li><p>Finally! On AppHarbor, go to your certificates and add a new certificate. Specify you want to use a PFX file. Now enter the Common Name you&rsquo;ve been keeping the same throughout the process (e.g. whatever.com) and enter the password you just used in IIS.</p></li>
-</ol>
-
-
-<p>ALL DONE. That wasn&rsquo;t so bad, was it?</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -998,6 +980,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/01/29/5-tips-to-improve-your-mvc-site/">5 Tips to Improve Your ASP.NET MVC Codebase</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/24/just-released-have-i-been-pwned/">Just Released: Have I Been Pwned?</a>
       </li>
     
@@ -1011,10 +997,6 @@
     
       <li class="post">
         <a href="/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/">MiniProfiler RavenDB Pull Request Accepted</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/04/kamranicus-now-with-100-percent-more-octopress/">Kamranicus: Now With 100% More Octopress</a>
       </li>
     
   </ul>
@@ -1067,7 +1049,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Kamran -
+  Copyright &copy; 2014 - Kamran -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

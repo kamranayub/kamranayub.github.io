@@ -9,7 +9,7 @@
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="When dealing with Knockout-based lists, I think the built-in events/callbacks provided by Knockout leave a bit to be desired. For example, a common &hellip;">
+  <meta name="description" content="This comes directly from a tip Mike Zarandona posted on Coderwall, which I&rsquo;m posting here to keep track of it: I was sick of borrowing a friend &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,65 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/75/test-retina-images-without-a-retina-screen">Test Retina Images Without a Retina Screen</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-25T21:36:22-05:00" pubdate data-updated="true">Jul 25<span>th</span>, 2013</time>
+        
+           | <a href="/blog/posts/75/test-retina-images-without-a-retina-screen#disqus_thread"
+             data-disqus-identifier="http://kamranicus.com/blog/posts/75/test-retina-images-without-a-retina-screen">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This comes directly from a tip <a href="https://coderwall.com/p/engjbw">Mike Zarandona posted on Coderwall</a>, which I&rsquo;m posting here to keep track of it:</p>
+
+<hr />
+
+<p>I was sick of borrowing a friend&rsquo;s retina laptop to test retina images. After a little poking around, I discovered a few options baked right into the most popular browsers.</p>
+
+<p>In Google Chrome:</p>
+
+<ul>
+<li>Browse to chrome://flags</li>
+<li>Search for and enable Force high DPI mode</li>
+</ul>
+
+
+<p>In FireFox:</p>
+
+<ul>
+<li>Browse to about:config</li>
+<li>Search for layout.css.devPixelsPerPx</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -802,67 +861,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/64/bindableappbar-for-caliburn-micro">BindableAppBar for Caliburn Micro</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-05T19:07:28-06:00" pubdate data-updated="true">Mar 5<span>th</span>, 2013</time>
-        
-           | <a href="/blog/posts/64/bindableappbar-for-caliburn-micro#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/64/bindableappbar-for-caliburn-micro">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>Update:</strong> Matteo Pagani has a <a href="http://wp.qmatteoq.com/first-steps-with-caliburn-micro-the-application-bar/">great introduction</a> on setting up the BindableAppBar. Thanks Matteo!</p>
-
-<p>Anyone who has done Windows Phone development will tell you: the appbar sucks.</p>
-
-<p>It sucks for several reasons:</p>
-
-<ul>
-<li>It&rsquo;s not a <code>DependencyObject</code> so you can&rsquo;t use binding</li>
-<li>It doesn&rsquo;t support commands</li>
-<li>It&rsquo;s hard to make it dynamic because it must be maniuplated in code</li>
-<li>It sucks</li>
-</ul>
-
-
-<p>Given those reasons, it&rsquo;s no surprise people have come up with &ldquo;bindable app bars&rdquo; that are basically wrappers around the appbar that allow binding, manipulation, and such.</p>
-
-<p>Unfortunately, none of those solutions have come to Caliburn. Caliburn <em>does</em> provide basic message binding support and IsEnabled guarding, but that&rsquo;s it.</p>
-
-<p>So, given that I <strong>really</strong> wanted to start binding some appbars hardcore, I decided to spend a day and make it happen.</p>
-
-<p><strong>Introducing the Caliburn.Micro.BindableAppBar</strong>: you can enjoy the fruits of my labor on <a href="https://nuget.org/packages/Caliburn.Micro.BindableAppBar/">Nuget</a> or at the <a href="https://github.com/kamranayub/CaliburnBindableAppBar">GitHub</a> repository. Here&rsquo;s hoping Rob brings this into core so it&rsquo;ll just &ldquo;be there&rdquo; and integrated more into the overall Caliburn system.</p>
-
-<p>The big benefit is the ability to easily use multiple appbars on a single view <strong>and</strong> in conducted Pivot/Panorama views. In my case, I do both, because one pivot page has two states (a selection state and a browsing state) and both requires two different appbars. The other pivot page doesn&rsquo;t need all the cruft of the first pivot&rsquo;s appbar, so only one button is present on it.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -898,6 +896,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/01/29/5-tips-to-improve-your-mvc-site/">5 Tips to Improve Your ASP.NET MVC Codebase</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/24/just-released-have-i-been-pwned/">Just Released: Have I Been Pwned?</a>
       </li>
     
@@ -911,10 +913,6 @@
     
       <li class="post">
         <a href="/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/">MiniProfiler RavenDB Pull Request Accepted</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/04/kamranicus-now-with-100-percent-more-octopress/">Kamranicus: Now With 100% More Octopress</a>
       </li>
     
   </ul>
@@ -967,7 +965,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Kamran -
+  Copyright &copy; 2014 - Kamran -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
