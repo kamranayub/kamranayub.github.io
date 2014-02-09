@@ -9,7 +9,7 @@
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="I am mostly writing this for my own benefit because every year I tend to forget what I did before. It&rsquo;s not hard, there&rsquo;s just a handful &hellip;">
+  <meta name="description" content="At home, I have two main computers and one desk. I use one for my main everyday tasks and for gaming, and I use the other one as a server/development &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,100 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/54/2-computers-1-desk">2 Computers, 1 Desk</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-17T20:54:51-05:00" pubdate data-updated="true">Aug 17<span>th</span>, 2012</time>
+        
+           | <a href="/blog/posts/54/2-computers-1-desk#disqus_thread"
+             data-disqus-identifier="http://kamranicus.com/blog/posts/54/2-computers-1-desk">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>At home, I have two main computers and one desk. I use one for my main everyday tasks and for gaming, and I use the other one as a server/development machine.</p>
+
+<p>As you might guess, this is logistically difficult to manage on a small desk that is meant for only a single PC. You need to have two keyboards/mice and, if you like sound, two sets of speakers. Furthermore, if you&rsquo;re like me, you want to see both computers at once if you have two screens. Personally, I like dual-monitors for my main machine and am fine with only using a single monitor for development.</p>
+
+<h2>Two PC&rsquo;s, One Mouse and Keyboard</h2>
+
+<p>The first logistical item to eliminate is how to control both computers with one keyboard and one mouse. There are a couple options:</p>
+
+<ol>
+<li>Use a hardware KVM switch</li>
+<li>Use a software KVM switch</li>
+</ol>
+
+
+<p>Going with option 1 requires some more cables, but is handy in that you purposefully switch to the device you want to use, plus it is using actual hardware, rather than software emulation (which may have issues on Windows 8, see below).</p>
+
+<p>I went with option 2, using the open source software <a href="http://synergy-foss.org/">Synergy</a>. I have a Windows 7 host (gaming PC) and my server as the client (Windows 8 RTM). If you make sure Synergy starts as a service and is elevated, you won&rsquo;t have issues with starting up and logging in on the client PC.</p>
+
+<p><em>Notice for Windows 8 users</em>: You may run into an issue with any KVM software out right now, which is being unable to see your mouse cursor. If you do not have any mouse plugged in to the computer, I believe Windows 8 hides the cursor because it assumes a touch interface by default. There are two workarounds: 1) Enable &ldquo;<a href="http://windows.microsoft.com/is-IS/windows7/Use-Mouse-Keys-to-move-the-mouse-pointer">MouseKeys</a>&rdquo; but I had to enable this almost every time I restarted or, 2) Plug in a mouse. I opted for #2, with a wireless mouse/kb. This gives me some flexibility where I can use a physical mouse/kb if I really want.</p>
+
+<h2>Two PC&rsquo;s One Set of Speakers</h2>
+
+<p>This is the more interesting problem. Is it possible to play both computers through one set of speakers? I am happy to report: yes! However, there is a caveat&hellip;</p>
+
+<p>In order to pull this off, your &ldquo;main&rdquo; PC needs to have the ability to accept an input device (like a Digital/SPDIF/Optical-In). My gaming PC has a Sound Blaster X-Fi Elite Pro, so I have a big external console that accepts all kinds of inputs.</p>
+
+<p>My server has a modern motherboard which can output either SPDIF or Optical. I had an extra SPDIF cable lying around, so I wired it from the server to my X-Fi&rsquo;s console.</p>
+
+<p>There are a couple things to do in Windows to get this to work:</p>
+
+<ol>
+<li><p>Right-click your sound icon and go to Playback Devices.</p></li>
+<li><p>Make sure SPDIF is the default playback device:</p>
+
+<p> <img src="/blog/images/66.png" alt="SPDIF" /></p></li>
+<li><p>On the main PC, you can &ldquo;listen&rdquo; to any recording device, which plays whatever&rsquo;s being sent to the main playback device. Listen to whatever input you&rsquo;re using to send the output of the client PC:</p>
+
+<p> <img src="/blog/images/68.png" alt="Listen" /></p></li>
+</ol>
+
+
+<p>Voila! As soon as you hit &ldquo;Apply&rdquo;, you&rsquo;ll start hearing Iron Maiden blasting through your single set of speakers as you code!</p>
+
+<p><strong>Note:</strong> This problem can also be solved if the monitor you use has speakers. If you use HDMI to connect your monitor to your client, audio and video will pass through (or you can use one of those speaker-jack cables). It&rsquo;ll sound like crap, though!</p>
+
+<h2>Two PCs, Two Monitors</h2>
+
+<p>This is straightforward enough. As long as your main monitor accepts multiple inputs (DVI, VGA, HDMI, DisplayPort), you just need to find the right cable from your client to the monitor.</p>
+
+<p>For example, my gaming PC has a DVI cable to my monitor. My server uses an HDMI cable. You&rsquo;re going to have a tougher time if your display doesn&rsquo;t accept multiple digital inputs (for example, only DVI and VGA&hellip;). It&rsquo;ll work, but analog signals look like crap on your nice 1080p display.</p>
+
+<p>When I am developing, I set my secondary monitor (which is to the right of my main monitor) as the primary monitor for my gaming PC. That way, I can still use my other PC as I&rsquo;m using my development machine.</p>
+
+<h2>The End Result</h2>
+
+<p>&hellip; is awesome! My desk isn&rsquo;t cluttered with multiple sets of things, and the only manual thing I really have to do is switch my monitor input when I need to switch to using one PC more than the other.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1019,49 +1113,6 @@ Source: <a href="http://wpcornerpeelplugin.com/html/">http://wpcornerpeelplugin.
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/44/why-am-i-forced-to-store-my-users-contact-informat">Why Am I Forced to Store My User&#8217;s Contact Information?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-18T23:44:51-05:00" pubdate data-updated="true">Apr 18<span>th</span>, 2012</time>
-        
-           | <a href="/blog/posts/44/why-am-i-forced-to-store-my-users-contact-informat#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/44/why-am-i-forced-to-store-my-users-contact-informat">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>OpenID and OpenAuth are cool. What&rsquo;s not cool about either approach is that I have no way to say, &ldquo;Notify this user by whatever means available.&rdquo; Instead, I am forced to collect that information and figure out a way to store it that is safe from prying eyes.</p>
-
-<p>What I&rsquo;d like to see, and tell me if this exists, is a way to not only have people <em>authenticate</em> using their service of choice, but also to be <em>notified</em> via that service. In other words, OpenID already lets me ask for a user&rsquo;s email or phone but even that isn&rsquo;t really standard (see Google). That is not <em>exactly</em> what I want, though. I just want a way to notify the user. That might be email, it might be phone, it might be proprietary (Facebook notification). Just tell me what&rsquo;s available to me and I can decide based on that what to send (small message for phones, email for email).</p>
-
-<p>As I understand the landscape, the only way to get around storing information myself is to buy into an infrastructure like Facebook to handle it for me&hellip; except that not everyone is enthused about being forced to use Facebook to use my app and it&rsquo;s not in my best interest to alienate my user base.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -1097,6 +1148,10 @@ Source: <a href="http://wpcornerpeelplugin.com/html/">http://wpcornerpeelplugin.
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/08/websockets-on-windows-azure/">Getting WebSockets to Work on Windows Azure</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/01/29/5-tips-to-improve-your-mvc-site/">5 Tips to Improve Your ASP.NET MVC Codebase</a>
       </li>
     
@@ -1110,10 +1165,6 @@ Source: <a href="http://wpcornerpeelplugin.com/html/">http://wpcornerpeelplugin.
     
       <li class="post">
         <a href="/blog/2013/12/10/just-released-bowling-calculator-app/">Just Released: Bowling Calculator App</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/">MiniProfiler RavenDB Pull Request Accepted</a>
       </li>
     
   </ul>

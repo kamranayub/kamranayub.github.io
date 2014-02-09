@@ -1,0 +1,365 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Kamranicus</title>
+  <meta name="author" content="Kamran">
+
+  
+  <meta name="description" content="YAPS (Yet Another Personal Site) My other site Intrepid Studios will be undergoing some major changes soon, due to my dad taking most of the reigns. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kamranicus.com/blog/page/9">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Kamranicus</a></h1>
+  
+    <h2>Kamran Ayub is a developer and designer in Minneapolis, Minnesota. He specializes in .NET development with a dash of client-side and is passionate about UX.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/Kamranicus" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=Kamranicus" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:kamranicus.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/1/welcome-to-kamranicus-yaps">Welcome to Kamranicus [YAPS]</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-05T23:10:57-05:00" pubdate data-updated="true">Apr 5<span>th</span>, 2011</time>
+        
+           | <a href="/blog/posts/1/welcome-to-kamranicus-yaps#disqus_thread"
+             data-disqus-identifier="http://kamranicus.com/blog/posts/1/welcome-to-kamranicus-yaps">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>YAPS (Yet Another Personal Site)</h1>
+
+<p>My other site <a href="http://intrepidstudios.com">Intrepid Studios</a> will be undergoing some major changes soon, due to my dad taking most of the reigns. It will shift from being mostly my pet project site to an actual commercial site. I won&rsquo;t be doing much directly with it anymore and I needed a new home for all <strong>my</strong> stuff.</p>
+
+<p>Thus, I welcome you to <strong>Kamranicus!</strong> I decided to create my own personal site and learn some new technology in the process. I knew a thing or two about MVC but I had yet to sit down and <em>learn</em> it first-hand. It was great timing because at work I am coming onto some existing ASP.NET MVC applications.</p>
+
+<h2>Overview</h2>
+
+<p>One thing you hopefully <strong>won&rsquo;t</strong> notice is that I don&rsquo;t bother to support any browser less than the latest modern versions (IE9, FF4, Chrome, etc). This is on purpose, mainly to decrease maintenance and development time, but also because I&rsquo;ve always wanted to say <strong>&lsquo;eff you</strong> to all those nasty old browsers (I am including IE8 and below in this category).</p>
+
+<h3>Homepage</h3>
+
+<p>The <a href="/">homepage</a> is all JSON-based, except the blog overview. The &ldquo;feeds&rdquo; use my <a href="http://github.com/kamranayub/.JSON">.JSON</a> library and the code consists of about one line per feed I need:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="kt">dynamic</span><span class="p">[]</span> <span class="n">repositories</span> <span class="p">=</span> <span class="n">JsonService</span><span class="p">.</span><span class="n">GetFrom</span><span class="p">(</span><span class="s">&quot;http://github.com/api/v2/json/repos/show/kamranayub&quot;</span><span class="p">).</span><span class="n">repositories</span><span class="p">;</span>
+</span><span class='line'><span class="kt">dynamic</span><span class="p">[]</span> <span class="n">forSale</span> <span class="p">=</span> <span class="n">JsonService</span><span class="p">.</span><span class="n">GetFrom</span><span class="p">(</span><span class="s">&quot;http://marketplace.envato.com/api/v2/new-files-from-user:kayub,codecanyon.json&quot;</span><span class="p">).</span><span class="n">newfilesfromuser</span><span class="p">;</span>
+</span><span class='line'><span class="kt">dynamic</span><span class="p">[]</span> <span class="n">tweets</span> <span class="p">=</span> <span class="n">JsonService</span><span class="p">.</span><span class="n">GetFrom</span><span class="p">(</span><span class="s">&quot;http://api.twitter.com/1/statuses/user_timeline.json?screen_name=kamranayub&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="kt">dynamic</span> <span class="n">soAnswers</span> <span class="p">=</span> <span class="n">JsonService</span><span class="p">.</span><span class="n">GetFrom</span><span class="p">(</span><span class="s">&quot;http://api.stackoverflow.com/1.1/users/109458/answers?pagesize=6&amp;sort=creation&quot;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <a href="/Blog">blog</a> is custom-made and bare-bones. You ask, &ldquo;But why not use a proven full-fledged blog framework?&rdquo; I wanted the first-class integration, I wanted some custom stuff, and because I just needed a good excuse to learn Razor and MVC 3 properly. This was a great exercise and I hope to share it with you soon.</p>
+
+<h2>MVC 3 Razor Blog Features</h2>
+
+<h3>Admin Panel Free</h3>
+
+<p>I didn&rsquo;t want to build a separate admin panel for my blog. I built it so that I can manage it using a pretty reasonable workflow. When a post is displayed, I see this above it:</p>
+
+<p><img src="/blog/images/1.png" alt="Post Toolbar" /></p>
+
+<p>I can delete it on the spot or edit it inline via AJAX. Over a comment, <em>you</em> and I can see this:</p>
+
+<p><img src="/blog/images/2.png" alt="Comment Toolbar" /></p>
+
+<p>For now I am not putting a time limit for editing or deleting comments&hellip; it is also tied to the same OpenID account you posted the comment as, so if you login with a different one, you won&rsquo;t be the owner. I should mention, the way it is coded, <strong>I cannot delete or edit your comments</strong>. If spam becomes an issue (which I will guess it will) then I&rsquo;ll have to at least be able to mark comments as spam.</p>
+
+<h3>REST-based Design</h3>
+
+<p>I made the routes designed as a poor man&rsquo;s REST implementation. So lots of things support AJAX through the same URLs as browsing without JS.</p>
+
+<p>This allows <em>me</em> to do fun inline-editing of my posts and allows <em>you</em> to inline edit your comments.</p>
+
+<p>It also allows me to not duplicate any templates as I can just pass the same exact partially-rendered views to jQuery as I do normally without JS.</p>
+
+<h3>OpenID Support</h3>
+
+<p>Since I didn&rsquo;t want to create my own membership system, I just use some very basic OpenID using <a href="http://www.dotnetopenauth.net/">DotNetOpenAuth</a>.</p>
+
+<p>I don&rsquo;t store anything except your claim ID, nickname (if given), and email (if given).</p>
+
+<h3>Gravatars</h3>
+
+<p>I don&rsquo;t know why but this was important to me. It&rsquo;s so easy to implement but it just <em>looks</em> awesome.</p>
+
+<h3>Kamdown</h3>
+
+<p>Windows Live Writer is great, but I really love Markdown. This was one big reason I didn&rsquo;t want a huge blog library, I <strong>needed</strong> this. I didn&rsquo;t bother with any Metaweblog API hooks because I liked the web-based approach to updating my blog and the simplicity of Markdown.</p>
+
+<p>I use a slightly enhanced version of Markdown (called Kamdown, <em>har har</em>) for my posts and your comments. For my posts, I implemented the SUPA Java applet to add copy/paste support for images:</p>
+
+<p><img src="/blog/images/3.png" alt="SUPA Upload Popup" /></p>
+
+<p>It just adds the image data to the DB and outputs a URL: <code>![SUPA Image Upload Support](/blog/images/2.png)</code></p>
+
+<p>This works both from clicking a button to open the dialog and also by just hitting Ctrl-V in the textbox.</p>
+
+<p>I also was inspired by GitHub&rsquo;s great interface for Markdown-enabled fields, letting you hotswap between plain text or previewed HTML. I love it!</p>
+
+<p><img src="/blog/images/4.png" alt="Markdown editor" /></p>
+
+<p>I am using the <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a> JS plugin to do syntax highlighting. I initially tried IronPython with Pygments, but there were some memory issues and I decided not to use it as it wasn&rsquo;t stable. A shame since that is the library GitHub uses and it&rsquo;s very nice. I may go back and try to figure out what the problem was.</p>
+
+<p>You use it the same way you use code blocks in GitHub wikis, triple-ticks (`).</p>
+
+<h3>SubSonic + Ninject</h3>
+
+<p>I really liked <a href="http://subsonicproject.com">SubSonic&rsquo;s</a> <code>SimpleRepository</code> so I used it. I didn&rsquo;t bother with much layering and focused more on getting things done so most of my data access code is 1-2 lines wherever I need it.</p>
+
+<p>I use Ninject as my DI framework because it&rsquo;s simple and straight to the point.</p>
+
+<h3>AppHarbor Deployment</h3>
+
+<p>I am using the free <a href="http://appharbor.com">AppHarbor</a> instance to host and deploy the site (using a separate back-end I get for free).</p>
+
+<p>It&rsquo;s a really neat service but it still needs some minor adjustments, such as more separation between environments (for testing). I may talk about this later. That said, it does its job well and the free instance seems to be fast enough for my needs. I do have <a href="http://arvixe.com">Arvixe</a> to fall back on, but their control panel and setup was being too ornery for me.</p>
+
+<h2>So where&rsquo;s the code?</h2>
+
+<p>I hope to release my code soon, as soon as I clean it up and make it somewhat presentable. I figure it&rsquo;d be nice to let other people build their own custom blogs from a small codebase like I did. It&rsquo;s separated into its own Area, so the code is separate from the core site. The great thing is you get all the integration MVC provides and it&rsquo;s as customizable as you need it to be.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/8/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  	<h1>About Me</h1>
+
+  	<p><img src="http://gravatar.com/avatar/8303c4eb9f9099df39adbc3d8c634746?s=120" alt="My Headshot" title="My ugly mug" /></p>
+
+  	<p>Hi, my name is Kamran. I am a web developer and designer, residing in Minnesota. I&#8217;ve been programming since 2001 and I am familiar with many different languages, both web-based and server-based. I love to tinker around and think of new ways to solve problems.</p>
+
+	<p>If you wanna talk, tweet <strong><a href="http://twitter.com/kamranayub" target="_blank">@kamranayub</a></strong> or send me an email at my <strong>full name</strong> at <strong>gmail.com</strong></p>
+</section>
+<section>
+  	<h1>Apps</h1>
+
+  	<ul>
+  		<li><a href="http://centwiseapp.com/">Centwise</a></li>
+  		<li><a href="http://wp-bowling.tumblr.com/">Bowling Calculator</a></li>
+  		<li><a href="http://keeptrackofmygames.com/">Keep Track of My Games</a></li>  		
+  	</ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/02/08/websockets-on-windows-azure/">Getting WebSockets to Work on Windows Azure</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/29/5-tips-to-improve-your-mvc-site/">5 Tips to Improve Your ASP.NET MVC Codebase</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/24/just-released-have-i-been-pwned/">Just Released: Have I Been Pwned?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/18/get-your-ci-on-with-travis-ci/">Get Your CI on With Travis CI</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/10/just-released-bowling-calculator-app/">Just Released: Bowling Calculator App</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/kamranayub">@kamranayub</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'kamranayub',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/104789622697290911192?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Kamran -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

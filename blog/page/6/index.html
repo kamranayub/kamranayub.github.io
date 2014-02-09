@@ -9,7 +9,7 @@
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="I&rsquo;ve been helping Cassette support .NET 3.5 and it&rsquo;s the biggest open source contribution I&rsquo;ve ever made. Granted, I started it so &hellip;">
+  <meta name="description" content="I&rsquo;ve been using Knockout at work for a MVC3 project and I have also been using Backbone.js in some personal projects at home. I really love &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,123 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/33/underscoreko-want-some-lumps-of-underscorejs-sugar">UnderscoreKO - Want Some Lumps of Underscore.js Sugar in Your Knockout Java?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-13T14:33:19-05:00" pubdate data-updated="true">Mar 13<span>th</span>, 2012</time>
+        
+           | <a href="/blog/posts/33/underscoreko-want-some-lumps-of-underscorejs-sugar#disqus_thread"
+             data-disqus-identifier="http://kamranicus.com/blog/posts/33/underscoreko-want-some-lumps-of-underscorejs-sugar">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;ve been using <a href="http://knockoutjs.com/">Knockout</a> at work for a MVC3 project and I have also been using <a href="http://documentcloud.github.com/backbone/">Backbone.js</a> in some personal projects at home. I really love <a href="http://documentcloud.github.com/underscore/">Underscore</a> and the array manipulation it offers for Node and the browser. I also liked how it was integrated into Backbone collections.</p>
+
+<p>Yesterday evening as I drove home from work, I had a crazy idea. An idea so simple, I was really surprised <a href="https://github.com/thelinuxlich/knockout.underscore.plugin">only one other person</a> (that a 1 second Google search turned up) made an attempt to do. Maybe <em>because</em> it&rsquo;s so simple, no one bothered to make their code public.</p>
+
+<p>Can you guess what my idea was? C&#8217;mon, isn&rsquo;t it obvious? <em>Why not marry Underscore&rsquo;s array methods to Knockout&rsquo;s observable arrays?</em> And <strong>BAM</strong>, in one evening, <strong>a tiny library named <a href="https://github.com/kamranayub/UnderscoreKO">UnderscoreKO</a> was born.</strong> It&rsquo;s really very cute. It took me maybe 20 minutes to write the library and then 3 hours to write the tests and package it up. Go figure.</p>
+
+<h2>Get UnderscoreKO</h2>
+
+<p>You can download the <a href="http://nuget.org/packages/UnderscoreKO">UnderscoreKO package off of Nuget</a>, since I know that&rsquo;s how a lot of you roll.</p>
+
+<p>The source is <a href="https://github.com/kamranayub/UnderscoreKO">also available on GitHub</a>.</p>
+
+<h2>Let&rsquo;s see some code</h2>
+
+<p>First, let&rsquo;s see what life was like before UKO:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">vm</span><span class="p">.</span><span class="nx">computedArray</span> <span class="o">=</span> <span class="nx">ko</span><span class="p">.</span><span class="nx">computed</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// marry the two arrays</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">union</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">someArray</span><span class="p">(),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
+</span><span class='line'><span class="p">},</span> <span class="nx">vm</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So what problem have I &ldquo;solved&rdquo;? A small one, but I hope small enough that you&rsquo;ll miss it when you can&rsquo;t do it (those are the best, right?):</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">vm</span><span class="p">.</span><span class="nx">computedArray</span> <span class="o">=</span> <span class="nx">ko</span><span class="p">.</span><span class="nx">computed</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// marry the two arrays</span>
+</span><span class='line'>    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">someArray</span><span class="p">.</span><span class="nx">union</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
+</span><span class='line'><span class="p">},</span> <span class="nx">vm</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Do you see it? Here, let me zoom in:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">someArray</span><span class="p">.</span><span class="nx">union</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&rsquo;s right! All of Underscore&rsquo;s array and collection methods are now available off of observable arrays! You didn&rsquo;t even know you wanted this, right?</p>
+
+<h2>Mutators</h2>
+
+<p><a href="https://github.com/thelinuxlich/knockout.underscore.plugin">thelinuxlich</a> had a neat feature in her plugin which was the idea of &ldquo;destructive&rdquo; methods that were basically convenience methods to manipulate the observable array directly.</p>
+
+<p>In other words, this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">vm</span><span class="p">.</span><span class="nx">myObservableArray</span><span class="p">(</span><span class="nx">vm</span><span class="p">.</span><span class="nx">myObservableArray</span><span class="p">.</span><span class="nx">union</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Becomes this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">vm</span><span class="p">.</span><span class="nx">myObservableArray</span><span class="p">.</span><span class="nx">union_</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>See? Isn&rsquo;t that a little nicer? I added &ldquo;mutator&rdquo; methods (<em>methodName_</em>) for anything I felt you&rsquo;d want to use to manipulate the array. And of course, they still use Knockout underneath so change notifications still occur.</p>
+
+<h2>Features</h2>
+
+<p>Um&hellip; what you&rsquo;d expect? <strike>Actually, there are a couple issues I&rsquo;d like to address tonight in another update (such as adding <code>chain</code> which I forgot about and taking care of passing in <code>observableArrays</code> to some functions like <code>union</code> so you don&rsquo;t have to do this: <code>vm.myObservableArray.union_(vm.array1(), vm.array2(), ...)</code>).</strike> I&rsquo;ve released v1.1 which fixes a mutator bug, adds <code>chain()</code> support, and invokes KO arrays when passed to certain functions like <em>union</em>.</p>
+
+<h2>Live Demo</h2>
+
+<p>Want to try before you buy? Go ahead!</p>
+
+<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/kamranayub/exnqe/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1668,125 +1785,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/23/mvc-pro-tip-dont-use-the-id-url-parameter-in-your">MVC Pro Tip: Don&#8217;t Use the &#8220;Id&#8221; URL Parameter in Your Routes</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-11-02T14:25:08-05:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2011</time>
-        
-           | <a href="/blog/posts/23/mvc-pro-tip-dont-use-the-id-url-parameter-in-your#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/23/mvc-pro-tip-dont-use-the-id-url-parameter-in-your">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>By default, MVC will use a route layout like this:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">routes</span><span class="p">.</span><span class="n">MapRoute</span><span class="p">(</span>
-</span><span class='line'>  <span class="s">&quot;Default&quot;</span><span class="p">,</span> <span class="c1">// Route name</span>
-</span><span class='line'>  <span class="s">&quot;{controller}/{action}/{id}&quot;</span><span class="p">,</span> <span class="c1">// URL with parameters</span>
-</span><span class='line'>  <span class="k">new</span> <span class="p">{</span> <span class="n">controller</span> <span class="p">=</span> <span class="s">&quot;Home&quot;</span><span class="p">,</span> <span class="n">action</span> <span class="p">=</span> <span class="s">&quot;Index&quot;</span><span class="p">,</span> <span class="n">id</span> <span class="p">=</span> <span class="n">UrlParameter</span><span class="p">.</span><span class="n">Optional</span> <span class="p">}</span> <span class="c1">// Parameter defaults</span>
-</span><span class='line'><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Besides the fact that you shouldn&rsquo;t use the default route (use named routes!), there&rsquo;s another issue.</p>
-
-<p>Do you have any domain models like this?</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">public</span> <span class="kt">int</span> <span class="n">Id</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now, let&rsquo;s say you wanted to add a new Edit method for this model:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="n">FooController</span> <span class="p">{</span>
-</span><span class='line'><span class="na">    [HttpPost]</span>
-</span><span class='line'>    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Edit</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="n">Foo</span> <span class="n">foo</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>There will be a problem here if you expect to be able to change this ID (rare but it happens). MVC will model bind the route&rsquo;s <code>id</code> parameter to your model&rsquo;s ID, possibly breaking your code. This is because MVC does not differentiate your two <code>id</code> and <code>Id</code> parameters, it sees them as one in the same (this has to do with the underlying <code>Request</code> collection).</p>
-
-<h3>Fix it!</h3>
-
-<p>It&rsquo;s simple to fix. Instead of using <code>id</code> as a URL parameter throughout your application, use something else! I typically use <code>identifier</code>:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">routes</span><span class="p">.</span><span class="n">MapRoute</span><span class="p">(</span>
-</span><span class='line'>  <span class="s">&quot;Default&quot;</span><span class="p">,</span> <span class="c1">// Route name</span>
-</span><span class='line'>  <span class="s">&quot;{controller}/{action}/{identifier}&quot;</span><span class="p">,</span> <span class="c1">// URL with parameters</span>
-</span><span class='line'>  <span class="k">new</span> <span class="p">{</span> <span class="n">controller</span> <span class="p">=</span> <span class="s">&quot;Home&quot;</span><span class="p">,</span> <span class="n">action</span> <span class="p">=</span> <span class="s">&quot;Index&quot;</span><span class="p">,</span> <span class="n">identifier</span> <span class="p">=</span> <span class="n">UrlParameter</span><span class="p">.</span><span class="n">Optional</span> <span class="p">}</span> <span class="c1">// Parameter defaults</span>
-</span><span class='line'><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// Controller</span>
-</span><span class='line'><span class="k">public</span> <span class="n">FooController</span> <span class="p">{</span>
-</span><span class='line'><span class="na">    [HttpPost]</span>
-</span><span class='line'>    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Edit</span><span class="p">(</span><span class="kt">int</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">Foo</span> <span class="n">foo</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Voila. No more model binding issues!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -1822,6 +1820,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/08/websockets-on-windows-azure/">Getting WebSockets to Work on Windows Azure</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/01/29/5-tips-to-improve-your-mvc-site/">5 Tips to Improve Your ASP.NET MVC Codebase</a>
       </li>
     
@@ -1835,10 +1837,6 @@
     
       <li class="post">
         <a href="/blog/2013/12/10/just-released-bowling-calculator-app/">Just Released: Bowling Calculator App</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/">MiniProfiler RavenDB Pull Request Accepted</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="Yesterday I released my .JSON library as a NuGet package (about time). It is named DotJson.Source to follow current conventions. If you need me to, I &hellip;">
+  <meta name="description" content="I&rsquo;m a big fan of SquishIt, which is a library that compresses and minifies CSS and JS. It automatically keeps thing uncompressed locally and &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,51 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/11/using-squishit-without-writing-to-the-file-system">Using SquishIt Without Writing to the File System</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-22T14:16:11-05:00" pubdate data-updated="true">Jun 22<span>nd</span>, 2011</time>
+        
+           | <a href="/blog/posts/11/using-squishit-without-writing-to-the-file-system#disqus_thread"
+             data-disqus-identifier="http://kamranicus.com/blog/posts/11/using-squishit-without-writing-to-the-file-system">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;m a big fan of <a href="https://github.com/jetheredge/SquishIt/">SquishIt</a>, which is a library that compresses and minifies CSS and JS. It automatically keeps thing uncompressed locally and then on your web server, versions and compresses your files. The versioning is based on a checksum of your files so it automatically handles any changes you make, it&rsquo;s gold.</p>
+
+<p>The thing that I don&rsquo;t like is that by default, it writes to your file system which is usually a no-no on shared hosts or even enterprise applications.</p>
+
+<p>I asked if you could use SquishIt programmatically and you can! I <a href="https://github.com/jetheredge/SquishIt/wiki/Using-SquishIt-programmatically-without-the-file-system">wrote up a wiki article</a> on their project page to show how it&rsquo;s done.</p>
+
+<p>If you haven&rsquo;t used SquishIt, I&rsquo;d highly recommend it!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -842,139 +887,9 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/1/welcome-to-kamranicus-yaps">Welcome to Kamranicus [YAPS]</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-04-05T23:10:57-05:00" pubdate data-updated="true">Apr 5<span>th</span>, 2011</time>
-        
-           | <a href="/blog/posts/1/welcome-to-kamranicus-yaps#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/1/welcome-to-kamranicus-yaps">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>YAPS (Yet Another Personal Site)</h1>
-
-<p>My other site <a href="http://intrepidstudios.com">Intrepid Studios</a> will be undergoing some major changes soon, due to my dad taking most of the reigns. It will shift from being mostly my pet project site to an actual commercial site. I won&rsquo;t be doing much directly with it anymore and I needed a new home for all <strong>my</strong> stuff.</p>
-
-<p>Thus, I welcome you to <strong>Kamranicus!</strong> I decided to create my own personal site and learn some new technology in the process. I knew a thing or two about MVC but I had yet to sit down and <em>learn</em> it first-hand. It was great timing because at work I am coming onto some existing ASP.NET MVC applications.</p>
-
-<h2>Overview</h2>
-
-<p>One thing you hopefully <strong>won&rsquo;t</strong> notice is that I don&rsquo;t bother to support any browser less than the latest modern versions (IE9, FF4, Chrome, etc). This is on purpose, mainly to decrease maintenance and development time, but also because I&rsquo;ve always wanted to say <strong>&lsquo;eff you</strong> to all those nasty old browsers (I am including IE8 and below in this category).</p>
-
-<h3>Homepage</h3>
-
-<p>The <a href="/">homepage</a> is all JSON-based, except the blog overview. The &ldquo;feeds&rdquo; use my <a href="http://github.com/kamranayub/.JSON">.JSON</a> library and the code consists of about one line per feed I need:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="kt">dynamic</span><span class="p">[]</span> <span class="n">repositories</span> <span class="p">=</span> <span class="n">JsonService</span><span class="p">.</span><span class="n">GetFrom</span><span class="p">(</span><span class="s">&quot;http://github.com/api/v2/json/repos/show/kamranayub&quot;</span><span class="p">).</span><span class="n">repositories</span><span class="p">;</span>
-</span><span class='line'><span class="kt">dynamic</span><span class="p">[]</span> <span class="n">forSale</span> <span class="p">=</span> <span class="n">JsonService</span><span class="p">.</span><span class="n">GetFrom</span><span class="p">(</span><span class="s">&quot;http://marketplace.envato.com/api/v2/new-files-from-user:kayub,codecanyon.json&quot;</span><span class="p">).</span><span class="n">newfilesfromuser</span><span class="p">;</span>
-</span><span class='line'><span class="kt">dynamic</span><span class="p">[]</span> <span class="n">tweets</span> <span class="p">=</span> <span class="n">JsonService</span><span class="p">.</span><span class="n">GetFrom</span><span class="p">(</span><span class="s">&quot;http://api.twitter.com/1/statuses/user_timeline.json?screen_name=kamranayub&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="kt">dynamic</span> <span class="n">soAnswers</span> <span class="p">=</span> <span class="n">JsonService</span><span class="p">.</span><span class="n">GetFrom</span><span class="p">(</span><span class="s">&quot;http://api.stackoverflow.com/1.1/users/109458/answers?pagesize=6&amp;sort=creation&quot;</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The <a href="/Blog">blog</a> is custom-made and bare-bones. You ask, &ldquo;But why not use a proven full-fledged blog framework?&rdquo; I wanted the first-class integration, I wanted some custom stuff, and because I just needed a good excuse to learn Razor and MVC 3 properly. This was a great exercise and I hope to share it with you soon.</p>
-
-<h2>MVC 3 Razor Blog Features</h2>
-
-<h3>Admin Panel Free</h3>
-
-<p>I didn&rsquo;t want to build a separate admin panel for my blog. I built it so that I can manage it using a pretty reasonable workflow. When a post is displayed, I see this above it:</p>
-
-<p><img src="/blog/images/1.png" alt="Post Toolbar" /></p>
-
-<p>I can delete it on the spot or edit it inline via AJAX. Over a comment, <em>you</em> and I can see this:</p>
-
-<p><img src="/blog/images/2.png" alt="Comment Toolbar" /></p>
-
-<p>For now I am not putting a time limit for editing or deleting comments&hellip; it is also tied to the same OpenID account you posted the comment as, so if you login with a different one, you won&rsquo;t be the owner. I should mention, the way it is coded, <strong>I cannot delete or edit your comments</strong>. If spam becomes an issue (which I will guess it will) then I&rsquo;ll have to at least be able to mark comments as spam.</p>
-
-<h3>REST-based Design</h3>
-
-<p>I made the routes designed as a poor man&rsquo;s REST implementation. So lots of things support AJAX through the same URLs as browsing without JS.</p>
-
-<p>This allows <em>me</em> to do fun inline-editing of my posts and allows <em>you</em> to inline edit your comments.</p>
-
-<p>It also allows me to not duplicate any templates as I can just pass the same exact partially-rendered views to jQuery as I do normally without JS.</p>
-
-<h3>OpenID Support</h3>
-
-<p>Since I didn&rsquo;t want to create my own membership system, I just use some very basic OpenID using <a href="http://www.dotnetopenauth.net/">DotNetOpenAuth</a>.</p>
-
-<p>I don&rsquo;t store anything except your claim ID, nickname (if given), and email (if given).</p>
-
-<h3>Gravatars</h3>
-
-<p>I don&rsquo;t know why but this was important to me. It&rsquo;s so easy to implement but it just <em>looks</em> awesome.</p>
-
-<h3>Kamdown</h3>
-
-<p>Windows Live Writer is great, but I really love Markdown. This was one big reason I didn&rsquo;t want a huge blog library, I <strong>needed</strong> this. I didn&rsquo;t bother with any Metaweblog API hooks because I liked the web-based approach to updating my blog and the simplicity of Markdown.</p>
-
-<p>I use a slightly enhanced version of Markdown (called Kamdown, <em>har har</em>) for my posts and your comments. For my posts, I implemented the SUPA Java applet to add copy/paste support for images:</p>
-
-<p><img src="/blog/images/3.png" alt="SUPA Upload Popup" /></p>
-
-<p>It just adds the image data to the DB and outputs a URL: <code>![SUPA Image Upload Support](/blog/images/2.png)</code></p>
-
-<p>This works both from clicking a button to open the dialog and also by just hitting Ctrl-V in the textbox.</p>
-
-<p>I also was inspired by GitHub&rsquo;s great interface for Markdown-enabled fields, letting you hotswap between plain text or previewed HTML. I love it!</p>
-
-<p><img src="/blog/images/4.png" alt="Markdown editor" /></p>
-
-<p>I am using the <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a> JS plugin to do syntax highlighting. I initially tried IronPython with Pygments, but there were some memory issues and I decided not to use it as it wasn&rsquo;t stable. A shame since that is the library GitHub uses and it&rsquo;s very nice. I may go back and try to figure out what the problem was.</p>
-
-<p>You use it the same way you use code blocks in GitHub wikis, triple-ticks (`).</p>
-
-<h3>SubSonic + Ninject</h3>
-
-<p>I really liked <a href="http://subsonicproject.com">SubSonic&rsquo;s</a> <code>SimpleRepository</code> so I used it. I didn&rsquo;t bother with much layering and focused more on getting things done so most of my data access code is 1-2 lines wherever I need it.</p>
-
-<p>I use Ninject as my DI framework because it&rsquo;s simple and straight to the point.</p>
-
-<h3>AppHarbor Deployment</h3>
-
-<p>I am using the free <a href="http://appharbor.com">AppHarbor</a> instance to host and deploy the site (using a separate back-end I get for free).</p>
-
-<p>It&rsquo;s a really neat service but it still needs some minor adjustments, such as more separation between environments (for testing). I may talk about this later. That said, it does its job well and the free instance seems to be fast enough for my needs. I do have <a href="http://arvixe.com">Arvixe</a> to fall back on, but their control panel and setup was being too ornery for me.</p>
-
-<h2>So where&rsquo;s the code?</h2>
-
-<p>I hope to release my code soon, as soon as I clean it up and make it somewhat presentable. I figure it&rsquo;d be nice to let other people build their own custom blogs from a small codebase like I did. It&rsquo;s separated into its own Area, so the code is separate from the core site. The great thing is you get all the integration MVC provides and it&rsquo;s as customizable as you need it to be.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/9/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -1007,6 +922,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/08/websockets-on-windows-azure/">Getting WebSockets to Work on Windows Azure</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/01/29/5-tips-to-improve-your-mvc-site/">5 Tips to Improve Your ASP.NET MVC Codebase</a>
       </li>
     
@@ -1020,10 +939,6 @@
     
       <li class="post">
         <a href="/blog/2013/12/10/just-released-bowling-calculator-app/">Just Released: Bowling Calculator App</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/">MiniProfiler RavenDB Pull Request Accepted</a>
       </li>
     
   </ul>

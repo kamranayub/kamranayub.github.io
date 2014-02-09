@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: WebSockets | Kamranicus]]></title>
+  <link href="http://kamranicus.com/blog/categories/websockets/atom.xml" rel="self"/>
+  <link href="http://kamranicus.com/"/>
+  <updated>2014-02-08T22:04:28-06:00</updated>
+  <id>http://kamranicus.com/</id>
+  <author>
+    <name><![CDATA[Kamran]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Getting WebSockets to Work on Windows Azure]]></title>
+    <link href="http://kamranicus.com/blog/2014/02/08/websockets-on-windows-azure/"/>
+    <updated>2014-02-08T21:52:48-06:00</updated>
+    <id>http://kamranicus.com/blog/2014/02/08/websockets-on-windows-azure</id>
+    <content type="html"><![CDATA[<p>I was banging my head against the wall for the past hour or so wondering why I was falling back to XHR polling when I deployed my Node.js application to Azure. I&rsquo;m using socket.io and everything looks like it&rsquo;s in order, works locally, etc. It was failing with a WebSocket handshake error.</p>
+
+<p>What I saw in the Chrome developer console was something like:</p>
+
+<pre><code>Error during WebSocket handshake: Unexpected response code: 502
+</code></pre>
+
+<p>In my Azure Node.js console (<code>azure site log tail SITENAME</code>), I was seeing <code>EPIPE</code> errors.</p>
+
+<p>It turns out, this little tidbit from the <a href="http://blogs.msdn.com/b/windowsazure/archive/2013/11/14/introduction-to-websockets-on-windows-azure-web-sites.aspx">original Windows Azure blog post</a> on Web Sockets did the trick.</p>
+
+<p>Modify your <strong>web.config</strong> and add:</p>
+
+<pre><code>&lt;webSocket enabled="false" /&gt;
+</code></pre>
+
+<p>To your <code>system.webServer</code> configuration. Also, another good point in that blog post is to use SSL, since you get SSL for free with a <code>*.azurewebsites.net</code> site.</p>
+
+<p>Hope this helps someone else out there. This should be added to the <a href="http://www.windowsazure.com/en-us/documentation/articles/web-sites-nodejs-chat-app-socketio/">official Azure tutorial</a> on using web sockets with Node.js.</p>
+]]></content>
+  </entry>
+  
+</feed>

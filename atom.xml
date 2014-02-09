@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2014-01-29T21:28:31-06:00</updated>
+  <updated>2014-02-08T22:04:28-06:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,33 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Getting WebSockets to Work on Windows Azure]]></title>
+    <link href="http://kamranicus.com/blog/2014/02/08/websockets-on-windows-azure/"/>
+    <updated>2014-02-08T21:52:48-06:00</updated>
+    <id>http://kamranicus.com/blog/2014/02/08/websockets-on-windows-azure</id>
+    <content type="html"><![CDATA[<p>I was banging my head against the wall for the past hour or so wondering why I was falling back to XHR polling when I deployed my Node.js application to Azure. I&rsquo;m using socket.io and everything looks like it&rsquo;s in order, works locally, etc. It was failing with a WebSocket handshake error.</p>
+
+<p>What I saw in the Chrome developer console was something like:</p>
+
+<pre><code>Error during WebSocket handshake: Unexpected response code: 502
+</code></pre>
+
+<p>In my Azure Node.js console (<code>azure site log tail SITENAME</code>), I was seeing <code>EPIPE</code> errors.</p>
+
+<p>It turns out, this little tidbit from the <a href="http://blogs.msdn.com/b/windowsazure/archive/2013/11/14/introduction-to-websockets-on-windows-azure-web-sites.aspx">original Windows Azure blog post</a> on Web Sockets did the trick.</p>
+
+<p>Modify your <strong>web.config</strong> and add:</p>
+
+<pre><code>&lt;webSocket enabled="false" /&gt;
+</code></pre>
+
+<p>To your <code>system.webServer</code> configuration. Also, another good point in that blog post is to use SSL, since you get SSL for free with a <code>*.azurewebsites.net</code> site.</p>
+
+<p>Hope this helps someone else out there. This should be added to the <a href="http://www.windowsazure.com/en-us/documentation/articles/web-sites-nodejs-chat-app-socketio/">official Azure tutorial</a> on using web sockets with Node.js.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[5 Tips to Improve Your ASP.NET MVC Codebase]]></title>
@@ -928,59 +955,6 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
 <li><a href="http://iconmonstr.com/">iconmonstr &ndash; Free simple icons for your next project</a></li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[About My Web API Session at Twin Cities Code Camp]]></title>
-    <link href="http://kamranicus.com/blog/posts/66/about-my-web-api-session-at-twin-cities-code-camp"/>
-    <updated>2013-03-05T20:59:46-06:00</updated>
-    <id>http://kamranicus.com/blog/posts/66/about-my-web-api-session-at-twin-cities-code-camp</id>
-    <content type="html"><![CDATA[<p><strong>Update:</strong> I&rsquo;ll be in the 12:45pm track, come see me crash and burn!</p>
-
-<p>Yay! I was just informed by TCCC that I&rsquo;ve made it onto the <a href="http://twincitiescodecamp.com/TCCC/Spring2013/Sessions.aspx#s22">Sessions list</a> so I guess I&rsquo;m officially a speaker. This would be the very first time I&rsquo;m giving a public talk <em>on my own</em>. I was part of a session at MinneWebCon when I spoke about my work on the Student Unions &amp; Activities touch-screen directory, so I have <em>at least</em> 15 minutes under my belt.</p>
-
-<h3>Session? Or Presentation?</h3>
-
-<p>Presentation is a strong and loaded word. It brings to mind a boring PowerPoint slideshow of stuff no one ever reads. It brings to mind a stale &ldquo;I&rsquo;m going to talk at you&rdquo; type of feeling, where the &ldquo;participants&rdquo; aren&rsquo;t actually participating.</p>
-
-<p>No, my session at TCCC is not like that. I did a 20 minute version of the session at work and it went well, though I didn&rsquo;t have much time to dive into real code, which is definitely what I plan to do at TCCC&hellip; after all, it is a <strong>code camp</strong>. I will be showing some information about the topics I cover but other than that, we will be diving into the bowels of my app&hellip; for better or worse.</p>
-
-<h3>ASP.NET Web API: What now?</h3>
-
-<p>I&rsquo;ve been using Web API for a bit, it&rsquo;ll be a core part of the next <a href="http://keeptrackofmygames.com">Keep Track of My Games</a>. In fact, the beta version of KTOMG will be what I will use to demo all my code and ideas.</p>
-
-<p>I&rsquo;m not an expert on it. I&rsquo;m not even &ldquo;great&rdquo; at it. I&rsquo;m just a regular developer who is using it on a real project and I&rsquo;ve run into &ldquo;real&rdquo; issues. The main reason I wanted to do a session on Web API is because of a few reasons:</p>
-
-<ol>
-<li>Web API is awesome and everyone should know about it</li>
-<li>Some things aren&rsquo;t apparent when you&rsquo;re starting out doing API development</li>
-<li>Most presentations on Web API are cursory overviews</li>
-<li>It can be hard to know what the &ldquo;right way&rdquo; to do things is</li>
-</ol>
-
-
-<p>Regarding #4, this is a hard thing to talk about&hellip; since I still don&rsquo;t know &ldquo;what the right way&rdquo; is and I think it depends on your situation. However, at the very least, I can tell you <em>what I did</em> and <em>what works for me</em> and maybe you can leave the session with a better idea of what it is you want to do.</p>
-
-<h3>So what&rsquo;s on the agenda?</h3>
-
-<p>Lots of stuff, and I&rsquo;m sure we won&rsquo;t get to a lot of it:</p>
-
-<ul>
-<li>Debugging tips</li>
-<li>CSRF prevention</li>
-<li>Custom routing (w/client-side)</li>
-<li>Custom error handling</li>
-<li>Integration with the client-side</li>
-<li>Working with multiple clients (phone, Windows 8, etc.)</li>
-<li>Versioning</li>
-<li>Async actions</li>
-</ul>
-
-
-<p>There&rsquo;ll be plenty to show and plenty more to discuss. I&rsquo;m more interested in seeing what others have done or would recommend.</p>
-
-<p>I&rsquo;m pretty excited, so I&rsquo;ll see you April 27!</p>
 ]]></content>
   </entry>
   
