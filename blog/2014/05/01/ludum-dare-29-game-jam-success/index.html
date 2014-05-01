@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>A Better MVC Label Helper - Kamranicus</title>
+  <title>Ludum Dare 29 Game Jam Success! - Kamranicus</title>
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="I have high standards for web-based forms, after having spent the last 7 months ankle deep in them at work. I have decided on a standard way for &hellip;">
+  <meta name="description" content="This last weekend I spent 72 hours working on a game for the Ludum Dare 29 game jam. LD is a competition where you get a prompt for a game and then &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://kamranicus.com/blog/posts/3/a-better-mvc-label-helper">
+  <link rel="canonical" href="http://kamranicus.com/blog/2014/05/01/ludum-dare-29-game-jam-success">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
@@ -81,7 +81,7 @@
   
   <header>
     
-      <h1 class="entry-title">A Better MVC Label Helper</h1>
+      <h1 class="entry-title">Ludum Dare 29 Game Jam Success!</h1>
     
     
       <p class="meta">
@@ -97,7 +97,7 @@
   
 
 
-<time datetime="2011-04-07T13:54:05-05:00" pubdate data-updated="true">Apr 7<span>th</span>, 2011</time>
+<time datetime="2014-05-01T08:54:07-05:00" pubdate data-updated="true">May 1<span>st</span>, 2014</time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://kamranicus.com">Comments</a>
@@ -107,112 +107,15 @@
   </header>
 
 
-<div class="entry-content"><p>I have high standards for web-based forms, after having spent the last 7 months ankle deep in them at work.</p>
+<div class="entry-content"><p>This last weekend I spent 72 hours working on a game for the <a href="http://ludumdare.com/compo">Ludum Dare 29</a> game jam. LD is a competition where you get a prompt for a game and then have to spend 48 hours (solo) or 72 hours (jam) and bang out a game. The solo competition has strict rules but the game jam has looser rules and allows for team development. It was a caffeine-filled rush and I hope to write a blog post shortly about how it all went down. It was a ton of fun! I worked with my friends <a href="http://erikonarheim.com">Erik Onarheim</a> and <a href="http://twitter.com/joshedeen">Josh Edeen</a>, both primary contributors to the <a href="http://excaliburjs.com">Excalibur.js</a> game engine. I am also a contributor but I haven&rsquo;t done a ton with the engine core, moreso the usability of the API, opening GH issues, and the <a href="http://github.com/excaliburjs/excaliburjs.github.io">website</a>.</p>
 
-<p>I have decided on a standard way for defining my forms:</p>
+<p><img src="http://www.ludumdare.com/compo/wp-content/compo2/342546/34118-shot0.png" alt="Kraken Unchained" /></p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;form&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;fieldset&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;legend&gt;</span>A form area<span class="nt">&lt;/legend&gt;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;field text&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;firstName&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>                First Name
-</span><span class='line'>                <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;note&quot;</span><span class="nt">&gt;</span>Enter your first name<span class="nt">&lt;/span&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/label&gt;</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;firstName&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/fieldset&gt;</span>
-</span><span class='line'><span class="nt">&lt;/form&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>In the meantime, be sure to check out the fruits of our labor! It&rsquo;s a game where you play as the Kraken and you destroy ships. We originally had a ton of ideas, as you can see in our GitHub repository, but with only 72 hours your scope is pretty narrow. Still, we&rsquo;re very happy with what came out and we&rsquo;re glad that <a href="http://excaliburjs.com">Excalibur.js</a> pulled through!</p>
 
+<p>Play <a href="http://krakenunchained.azurewebsites.net">Kraken Unchained</a>. Vote for it on the <a href="http://www.ludumdare.com/compo/ludum-dare-29/?action=preview&amp;uid=34118">LD site</a>. You can also take a peek at the <a href="http://krakenunchained.azurewebsites.net/post-dare.html">post-LD</a> version which is in on-going development. It does support touch and fixes some issues in IE10/11.</p>
 
-<p>In a future post, I will more formally present a form solution and my stylesheet that goes with it. For now, let&rsquo;s talk about generating that <code>&lt;label&gt;</code> above from metadata alone.</p>
-
-<h3>First, the end result</h3>
-
-<p>Here is what my Razor view looks like for that form field above:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;field text&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    @Html.FieldLabelFor(m =&gt; m.FirstName)
-</span><span class='line'>    @Html.EditorFor(m =&gt; m.FirstName)
-</span><span class='line'>    @Html.ValidationMessageFor(m =&gt; m.FirstName)
-</span><span class='line'><span class="nt">&lt;/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Based off of:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'><span class="na">    [DisplayName(&quot;First Name&quot;)]</span>
-</span><span class='line'><span class="na">    [Description(&quot;Please enter a first name&quot;)]</span>
-</span><span class='line'><span class="na">    [Required]</span> <span class="c1">// leave off to add &#39;(optional)&#39; to label</span>
-</span><span class='line'>    <span class="k">public</span> <span class="kt">string</span> <span class="n">FirstName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>That&rsquo;s it.</p>
-
-<h3>Building a better LabelFor</h3>
-
-<p>My helper is called <code>FieldLabelFor</code> but you can call it whatever you want. Here&rsquo;s what it does:</p>
-
-<ul>
-<li>Is entirely based off metadata attributes</li>
-<li>Label text is based off of <code>[DisplayName]</code> attribute (via ModelMetadata)</li>
-<li>Adds an <em>(optional)</em> if a field isn&rsquo;t required</li>
-<li>Adds a <code>&lt;span class="note"&gt;</code> to the label if a <code>[Description()]</code> attribute is found</li>
-<li>Supports both attributes decorating the model and via <code>[MetadataType]</code> attribute</li>
-</ul>
-
-
-<p>It outputs the <code>&lt;label&gt;</code> markup found above.</p>
-
-<p>I&rsquo;ve made it a Gist, so you can hack and slash it to your needs:</p>
-
-<script src="https://gist.github.com/907780.js?file=FieldLabelFor.cs"></script>
-
-
-<p>Remember to add <code>@using YourProject.Library.Extensions;</code> to the top of your razor file (or add the namespace to your <code>Views\web.config</code>).</p>
-
-<p>I&rsquo;ve styled my forms so that a full field will look something like:</p>
-
-<p><img src="/blog/images/5.png" alt="Field label style" /></p>
-
-<p>As you can probably tell, I subscribe to the notion that all fields are required unless otherwise marked. I think for a user filling out a form, this is what they assume to be the case and more often that not, more fields are required than optional.</p>
-
-<h3>Off you go!</h3>
-
-<p>Start building better forms with MVC. Look for a post at a later date that will delve deeper into my opinions on web forms (hint: they suck!).</p>
+<p>You can also view the entirety of the source code <a href="http://github.com/excaliburjs/ludum-29">on GitHub</a>!</p>
 </div>
 
 
@@ -235,7 +138,7 @@
   
 
 
-<time datetime="2011-04-07T13:54:05-05:00" pubdate data-updated="true">Apr 7<span>th</span>, 2011</time>
+<time datetime="2014-05-01T08:54:07-05:00" pubdate data-updated="true">May 1<span>st</span>, 2014</time>
       
 
 
@@ -243,7 +146,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://kamranicus.com/blog/posts/3/a-better-mvc-label-helper" data-via="kamranayub" data-counturl="http://kamranicus.com/blog/posts/3/a-better-mvc-label-helper" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://kamranicus.com/blog/2014/05/01/ludum-dare-29-game-jam-success/" data-via="kamranayub" data-counturl="http://kamranicus.com/blog/2014/05/01/ludum-dare-29-game-jam-success/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -254,10 +157,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/posts/2/befriending-appharbor-and-making-it-work-for-you" title="Previous Post: Befriending AppHarbor and Making it Work for You">&laquo; Befriending AppHarbor and Making it Work for You</a>
+        <a class="basic-alignment left" href="/blog/2014/02/08/websockets-on-windows-azure/" title="Previous Post: Getting WebSockets to Work on Windows Azure">&laquo; Getting WebSockets to Work on Windows Azure</a>
       
-      
-        <a class="basic-alignment right" href="/blog/posts/4/come-visit-me-at-mix-11" title="Next Post: Come Visit Me at MIX 11">Come Visit Me at MIX 11 &raquo;</a>
       
     </p>
   </footer>
@@ -379,9 +280,9 @@
         
         // var disqus_developer = 1;
         
-        var disqus_identifier = '3';
+        var disqus_identifier = 'http://kamranicus.com/blog/2014/05/01/ludum-dare-29-game-jam-success/';
         
-        var disqus_url = 'http://kamranicus.com/blog/posts/3/a-better-mvc-label-helper';
+        var disqus_url = 'http://kamranicus.com/blog/2014/05/01/ludum-dare-29-game-jam-success/';
         var disqus_script = 'embed.js';
       
     (function () {
