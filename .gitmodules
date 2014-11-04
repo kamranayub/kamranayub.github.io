@@ -1,0 +1,3 @@
+[submodule ".themes/MediumFox"]
+	path = .themes/MediumFox
+	url = https://github.com/sevenadrian/MediumFox

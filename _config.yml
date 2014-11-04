@@ -4,10 +4,15 @@
 
 url: http://kamranicus.com
 title: Kamranicus
-subtitle: Kamran Ayub is a developer and designer in Minneapolis, Minnesota. He specializes in .NET development with a dash of client-side and is passionate about UX.
+subtitle: Person and development blog of Kamran Ayub
 author: Kamran
 simple_search: http://google.com/search
-description:
+description: >
+  Hi, my name is Kamran. I am a web developer and designer, 
+  residing in Minnesota. I've been programming since 2001 and 
+  I am familiar with many different languages, both web-based 
+  and server-based. I love to tinker around and think of new 
+  ways to solve problems.
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
