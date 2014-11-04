@@ -3,13 +3,18 @@
 <!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
 <!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <title>Kamranicus</title>
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="There&rsquo;s not a ton of information out there on how to handle computed columns in EF. It turns out it is pretty straightforward if you know what &hellip;">
+  <meta name="description" content="Kamranicus
+Person and development blog of Kamran Ayub about me Hi, my name is Kamran. I am a web developer and designer, residing in Minnesota. I&# &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -26,9 +31,6 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -45,78 +47,66 @@
 
 </head>
 
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">Kamranicus</a></h1>
-  
-    <h2>Kamran Ayub is a developer and designer in Minneapolis, Minnesota. He specializes in .NET development with a dash of client-side and is passionate about UX.</h2>
-  
-</hgroup>
+  <body>
+    <a href="/" class="home-icon">
+      <img src="/images/home.png"/>
+    </a>
 
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
-  <li><a href="http://feeds.feedburner.com/Kamranicus" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-    <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=Kamranicus" rel="subscribe-email" title="subscribe via email">Email</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:kamranicus.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
+    <div class="home-page">
+  <div class="hero">
+    <h1>Kamranicus</h1>
+<p>Person and development blog of Kamran Ayub</p>
 
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+  </div>
+
+  <div class="home-field">
+    <div class="home-landing her-row">
+      <div class="container">
+        <div class="row">
+          <div id="about-me" class="col-md-offset-3 col-md-6">
+  <h4>about me</h4>
+  <p>Hi, my name is Kamran. I am a web developer and designer,  residing in Minnesota. I&#8217;ve been programming since 2001 and  I am familiar with many different languages, both web-based  and server-based. I love to tinker around and think of new  ways to solve problems.
+</p>
+  <div class="social-icon-list">
+  	
+    <a title="Twitter" href="https://twitter.com/kamranayub"><img src="/images/glyphicons_social_31_twitter.png"/></a>
     
-      <h1 class="entry-title"><a href="/blog/posts/35/working-with-computed-columns-in-ef-43">Working With Computed Columns in EF 4.3</a></h1>
+    
+    <a title="GitHub" href="https://github.com/kamranayub"><img src="/images/glyphicons_social_21_github.png"/></a>
     
     
-      <p class="meta">
+    
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="article-list">
+      <div class="container">
         
-
-
-
-
-
-
-
-
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
+  <h2><a href="/blog/posts/35/working-with-computed-columns-in-ef-43">Working With Computed Columns in EF 4.3</a></h2>
   
+  <p>
+    <p>There&rsquo;s not a ton of information out there on how to handle computed columns in EF. It turns out it is pretty straightforward if you know what to do.</p>
 
 
-<time datetime="2012-03-17T23:38:15-05:00" pubdate data-updated="true">Mar 17<span>th</span>, 2012</time>
-        
-           | <a href="/blog/posts/35/working-with-computed-columns-in-ef-43#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/35/working-with-computed-columns-in-ef-43">Comments</a>
-        
-      </p>
-    
-  </header>
 
-
-  <div class="entry-content"><p>There&rsquo;s not a ton of information out there on how to handle computed columns in EF. It turns out it is pretty straightforward if you know what to do.</p>
 
 <h2>Telling EF about your computed column</h2>
 
+
+
+
 <p>First, if all you want to do is manually create a function and use it in a column, you only need to decorate your model property with <code>[DatabaseGenerated(DatabaseGeneratedOption.Computed)]</code> as seen here:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -132,20 +122,32 @@
 </span><span class='line'><span class="na">    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]</span>
 </span><span class='line'>    <span class="k">public</span> <span class="kt">string</span> <span class="n">FullName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>You should know that <strong>if possible, try to keep &ldquo;computed&rdquo; values in your application.</strong> This is my opinion from an ease of use POV, not a design POV. I say it because unless you really <em>need</em> a computed column, you could just as easily create a read-only property that EF ignores.</p>
 
+
+
+
 <p>However, in some cases, a computed column is a viable option such as when you need to sort (on the database-side) against a computed value. That was my own reason for using a computed.</p>
+
+
+
 
 <h2>Manually adding the function and column</h2>
 
+
+
+
 <p>We&rsquo;ve told EF to ignore our property and treat it as a computed column. Now how do we actually <em>create</em> the column? Well, what I did previous to EF Migrations was to just do it all manually through SQL Management Studio. This is entirely OK to do, you just need to make sure you save the script somewhere or remember to do it anytime you create a new database for your application.</p>
+
+
+
 
 <p>You can now go into SSMS and delete the column EF generated (or add it if it&rsquo;s new). Make sure you create your function first:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -162,7 +164,7 @@
 <span class='line-number'>15</span>
 </pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">CREATE</span> <span class="k">FUNCTION</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">GetFullName</span><span class="p">]</span>
 </span><span class='line'><span class="p">(</span>
-</span><span class='line'>    <span class="c1">-- Add the parameters for the function here</span>
+</span><span class='line'>    <span class="c1">&mdash; Add the parameters for the function here</span>
 </span><span class='line'>    <span class="o">@</span><span class="n">FirstName</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
 </span><span class='line'>    <span class="o">@</span><span class="n">LastName</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
 </span><span class='line'><span class="p">)</span>
@@ -175,23 +177,38 @@
 </span><span class='line'>
 </span><span class='line'>    <span class="k">RETURN</span> <span class="o">@</span><span class="n">FullName</span><span class="p">;</span>
 </span><span class='line'><span class="k">END</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>That approach worked fine for me, since I use Schema Compare (or used to!) to migrate my database between environments.</p>
 
+
+
+
 <h2>Using EF Migrations</h2>
+
+
+
 
 <p>Now that EF 4.3 has been released, we can all enjoy the benefit of <a href="http://blogs.msdn.com/b/adonet/archive/2012/02/09/ef-4-3-automatic-migrations-walkthrough.aspx">Database Migrations</a>. What I like about this approach is that it&rsquo;s very deliberate and discoverable. I could clone my repository onto a new PC and run the <code>Update-Database</code> command to do <em>everything</em>, plus now we can migrate backwards if needed. It&rsquo;s excellent!</p>
 
+
+
+
 <p>I am using automatic migrations for <a href="http://keeptrackofmygames.com">KTOMG</a>, so what I had to do first was manually create a new migration in the Package Manager console:</p>
+
+
+
 
 <pre><code>$&gt; Add-Migration CustomFunction
 </code></pre>
 
+
+
+
 <p>This will scaffold a new, empty migration:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -211,12 +228,12 @@
 </span><span class='line'>    <span class="p">{</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Now we can be really cool cats. In this migration, all we have to do is execute our <code>CREATE FUNCTION</code> SQL statement in the <code>Up</code> method, along with dropping and re-adding the column:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -250,7 +267,7 @@
 </span><span class='line'>    <span class="n">Sql</span><span class="p">(</span><span class="s">@&quot;</span>
 </span><span class='line'><span class="s">CREATE FUNCTION [dbo].[GetFullName] </span>
 </span><span class='line'><span class="s">(</span>
-</span><span class='line'><span class="s">-- Add the parameters for the function here</span>
+</span><span class='line'><span class="s">&mdash; Add the parameters for the function here</span>
 </span><span class='line'><span class="s">@FirstName varchar(50),</span>
 </span><span class='line'><span class="s">@LastName varchar(50)</span>
 </span><span class='line'><span class="s">)</span>
@@ -269,17 +286,20 @@
 </span><span class='line'>    <span class="n">DropColumn</span><span class="p">(</span><span class="s">&quot;Person&quot;</span><span class="p">,</span> <span class="s">&quot;FullName&quot;</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">Sql</span><span class="p">(</span><span class="s">@&quot;</span>
 </span><span class='line'><span class="s">ALTER TABLE [dbo].[Person]</span>
-</span><span class='line'><span class="s">ADD [FullName] AS ([dbo].[GetFullName]([FirstName],[LastName]));</span>
+</span><span class='line'><span class="s">ADD [FullName] AS ([dbo].<a href="[FirstName],[LastName]">GetFullName</a>);</span>
 </span><span class='line'><span class="s">&quot;</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Take note of the <code>true</code> parameter at the end of the <code>Sql()</code> call. This explicitly tells EF <em>not</em> to include the statement in the migration transaction. If you don&rsquo;t do this, SQL Server will complain that the CREATE FUNCTION statement must be the only one in the batch.</p>
 
+
+
+
 <p>Now let&rsquo;s scaffold our tear down step. We should drop the column first, drop the function, and then finally re-add the basic column back.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -291,60 +311,75 @@
 </span><span class='line'>    <span class="n">Sql</span><span class="p">(</span><span class="s">&quot;DROP FUNCTION [dbo].[GetFullName]&quot;</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">AddColumn</span><span class="p">(</span><span class="s">&quot;Person&quot;</span><span class="p">,</span> <span class="s">&quot;FullName&quot;</span><span class="p">,</span> <span class="n">c</span> <span class="p">=&gt;</span> <span class="n">c</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="n">nullable</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span> <span class="n">maxLength</span><span class="p">:</span> <span class="m">255</span><span class="p">));</span>
 </span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>I would take care to make sure the column is re-created using the original schema EF created.</p>
 
+
+
+
 <p>Now we can tell EF to migrate to the latest version:</p>
+
+
+
 
 <pre><code>$&gt; Update-Database -Verbose (or -Script, to preview)
 </code></pre>
 
+
+
+
 <p>Voila, you should now have a brand spankin&#8217; new computed column.</p>
-</div>
-  
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+
+<time datetime="2012-03-17T23:38:15-05:00" pubdate data-updated="true">Mar 17<span>th</span>, 2012</time>
+    
+
+
+  </span>
+
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/34/i-wish-i-could-do-all-the-things">I Wish I Could Do All the Things</a></h1>
-    
-    
-      <p class="meta">
+</article>
+
+            </div>
+          </div>
         
-
-
-
-
-
-
-
-
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
+  <h2><a href="/blog/posts/34/i-wish-i-could-do-all-the-things">I Wish I Could Do All the Things</a></h2>
   
+  <p>
+    <p>Do you ever have the problem where you have so many &ldquo;cool&rdquo; ideas you want to work on, but don&rsquo;t have enough time? When I started out in web development, I had a ton of time, being a high school student. I ran out of ideas by the time I was in college, but now after some time working &ldquo;in the real world,&rdquo; I&rsquo;ve lately had a torrent of ideas that I wish I could spend time on. For some, I&rsquo;ve started on them, but I find it hard to make time for them.</p>
 
 
-<time datetime="2012-03-16T16:29:32-05:00" pubdate data-updated="true">Mar 16<span>th</span>, 2012</time>
-        
-           | <a href="/blog/posts/34/i-wish-i-could-do-all-the-things#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/34/i-wish-i-could-do-all-the-things">Comments</a>
-        
-      </p>
-    
-  </header>
 
-
-  <div class="entry-content"><p>Do you ever have the problem where you have so many &ldquo;cool&rdquo; ideas you want to work on, but don&rsquo;t have enough time? When I started out in web development, I had a ton of time, being a high school student. I ran out of ideas by the time I was in college, but now after some time working &ldquo;in the real world,&rdquo; I&rsquo;ve lately had a torrent of ideas that I wish I could spend time on. For some, I&rsquo;ve started on them, but I find it hard to make time for them.</p>
 
 <h2>The Ideas</h2>
 
+
+
+
 <p>Here&rsquo;s a rundown of all the ideas in my head that I wish I could spend time on:</p>
+
+
+
 
 <ul>
 <li>A web-based multiplayer game (I have started working on this)</li>
@@ -363,86 +398,144 @@
 </ul>
 
 
+
+
 <p>You can be sure there&rsquo;s more but these are off the top of my head.</p>
+
+
+
 
 <h2>What&rsquo;s blocking?</h2>
 
+
+
+
 <p>Is it totally true I don&rsquo;t have time to work on these? Not exactly. My problem is that having two really big hobbies (gaming + development) and having to work in one hobby (development) conflict with each other. After coming home from developing all day, I am sometimes motivated to work hard on an idea for a few hours (or all night) but that quickly turns to me being burnt out and I have a hard time recovering from it to continue being motivated to work on an idea. More often, I want to relax and play some games or spend time with friends.</p>
+
+
+
 
 <p>The other issue is that my idea list and what I <em>want</em> for each of these ideas quickly turns into a humongous wish list and I start to doubt I can even begin to finish the list. I&rsquo;ve done enough &ldquo;agile&rdquo; development at work to realize I can prioritize and start small and then iterate, which is what I did with KTOMG but then I have so many other ideas, it still feels like too much.</p>
 
+
+
+
 <p>Money is also an issue. I want to implement this and that, but it&rsquo;s going to cost <em>me</em> money to do it. I have loans to pay off (thanks, education), a car to payoff, and rent to pay, not to mention daily or life expenses. I already spend quite a bit and KTOMG still costs me a fair amount to keep running (especially now that AppHarbor has $10 custom domains and $20 SSL). Partly that is dictated by technology, right? I could write everything in PHP and pay for cheap hosting, but I like being a .NET developer and lately I like being a Node/JS developer. Furthermore, complex ideas sometimes need complex hosting. KTOMG has a scheduled job but because I&rsquo;m cheap, it&rsquo;s not a background worker&hellip; it&rsquo;s a scheduled URL request to a &ldquo;secret&rdquo; URL that initiates a 2 minute job. My database is hosted at a different host, which makes the site slower because it&rsquo;s expensive to host SQL Server on AppHarbor.</p>
+
+
+
 
 <p>If an idea I had were to generate revenue, and several of my ideas I&rsquo;m working on <em>could</em>, expenses would be less of an issue. When I released TorrentTyphoon, hosting was cheap and the site paid for itself (I think during my 4 years of high school I made around $10,000 in freelance and ad revenue). The main issue is that I still need to pay for the idea while I&rsquo;m developing it or testing it, and what happens if I release it and it goes nowhere? I&rsquo;m the one who has to pay for it.</p>
 
+
+
+
 <h2>So what&rsquo;s the solution?</h2>
+
+
+
 
 <p>I&rsquo;ve found that if I <em>force myself to start</em> working on an idea, I will be carried off and will work on it continuously for awhile. The hard part is actually sitting down and opening up the project. For KTOMG, I said to myself that I&rsquo;d spend an hour a day for a week working on the site. What happened was that &ldquo;hour&rdquo; turned into several hours and it was really fun. The reward was making an app that actually accomplished what I wanted. Then the ideas started getting bigger (make it AJAX, support multiple release dates, let me organize, let me tag, etc. etc.) and it&rsquo;s almost as if I became scared to work on it&hellip; for fear of it taking so much time; <em>plus</em> those features were not the core of what I wanted for myself, and if I don&rsquo;t really want to use them, what&rsquo;s the motivation for me to implement them? There are around 80 people that use the site&hellip; and it does <em>exactly what I need it to</em>. It&rsquo;s hard for me to justify spending time adding more features, <em>even though I realize deep down it&rsquo;ll attract more users.</em></p>
 
+
+
+
 <p>What I have had luck with is creating and working on tiny ideas. DotJson was a tiny idea. My latest UnderscoreKO was a tiny idea. This site was a tiny idea. These ideas are 1 week projects or less and they have a finite end, which I seem to do better on. They are spawned because <em>I</em> want to use them and I make them public so others can too.</p>
+
+
+
 
 <p>I&rsquo;ve also learned, as I related above, that &ldquo;chunked&rdquo; development works well for me. Spend an hour a day, or aim to spend 5 hours a week, if I make the goal small, I tend to have more fun which makes me more motivated. If I start to see a working prototype or actual result, it snowballs until I finish something consumable. The other thing that motivates me pretty well is doing something new; developing a game is not something I&rsquo;ve done before, and getting a chance to learn Node.js, Socket.io, and other new stuff is pretty fun.</p>
 
+
+
+
 <p>The other thing that seems to help is working with someone else. Even if it&rsquo;s bouncing ideas, or including them in my repository, it becomes fun to work on an idea. So far I haven&rsquo;t had a chance to work with someone <em>coding-wise</em> on an idea, but I&rsquo;ve had the chance to do feature or mechanic work with other people. Everyone else is just as busy, or more busy, than I am.</p>
+
+
+
 
 <p>Finally, one of the things I could do is to throw my ideas and all my documentation out there and let someone else run with it. The problem with that, is that I&rsquo;d be worried I wouldn&rsquo;t have a say in what happens or worse, would lose control of the idea. The last thing I want is for someone else to take my idea, not tell me, and then profit off of it. Perhaps that&rsquo;s a cynical point of view but it is something I worry about. For things that I know I probably don&rsquo;t have enough knowledge to do or are just &ldquo;Wouldn&rsquo;t it be nice?&rdquo; ideas, I don&rsquo;t mind sharing them (like some ideas I listed above).</p>
 
+
+
+
 <p>Does anyone else have this problem? Have you had it and solved it? Do you have it and wish you could solve it? I&rsquo;m interested in knowing.</p>
-</div>
-  
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+
+<time datetime="2012-03-16T16:29:32-05:00" pubdate data-updated="true">Mar 16<span>th</span>, 2012</time>
+    
+
+
+  </span>
+
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/33/underscoreko-want-some-lumps-of-underscorejs-sugar">UnderscoreKO - Want Some Lumps of Underscore.js Sugar in Your Knockout Java?</a></h1>
-    
-    
-      <p class="meta">
+</article>
+
+            </div>
+          </div>
         
-
-
-
-
-
-
-
-
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
+  <h2><a href="/blog/posts/33/underscoreko-want-some-lumps-of-underscorejs-sugar">UnderscoreKO - Want Some Lumps of Underscore.js Sugar in Your Knockout Java?</a></h2>
   
+  <p>
+    <p>I&rsquo;ve been using <a href="http://knockoutjs.com/">Knockout</a> at work for a MVC3 project and I have also been using <a href="http://documentcloud.github.com/backbone/">Backbone.js</a> in some personal projects at home. I really love <a href="http://documentcloud.github.com/underscore/">Underscore</a> and the array manipulation it offers for Node and the browser. I also liked how it was integrated into Backbone collections.</p>
 
 
-<time datetime="2012-03-13T14:33:19-05:00" pubdate data-updated="true">Mar 13<span>th</span>, 2012</time>
-        
-           | <a href="/blog/posts/33/underscoreko-want-some-lumps-of-underscorejs-sugar#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/33/underscoreko-want-some-lumps-of-underscorejs-sugar">Comments</a>
-        
-      </p>
-    
-  </header>
 
-
-  <div class="entry-content"><p>I&rsquo;ve been using <a href="http://knockoutjs.com/">Knockout</a> at work for a MVC3 project and I have also been using <a href="http://documentcloud.github.com/backbone/">Backbone.js</a> in some personal projects at home. I really love <a href="http://documentcloud.github.com/underscore/">Underscore</a> and the array manipulation it offers for Node and the browser. I also liked how it was integrated into Backbone collections.</p>
 
 <p>Yesterday evening as I drove home from work, I had a crazy idea. An idea so simple, I was really surprised <a href="https://github.com/thelinuxlich/knockout.underscore.plugin">only one other person</a> (that a 1 second Google search turned up) made an attempt to do. Maybe <em>because</em> it&rsquo;s so simple, no one bothered to make their code public.</p>
 
+
+
+
 <p>Can you guess what my idea was? C&#8217;mon, isn&rsquo;t it obvious? <em>Why not marry Underscore&rsquo;s array methods to Knockout&rsquo;s observable arrays?</em> And <strong>BAM</strong>, in one evening, <strong>a tiny library named <a href="https://github.com/kamranayub/UnderscoreKO">UnderscoreKO</a> was born.</strong> It&rsquo;s really very cute. It took me maybe 20 minutes to write the library and then 3 hours to write the tests and package it up. Go figure.</p>
+
+
+
 
 <h2>Get UnderscoreKO</h2>
 
+
+
+
 <p>You can download the <a href="http://nuget.org/packages/UnderscoreKO">UnderscoreKO package off of Nuget</a>, since I know that&rsquo;s how a lot of you roll.</p>
+
+
+
 
 <p>The source is <a href="https://github.com/kamranayub/UnderscoreKO">also available on GitHub</a>.</p>
 
+
+
+
 <h2>Let&rsquo;s see some code</h2>
+
+
+
 
 <p>First, let&rsquo;s see what life was like before UKO:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -450,12 +543,12 @@
 </span><span class='line'>    <span class="c1">// marry the two arrays</span>
 </span><span class='line'>    <span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">union</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">someArray</span><span class="p">(),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
 </span><span class='line'><span class="p">},</span> <span class="nx">vm</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>So what problem have I &ldquo;solved&rdquo;? A small one, but I hope small enough that you&rsquo;ll miss it when you can&rsquo;t do it (those are the best, right?):</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -463,91 +556,122 @@
 </span><span class='line'>    <span class="c1">// marry the two arrays</span>
 </span><span class='line'>    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">someArray</span><span class="p">.</span><span class="nx">union</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
 </span><span class='line'><span class="p">},</span> <span class="nx">vm</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Do you see it? Here, let me zoom in:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">someArray</span><span class="p">.</span><span class="nx">union</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
-</span></code></pre></td></tr></table></div></figure>
 
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">someArray</span><span class="p">.</span><span class="nx">union</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>That&rsquo;s right! All of Underscore&rsquo;s array and collection methods are now available off of observable arrays! You didn&rsquo;t even know you wanted this, right?</p>
 
+
+
+
 <h2>Mutators</h2>
+
+
+
 
 <p><a href="https://github.com/thelinuxlich/knockout.underscore.plugin">thelinuxlich</a> had a neat feature in her plugin which was the idea of &ldquo;destructive&rdquo; methods that were basically convenience methods to manipulate the observable array directly.</p>
 
+
+
+
 <p>In other words, this:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">vm</span><span class="p">.</span><span class="nx">myObservableArray</span><span class="p">(</span><span class="nx">vm</span><span class="p">.</span><span class="nx">myObservableArray</span><span class="p">.</span><span class="nx">union</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]));</span>
-</span></code></pre></td></tr></table></div></figure>
 
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">vm</span><span class="p">.</span><span class="nx">myObservableArray</span><span class="p">(</span><span class="nx">vm</span><span class="p">.</span><span class="nx">myObservableArray</span><span class="p">.</span><span class="nx">union</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]));</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Becomes this:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">vm</span><span class="p">.</span><span class="nx">myObservableArray</span><span class="p">.</span><span class="nx">union_</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
-</span></code></pre></td></tr></table></div></figure>
 
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">vm</span><span class="p">.</span><span class="nx">myObservableArray</span><span class="p">.</span><span class="nx">union_</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>See? Isn&rsquo;t that a little nicer? I added &ldquo;mutator&rdquo; methods (<em>methodName_</em>) for anything I felt you&rsquo;d want to use to manipulate the array. And of course, they still use Knockout underneath so change notifications still occur.</p>
 
+
+
+
 <h2>Features</h2>
+
+
+
 
 <p>Um&hellip; what you&rsquo;d expect? <strike>Actually, there are a couple issues I&rsquo;d like to address tonight in another update (such as adding <code>chain</code> which I forgot about and taking care of passing in <code>observableArrays</code> to some functions like <code>union</code> so you don&rsquo;t have to do this: <code>vm.myObservableArray.union_(vm.array1(), vm.array2(), ...)</code>).</strike> I&rsquo;ve released v1.1 which fixes a mutator bug, adds <code>chain()</code> support, and invokes KO arrays when passed to certain functions like <em>union</em>.</p>
 
+
+
+
 <h2>Live Demo</h2>
+
+
+
 
 <p>Want to try before you buy? Go ahead!</p>
 
+
+
+
 <iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/kamranayub/exnqe/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-</div>
-  
+
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+
+<time datetime="2012-03-13T14:33:19-05:00" pubdate data-updated="true">Mar 13<span>th</span>, 2012</time>
+    
+
+
+  </span>
+
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/32/using-nuspec-inheritance-to-reduce-nuget-maintenan">Using Nuspec Inheritance to Reduce Nuget Maintenance Headaches</a></h1>
-    
-    
-      <p class="meta">
+</article>
+
+            </div>
+          </div>
         
-
-
-
-
-
-
-
-
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
+  <h2><a href="/blog/posts/32/using-nuspec-inheritance-to-reduce-nuget-maintenan">Using Nuspec Inheritance to Reduce Nuget Maintenance Headaches</a></h2>
   
+  <p>
+    <p>I&rsquo;ve been <a href="https://github.com/andrewdavey/cassette/pull/191">helping Cassette support .NET 3.5</a> and it&rsquo;s the biggest open source contribution I&rsquo;ve ever made. Granted, I started it so that we could use Cassette at work but I did it of my own accord. I learned a lot in the process (which I&rsquo;ll write another post on) but I thought I&rsquo;d talk about a cool trick I came up with to help ease Cassette&rsquo;s Nuget packaging burden.</p>
 
 
-<time datetime="2012-02-26T20:16:16-06:00" pubdate data-updated="true">Feb 26<span>th</span>, 2012</time>
-        
-           | <a href="/blog/posts/32/using-nuspec-inheritance-to-reduce-nuget-maintenan#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/32/using-nuspec-inheritance-to-reduce-nuget-maintenan">Comments</a>
-        
-      </p>
-    
-  </header>
 
-
-  <div class="entry-content"><p>I&rsquo;ve been <a href="https://github.com/andrewdavey/cassette/pull/191">helping Cassette support .NET 3.5</a> and it&rsquo;s the biggest open source contribution I&rsquo;ve ever made. Granted, I started it so that we could use Cassette at work but I did it of my own accord. I learned a lot in the process (which I&rsquo;ll write another post on) but I thought I&rsquo;d talk about a cool trick I came up with to help ease Cassette&rsquo;s Nuget packaging burden.</p>
 
 <h2>The Problem</h2>
 
+
+
+
 <p>Cassette has 7 Nuget packages:</p>
+
+
+
 
 <ul>
 <li>Cassette + symbols</li>
@@ -557,17 +681,32 @@
 </ul>
 
 
+
+
 <p>This means Andrew has to maintain 7 separate Nuspec files. Imagine now if we were forced to create a new .NET 3.5-specific Nuget package or MVC2-specific package or whatever; we&rsquo;d have even more Nuspecs to deal with.</p>
+
+
+
 
 <p>What&rsquo;s even worse is that all the Nuspec files share common metadata. Typically the only metadata that differs is: <code>id</code>, <code>description</code>, <code>dependencies</code>, and <code>references</code>.</p>
 
+
+
+
 <h2>XDT Transformations to the Rescue</h2>
+
+
+
 
 <p>In MSBuild 4, Microsoft introduced the concept of <a href="http://msdn.microsoft.com/en-us/library/dd465326.aspx">XML Document Transformation</a>. This made it really helpful to create Debug/Release-specific <code>web.config</code> files for your site.</p>
 
+
+
+
 <p>However, what you may not know is that XDT can be used on <em>any</em> document. It can <a href="http://geekswithblogs.net/EltonStoneman/archive/2010/08/20/using-msbuild-4.0-web.config-transformation-to-generate-any-config-file.aspx">also be used manually</a> in your MSBuild file:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -583,14 +722,17 @@
 </span><span class='line'>                  <span class="na">Transform=</span><span class="s">&quot;Web.$(Configuration).config&quot;</span>
 </span><span class='line'>                  <span class="na">Destination=</span><span class="s">&quot;$(BuildOutput)\Web.config&quot;</span><span class="nt">/&gt;</span>
 </span><span class='line'><span class="nt">&lt;/Target&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Neat. I thought about this a bit and figured, &ldquo;Hey, why not use this to reduce Nuspec maintenance headache!&rdquo;</p>
 
+
+
+
 <p>So I did a toy exercise by creating a <code>Cassette.Shared.nuspec</code> file:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -604,24 +746,24 @@
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 </pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-</span><span class='line'><span class="c">&lt;!-- Cassette Shared Nuspec File; all packges share this --&gt;</span>
-</span><span class='line'><span class="nt">&lt;package</span> <span class="na">xmlns=</span><span class="s">&quot;http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="c">&lt;!&mdash; Cassette Shared Nuspec File; all packges share this &mdash;&gt;</span>
+</span><span class='line'><span class="nt">&lt;package</span> <span class="na">xmlns=</span><span class="s">&quot;<a href="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&amp;quot;">http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&amp;quot;</a></span><span class="nt">&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;metadata&gt;</span>
 </span><span class='line'>    <span class="nt">&lt;version&gt;</span>$version$<span class="nt">&lt;/version&gt;</span>
 </span><span class='line'>    <span class="nt">&lt;authors&gt;</span>Andrew Davey<span class="nt">&lt;/authors&gt;</span>
 </span><span class='line'>    <span class="nt">&lt;owners&gt;</span>Andrew Davey<span class="nt">&lt;/owners&gt;</span>
 </span><span class='line'>    <span class="nt">&lt;copyright&gt;</span>© 2011 Andrew Davey<span class="nt">&lt;/copyright&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;licenseUrl&gt;</span>http://getcassette.net/licensing<span class="nt">&lt;/licenseUrl&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;projectUrl&gt;</span>http://getcassette.net/<span class="nt">&lt;/projectUrl&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;licenseUrl&gt;</span><a href="http://getcassette.net/licensing">http://getcassette.net/licensing</a><span class="nt">&lt;/licenseUrl&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;projectUrl&gt;</span><a href="http://getcassette.net/">http://getcassette.net/</a><span class="nt">&lt;/projectUrl&gt;</span>
 </span><span class='line'>    <span class="nt">&lt;tags&gt;</span>web javascript coffeescript css html templates asp.net<span class="nt">&lt;/tags&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;/metadata&gt;</span>
 </span><span class='line'><span class="nt">&lt;/package&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>And a &ldquo;Cassette.Web.nutrans&rdquo; transformation file that just added the extra data required:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -640,7 +782,7 @@
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
 </pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-</span><span class='line'><span class="nt">&lt;package</span> <span class="na">xmlns=</span><span class="s">&quot;http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&quot;</span> <span class="na">xmlns:xdt=</span><span class="s">&quot;http://schemas.microsoft.com/XML-Document-Transform&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;package</span> <span class="na">xmlns=</span><span class="s">&quot;<a href="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&amp;quot;">http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&amp;quot;</a></span> <span class="na">xmlns:xdt=</span><span class="s">&quot;<a href="http://schemas.microsoft.com/XML-Document-Transform&amp;quot;">http://schemas.microsoft.com/XML-Document-Transform&amp;quot;</a></span><span class="nt">&gt;</span>
 </span><span class='line'>    <span class="nt">&lt;metadata&gt;</span>
 </span><span class='line'>        <span class="nt">&lt;id</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span><span class="nt">&gt;</span>Cassette.Web<span class="nt">&lt;/id&gt;</span>
 </span><span class='line'>        <span class="nt">&lt;description</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span><span class="nt">&gt;</span>ASP.NET support for Cassette. Cassette automatically builds JavaScript, CSS and HTML template modules based on the dependencies between files. CoffeeScript and LESS are also supported.<span class="nt">&lt;/description&gt;</span>
@@ -651,52 +793,90 @@
 </span><span class='line'>    <span class="nt">&lt;/metadata&gt;</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="nt">&lt;files</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;..\..\build\bin\lib40\Cassette.Web.dll&quot;</span> <span class="na">target=</span><span class="s">&quot;lib\net40&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;..\..\build\bin\lib35\Cassette.Web.dll&quot;</span> <span class="na">target=</span><span class="s">&quot;lib\net35&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;....\build\bin\lib40\Cassette.Web.dll&quot;</span> <span class="na">target=</span><span class="s">&quot;lib\net40&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;....\build\bin\lib35\Cassette.Web.dll&quot;</span> <span class="na">target=</span><span class="s">&quot;lib\net35&quot;</span> <span class="nt">/&gt;</span>
 </span><span class='line'>      <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;CassetteConfiguration.cs.pp&quot;</span> <span class="na">target=</span><span class="s">&quot;content&quot;</span><span class="nt">/&gt;</span>
 </span><span class='line'>      <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;web.config.transform&quot;</span> <span class="na">target=</span><span class="s">&quot;content&quot;</span> <span class="nt">/&gt;</span>
 </span><span class='line'>    <span class="nt">&lt;/files&gt;</span>
 </span><span class='line'><span class="nt">&lt;/package&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p><strong>Mind = blown.</strong> It worked! As I stroked my five-o-clock shadow, I wondered. <em>Wow, if this works, how far can we take it?</em></p>
 
+
+
+
 <h2>Nuspec Inheritance: Say what?!</h2>
+
+
+
 
 <p>Let&rsquo;s consider the symbols packaging for Cassette. Being able to transform all these Nuspecs is great and will reduce headaches, but what happens when a Nuspec is a subset of yet another Nuspec? The symbols package typically just adds some PDB files and a <code>**\*.cs</code> line.</p>
 
+
+
+
 <p>Furthermore, I&rsquo;d <strong>really</strong> like to avoid calling the <code>TransformXml</code> task on each symbols Nuspec individually.</p>
+
+
+
 
 <p>No, what I really want is a way to make my Nuspecs inherit from each other to create a chain of transformation.</p>
 
+
+
+
 <p><strong>So that&rsquo;s what I did.</strong> Nuget package developers of the world, I present to you an inline MSBuild task that will follow a chain of inheritance and transform your Nuspecs:</p>
+
+
+
 
 <script src="https://gist.github.com/1918022.js?file=Transforms.xml"></script>
 
 
+
+
 <p>It looks complicated but it really isn&rsquo;t. I had to workaround <a href="http://stackoverflow.com/questions/9455354/msbuild-inline-task-reference-non-standard-microsoft-assemblies">an issue with MSBuild inline tasks</a> by loading up the Microsoft.Web.Publishing.Tasks assembly via Reflection. The rest of the code discovers the inheritance chain and performs the transformations. I developed this in a standalone console application first, then copy/pasted it into the inline task definition, changing whatever I needed.</p>
+
+
+
 
 <p>I could have made this into a standalone DLL but what fun is that? Then I&rsquo;d have to manage a solution and project and blah blah blah. No, I wanted this to be simple and easy to just add to any MSBuild project.</p>
 
+
+
+
 <h2>Example Usage</h2>
+
+
+
 
 <p>Let&rsquo;s take the symbols example now and see what we can do.</p>
 
+
+
+
 <p><strong>Cassette.Web.nutrans</strong></p>
+
+
+
 
 <p>We have to add an extra attribute to the <code>&lt;package&gt;</code> element:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;package</span> <span class="na">inherits=</span><span class="s">&quot;../Cassette.Shared.nuspec&quot;</span> <span class="err">...</span><span class="nt">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
 
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;package</span> <span class="na">inherits=</span><span class="s">&quot;../Cassette.Shared.nuspec&quot;</span> <span class="err">&hellip;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>The <code>inherits</code> attribute is relative to the directory the nutrans file is in.</p>
 
+
+
+
 <p><strong>Cassette.Web.symbols.nutrans</strong></p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -705,23 +885,29 @@
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 </pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-</span><span class='line'><span class="nt">&lt;package</span> <span class="na">inherits=</span><span class="s">&quot;Cassette.Web.nutrans&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&quot;</span> <span class="na">xmlns:xdt=</span><span class="s">&quot;http://schemas.microsoft.com/XML-Document-Transform&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;package</span> <span class="na">inherits=</span><span class="s">&quot;Cassette.Web.nutrans&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;<a href="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&amp;quot;">http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&amp;quot;</a></span> <span class="na">xmlns:xdt=</span><span class="s">&quot;<a href="http://schemas.microsoft.com/XML-Document-Transform&amp;quot;">http://schemas.microsoft.com/XML-Document-Transform&amp;quot;</a></span><span class="nt">&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;files&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;file</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span> <span class="na">src=</span><span class="s">&quot;..\..\build\bin\lib40\Cassette.Web.pdb&quot;</span> <span class="na">target=</span><span class="s">&quot;lib\net40&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;file</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span> <span class="na">src=</span><span class="s">&quot;..\..\build\bin\lib35\Cassette.Web.pdb&quot;</span> <span class="na">target=</span><span class="s">&quot;lib\net35&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;file</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span> <span class="na">src=</span><span class="s">&quot;**\*.cs&quot;</span> <span class="na">target=</span><span class="s">&quot;src&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;file</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span> <span class="na">src=</span><span class="s">&quot;....\build\bin\lib40\Cassette.Web.pdb&quot;</span> <span class="na">target=</span><span class="s">&quot;lib\net40&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;file</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span> <span class="na">src=</span><span class="s">&quot;....\build\bin\lib35\Cassette.Web.pdb&quot;</span> <span class="na">target=</span><span class="s">&quot;lib\net35&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;file</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span> <span class="na">src=</span><span class="s">&quot;***.cs&quot;</span> <span class="na">target=</span><span class="s">&quot;src&quot;</span> <span class="nt">/&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;/files&gt;</span>
 </span><span class='line'><span class="nt">&lt;/package&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Now, using the <code>inherits</code> attribute, we can transform the Cassette.Web transformation file letting us create a chain of transformations.</p>
 
+
+
+
 <p>To use this task, we can easily pass it the list of transforms to use and let it work its magic.</p>
+
+
+
 
 <p><strong>build.xml</strong></p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -734,38 +920,65 @@
 <span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;Target</span> <span class="na">Name=</span><span class="s">&quot;NugetPack&quot;</span> <span class="na">DependsOnTargets=</span><span class="s">&quot;Build&quot;</span><span class="nt">&gt;</span>
 </span><span class='line'>        <span class="nt">&lt;ItemGroup&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;Transforms</span> <span class="na">Include=</span><span class="s">&quot;src\**\*.nutrans&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;Transforms</span> <span class="na">Include=</span><span class="s">&quot;src***.nutrans&quot;</span> <span class="nt">/&gt;</span>
 </span><span class='line'>        <span class="nt">&lt;/ItemGroup&gt;</span>
 </span><span class='line'>
-</span><span class='line'>        <span class="c">&lt;!-- Transform Nuspecs --&gt;</span>
+</span><span class='line'>        <span class="c">&lt;!&mdash; Transform Nuspecs &mdash;&gt;</span>
 </span><span class='line'>        <span class="nt">&lt;TransformXmlHierarchy</span>
 </span><span class='line'>            <span class="na">Source=</span><span class="s">&quot;%(Transforms.Identity)&quot;</span>
 </span><span class='line'>            <span class="na">Destination=</span><span class="s">&quot;src\%(Transforms.RecursiveDir)%(Transforms.Filename).nuspec&quot;</span>
-</span><span class='line'>            <span class="na">TaskDirectory=</span><span class="s">&quot;$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\Web\&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="na">TaskDirectory=</span><span class="s">&quot;$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\Web&amp;quot;</span> <span class="nt">/&gt;</span>
 </span><span class='line'><span class="nt">&lt;/Target&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>And there you have it! For every transform file MSBuild finds, it will execute our task and generate our Nuspec files so they all contain the same shared metadata. I hope this makes someone&rsquo;s Nuget packaging life easier.</p>
 
+
+
+
 <p>You can find the source and examples <a href="https://gist.github.com/1918022">in my gist</a>.</p>
-</div>
-  
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+
+<time datetime="2012-02-26T20:16:16-06:00" pubdate data-updated="true">Feb 26<span>th</span>, 2012</time>
+    
+
+
+  </span>
+
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/31/this-this-is-ux">This&#8230; This Is UX</a></h1>
-    
-    
-      <p class="meta">
+</article>
+
+            </div>
+          </div>
         
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
+  <h2><a href="/blog/posts/31/this-this-is-ux">This&#8230; This Is UX</a></h2>
+  
+  <p>
+    <p><img src="/blog/images/36.png" alt="UX in Action" /></p>
+
+
+  </p>
+  <span class="meta">
+    written 
 
 
 
@@ -775,76 +988,77 @@
 
 
   
+
 
 
 <time datetime="2012-02-22T14:18:10-06:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2012</time>
-        
-           | <a href="/blog/posts/31/this-this-is-ux#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/31/this-this-is-ux">Comments</a>
-        
-      </p>
     
-  </header>
 
 
-  <div class="entry-content"><p><img src="/blog/images/36.png" alt="UX in Action" /></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/30/playing-with-node-writing-a-reddit-cli">Playing With Node: Writing a Reddit CLI</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
+  </span>
 
   
+</article>
 
-
-<time datetime="2012-02-02T15:21:04-06:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2012</time>
+            </div>
+          </div>
         
-           | <a href="/blog/posts/30/playing-with-node-writing-a-reddit-cli#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/30/playing-with-node-writing-a-reddit-cli">Comments</a>
-        
-      </p>
-    
-  </header>
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
+  <h2><a href="/blog/posts/30/playing-with-node-writing-a-reddit-cli">Playing With Node: Writing a Reddit CLI</a></h2>
+  
+  <p>
+    <p>This is not a complete post about how to write a fully featured CLI application for Reddit, like <a href="http://cortex.glacicle.org/">Cortex</a>. However, I think it demonstrates the ease and simplicity in making such an application.</p>
 
 
-  <div class="entry-content"><p>This is not a complete post about how to write a fully featured CLI application for Reddit, like <a href="http://cortex.glacicle.org/">Cortex</a>. However, I think it demonstrates the ease and simplicity in making such an application.</p>
+
 
 <h3>The idea</h3>
 
+
+
+
 <p>I love <a href="http://reddit.com">Reddit</a>. Except for one thing: I don&rsquo;t have much time to browse or keep up with it due to life getting in the way. What I wanted was a simple app I could run that would simply show me the top stories at that moment so I could glance at them and visit them.</p>
+
+
+
 
 <p>I spent about 20 mins (mostly looking for CLI npm packages) and came up with this:</p>
 
+
+
+
 <p><img src="/blog/images/35.png" alt="Reddit CLI" /></p>
+
+
+
 
 <p>Pretty simple. It goes to the front page, grabs the JSON results, and formats it all into a nice list (shortening titles if they get too uppity), displaying the information I mostly care about: subreddit, score, # of comments, and the poster.</p>
 
+
+
+
 <p>Now, I haven&rsquo;t yet implemented a way to actually visit the URL of any of these, mainly because I&rsquo;m short on time. But maybe you can!</p>
+
+
+
 
 <h3>The code</h3>
 
+
+
+
 <p>The code is pretty straightforward. I&rsquo;m using the <a href="http://search.npmjs.org/#/colors">colors</a>, <a href="http://search.npmjs.org/#/request">request</a>, and <a href="http://search.npmjs.org/#/cli">cli</a> npm packages.</p>
 
+
+
+
 <p>I wanted to do something really quick. The <code>cli</code> package is way more than I need, in fact, I wrote this originally without using <code>cli</code> but for future improvement I added it in. The steps I wanted to perform from the get-go were:</p>
+
+
+
 
 <ol>
 <li>Get the JSON for the homepage</li>
@@ -853,9 +1067,12 @@
 </ol>
 
 
+
+
 <p>Here it is, all 43 lines of it:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -904,11 +1121,11 @@
 </span><span class='line'>    <span class="nx">colors</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;colors&#39;</span><span class="p">);</span>
 </span><span class='line'>
 </span><span class='line'><span class="nx">cli</span><span class="p">.</span><span class="nx">main</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;***********&quot;</span><span class="p">.</span><span class="nx">rainbow</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;<strong><strong><strong><strong><strong><em>&quot;</span><span class="p">.</span><span class="nx">rainbow</span><span class="p">);</span>
 </span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Node Reddit&quot;</span><span class="p">.</span><span class="nx">cyan</span><span class="p">);</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;***********\n\n&quot;</span><span class="p">.</span><span class="nx">rainbow</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;</em></strong></strong></strong></strong></strong>\n\n&quot;</span><span class="p">.</span><span class="nx">rainbow</span><span class="p">);</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="nx">request</span><span class="p">(</span><span class="s1">&#39;http://reddit.com/.json&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">request</span><span class="p">(</span><span class="s1">&#39;<a href="http://reddit.com/.json&amp;#39;">http://reddit.com/.json&amp;#39;</a></span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">err</span> <span class="o">&amp;&amp;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">===</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>      <span class="kd">var</span> <span class="nx">reddit</span>  <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
 </span><span class='line'>          <span class="nx">stories</span> <span class="o">=</span> <span class="nx">reddit</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
@@ -916,12 +1133,12 @@
 </span><span class='line'>                    <span class="p">});</span>
 </span><span class='line'>
 </span><span class='line'>      <span class="c1">// Descending score</span>
-</span><span class='line'>      <span class="nx">stories</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">b</span><span class="p">.</span><span class="nx">score</span> <span class="o">-</span> <span class="nx">a</span><span class="p">.</span><span class="nx">score</span><span class="p">;</span> <span class="p">});</span>
+</span><span class='line'>      <span class="nx">stories</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">b</span><span class="p">.</span><span class="nx">score</span> <span class="o">&ndash;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">score</span><span class="p">;</span> <span class="p">});</span>
 </span><span class='line'>
 </span><span class='line'>      <span class="nx">stories</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">story</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>        <span class="kd">var</span> <span class="nx">row</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
 </span><span class='line'>          <span class="nx">title</span> <span class="o">=</span> <span class="nx">story</span><span class="p">.</span><span class="nx">title</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">100</span>
-</span><span class='line'>                <span class="o">?</span> <span class="nx">story</span><span class="p">.</span><span class="nx">title</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span>
+</span><span class='line'>                <span class="o">?</span> <span class="nx">story</span><span class="p">.</span><span class="nx">title</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&hellip;&quot;</span>
 </span><span class='line'>                <span class="o">:</span> <span class="nx">story</span><span class="p">.</span><span class="nx">title</span><span class="p">;</span>
 </span><span class='line'>
 </span><span class='line'>        <span class="c1">// Build row</span>
@@ -941,104 +1158,126 @@
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>  <span class="p">});</span>
 </span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>As you can see, definitely pretty light. That&rsquo;s all there is to it. Now imagine adding in commands (via <code>cli.parse</code>) or even <a href="http://search.npmjs.org/#/growl">growl</a> support (I forked it and added Growl for Windows support, hopefully I can get it working decently and commit it). Then letting it monitor your specific subreddits, perhaps once every 15 minutes or so. Then adding in support for viewing links (interactive CLI app).</p>
 
+
+
+
 <p>That&rsquo;s all more than I have time for, but maybe some of you that want to learn more about the Power of Node have more time. If so, I welcome additions.</p>
 
+
+
+
 <p>It&rsquo;s <a href="https://github.com/kamranayub/node-reddit">available on GitHub</a>. Feel free to dissect it and improve it, fork it and b0rk it. Have fun!</p>
-</div>
-  
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+
+<time datetime="2012-02-02T15:21:04-06:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2012</time>
+    
+
+
+  </span>
+
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/29/programming-is-difficult-business-it-should-never">Programming Is Difficult Business. It Should Never Be Undertaken in Ignorance.</a></h1>
-    
-    
-      <p class="meta">
+</article>
+
+            </div>
+          </div>
         
-
-
-
-
-
-
-
-
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
+  <h2><a href="/blog/posts/29/programming-is-difficult-business-it-should-never">Programming Is Difficult Business. It Should Never Be Undertaken in Ignorance.</a></h2>
   
+  <p>
+    <blockquote><p>&ldquo;Programming is difficult business. It should never be undertaken in ignorance.&rdquo; &ndash; <em>Javascript: The Good Parts</em>, Douglas Crockford</p></blockquote>
 
 
-<time datetime="2012-01-23T15:44:30-06:00" pubdate data-updated="true">Jan 23<span>rd</span>, 2012</time>
-        
-           | <a href="/blog/posts/29/programming-is-difficult-business-it-should-never#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/29/programming-is-difficult-business-it-should-never">Comments</a>
-        
-      </p>
-    
-  </header>
 
-
-  <div class="entry-content"><blockquote><p>&ldquo;Programming is difficult business. It should never be undertaken in ignorance.&rdquo; &ndash; <em>Javascript: The Good Parts</em>, Douglas Crockford</p></blockquote>
 
 <p>What a great quote to program by.</p>
 
+
+
+
 <p>I&rsquo;ve been undertaking a pet project (a <em>game</em>, no less) that&rsquo;s forced me to brush up on my Javascriptings. I would highly recommend this book if you also want to get your hands dirty with Javascript.</p>
 
+
+
+
 <p>Oh, my game? Yah, I can&rsquo;t talk about it yet. I&rsquo;ve never made a game before (but I&rsquo;ve always wanted to) and I think I&rsquo;ve finally come up with something I could possibly do (i.e. not 3D, not requiring 25 art designers, and not in a language I don&rsquo;t know). We&rsquo;ll see how it goes and I&rsquo;ll let you know.</p>
-</div>
-  
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+
+<time datetime="2012-01-23T15:44:30-06:00" pubdate data-updated="true">Jan 23<span>rd</span>, 2012</time>
+    
+
+
+  </span>
+
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/28/i-just-transferred-all-my-domains-away-from-my-god">I Just Transferred All My Domains Away From My GoDaddy Reseller Because of SOPA</a></h1>
-    
-    
-      <p class="meta">
+</article>
+
+            </div>
+          </div>
         
-
-
-
-
-
-
-
-
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
+  <h2><a href="/blog/posts/28/i-just-transferred-all-my-domains-away-from-my-god">I Just Transferred All My Domains Away From My GoDaddy Reseller Because of SOPA</a></h2>
   
+  <p>
+    <p>Since I started hosting my own domains and doing web work, I&rsquo;ve been using a website aptly named <a href="http://cheap-domainregistration.com">Cheap-DomainRegistration.com</a>. I also read today that <a href="http://www.reddit.com/r/politics/comments/nntxp/godaddys_response_to_the_boycott_go_daddy_has/">GoDaddy supports SOPA</a>. This is a Bad Thing<sup>TM</sup>. The proposed <a href="http://americancensorship.org/">SOPA legislation is bad</a>, just like drinking anti-freeze is bad for dogs.</p>
 
 
-<time datetime="2011-12-23T19:12:45-06:00" pubdate data-updated="true">Dec 23<span>rd</span>, 2011</time>
-        
-           | <a href="/blog/posts/28/i-just-transferred-all-my-domains-away-from-my-god#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/28/i-just-transferred-all-my-domains-away-from-my-god">Comments</a>
-        
-      </p>
-    
-  </header>
 
-
-  <div class="entry-content"><p>Since I started hosting my own domains and doing web work, I&rsquo;ve been using a website aptly named <a href="http://cheap-domainregistration.com">Cheap-DomainRegistration.com</a>. I also read today that <a href="http://www.reddit.com/r/politics/comments/nntxp/godaddys_response_to_the_boycott_go_daddy_has/">GoDaddy supports SOPA</a>. This is a Bad Thing<sup>TM</sup>. The proposed <a href="http://americancensorship.org/">SOPA legislation is bad</a>, just like drinking anti-freeze is bad for dogs.</p>
 
 <blockquote><p>&ldquo;Hah!&rdquo; I said to myself, grinning in self-assuredness, &ldquo;I am not using GoDaddy. This does not pertain to me.&rdquo;</p></blockquote>
 
+
+
+
 <p>There was a linear relationship between the width of my grin and the amount of uneasiness about issuing my previous utterance. <em>Hmmm. To be frank, I am not sure exactly who owns my current domain host.</em> Now the wheels in my head began turning (<em>Since I looked at that loony, old man</em>). I visited the site&hellip; tried searching for who the company was registered under. I couldn&rsquo;t find anything. It felt&hellip; wrong.</p>
 
+
+
+
 <p>It turns out with a <a href="http://www.godaddy.com/reseller/domain-reseller.aspx?ci=21918">little</a> <a href="http://www.who.is/website-information/godaddy.com/">Internet</a> <a href="http://www.who.is/website-information/cheap-domainregistration.com/">detectivery</a>, I discovered that my now-late host was, in fact, a <strong>GoDaddy reseller.</strong></p>
+
+
+
 
 <ol>
 <li>The reseller template CDR used was the <em>first</em> reseller template available from GD, namely, &ldquo;Black, Yellow, and Red&rdquo;. You can see that by clicking &ldquo;Quick Tour&rdquo; on the GD Reseller page.</li>
@@ -1048,56 +1287,74 @@
 </ol>
 
 
+
+
 <p>Despair kicked in. I glanced at the brand new JA Henckels chef knife my friend got me for Christmas&mdash;the sharp blade, laser edged to perfection&hellip; it would be <em>so</em> easy to&mdash;&ldquo;No,&rdquo; I said. <em>Keep hold of yourself, man!</em></p>
+
+
+
 
 <p>Turns out, there&rsquo;s a great host called <a href="http://namecheap.com">Namecheap.com</a> that is <a href="http://community.namecheap.com/blog/2011/12/22/we-say-no-to-sopa/">against SOPA</a> (as you should be). Needless to say, I&rsquo;ve initiated a bulk transfer of all my domains over to Namecheap. <a href="http://latersgd.com/">I&rsquo;ve done my part</a>.</p>
 
+
+
+
 <p>So now the question is, are <strong>you</strong> inadvertently using a GoDaddy reseller? I highly recommend you double-check because you might just be surprised at what you find.</p>
 
+
+
+
 <p><em>The more you know&hellip;</em></p>
-</div>
-  
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+
+<time datetime="2011-12-23T19:12:45-06:00" pubdate data-updated="true">Dec 23<span>rd</span>, 2011</time>
+    
+
+
+  </span>
+
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/27/using-cassette-for-semi-complicated-scenarios-upda">Using Cassette for Semi-complicated Scenarios [Updated 1/9/12]</a></h1>
-    
-    
-      <p class="meta">
+</article>
+
+            </div>
+          </div>
         
-
-
-
-
-
-
-
-
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
+  <h2><a href="/blog/posts/27/using-cassette-for-semi-complicated-scenarios-upda">Using Cassette for Semi-complicated Scenarios [Updated 1/9/12]</a></h2>
   
+  <p>
+    <p>I love <a href="http://getcassette.net">Cassette</a>. You should too, because as of today, the project has gone MIT licensed which means <strong>you</strong>, my dear reader, can use it right now.</p>
 
 
-<time datetime="2011-12-22T21:24:19-06:00" pubdate data-updated="true">Dec 22<span>nd</span>, 2011</time>
-        
-           | <a href="/blog/posts/27/using-cassette-for-semi-complicated-scenarios-upda#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/27/using-cassette-for-semi-complicated-scenarios-upda">Comments</a>
-        
-      </p>
-    
-  </header>
 
-
-  <div class="entry-content"><p>I love <a href="http://getcassette.net">Cassette</a>. You should too, because as of today, the project has gone MIT licensed which means <strong>you</strong>, my dear reader, can use it right now.</p>
 
 <p>It&rsquo;s alright, I&rsquo;ll wait while you download it via Nuget. Done? Great.</p>
 
+
+
+
 <h3>Updates</h3>
+
+
+
 
 <ul>
 <li><strong>1/9/12</strong>: Added print media example</li>
@@ -1105,13 +1362,22 @@
 </ul>
 
 
+
+
 <h3>More than a simple case</h3>
+
+
+
 
 <p>Cassette is <a href="http://hanselminutes.com/260/net-api-design-that-optimizes-for-programmer-joy-with-jonathan-carter">optimized for programmer happiness</a>. It&rsquo;s easy to use and there&rsquo;s a lot of small features that make it stand out from the crowd (SquishIt, Combres, etc.). If you want to get started using Cassette out of the box, you only need to do a couple things and those things are outlined well <a href="http://getcassette.net/documentation/getting-started">in the documentation</a>.</p>
 
+
+
+
 <p>What I love about Cassette is the flexibility you have when you need to go beyond the simplest use case. For example, let&rsquo;s consider the file structure I am working with on a project right now:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1136,69 +1402,119 @@
 <span class='line-number'>23</span>
 <span class='line-number'>24</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>Web Project
-</span><span class='line'> |_ Public
-</span><span class='line'>   |_ images
-</span><span class='line'>   |_ print
-</span><span class='line'>     |_ print.css
-</span><span class='line'>   |_ scripts
-</span><span class='line'>     |_ i8n
-</span><span class='line'>       |_ en-US
-</span><span class='line'>       |_ zh-CN
-</span><span class='line'>     |_ special
-</span><span class='line'>       |_ modernizer-2.0.6.js
-</span><span class='line'>     |_ vendor
-</span><span class='line'>       |_ jquery-1.7.1.js
-</span><span class='line'>       |_ other framework files...
-</span><span class='line'>     |_ pages
-</span><span class='line'>       |_ page1.js
-</span><span class='line'>       |_ page2.js
-</span><span class='line'>     |_ app.js
-</span><span class='line'>   |_ themes
-</span><span class='line'>     |_ jquery.ui.core.css
-</span><span class='line'>     |_ other jQuery UI files
-</span><span class='line'>   |_ base.css
-</span><span class='line'>   |_ layout.css
-</span><span class='line'>   |_ otherfiles...</span></code></pre></td></tr></table></div></figure>
-
+</span><span class='line'> |<em> Public
+</span><span class='line'>   |</em> images
+</span><span class='line'>   |<em> print
+</span><span class='line'>     |</em> print.css
+</span><span class='line'>   |<em> scripts
+</span><span class='line'>     |</em> i8n
+</span><span class='line'>       |<em> en-US
+</span><span class='line'>       |</em> zh-CN
+</span><span class='line'>     |<em> special
+</span><span class='line'>       |</em> modernizer-2.0.6.js
+</span><span class='line'>     |<em> vendor
+</span><span class='line'>       |</em> jquery-1.7.1.js
+</span><span class='line'>       |<em> other framework files&hellip;
+</span><span class='line'>     |</em> pages
+</span><span class='line'>       |<em> page1.js
+</span><span class='line'>       |</em> page2.js
+</span><span class='line'>     |<em> app.js
+</span><span class='line'>   |</em> themes
+</span><span class='line'>     |<em> jquery.ui.core.css
+</span><span class='line'>     |</em> other jQuery UI files
+</span><span class='line'>   |<em> base.css
+</span><span class='line'>   |</em> layout.css
+</span><span class='line'>   |_ otherfiles&hellip;</span></code></pre></td></tr></table></div></figure></p>
 
 <p>For the most part, this is how the project was organized and I needed to adapt Cassette to work here. I&rsquo;ll walk through a few things I needed to do first.</p>
 
+
+
+
 <h3>File organization</h3>
+
+
+
 
 <p>Before implementing Cassette, <a href="http://modernizr.com">Modernizr</a> was also in the <em>vendor</em> folder. In addition, the localized JS files in <em>i8n</em> were not in sub-folders according to their culture, they were just in <em>i8n</em>.</p>
 
+
+
+
 <p>In the <em>vendor</em> folder, we have both minified and non-minified JS files (mostly from Nuget). We don&rsquo;t want Cassette to minify an already minified file. I&rsquo;ll show you how I avoided that later on.</p>
+
+
+
 
 <p>I point this out because Cassette works better when things are organized so that they are &ldquo;bundlable.&rdquo; For that reason, I moved the files around so the structure looks like above. Since Modernizr has to be included in the page&rsquo;s <code>&lt;head&gt;</code> (it needs to load before the page loads to set up Respond media queries and HTML5 elements) and all other scripts can be included before the <code>&lt;/body&gt;</code> tag, I separated it into the <em>special</em> folder.</p>
 
+
+
+
 <p>As for the <em>pages</em> scripts, these need to be only included on a per-page basis. If areas of your site need multiple assets, I would definitely move them into sub-folders (I would go a step farther perhaps and even include them by convention, the same way MVC plays with Views and Controllers but that&rsquo;s for another blog post!).</p>
+
+
+
 
 <h3>Configuring the bundles</h3>
 
+
+
+
 <p>I&rsquo;ll walk you through my Cassette configuration file. If you pull down Cassette via Nuget, you will have a new <code>CassetteConfiguration</code> file and class. This is what Cassette picks up and uses to bundle your files. You can move it wherever you want, Cassette magically picks it up. It is important to realize that if you want full control over how Cassette bundles your assets, you&rsquo;ll need to do some configuration. Luckily, it&rsquo;s not bad!</p>
+
+
+
 
 <h4>Excluding directories, minified, and VSDoc files</h4>
 
+
+
+
 <p>Out-of-the-box, Cassette does not provide an easy mechanism to exclude directories when adding bundles per sub-directory. The reason I think this is important is because we want to set up a general &ldquo;catch-all&rdquo; method to deal with bundling, namely: treat each directory as a bundle. That way we can add folders/files and have them bundled automatically for us. This creates less work for the team.</p>
+
+
+
 
 <p>I also wanted to ignore any pre-minified or -vsdoc files (Cassette by default ignores vsdoc files).</p>
 
+
+
+
 <p>To solve this issue, I just derived a class from <code>FileSearch</code> and added my own requirements:</p>
+
+
+
 
 <script src="https://gist.github.com/1583784.js"></script>
 
 
+
+
 <p>I could have also implemented my own <code>IFileSearch</code>, perhaps one that used a fluent interface to exclude directories or file suffixes, but for my limited needs, this would do well and I really only needed to build upon the out-of-the-box <code>FileSearch</code> class. Maybe I will implement a fluent search interface as a fun project.</p>
+
+
+
 
 <p>The other thing I needed to add into the <em>Regex</em> was the ability to exclude any files ending in &ldquo;.min&rdquo; or &ldquo;-min&rdquo; (just in case). Cassette recommends you simply delete minified files. That&rsquo;s a good tip, except they&rsquo;ll just be back when you do a Nuget update, so why not just ignore them by default as well (<em>ahem</em>)?</p>
 
+
+
+
 <p><em>Side note: It seems more efficient to me to allow Cassette to reference minified files but to bypass minification of them. Perhaps this will be implemented in the future?</em></p>
+
+
+
 
 <h4>Configuring stylesheets</h4>
 
+
+
+
 <p>For our project, we need to include Google Web Fonts in the page, in addition to the CSS files in the <em>public</em> directory. We keep the jQuery UI themes separate in case we update via Nuget so we can simply overwrite them.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1226,10 +1542,12 @@
 </span><span class='line'>    <span class="n">bundles</span><span class="p">.</span><span class="n">AddUrlWithAlias</span><span class="p">&lt;</span><span class="n">StylesheetBundle</span><span class="p">&gt;(</span>
 </span><span class='line'>        <span class="n">Scheme</span> <span class="p">+</span> <span class="s">&quot;://fonts.googleapis.com/css?family=Droid+Sans|Montserrat&quot;</span><span class="p">,</span> <span class="s">&quot;Fonts&quot;</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>The first line tells Cassette to add a bundle per sub-directory, so the following bundles will be made:</p>
+
+
+
 
 <ul>
 <li>public (our CSS)</li>
@@ -1238,13 +1556,22 @@
 </ul>
 
 
+
+
 <p>It also uses the class above and excludes the &ldquo;scripts&rdquo; directory from search, for good measure.</p>
+
+
+
 
 <p>One of the caveats to the directory exclude is that it technically does <em>not</em> exclude directories; Cassette still creates empty bundles. Thus, if you tried to add a <code>~/public/print</code> bundle, you&rsquo;d get an exception saying that it already exists. So, we <em>cannot</em> exclude the <code>print</code> directory. Instead, you can reference it directly after it&rsquo;s been added and manually set the <code>Media</code> to print. Problem solved! Ideally, Cassette should not be creating empty bundles.</p>
 
+
+
+
 <p>The second line includes the direct Google stylesheet reference aliased as <em>Fonts</em> (in references, <code>~/Fonts</code>). In this project, our site is behind a load balancer so SSL is terminated at the balancer. This means you can&rsquo;t just use the built-in ASP.NET <code>Request.IsSecureConnection</code> because by the time the request even hits the web server, SSL is not there. <strike>Therefore, I utilize one of the utilities we have to check if SSL is enabled via server headers that the balancer sets.</strike> The scheme is not identifiable yet in our <code>Application_Start</code>, so we cannot use this method, but I will leave it here for posterity. We switched to always using SSL since our site is under SSL to the user. <strong>Note:</strong> You can simply include fonts normally using the Google Font Loader or by a direct <code>&lt;link&gt;</code> reference, however, why not use Cassette if you&rsquo;re already going that route?</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1254,12 +1581,12 @@
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">Utilities</span><span class="p">.</span><span class="n">SharedUtils</span><span class="p">.</span><span class="n">IsSecureConnection</span><span class="p">()</span> <span class="p">?</span> <span class="s">&quot;https&quot;</span> <span class="p">:</span> <span class="s">&quot;http&quot;</span><span class="p">;</span> <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>In our <em>Layout.cshtml</em> file, we now need to reference these two bundles and render them to the page.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1277,21 +1604,21 @@
 </span><span class='line'><span class="nt">&lt;head&gt;</span>
 </span><span class='line'>    @Bundles.RenderStylesheets()
 </span><span class='line'><span class="nt">&lt;/head&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>So how does Cassette understand in what order to put these references? First, Cassette goes by the order in which you call <code>@Bundles.Reference</code>. To make things easier though, I edited our main <em>layout.css</em> file to add Cassette-compatible references.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="c">/* For Cassette */</span>
-</span><span class='line'><span class="c">/* @reference ~/Fonts base.css skeleton.css themes */</span>
-</span></code></pre></td></tr></table></div></figure>
 
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="c">/<em> For Cassette </em>/</span>
+</span><span class='line'><span class="c">/<em> @reference ~/Fonts base.css skeleton.css themes </em>/</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>When Cassette parses <em>layout.css</em>, it will detect these references. Since all files are included in our <em>public</em> bundle, everything goes great and the <code>&lt;link&gt;</code>&rsquo;s are added in order:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1301,22 +1628,27 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;http://fonts.googleapis.com/css?family=Droid+Sans|Montserrat&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/_cassette/asset/Public/themes/jquery.ui.button.css?165be2c1b488debc298a8dbaa77347b326a0d2a2&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/_cassette/asset/Public/themes/jquery.ui.core.css?e5bc0be5bec6729cd338579a99e89c39c844c181&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/_cassette/asset/Public/themes/jquery.ui.datepicker.css?6243e68daf6d6b3c03ce47d66abef2feba488d94&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/_cassette/asset/Public/themes/jquery.ui.dialog.css?45faa27d7c66d72df00c39c40506da46bed885e3&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/_cassette/asset/Public/themes/jquery.ui.resizable.css?a1bf026ec6d01daa0f7853215774c9e3aeb8afa9&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/_cassette/asset/Public/themes/jquery.ui.theme.css?83294a0e12785f8dac8d3f0de4bf65f481b55f13&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/_cassette/asset/Public/base.css?6401a75dfde8196c81d8bb39c3e5fb25dab89ad1&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/_cassette/asset/Public/skeleton.css?d7414571707853cafb3028441861d31291d60789&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;<a href="http://fonts.googleapis.com/css?family=Droid+Sans|Montserrat&amp;quot;">http://fonts.googleapis.com/css?family=Droid+Sans|Montserrat&amp;quot;</a></span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/<em>cassette/asset/Public/themes/jquery.ui.button.css?165be2c1b488debc298a8dbaa77347b326a0d2a2&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/</em>cassette/asset/Public/themes/jquery.ui.core.css?e5bc0be5bec6729cd338579a99e89c39c844c181&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/<em>cassette/asset/Public/themes/jquery.ui.datepicker.css?6243e68daf6d6b3c03ce47d66abef2feba488d94&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/</em>cassette/asset/Public/themes/jquery.ui.dialog.css?45faa27d7c66d72df00c39c40506da46bed885e3&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/<em>cassette/asset/Public/themes/jquery.ui.resizable.css?a1bf026ec6d01daa0f7853215774c9e3aeb8afa9&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/</em>cassette/asset/Public/themes/jquery.ui.theme.css?83294a0e12785f8dac8d3f0de4bf65f481b55f13&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/<em>cassette/asset/Public/base.css?6401a75dfde8196c81d8bb39c3e5fb25dab89ad1&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/</em>cassette/asset/Public/skeleton.css?d7414571707853cafb3028441861d31291d60789&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
 </span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/_cassette/asset/Public/layout.css?0ac01597826664dcc3a6c031a61c11ffa17fdd3d&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <h4>Configuring Javascript</h4>
 
+
+
+
 <p>The Javascript assets were a bit harder to configure; we needed to do a couple things:</p>
+
+
+
 
 <ul>
 <li>Auto-bundle everything except a few special cases</li>
@@ -1325,9 +1657,12 @@
 </ul>
 
 
+
+
 <p>Here is my Javascript configuration:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1341,7 +1676,7 @@
 <span class='line-number'>12</span>
 </pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">private</span> <span class="k">void</span> <span class="nf">ConfigureJavascript</span><span class="p">(</span><span class="n">BundleCollection</span> <span class="n">bundles</span><span class="p">)</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="c1">// Localized JS - i8n/{culture}</span>
+</span><span class='line'>    <span class="c1">// Localized JS &ndash; i8n/{culture}</span>
 </span><span class='line'>    <span class="n">bundles</span><span class="p">.</span><span class="n">AddPerSubDirectory</span><span class="p">&lt;</span><span class="n">ScriptBundle</span><span class="p">&gt;(</span><span class="s">&quot;Public/scripts/i8n&quot;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="c1">// Per-page JS (eventually may want separate folders as well)</span>
@@ -1351,12 +1686,12 @@
 </span><span class='line'>    <span class="n">bundles</span><span class="p">.</span><span class="n">AddPerSubDirectory</span><span class="p">&lt;</span><span class="n">ScriptBundle</span><span class="p">&gt;(</span><span class="s">&quot;Public/scripts&quot;</span><span class="p">,</span>
 </span><span class='line'>  <span class="k">new</span> <span class="nf">ExcludeDirectorySearch</span><span class="p">(</span><span class="s">&quot;*.js&quot;</span><span class="p">,</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="s">&quot;i8n&quot;</span><span class="p">,</span> <span class="s">&quot;pages&quot;</span> <span class="p">}));</span>
 </span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Our configuration code above does exactly what we need. We can double check by browsing to <em>/_cassette</em> and seeing what Cassette decided to turn into bundles:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1390,40 +1725,49 @@
 </span><span class='line'><span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">pages</span>
 </span><span class='line'>
 </span><span class='line'><span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">special</span>
-</span><span class='line'>    <span class="n">modernizr</span><span class="p">-</span><span class="m">2.0</span><span class="p">.</span><span class="m">6.</span><span class="n">js</span>
+</span><span class='line'>    <span class="n">modernizr</span><span class="p">&ndash;</span><span class="m">2.0</span><span class="p">.</span><span class="m">6.</span><span class="n">js</span>
 </span><span class='line'>
 </span><span class='line'><span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">vendor</span>
-</span><span class='line'>    <span class="n">jquery</span><span class="p">-</span><span class="m">1.7</span><span class="p">.</span><span class="m">1.</span><span class="n">js</span>
-</span><span class='line'>    <span class="n">jquery</span><span class="p">-</span><span class="n">ui</span><span class="p">-</span><span class="m">1.8</span><span class="p">.</span><span class="m">16.</span><span class="n">js</span>
+</span><span class='line'>    <span class="n">jquery</span><span class="p">&ndash;</span><span class="m">1.7</span><span class="p">.</span><span class="m">1.</span><span class="n">js</span>
+</span><span class='line'>    <span class="n">jquery</span><span class="p">&ndash;</span><span class="n">ui</span><span class="p">&ndash;</span><span class="m">1.8</span><span class="p">.</span><span class="m">16.</span><span class="n">js</span>
 </span><span class='line'>    <span class="n">jQuery</span><span class="p">.</span><span class="n">tmpl</span><span class="p">.</span><span class="n">js</span>
 </span><span class='line'>    <span class="n">jquery</span><span class="p">.</span><span class="n">validate</span><span class="p">.</span><span class="n">js</span>
 </span><span class='line'>    <span class="n">jquery</span><span class="p">.</span><span class="n">validate</span><span class="p">.</span><span class="n">unobtrusive</span><span class="p">.</span><span class="n">js</span>
 </span><span class='line'>
-</span><span class='line'><span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">i8n</span><span class="p">/</span><span class="n">zh</span><span class="p">-</span><span class="n">CN</span>
-</span><span class='line'>    <span class="n">jquery</span><span class="p">.</span><span class="n">ui</span><span class="p">.</span><span class="n">datepicker</span><span class="p">-</span><span class="n">zh</span><span class="p">-</span><span class="n">CN</span><span class="p">.</span><span class="n">js</span>
-</span><span class='line'>    <span class="n">jquery</span><span class="p">.</span><span class="n">validate</span><span class="p">-</span><span class="n">zh</span><span class="p">-</span><span class="n">CN</span><span class="p">.</span><span class="n">js</span>
+</span><span class='line'><span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">i8n</span><span class="p">/</span><span class="n">zh</span><span class="p">&ndash;</span><span class="n">CN</span>
+</span><span class='line'>    <span class="n">jquery</span><span class="p">.</span><span class="n">ui</span><span class="p">.</span><span class="n">datepicker</span><span class="p">&ndash;</span><span class="n">zh</span><span class="p">&ndash;</span><span class="n">CN</span><span class="p">.</span><span class="n">js</span>
+</span><span class='line'>    <span class="n">jquery</span><span class="p">.</span><span class="n">validate</span><span class="p">&ndash;</span><span class="n">zh</span><span class="p">&ndash;</span><span class="n">CN</span><span class="p">.</span><span class="n">js</span>
 </span><span class='line'>
-</span><span class='line'><span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">i8n</span><span class="p">/</span><span class="n">es</span><span class="p">-</span><span class="n">MX</span>
-</span><span class='line'>    <span class="n">jquery</span><span class="p">.</span><span class="n">ui</span><span class="p">.</span><span class="n">datepicker</span><span class="p">-</span><span class="n">es</span><span class="p">-</span><span class="n">MX</span><span class="p">.</span><span class="n">js</span>
-</span><span class='line'>    <span class="n">jquery</span><span class="p">.</span><span class="n">validate</span><span class="p">-</span><span class="n">es</span><span class="p">-</span><span class="n">MX</span><span class="p">.</span><span class="n">js</span>
+</span><span class='line'><span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">i8n</span><span class="p">/</span><span class="n">es</span><span class="p">&ndash;</span><span class="n">MX</span>
+</span><span class='line'>    <span class="n">jquery</span><span class="p">.</span><span class="n">ui</span><span class="p">.</span><span class="n">datepicker</span><span class="p">&ndash;</span><span class="n">es</span><span class="p">&ndash;</span><span class="n">MX</span><span class="p">.</span><span class="n">js</span>
+</span><span class='line'>    <span class="n">jquery</span><span class="p">.</span><span class="n">validate</span><span class="p">&ndash;</span><span class="n">es</span><span class="p">&ndash;</span><span class="n">MX</span><span class="p">.</span><span class="n">js</span>
 </span><span class='line'>
 </span><span class='line'><span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">pages</span><span class="p">/</span><span class="n">page1</span><span class="p">.</span><span class="n">js</span>
 </span><span class='line'>    <span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">pages</span><span class="p">/</span><span class="n">page1</span><span class="p">.</span><span class="n">js</span>
 </span><span class='line'>
 </span><span class='line'><span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">pages</span><span class="p">/</span><span class="n">page2</span><span class="p">.</span><span class="n">js</span>
 </span><span class='line'>    <span class="p">~/</span><span class="n">Public</span><span class="p">/</span><span class="n">scripts</span><span class="p">/</span><span class="n">pages</span><span class="p">/</span><span class="n">page2</span><span class="p">.</span><span class="n">js</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>You can see the exclusions worked, since the <em>pages</em> folder is blank (i.e. not bundled up) and each page script is made later on a per-file basis.</p>
 
+
+
+
 <p>The reason I like this is because now I can just add folders to <em>scripts</em> without worrying about adding a manual Cassette bundle; it will just do it automatically and ignore the two folders I need to make a special case for.</p>
+
+
+
 
 <p><strong>Including the script assets</strong></p>
 
+
+
+
 <p>Remember I said Modernizr should be included in <code>&lt;head&gt;</code> but all the rest of the scripts should be before <code>&lt;/body&gt;</code>? We can do that easily with Cassette.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1450,11 +1794,11 @@
 <span class='line-number'>25</span>
 <span class='line-number'>26</span>
 <span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="err">@</span><span class="p">*</span> <span class="n">_Layout</span><span class="p">.</span><span class="n">cshtml</span> <span class="p">*</span><span class="err">@</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="err">@</span><span class="p"><em></span> <span class="n">_Layout</span><span class="p">.</span><span class="n">cshtml</span> <span class="p"></em></span><span class="err">@</span>
 </span><span class='line'><span class="err">@</span><span class="p">{</span>
 </span><span class='line'>    <span class="c1">// CSS</span>
 </span><span class='line'>    <span class="n">Bundles</span><span class="p">.</span><span class="n">Reference</span><span class="p">(</span><span class="s">&quot;public&quot;</span><span class="p">);</span>
-</span><span class='line'>  
+</span><span class='line'><br/>
 </span><span class='line'>    <span class="c1">// Scripts (vendor first!)</span>
 </span><span class='line'>    <span class="n">Bundles</span><span class="p">.</span><span class="n">Reference</span><span class="p">(</span><span class="s">&quot;public/scripts/special&quot;</span><span class="p">,</span> <span class="s">&quot;head&quot;</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">Bundles</span><span class="p">.</span><span class="n">Reference</span><span class="p">(</span><span class="s">&quot;public/scripts&quot;</span><span class="p">);</span>
@@ -1464,48 +1808,57 @@
 </span><span class='line'><span class="p">&lt;</span><span class="n">html</span><span class="p">&gt;</span>
 </span><span class='line'><span class="p">&lt;</span><span class="n">head</span><span class="p">&gt;</span>
 </span><span class='line'>    <span class="n">@Bundles</span><span class="p">.</span><span class="n">RenderStylesheets</span><span class="p">()</span>
-</span><span class='line'>  
-</span><span class='line'>    <span class="err">@</span><span class="p">*</span> <span class="n">Modernizr</span> <span class="n">needs</span> <span class="n">to</span> <span class="n">be</span> <span class="n">first</span> <span class="p">*</span><span class="err">@</span>
+</span><span class='line'><br/>
+</span><span class='line'>    <span class="err">@</span><span class="p"><em></span> <span class="n">Modernizr</span> <span class="n">needs</span> <span class="n">to</span> <span class="n">be</span> <span class="n">first</span> <span class="p"></em></span><span class="err">@</span>
 </span><span class='line'>    <span class="n">@Bundles</span><span class="p">.</span><span class="n">RenderScripts</span><span class="p">(</span><span class="s">&quot;head&quot;</span><span class="p">)</span>
 </span><span class='line'><span class="p">&lt;/</span><span class="n">head</span><span class="p">&gt;</span>
 </span><span class='line'><span class="p">&lt;</span><span class="n">body</span><span class="p">&gt;</span>
-</span><span class='line'>  
-</span><span class='line'>    <span class="err">@</span><span class="p">*</span> <span class="n">All</span> <span class="n">other</span> <span class="n">scripts</span> <span class="p">*</span><span class="err">@</span>
+</span><span class='line'><br/>
+</span><span class='line'>    <span class="err">@</span><span class="p"><em></span> <span class="n">All</span> <span class="n">other</span> <span class="n">scripts</span> <span class="p"></em></span><span class="err">@</span>
 </span><span class='line'>    <span class="n">@Bundles</span><span class="p">.</span><span class="n">RenderScripts</span><span class="p">()</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="err">@</span><span class="p">*</span> <span class="n">Localized</span> <span class="n">scripts</span> <span class="p">*</span><span class="err">@</span>
+</span><span class='line'>    <span class="err">@</span><span class="p"><em></span> <span class="n">Localized</span> <span class="n">scripts</span> <span class="p"></em></span><span class="err">@</span>
 </span><span class='line'>    <span class="n">@RazorHelpers</span><span class="p">.</span><span class="n">LocalizedScripts</span><span class="p">()</span>
 </span><span class='line'><span class="p">&lt;/</span><span class="n">body</span><span class="p">&gt;</span>
 </span><span class='line'><span class="p">&lt;/</span><span class="n">html</span><span class="p">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Notice the reference for Modernizr. I am using the overloaded <code>Reference</code> that accepts a <code>pageLocation</code> argument. This is the same as how you can include Razor sections in MVC3. The location is just a string you use when you call <code>@Bundles.RenderScripts({pageLocation})</code>. <strong>Tip:</strong> You can also specify <code>pageLocation</code> when you create a bundle in your <code>CassetteConfiguration</code> class. I did not, since I only needed one script in the <code>head</code> tag, but if you have multiple folders or bundles that need to be in separate locations, you don&rsquo;t have to specify a page location in your view files.</p>
 
+
+
+
 <p>As with our stylesheets, we need a way to tell Cassette how to order the vendor scripts since we typically have plugins that depend on each other (such as jQuery). You <em>could</em> edit each vendor file and manually add file references to them, but that&rsquo;s no fun is it? In order to reduce headaches and maintenance, create a <a href="http://getcassette.net/documentation/configuration/bundle-descriptor-file">Bundle Descriptor File</a> instead. That way, you will only need to keep that file up-to-date as you add more vendor plugins.</p>
+
+
+
 
 <p>In the <em>vendors</em> folder, I simply made a <em>bundle.txt</em> file:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">jquery</span><span class="p">-</span><span class="m">1.7</span><span class="p">.</span><span class="m">1.</span><span class="n">js</span>
-</span><span class='line'><span class="n">jquery</span><span class="p">-</span><span class="n">ui</span><span class="p">-</span><span class="m">1.8</span><span class="p">.</span><span class="m">16.</span><span class="n">js</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">jquery</span><span class="p">&ndash;</span><span class="m">1.7</span><span class="p">.</span><span class="m">1.</span><span class="n">js</span>
+</span><span class='line'><span class="n">jquery</span><span class="p">&ndash;</span><span class="n">ui</span><span class="p">&ndash;</span><span class="m">1.8</span><span class="p">.</span><span class="m">16.</span><span class="n">js</span>
 </span><span class='line'><span class="n">jQuery</span><span class="p">.</span><span class="n">tmpl</span><span class="p">.</span><span class="n">js</span>
 </span><span class='line'><span class="n">jquery</span><span class="p">.</span><span class="n">validate</span><span class="p">.</span><span class="n">js</span>
 </span><span class='line'><span class="n">jquery</span><span class="p">.</span><span class="n">validate</span><span class="p">.</span><span class="n">unobtrusive</span><span class="p">.</span><span class="n">js</span>
 </span><span class='line'><span class="p">*</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>The wildcard at the end tells Cassette, &ldquo;Yo, do whatever you want for the rest of the scripts you find.&rdquo; How useful! Now there&rsquo;s even <em>less</em> maintenance (didn&rsquo;t I tell you this baby was optimized for happiness?).</p>
 
+
+
+
 <p>For localization, I just created a Razor helper to include the right culture files for me (this shows you that you can use the <code>Bundles</code> object anywhere in your Razor views and Cassette will include the references):</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1529,29 +1882,35 @@
 </span><span class='line'>        <span class="n">Bundles</span><span class="p">.</span><span class="n">Reference</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;/public/scripts/i8n/{0}&quot;</span><span class="p">,</span> <span class="n">cultureName</span><span class="p">));</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>And on individual views, I can now included page-specific JS:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="err">@</span><span class="p">*</span> <span class="n">Views</span><span class="err">\</span><span class="n">Controller1</span><span class="err">\</span><span class="n">View1</span><span class="p">.</span><span class="n">cshtml</span> <span class="p">*</span><span class="err">@</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="err">@</span><span class="p"><em></span> <span class="n">Views</span><span class="err">&lt;/span><span class="n">Controller1</span><span class="err">&lt;/span><span class="n">View1</span><span class="p">.</span><span class="n">cshtml</span> <span class="p"></em></span><span class="err">@</span>
 </span><span class='line'><span class="err">@</span><span class="p">{</span>
 </span><span class='line'>    <span class="n">Bundles</span><span class="p">.</span><span class="n">Reference</span><span class="p">(</span><span class="s">&quot;~/public/scripts/pages/page1.js&quot;</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Cassette is smart and will include the JS automatically in the <em>Layout.cshtml</em> file <em>and</em> in the proper order (in my case, just at the end. If you had references inside, Cassette would know).</p>
 
+
+
+
 <h4>To debug or not to debug, that is the question!</h4>
+
+
+
 
 <p>In our environment, we don&rsquo;t necessarily want to turn off Cassette as soon as the web.config&rsquo;s <code>debug</code> flag turns to <em>false</em>. Instead, we have different environments where it might make sense to leave Cassette on. When the site goes out to QA, then it makes sense to turn on Cassette&rsquo;s Release mode, but while developing locally and in staging, we may need to debug a bit more.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1567,67 +1926,88 @@
 </span><span class='line'>  <span class="n">settings</span><span class="p">.</span><span class="n">IsDebuggingEnabled</span> <span class="p">=</span>
 </span><span class='line'>      <span class="n">Server</span><span class="p">.</span><span class="n">CurrentEnvironment</span> <span class="p">==</span> <span class="n">Server</span><span class="p">.</span><span class="n">ServerEnvironment</span><span class="p">.</span><span class="n">Developer</span> <span class="p">||</span>
 </span><span class='line'>      <span class="n">Server</span><span class="p">.</span><span class="n">CurrentEnvironment</span> <span class="p">==</span> <span class="n">Server</span><span class="p">.</span><span class="n">ServerEnvironment</span><span class="p">.</span><span class="n">Development</span><span class="p">;</span>
-</span><span class='line'>  
+</span><span class='line'><br/>
 </span><span class='line'>  <span class="n">ConfigureStylesheets</span><span class="p">(</span><span class="n">bundles</span><span class="p">);</span>
 </span><span class='line'>  <span class="n">ConfigureJavascript</span><span class="p">(</span><span class="n">bundles</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>And there&rsquo;s my full <code>CassetteConfiguration</code> class!</p>
 
+
+
+
 <h3>So what are you waiting for?</h3>
+
+
+
 
 <p>Cassette is awesome and I hope you learned a couple tips for doing things in a semi-complex environment. Let me know if you&rsquo;ve found any more good tips &amp; tricks, or if you notice I missed an optimization or hidden feature.</p>
 
+
+
+
 <p>I would really like to do some performance testing with Cassette. It <em>does</em> add to your overhead on the site, but in my Firebug timings, I noticed much less time being spent on CSS files and more time being spent on JS files. If you are worried about performance on a massive scale, it will <strong>always</strong> be faster to minify and concatenate your files at compile or build time because then IIS is serving the files directly. Components like Cassette are meant to ease your burden by handling that for you, at the expense of some milliseconds. Remember that due to caching and aggressive expiration headers, the browser should <em>not</em> be requesting assets anyway after the first request.</p>
-</div>
-  
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+
+<time datetime="2011-12-22T21:24:19-06:00" pubdate data-updated="true">Dec 22<span>nd</span>, 2011</time>
+    
+
+
+  </span>
+
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/26/tips-when-using-backbonejs-in-a-net-world">Tips When Using Backbone.js in a .NET World</a></h1>
-    
-    
-      <p class="meta">
+</article>
+
+            </div>
+          </div>
         
-
-
-
-
-
-
-
-
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
+  <h2><a href="/blog/posts/26/tips-when-using-backbonejs-in-a-net-world">Tips When Using Backbone.js in a .NET World</a></h2>
   
+  <p>
+    <p>I am learning <a href="http://documentcloud.github.com/backbone/">Backbone.js</a> so I can re-write the main GUI for <a href="http://keeptrackofmygames.com">KTOMG</a>. I am still learning and I&rsquo;ve run into a couple gotchas that I hope I can clear up for anyone else that dares to tread in these woods. Still, I&rsquo;ve been able to rewrite the listing of a user&rsquo;s library in one night using Backbone and all my existing back-end code (the farthest up I edited was my controller). Very impressive for a Backbone n00b!</p>
 
 
-<time datetime="2011-12-15T20:37:51-06:00" pubdate data-updated="true">Dec 15<span>th</span>, 2011</time>
-        
-           | <a href="/blog/posts/26/tips-when-using-backbonejs-in-a-net-world#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/26/tips-when-using-backbonejs-in-a-net-world">Comments</a>
-        
-      </p>
-    
-  </header>
 
-
-  <div class="entry-content"><p>I am learning <a href="http://documentcloud.github.com/backbone/">Backbone.js</a> so I can re-write the main GUI for <a href="http://keeptrackofmygames.com">KTOMG</a>. I am still learning and I&rsquo;ve run into a couple gotchas that I hope I can clear up for anyone else that dares to tread in these woods. Still, I&rsquo;ve been able to rewrite the listing of a user&rsquo;s library in one night using Backbone and all my existing back-end code (the farthest up I edited was my controller). Very impressive for a Backbone n00b!</p>
 
 <h2>Backbone IS your application</h2>
 
+
+
+
 <p>After watching the <a href="http://peepcode.com/products/backbone-iii">PeepCode screencasts</a> (I, II, and III), I have realized something about Backbone.</p>
+
+
+
 
 <blockquote><p>Backbone will pretty much replace your MVC views and controller logic.</p></blockquote>
 
+
+
+
 <p>This didn&rsquo;t hit me until the last episode and at first, this felt threatening. I am working in ASP.NET MVC and it feels wrong to not utilize it. After thinking about it some more, however, there were a few important points to consider:</p>
+
+
+
 
 <ol>
 <li>Backbone doesn&rsquo;t <em>necessarily</em> have to be your whole app. In fact, right now I am only using Backbone for the main &ldquo;library&rdquo; interface and I am keeping the rest of the site in plain-old MVC 3.</li>
@@ -1635,19 +2015,37 @@
 </ol>
 
 
+
+
 <p>Considering those points, I felt a lot better about using Backbone. Not only will it be a great experience, it&rsquo;ll also make the most important part of my application very responsive and robust, without needing to worry a ton about the plumbing.</p>
+
+
+
 
 <p>Who knows? Maybe KTOMG will be running on Node.js by the end of the month.</p>
 
+
+
+
 <h2>Tips When Using Backbone with ASP.NET MVC</h2>
+
+
+
 
 <p>There were a few gotchas I ran into when using Backbone in my typical .NET environment.</p>
 
+
+
+
 <h3>Use AttributeRouting, like, now</h3>
+
+
+
 
 <p><a href="https://github.com/mccalltd/AttributeRouting">AttributeRouting</a> is one of my new favorite packages. It axes the mostly-confusing, mostly-convoluted Global.asax way of handling routes in favor of a more-discoverable (I feel) way of doing routes by decorating actual controller methods:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1683,12 +2081,12 @@
 </span><span class='line'>  <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">New</span><span class="p">(</span><span class="n">Model</span> <span class="n">model</span><span class="p">)</span> <span class="p">{}</span>
 </span><span class='line'>
 </span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Hopefully you will see why this is useful. Backbone is opinionated in that it assumes you&rsquo;re using a RESTful interface for your API. In normal vanilla MVC, this could turn your Global.asax into a routing nightmare. However, with AttributeRouting, it&rsquo;s easy! Here&rsquo;s an example of a <a href="http://stackoverflow.com/a/6263133/109458">Backbone-compatible REST controller</a>:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1728,7 +2126,7 @@
 </span><span class='line'>
 </span><span class='line'><span class="na">[RoutePrefix(&quot;api/games&quot;)]</span>
 </span><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">GamesApiController</span> <span class="p">:</span> <span class="n">Controller</span> <span class="p">{</span>
-</span><span class='line'>  
+</span><span class='line'><br/>
 </span><span class='line'>  <span class="c1">//</span>
 </span><span class='line'>  <span class="c1">// GET: /api/games/</span>
 </span><span class='line'><span class="na"> </span>
@@ -1740,78 +2138,108 @@
 </span><span class='line'><span class="na"> </span>
 </span><span class='line'><span class="na"> [POST(&quot;&quot;)]</span>
 </span><span class='line'>  <span class="k">public</span> <span class="n">JsonResult</span> <span class="nf">Create</span><span class="p">()</span> <span class="p">{}</span>
-</span><span class='line'>  
+</span><span class='line'><br/>
 </span><span class='line'>  <span class="c1">//</span>
 </span><span class='line'>  <span class="c1">// GET: /api/games/{id}</span>
 </span><span class='line'><span class="na"> </span>
 </span><span class='line'><span class="na"> [GET(&quot;{id}&quot;)]</span>
 </span><span class='line'>  <span class="k">public</span> <span class="n">JsonResult</span> <span class="nf">Show</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="p">{}</span>
-</span><span class='line'>  
+</span><span class='line'><br/>
 </span><span class='line'>  <span class="c1">//</span>
 </span><span class='line'>  <span class="c1">// PUT: /api/games/{id}</span>
 </span><span class='line'><span class="na"> </span>
 </span><span class='line'><span class="na"> [PUT(&quot;{id}&quot;)]</span>
 </span><span class='line'>  <span class="k">public</span> <span class="n">JsonResult</span> <span class="nf">Update</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="p">{}</span>
-</span><span class='line'>  
+</span><span class='line'><br/>
 </span><span class='line'>  <span class="c1">//</span>
 </span><span class='line'>  <span class="c1">// DELETE: /api/games/{id}</span>
 </span><span class='line'><span class="na"> </span>
 </span><span class='line'><span class="na"> [DELETE(&quot;{id}&quot;)]</span>
 </span><span class='line'>  <span class="k">public</span> <span class="n">JsonResult</span> <span class="nf">Delete</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="p">{}</span>
-</span><span class='line'>  
+</span><span class='line'><br/>
 </span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Good fodder for a T4 template. If you have a larger site, consider using an <code>Api</code> MVC Area for cleaner separation.</p>
 
+
+
+
 <h3>Be careful when serializing your objects</h3>
+
+
+
 
 <p>I ran into two gotchas with serializing my objects.</p>
 
+
+
+
 <p>First, if you have an <code>Id</code> property/field, Backbone will not be happy. <strike>It needs to be lowercase id</strike>. You should utilize the <a href="https://github.com/documentcloud/backbone/blob/master/backbone.js#L153https://github.com/documentcloud/backbone/blob/master/backbone.js#L153"><code>idAttribute</code></a> option on your Backbone model to override the property name. It took me forever to figure out why nothing was happening when I deleted a model.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kr">class</span> <span class="nx">MyModel</span> <span class="kr">extends</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span>
 </span><span class='line'>  <span class="nx">idAttribute</span><span class="o">:</span> <span class="s2">&quot;Id&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Second, if you are going to serialize EF entities when proxying or lazy-loading is enabled, you need to use a serialization framework like <a href="http://json.codeplex.com/">JSON.NET</a> <strong>or</strong> you need to make flat DTO objects (or view models). I opted for the latter approach first because it was quick, but I am in the process of implementing JSON.NET to do serialization of my entities for me.</p>
 
+
+
+
 <p>For EF serialization, you need to use a custom <code>ContractResolver</code>. I borrowed <a href="http://stackoverflow.com/questions/6991596/serializing-ef4-1-entities-using-json-net">this one</a>. Furthermore, I also needed to set the <code>ReferenceLoopHandling</code> to <code>Ignore</code> on a new <code>JsonSerializerSettings</code> object so it would avoid circular references.</p>
+
+
+
 
 <p>Finally, this is optional but considering the first gotcha, I highly recommend you inherit the EF contract resolver above from <code>CamelCasePropertyNamesContractResolver</code> so your JSON is serialized with camelCase properties.</p>
 
+
+
+
 <h3>Consider leveraging Razor/ASPX partial views for your templates</h3>
+
+
+
 
 <p>I haven&rsquo;t actually tried this, but I don&rsquo;t see why it wouldn&rsquo;t work. In a Backbone project you&rsquo;ll typically have plenty of templates. Right now I have 3 but I expect it to grow quite a bit in the future. I was planning on moving all these templates to <code>.cshtml</code> files and then using <code>@Html.Partial("_TemplateName")</code> to include them in my main layout. I may even create a small extension method to wrap that in a <code>&lt;script&gt;</code> tag. I will update this post if I do.</p>
 
+
+
+
 <p>If you happen to be working on an OSS project, you should be using <a href="http://getcassette.net">Cassette</a> because it can package up your HTML/Knockout templates and <a href="http://getcassette.net/documentation/html-templates">include them all in your page for you</a> <strong>automagically</strong>. If I wasn&rsquo;t using AppHarbor and I was using a dedicated server, I would buy Cassette in a second. I wish they had per-site licenses.</p>
+
+
+
 
 <h3>Use those organization skills</h3>
 
+
+
+
 <p>ASP.NET MVC comes with a friendly and intuitive file layout out-of-the-box:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">Project</span>
-</span><span class='line'> <span class="o">|</span><span class="nx">_</span> <span class="nx">Controllers</span>
-</span><span class='line'> <span class="o">|</span><span class="nx">_</span> <span class="nx">Models</span>
-</span><span class='line'> <span class="o">|</span><span class="nx">_</span> <span class="nx">Scripts</span>
-</span><span class='line'> <span class="o">|</span><span class="nx">_</span> <span class="nx">Styles</span>
+</span><span class='line'> <span class="o">|</span><span class="nx"><em></span> <span class="nx">Controllers</span>
+</span><span class='line'> <span class="o">|</span><span class="nx"></em></span> <span class="nx">Models</span>
+</span><span class='line'> <span class="o">|</span><span class="nx"><em></span> <span class="nx">Scripts</span>
+</span><span class='line'> <span class="o">|</span><span class="nx"></em></span> <span class="nx">Styles</span>
 </span><span class='line'> <span class="o">|</span><span class="nx">_</span> <span class="nx">Views</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>I&rsquo;ve shortened mine, plus I&rsquo;ve made my scripts directory a bit more Backbone friendly:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1824,27 +2252,33 @@
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">Project</span>
-</span><span class='line'> <span class="o">|</span><span class="nx">_</span> <span class="nx">Controllers</span>
-</span><span class='line'> <span class="o">|</span><span class="nx">_</span> <span class="nx">Models</span>
-</span><span class='line'> <span class="o">|</span><span class="nx">_</span> <span class="nx">Public</span>
-</span><span class='line'>   <span class="o">|</span><span class="nx">_</span> <span class="nx">Images</span>
-</span><span class='line'>   <span class="o">|</span><span class="nx">_</span> <span class="nx">Scripts</span>
-</span><span class='line'>     <span class="o">|</span><span class="nx">_</span> <span class="nx">App</span>
-</span><span class='line'>       <span class="o">|</span><span class="nx">_</span> <span class="nx">Collections</span><span class="p">.</span><span class="nx">coffee</span>
-</span><span class='line'>       <span class="o">|</span><span class="nx">_</span> <span class="nx">Backbone</span> <span class="nx">CoffeeScript</span> <span class="nx">files</span>
-</span><span class='line'>     <span class="o">|</span><span class="nx">_</span> <span class="nx">Framework</span> <span class="p">(</span><span class="nx">or</span> <span class="nx">Vendor</span><span class="p">)</span>
-</span><span class='line'>   <span class="o">|</span><span class="nx">_</span> <span class="nx">scss</span> <span class="nx">files</span><span class="p">...</span>
+</span><span class='line'> <span class="o">|</span><span class="nx"><em></span> <span class="nx">Controllers</span>
+</span><span class='line'> <span class="o">|</span><span class="nx"></em></span> <span class="nx">Models</span>
+</span><span class='line'> <span class="o">|</span><span class="nx"><em></span> <span class="nx">Public</span>
+</span><span class='line'>   <span class="o">|</span><span class="nx"></em></span> <span class="nx">Images</span>
+</span><span class='line'>   <span class="o">|</span><span class="nx"><em></span> <span class="nx">Scripts</span>
+</span><span class='line'>     <span class="o">|</span><span class="nx"></em></span> <span class="nx">App</span>
+</span><span class='line'>       <span class="o">|</span><span class="nx"><em></span> <span class="nx">Collections</span><span class="p">.</span><span class="nx">coffee</span>
+</span><span class='line'>       <span class="o">|</span><span class="nx"></em></span> <span class="nx">Backbone</span> <span class="nx">CoffeeScript</span> <span class="nx">files</span>
+</span><span class='line'>     <span class="o">|</span><span class="nx"><em></span> <span class="nx">Framework</span> <span class="p">(</span><span class="nx">or</span> <span class="nx">Vendor</span><span class="p">)</span>
+</span><span class='line'>   <span class="o">|</span><span class="nx"></em></span> <span class="nx">scss</span> <span class="nx">files</span><span class="p">&hellip;</span>
 </span><span class='line'> <span class="o">|</span><span class="nx">_</span> <span class="nx">Views</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>It&rsquo;s up to you how you like to organize, and perhaps you&rsquo;d even like to separate it further down into modules.</p>
 
+
+
+
 <h3>Learn CoffeeScript and SASS</h3>
+
+
+
 
 <p>This technically does not have anything to do with .NET or Backbone. However, your life will be <em>easier</em> if you learn CoffeeScript as that makes using Backbone that much more pleasant:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1858,180 +2292,102 @@
 </span><span class='line'>  <span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;game&#39;</span>
 </span><span class='line'>  <span class="nx">template</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#game-template&quot;</span><span class="p">).</span><span class="nx">html</span><span class="p">())</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="nx">initialize</span><span class="o">:</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="o">-&gt;</span>
+</span><span class='line'>  <span class="nx">initialize</span><span class="o">:</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="o">&ndash;&gt;</span>
 </span><span class='line'>    <span class="err">@</span><span class="nx">model</span><span class="p">.</span><span class="nx">bind</span> <span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="err">@</span><span class="nx">render</span><span class="p">,</span> <span class="err">@</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="nx">render</span><span class="o">:</span> <span class="o">-&gt;</span>
+</span><span class='line'>  <span class="nx">render</span><span class="o">:</span> <span class="o">&ndash;&gt;</span>
 </span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="err">@</span><span class="nx">el</span><span class="p">).</span><span class="nx">html</span> <span class="err">@</span><span class="nx">template</span><span class="p">()</span>
 </span><span class='line'>    <span class="err">@</span> <span class="err">#</span> <span class="nx">Never</span> <span class="nx">forget</span> <span class="k">this</span> <span class="nx">line</span> <span class="k">in</span> <span class="nx">render</span><span class="p">()</span> <span class="nx">or</span> <span class="nx">you</span><span class="err">&#39;</span><span class="nx">ll</span> <span class="nx">regret</span> <span class="nx">it</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>(<em>Disclaimer:</em> This is not real and won&rsquo;t run; it&rsquo;s meant as an illustration of Backbone in CoffeeScript)</p>
 
+
+
+
 <p>It&rsquo;s much nicer to write in Backbone without all those pesky parenthesis and manual <code>bindAll</code> or <code>extend</code> shenanigans. Again, I&rsquo;d recommend <a href="http://peepcode.com/products/coffeescript">PeepCode&rsquo;s CoffeeScript screencast</a>, that&rsquo;s about all it takes to learn it properly.</p>
+
+
+
 
 <p><img src="http://www.mindscapehq.com/upload/web-workbench/preview.png" alt="Mindscape Example" /></p>
 
+
+
+
 <p>If you do decide to take the plunge (it&rsquo;s worth it!), get yourself <a href="http://www.mindscapehq.com/products/web-workbench">Mindscape Web Workbench</a> and you&rsquo;ll be a much happier camper when working with Coffee, SASS, and LESS in Visual Studio.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2011-12-15T20:37:51-06:00" pubdate data-updated="true">Dec 15<span>th</span>, 2011</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+      </div>
+    </div>
+
+    <hr class="divider-short"/>
+
+    <div class="archive-link">
+      <h3><a href="/blog/archives/">All Posts</a></h3>
+    </div>
+  </div>
 </div>
-  
-  
 
+    <footer id="footer" class="her-row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+  <a href="/"><h4>Home</h4></a>
+</div>
 
-    </article>
-  
-  <div class="pagination">
+<div class="col-md-2">
+  <div class="social-icon-list">
     
-      <a class="prev" href="/blog/page/7/">&larr; Older</a>
+    <a href="https://twitter.com/kamranayub"><img src="/images/glyphicons_social_31_twitter.png"/></a>
     
-    <a href="/blog/archives">Blog Archives</a>
+
     
-    <a class="next" href="/blog/page/5/">Newer &rarr;</a>
+    <a href="https://github.com/kamranayub"><img src="/images/glyphicons_social_21_github.png"/></a>
+    
+
+    
+
     
   </div>
 </div>
-<aside class="sidebar">
-  
-    <section>
-  	<h1>About Me</h1>
 
-  	<p><img src="http://gravatar.com/avatar/8303c4eb9f9099df39adbc3d8c634746?s=120" alt="My Headshot" title="My ugly mug" /></p>
+<div class="pull-right">
+  <h4>Powered by <a href="http://octopress.org/">Octopress</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+</div>
 
-  	<p>Hi, my name is Kamran. I am a web developer and designer, residing in Minnesota. I&#8217;ve been programming since 2001 and I am familiar with many different languages, both web-based and server-based. I love to tinker around and think of new ways to solve problems.</p>
-
-	<p>If you wanna talk, tweet <strong><a href="http://twitter.com/kamranayub" target="_blank">@kamranayub</a></strong> or send me an email at my <strong>full name</strong> at <strong>gmail.com</strong></p>
-</section>
-<section>
-  	<h1>Apps</h1>
-
-  	<ul>
-  		<li><a href="http://centwiseapp.com/">Centwise</a></li>
-  		<li><a href="http://wp-bowling.tumblr.com/">Bowling Calculator</a></li>
-  		<li><a href="http://keeptrackofmygames.com/">Keep Track of My Games</a></li>  		
-  	</ul>
-</section>
-<section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2014/11/03/just-released-the-new-keep-track-of-my-games-beta/">Just Released the New Keep Track of My Games Beta</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/05/01/ludum-dare-29-game-jam-success/">Ludum Dare 29 Game Jam Success!</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/02/08/websockets-on-windows-azure/">Getting WebSockets to Work on Windows Azure</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/29/5-tips-to-improve-your-mvc-site/">5 Tips to Improve Your ASP.NET MVC Codebase</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/24/just-released-have-i-been-pwned/">Just Released: Have I Been Pwned?</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  
-  <a href="https://github.com/kamranayub">@kamranayub</a> on GitHub
-  
-  <script type="text/javascript">
-    $(document).ready(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'kamranayub',
-            count: 5,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-<section class="googleplus">
-  <h1>
-    <a href="https://plus.google.com/104789622697290911192?rel=author">
-      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
-      Google+
-    </a>
-  </h1>
-</section>
-
-
-
-  
-</aside>
 
     </div>
   </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Kamran -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
 </footer>
-  
 
-<script type="text/javascript">
-      var disqus_shortname = 'kamranicus';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-</body>
+    
+  </body>
 </html>
