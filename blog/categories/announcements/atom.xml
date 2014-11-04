@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Announcements, | Kamranicus]]></title>
+  <link href="http://kamranicus.com/blog/categories/announcements/atom.xml" rel="self"/>
+  <link href="http://kamranicus.com/"/>
+  <updated>2014-11-03T18:22:41-06:00</updated>
+  <id>http://kamranicus.com/</id>
+  <author>
+    <name><![CDATA[Kamran]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Just Released the New Keep Track of My Games Beta]]></title>
+    <link href="http://kamranicus.com/blog/2014/11/03/just-released-the-new-keep-track-of-my-games-beta/"/>
+    <updated>2014-11-03T18:16:03-06:00</updated>
+    <id>http://kamranicus.com/blog/2014/11/03/just-released-the-new-keep-track-of-my-games-beta</id>
+    <content type="html"><![CDATA[<p><img src="/blog/images/2014-11-03-ktomg.png" alt="Keep Track of My Games" /></p>
+
+<p>This last weekend I finally released <a href="http://keeptrackofmygames.com">the beta version</a> of the new Keep Track of My Games site. It&rsquo;s been a long time coming but now it actually lets you keep track of your games. The original site only let you track new games and the new version still offers notifications but now you can organize and tag your collection to track games you&rsquo;ve played or haven&rsquo;t played yet (backlog) or new games.</p>
+
+<p>Over the next few months, I want to add social features and more syncing capabilities to services like Steam, Xbox, and PSN. I also want to add deal notifications for any game in your wishlist.</p>
+
+<p>If you use the site, <a href="http://ktomg.uservoice.com">let me know what you think</a> or vote up ideas on the roadmap!</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2014-05-01T09:15:09-05:00</updated>
+  <updated>2014-11-03T18:22:41-06:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Just Released the New Keep Track of My Games Beta]]></title>
+    <link href="http://kamranicus.com/blog/2014/11/03/just-released-the-new-keep-track-of-my-games-beta/"/>
+    <updated>2014-11-03T18:16:03-06:00</updated>
+    <id>http://kamranicus.com/blog/2014/11/03/just-released-the-new-keep-track-of-my-games-beta</id>
+    <content type="html"><![CDATA[<p><img src="http://kamranicus.com/blog/images/2014-11-03-ktomg.png" alt="Keep Track of My Games" /></p>
+
+<p>This last weekend I finally released <a href="http://keeptrackofmygames.com">the beta version</a> of the new Keep Track of My Games site. It&rsquo;s been a long time coming but now it actually lets you keep track of your games. The original site only let you track new games and the new version still offers notifications but now you can organize and tag your collection to track games you&rsquo;ve played or haven&rsquo;t played yet (backlog) or new games.</p>
+
+<p>Over the next few months, I want to add social features and more syncing capabilities to services like Steam, Xbox, and PSN. I also want to add deal notifications for any game in your wishlist.</p>
+
+<p>If you use the site, <a href="http://ktomg.uservoice.com">let me know what you think</a> or vote up ideas on the roadmap!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ludum Dare 29 Game Jam Success!]]></title>
@@ -738,31 +753,6 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
 <p>I marked it as a Beginner tutorial and as such went into a lot of detail I wouldn&rsquo;t normally spend time on if it was just a blog post. I find writing formal articles forces me to verify what I know (or I think I know), explore alternatives, and do a deep-dive into whatever topic I want to talk about. It&rsquo;s mostly driven by fear: fear of being wrong, fear of being humiliated, fear of what other people think. Writing about a topic forces you to learn about things you maybe thought you knew but didn&rsquo;t really. I also believe it helps you become better at teaching others; if you can&rsquo;t explain what you know, do you really know it? At it&rsquo;s core, it&rsquo;s just good exercise!</p>
 
 <p>I chose tech.pro because I like what they&rsquo;re trying to do, I like that they&rsquo;re open with development, and I also like the cash prize if your article is the top in its category ($1000). I also like that they don&rsquo;t &ldquo;own&rdquo; your content; you&rsquo;re free to post it to other venues and it&rsquo;s your own work. I think it already has some great tutorials, including ones by someone I follow regularly, <a href="http://tech.pro/filipw/blog">Filip W</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Upcoming Events: RWD Workshop, Code Camp, and dotNetConf [Updated]]]></title>
-    <link href="http://kamranicus.com/blog/posts/68/upcoming-events-rwd-workshop-code-camp-and-dotnetc"/>
-    <updated>2013-04-18T14:38:02-05:00</updated>
-    <id>http://kamranicus.com/blog/posts/68/upcoming-events-rwd-workshop-code-camp-and-dotnetc</id>
-    <content type="html"><![CDATA[<p>Just a quick set of FYIs. I will be attending 3 upcoming events, two in-person and one virtually.</p>
-
-<h3>RWD Workshop with Tim Kadlec</h3>
-
-<p><a href="http://timkadlec.com">Tim Kadlec</a> is a cool guy; he&rsquo;s also one of the RWD gurus and has lots to share. He&rsquo;s <a href="http://timkadlec.com/2013/04/implementing-responsive-design-workshop/">hosting a 30 person workshop</a> at the U of MN, so it&rsquo;ll be a small group of people that will be sharing RWD experiences. I&rsquo;m attending, and if prodded, I will share my experience implementing RWD on some big sites (hint: it&rsquo;s challenging).</p>
-
-<h3>Code Camp</h3>
-
-<p><a href="http://twincitiescodecamp.com">Twin Cities Code Camp</a> is a free conference put together by local volunteers and is a great event to go to if you like to see people&rsquo;s code or share your own. I will be <a href="http://kamranicus.com/Blog/Posts/66/about-my-web-api-session-at-twin-cities-code-camp">talking about Web API</a> and opening up my closed-source project (Keep Track of My Games v2) for all to see. It&rsquo;s going to be interesting, for sure.</p>
-
-<h3>dotNetConf</h3>
-
-<p><a href="http://dotnetconf.net">dotNetConf</a> is a free virtual conference on all things .NET. I&rsquo;ll be attending a couple sessions at least and there&rsquo;s nothing to lose by attending. Be sure to check it out!</p>
-
-<h3>Hack for MN</h3>
-
-<p><a href="http://hackformn.eventbrite.com/">HackForMN</a> is for the National Day of Civic Hacking but for us Minnesotans. A handful of friends are going and I think there&rsquo;s probably a good app or two for The Land of Ten Thousand Lakes worth making.</p>
 ]]></content>
   </entry>
   

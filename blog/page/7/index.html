@@ -9,7 +9,7 @@
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="These are for ideas for myself to explore or for others to get ideas from (or help make!). I&rsquo;m not a modder, really, I&rsquo;ve never done a &hellip;">
+  <meta name="description" content="I am thinking of embarking on a journey that involves Backbone.js in my MVC 3 project. This would involve heavy use of templating. After thinking &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/25/vs-extension-for-js-template-support">Vs Extension for JS Template Support</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-14T14:27:33-06:00" pubdate data-updated="true">Dec 14<span>th</span>, 2011</time>
+        
+           | <a href="/blog/posts/25/vs-extension-for-js-template-support#disqus_thread"
+             data-disqus-identifier="http://kamranicus.com/blog/posts/25/vs-extension-for-js-template-support">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I am thinking of embarking on a journey that involves <a href="http://documentcloud.github.com/backbone/">Backbone.js</a> in my MVC 3 project. This would involve heavy use of templating. After thinking about it a bit and doing some Googling, I realized that <strong>there is no JS template extension for Visual Studio.</strong></p>
+
+<p>I realize that you could just name your template files &ldquo;.html&rdquo; and be done with it. However, I feel like that isn&rsquo;t &ldquo;cool&rdquo; enough.</p>
+
+<p>Based on some <a href="http://stackoverflow.com/questions/3253205/how-do-i-visual-studio-syntax-highlighting-extension">preliminary research</a>, it seems to me it would not be impossible to add support for common JS template syntax highlighting&hellip; and perhaps even Intellisense.</p>
+
+<p>In fact, VS 11 <a href="http://blogs.msdn.com/b/webdevtools/archive/2011/09/15/new-javascript-editing-features-for-web-development-in-visual-studio-11-developer-preview.aspx">will support jQuery Template syntax highlighting</a>, but not only is jquery-tmpl <a href="http://weblogs.asp.net/stevewellens/archive/2011/12/01/goodby-jquery-templates-hello-jsrender.aspx">obsolete</a>, it is also not the <a href="http://jsperf.com/dom-vs-innerhtml-based-templating/112">only kind of templating system</a>.</p>
+
+<p>Why am I making this post? I am not sure. Part of me wants to attempt to make such an extension, probably starting out with a simple template syntax like <a href="http://mustache.github.com/">Mustache</a> (or <a href="http://www.handlebarsjs.com/">Handlebars</a>). I would be happy with an extension that was pretty much an HTML highlighter that also highlighted tokens (e.g. &ldquo;, &rdquo;, etc.) just like VS does for Razor. Bonus points awarded if it [somehow] does Intellisense. In my dream world, it would act very much like MVC Razor does right now, where you declare the &ldquo;model&rdquo; for the template and that is its context for Intellisense. To me, that seems reasonable for a no-logic template system like Mustache but may prove unwieldy once you allow for normal JS expressions like in jquery-tmpl. That kind of syntax may also not make sense in the first place considering you could pass in whatever you wanted into a template&rsquo;s context.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1015,229 +1062,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/13/my-git-workflow-for-net-based-projects">My Git Workflow for .NET-based Projects</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-28T17:38:24-05:00" pubdate data-updated="true">Jun 28<span>th</span>, 2011</time>
-        
-           | <a href="/blog/posts/13/my-git-workflow-for-net-based-projects#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/13/my-git-workflow-for-net-based-projects">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When I was new to Git, it was very confusing for me to get up and running with how to deal with the command-line interface (if you&rsquo;re fancy and use a GUI, leave now). Once you do get the hang of it, it&rsquo;s super nice and fluid. I used to do terminal CVS at my last job so I&rsquo;m not out of touch with using version control from a console.</p>
-
-<h1>Set up your .gitignore</h1>
-
-<p>Here&rsquo;s mine:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#OS junk files
-</span><span class='line'>[Tt]humbs.db
-</span><span class='line'>*.DS_Store
-</span><span class='line'>
-</span><span class='line'>#Visual Studio files
-</span><span class='line'>*.[Oo]bj
-</span><span class='line'>*.exe
-</span><span class='line'>*.pdb
-</span><span class='line'>*.user
-</span><span class='line'>*.aps
-</span><span class='line'>*.pch
-</span><span class='line'>*.vspscc
-</span><span class='line'>*.vssscc
-</span><span class='line'>*_i.c
-</span><span class='line'>*_p.c
-</span><span class='line'>*.ncb
-</span><span class='line'>*.suo
-</span><span class='line'>*.tlb
-</span><span class='line'>*.tlh
-</span><span class='line'>*.bak
-</span><span class='line'>*.[Cc]ache
-</span><span class='line'>*.ilk
-</span><span class='line'>*.log
-</span><span class='line'>*.lib
-</span><span class='line'>*.sbr
-</span><span class='line'>*.sdf
-</span><span class='line'>*.docstates
-</span><span class='line'>ipch/
-</span><span class='line'>obj/
-</span><span class='line'>[Bb]in
-</span><span class='line'>[Dd]ebug*/
-</span><span class='line'>[Rr]elease*/
-</span><span class='line'>[Pp]ublish*/
-</span><span class='line'>Ankh.NoLoad
-</span><span class='line'>
-</span><span class='line'>#Tooling
-</span><span class='line'>_ReSharper*/
-</span><span class='line'>*.resharper
-</span><span class='line'>[Tt]est[Rr]esult*
-</span><span class='line'>
-</span><span class='line'>#Project files
-</span><span class='line'>[Bb]uild/
-</span><span class='line'>
-</span><span class='line'>#Subversion files
-</span><span class='line'>.svn
-</span><span class='line'>
-</span><span class='line'># Office Temp Files
-</span><span class='line'>~$*
-</span><span class='line'>
-</span><span class='line'># Custom
-</span><span class='line'>*.private
-</span><span class='line'>readme.html</span></code></pre></td></tr></table></div></figure>
-
-
-<p>At the end, you can add whatever you want. For some projects, I store API keys in a <code>.private</code> file. You might want to as well.</p>
-
-<h1>Init your repo</h1>
-
-<p>The first command you&rsquo;ll need to execute is <code>git init</code>. This will make whatever folder you&rsquo;re in a new Git repository (repo).</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>Kamran@Kamranicus /c/Projects/Contrib/.JSON
-</span><span class='line'><span class="nv">$ </span>git init
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You should then add all your files and commit them for an initial &ldquo;base&rdquo; version.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git add .
-</span><span class='line'>git commit -am <span class="s2">&quot;Initial project commit&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Because of your <code>.gitignore</code> file, Git will ignore all the unnecessary files .NET solutions tend to generate.</p>
-
-<h1>Set up a remote</h1>
-
-<p>If you&rsquo;re doing stuff on AppHarbor or GitHub, you&rsquo;ll need to add a &ldquo;remote.&rdquo; This is just a remote Git repository you can associate with your local repository. You can have lots of remotes. I tend to have one or two.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git remote add https://kamranayub@github.com/&lt;some url&gt;
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This information is usually provided by your remote site (GitHub has it when you create a new repo on the site).</p>
-
-<h1>Status, Add, Commit, Push</h1>
-
-<p>I do a lot of my projects on <a href="http://appharbor.com">AppHarbor</a> now. It&rsquo;s just a real nice workflow and I&rsquo;ll explain why.</p>
-
-<p>I make changes to my .NET solution and when I&rsquo;m ready to commit (usually after a feature or bug fix) my console  command history looks like this:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git status
-</span><span class='line'>git add .
-</span><span class='line'>git commit -am <span class="s2">&quot;My commit message&quot;</span>
-</span><span class='line'>git push appharbor master
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>git status</h2>
-
-<p>This command will display what things you currently have pending and what changes are untracked. Use this to determine if you should not track a certain change (using <code>git checkout -- &lt;file&gt;</code>).</p>
-
-<h2>git add .</h2>
-
-<p>This command will add whatever &ldquo;untracked&rdquo; and modified changes you have currently pending to ready your commit. Deletes, adds, etc. usually are untracked. Git tracks modifications and renames. The <code>.</code> adds all files (relative to your current folder). You can be as specific or as generic as you want.</p>
-
-<h2>git commit -am [message]</h2>
-
-<p>This command commits your changes. The <code>-am</code> switch is for all changes (a) with a message (m). You can type <code>-?</code> to get a list of switches you might want to use. If you don&rsquo;t use the <code>-a</code> switch, your untracked changes may not be committed. If someone wants to explain why this is the case, I&rsquo;d love to know (or I guess I could look it up). Whatever the reason is, use <code>-am</code> unless you know otherwise.</p>
-
-<h2>git push [remote] [branch]</h2>
-
-<p>This command will send a git <code>push</code> command to your remote server. In my case, it&rsquo;s appharbor. GitHub will usually tell you to add their remote as <code>origin</code> but you can name them whatever you want. I tend to have <code>appharbor</code> and <code>appharbor-d</code> for staging.</p>
-
-<p>Once you push, your latest changes will be on the remote server. It is usually a good idea to wait to push until you have a stable release ready for your branch. It could be after one commit or after 10 commits.</p>
-
-<h1>Git pushin&#8217;</h1>
-
-<p>So now you know what a typical workflow is for my .NET development. If you&rsquo;re interested in file structure, check out my <a href="http://github.com/kamranayub/.JSON">.JSON</a> project.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -1273,6 +1097,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/11/03/just-released-the-new-keep-track-of-my-games-beta/">Just Released the New Keep Track of My Games Beta</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/05/01/ludum-dare-29-game-jam-success/">Ludum Dare 29 Game Jam Success!</a>
       </li>
     
@@ -1286,10 +1114,6 @@
     
       <li class="post">
         <a href="/blog/2013/12/24/just-released-have-i-been-pwned/">Just Released: Have I Been Pwned?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/18/get-your-ci-on-with-travis-ci/">Get Your CI on With Travis CI</a>
       </li>
     
   </ul>

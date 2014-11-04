@@ -9,7 +9,7 @@
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="Update 1 (8/28/2012): As of Sitecore CMS 6.5.0 rev. 120706 (6.5.0 Update-5), this issue should have been fixed. See here under &ldquo;Miscellaneous& &hellip;">
+  <meta name="description" content="Pluralsight is having a deal right now where if you follow them on Twitter and follow Billy Hollis, you get a free token to watch the UX fundamentals &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,51 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/46/please-go-watch-the-pluralsight-ux-fundamentals-of">Please Go Watch the Pluralsight UX Fundamentals of Design Course</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-30T20:26:06-05:00" pubdate data-updated="true">May 30<span>th</span>, 2012</time>
+        
+           | <a href="/blog/posts/46/please-go-watch-the-pluralsight-ux-fundamentals-of#disqus_thread"
+             data-disqus-identifier="http://kamranicus.com/blog/posts/46/please-go-watch-the-pluralsight-ux-fundamentals-of">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://blog.pluralsight.com/2012/05/30/free-training-on-user-experiences-fundamental-design-principles-by-billy-hollis/">Pluralsight is having a deal right now</a> where if you follow them on Twitter and follow Billy Hollis, you get a free token to watch the <a href="http://www.pluralsight-training.net/microsoft/Courses/TableOfContents?courseName=cux-designprinciples">UX fundamentals course</a>.</p>
+
+<p>After having finished the course (a full 4 hours plus exercises), and while I normally don&rsquo;t like contests that require you to follow people, I would heavily encourage you to take advantage of this offer if you don&rsquo;t have a Pluralsight license.</p>
+
+<p>Whether you&rsquo;re a full-on developer, front-end developer, interaction designer, or a plumber, I think you should watch this course. It&rsquo;s chock full of awesome advice and design guidance, especially aimed at .NET developers and enterprise developers.</p>
+
+<p>I&rsquo;ve already learned some neat techniques I can start using immediately while I&rsquo;m developing the next version of Keep Track of My Games.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -712,236 +757,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/posts/35/working-with-computed-columns-in-ef-43">Working With Computed Columns in EF 4.3</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-17T23:38:15-05:00" pubdate data-updated="true">Mar 17<span>th</span>, 2012</time>
-        
-           | <a href="/blog/posts/35/working-with-computed-columns-in-ef-43#disqus_thread"
-             data-disqus-identifier="http://kamranicus.com/blog/posts/35/working-with-computed-columns-in-ef-43">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>There&rsquo;s not a ton of information out there on how to handle computed columns in EF. It turns out it is pretty straightforward if you know what to do.</p>
-
-<h2>Telling EF about your computed column</h2>
-
-<p>First, if all you want to do is manually create a function and use it in a column, you only need to decorate your model property with <code>[DatabaseGenerated(DatabaseGeneratedOption.Computed)]</code> as seen here:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">public</span> <span class="kt">string</span> <span class="n">FirstName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'>    <span class="k">public</span> <span class="kt">string</span> <span class="n">LastName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="na">    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]</span>
-</span><span class='line'>    <span class="k">public</span> <span class="kt">string</span> <span class="n">FullName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You should know that <strong>if possible, try to keep &ldquo;computed&rdquo; values in your application.</strong> This is my opinion from an ease of use POV, not a design POV. I say it because unless you really <em>need</em> a computed column, you could just as easily create a read-only property that EF ignores.</p>
-
-<p>However, in some cases, a computed column is a viable option such as when you need to sort (on the database-side) against a computed value. That was my own reason for using a computed.</p>
-
-<h2>Manually adding the function and column</h2>
-
-<p>We&rsquo;ve told EF to ignore our property and treat it as a computed column. Now how do we actually <em>create</em> the column? Well, what I did previous to EF Migrations was to just do it all manually through SQL Management Studio. This is entirely OK to do, you just need to make sure you save the script somewhere or remember to do it anytime you create a new database for your application.</p>
-
-<p>You can now go into SSMS and delete the column EF generated (or add it if it&rsquo;s new). Make sure you create your function first:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">CREATE</span> <span class="k">FUNCTION</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">GetFullName</span><span class="p">]</span>
-</span><span class='line'><span class="p">(</span>
-</span><span class='line'>    <span class="c1">-- Add the parameters for the function here</span>
-</span><span class='line'>    <span class="o">@</span><span class="n">FirstName</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
-</span><span class='line'>    <span class="o">@</span><span class="n">LastName</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
-</span><span class='line'><span class="p">)</span>
-</span><span class='line'><span class="k">RETURNS</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
-</span><span class='line'><span class="k">AS</span>
-</span><span class='line'><span class="k">BEGIN</span>
-</span><span class='line'>    <span class="k">DECLARE</span> <span class="o">@</span><span class="n">FullName</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">SELECT</span> <span class="o">@</span><span class="n">FullName</span> <span class="o">=</span> <span class="o">@</span><span class="n">FirstName</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="o">@</span><span class="n">LastName</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">RETURN</span> <span class="o">@</span><span class="n">FullName</span><span class="p">;</span>
-</span><span class='line'><span class="k">END</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>That approach worked fine for me, since I use Schema Compare (or used to!) to migrate my database between environments.</p>
-
-<h2>Using EF Migrations</h2>
-
-<p>Now that EF 4.3 has been released, we can all enjoy the benefit of <a href="http://blogs.msdn.com/b/adonet/archive/2012/02/09/ef-4-3-automatic-migrations-walkthrough.aspx">Database Migrations</a>. What I like about this approach is that it&rsquo;s very deliberate and discoverable. I could clone my repository onto a new PC and run the <code>Update-Database</code> command to do <em>everything</em>, plus now we can migrate backwards if needed. It&rsquo;s excellent!</p>
-
-<p>I am using automatic migrations for <a href="http://keeptrackofmygames.com">KTOMG</a>, so what I had to do first was manually create a new migration in the Package Manager console:</p>
-
-<pre><code>$&gt; Add-Migration CustomFunction
-</code></pre>
-
-<p>This will scaffold a new, empty migration:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">partial</span> <span class="k">class</span> <span class="nc">CustomFunction</span> <span class="p">:</span> <span class="n">DbMigration</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Up</span><span class="p">()</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Down</span><span class="p">()</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now we can be really cool cats. In this migration, all we have to do is execute our <code>CREATE FUNCTION</code> SQL statement in the <code>Up</code> method, along with dropping and re-adding the column:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Up</span><span class="p">()</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="c1">// Create function</span>
-</span><span class='line'>    <span class="n">Sql</span><span class="p">(</span><span class="s">@&quot;</span>
-</span><span class='line'><span class="s">CREATE FUNCTION [dbo].[GetFullName] </span>
-</span><span class='line'><span class="s">(</span>
-</span><span class='line'><span class="s">-- Add the parameters for the function here</span>
-</span><span class='line'><span class="s">@FirstName varchar(50),</span>
-</span><span class='line'><span class="s">@LastName varchar(50)</span>
-</span><span class='line'><span class="s">)</span>
-</span><span class='line'><span class="s">RETURNS varchar(255)</span>
-</span><span class='line'><span class="s">AS</span>
-</span><span class='line'><span class="s">BEGIN</span>
-</span><span class='line'><span class="s">DECLARE @FullName varchar(255);</span>
-</span><span class='line'>
-</span><span class='line'><span class="s">SELECT @FullName = @FirstName + &#39; &#39; + @LastName;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s">RETURN @FullName;</span>
-</span><span class='line'><span class="s">END</span>
-</span><span class='line'><span class="s">&quot;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// Add the computed column</span>
-</span><span class='line'>    <span class="n">DropColumn</span><span class="p">(</span><span class="s">&quot;Person&quot;</span><span class="p">,</span> <span class="s">&quot;FullName&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">Sql</span><span class="p">(</span><span class="s">@&quot;</span>
-</span><span class='line'><span class="s">ALTER TABLE [dbo].[Person]</span>
-</span><span class='line'><span class="s">ADD [FullName] AS ([dbo].[GetFullName]([FirstName],[LastName]));</span>
-</span><span class='line'><span class="s">&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Take note of the <code>true</code> parameter at the end of the <code>Sql()</code> call. This explicitly tells EF <em>not</em> to include the statement in the migration transaction. If you don&rsquo;t do this, SQL Server will complain that the CREATE FUNCTION statement must be the only one in the batch.</p>
-
-<p>Now let&rsquo;s scaffold our tear down step. We should drop the column first, drop the function, and then finally re-add the basic column back.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Down</span><span class="p">()</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">DropColumn</span><span class="p">(</span><span class="s">&quot;Person&quot;</span><span class="p">,</span> <span class="s">&quot;FullName&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">Sql</span><span class="p">(</span><span class="s">&quot;DROP FUNCTION [dbo].[GetFullName]&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">AddColumn</span><span class="p">(</span><span class="s">&quot;Person&quot;</span><span class="p">,</span> <span class="s">&quot;FullName&quot;</span><span class="p">,</span> <span class="n">c</span> <span class="p">=&gt;</span> <span class="n">c</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="n">nullable</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span> <span class="n">maxLength</span><span class="p">:</span> <span class="m">255</span><span class="p">));</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I would take care to make sure the column is re-created using the original schema EF created.</p>
-
-<p>Now we can tell EF to migrate to the latest version:</p>
-
-<pre><code>$&gt; Update-Database -Verbose (or -Script, to preview)
-</code></pre>
-
-<p>Voila, you should now have a brand spankin&#8217; new computed column.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -977,6 +792,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/11/03/just-released-the-new-keep-track-of-my-games-beta/">Just Released the New Keep Track of My Games Beta</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/05/01/ludum-dare-29-game-jam-success/">Ludum Dare 29 Game Jam Success!</a>
       </li>
     
@@ -990,10 +809,6 @@
     
       <li class="post">
         <a href="/blog/2013/12/24/just-released-have-i-been-pwned/">Just Released: Have I Been Pwned?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/18/get-your-ci-on-with-travis-ci/">Get Your CI on With Travis CI</a>
       </li>
     
   </ul>

@@ -9,9 +9,7 @@
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="I chose to partially host my site on AppHarbor because it affords several luxuries for free: Load balancing
-Automatic builds and deploys
-Fast and &hellip;">
+  <meta name="description" content="I have high standards for web-based forms, after having spent the last 7 months ankle deep in them at work. I have decided on a standard way for &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +78,150 @@ Fast and &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/posts/3/a-better-mvc-label-helper">A Better MVC Label Helper</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-07T13:54:05-05:00" pubdate data-updated="true">Apr 7<span>th</span>, 2011</time>
+        
+           | <a href="/blog/posts/3/a-better-mvc-label-helper#disqus_thread"
+             data-disqus-identifier="http://kamranicus.com/blog/posts/3/a-better-mvc-label-helper">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have high standards for web-based forms, after having spent the last 7 months ankle deep in them at work.</p>
+
+<p>I have decided on a standard way for defining my forms:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;form&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;fieldset&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;legend&gt;</span>A form area<span class="nt">&lt;/legend&gt;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;field text&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;firstName&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                First Name
+</span><span class='line'>                <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;note&quot;</span><span class="nt">&gt;</span>Enter your first name<span class="nt">&lt;/span&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/label&gt;</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;firstName&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/fieldset&gt;</span>
+</span><span class='line'><span class="nt">&lt;/form&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In a future post, I will more formally present a form solution and my stylesheet that goes with it. For now, let&rsquo;s talk about generating that <code>&lt;label&gt;</code> above from metadata alone.</p>
+
+<h3>First, the end result</h3>
+
+<p>Here is what my Razor view looks like for that form field above:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;field text&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    @Html.FieldLabelFor(m =&gt; m.FirstName)
+</span><span class='line'>    @Html.EditorFor(m =&gt; m.FirstName)
+</span><span class='line'>    @Html.ValidationMessageFor(m =&gt; m.FirstName)
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Based off of:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">    [DisplayName(&quot;First Name&quot;)]</span>
+</span><span class='line'><span class="na">    [Description(&quot;Please enter a first name&quot;)]</span>
+</span><span class='line'><span class="na">    [Required]</span> <span class="c1">// leave off to add &#39;(optional)&#39; to label</span>
+</span><span class='line'>    <span class="k">public</span> <span class="kt">string</span> <span class="n">FirstName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&rsquo;s it.</p>
+
+<h3>Building a better LabelFor</h3>
+
+<p>My helper is called <code>FieldLabelFor</code> but you can call it whatever you want. Here&rsquo;s what it does:</p>
+
+<ul>
+<li>Is entirely based off metadata attributes</li>
+<li>Label text is based off of <code>[DisplayName]</code> attribute (via ModelMetadata)</li>
+<li>Adds an <em>(optional)</em> if a field isn&rsquo;t required</li>
+<li>Adds a <code>&lt;span class="note"&gt;</code> to the label if a <code>[Description()]</code> attribute is found</li>
+<li>Supports both attributes decorating the model and via <code>[MetadataType]</code> attribute</li>
+</ul>
+
+
+<p>It outputs the <code>&lt;label&gt;</code> markup found above.</p>
+
+<p>I&rsquo;ve made it a Gist, so you can hack and slash it to your needs:</p>
+
+<script src="https://gist.github.com/907780.js?file=FieldLabelFor.cs"></script>
+
+
+<p>Remember to add <code>@using YourProject.Library.Extensions;</code> to the top of your razor file (or add the namespace to your <code>Views\web.config</code>).</p>
+
+<p>I&rsquo;ve styled my forms so that a full field will look something like:</p>
+
+<p><img src="/blog/images/5.png" alt="Field label style" /></p>
+
+<p>As you can probably tell, I subscribe to the notion that all fields are required unless otherwise marked. I think for a user filling out a form, this is what they assume to be the case and more often that not, more fields are required than optional.</p>
+
+<h3>Off you go!</h3>
+
+<p>Start building better forms with MVC. Look for a post at a later date that will delve deeper into my opinions on web forms (hint: they suck!).</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -437,6 +579,10 @@ Fast and &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/11/03/just-released-the-new-keep-track-of-my-games-beta/">Just Released the New Keep Track of My Games Beta</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/05/01/ludum-dare-29-game-jam-success/">Ludum Dare 29 Game Jam Success!</a>
       </li>
     
@@ -450,10 +596,6 @@ Fast and &hellip;">
     
       <li class="post">
         <a href="/blog/2013/12/24/just-released-have-i-been-pwned/">Just Released: Have I Been Pwned?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/18/get-your-ci-on-with-travis-ci/">Get Your CI on With Travis CI</a>
       </li>
     
   </ul>
