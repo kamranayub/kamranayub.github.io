@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Azure | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/azure/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2014-11-03T19:26:26-06:00</updated>
+  <updated>2015-02-26T16:16:14+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Getting WebSockets to Work on Windows Azure]]></title>
-    <link href="http://kamranicus.com/blog/2014/02/08/websockets-on-windows-azure/"/>
-    <updated>2014-02-08T21:52:48-06:00</updated>
-    <id>http://kamranicus.com/blog/2014/02/08/websockets-on-windows-azure</id>
+    <link href="http://kamranicus.com/blog/2014/02/09/websockets-on-windows-azure/"/>
+    <updated>2014-02-09T03:52:48+00:00</updated>
+    <id>http://kamranicus.com/blog/2014/02/09/websockets-on-windows-azure</id>
     <content type="html"><![CDATA[<p>I was banging my head against the wall for the past hour or so wondering why I was falling back to XHR polling when I deployed my Node.js application to Azure. I&rsquo;m using socket.io and everything looks like it&rsquo;s in order, works locally, etc. It was failing with a WebSocket handshake error.</p>
 
 <p>What I saw in the Chrome developer console was something like:</p>

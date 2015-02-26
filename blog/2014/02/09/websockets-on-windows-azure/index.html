@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Getting WebSockets to Work on Windows Azure - Kamranicus</title>
+  <meta name="author" content="Kamran">
+
+  
+  <meta name="description" content="Getting WebSockets to Work on Windows Azure written Feb 9th, 2014 in Azure, Node.js, WebSockets I was banging my head against the wall for the past &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kamranicus.com/blog/2014/02/09/websockets-on-windows-azure">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+  <body>
+    <a href="/" class="home-icon">
+      <img src="/images/home.png"/>
+    </a>
+
+    <article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Getting WebSockets to Work on Windows Azure</h1>
+        <div class="meta">
+          written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-02-09T03:52:48+00:00" pubdate data-updated="true">Feb 9<span>th</span>, 2014</time>
+          
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/azure/'>Azure</a>, <a class='category' href='/blog/categories/node-dot-js/'>Node.js</a>, <a class='category' href='/blog/categories/websockets/'>WebSockets</a>
+  
+</span>
+
+
+        </div>
+        <p>I was banging my head against the wall for the past hour or so wondering why I was falling back to XHR polling when I deployed my Node.js application to Azure. I&rsquo;m using socket.io and everything looks like it&rsquo;s in order, works locally, etc. It was failing with a WebSocket handshake error.</p>
+
+<p>What I saw in the Chrome developer console was something like:</p>
+
+<pre><code>Error during WebSocket handshake: Unexpected response code: 502
+</code></pre>
+
+<p>In my Azure Node.js console (<code>azure site log tail SITENAME</code>), I was seeing <code>EPIPE</code> errors.</p>
+
+<p>It turns out, this little tidbit from the <a href="http://blogs.msdn.com/b/windowsazure/archive/2013/11/14/introduction-to-websockets-on-windows-azure-web-sites.aspx">original Windows Azure blog post</a> on Web Sockets did the trick.</p>
+
+<p>Modify your <strong>web.config</strong> and add:</p>
+
+<pre><code>&lt;webSocket enabled="false" /&gt;
+</code></pre>
+
+<p>To your <code>system.webServer</code> configuration. Also, another good point in that blog post is to use SSL, since you get SSL for free with a <code>*.azurewebsites.net</code> site.</p>
+
+<p>Hope this helps someone else out there. This should be added to the <a href="http://www.windowsazure.com/en-us/documentation/articles/web-sites-nodejs-chat-app-socketio/">official Azure tutorial</a> on using web sockets with Node.js.</p>
+
+
+        <hr class="divider-short"/>
+
+        
+        <section>
+          <h1>Comments</h1>
+          <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </section>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        
+          <a class="pull-left" href="/blog/2014/01/29/5-tips-to-improve-your-mvc-site/" title="Previous Post: 5 Tips to Improve Your ASP.NET MVC Codebase">&laquo; Previous: 5 Tips to Improve Your ASP.NET MVC Codebase</a>
+        
+
+        
+          <a class="pull-right" href="/blog/2014/05/01/ludum-dare-29-game-jam-success/" title="Next Post: Ludum Dare 29 Game Jam Success!">Next: Ludum Dare 29 Game Jam Success! &raquo;</a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="her-row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+  <a href="/"><h4>Home</h4></a>
+</div>
+
+<div class="col-md-2">
+  <div class="social-icon-list">
+    
+    <a href="https://twitter.com/kamranayub"><img src="/images/glyphicons_social_31_twitter.png"/></a>
+    
+
+    
+    <a href="https://github.com/kamranayub"><img src="/images/glyphicons_social_21_github.png"/></a>
+    
+
+    
+
+    
+  </div>
+</div>
+
+<div class="pull-right">
+  <h4>Powered by <a href="http://octopress.org/">Octopress</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+    
+      
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        // var disqus_developer = 1;
+        
+        var disqus_identifier = 'http://kamranicus.com/blog/2014/02/09/websockets-on-windows-azure/';
+        
+        var disqus_url = 'http://kamranicus.com/blog/2014/02/09/websockets-on-windows-azure/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+    
+  </body>
+</html>

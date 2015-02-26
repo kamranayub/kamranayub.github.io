@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Writing | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/writing/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2014-11-03T19:26:26-06:00</updated>
+  <updated>2015-02-26T16:16:14+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Get Your CI on With Travis CI]]></title>
-    <link href="http://kamranicus.com/blog/2013/12/18/get-your-ci-on-with-travis-ci/"/>
-    <updated>2013-12-18T23:10:10-06:00</updated>
-    <id>http://kamranicus.com/blog/2013/12/18/get-your-ci-on-with-travis-ci</id>
+    <link href="http://kamranicus.com/blog/2013/12/19/get-your-ci-on-with-travis-ci/"/>
+    <updated>2013-12-19T05:10:10+00:00</updated>
+    <id>http://kamranicus.com/blog/2013/12/19/get-your-ci-on-with-travis-ci</id>
     <content type="html"><![CDATA[<p>I just published an article on Tech.pro that <a href="http://tech.pro/tutorial/1749/get-your-ci-on-with-travis-ci">walks through getting started with Travis CI</a>. We use it for Excalibur.js and that was my first
 time configuring it, so I thought I might as well write up a nice tutorial for other people. It&rsquo;s really an awesome service, especially
 for open source projects.</p>

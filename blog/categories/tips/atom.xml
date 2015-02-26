@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tips | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/tips/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2014-11-03T19:26:26-06:00</updated>
+  <updated>2015-02-26T16:16:14+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[5 Tips to Improve Your ASP.NET MVC Codebase]]></title>
     <link href="http://kamranicus.com/blog/2014/01/29/5-tips-to-improve-your-mvc-site/"/>
-    <updated>2014-01-29T13:16:11-06:00</updated>
+    <updated>2014-01-29T19:16:11+00:00</updated>
     <id>http://kamranicus.com/blog/2014/01/29/5-tips-to-improve-your-mvc-site</id>
     <content type="html"><![CDATA[<p>I have an urge to write a quick list of tips for improving an ASP.NET MVC application because
 I just got done reviewing some code for a support ticket at work. It&rsquo;s still fresh

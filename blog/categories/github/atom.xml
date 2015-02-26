@@ -4,7 +4,7 @@
   <title><![CDATA[Category: GitHub | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/github/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2014-11-03T19:26:26-06:00</updated>
+  <updated>2015-02-26T16:16:14+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[MiniProfiler RavenDB Pull Request Accepted]]></title>
     <link href="http://kamranicus.com/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/"/>
-    <updated>2013-12-05T08:32:08-06:00</updated>
+    <updated>2013-12-05T14:32:08+00:00</updated>
     <id>http://kamranicus.com/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted</id>
     <content type="html"><![CDATA[<p>I just got a notification that my <a href="https://github.com/MiniProfiler/dotnet/pull/15">pull request</a> for
 adding RavenDB support to MiniProfiler went through! It&rsquo;s always really cool to see your contributions

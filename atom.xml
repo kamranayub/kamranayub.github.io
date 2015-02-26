@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2014-11-03T19:26:26-06:00</updated>
+  <updated>2015-02-26T16:16:14+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Just Released the New Keep Track of My Games Beta]]></title>
-    <link href="http://kamranicus.com/blog/2014/11/03/just-released-the-new-keep-track-of-my-games-beta/"/>
-    <updated>2014-11-03T18:16:03-06:00</updated>
-    <id>http://kamranicus.com/blog/2014/11/03/just-released-the-new-keep-track-of-my-games-beta</id>
+    <link href="http://kamranicus.com/blog/2014/11/04/just-released-the-new-keep-track-of-my-games-beta/"/>
+    <updated>2014-11-04T00:16:03+00:00</updated>
+    <id>http://kamranicus.com/blog/2014/11/04/just-released-the-new-keep-track-of-my-games-beta</id>
     <content type="html"><![CDATA[<p><img src="http://kamranicus.com/blog/images/2014-11-03-ktomg.png" alt="Keep Track of My Games" /></p>
 
 <p>This last weekend I finally released <a href="http://keeptrackofmygames.com">the beta version</a> of the new Keep Track of My Games site. It&rsquo;s been a long time coming but now it actually lets you keep track of your games. The original site only let you track new games and the new version still offers notifications but now you can organize and tag your collection to track games you&rsquo;ve played or haven&rsquo;t played yet (backlog) or new games.</p>
@@ -31,7 +31,7 @@
   <entry>
     <title type="html"><![CDATA[Ludum Dare 29 Game Jam Success!]]></title>
     <link href="http://kamranicus.com/blog/2014/05/01/ludum-dare-29-game-jam-success/"/>
-    <updated>2014-05-01T08:54:07-05:00</updated>
+    <updated>2014-05-01T13:54:07+00:00</updated>
     <id>http://kamranicus.com/blog/2014/05/01/ludum-dare-29-game-jam-success</id>
     <content type="html"><![CDATA[<p>This last weekend I spent 72 hours working on a game for the <a href="http://ludumdare.com/compo">Ludum Dare 29</a> game jam. LD is a competition where you get a prompt for a game and then have to spend 48 hours (solo) or 72 hours (jam) and bang out a game. The solo competition has strict rules but the game jam has looser rules and allows for team development. It was a caffeine-filled rush and I hope to write a blog post shortly about how it all went down. It was a ton of fun! I worked with my friends <a href="http://erikonarheim.com">Erik Onarheim</a> and <a href="http://twitter.com/joshedeen">Josh Edeen</a>, both primary contributors to the <a href="http://excaliburjs.com">Excalibur.js</a> game engine. I am also a contributor but I haven&rsquo;t done a ton with the engine core, moreso the usability of the API, opening GH issues, and the <a href="http://github.com/excaliburjs/excaliburjs.github.io">website</a>.</p>
 
@@ -47,9 +47,9 @@
   
   <entry>
     <title type="html"><![CDATA[Getting WebSockets to Work on Windows Azure]]></title>
-    <link href="http://kamranicus.com/blog/2014/02/08/websockets-on-windows-azure/"/>
-    <updated>2014-02-08T21:52:48-06:00</updated>
-    <id>http://kamranicus.com/blog/2014/02/08/websockets-on-windows-azure</id>
+    <link href="http://kamranicus.com/blog/2014/02/09/websockets-on-windows-azure/"/>
+    <updated>2014-02-09T03:52:48+00:00</updated>
+    <id>http://kamranicus.com/blog/2014/02/09/websockets-on-windows-azure</id>
     <content type="html"><![CDATA[<p>I was banging my head against the wall for the past hour or so wondering why I was falling back to XHR polling when I deployed my Node.js application to Azure. I&rsquo;m using socket.io and everything looks like it&rsquo;s in order, works locally, etc. It was failing with a WebSocket handshake error.</p>
 
 <p>What I saw in the Chrome developer console was something like:</p>
@@ -75,7 +75,7 @@
   <entry>
     <title type="html"><![CDATA[5 Tips to Improve Your ASP.NET MVC Codebase]]></title>
     <link href="http://kamranicus.com/blog/2014/01/29/5-tips-to-improve-your-mvc-site/"/>
-    <updated>2014-01-29T13:16:11-06:00</updated>
+    <updated>2014-01-29T19:16:11+00:00</updated>
     <id>http://kamranicus.com/blog/2014/01/29/5-tips-to-improve-your-mvc-site</id>
     <content type="html"><![CDATA[<p>I have an urge to write a quick list of tips for improving an ASP.NET MVC application because
 I just got done reviewing some code for a support ticket at work. It&rsquo;s still fresh
@@ -362,7 +362,7 @@ return the data <em>you actually want</em> in your controllers, greatly simplify
   <entry>
     <title type="html"><![CDATA[Just Released: Have I Been Pwned?]]></title>
     <link href="http://kamranicus.com/blog/2013/12/24/just-released-have-i-been-pwned/"/>
-    <updated>2013-12-24T15:33:00-06:00</updated>
+    <updated>2013-12-24T21:33:00+00:00</updated>
     <id>http://kamranicus.com/blog/2013/12/24/just-released-have-i-been-pwned</id>
     <content type="html"><![CDATA[<iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2149403&authkey=AEgpdW0TqRxZH0o" width="192" height="320" frameborder="0" scrolling="no"></iframe>
 
@@ -387,9 +387,9 @@ return the data <em>you actually want</em> in your controllers, greatly simplify
   
   <entry>
     <title type="html"><![CDATA[Get Your CI on With Travis CI]]></title>
-    <link href="http://kamranicus.com/blog/2013/12/18/get-your-ci-on-with-travis-ci/"/>
-    <updated>2013-12-18T23:10:10-06:00</updated>
-    <id>http://kamranicus.com/blog/2013/12/18/get-your-ci-on-with-travis-ci</id>
+    <link href="http://kamranicus.com/blog/2013/12/19/get-your-ci-on-with-travis-ci/"/>
+    <updated>2013-12-19T05:10:10+00:00</updated>
+    <id>http://kamranicus.com/blog/2013/12/19/get-your-ci-on-with-travis-ci</id>
     <content type="html"><![CDATA[<p>I just published an article on Tech.pro that <a href="http://tech.pro/tutorial/1749/get-your-ci-on-with-travis-ci">walks through getting started with Travis CI</a>. We use it for Excalibur.js and that was my first
 time configuring it, so I thought I might as well write up a nice tutorial for other people. It&rsquo;s really an awesome service, especially
 for open source projects.</p>
@@ -398,9 +398,9 @@ for open source projects.</p>
   
   <entry>
     <title type="html"><![CDATA[Just Released: Bowling Calculator App]]></title>
-    <link href="http://kamranicus.com/blog/2013/12/10/just-released-bowling-calculator-app/"/>
-    <updated>2013-12-10T21:02:26-06:00</updated>
-    <id>http://kamranicus.com/blog/2013/12/10/just-released-bowling-calculator-app</id>
+    <link href="http://kamranicus.com/blog/2013/12/11/just-released-bowling-calculator-app/"/>
+    <updated>2013-12-11T03:02:26+00:00</updated>
+    <id>http://kamranicus.com/blog/2013/12/11/just-released-bowling-calculator-app</id>
     <content type="html"><![CDATA[<p><img src="http://cdn.marketplaceimages.windowsphone.com/v8/images/4eb4e175-0dd5-4e48-860b-639e6796b01b?rotation=90" alt="Screenshot" /></p>
 
 <p>I just released my second Windows Phone app, <a href="http://www.windowsphone.com/en-us/store/app/bowling-calculator/9287a99a-6068-4ff4-925b-988c8c99dbf6">Bowling Calculator</a>. It&rsquo;s an <a href="http://github.com/kamranayub/wp-bowling">open source app</a> that I created when <a href="http://kamranicus.com/blog/posts/77/tccc15-leveling-up-your-windows-phone-app">I gave my talk at TCCC15</a>.
@@ -413,7 +413,7 @@ as a production-ready sample app and to also be good at what it aims to do.</p>
   <entry>
     <title type="html"><![CDATA[MiniProfiler RavenDB Pull Request Accepted]]></title>
     <link href="http://kamranicus.com/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/"/>
-    <updated>2013-12-05T08:32:08-06:00</updated>
+    <updated>2013-12-05T14:32:08+00:00</updated>
     <id>http://kamranicus.com/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted</id>
     <content type="html"><![CDATA[<p>I just got a notification that my <a href="https://github.com/MiniProfiler/dotnet/pull/15">pull request</a> for
 adding RavenDB support to MiniProfiler went through! It&rsquo;s always really cool to see your contributions
@@ -471,9 +471,9 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   
   <entry>
     <title type="html"><![CDATA[Kamranicus: Now With 100% More Octopress]]></title>
-    <link href="http://kamranicus.com/blog/2013/12/04/kamranicus-now-with-100-percent-more-octopress/"/>
-    <updated>2013-12-04T23:18:28-06:00</updated>
-    <id>http://kamranicus.com/blog/2013/12/04/kamranicus-now-with-100-percent-more-octopress</id>
+    <link href="http://kamranicus.com/blog/2013/12/05/kamranicus-now-with-100-percent-more-octopress/"/>
+    <updated>2013-12-05T05:18:28+00:00</updated>
+    <id>http://kamranicus.com/blog/2013/12/05/kamranicus-now-with-100-percent-more-octopress</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve just pushed a new version of Kamranicus that is built using the static site generator, <a href="http://octopress.org">Octopress</a>. Octopress uses <a href="http://jekyllrb.com/">Jekyll</a> to generate static sites.</p>
 
 <p>I decided to switch because I can leverage GitHub Pages which are <strong>free</strong> and I can use a custom domain. It&rsquo;s a perfect fit because I can just piggyback on GitHub&rsquo;s cloud hosting for free and not worry about incurring any downtime due to database issues (something that happened more than a few times with the last ASP.NET MVC and SQL-based site).</p>
@@ -485,7 +485,7 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   <entry>
     <title type="html"><![CDATA[Just Pushed: Blackjack Sample Game]]></title>
     <link href="http://kamranicus.com/blog/posts/79/just-pushed-blackjack-sample-game"/>
-    <updated>2013-12-03T03:09:04-06:00</updated>
+    <updated>2013-12-03T09:09:04+00:00</updated>
     <id>http://kamranicus.com/blog/posts/79/just-pushed-blackjack-sample-game</id>
     <content type="html"><![CDATA[<p>It&rsquo;s finally done! I sat down today and dug through my backups to find my original WPF BlackJack game I wrote way back when WPF was really cool. I converted it to VS 2013, made sure it still ran, organized the solution, and hit deploy. It&rsquo;s now up on GitHub for your learning pleasure. There are no Nuget packages here! This was before Nuget where I had to find code to learn from and, ahem, copy. The deck is also something I found online. If I find the source, I&rsquo;ll be sure to attribute it properly.</p>
 
@@ -503,7 +503,7 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   <entry>
     <title type="html"><![CDATA[TCCC15: See You Again in April!]]></title>
     <link href="http://kamranicus.com/blog/posts/78/tccc15-see-you-again-in-april"/>
-    <updated>2013-10-20T21:11:30-05:00</updated>
+    <updated>2013-10-21T02:11:30+00:00</updated>
     <id>http://kamranicus.com/blog/posts/78/tccc15-see-you-again-in-april</id>
     <content type="html"><![CDATA[<p>Well, that was a blast. Yesterday was <a href="http://twincitiescodecamp.com">TCCC15</a> and it was great. Many awesome sessions, including several by my fellow co-workers <a href="http://twitter.com/ErikOnarhem">Erik Onarheim</a> and <a href="http://twitter.com/StephenErstad">Stephen Erstad</a>.</p>
 
@@ -520,7 +520,7 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   <entry>
     <title type="html"><![CDATA[TCCC15: Leveling Up Your Windows Phone App]]></title>
     <link href="http://kamranicus.com/blog/posts/77/tccc15-leveling-up-your-windows-phone-app"/>
-    <updated>2013-10-17T15:17:14-05:00</updated>
+    <updated>2013-10-17T20:17:14+00:00</updated>
     <id>http://kamranicus.com/blog/posts/77/tccc15-leveling-up-your-windows-phone-app</id>
     <content type="html"><![CDATA[<p>It&rsquo;s talk time again! I&rsquo;m lucky to be giving yet another talk at Twin Cities Code Camp (my second one!). Last time was a lot of fun! This time, we&rsquo;re <a href="http://kamranicus.com/Blog/Posts/66/about-my-web-api-session-at-twin-cities-code-camp">leaving the Web API pasture</a> and exploring the fun world of Windows Phone development.</p>
 
@@ -549,7 +549,7 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   <entry>
     <title type="html"><![CDATA[Minnesota Developer Conference 2013: Connected Apps]]></title>
     <link href="http://kamranicus.com/blog/posts/76/minnesota-developer-conference-2013-connected-apps"/>
-    <updated>2013-09-24T18:58:10-05:00</updated>
+    <updated>2013-09-24T23:58:10+00:00</updated>
     <id>http://kamranicus.com/blog/posts/76/minnesota-developer-conference-2013-connected-apps</id>
     <content type="html"><![CDATA[<p><strong>Update:</strong> My session slides are available online at <a href="https://speakerdeck.com/kamranayub/bending-apis-to-your-will-using-windows-phone">SpeakerDeck</a>. If you attended, I hope you enjoyed it!</p>
 
@@ -564,7 +564,7 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   <entry>
     <title type="html"><![CDATA[Test Retina Images Without a Retina Screen]]></title>
     <link href="http://kamranicus.com/blog/posts/75/test-retina-images-without-a-retina-screen"/>
-    <updated>2013-07-25T21:36:22-05:00</updated>
+    <updated>2013-07-26T02:36:22+00:00</updated>
     <id>http://kamranicus.com/blog/posts/75/test-retina-images-without-a-retina-screen</id>
     <content type="html"><![CDATA[<p>This comes directly from a tip <a href="https://coderwall.com/p/engjbw">Mike Zarandona posted on Coderwall</a>, which I&rsquo;m posting here to keep track of it:</p>
 
@@ -593,7 +593,7 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   <entry>
     <title type="html"><![CDATA[Debounced After Render Pattern for Knockout.js]]></title>
     <link href="http://kamranicus.com/blog/posts/74/debounced-after-render-pattern-for-knockoutjs"/>
-    <updated>2013-06-05T19:18:28-05:00</updated>
+    <updated>2013-06-06T00:18:28+00:00</updated>
     <id>http://kamranicus.com/blog/posts/74/debounced-after-render-pattern-for-knockoutjs</id>
     <content type="html"><![CDATA[<p>When dealing with Knockout-based lists, I think the built-in events/callbacks provided by Knockout leave a bit to be desired. For example, a common case I here people complain about is that the <code>afterRender</code> callback for the <code>foreach/template</code> bindings executes for each item in the array, not after all the elements have been rendered.</p>
 
@@ -619,7 +619,7 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   <entry>
     <title type="html"><![CDATA[Slides and Resources for TCCC14 Web API Talk]]></title>
     <link href="http://kamranicus.com/blog/posts/73/slides-and-resources-for-tccc14-web-api-talk"/>
-    <updated>2013-04-29T22:39:24-05:00</updated>
+    <updated>2013-04-30T03:39:24+00:00</updated>
     <id>http://kamranicus.com/blog/posts/73/slides-and-resources-for-tccc14-web-api-talk</id>
     <content type="html"><![CDATA[<p>I gave a talk this past weekend at Twin Cities Code Camp; it was my first public talk (hopefully the first of many?). It was a deep dive on selected ASP.NET Web API topics (as voted on by the audience) and you can view it on <a href="https://speakerdeck.com/kamranayub/diving-into-the-deep-wih-asp-dot-net">SpeakerDeck</a>.</p>
 
@@ -640,7 +640,7 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   <entry>
     <title type="html"><![CDATA[I Was a UX Expert When I Was 13]]></title>
     <link href="http://kamranicus.com/blog/posts/72/i-was-a-ux-expert-when-i-was-13"/>
-    <updated>2013-04-26T02:05:48-05:00</updated>
+    <updated>2013-04-26T07:05:48+00:00</updated>
     <id>http://kamranicus.com/blog/posts/72/i-was-a-ux-expert-when-i-was-13</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve been reading Word documents on my computer that I&rsquo;ve had since I was a teen. I&rsquo;ve been keeping them all through my PC upgrades for no particular reason except for times like these when I need to laugh at myself.</p>
 
@@ -655,7 +655,7 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   <entry>
     <title type="html"><![CDATA[Anecdote: I Frustrate Easily]]></title>
     <link href="http://kamranicus.com/blog/posts/71/anecdote-i-frustrate-easily"/>
-    <updated>2013-04-24T20:59:46-05:00</updated>
+    <updated>2013-04-25T01:59:46+00:00</updated>
     <id>http://kamranicus.com/blog/posts/71/anecdote-i-frustrate-easily</id>
     <content type="html"><![CDATA[<p>When I first started my &ldquo;real job&rdquo; where I&rsquo;m at I was put on an internal site. It was a beast, it had a lot of history, and more importantly, it was <strong>damn ugly and sometimes hard to use</strong>. The site was used by developers and no one on the team had much UI experience. I was frustrated. I couldn&rsquo;t work on this thing and have it be ugly, why should we have a tool that gets used every day that&rsquo;s a bear to use? &ldquo;Because it&rsquo;s always been that way&rdquo; wasn&rsquo;t good enough for me. For about a month I worked outside of work, off the sprint, and I re-tooled the CSS, markup, and UX while still maintaining the overall functionality and behavior. No one asked, I just did it <strong>because I was frustrated.</strong> Sure, at some points, people were sort of wondering what the heck I was doing but in the end, everyone loved the changes and everyone keeps mentioning how great the changes have been since. I believe it was also the start of a bigger push to make things easy to use internally but I suppose correlation does not equal causation :)</p>
 
@@ -666,7 +666,7 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   <entry>
     <title type="html"><![CDATA[Protip: Using Anti-Forgery Token With ASP.NET Web API on MVC 4 on AppHarbor]]></title>
     <link href="http://kamranicus.com/blog/posts/70/protip-using-anti-forgery-token-with-aspnet-web-ap"/>
-    <updated>2013-04-24T05:14:06-05:00</updated>
+    <updated>2013-04-24T10:14:06+00:00</updated>
     <id>http://kamranicus.com/blog/posts/70/protip-using-anti-forgery-token-with-aspnet-web-ap</id>
     <content type="html"><![CDATA[<p>I just ran into and solved this problem so I thought I&rsquo;d share (I&rsquo;ll also be talking about this at my upcoming talk).</p>
 
@@ -733,7 +733,7 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
   <entry>
     <title type="html"><![CDATA[Put the Cloud to Work, Pt 1: Create a Background Worker Using Quartz.NET]]></title>
     <link href="http://kamranicus.com/blog/posts/69/put-the-cloud-to-work-pt-1-create-a-background-wor"/>
-    <updated>2013-04-23T18:02:22-05:00</updated>
+    <updated>2013-04-23T23:02:22+00:00</updated>
     <id>http://kamranicus.com/blog/posts/69/put-the-cloud-to-work-pt-1-create-a-background-wor</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve written a [long] article for Tech.pro on <a href="http://tech.pro/tutorial/1222/put-the-cloud-to-work-pt-1-create-a-background-worker-using-quartznet">how to use Quartz.NET to build an end-to-end background worker on AppHarbor</a>.</p>
 
