@@ -90,6 +90,152 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-3 col-md-6">
               <article>
+  <h2><a href="/blog/posts/58/using-calc-and-media-queries-to-create-a-combinati">Using Calc() and Media Queries to Create a Combination Variable + Fixed Sidebar</a></h2>
+  
+  <p>
+    <p>The title of this post might be confusing, so let me describe our scenario:</p>
+
+
+
+
+<p>I am working on a responsive layout, specifically one right now that has two columns, a content area and a right sidebar. This right sidebar needs to be flexible <em>up to a certain point</em> and then it needs to become fixed. In addition, both columns could be variable height, and on top of that, the two columns are sometimes split into two separate rows to achieve proper HTML markup order.</p>
+
+
+
+
+<p>The reason the sidebar needs to have a minimum width is mostly due to the ads we&rsquo;re working with, since they have a fixed size. It might actually be possible to hack at the styles and make them pseudo-responsive, but I still want to share my tip with you, even if I don&rsquo;t end up using it.</p>
+
+
+
+
+<p>I thought this was an interesting challenge because of two issues: the need for both flex <em>and</em> fixed for the same column.</p>
+
+
+
+
+<h3>The Demo</h3>
+
+
+
+
+<p>Here is the Fiddle I came up with where you can view the result:</p>
+
+
+
+
+<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/kamranayub/mHvtM/4/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+
+
+
+<h3>The Markup</h3>
+
+
+
+
+<p>The markup is straightforward and simple. I essentially need two rows of two columns, where the right columns line up and <em>appear</em> to be a single sidebar. When I get down to the smaller breakpoints, both columns stop floating and stack vertically (but that is neither here nor there).</p>
+
+
+
+
+<h3>The Styles</h3>
+
+
+
+
+<p>Here&rsquo;s where it gets interesting. I start out the design with a 60% left column and 40% right column. However, I need the right column to stop being variable at 300px, and I need the left column to take up the remaining space.</p>
+
+
+
+
+<p>The way I achieved this was by using a media query and the CSS3 <code>calc()</code> unit. I wanted to avoid Javascript at all costs.</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="k">@media</span> <span class="o">(</span><span class="nt">max-width</span><span class="o">:</span> <span class="nt">750px</span><span class="o">)</span> <span class="p">{</span> <span class="c">/<em> min-width / % = (300 / 0.4) = 750 </em>/</span>
+</span><span class='line'>    <span class="nc">.alpha</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">width</span><span class="o">:</span> <span class="o">&ndash;</span><span class="n">moz</span><span class="o">&ndash;</span><span class="n">calc</span><span class="p">(</span><span class="m">100</span><span class="o">%</span> <span class="o">&ndash;</span> <span class="m">300px</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">width</span><span class="o">:</span> <span class="o">&ndash;</span><span class="n">o</span><span class="o">&ndash;</span><span class="n">calc</span><span class="p">(</span><span class="m">100</span><span class="o">%</span> <span class="o">&ndash;</span> <span class="m">300px</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">width</span><span class="o">:</span> <span class="o">&ndash;</span><span class="n">webkit</span><span class="o">&ndash;</span><span class="n">calc</span><span class="p">(</span><span class="m">100</span><span class="o">%</span> <span class="o">&ndash;</span> <span class="m">300px</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">width</span><span class="o">:</span> <span class="n">calc</span><span class="p">(</span><span class="m">100</span><span class="o">%</span> <span class="o">&ndash;</span> <span class="m">300px</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="nc">.beta</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">width</span><span class="o">:</span> <span class="m">300px</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">background</span><span class="o">:</span> <span class="nb">orange</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Turns out, pretty simple!</p>
+
+
+
+
+<h3>Gotchas</h3>
+
+
+
+
+<p>Of course this world isn&rsquo;t perfect and neither is CSS3 support. According to <a href="http://caniuse.com/#feat=calc">Can I Use</a>, <code>calc</code> isn&rsquo;t supported in: IE &lt; 9, iOS &lt; 6.0, Android, Opera, or BB &lt; 10.0. That&rsquo;s lot of non-support.</p>
+
+
+
+
+<p>So what to do? Well, in our case, it&rsquo;s not essential we maintain the fixed minimum-width. Especially if we can workaround the ads. If you <strong>must</strong> have the support, I don&rsquo;t know what to tell you. You could test for <code>calc</code> support using <a href="https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css-calc.js">Modernizr</a>, then decide what to do in browsers that don&rsquo;t have that support (for example, throwing in the towel and just convert the layout to single column). You could also use a Javascript-based solution (which you might as well, if you&rsquo;re relying on Modernizr).</p>
+
+
+
+
+<h3>Have a better solution?</h3>
+
+
+
+
+<p>I&rsquo;d like to know. I&rsquo;m not a front-end expert, so there may be a more clever way to achieve this and maximize browser support. If you know of any way to do this better, please let me know down below.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2012-11-03T01:27:12+00:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2012</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
   <h2><a href="/blog/posts/57/enter-a-windows-8-contest-just-do-it">Enter a Windows 8 Contest, Just Do It!</a></h2>
   
   <p>
@@ -1438,221 +1584,6 @@ Source: <a href="http://wpcornerpeelplugin.com/html/">http://wpcornerpeelplugin.
 
 
 <time datetime="2012-06-01T10:59:01+00:00" pubdate data-updated="true">Jun 1<span>st</span>, 2012</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/posts/47/some-thoughts-on-the-vs11-betarcrtm-interface">Some Thoughts on the VS11 Beta/RC/RTM Interface</a></h2>
-  
-  <p>
-    <p>As you may know, the next version of Visual Studio dubbed VS11 <a href="http://www.microsoft.com/visualstudio/11/en-us">is available in Beta form</a> right now for developers worldwide to <strike>complain about</strike> go wild and test against.</p>
-
-
-
-
-<p>While you can learn more about what VS11 offers in terms of new features, I think the biggest thing you&rsquo;ll hear about is feedback regarding it&rsquo;s new user interface style. I want to write down some thoughts I had as a heavy Visual Studio user and self-professed user experience (UX) <em>aficionado</em>.</p>
-
-
-
-
-<h3>Please don&rsquo;t hurt me</h3>
-
-
-
-
-<p>I want to be clear that I am not here to bash on Visual Studio nor complain about the new interface. Rather, I&rsquo;d like to take a constructive look at a couple of the cosmetic changes in store for us.</p>
-
-
-
-
-<h3>I HEARD U LIEK ALL CAPS</h3>
-
-
-
-
-<p>I think the biggest thing I see on the tubes these days are comments about the ALL CAPS menu change from the Beta to the RC as you can see below (this is the Dark Theme):</p>
-
-
-
-
-<p><strong>Beta:</strong><br/>
-<img src="/blog/images/42.png" alt="Beta Main Menu" /></p>
-
-
-
-
-<p><strong>RC:</strong><br/>
-<img src="/blog/images/41.png" alt="All Caps RC Main Menu" /></p>
-
-
-
-
-<p><strong>What People Are Saying</strong></p>
-
-
-
-
-<p>Why is the main menu SHOUTING AT ME? This is terrible!</p>
-
-
-
-
-<p><strong>What People Are Missing</strong></p>
-
-
-
-
-<p>Whether or not you believe a fundamental user experience principle has been violated here, I think the underlying issue all along has been: why are there <em>so many damn options</em>?</p>
-
-
-
-
-<p>All caps or not, I think the team should be aiming to reduce the amount of time I even need to look at the main menu and even better, totally eliminate or consolidate some of those menus. If I had to list what menus I used the most it would be:</p>
-
-
-
-
-<ol>
-<li>Edit &ndash; to get to some advanced options that I can&rsquo;t remember hotkeys for</li>
-<li>View &ndash; to see a window I closed at some point or find a window</li>
-<li>Build &ndash; to Rebuild/Clean sometimes or build my current project (vs. the entire solution)</li>
-<li>Tools &ndash; to get to extension manager for updates or new extensions</li>
-<li>File &ndash; to open a project when I&rsquo;m not on the start screen</li>
-</ol>
-
-
-
-
-<p>That&rsquo;s about it. So, in other words, I use about 5 out of the 16 total menu options regularly. Does that sound like the Pareto Principle (80/20 rule) at work here? It should at least have crossed your mind. Admittedly, this is <em>just for me</em> but no matter the person, I would expect to find that the typical Visual Studio user does <strong>not</strong> use all the menu options every day or very often.</p>
-
-
-
-
-<p>One of the nice things about VS is that you can totally customize the menu. For example, here&rsquo;s mine right now:</p>
-
-
-
-
-<p><img src="/blog/images/47.png" alt="My Menu" /></p>
-
-
-
-
-<p>Unfortunately, I can&rsquo;t do much more because VS2010 crashes if I try to modify the menus themselves, otherwise I&rsquo;d move Theme, Resharper, Sitecore, and Mindscape into the Tools menu reducing my total menus to only 6. Finally, I&rsquo;d like the ability to hit Alt to enable the menu, otherwise it should be hidden (see Sublime Text). I don&rsquo;t know if there&rsquo;s an extension that enables that.</p>
-
-
-
-
-<p>Just because I have the control to move my menu commands around doesn&rsquo;t mean it solves this problem. There are so many commands in Visual Studio the team could expose but don&rsquo;t simply for that reason, there&rsquo;s just too many. A different kind of menu should be considered that doesn&rsquo;t rely on the &ldquo;classic&rdquo; menu bar pattern.</p>
-
-
-
-
-<p>Is it too crazy to think about a menu inside Visual Studio that acted like the Windows OS menu? It could list my most recent actions or actions I pin, it could group different tasks or let me open an advanced panel to see more tasks. The useful Ctrl-3 shortcut in one of the power tool extensions lets you start typing to search the menu system (and I believe that is what the search box in the top right of VS11 also does); why not build that into a single menu ala Windows 7 Start Menu? Dare I even mention&hellip; a ribbon (<em>shudder</em>)?</p>
-
-
-
-
-<h3>Monochrome is the New Color</h3>
-
-
-
-
-<p>In the VS11 beta, probably the first thing you&rsquo;ll notice is the distinct lack of color. Where&rsquo;d all the pretty icons go?! If you asked me how I felt when I opened it up for the first time, the word &ldquo;depressed&rdquo; probably would make the cut. I know that sounds extreme, but when you talk about how we as humans perceive colors, certain schemes evoke certain emotions.</p>
-
-
-
-
-<p>Again, let&rsquo;s take a look at the dark theme (since it exacerbates the effect):</p>
-
-
-
-
-<p><img src="/blog/images/43.png" alt="Dark Theme in Beta" /></p>
-
-
-
-
-<p>Now, work has been done since the beta to add color back to VS which I believe makes it look <em>so</em> much better:</p>
-
-
-
-
-<p><img src="/blog/images/44.png" alt="Dark Theme in RTM" /></p>
-
-
-
-
-<p>The added color in the icons really makes a difference and I was glad to see it back for the RC and RTM. I also think it&rsquo;s very admirable that the team will release the vector versions alongside Visual Studio for use in our own apps. In this day and age where images need to be scaled for different form factors and &ldquo;Retina&rdquo; displays, I think we&rsquo;ll be seeing more emphasis on vector-based icons. GitHub even <a href="https://github.com/blog/1106-say-hello-to-octicons">created their own font</a> to address the issue. You could argue they may have jumped the gun a bit but hopefully font rendering will continue to improve in modern browsers.</p>
-
-
-
-
-<p>My one criticism is that not all icons will be mono&rsquo;d right away, so with some extensions you&rsquo;ll see something like this:</p>
-
-
-
-
-<p><img src="/blog/images/45.png" alt="Ugh" /></p>
-
-
-
-
-<p>I know they specifically fixed this icon in RC, but I&rsquo;m sure there will be more instances of this, especially in the New File dialog:</p>
-
-
-
-
-<p><img src="/blog/images/46.png" alt="File icons" /></p>
-
-
-
-
-<p>This can be fixed by extension developers, but I hope (as an extension developer myself) that it is not too painful to provide iconography for both the VS2010 and VS11 version of an extension.</p>
-
-
-
-
-<h3>Other Thoughts</h3>
-
-
-
-
-<p>In general, I think those are the two big topics I see while reading blog posts and seeing comments. I may have other thoughts for the overall experience but I&rsquo;ll save them for future posts as I use VS11 more and more.</p>
-
-
-
-
-<p>As always, let me know what you think! Do you have other criticisms of the interface? If you&rsquo;re going to just go on about how you hate M$ and VS11 is terrible, don&rsquo;t bother responding. The VS team would benefit more from constructive feedback.</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2012-05-31T19:07:00+00:00" pubdate data-updated="true">May 31<span>st</span>, 2012</time>
     
 
 
