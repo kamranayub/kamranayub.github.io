@@ -8,3 +8,10 @@ ul {
 .article-list .row img {
 	max-width: 100%;
 }
+
+.full-single-article ol, .article-list .row ol {
+  list-style-type: decimal;
+  margin-left: 1em;
+  font-size: 20px;
+  line-height: 1.5;
+}
