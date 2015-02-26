@@ -5,6 +5,5 @@ branches:
   only:
     - source
 script:
-  - bundle install
-  - rake generate
-  - rake deploy
+  - bundle exec rake generate
+  - bundle exec rake deploy
