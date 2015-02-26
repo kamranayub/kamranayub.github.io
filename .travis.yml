@@ -4,6 +4,10 @@ rvm:
 branches:
   only:
     - source
+env:
+  global:
+  - GH_REF: github.com/kamranayub/kamranayub.github.io.git
 script:
   - bundle exec rake generate
-  - bundle exec rake deploy
+  - chmod ugo+x deploy.sh
+  - '[ "${TRAVIS_PULL_REQUEST}" != "false" ] || ./deploy.sh'
