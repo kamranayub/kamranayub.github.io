@@ -6,6 +6,8 @@ comments: true
 categories:
   - CI
   - Tips
+  - Automation
+  - Travis-CI
 ---
 
 One of the fun things we did for [Sweep Stacks][1] (our Ludum Dare entry) 
