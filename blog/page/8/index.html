@@ -90,6 +90,190 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-3 col-md-6">
               <article>
+  <h2><a href="/blog/posts/15/announcing-keep-track-of-my-games">Announcing Keep Track of My Games</a></h2>
+  
+  <p>
+    <p>I am working on a new side project, <a href="http://keeptrackofmygames.com/about">Keep Track of My Games</a>.</p>
+
+
+
+
+<p><img src="/blog/images/10.png" alt="Yes." /></p>
+
+
+
+
+<h3>The Rundown</h3>
+
+
+
+
+<p>The goal is simple: <strong>Manage your collection of games and track games that haven&rsquo;t been released.</strong></p>
+
+
+
+
+<p>You can read the tour on my <a href="http://blog.keeptrackofmygames.com/post/8003937025/what-is-keep-track-of-my-games">introduction blog post</a>.</p>
+
+
+
+
+<p>I&rsquo;ve setup several social outlets:</p>
+
+
+
+
+<ul>
+<li><a href="http://twitter.com/keeptrackgames">@keeptrackgames</a></li>
+<li><a href="http://blog.keeptrackofmygames.com/">Blog</a></li>
+<li><a href="http://getsatisfaction.com/keeptrack">GetSatisfaction</a></li>
+</ul>
+
+
+
+
+<p>I&rsquo;m also providing a public look into my development cycle via the <a href="http://keeptrackofmygames.com/roadmap">Roadmap</a> page.</p>
+
+
+
+
+<h3>The Technology</h3>
+
+
+
+
+<p>I am using MVC 3 with EF 4.1 and SQL Server 2008 deployed via Mercurial, BitBucket, and AppHarbor. I am using the JSON API from <a href="http://api.giantbomb.com">GiantBomb</a> to fetch search results than caching them locally to the database. I&rsquo;m not super enthused with the performance but hopefully I can make it better in the coming weeks.</p>
+
+
+
+
+<p>I use <a href="http://twilio.com">Twilio</a> for SMS and for now, regular old SMTP for emails but I may upgrade depending on load. I use a &ldquo;scheduled&rdquo; job that runs through the database and figures out if games are coming out soon or are released or if their release dates have changed.</p>
+
+
+
+
+<h3>The Architecture</h3>
+
+
+
+
+<p>I have a pretty straightforward and simple architecture: everything goes through application services that do not have any web dependency.</p>
+
+
+
+
+<p><img src="/blog/images/11.png" alt="Layer Diagram" /></p>
+
+
+
+
+<p>My controllers are pretty stupid; they ask the services for information and process the results:</p>
+
+
+
+
+<p><img src="/blog/images/12.png" alt="Adding item to library" /></p>
+
+
+
+
+<p>The key is my <code>ActionConfirmation</code> class which I borrowed from my co-worker. I thought it was awesome for Service => Controller communication. The reason being I can pass error messages / validation results cleanly.</p>
+
+
+
+
+<p>For example, in this action, if an error occurred when saving tracking settings, I need to go and get the current tracking settings to add some view-specific logic (like, whether or not to show the email/phone checkboxes):</p>
+
+
+
+
+<p><img src="/blog/images/13.png" alt="Saving tracking settings" /></p>
+
+
+
+
+<p>The <code>currentTracking</code> is of type <code>ActionConfirmation&lt;TrackingViewModel&gt;</code>. So, if a service call was successful, I can retrieve the result via <code>currentTracking.Value</code>. I also use a non-generic <code>ActionConfirmation</code> class that doesn&rsquo;t require any return value.</p>
+
+
+
+
+<p>Here&rsquo;s an example of the service code returning <code>ActionConfirmation</code>s:</p>
+
+
+
+
+<p><img src="/blog/images/14.png" alt="ActionConfirmation results" /></p>
+
+
+
+
+<p>I am not 100% OK with this because for complex business validation, the results are coming back one at a time. I will be refactoring later to avoid this.</p>
+
+
+
+
+<h3>The &ldquo;Open&rdquo; Source Agenda</h3>
+
+
+
+
+<p>I have been playing around with making this source code public. Only a few things prevent me from doing so:</p>
+
+
+
+
+<ol>
+<li>I need a way to hide secret tokens for APIs and my passwords for some services.</li>
+<li>If people know the code, they&rsquo;ll see all the security holes and it&rsquo;s possible someone could exploit them and steal my user&rsquo;s data (not cool).</li>
+</ol>
+
+
+
+
+<p>Really item #2 is the big decider. I am using OpenID and DotNetOpenAuth but that doesn&rsquo;t mean the site is totally secure. The worst information that could be obtained is someone&rsquo;s email and phone number, both of which I plan to encrypt for extra safety (once I figure out how that works with EF).</p>
+
+
+
+
+<p>I am thinking instead of totally making it open source, to allow select contributors I trust into the codebase for reviews and patches.</p>
+
+
+
+
+<p>If you would be interested in doing that, I have a tester system setup so <a href="http://twitter.com/kamranayub">let me know</a> and we&rsquo;ll talk.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2011-07-24T22:44:08+00:00" pubdate data-updated="true">Jul 24<span>th</span>, 2011</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
   <h2><a href="/blog/posts/14/resolving-http-500-errors-when-deploying-to-apphar">Resolving HTTP 500 Errors When Deploying to AppHarbor</a></h2>
   
   <p>
@@ -961,70 +1145,6 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
 
 
 <time datetime="2011-04-13T02:57:55+00:00" pubdate data-updated="true">Apr 13<span>th</span>, 2011</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/posts/5/all-the-code-you-write-is-wrong">&#8220;All the Code You Write Is Wrong.&#8221;</a></h2>
-  
-  <p>
-    <p>Every time I read about a &ldquo;best practice&rdquo; or the opinions of highly regarded (to many) developers, I always am amazed at the different opinions in response. This isn&rsquo;t bad. In fact, I think it&rsquo;s pretty cool we all share differing opinions and what works for one person may not work for someone else. I find it refreshing to see all sorts of opinions that propose different ways of doing the same thing.</p>
-
-
-
-
-<p>Thus, my mantra from now on is:</p>
-
-
-
-
-<blockquote><p>&ldquo;All the code you write is wrong.&rdquo;</p></blockquote>
-
-
-
-
-<p>That works for me considering I never met a developer who always thought what they wrote was perfect.</p>
-
-
-
-
-<p>I strive to write &ldquo;good&rdquo; code but I&rsquo;m always ready to hear it is terrible and could be done a better way. That&rsquo;s why there are smarter people than me alive.</p>
-
-
-
-
-<iframe title="YouTube video player" width="640" height="390" src="http://www.youtube.com/embed/05av9iJvgiQ" frameborder="0" allowfullscreen></iframe>
-
-
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2011-04-08T20:47:57+00:00" pubdate data-updated="true">Apr 8<span>th</span>, 2011</time>
     
 
 

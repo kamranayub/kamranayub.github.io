@@ -67,6 +67,83 @@
         <div class="row">
           <div class="col-md-offset-3 col-md-6">
             <article>
+  <h2><a href="/blog/2015/03/29/triggering-a-travis-build-programmatically/">Triggering a Travis Build Programmatically</a></h2>
+  
+  <p>
+    <p>For <a href="http://excaliburjs.com">Exalibur.js</a> we wanted to be able to keep our <code>master</code> branch documentation up-to-date on the website. The website is built using <a href="http://assemble.io">Assemble.io</a> and GitHub pages and <a href="http://kamranicus.com/blog/2015/02/26/continuous-deployment-with-travis-ci/">after successfully automating my blog</a>, naturally I turned to <a href="http://travis-ci.org">Travis CI</a> to set up automated documentation generation.</p>
+
+<p>Travis normally sets up a hook in your GitHub repository to automatically trigger a build after you push a commit (or pull request). This is real nice but unfortunately that&rsquo;s where it stops. If you want to trigger a build <strong>for another repository</strong>, you have to do it manually.</p>
+
+<p>I asked Travis about this and their response is promising (Twitter can be nice sometimes):</p>
+
+<blockquote class="twitter-tweet" data-partner="tweetdeck"><p><a href="https://twitter.com/kamranayub">@kamranayub</a> it&#39;s on the roadmap, and hopefully landing soon &lt;3</p>&mdash; Travis CI (@travisci) <a href="https://twitter.com/travisci/status/582311038772723713">March 29, 2015</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>Until that time, though, something has to be done.</p>
+
+<p>One approach I saw was a <a href="https://github.com/metaodi/travis-ping">small Ruby script</a> to forge a webhook POST message. This is actually a nice idea but since Excalibur uses Node to build, I needed something else and didn&rsquo;t want to port it over.</p>
+
+<p>Instead I borrowed some code from <a href="https://github.com/patrickkettner/travis-ping">@patrickketner</a> that uses the <a href="https://github.com/pwmckenna/node-travis-ci">node-travis-ci</a> npm package to submit a build through the public API. I modified Patrick&rsquo;s code since I need to use GitHub personal access tokens like I did <a href="http://kamranicus.com/blog/2015/02/26/continuous-deployment-with-travis-ci/">previously</a>.</p>
+
+<p>You still need to follow the same steps to set up the <code>GH_TOKEN</code> environment variable but once you do, all you have to do is execute this Node.js script (changing the <code>repo</code>).</p>
+
+<script src="https://gist.github.com/kamranayub/88f963a9ac3d5bf6114d.js"></script>
+
+
+<p>So for example, in your <code>.travis.yml</code> file, you just need:</p>
+
+<p><code>
+install:
+  - npm install travis-ci
+after_success:
+  - node trigger-build.js
+</code></p>
+
+<p>All set. Now when you commit to one repository, you can trigger a build for another one. This allows us to automatically <a href="http://excaliburjs.com/docs/api/edge">keep our docs up-to-date</a> with whatever <code>master</code> has.</p>
+
+<p>You can <a href="https://github.com/excaliburjs/Excalibur/blob/master/deploy-docs.js">reference Excalibur</a> to see how we execute the script. Additionally, you can reference <a href="https://github.com/excaliburjs/excaliburjs.github.io/blob/site/.travis.yml">excaliburjs.com&rsquo;s Travis configuration</a> to see how we use <a href="http://typedoc.io">TypeDoc</a> to generate documentation for the latest version of <code>master</code>.</p>
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-03-29T22:45:30+00:00" pubdate data-updated="true">Mar 29<span>th</span>, 2015</time>
+    
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/automation/'>Automation</a>, <a class='category' href='/blog/categories/ci/'>CI</a>, <a class='category' href='/blog/categories/javascript/'>Javascript</a>, <a class='category' href='/blog/categories/node-dot-js/'>Node.js</a>, <a class='category' href='/blog/categories/tips/'>Tips</a>, <a class='category' href='/blog/categories/travis-ci/'>Travis-CI</a>
+  
+</span>
+
+
+  </span>
+
+  
+</article>
+
+          </div>
+        </div>
+      
+        
+        <div class="row">
+          <div class="col-md-offset-3 col-md-6">
+            <article>
   <h2><a href="/blog/2014/02/09/websockets-on-windows-azure/">Getting WebSockets to Work on Windows Azure</a></h2>
   
   <p>

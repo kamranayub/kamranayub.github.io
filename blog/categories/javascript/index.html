@@ -9,11 +9,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: CI - Kamranicus</title>
+  <title>Category: Javascript - Kamranicus</title>
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="Category: CI">
+  <meta name="description" content="Category: Javascript">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -22,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://kamranicus.comblog/categories/ci">
+  <link rel="canonical" href="http://kamranicus.comblog/categories/javascript">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
@@ -55,7 +55,7 @@
   <div class="container">
     <div class="row">
       <div class="list-title col-md-offset-3 col-md-6">
-        <h4>Posts in CI</h4>
+        <h4>Posts in Javascript</h4>
       </div>
     </div>
   </div>
@@ -128,174 +128,6 @@ in
 <span class="categories">
   
     <a class='category' href='/blog/categories/automation/'>Automation</a>, <a class='category' href='/blog/categories/ci/'>CI</a>, <a class='category' href='/blog/categories/javascript/'>Javascript</a>, <a class='category' href='/blog/categories/node-dot-js/'>Node.js</a>, <a class='category' href='/blog/categories/tips/'>Tips</a>, <a class='category' href='/blog/categories/travis-ci/'>Travis-CI</a>
-  
-</span>
-
-
-  </span>
-
-  
-</article>
-
-          </div>
-        </div>
-      
-        
-        <div class="row">
-          <div class="col-md-offset-3 col-md-6">
-            <article>
-  <h2><a href="/blog/2015/02/26/continuous-deployment-with-travis-ci/">Continuous Deployment With Travis-CI</a></h2>
-  
-  <p>
-    <p>One of the fun things we did for <a href="http://playsweepstacks.com">Sweep Stacks</a> (our Ludum Dare entry)
-during development was to setup continuous deployment. Since our GitHub
-repository was public, we could leverage the excellent Travis CI build tool.</p>
-
-<p>This allowed us to work on the game and have our dedicated tester play every new build
-hot off the press. It reduced the amount of bugs we shipped with and created a very
-fast feedback loop for QA. In the end it allowed us to push a polished game an hour
-or so before the deadline hit. After the voting began, it also allowed us to quickly
-push bug fixes that were reported by players.</p>
-
-<p>If you&rsquo;re new to Travis CI, you can learn more about what it is and
-how to get started by reading <a href="http://tech.pro/tutorial/1749/get-your-ci-on-with-travis-ci">my Tech.pro tutorial</a>.</p>
-
-<p>Once you have your project building, you can then write a little bash script to
-deploy it! By &ldquo;deploying&rdquo;, what I really mean is pushing your built code to your production branch on GitHub for final deployment. For example, we use GitHub pages to host Sweep Stacks.</p>
-
-<p>Let&rsquo;s look at the process.</p>
-
-<h2>Customizing Travis Config</h2>
-
-<p>You will need to execute a script to deploy your site, so you will need to
-customize your <strong>_travis.yml</strong> file.</p>
-
-<p>Here is what mine looks like for this blog (built using Octopress):</p>
-
-<pre><code>language: ruby
-rvm:
-  - 1.9.3
-branches:
-  only:
-    - source
-env:
-  global:
-  - GH_REF: github.com/kamranayub/kamranayub.github.io.git
-script:
-  - bundle exec rake generate
-  - chmod ugo+x deploy.sh
-  - '[ "${TRAVIS_PULL_REQUEST}" != "false" ] || ./deploy.sh'
-</code></pre>
-
-<p>Let&rsquo;s break it down:</p>
-
-<pre><code>language: ruby
-</code></pre>
-
-<p>Easy, since I use <a href="http://octopress.org">Octopress</a> (built on Jekyll) for my blog, we need to use Ruby.</p>
-
-<pre><code>rvm:
-  - 1.9.3
-</code></pre>
-
-<p>The version of Octopress I use requires Ruby 1.9.3.</p>
-
-<pre><code>branches:
-  only:
-    - source
-</code></pre>
-
-<p>We only want Travis to initiate builds for the <code>source</code> branch, since that is where
-the source files are for my blog.</p>
-
-<pre><code>env:
-  global:
-  - GH_REF: github.com/kamranayub/kamranayub.github.io.git
-</code></pre>
-
-<p>We will need to be able to clone and push to our repository, so we store it in an
-environment variable for easy access. <code>GH_REF</code> will be available to our bash script.</p>
-
-<pre><code>script:
-  - bundle exec rake generate
-  - chmod ugo+x deploy.sh
-  - '[ "${TRAVIS_PULL_REQUEST}" != "false" ] || ./deploy.sh''
-</code></pre>
-
-<p>In our Travis script, we build the blog (<code>rake generate</code>). We then mark our <code>deploy.sh</code> file
-as executable (since I&rsquo;m on Windows). After that we execute our deploy as long as this isn&rsquo;t
-a pull request (don&rsquo;t want to build other people&rsquo;s changes!). Disabling pull request builds
-can also be set in your Travis project settings.</p>
-
-<h2>Deploy script</h2>
-
-<p>Here&rsquo;s the script I use to do the deployment:</p>
-
-<script src="https://gist.github.com/kamranayub/ca7b6866ab43771d9da8.js"></script>
-
-
-<p>As you can see it&rsquo;s fairly simple. One thing to make sure of is hiding your access token (<code>GH_TOKEN</code>),
-we use to authenticate which I&rsquo;ll show you how to generate and use.</p>
-
-<h2>The access token</h2>
-
-<p>The whole reason this works is because we are authenticating to GitHub using a <em>Personal
-Access Token</em> (stored in <code>GH_TOKEN</code>). This is an OAuth token that you can create when
-using Two-Factor Auth to authenticate 3rd party tools like Visual Studio, or in our case, authenticating in a script.</p>
-
-<p>You can generate a token by:</p>
-
-<ol>
-<li>Going to <a href="https://github.com/settings/applications">Applications</a> in your Settings</li>
-<li>Clicking &ldquo;Generate New Token&rdquo;</li>
-<li>Selecting your permissions (for Travis, all you need is <code>public_repo</code>)</li>
-<li>Once created, copy the token to your clipboard (you <em>must</em> regenerate it if you lose it)</li>
-</ol>
-
-
-<p>Now we need to configure Travis to expose this token securely to our script.</p>
-
-<ol>
-<li>On Travis, go to the Settings of your project (top-right)</li>
-<li>Click the &ldquo;Environment Variables&rdquo; tab (and ensure Build Pull Requests is &lsquo;Off&rsquo;)</li>
-<li>Create a new environment variable called <code>GH_TOKEN</code></li>
-<li>In the Value field, paste in your token, being sure to remove any trailing whitespace</li>
-<li>Ensure &ldquo;Display value in build logs&rdquo; is Off</li>
-</ol>
-
-
-<p>Once created, you&rsquo;re all set! <code>GH_TOKEN</code> will now be available to your <strong>deploy.sh</strong> script.</p>
-
-<h2>Testing it out</h2>
-
-<p>You should be ready to test your deployment. Commit any changes you have to your repository
-and you should start seeing the build output once it starts. If there are any errors, now
-you can fix them until your build passes.</p>
-
-<p>Happy deploying!</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2015-02-26T16:18:22+00:00" pubdate data-updated="true">Feb 26<span>th</span>, 2015</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/automation/'>Automation</a>, <a class='category' href='/blog/categories/ci/'>CI</a>, <a class='category' href='/blog/categories/tips/'>Tips</a>, <a class='category' href='/blog/categories/travis-ci/'>Travis-CI</a>
   
 </span>
 

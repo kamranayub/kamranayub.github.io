@@ -90,6 +90,203 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-3 col-md-6">
               <article>
+  <h2><a href="/blog/posts/59/using-knockout-bindings-in-your-winjs-application">Using Knockout Bindings in Your WinJS Application</a></h2>
+  
+  <p>
+    <p>If you&rsquo;ve done any serious Windows 8 development with WinJS, you&rsquo;ve probably come across this wall:</p>
+
+
+
+
+<blockquote><p>I need to do some custom logic and data binding on this element and I wish I could just use <code>win-data-bind</code> to do it.</p></blockquote>
+
+
+
+
+<p>In my case, all I wanted to do was toggle a CSS class based on my view model&rsquo;s property. In WinJS bindings, there is no way to call a custom binding converter with parameters nor can you access the DOM element from a converter, as far as I can tell.</p>
+
+
+
+
+<p>Technically, you could call a function using <code>markSupportedForProcessing</code> and pass in these parameters, like this:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!&mdash; Template &mdash;&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">data-win-bind=</span><span class="s">&quot;className: myprop Converters.toggleClass&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="c1">// JS</span>
+</span><span class='line'><span class="nx">WinJS</span><span class="p">.</span><span class="nx">Namespace</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;Converters&quot;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">toggleClass</span><span class="o">:</span> <span class="nx">WinJS</span><span class="p">.</span><span class="nx">Utilities</span><span class="p">.</span><span class="nx">markSupportedForProcessing</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">source</span><span class="p">,</span> <span class="nx">sourceProperties</span><span class="p">,</span> <span class="nx">dest</span><span class="p">,</span> <span class="nx">destProperties</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="nx">source</span><span class="p">[</span><span class="nx">sourceProperties</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">===</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">WinJS</span><span class="p">.</span><span class="nx">Utilities</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">dest</span><span class="p">,</span> <span class="nx">sourceProperties</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">dest</span><span class="p">.</span><span class="nx">className</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">})</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>But I am not sure that&rsquo;s a great idea (as the base.js source code has a lot of extra stuff around this method, which is why they expose an easier <code>WinJS.Binding.coverter</code>).</p>
+
+
+
+
+<h2>Mix N&#8217; Match</h2>
+
+
+
+
+<p>It turns out, it <em>seems</em> to be relatively straight-forward to make KO and WinJS work together. Why would you want to? Well, WinJS has a lot of useful features like WinJS.Promises, utilities, controls, templates, and lots of other stuff. You lose all that if you use a 3rd party library (like KO or jQuery) exclusively.</p>
+
+
+
+
+<p>With this approach, you can choose what works best. You could go all out and use KO to bind all your stuff and then use WinJS for whatever else you need. I chose to just leverage the custom binding functionality.</p>
+
+
+
+
+<h2>Let&rsquo;s do it!</h2>
+
+
+
+
+<p>Once you have Knockout installed (via Nuget or what have you), be sure it&rsquo;s included in your page:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>default.html
+</span><span class='line'>
+</span><span class='line'><span class="c">&lt;!&mdash; WinJS references &mdash;&gt;</span>
+</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;//Microsoft.WinJS.1.0/css/ui-dark.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//Microsoft.WinJS.1.0/js/base.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//Microsoft.WinJS.1.0/js/ui.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/scripts/knockout-2.2.0.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>I put it in default.html so it&rsquo;s globally accessible.</p>
+
+
+
+
+<p>Now, all we are going to do is <strong>replace</strong> the call to <code>WinJS.Binding.processAll</code> with a function that intercepts the call and calls <code>ko.applyBindings</code>, then continues to call the built in WinJS function.</p>
+
+
+
+
+<p>Create a new file, I named mine <em>*ko-winjs.js</em>:</p>
+
+
+
+
+<script src="https://gist.github.com/4183235.js?file=ko-winjs.js"></script>
+
+
+
+
+<p>Then, just include this before <strong>default.js</strong> in your HTML file:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>default.html
+</span><span class='line'>
+</span><span class='line'><span class="c">&lt;!&mdash; WinJS references &mdash;&gt;</span>
+</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;//Microsoft.WinJS.1.0/css/ui-dark.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//Microsoft.WinJS.1.0/js/base.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//Microsoft.WinJS.1.0/js/ui.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/scripts/knockout-2.2.0.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/scripts/ko-winjs.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>And you&rsquo;re all set! Now you can do this in your templates:</p>
+
+
+
+
+<script src="https://gist.github.com/4183235.js?file=template.html"></script>
+
+
+
+
+<p>Pretty awesome!</p>
+
+
+
+
+<h2>Disclaimer</h2>
+
+
+
+
+<p>I have no idea how inefficient this is, but my guess is that this adds extra processing time (plus, binding cache issues?). I have a small application so I&rsquo;m not too worried about it and it&rsquo;s the best thing I could come up with on short notice.</p>
+
+
+
+
+<p>That said, if someone smarter than me and more familiar with KO and WinJS in general could take a peek at this&hellip; I&rsquo;d be super grateful, since I think this is a killer feature. If WinJS could just support KO-style binding syntax, I&rsquo;d be totally cool with that too!</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2012-12-01T23:08:38+00:00" pubdate data-updated="true">Dec 1<span>st</span>, 2012</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
   <h2><a href="/blog/posts/58/using-calc-and-media-queries-to-create-a-combinati">Using Calc() and Media Queries to Create a Combination Variable + Fixed Sidebar</a></h2>
   
   <p>
@@ -1395,195 +1592,6 @@ Source: <a href="http://wpcornerpeelplugin.com/html/">http://wpcornerpeelplugin.
 
 
 <time datetime="2012-06-08T09:49:33+00:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/posts/48/tips-for-updating-from-webapi-beta-to-webapi-rc">Tips for Updating From WebAPI Beta to WebAPI RC</a></h2>
-  
-  <p>
-    <p>I just installed VS 2012 RC (previous codename VS11) to make sure I am on the latest and greatest and I&rsquo;d like to mention a few gotchas I ran into along the way while upgrading <a href="http://keeptrackofmygames.com">Keep Track of My Games</a>.</p>
-
-
-
-
-<h2>Nuget Packages</h2>
-
-
-
-
-<p>One of the first things I did when opening the solution was to compile and run. WHAM. You will get a MissingMethodException:</p>
-
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[MissingMethodException: Method not found: &lsquo;Void System.Net.Http.Headers.HttpHeaders.AddWithoutValidation(System.String, System.Collections.Generic.IEnumerable`1&lt;System.String&gt;)&rsquo;.]
-</span><span class='line'>   System.Web.Http.WebHost.HttpControllerHandler.AddHeaderToHttpRequestMessage(HttpRequestMessage httpRequestMessage, String headerName, String[] headerValues) +0
-</span><span class='line'>   System.Web.Http.WebHost.HttpControllerHandler.ConvertRequest(HttpContextBase httpContextBase) +248
-</span><span class='line'>   System.Web.Http.WebHost.HttpControllerHandler.BeginProcessRequest(HttpContextBase httpContextBase, AsyncCallback callback, Object state) +79
-</span><span class='line'>   System.Web.Http.WebHost.HttpControllerHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state) +48
-</span><span class='line'>   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +268
-</span><span class='line'>   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +155</span></code></pre></td></tr></table></div></figure></p>
-
-<p>First issue: Web API had also been updated along with VS 2012&rsquo;s install. That means your previous beta Nuget packages are out of date. Unfortunately, if you go into <em>Manage Nuget Packages</em> you&rsquo;ll find no help in the Updates panel.</p>
-
-
-
-
-<p>Turns out, the IDs have changed! Search for <code>Microsoft.AspNet.WebApi</code> and you&rsquo;ll find the RC packages again. In my solution, I am using:</p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.AspNet.Mvc&quot;</span> <span class="na">version=</span><span class="s">&quot;4.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.AspNet.Razor&quot;</span> <span class="na">version=</span><span class="s">&quot;2.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.AspNet.WebApi.Client&quot;</span> <span class="na">version=</span><span class="s">&quot;4.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.AspNet.WebApi.Core&quot;</span> <span class="na">version=</span><span class="s">&quot;4.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.AspNet.WebApi.WebHost&quot;</span> <span class="na">version=</span><span class="s">&quot;4.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.AspNet.WebPages&quot;</span> <span class="na">version=</span><span class="s">&quot;2.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.Net.Http&quot;</span> <span class="na">version=</span><span class="s">&quot;2.0.20505.0&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;package</span> <span class="na">id=</span><span class="s">&quot;Microsoft.Web.Infrastructure&quot;</span> <span class="na">version=</span><span class="s">&quot;1.0.0.0&quot;</span> <span class="nt">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>Once you uninstall your beta packages and install the new RC, you will likely run into a few more issues&hellip;</p>
-
-
-
-
-<h2>Dependency Injection</h2>
-
-
-
-
-<p>I am using Ninject for dependency injection. You will need to adapt this solution to your needs if you <em>aren&rsquo;t</em> using Ninject. You will <a href="http://www.strathweb.com/2012/05/using-ninject-with-the-latest-asp-net-web-api-source/">need to use a new way</a> of setting the DependencyResolver, see this GitHub source repository: <a href="https://github.com/filipw/Ninject-resolver-for-ASP.NET-Web-API">https://github.com/filipw/Ninject-resolver-for-ASP.NET-Web-API</a></p>
-
-
-
-
-<p>Thanks Filip!</p>
-
-
-
-
-<h2>No more generic HttpResponseMessage</h2>
-
-
-
-
-<p>If you had previously been using code like this:</p>
-
-
-
-
-<pre><code>new HttpResponseMessage&lt;T&gt;(someValue)
-</code></pre>
-
-
-
-
-<p>You will get compilation errors. The new way to handle this is via the <code>Request</code> property in your controllers:</p>
-
-
-
-
-<pre><code>Request.CreateResponse(HttpStatusCode.OK, result);
-</code></pre>
-
-
-
-
-<p>You will need to change any return types from <code>HttpResponseMessage&lt;T&gt;</code> to <code>HttpResponseMessage</code>.</p>
-
-
-
-
-<h2>No need for custom JSON.NET formatter</h2>
-
-
-
-
-<p>If you had previously been using a variant of <a href="http://www.west-wind.com/weblog/posts/2012/Mar/09/Using-an-alternate-JSON-Serializer-in-ASPNET-Web-API">Rick Strahl&rsquo;s JSON.NET formatter</a>, you do not need it anymore as Web API defaults to JSON.NET now. However, if you, like me, want to customize the settings used, you can still do so:</p>
-
-
-
-
-<p><strong>Global.asax or App_Start</strong></p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="kt">var</span> <span class="n">formatter</span> <span class="p">=</span> <span class="n">GlobalConfiguration</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">Formatters</span><span class="p">.</span><span class="n">OfType</span><span class="p">&lt;</span><span class="n">JsonMediaTypeFormatter</span><span class="p">&gt;().</span><span class="n">First</span><span class="p">();</span>
-</span><span class='line'><span class="n">formatter</span><span class="p">.</span><span class="n">SerializerSettings</span><span class="p">.</span><span class="n">NullValueHandling</span> <span class="p">=</span> <span class="n">NullValueHandling</span><span class="p">.</span><span class="n">Ignore</span><span class="p">;</span>
-</span><span class='line'><span class="n">formatter</span><span class="p">.</span><span class="n">SerializerSettings</span><span class="p">.</span><span class="n">Converters</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">StringEnumConverter</span><span class="p">());</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>Thanks to Matt in the comments for trimming the fat off what I had previously.</p>
-
-
-
-
-<h2>No more GetUserPrincipal</h2>
-
-
-
-
-<p>I had previously been using the extension method <code>GetUserPrincipal</code> in my custom Authorize attribute. No more! You can now use <code>System.Threading.Thread.CurrentPrincipal.Identity</code> if you need the current principal in Web API. There&rsquo;s also a convenient <code>User</code> property in the <code>ApiController</code> base class.</p>
-
-
-
-
-<h2>That&rsquo;s it!</h2>
-
-
-
-
-<p>That&rsquo;s about all I ran into. I am also happy to report that <a href="https://github.com/mccalltd/AttributeRouting">AttributeRouting</a> still seems to work fine against the Web API RC and MVC 4 RC! I did some limited browsing around on my site with heavy AJAX calls and everything seemed to work.</p>
-
-
-
-
-<p>Hope this saves you some time!</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2012-06-01T10:59:01+00:00" pubdate data-updated="true">Jun 1<span>st</span>, 2012</time>
     
 
 

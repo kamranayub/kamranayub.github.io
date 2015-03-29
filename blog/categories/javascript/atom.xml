@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Node.js | Kamranicus]]></title>
-  <link href="http://kamranicus.com/blog/categories/node-dot-js/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Javascript | Kamranicus]]></title>
+  <link href="http://kamranicus.com/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
   <updated>2015-03-29T23:22:28+00:00</updated>
   <id>http://kamranicus.com/</id>
@@ -53,33 +53,6 @@ after_success:
 <p>All set. Now when you commit to one repository, you can trigger a build for another one. This allows us to automatically <a href="http://excaliburjs.com/docs/api/edge">keep our docs up-to-date</a> with whatever <code>master</code> has.</p>
 
 <p>You can <a href="https://github.com/excaliburjs/Excalibur/blob/master/deploy-docs.js">reference Excalibur</a> to see how we execute the script. Additionally, you can reference <a href="https://github.com/excaliburjs/excaliburjs.github.io/blob/site/.travis.yml">excaliburjs.com&rsquo;s Travis configuration</a> to see how we use <a href="http://typedoc.io">TypeDoc</a> to generate documentation for the latest version of <code>master</code>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Getting WebSockets to Work on Windows Azure]]></title>
-    <link href="http://kamranicus.com/blog/2014/02/09/websockets-on-windows-azure/"/>
-    <updated>2014-02-09T03:52:48+00:00</updated>
-    <id>http://kamranicus.com/blog/2014/02/09/websockets-on-windows-azure</id>
-    <content type="html"><![CDATA[<p>I was banging my head against the wall for the past hour or so wondering why I was falling back to XHR polling when I deployed my Node.js application to Azure. I&rsquo;m using socket.io and everything looks like it&rsquo;s in order, works locally, etc. It was failing with a WebSocket handshake error.</p>
-
-<p>What I saw in the Chrome developer console was something like:</p>
-
-<pre><code>Error during WebSocket handshake: Unexpected response code: 502
-</code></pre>
-
-<p>In my Azure Node.js console (<code>azure site log tail SITENAME</code>), I was seeing <code>EPIPE</code> errors.</p>
-
-<p>It turns out, this little tidbit from the <a href="http://blogs.msdn.com/b/windowsazure/archive/2013/11/14/introduction-to-websockets-on-windows-azure-web-sites.aspx">original Windows Azure blog post</a> on Web Sockets did the trick.</p>
-
-<p>Modify your <strong>web.config</strong> and add:</p>
-
-<pre><code>&lt;webSocket enabled="false" /&gt;
-</code></pre>
-
-<p>To your <code>system.webServer</code> configuration. Also, another good point in that blog post is to use SSL, since you get SSL for free with a <code>*.azurewebsites.net</code> site.</p>
-
-<p>Hope this helps someone else out there. This should be added to the <a href="http://www.windowsazure.com/en-us/documentation/articles/web-sites-nodejs-chat-app-socketio/">official Azure tutorial</a> on using web sockets with Node.js.</p>
 ]]></content>
   </entry>
   
