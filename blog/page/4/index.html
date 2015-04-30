@@ -90,6 +90,108 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-3 col-md-6">
               <article>
+  <h2><a href="/blog/posts/60/disappointed-in-the-windows-store-submission-proce">Disappointed in the Windows Store Submission Process</a></h2>
+  
+  <p>
+    <p>I&rsquo;m disappointed I have to write about this, because I shouldn&rsquo;t have to. I&rsquo;ve been a Microsoft-stack guy for a long time and I was <em>really</em> excited to release my <a href="http://steamhubapp.com">first app</a> for Windows 8. I&rsquo;m even more excited to also work on a Windows Phone app. That&rsquo;s why I bought a Surface RT and a new HTC 8X. I&rsquo;m all in.</p>
+
+
+
+
+<p>So imagine my disappointment when, after five days, I receive this email:</p>
+
+
+
+
+<blockquote><p>Windows Store: we couldn&rsquo;t certify your app</p></blockquote>
+
+
+
+
+<p>Boo. <em>Okay,</em> I thought, <em>I must have missed something, no big deal.</em> Clearly the testers must have found something that I missed, since I ran my app through memory profiling and performance testing both on my PC and Surface. I even poured over the certification checklist and common points of failure. What did I miss?</p>
+
+
+
+
+<p><strong>Nothing.</strong></p>
+
+
+
+
+<p>Here&rsquo;s what the tester&rsquo;s note said on the report:</p>
+
+
+
+
+<blockquote><p>F:: It is unclear how to create an account for this app to be reviewed. This prevented us from completing our review of this app.</p></blockquote>
+
+
+
+
+<p><em>What?</em> &ldquo;Unclear&rdquo;? You mean, the first sentence of my &ldquo;Instructions to Testers&rdquo; wasn&rsquo;t clear enough?</p>
+
+
+
+
+<blockquote><p>Please use my account (***) to test the app with.</p></blockquote>
+
+
+
+
+<p><em>So. Frustrating.</em> I could understand if I had perhaps put that information at the bottom of my note, forgot to include it, or something else&hellip; but I <em>put it at the top of the instructions</em> to avoid this very problem. How can I feel confident in this testing process if the testers don&rsquo;t read our instructions? It just seems to contribute to my overall view that the Windows Store is lacking in several areas and &ldquo;just isn&rsquo;t there&rdquo; yet but I suppose that rant is for another day.</p>
+
+
+
+
+<p>What makes it worse is that the tutorial video I include in the app (that is accessible on the first screen) <strong>uses my account to demo.</strong> It just boggles my mind.</p>
+
+
+
+
+<p><img src="http://ragemaker.net/images/Stupidity/seriouslyChan.png" alt="Seriously?" /></p>
+
+
+
+
+<p>The icing on the cake was that it took 5 days for this to fail. I&rsquo;m sure it goes into a queue and that the actual time to perform &ldquo;content compliance&rdquo; is an hour or so but even knowing that, it just made it worse since now I have to wait an additional X days for something I shouldn&rsquo;t have had to wait for in the first place.</p>
+
+
+
+
+<p>There&rsquo;s nothing else I can really do about it, though. I re-submitted it, I added extra emphasis in the Notes field, but what else is there? Just pray it works this time, I guess. Disappointing first-time experience, to say the least.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2012-12-15T08:29:55+00:00" pubdate data-updated="true">Dec 15<span>th</span>, 2012</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
   <h2><a href="/blog/posts/59/using-knockout-bindings-in-your-winjs-application">Using Knockout Bindings in Your WinJS Application</a></h2>
   
   <p>
@@ -1441,157 +1543,6 @@ Source: <a href="http://wpcornerpeelplugin.com/html/">http://wpcornerpeelplugin.
 
 
 <time datetime="2012-06-12T23:32:52+00:00" pubdate data-updated="true">Jun 12<span>th</span>, 2012</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/posts/49/use-enums-to-reduce-markup-maintenance-mvc">Use Enums to Reduce Markup Maintenance [MVC]</a></h2>
-  
-  <p>
-    <p>Have you ever done this before?</p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!&mdash; Decide what CSS class to use for layout &mdash;&gt;</span>
-</span><span class='line'>@if (Model.Format == Formats.Table) {
-</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo foo-layout-table&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>} else if (Model.Format == Formats.Grid) {
-</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo foo-layout-grid&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>} else if (Model.Format == Formats.Paragraph) {
-</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo foo-layout-paragraph&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>  <span class="c">&lt;!&mdash; Markup &mdash;&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>Or some other variant of the same idea (trying to assign a CSS class based on some branch logic)?</p>
-
-
-
-
-<p>If you find yourself doing this, I have a pro tip for you: wherever you can, utilize your enum directly in the CSS class name. Why? Because in 2 weeks when you add another layout, you will need to go back into this if statement and add another branch. The other reason is, frankly, this is ugly and not very Razor-ish.</p>
-
-
-
-
-<p>Instead, I&rsquo;d advocate doing it this way:</p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo foo-layout-@Model.Format&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="c">&lt;!&mdash; Markup &mdash;&gt;</span>
-</span><span class='line'><span class="nt">&lt;/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>Simple! I found that to be much more intuitive and is the way I&rsquo;ve always approached this. You can use this approach with an Enum, string, or other type where a <code>.ToString()</code> outputs a simple value (booleans!).</p>
-
-
-
-
-<p><em>But Kamran, my logic is much more complex than that.</em> This is when I&rsquo;d recommend pulling out that logic into a view model, creating a <code>@helper</code>, or as a last resort, inline.</p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!&mdash; Helper &mdash;&gt;</span>
-</span><span class='line'>@helper LayoutCss() {
-</span><span class='line'>  if (Model.Format == Formats.Table) {
-</span><span class='line'>      @:foo-layout-table
-</span><span class='line'>  } else if (Model.Format == Formats.Grid) {
-</span><span class='line'>      @:foo-layout-grid
-</span><span class='line'>  } else if (Model.Format == Formats.Paragraph) {
-</span><span class='line'>      @:foo-layout-paragraph
-</span><span class='line'>  }
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo @LayoutCss()&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">&lt;!&mdash; Inline &mdash;&gt;</span>
-</span><span class='line'>@{
-</span><span class='line'>  var layoutCssClass = &quot;&quot;;
-</span><span class='line'>
-</span><span class='line'>  if (Model.Format == Formats.Table) {
-</span><span class='line'>      layoutCssClass = &quot;foo-layout-table&quot;;
-</span><span class='line'>  } else if (Model.Format == Formats.Grid) {
-</span><span class='line'>      layoutCssClass = &quot;foo-layout-grid&quot;;
-</span><span class='line'>  } else if (Model.Format == Formats.Paragraph) {
-</span><span class='line'>      layoutCssClass = &quot;foo-layout-paragraph&quot;;
-</span><span class='line'>  }
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;foo @layoutCssClass&quot;</span><span class="nt">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>The point is to decouple your CSS class logic from your markup as much as you can, so your markup isn&rsquo;t crufted up. What other tips do you have for reducing CSS class headaches?</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2012-06-08T09:49:33+00:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time>
     
 
 

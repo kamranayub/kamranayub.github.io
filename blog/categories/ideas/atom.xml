@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ideas | Kamranicus]]></title>
+  <link href="http://kamranicus.com/blog/categories/ideas/atom.xml" rel="self"/>
+  <link href="http://kamranicus.com/"/>
+  <updated>2015-04-30T23:07:15+00:00</updated>
+  <id>http://kamranicus.com/</id>
+  <author>
+    <name><![CDATA[Kamran]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[101 Ideas for the Microsoft HoloLens]]></title>
+    <link href="http://kamranicus.com/blog/2015/04/30/101-ideas-for-the-microsoft-hololens/"/>
+    <updated>2015-04-30T20:42:59+00:00</updated>
+    <id>http://kamranicus.com/blog/2015/04/30/101-ideas-for-the-microsoft-hololens</id>
+    <content type="html"><![CDATA[<p>HoloLens has the potential to change how we live, drastically.</p>
+
+<hr />
+
+<p><a href="http://buildwindows.com/">Microsoft Build</a> is Microsoft&rsquo;s annual developer conference. I attended the conference in 2013 and 2014 for work and had a blast both times. This year I couldn&rsquo;t attend since we have been living in France (a good excuse) but I still wanted to catch the livestream of this year&rsquo;s keynote.</p>
+
+<p>Since we were in Bordeaux during the keynote, I was watching the livestream while sipping on some cheap red wine (no worries, it was night and we were done for the day).</p>
+
+<blockquote class="twitter-tweet" data-partner="tweetdeck"><p lang="en" dir="ltr">Sipping wine in <a href="https://twitter.com/hashtag/Bordeaux?src=hash">#Bordeaux</a> and getting ready to watch <a href="https://twitter.com/hashtag/Build2015?src=hash">#Build2015</a> <a href="https://twitter.com/hashtag/bldwin?src=hash">#bldwin</a> livestream in 20 mins. <a href="http://t.co/cRHfFcI284">pic.twitter.com/cRHfFcI284</a></p>&mdash; Kamran Ayub (@kamranayub) <a href="https://twitter.com/kamranayub/status/593432034137264128">April 29, 2015</a></blockquote>
+
+
+<script async src="http://kamranicus.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>I was getting pretty excited as things progressed. <a href="http://code.visualstudio.com/">Visual Studio Code</a> was pretty awesome, <a href="http://winsupersite.com/windows-10/windows-10-will-introduce-web-apps-store">adding websites to the Windows Store</a> was pretty awesome (especially for <a href="http://keeptrackofmygames.com">Keep Track of My Games</a>), but more than any of that, the <a href="https://www.microsoft.com/microsoft-hololens/en-us">Microsoft HoloLens</a> announcement and demos <strong>blew my mind</strong>.</p>
+
+<p>If you haven&rsquo;t seen the HoloLens demo from the keynote, it starts around 2:48:30:</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/W41AVOZpe7w?t=2h48m30s&amp;rel=0" frameborder="0" allowfullscreen></iframe>
+
+
+<p>Is your mind sufficiently blown? Mine was too. It was <a href="http://en.wikipedia.org/wiki/Clarke%27s_three_laws">indistinguishable from magic</a> (as it <em>is</em> sufficiently advanced).</p>
+
+<p>All at once, like a tidal wave unannounced, a whole slew of ideas ran through my head on what kinds of possibilities could be made possible with HoloLens. Some of them assume certain functionality or environment conditions are there, but there&rsquo;s no use dreaming if you can&rsquo;t dream a little bit ahead of the curve, right?</p>
+
+<p>After the keynote, I was excited but we had to find a place to eat. We settled on Santosha, a local Thai place where all the young &ldquo;hip&rdquo; French people go. During dinner that night, Cassie and I discussed tons of cool uses for Lens and though my lovely wife isn&rsquo;t a developer nor a self-identified &ldquo;techie&rdquo;, I could see her excitement as she thought of things that would be cool and we both exchanged ideas.</p>
+
+<p>I kept having ideas afterward too. Too many! As a mental excercise and to ensure the ideas go down somewhere, I decided I&rsquo;d write a post about it. So here goes: <strong>101 Ideas for the Microsoft HoloLens</strong>. Ideas are cheap, so I&rsquo;m sharing them. Probably, like many ideas, some of these are trash. Others are promising. Others probably are not possible with the current HoloLens technology. Still others may inspire <strong>you</strong> with an idea. Whatever came out of my head, I wrote it down and made no priority or judgement calls.</p>
+
+<h2>The 101 Ideas</h2>
+
+<p>These are not ordered in any specific order, except by stream of conciousness:</p>
+
+<ol>
+<li>Allow you to view your videogame character in 3D space and inspect them, or their inventories</li>
+<li>Holographic UI to assist in playing a game</li>
+<li>Instant board / table-top games with other people using HoloLens</li>
+<li>Play virtual sports (real or fake, like Quidditch)</li>
+<li>Geo-based holograph reality game (requires 4G/LTE HoloLens)</li>
+<li>Insane horror game</li>
+<li>Virtual legos/Minecraft in 3D space</li>
+<li>Helping kids with autism with a &ldquo;social avatar buddy&rdquo;</li>
+<li>To-do list (to-do&rsquo;s all over)</li>
+<li>Cooking companion (visualize recipes)</li>
+<li>Virtual decorations for your house (&ldquo;Decoration Store&rdquo;)</li>
+<li>HoloLens restaurant</li>
+<li>Visualize how to decorate your home (&ldquo;Oh the couch would look nice here&rdquo;)</li>
+<li>Photos on the wall</li>
+<li>Running apps &mdash; rendered zombies or whatever behind you</li>
+<li>Inspecting your car (what is this? where is this?)</li>
+<li>Car windshields equipped with holo display</li>
+<li>HoloContacts &mdash; eventually HoloLens inside a contact lens</li>
+<li>Virtual partner</li>
+<li>Visualizing clothing or haircut</li>
+<li>Google Earth/StreetView for low-cost travel</li>
+<li>Wall-sized environments ala Hunger Games wall (forest, lakes, beach, etc.)</li>
+<li>Reading a book to your kid (project pages in space/onto wall)</li>
+<li>Virtual reading / bookshelf (reach out, take a virtual book, hold and read/flip pages)</li>
+<li>Holo Sims game (lonely? get a roommate)</li>
+<li>Cortana in person</li>
+<li>Virtual window weather app&mdash;so the window reflects what it&rsquo;s like outside</li>
+<li>Pin specific types of news stories</li>
+<li>Fridge pinning</li>
+<li>Virtual pinned calendar for easy planning</li>
+<li>Pin your kids' projects on the fridge (teacher saves through Internet => home)</li>
+<li>Rotating posters or /r/aww or awwpets.com on your wall</li>
+<li>On your fridge, post what you eat/or say it and view it right there</li>
+<li>Object recognition for food in fridge/pantry &mdash;> pantry app, &ldquo;Cortana, what do I need to make Beef Stroganoff?&rdquo;</li>
+<li>Pin shows in Netflix near TV so I can tap and watch/resume</li>
+<li>Portable screen for playing games (LAN parties anyone?)</li>
+<li>Ceiling craziness (skyboxes, night sky)</li>
+<li>Live holo concerts</li>
+<li>Holo Videos &mdash; videos shot in 3D space (HoloTV, HoloTube, etc.)</li>
+<li>New controllers for games</li>
+<li>Controlling robots (demo&rsquo;d at keynote)</li>
+<li>Holo UI for devices that have no physical UI</li>
+<li>Level designer for games / engines (modders or artists or developers) &mdash; Unity: Holo Editor</li>
+<li>AI pets</li>
+<li>Home automation</li>
+<li>Butler &mdash; think Barkley from <em>Modern Family</em> (thanks Cassie!)</li>
+<li>Assisted seeing for people with some visual problems or the elderly</li>
+<li>Private vs. Shared holographic experiences</li>
+<li>Vehicle training</li>
+<li>Inspection of literally anything that can be rendered in 3D</li>
+<li>Skyrim IRL</li>
+<li>&ldquo;Second Space&rdquo; for games</li>
+<li>Virtual monitors / screens</li>
+<li>Holo UI for phones</li>
+<li>Collaboration apps &mdash; tech repair, construction, etc.</li>
+<li>Physical tutorials or manuals for a device/object</li>
+<li>Watch Dogs style meta information about the world</li>
+<li>Museums (tours, virtual guides, audio, etc.)</li>
+<li>&ldquo;Anywhere&rdquo; computer with mouse/keyboard (if even)</li>
+<li>Modeling, painting, artwork, holo canvas</li>
+<li>Holo GPS for walking/driving navigation</li>
+<li>Restaurant Lens &mdash; imagine FourSquare laid on top of the world, as you see it</li>
+<li>LARPing heaven</li>
+<li>Virtual darts (or any other wall game)</li>
+<li>Hiking/walking assist (trails)</li>
+<li>Immersive livestreaming</li>
+<li>Shared first-person experiences (travel, etc.)</li>
+<li>Augmented TV (show interaction, show metadata, etc.)</li>
+<li>ENHANCE (digital zoom / binoculars)</li>
+<li>Home repair assist</li>
+<li>Webcam/streams/Dropcam pinned to walls (Security Wall, near bed, etc.)</li>
+<li>Night vision (infrared projection + spatial mapping)</li>
+<li>Holo lyrics for the song you&rsquo;re listening to (or music video)</li>
+<li>Virtual note-taking (take a photo, mark it up, store in notebook)</li>
+<li>&ldquo;Copy/paste&rdquo; &mdash; see/map a physical object, clone it into a holograph</li>
+<li>Map a physical object, create a game engine 3D mesh/model and texture</li>
+<li>Classroom teaching (holo whiteboards, shared whiteboards, shared models, etc.)</li>
+<li>Virtual Fighter (or Trainer)</li>
+<li>Exercise examples</li>
+<li>FitBit/Band + HoloLens = Virtual Holo Data</li>
+<li>Virtual bowling</li>
+<li>Tattoo design/preview</li>
+<li>In-store augmentation &mdash; &ldquo;Target: Where&rsquo;s scissors?&rdquo;, shows a holo GPS navigation in the store</li>
+<li>3D/Holo Snapchat &mdash; &ldquo;Help me Obi Wan Kenobi&rdquo;</li>
+<li>Holo Celebrities &mdash; &ldquo;Is that James Franco sitting on your couch?&rdquo;</li>
+<li>Holo music making (holo guitar, holo drums, etc.)</li>
+<li>Anatomy / surgery training for doctors, nurses</li>
+<li>Simulations &mdash; physics, games, etc.</li>
+<li>Countdown app</li>
+<li>Social feed (birthdays, events, etc.) &mdash; pin specific people</li>
+<li>Facial recognition &mdash; infinite uses</li>
+<li>Shared workspace notes/etc</li>
+<li>Holo Coupons &mdash; only people using HoloLens would see promos in-store</li>
+<li>Virtual graffiti</li>
+<li>City/&ldquo;Space&rdquo; augmentation &mdash; infinite uses, tourism guides, GPS/location based, augment builings, signs, indoor augmentation, etc.</li>
+<li>Metro/transit augmentation &mdash; real-time GPS info, visualize upcoming stops, route, etc.</li>
+<li>Sex-ed (<em>shudders</em>)</li>
+<li>Augmented physical books</li>
+<li>Gardening (reminder for watering, seasons, plant timeframes, etc.)</li>
+<li> Knitting counter (keeps track of your stitches)</li>
+<li> Pet augmentation (when last fed, last walked, any other tracking data for your pet)</li>
+</ol>
+
+
+<p>And so on and so forth.</p>
+
+<h2>I want a HoloLens</h2>
+
+<p>Basically if you can&rsquo;t tell, I would like to be wearing HoloLens <strong>all the time</strong> (in fact, for many of these ideas, you&rsquo;d have to for them to be practical).</p>
+
+<p>There are literally infinite uses for this technology, as virtual space is infinite, the Earth is a large place and we do a lot of things we need help with. I find HoloLens even more compelling than the Oculus Rift because HoloLens doesn&rsquo;t [necessarily] replace the world; it just augments it&mdash;which makes it much more manageable to be wearing all the time.</p>
+
+<p>Let&rsquo;s say in 10-20 years, the technology progresses enough that it can be miniaturized in a contact lens or even glasses (with your prescription). We&rsquo;d all be equipped with a Lens and we&rsquo;d all have shared/private holograph experiences. Would that ever happen? Glasses seems doable. If it&rsquo;s as easy as what I do with my current prescription glasses and it&rsquo;s fashionable, I&rsquo;m sold. As for everyone having one? There are more phones than people in this world and that&rsquo;s happened relatively fast (for humans). Anything is possible. All you need is a killer app.</p>
+
+<h2>Have your own ideas?</h2>
+
+<p>Make a list and share it below (or link to your blog).</p>
+]]></content>
+  </entry>
+  
+</feed>
