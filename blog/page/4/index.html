@@ -90,6 +90,170 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-3 col-md-6">
               <article>
+  <h2><a href="/blog/posts/61/a-smarter-checked-binding-for-knockoutjs">A Smarter `checked` Binding for KnockoutJS</a></h2>
+  
+  <p>
+    <blockquote><p><strong>Update</strong>: In Knockout 3+, this issue is solved with the new <code>checkedValue</code> binding. Read the <a href="http://knockoutjs.com/documentation/checked-binding.html">documentation</a> for details. You can still use my workaround for KO 2.x and below.</p></blockquote>
+
+
+
+
+<p>I love KnockoutJS. I&rsquo;ve been using it for awhile now and I really enjoy it. That said, there are a few oddities with it, one such being the <code>checked</code> binding.</p>
+
+
+
+
+<p>Let&rsquo;s say you have this scenario (as I do now):</p>
+
+
+
+
+<p>You want to <code>foreach</code> a list of items, each one having a checkbox. You want to store the checked items in a list, for use throughout the view model (bulk updates, select all, deselect all, etc.). How do you go about doing this?</p>
+
+
+
+
+<p>The &ldquo;recommended&rdquo; approach would be to add an observable property, <code>isSelected</code>, to each of your items. Then, in your markup, you can bind to that property:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul</span> <span class="na">data-bind=</span><span class="s">&quot;foreach: tasks&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;input</span> <span class="na">type=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">data-bind=</span><span class="s">&quot;checked: isSelected&quot;</span><span class="nt">&gt;&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>That is OK. It&rsquo;s OK because what if you need to use that item (assuming you&rsquo;re using a &ldquo;class&rdquo; or other reusable object) somewhere else where you don&rsquo;t need that property. You could just attach it where you need it. It also makes it a bit tricky to manage the list of selected items (you&rsquo;d probably end up creating a <code>computed</code> array), as well as making it difficult to dynamically bind a checkbox list to a computed array.</p>
+
+
+
+
+<p>What you may decide to do (like me) is to try and bind the <code>checked</code> to your own observable array, and assign the <code>value</code> of the checkbox to a model property like this:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">data-bind=</span><span class="s">&quot;checked: $root.selectedTaskIds, value: id&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>However, if you do this, you&rsquo;ll soon discover a few oddities:</p>
+
+
+
+
+<ol>
+<li>When you check the checkbox, the <em>string</em> value of your model property will be placed into the array.</li>
+<li>Your model property <em>will change to this new string value</em> essentially changing your original model.</li>
+</ol>
+
+
+
+
+<p>There are reasons for these two crazy happenings, which I discovered:</p>
+
+
+
+
+<ol>
+<li>The <code>checked</code> binding bases its value on the <em>element&rsquo;s</em> value, which is stored as a string.</li>
+<li>The <code>value</code> binding keeps the property you are bound to and the <em>element&rsquo;s value</em> in-sync, which is why your model&rsquo;s ID becomes a string.</li>
+</ol>
+
+
+
+
+<p>It turns out, we&rsquo;re suffering from some mental model breakdown. If you look at the KO documentation for <code>checked</code>, it&rsquo;s easy to believe the above syntax should work, after all, it says:</p>
+
+
+
+
+<blockquote><p>Special consideration is given if your parameter resolves to an array. In this case, KO will set the element to be checked if the <strong>value</strong> matches an item in the array, and unchecked if it is not contained in the array.</p></blockquote>
+
+
+
+
+<p>If the <em>value</em> matches&hellip; &ldquo;Cool!&rdquo; so I can just bind the <code>value:</code> to my model property? NOPE. You&rsquo;ll run into the aforementioned issues if you try.</p>
+
+
+
+
+<h3>Making a smarter <code>checked</code> binding</h3>
+
+
+
+
+<p>Since I didn&rsquo;t want to add <code>isSelected</code> properties everywhere, I decided to &ldquo;monkey patch&rdquo; the <code>checked</code> and <code>value</code> bindings to play nice together.</p>
+
+
+
+
+<p>Essentially, all my patch does is two things:</p>
+
+
+
+
+<ol>
+<li>In the <code>checked</code> binding, if it finds a <code>value</code> binding, it binds to that value rather than the element&rsquo;s value.</li>
+<li>In the <code>value</code> binding, it completely ignores any changes if the <code>checked</code> binding is present, essentially nullifying the binding.</li>
+</ol>
+
+
+
+
+<p>Here are the new binding definitions:</p>
+
+
+
+
+<script src="https://gist.github.com/4418574.js"></script>
+
+
+
+
+<p>And you can see it in action here:</p>
+
+
+
+
+<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/kamranayub/G8YZU/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+
+
+
+<p>As you can see, now it works as you&rsquo;d expect! You can bind the <code>id</code> property to the list. You can also bind <code>$data</code> and you&rsquo;ll have the full object in your selected list.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2012-12-31T15:48:04+00:00" pubdate data-updated="true">Dec 31<span>st</span>, 2012</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
   <h2><a href="/blog/posts/60/disappointed-in-the-windows-store-submission-proce">Disappointed in the Windows Store Submission Process</a></h2>
   
   <p>
@@ -1441,108 +1605,6 @@ Source: <a href="http://wpcornerpeelplugin.com/html/">http://wpcornerpeelplugin.
 
 
 <time datetime="2012-06-15T11:19:29+00:00" pubdate data-updated="true">Jun 15<span>th</span>, 2012</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/posts/50/frustration-with-the-vs2012-team-explorer-tool-win">Frustration With the VS2012 Team Explorer Tool Window</a></h2>
-  
-  <p>
-    <p>I would just like to quickly comment on something I noticed while using VS2012 and Team Explorer (we use TFS at work). Below is a screenshot of the window as it stands in the RC.</p>
-
-
-
-
-<p><strong>Can you tell me what role the black text in the window plays?</strong></p>
-
-
-
-
-<p><img src="/blog/images/48.png" alt="Team Explorer 2012" /></p>
-
-
-
-
-<p>If you said &ldquo;headings,&rdquo; I would not blame you because <em>that&rsquo;s exactly what I thought at first.</em> In fact, they are <strong>links</strong> to the common tasks you&rsquo;ll do in TFS. I didn&rsquo;t realize this until my mouse happened to hover over the tasks and then it became underlined with the pointer cursor. There&rsquo;s a pretty clear violation of the Gestalt principle of color here; why are some links blue and the most common ones bold and black? Unconsciously, this matches my typical assumption of headings, when in fact the true intention is to make the common tasks stand out.</p>
-
-
-
-
-<p>We see this header/nav paradigm all over the web. Here&rsquo;s what Apple&rsquo;s footer navigation is styled like:</p>
-
-
-
-
-<p><img src="/blog/images/49.png" alt="Apple Nav" /></p>
-
-
-
-
-<p>My automatic assumption is enforced by the fact that the <em>Home</em> heading is also black and bold, the only difference being the size.</p>
-
-
-
-
-<p>This is even a paradigm <em>within VS2012 itself</em>. Here&rsquo;s an example on the start page:</p>
-
-
-
-
-<p><img src="/blog/images/50.png" alt="Getting Started" /></p>
-
-
-
-
-<p>Or, the Start tasks&hellip;</p>
-
-
-
-
-<p><img src="/blog/images/51.png" alt="Start" /></p>
-
-
-
-
-<p>The other thing that frustrated me the first time was figuring out how to change team projects. It&rsquo;s not easy to figure out. You need to click the team project name, which looks like a label except for the arrow on the far right edge.</p>
-
-
-
-
-<p><img src="/blog/images/52.png" alt="Changing team projects" /></p>
-
-
-
-
-<p>I like what the team is trying to do here, I just think the navigation needs to be gone over again to reduce the confusion.</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2012-06-12T23:32:52+00:00" pubdate data-updated="true">Jun 12<span>th</span>, 2012</time>
     
 
 

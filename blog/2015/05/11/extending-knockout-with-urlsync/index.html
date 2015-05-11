@@ -9,11 +9,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: OSS - Kamranicus</title>
+  <title>Extending Knockout Observables to Sync With Address Bar - Kamranicus</title>
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="Category: OSS">
+  <meta name="description" content="Extending Knockout Observables to Sync With Address Bar written May 11th, 2015 in Gists, Javascript, Knockout, OSS For Keep Track of My Games I& &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -22,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://kamranicus.comblog/categories/oss">
+  <link rel="canonical" href="http://kamranicus.com/blog/2015/05/11/extending-knockout-with-urlsync">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
@@ -51,26 +51,38 @@
       <img src="/images/home.png"/>
     </a>
 
-    <div class="all-posts">
+    <article role="article" class="full-single-article">
   <div class="container">
     <div class="row">
-      <div class="list-title col-md-offset-3 col-md-6">
-        <h4>Posts in OSS</h4>
-      </div>
-    </div>
-  </div>
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Extending Knockout Observables to Sync With Address Bar</h1>
+        <div class="meta">
+          written 
 
-  <div class="article-list">
-    <div class="container">
-      
-        
-        <div class="row">
-          <div class="col-md-offset-3 col-md-6">
-            <article>
-  <h2><a href="/blog/2015/05/11/extending-knockout-with-urlsync/">Extending Knockout Observables to Sync With Address Bar</a></h2>
+
+
+
+
+
+
+
   
-  <p>
-    <p>For <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> I&rsquo;ve been adding filtering to the game library. I&rsquo;m really proud of what I have, here&rsquo;s what it looks like in the UI:</p>
+
+
+
+<time datetime="2015-05-11T16:20:00+00:00" pubdate data-updated="true">May 11<span>th</span>, 2015</time>
+          
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/gists/'>Gists</a>, <a class='category' href='/blog/categories/javascript/'>Javascript</a>, <a class='category' href='/blog/categories/knockout/'>Knockout</a>, <a class='category' href='/blog/categories/oss/'>OSS</a>
+  
+</span>
+
+
+        </div>
+        <p>For <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> I&rsquo;ve been adding filtering to the game library. I&rsquo;m really proud of what I have, here&rsquo;s what it looks like in the UI:</p>
 
 <p><img src="/blog/images/2015-05-11-filtering.png" alt="Filtering UI" /></p>
 
@@ -119,27 +131,39 @@
 
 <p>It&rsquo;s really simple to use, for example here&rsquo;s a snippet from my collection view model:</p>
 
-<p>```
-// Flattened facets
-ViewModel.facets = ko.observableArray([]);</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>// Flattened facets
+</span><span class='line'>ViewModel.facets = ko.observableArray([]);
+</span><span class='line'>
+</span><span class='line'>// Selected (applied) facets
+</span><span class='line'>ViewModel.selectedFacets = ko.observableArray([]).extend({
+</span><span class='line'>    urlSync: {
+</span><span class='line'>      param: "filterBy",
+</span><span class='line'>      read: function(value) {
+</span><span class='line'>         return kt.utils.facetsFromString(value, ViewModel.facets);
+</span><span class='line'>      },
+</span><span class='line'>      write: kt.utils.facetsToString
+</span><span class='line'>    }
+</span><span class='line'>});
+</span><span class='line'>
+</span><span class='line'>// Filter AND toggle
+</span><span class='line'>ViewModel.filterAnd = ko.observable(false).extend({ urlSync: "filterAnd" });</span></code></pre></td></tr></table></div></figure>
 
-<p>// Selected (applied) facets
-ViewModel.selectedFacets = ko.observableArray([]).extend({</p>
-
-<pre><code>urlSync: {
-    param: "filterBy",
-    read: function(value) {
-       return kt.utils.facetsFromString(value, ViewModel.facets);
-    },
-    write: kt.utils.facetsToString
-}
-</code></pre>
-
-<p>});</p>
-
-<p>// Filter AND toggle
-ViewModel.filterAnd = ko.observable(false).extend({ urlSync: &ldquo;filterAnd&rdquo; });
-```</p>
 
 <p>As you can see, the extender allows you to intercept read/write so you can perform any custom transformations (e.g. filtering objects to/from string). Because we&rsquo;re deserializing from a string and because the <code>checkedValue</code> binding is by reference, I pass in the existing facets collection to my utility, in order to preserve object references when required. On initial page load, this isn&rsquo;t required as the games haven&rsquo;t been fetched from the API yet. Once they are, my fetch method updates the observables. I could also modify the way I handle binding the checkboxes but this works.</p>
 
@@ -158,89 +182,33 @@ ViewModel.filterAnd = ko.observable(false).extend({ urlSync: &ldquo;filterAnd&rd
 
 <p>Pretty neat and now allows anyone to copy/paste the URL and preserve any needed filtering state!</p>
 
-  </p>
-  <span class="meta">
-    written 
 
+        <hr class="divider-short"/>
 
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2015-05-11T16:20:00+00:00" pubdate data-updated="true">May 11<span>th</span>, 2015</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/gists/'>Gists</a>, <a class='category' href='/blog/categories/javascript/'>Javascript</a>, <a class='category' href='/blog/categories/knockout/'>Knockout</a>, <a class='category' href='/blog/categories/oss/'>OSS</a>
-  
-</span>
-
-
-  </span>
-
-  
-</article>
-
-          </div>
-        </div>
-      
         
-        <div class="row">
-          <div class="col-md-offset-3 col-md-6">
-            <article>
-  <h2><a href="/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/">MiniProfiler RavenDB Pull Request Accepted</a></h2>
-  
-  <p>
-    <p>I just got a notification that my <a href="https://github.com/MiniProfiler/dotnet/pull/15">pull request</a> for
-adding RavenDB support to MiniProfiler went through! It&rsquo;s always really cool to see your contributions
-get pulled in. The MiniProfiler guys were really easy-going, <a href="https://github.com/yellis">@yellis</a> was even kind enough to take on
-the testing. That kind of acceptance for pull requests is great to see because it makes me feel good
-about contributing and is a bit less intimidating.</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-12-05T14:32:08+00:00" pubdate data-updated="true">Dec 5<span>th</span>, 2013</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/github/'>GitHub</a>, <a class='category' href='/blog/categories/oss/'>OSS</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/">Read on &rarr;</a>
-  
+        <section>
+          <h1>Comments</h1>
+          <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </section>
+        
+      </div>
+    </div>
+  </div>
 </article>
 
-          </div>
-        </div>
-      
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        
+          <a class="pull-left" href="/blog/2015/04/30/101-ideas-for-the-microsoft-hololens/" title="Previous Post: 101 Ideas for the Microsoft HoloLens">&laquo; Previous: 101 Ideas for the Microsoft HoloLens</a>
+        
+
+        
+      </div>
     </div>
   </div>
 </div>
@@ -276,6 +244,28 @@ in
     </div>
   </div>
 </footer>
+
+    
+      
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        // var disqus_developer = 1;
+        
+        var disqus_identifier = 'http://kamranicus.com/blog/2015/05/11/extending-knockout-with-urlsync/';
+        
+        var disqus_url = 'http://kamranicus.com/blog/2015/05/11/extending-knockout-with-urlsync/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
 
     
   </body>

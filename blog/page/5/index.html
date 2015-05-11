@@ -90,6 +90,108 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-3 col-md-6">
               <article>
+  <h2><a href="/blog/posts/50/frustration-with-the-vs2012-team-explorer-tool-win">Frustration With the VS2012 Team Explorer Tool Window</a></h2>
+  
+  <p>
+    <p>I would just like to quickly comment on something I noticed while using VS2012 and Team Explorer (we use TFS at work). Below is a screenshot of the window as it stands in the RC.</p>
+
+
+
+
+<p><strong>Can you tell me what role the black text in the window plays?</strong></p>
+
+
+
+
+<p><img src="/blog/images/48.png" alt="Team Explorer 2012" /></p>
+
+
+
+
+<p>If you said &ldquo;headings,&rdquo; I would not blame you because <em>that&rsquo;s exactly what I thought at first.</em> In fact, they are <strong>links</strong> to the common tasks you&rsquo;ll do in TFS. I didn&rsquo;t realize this until my mouse happened to hover over the tasks and then it became underlined with the pointer cursor. There&rsquo;s a pretty clear violation of the Gestalt principle of color here; why are some links blue and the most common ones bold and black? Unconsciously, this matches my typical assumption of headings, when in fact the true intention is to make the common tasks stand out.</p>
+
+
+
+
+<p>We see this header/nav paradigm all over the web. Here&rsquo;s what Apple&rsquo;s footer navigation is styled like:</p>
+
+
+
+
+<p><img src="/blog/images/49.png" alt="Apple Nav" /></p>
+
+
+
+
+<p>My automatic assumption is enforced by the fact that the <em>Home</em> heading is also black and bold, the only difference being the size.</p>
+
+
+
+
+<p>This is even a paradigm <em>within VS2012 itself</em>. Here&rsquo;s an example on the start page:</p>
+
+
+
+
+<p><img src="/blog/images/50.png" alt="Getting Started" /></p>
+
+
+
+
+<p>Or, the Start tasks&hellip;</p>
+
+
+
+
+<p><img src="/blog/images/51.png" alt="Start" /></p>
+
+
+
+
+<p>The other thing that frustrated me the first time was figuring out how to change team projects. It&rsquo;s not easy to figure out. You need to click the team project name, which looks like a label except for the arrow on the far right edge.</p>
+
+
+
+
+<p><img src="/blog/images/52.png" alt="Changing team projects" /></p>
+
+
+
+
+<p>I like what the team is trying to do here, I just think the navigation needs to be gone over again to reduce the confusion.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2012-06-12T23:32:52+00:00" pubdate data-updated="true">Jun 12<span>th</span>, 2012</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
   <h2><a href="/blog/posts/49/use-enums-to-reduce-markup-maintenance-mvc">Use Enums to Reduce Markup Maintenance [MVC]</a></h2>
   
   <p>
@@ -1102,110 +1204,6 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
 
 
 <time datetime="2012-04-10T00:42:53+00:00" pubdate data-updated="true">Apr 10<span>th</span>, 2012</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/posts/40/ux-applies-to-api-design-too">UX Applies to API Design Too</a></h2>
-  
-  <p>
-    <p>I&rsquo;m working on enhancing a component we use for cryptography at work today. Previously it had a lot of useful methods, but no documentation. I was able to add XML documentation and now it&rsquo;s fully Intellisense-friendly:</p>
-
-
-
-
-<p><img src="/blog/images/38.png" alt="Intellisense" /></p>
-
-
-
-
-<p>That&rsquo;s one step for making your API friendly, even though it&rsquo;s a little more work.</p>
-
-
-
-
-<p>What I want to point out is that I also made exceptions friendly. Cryptography is not an easy thing to understand and even I don&rsquo;t understand all of it. We have a method that lets you generate a new key for a given algorithm (the API defaults to <code>RijndaelManaged</code> as best practice), but it also lets you specify a key size.</p>
-
-
-
-
-<p>I did a couple things:</p>
-
-
-
-
-<ol>
-<li><p>The argument accepts key size in bits, as that is what the .NET API uses and is what you see online (&ldquo;128 bit&rdquo;).</p></li>
-<li><p>The API will tell you if the key size is invalid. Not only that, it will list out what the acceptable key sizes are.</p></li>
-</ol>
-
-
-
-
-<p>Check it out:</p>
-
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Test method SymmetricEncryption_Should_Throw_Exception_For_Invalid_Key_Sizes threw exception:
-</span><span class='line'>
-</span><span class='line'>System.ArgumentException: 56 bits is not a valid key size for RijndaelManaged. Valid key sizes: 128 bits, 192 bits, 256 bits
-</span><span class='line'>
-</span><span class='line'>Parameter name: keySize</span></code></pre></td></tr></table></div></figure></p>
-
-<p>And it didn&rsquo;t even take much code:</p>
-
-
-
-
-<script src="https://gist.github.com/2292726.js?file=SymmetricEncryption.cs"></script>
-
-
-
-
-<p>Never forget:</p>
-
-
-
-
-<blockquote><p>UX is just as important for API design</p></blockquote>
-
-
-
-
-<p>Put yourself in your consumer&rsquo;s shoes and design it with them in mind. They&rsquo;ll thank you for it, trust me.</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2012-04-03T20:05:22+00:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2012</time>
     
 
 

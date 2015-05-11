@@ -90,6 +90,218 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-3 col-md-6">
               <article>
+  <h2><a href="/blog/2015/05/11/extending-knockout-with-urlsync/">Extending Knockout Observables to Sync With Address Bar</a></h2>
+  
+  <p>
+    <p>For <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> I&rsquo;ve been adding filtering to the game library. I&rsquo;m really proud of what I have, here&rsquo;s what it looks like in the UI:</p>
+
+
+
+
+<p><img src="/blog/images/2015-05-11-filtering.png" alt="Filtering UI" /></p>
+
+
+
+
+<p>A modal allows the user to drill down and pick what filters to apply, the modal updates to show what filters are applied and what&rsquo;s available with the current resultset.</p>
+
+
+
+
+<p><img src="/blog/images/2015-05-11-filtering-modal.png" alt="Filtering Modal" /></p>
+
+
+
+
+<p>When you&rsquo;re outside the modal, I show any filters being applied allowing one-click removal or toggling the filtering method between AND/OR.</p>
+
+
+
+
+<p>To make it easy to serialize/deserialize filters, I created a custom filtering expression that is pretty standard around town:</p>
+
+
+
+
+<pre><code>{facetName}:{facetValue},{facetValue},...|...
+</code></pre>
+
+
+
+
+<p>For example, representing the screenshot above, the filtering expression would be:</p>
+
+
+
+
+<pre><code>Lists:6|Status:8|My+Platforms:1
+</code></pre>
+
+
+
+
+<p>If you muck with the expression, there shouldn&rsquo;t be any issues. Facets are validated against whatever the original unfiltered resultset is, so you cannot add arbitrary expressions&mdash;if you do, they will not show up in the server response. Strings are special because potentially they can include characters used to parse the expression, the simplest way to deal with it is by encoding them and then decoding the value.</p>
+
+
+
+
+<pre><code>Tags:my%20awesome%2ctag,tag2|Status:4
+</code></pre>
+
+
+
+
+<p>Now, I wanted to talk about the filtering expression because it makes it really easy to do a bunch of things:</p>
+
+
+
+
+<ol>
+<li>Reading/writing from querystring or hash</li>
+<li>Create a command textbox that can parse and autocomplete expressions</li>
+<li>Allow the user to save &ldquo;views&rdquo; of their games</li>
+</ol>
+
+
+
+
+<p>Items 2 and 3 might be on the agenda for some later date but item 1 is required for being able to create pre-filtered routes or create links. Since the library is loaded through Knockout and Web API, we need to be able to pass any filter or parameters when the page is loaded and also keep track of what the current values are for filtering.</p>
+
+
+
+
+<p>To achieve this, I created a really simple <a href="http://knockoutjs.com/documentation/extenders.html">Knockout Extender</a> called <strong>urlSync.</strong> All it does is initially load an observable from the hash (if found) or the querystring (if found). Then it observes the observable and keeps the <code>window.location.hash</code> updated.</p>
+
+
+
+
+<p>This could easily be extended to use <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history">HTML5 <code>pushState</code></a>, if you wished. For now, managing the hash is &ldquo;good enough&rdquo; for my use case.</p>
+
+
+
+
+<p>Here is a Gist of the extender:</p>
+
+
+
+
+<script src="https://gist.github.com/kamranayub/3feba45dd2da3262b872.js"></script>
+
+
+
+
+<p>It depends on <a href="http://medialize.github.io/URI.js">URI.js</a> and the <a href="http://medialize.github.io/URI.js/docs.html#fragment-abuse">URI.fragmentQuery</a> component. It also uses <a href="http://underscorejs.org">Underscore.js</a>, but that&rsquo;s just because I have it in my project already.</p>
+
+
+
+
+<p>It&rsquo;s really simple to use, for example here&rsquo;s a snippet from my collection view model:</p>
+
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>// Flattened facets
+</span><span class='line'>ViewModel.facets = ko.observableArray([]);
+</span><span class='line'>
+</span><span class='line'>// Selected (applied) facets
+</span><span class='line'>ViewModel.selectedFacets = ko.observableArray([]).extend({
+</span><span class='line'>    urlSync: {
+</span><span class='line'>      param: &ldquo;filterBy&rdquo;,
+</span><span class='line'>      read: function(value) {
+</span><span class='line'>         return kt.utils.facetsFromString(value, ViewModel.facets);
+</span><span class='line'>      },
+</span><span class='line'>      write: kt.utils.facetsToString
+</span><span class='line'>    }
+</span><span class='line'>});
+</span><span class='line'>
+</span><span class='line'>// Filter AND toggle
+</span><span class='line'>ViewModel.filterAnd = ko.observable(false).extend({ urlSync: &ldquo;filterAnd&rdquo; });</span></code></pre></td></tr></table></div></figure></p>
+
+<p>As you can see, the extender allows you to intercept read/write so you can perform any custom transformations (e.g. filtering objects to/from string). Because we&rsquo;re deserializing from a string and because the <code>checkedValue</code> binding is by reference, I pass in the existing facets collection to my utility, in order to preserve object references when required. On initial page load, this isn&rsquo;t required as the games haven&rsquo;t been fetched from the API yet. Once they are, my fetch method updates the observables. I could also modify the way I handle binding the checkboxes but this works.</p>
+
+
+
+
+<p>The <code>urlSync</code> extender will then bind the observable values to the URL like this:</p>
+
+
+
+
+<pre><code>users/kamran.ayub/lists/all#?
+    sortBy=Name&amp;
+    filterAnd=true&amp;
+    filterBy=Status%3A8%7CLists%3A6%7CMy+Platforms%3A1
+</code></pre>
+
+
+
+
+<p>Since the extender can also fallback to reading from the querystring, we can create URLs that filter a user&rsquo;s collection:</p>
+
+
+
+
+<pre><code>users/somebody/lists/all?filterBy=Platforms:2,5,40
+</code></pre>
+
+
+
+
+<p>Pretty neat and now allows anyone to copy/paste the URL and preserve any needed filtering state!</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-05-11T16:20:00+00:00" pubdate data-updated="true">May 11<span>th</span>, 2015</time>
+    
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/gists/'>Gists</a>, <a class='category' href='/blog/categories/javascript/'>Javascript</a>, <a class='category' href='/blog/categories/knockout/'>Knockout</a>, <a class='category' href='/blog/categories/oss/'>OSS</a>
+  
+</span>
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
   <h2><a href="/blog/2015/04/30/101-ideas-for-the-microsoft-hololens/">101 Ideas for the Microsoft HoloLens</a></h2>
   
   <p>
@@ -1077,51 +1289,6 @@ in
     <a class='category' href='/blog/categories/article/'>Article</a>, <a class='category' href='/blog/categories/tech-dot-pro/'>Tech.pro</a>, <a class='category' href='/blog/categories/writing/'>Writing</a>
   
 </span>
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/2013/12/11/just-released-bowling-calculator-app/">Just Released: Bowling Calculator App</a></h2>
-  
-  <p>
-    <p><img src="http://cdn.marketplaceimages.windowsphone.com/v8/images/4eb4e175-0dd5-4e48-860b-639e6796b01b?rotation=90" alt="Screenshot" /></p>
-
-
-
-
-<p>I just released my second Windows Phone app, <a href="http://www.windowsphone.com/en-us/store/app/bowling-calculator/9287a99a-6068-4ff4-925b-988c8c99dbf6">Bowling Calculator</a>. It&rsquo;s an <a href="http://github.com/kamranayub/wp-bowling">open source app</a> that I created when <a href="/blog/posts/77/tccc15-leveling-up-your-windows-phone-app">I gave my talk at TCCC15</a>.
-If you&rsquo;re a fellow developer, feel free to send me a pull request with any bug fixes or enhancements. I want to keep it focused on
-the simple use case of scoring a bowling game; I don&rsquo;t need it to track multiple games or keep track of history. It&rsquo;s purpose is to serve
-as a production-ready sample app and to also be good at what it aims to do.</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-12-11T03:02:26+00:00" pubdate data-updated="true">Dec 11<span>th</span>, 2013</time>
-    
 
 
   </span>
