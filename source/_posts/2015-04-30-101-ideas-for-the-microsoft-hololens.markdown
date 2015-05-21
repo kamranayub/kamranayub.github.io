@@ -13,7 +13,7 @@ categories:
 
 HoloLens has the potential to change how we live, drastically.
 
----
+<!-- More -->
 
 [Microsoft Build](http://buildwindows.com/) is Microsoft's annual developer conference. I attended the conference in 2013 and 2014 for work and had a blast both times. This year I couldn't attend since we have been living in France (a good excuse) but I still wanted to catch the livestream of this year's keynote. 
 

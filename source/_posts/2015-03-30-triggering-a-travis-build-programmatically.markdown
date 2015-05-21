@@ -14,6 +14,8 @@ categories:
 
 For [Exalibur.js][1] we wanted to be able to keep our `master` branch documentation up-to-date on the website. The website is built using [Assemble.io](http://assemble.io) and GitHub pages and [after successfully automating my blog][2], naturally I turned to [Travis CI](http://travis-ci.org) to set up automated documentation generation.
 
+<!-- More -->
+
 Travis normally sets up a hook in your GitHub repository to automatically trigger a build after you push a commit (or pull request). This is real nice but unfortunately that's where it stops. If you want to trigger a build **for another repository**, you have to do it manually.
 
 I asked Travis about this and their response is promising (Twitter can be nice sometimes):

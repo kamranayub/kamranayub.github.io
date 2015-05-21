@@ -10,7 +10,12 @@ categories:
 - Gists
 ---
 
-For [Keep Track of My Games](http://keeptrackofmygames.com) I've been adding filtering to the game library. I'm really proud of what I have, here's what it looks like in the UI:
+I made a tiny Knockout extender called `urlSync` that syncs an observable with the URL.
+
+<!-- More -->
+
+For [Keep Track of My Games](http://keeptrackofmygames.com) I've been adding filtering to the game library. 
+I'm really proud of what I have, here's what it looks like in the UI:
 
 ![Filtering UI](/blog/images/2015-05-11-filtering.png)
 

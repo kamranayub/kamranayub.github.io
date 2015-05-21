@@ -14,6 +14,8 @@ One of the fun things we did for [Sweep Stacks][1] (our Ludum Dare entry)
 during development was to setup continuous deployment. Since our GitHub
 repository was public, we could leverage the excellent Travis CI build tool.
 
+<!-- More -->
+
 This allowed us to work on the game and have our dedicated tester play every new build
 hot off the press. It reduced the amount of bugs we shipped with and created a very
 fast feedback loop for QA. In the end it allowed us to push a polished game an hour
