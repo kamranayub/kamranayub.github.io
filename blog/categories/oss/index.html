@@ -54,7 +54,7 @@
     <div class="all-posts">
   <div class="container">
     <div class="row">
-      <div class="list-title col-md-offset-3 col-md-6">
+      <div class="list-title col-md-offset-2 col-md-8">
         <h4>Posts in OSS</h4>
       </div>
     </div>
@@ -65,98 +65,12 @@
       
         
         <div class="row">
-          <div class="col-md-offset-3 col-md-6">
+          <div class="col-md-offset-2 col-md-8">
             <article>
   <h2><a href="/blog/2015/05/11/extending-knockout-with-urlsync/">Extending Knockout Observables to Sync With Address Bar</a></h2>
   
   <p>
-    <p>For <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> I&rsquo;ve been adding filtering to the game library. I&rsquo;m really proud of what I have, here&rsquo;s what it looks like in the UI:</p>
-
-<p><img src="/blog/images/2015-05-11-filtering.png" alt="Filtering UI" /></p>
-
-<p>A modal allows the user to drill down and pick what filters to apply, the modal updates to show what filters are applied and what&rsquo;s available with the current resultset.</p>
-
-<p><img src="/blog/images/2015-05-11-filtering-modal.png" alt="Filtering Modal" /></p>
-
-<p>When you&rsquo;re outside the modal, I show any filters being applied allowing one-click removal or toggling the filtering method between AND/OR.</p>
-
-<p>To make it easy to serialize/deserialize filters, I created a custom filtering expression that is pretty standard around town:</p>
-
-<pre><code>{facetName}:{facetValue},{facetValue},...|...
-</code></pre>
-
-<p>For example, representing the screenshot above, the filtering expression would be:</p>
-
-<pre><code>Lists:6|Status:8|My+Platforms:1
-</code></pre>
-
-<p>If you muck with the expression, there shouldn&rsquo;t be any issues. Facets are validated against whatever the original unfiltered resultset is, so you cannot add arbitrary expressions&mdash;if you do, they will not show up in the server response. Strings are special because potentially they can include characters used to parse the expression, the simplest way to deal with it is by encoding them and then decoding the value.</p>
-
-<pre><code>Tags:my%20awesome%2ctag,tag2|Status:4
-</code></pre>
-
-<p>Now, I wanted to talk about the filtering expression because it makes it really easy to do a bunch of things:</p>
-
-<ol>
-<li>Reading/writing from querystring or hash</li>
-<li>Create a command textbox that can parse and autocomplete expressions</li>
-<li>Allow the user to save &ldquo;views&rdquo; of their games</li>
-</ol>
-
-
-<p>Items 2 and 3 might be on the agenda for some later date but item 1 is required for being able to create pre-filtered routes or create links. Since the library is loaded through Knockout and Web API, we need to be able to pass any filter or parameters when the page is loaded and also keep track of what the current values are for filtering.</p>
-
-<p>To achieve this, I created a really simple <a href="http://knockoutjs.com/documentation/extenders.html">Knockout Extender</a> called <strong>urlSync.</strong> All it does is initially load an observable from the hash (if found) or the querystring (if found). Then it observes the observable and keeps the <code>window.location.hash</code> updated.</p>
-
-<p>This could easily be extended to use <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history">HTML5 <code>pushState</code></a>, if you wished. For now, managing the hash is &ldquo;good enough&rdquo; for my use case.</p>
-
-<p>Here is a Gist of the extender:</p>
-
-<script src="https://gist.github.com/kamranayub/3feba45dd2da3262b872.js"></script>
-
-
-<p>It depends on <a href="http://medialize.github.io/URI.js">URI.js</a> and the <a href="http://medialize.github.io/URI.js/docs.html#fragment-abuse">URI.fragmentQuery</a> component. It also uses <a href="http://underscorejs.org">Underscore.js</a>, but that&rsquo;s just because I have it in my project already.</p>
-
-<p>It&rsquo;s really simple to use, for example here&rsquo;s a snippet from my collection view model:</p>
-
-<p>```
-// Flattened facets
-ViewModel.facets = ko.observableArray([]);</p>
-
-<p>// Selected (applied) facets
-ViewModel.selectedFacets = ko.observableArray([]).extend({</p>
-
-<pre><code>urlSync: {
-    param: "filterBy",
-    read: function(value) {
-       return kt.utils.facetsFromString(value, ViewModel.facets);
-    },
-    write: kt.utils.facetsToString
-}
-</code></pre>
-
-<p>});</p>
-
-<p>// Filter AND toggle
-ViewModel.filterAnd = ko.observable(false).extend({ urlSync: &ldquo;filterAnd&rdquo; });
-```</p>
-
-<p>As you can see, the extender allows you to intercept read/write so you can perform any custom transformations (e.g. filtering objects to/from string). Because we&rsquo;re deserializing from a string and because the <code>checkedValue</code> binding is by reference, I pass in the existing facets collection to my utility, in order to preserve object references when required. On initial page load, this isn&rsquo;t required as the games haven&rsquo;t been fetched from the API yet. Once they are, my fetch method updates the observables. I could also modify the way I handle binding the checkboxes but this works.</p>
-
-<p>The <code>urlSync</code> extender will then bind the observable values to the URL like this:</p>
-
-<pre><code>users/kamran.ayub/lists/all#?
-    sortBy=Name&amp;
-    filterAnd=true&amp;
-    filterBy=Status%3A8%7CLists%3A6%7CMy+Platforms%3A1
-</code></pre>
-
-<p>Since the extender can also fallback to reading from the querystring, we can create URLs that filter a user&rsquo;s collection:</p>
-
-<pre><code>users/somebody/lists/all?filterBy=Platforms:2,5,40
-</code></pre>
-
-<p>Pretty neat and now allows anyone to copy/paste the URL and preserve any needed filtering state!</p>
+    <p>I made a tiny Knockout extender called <code>urlSync</code> that syncs an observable with the URL.</p>
 
   </p>
   <span class="meta">
@@ -187,6 +101,8 @@ in
   </span>
 
   
+    <a class="full-article-link pull-right" rel="full-article" href="/blog/2015/05/11/extending-knockout-with-urlsync/">Read on &rarr;</a>
+  
 </article>
 
           </div>
@@ -194,7 +110,7 @@ in
       
         
         <div class="row">
-          <div class="col-md-offset-3 col-md-6">
+          <div class="col-md-offset-2 col-md-8">
             <article>
   <h2><a href="/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/">MiniProfiler RavenDB Pull Request Accepted</a></h2>
   

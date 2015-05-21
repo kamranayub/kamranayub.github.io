@@ -4,7 +4,7 @@
   <title><![CDATA[Category: OSS | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/oss/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2015-05-21T10:39:16+00:00</updated>
+  <updated>2015-05-21T16:50:44+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -18,7 +18,13 @@
     <link href="http://kamranicus.com/blog/2015/05/11/extending-knockout-with-urlsync/"/>
     <updated>2015-05-11T16:20:00+00:00</updated>
     <id>http://kamranicus.com/blog/2015/05/11/extending-knockout-with-urlsync</id>
-    <content type="html"><![CDATA[<p>For <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> I&rsquo;ve been adding filtering to the game library. I&rsquo;m really proud of what I have, here&rsquo;s what it looks like in the UI:</p>
+    <content type="html"><![CDATA[<p>I made a tiny Knockout extender called <code>urlSync</code> that syncs an observable with the URL.</p>
+
+<!-- More -->
+
+
+<p>For <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> I&rsquo;ve been adding filtering to the game library.
+I&rsquo;m really proud of what I have, here&rsquo;s what it looks like in the UI:</p>
 
 <p><img src="/blog/images/2015-05-11-filtering.png" alt="Filtering UI" /></p>
 

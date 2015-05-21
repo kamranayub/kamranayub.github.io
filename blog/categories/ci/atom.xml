@@ -4,7 +4,7 @@
   <title><![CDATA[Category: CI | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/ci/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2015-05-21T10:39:16+00:00</updated>
+  <updated>2015-05-21T16:50:44+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -19,6 +19,9 @@
     <updated>2015-03-29T22:45:30+00:00</updated>
     <id>http://kamranicus.com/blog/2015/03/29/triggering-a-travis-build-programmatically</id>
     <content type="html"><![CDATA[<p>For <a href="http://excaliburjs.com">Exalibur.js</a> we wanted to be able to keep our <code>master</code> branch documentation up-to-date on the website. The website is built using <a href="http://assemble.io">Assemble.io</a> and GitHub pages and <a href="http://kamranicus.com/blog/2015/02/26/continuous-deployment-with-travis-ci/">after successfully automating my blog</a>, naturally I turned to <a href="http://travis-ci.org">Travis CI</a> to set up automated documentation generation.</p>
+
+<!-- More -->
+
 
 <p>Travis normally sets up a hook in your GitHub repository to automatically trigger a build after you push a commit (or pull request). This is real nice but unfortunately that&rsquo;s where it stops. If you want to trigger a build <strong>for another repository</strong>, you have to do it manually.</p>
 
@@ -64,6 +67,9 @@ after_success:
     <content type="html"><![CDATA[<p>One of the fun things we did for <a href="http://playsweepstacks.com">Sweep Stacks</a> (our Ludum Dare entry)
 during development was to setup continuous deployment. Since our GitHub
 repository was public, we could leverage the excellent Travis CI build tool.</p>
+
+<!-- More -->
+
 
 <p>This allowed us to work on the game and have our dedicated tester play every new build
 hot off the press. It reduced the amount of bugs we shipped with and created a very
