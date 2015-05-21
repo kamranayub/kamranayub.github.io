@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "5 Things I Learned About Design While Living Abroad for 6 Months"
-date: 2015-05-21 09:35:00 +0200
+date: 2015-05-21 18:48:00 +0200
 comments: true
-published: false
+published: true
 categories:
 - Life
 - Technology
