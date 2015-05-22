@@ -90,6 +90,83 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/posts/74/debounced-after-render-pattern-for-knockoutjs">Debounced After Render Pattern for Knockout.js</a></h2>
+  
+  <p>
+    <p>When dealing with Knockout-based lists, I think the built-in events/callbacks provided by Knockout leave a bit to be desired. For example, a common case I here people complain about is that the <code>afterRender</code> callback for the <code>foreach/template</code> bindings executes for each item in the array, not after all the elements have been rendered.</p>
+
+
+
+
+<p>There are probably better ways to <em>resolve</em> this using Promises (pun intended), but here&rsquo;s one way to attack it using <a href="http://underscorejs.org/docs/underscore.html#section-65">Underscore.js</a>&rsquo;s <code>debounce</code> method that&rsquo;s easy to understand and use.</p>
+
+
+
+
+<p>The <code>debounce</code> method:</p>
+
+
+
+
+<blockquote><p>Returns a function, that, as long as it continues to be invoked, will not be triggered. The function will be called after it stops being called for N milliseconds. If immediate is passed, trigger the function on the leading edge, instead of the trailing.</p></blockquote>
+
+
+
+
+<p>This is useful for high-octane events like rendering elements, window resizing, or capture mouse events.</p>
+
+
+
+
+<p>Here&rsquo;s a Fiddle that demonstrates a way to execute a callback after all the elements in a list have been rendered (and filters them to only <code>li</code> DOM elements):</p>
+
+
+
+
+<iframe width="100%" height="300" src="http://jsfiddle.net/kamranayub/yEhEt/3/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+
+
+
+<p>This can be cleaned up multiple ways, I think a cleaner way to implement this would be through resolving a promise and then overriding the <code>foreach</code> and <code>template</code> binding to support it, for example, <code>afterAllRender</code> or something.</p>
+
+
+
+
+<p>But this gets the job done and is easy to implement!</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-06-06T00:18:28+00:00" pubdate data-updated="true">Jun 6<span>th</span>, 2013</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/posts/73/slides-and-resources-for-tccc14-web-api-talk">Slides and Resources for TCCC14 Web API Talk</a></h2>
   
   <p>
@@ -1111,88 +1188,6 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
 
 
 <time datetime="2013-03-06T01:07:28+00:00" pubdate data-updated="true">Mar 6<span>th</span>, 2013</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/posts/65/i-forked-fastjson">I Forked fastJSON</a></h2>
-  
-  <p>
-    <p>My Windows Phone app mainly deals with talking to a web API. I&rsquo;ve previously had good experience using RestSharp but now with the new <code>async/await</code> features, I&rsquo;ve been trying to only use <code>Task</code>-based stuff. I gotta say, I&rsquo;m loving it.</p>
-
-
-
-
-<p>RestSharp for WP does not natively support async/await but you can wrap it yourself. However, why not just use <code>HttpClient</code>? So that&rsquo;s what I did. I ripped out RestSharp and replaced it with <a href="https://github.com/neuecc/AsyncOAuth">AsyncOAuth</a> (which depends on HttpClient).</p>
-
-
-
-
-<p>Besides OAuth, the other issue you&rsquo;ll run into is what serializer/deserializer to use. You could go with JSON.NET, or ServiceStack, but those are two extremes&hellip; one being very flexible and other being very inflexible. I needed an in-between but also something very fast and that&rsquo;s exactly what <a href="http://www.codeproject.com/Articles/159450/fastJSON">fastJSON</a> is.</p>
-
-
-
-
-<p>Of course, it&rsquo;s fast because of the same reason SS is fast: it doesn&rsquo;t do any fancy property matching. When you&rsquo;re dealing with APIs, it&rsquo;s rare that the response they send back matches exactly with your object model and properties (especially C#). That&rsquo;s why the name variance feature of the larger libraries is awesome.</p>
-
-
-
-
-<p>So, I did what any good developer would, I dug in and added it. I also added <code>rootElement</code> support (for contained responses).</p>
-
-
-
-
-<p>You can find my changes in my <a href="https://github.com/kamranayub/fastJSON">fastJSON fork</a> on GitHub. I also went ahead and organized the solution a bit, as the original source was a bit hard to get running. I also created a Nuget package for my changes and pushed that (<a href="https://nuget.org/packages/fastJSON-kayub">fastJSON-kayub</a>).</p>
-
-
-
-
-<p>I don&rsquo;t necessarily intend to keep my changes in-sync. It would be preferable if my changes were pulled into the original&hellip; and it wouldn&rsquo;t hurt to use my new organization (since it&rsquo;s easy for others to pull down and build), but if that never happens, I&rsquo;m fine with that.</p>
-
-
-
-
-<h3>Note on Name Variance</h3>
-
-
-
-
-<p>The name variance is interesting. In R#, the code was written to <code>yield return</code> each variant so as soon as one matches, it returns. In fastJSON, the matching is done in the opposite direction, fastJSON will try to match the JSON key to an object&rsquo;s properties&hellip; so it makes it difficult to use what R# had written originally. I modified the code to allow for optional variant matching to speed things up. Without that, the name variance increased deserialization time by <strong>a ton</strong>. However, in my case, I really only needed ProperCase matching&hellip; which only increases the time by about 2x.</p>
-
-
-
-
-<p>That&rsquo;s why I made the decision to opt-out of name variance by default and when enabled, only enable ProperCase by default as that&rsquo;s probably the most common.</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-03-05T23:00:00+00:00" pubdate data-updated="true">Mar 5<span>th</span>, 2013</time>
     
 
 

@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Use a Separate Chrome Profile to Manage Your Apps - Kamranicus</title>
+  <meta name="author" content="Kamran">
+
+  
+  <meta name="description" content="Use a Separate Chrome Profile to Manage Your Apps written May 21st, 2015 in Chrome, Google, Keep Track of My Games, Productivity, Tips If you&rsquo; &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kamranicus.com/blog/2015/05/21/chrome-multi-user">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+  <body>
+    <a href="/" class="home-icon">
+      <img src="/images/home.png"/>
+    </a>
+
+    <article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
+        <h1>Use a Separate Chrome Profile to Manage Your Apps</h1>
+        <div class="meta">
+          written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-05-21T13:45:00+00:00" pubdate data-updated="true">May 21<span>st</span>, 2015</time>
+          
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/chrome/'>Chrome</a>, <a class='category' href='/blog/categories/google/'>Google</a>, <a class='category' href='/blog/categories/keep-track-of-my-games/'>Keep Track of My Games</a>, <a class='category' href='/blog/categories/productivity/'>Productivity</a>, <a class='category' href='/blog/categories/tips/'>Tips</a>
+  
+</span>
+
+
+        </div>
+        <p>If you&rsquo;re an app or site developer, you&rsquo;ve probably got a bunch of
+tabs or bookmarks for your dashboards, social network accounts,
+blog, and more. For <a href="http://keeptrackofmygames.com">Keep Track of My Games</a>,
+I have UserVoice, Azure, RavenDB, social profiles, etc. that I
+need to manage and track (haha).</p>
+
+<!-- More -->
+
+
+<p>It can be a chore to manage all of this easily but I have a tip.
+A little while back Chrome <a href="https://support.google.com/chrome/answer/2364824?hl=en">introduced a new feature</a> that lets
+you switch between multiple profiles super easily. I use it
+for me and my wife, since she has a Google account and goes
+to knitting sites and does whatever she likes doing&mdash;I don&rsquo;t want that filth in <em>my</em> Chrome instance! :)</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7749041/784a45e2-ffca-11e4-8a5f-ce5d1c445d4e.png" alt="Chrome user switcher is in the corner" /></p>
+
+<p>The user switcher is in the top-right of Chrome, shown above. You can single-click to bring up a modal or right-click to quickly switch.
+Chrome profiles are kept separate, with their own settings, extensions,
+and bookmarks. This keeps tabs and work separated neatly and creates a
+so-called &ldquo;separation of concerns&rdquo; for your browsing.</p>
+
+<p>Here&rsquo;s the rub: A full Chrome user is tied to a Google account. I don&rsquo;t want to create a separate Google account just for KTOMG.
+The Google+, YouTube, email, etc. is all linked to my primary Google Account.
+The issue is, Chrome will not let more than one
+Google account exist on a single PC. So how can we take advantage of the profile separation but still
+keep my primary Google account?</p>
+
+<p>The answer is: we&rsquo;ll create a
+<a href="https://support.google.com/chrome/answer/3463947">Supervised User Account</a>. Did you notice I said &ldquo;full user&rdquo; before?
+A SUA is just a lower privilege profile (meant for children) that you can
+control via your primary Google account. BUT, if you <strong>don&rsquo;t restrict anything</strong>,
+it&rsquo;ll just be like a &ldquo;full&rdquo; profile!</p>
+
+<p>We&rsquo;ll follow the instructions above in the Google help article:</p>
+
+<ol>
+<li>Under your Chrome profile, go to Settings</li>
+<li>Scroll down to Users</li>
+<li>Click &ldquo;Add User&rdquo; and enter your app&rsquo;s name and avatar for a picture</li>
+<li>Click &ldquo;Control and view websites this person visits from [your Google account]&rdquo;</li>
+</ol>
+
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7749183/8dd90398-ffcb-11e4-8f8a-095f4a2e4beb.png" alt="Supervised user" /></p>
+
+<p>Now you&rsquo;ve made a &ldquo;supervised&rdquo; app account managed by your main Google one. Nice! You can set up all your tabs as you want, extensions with any
+specific accounts (TweetDeck), and pinned dashboard tabs, all within a separate context from your primary Chrome profile.</p>
+
+<p>For example, here&rsquo;s what <a href="http://keeptrackofmygames.com">Keep Track of My Games</a>
+looks like in its own Chrome profile:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7749251/1de36eb0-ffcc-11e4-8be9-fa78b45a69da.png" alt="KTOMG profile" /></p>
+
+<p>And the full experience:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7749724/e2d07ed6-ffcf-11e4-93cd-f307718c2c82.png" alt="KTOMG browser" /></p>
+
+<p>When you&rsquo;re the only one managing a bunch of apps, this
+is a real productivity booster. You could even go as far as
+creating separate profiles for each environment, if you like. Hell, this doesn&rsquo;t have to be for apps, it could be for whatever browsing contexts you want to separate.</p>
+
+<p>Just make sure you have enough RAM because Chrome will
+suck it all up.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7749876/db3a810c-ffd0-11e4-8a35-5d96e41b874f.png" alt="Task manager" /></p>
+
+<p>Dumb puny laptop.</p>
+
+<p>Hope this helps! Happy managing.</p>
+
+
+        <hr class="divider-short"/>
+
+        
+        <section>
+          <h1>Comments</h1>
+          <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </section>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
+        
+          <a class="pull-left" href="/blog/2015/05/11/extending-knockout-with-urlsync/" title="Previous Post: Extending Knockout Observables to Sync with Address Bar">&laquo; Previous: Extending Knockout Observables to Sync with Address Bar</a>
+        
+
+        
+          <a class="pull-right" href="/blog/2015/05/21/5-things-for-6-months-abroad/" title="Next Post: 5 Things I Learned About Design While Living Abroad for 6 Months">Next: 5 Things I Learned About Design While Living Abroad for 6 Months &raquo;</a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="her-row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+  <a href="/"><h4>Home</h4></a>
+</div>
+
+<div class="col-md-2">
+  <div class="social-icon-list">
+    
+    <a href="https://twitter.com/kamranayub"><img src="/images/glyphicons_social_31_twitter.png"/></a>
+    
+
+    
+    <a href="https://github.com/kamranayub"><img src="/images/glyphicons_social_21_github.png"/></a>
+    
+
+    
+
+    
+  </div>
+</div>
+
+<div class="pull-right">
+  <h4>Powered by <a href="http://octopress.org/">Octopress</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+    
+      
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        // var disqus_developer = 1;
+        
+        var disqus_identifier = 'http://kamranicus.com/blog/2015/05/21/chrome-multi-user/';
+        
+        var disqus_url = 'http://kamranicus.com/blog/2015/05/21/chrome-multi-user/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+    
+  </body>
+</html>

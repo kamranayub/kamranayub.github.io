@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2015-05-21T16:50:44+00:00</updated>
+  <updated>2015-05-22T13:56:12+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -146,6 +146,84 @@
 <p>Challenge yourself. I didn&rsquo;t think I&rsquo;d be into going to Morocco but it was <strong>amazing</strong> and I&rsquo;d go back again. Using GPS to navigate the labyrinth of souks while being hassled by shop owners is definitely an experience you won&rsquo;t get anywhere else.</p>
 
 <p><img src="https://cloud.githubusercontent.com/assets/563819/7751434/40bec6b0-ffda-11e4-89cb-1df305332f13.png" alt="Souks" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Use a Separate Chrome Profile to Manage Your Apps]]></title>
+    <link href="http://kamranicus.com/blog/2015/05/21/chrome-multi-user/"/>
+    <updated>2015-05-21T13:45:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2015/05/21/chrome-multi-user</id>
+    <content type="html"><![CDATA[<p>If you&rsquo;re an app or site developer, you&rsquo;ve probably got a bunch of
+tabs or bookmarks for your dashboards, social network accounts,
+blog, and more. For <a href="http://keeptrackofmygames.com">Keep Track of My Games</a>,
+I have UserVoice, Azure, RavenDB, social profiles, etc. that I
+need to manage and track (haha).</p>
+
+<!-- More -->
+
+
+<p>It can be a chore to manage all of this easily but I have a tip.
+A little while back Chrome <a href="https://support.google.com/chrome/answer/2364824?hl=en">introduced a new feature</a> that lets
+you switch between multiple profiles super easily. I use it
+for me and my wife, since she has a Google account and goes
+to knitting sites and does whatever she likes doing&mdash;I don&rsquo;t want that filth in <em>my</em> Chrome instance! :)</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7749041/784a45e2-ffca-11e4-8a5f-ce5d1c445d4e.png" alt="Chrome user switcher is in the corner" /></p>
+
+<p>The user switcher is in the top-right of Chrome, shown above. You can single-click to bring up a modal or right-click to quickly switch.
+Chrome profiles are kept separate, with their own settings, extensions,
+and bookmarks. This keeps tabs and work separated neatly and creates a
+so-called &ldquo;separation of concerns&rdquo; for your browsing.</p>
+
+<p>Here&rsquo;s the rub: A full Chrome user is tied to a Google account. I don&rsquo;t want to create a separate Google account just for KTOMG.
+The Google+, YouTube, email, etc. is all linked to my primary Google Account.
+The issue is, Chrome will not let more than one
+Google account exist on a single PC. So how can we take advantage of the profile separation but still
+keep my primary Google account?</p>
+
+<p>The answer is: we&rsquo;ll create a
+<a href="https://support.google.com/chrome/answer/3463947">Supervised User Account</a>. Did you notice I said &ldquo;full user&rdquo; before?
+A SUA is just a lower privilege profile (meant for children) that you can
+control via your primary Google account. BUT, if you <strong>don&rsquo;t restrict anything</strong>,
+it&rsquo;ll just be like a &ldquo;full&rdquo; profile!</p>
+
+<p>We&rsquo;ll follow the instructions above in the Google help article:</p>
+
+<ol>
+<li>Under your Chrome profile, go to Settings</li>
+<li>Scroll down to Users</li>
+<li>Click &ldquo;Add User&rdquo; and enter your app&rsquo;s name and avatar for a picture</li>
+<li>Click &ldquo;Control and view websites this person visits from [your Google account]&rdquo;</li>
+</ol>
+
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7749183/8dd90398-ffcb-11e4-8f8a-095f4a2e4beb.png" alt="Supervised user" /></p>
+
+<p>Now you&rsquo;ve made a &ldquo;supervised&rdquo; app account managed by your main Google one. Nice! You can set up all your tabs as you want, extensions with any
+specific accounts (TweetDeck), and pinned dashboard tabs, all within a separate context from your primary Chrome profile.</p>
+
+<p>For example, here&rsquo;s what <a href="http://keeptrackofmygames.com">Keep Track of My Games</a>
+looks like in its own Chrome profile:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7749251/1de36eb0-ffcc-11e4-8be9-fa78b45a69da.png" alt="KTOMG profile" /></p>
+
+<p>And the full experience:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7749724/e2d07ed6-ffcf-11e4-93cd-f307718c2c82.png" alt="KTOMG browser" /></p>
+
+<p>When you&rsquo;re the only one managing a bunch of apps, this
+is a real productivity booster. You could even go as far as
+creating separate profiles for each environment, if you like. Hell, this doesn&rsquo;t have to be for apps, it could be for whatever browsing contexts you want to separate.</p>
+
+<p>Just make sure you have enough RAM because Chrome will
+suck it all up.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7749876/db3a810c-ffd0-11e4-8a35-5d96e41b874f.png" alt="Task manager" /></p>
+
+<p>Dumb puny laptop.</p>
+
+<p>Hope this helps! Happy managing.</p>
 ]]></content>
   </entry>
   
@@ -1182,32 +1260,6 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
 <li>Search for layout.css.devPixelsPerPx</li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Debounced After Render Pattern for Knockout.js]]></title>
-    <link href="http://kamranicus.com/blog/posts/74/debounced-after-render-pattern-for-knockoutjs"/>
-    <updated>2013-06-06T00:18:28+00:00</updated>
-    <id>http://kamranicus.com/blog/posts/74/debounced-after-render-pattern-for-knockoutjs</id>
-    <content type="html"><![CDATA[<p>When dealing with Knockout-based lists, I think the built-in events/callbacks provided by Knockout leave a bit to be desired. For example, a common case I here people complain about is that the <code>afterRender</code> callback for the <code>foreach/template</code> bindings executes for each item in the array, not after all the elements have been rendered.</p>
-
-<p>There are probably better ways to <em>resolve</em> this using Promises (pun intended), but here&rsquo;s one way to attack it using <a href="http://underscorejs.org/docs/underscore.html#section-65">Underscore.js</a>&rsquo;s <code>debounce</code> method that&rsquo;s easy to understand and use.</p>
-
-<p>The <code>debounce</code> method:</p>
-
-<blockquote><p>Returns a function, that, as long as it continues to be invoked, will not be triggered. The function will be called after it stops being called for N milliseconds. If immediate is passed, trigger the function on the leading edge, instead of the trailing.</p></blockquote>
-
-<p>This is useful for high-octane events like rendering elements, window resizing, or capture mouse events.</p>
-
-<p>Here&rsquo;s a Fiddle that demonstrates a way to execute a callback after all the elements in a list have been rendered (and filters them to only <code>li</code> DOM elements):</p>
-
-<iframe width="100%" height="300" src="http://jsfiddle.net/kamranayub/yEhEt/3/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
-
-<p>This can be cleaned up multiple ways, I think a cleaner way to implement this would be through resolving a promise and then overriding the <code>foreach</code> and <code>template</code> binding to support it, for example, <code>afterAllRender</code> or something.</p>
-
-<p>But this gets the job done and is easy to implement!</p>
 ]]></content>
   </entry>
   
