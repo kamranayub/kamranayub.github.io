@@ -54,8 +54,8 @@ We'll follow the instructions above in the Google help article:
 
 ![Supervised user](https://cloud.githubusercontent.com/assets/563819/7749183/8dd90398-ffcb-11e4-8f8a-095f4a2e4beb.png)
 
-Now you've made a "supervised" app account managed by your main Google one. Nice! You can set up all your tabs as you want, extensions with any
-specific accounts (TweetDeck), and pinned dashboard tabs, all within a separate context from your primary Chrome profile.
+Now you've made a "supervised" app account managed by your main Google one. Nice! You can set up all your tabs as you want, ~~extensions with any
+specific accounts (TweetDeck)~~, and pinned dashboard tabs, all within a separate context from your primary Chrome profile. **Update:** It appears, after I tried, that SUA's cannot use extensions. There's an [open issue](https://code.google.com/p/chromium/issues/detail?id=354178) for it, so hopefully whitelist ability will be added soon.
 
 For example, here's what [Keep Track of My Games](http://keeptrackofmygames.com)
 looks like in its own Chrome profile:
