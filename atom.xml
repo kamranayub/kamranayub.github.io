@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2015-05-25T11:51:06+00:00</updated>
+  <updated>2015-05-25T16:32:00+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -53,6 +53,8 @@
 <p><img src="https://cloud.githubusercontent.com/assets/563819/7796086/f407dc76-02db-11e5-90e7-b89613408174.png" alt="Uh oh" /></p>
 
 <p>Now if you&rsquo;ll execuse me, I&rsquo;ve got some work to do.</p>
+
+<p><strong>Update:</strong> Using this little script, I was able to get down to &lt;150ms from 600-900ms (and this is a slow laptop). This is much more acceptable for a release this week!</p>
 ]]></content>
   </entry>
   
