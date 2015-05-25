@@ -90,6 +90,182 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/posts/43/attributerouting-now-supports-web-api">AttributeRouting Now Supports Web API</a></h2>
+  
+  <p>
+    <p>If you&rsquo;re <em>not</em> using <a href="https://github.com/mccalltd/AttributeRouting">AttributeRouting</a> you&rsquo;re missing out. I&rsquo;m serious, I am not sure how any ASP.NET MVC application can live without this library. Like <a href="http://getcassette.net">Cassette</a>, it&rsquo;s become a standard in my .NET tool belt.</p>
+
+
+
+
+<h3>AttributeRouting at a Glance</h3>
+
+
+
+
+<p>If you&rsquo;re like me, you hate being stuck in this <code>{controller}/{action}</code> world that is the default MVC experience. I&rsquo;d rather have URLs like this:</p>
+
+
+
+
+<ul>
+<li>/library/1 (GET, POST)</li>
+<li>/library/1/games/1 (GET, POST, PUT, DELETE)</li>
+<li>/search/?q=keyword (GET)</li>
+<li>/register (GET, POST)</li>
+</ul>
+
+
+
+
+<p>In other words, more control over my URLs. Sure, you <em>could</em> be a caveman and use Global.asax for all of that, but I think you&rsquo;ll find it quickly growing out of hand unless you create methods to take care of different controllers.</p>
+
+
+
+
+<p>Instead, wouldn&rsquo;t this be easier and more discoverable?</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[RoutePrefix(&quot;library&quot;)]</span>
+</span><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">LibraryController</span> <span class="p">:</span> <span class="n">Controller</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// GET: /</span>
+</span><span class='line'>    <span class="c1">// GET: /library</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">    [GET(&quot;&quot;, RouteName = &quot;default&quot;, IsAbsoluteUrl = true)]</span>
+</span><span class='line'><span class="na">    [GET(&quot;&quot;, RouteName = &quot;library&quot;)]</span>
+</span><span class='line'>    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Index</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// GET: /library/{userId}</span>
+</span><span class='line'><span class="na">    [GET(&quot;{userId}&quot;)]</span>
+</span><span class='line'>    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">ByUser</span><span class="p">(</span><span class="kt">int</span> <span class="n">userId</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// POST: /library</span>
+</span><span class='line'><span class="na">    [POST(&quot;&quot;)]</span>
+</span><span class='line'>    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Filter</span><span class="p">(</span><span class="n">Criteria</span> <span class="n">criteria</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>That is exactly what AttributeRouting lets you do (and more!).</p>
+
+
+
+
+<h3>Web API</h3>
+
+
+
+
+<p>Now what if you want to do the same thing with ASP.NET Web API (or self-hosted Web API)? The short answer is <strong>now you can</strong>, though a week ago you couldn&rsquo;t. Having embarked on using Web API for my latest project, I decided that since I couldn&rsquo;t live without AR in MVC, I also couldn&rsquo;t live without it for Web API. So I forked the project, <a href="https://github.com/mccalltd/AttributeRouting/pull/57">did my thing</a>, and now it&rsquo;s in v2.0 which is <a href="http://nuget.org/packages?q=attributerouting">out now on Nuget</a>.</p>
+
+
+
+
+<p>I tried hard to keep the exact same convention and syntax:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[RoutePrefix(&quot;library&quot;)]</span>
+</span><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">LibraryController</span> <span class="p">:</span> <span class="n">ApiController</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">  [GET(&quot;&quot;)]</span>
+</span><span class='line'>  <span class="k">public</span> <span class="n">LibraryViewModel</span> <span class="nf">Get</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">  [HttpRoute(&quot;custom&quot;, HttpMethod.Get, HttpMethod.Post)]</span>
+</span><span class='line'>  <span class="k">public</span> <span class="n">HttpResponseMessage</span> <span class="nf">Custom</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Using Web API in a self-hosted environment? Not a problem, I made sure self-hosted works the same way, just grab the <a href="http://nuget.org/packages/AttributeRouting.WebApi.Hosted">appropriate Nuget package</a>.</p>
+
+
+
+
+<p>It was a fun project and I learned a lot about generics. The end result was that I didn&rsquo;t even need to use generics and that sometimes generics are a hindrance rather than a help (such as having classes that require 7-8 generic arguments). I was also able to <a href="/32/using-nuspec-inheritance-to-reduce-nuget-maintenan">use what I learned</a> from contributing to Cassette and bring it to AttributeRouting.</p>
+
+
+
+
+<p>It seems Tim is a happy camper and it always gives me a warm, fuzzy feeling whenever someone appreciates help:</p>
+
+
+
+
+<p><img src="/blog/images/39.png" alt="Appreciation Goes A Long Way" /></p>
+
+
+
+
+<p>If you haven&rsquo;t contributed to a project you love, you should give it a chance, you always learn something!</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2012-04-17T21:08:22+00:00" pubdate data-updated="true">Apr 17<span>th</span>, 2012</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/posts/42/windows-8-windows-phone-7-and-ktomg">Windows 8, Windows Phone 7, and KTOMG</a></h2>
   
   <p>
@@ -1162,321 +1338,6 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
 
 
 <time datetime="2012-03-13T19:33:19+00:00" pubdate data-updated="true">Mar 13<span>th</span>, 2012</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/posts/32/using-nuspec-inheritance-to-reduce-nuget-maintenan">Using Nuspec Inheritance to Reduce Nuget Maintenance Headaches</a></h2>
-  
-  <p>
-    <p>I&rsquo;ve been <a href="https://github.com/andrewdavey/cassette/pull/191">helping Cassette support .NET 3.5</a> and it&rsquo;s the biggest open source contribution I&rsquo;ve ever made. Granted, I started it so that we could use Cassette at work but I did it of my own accord. I learned a lot in the process (which I&rsquo;ll write another post on) but I thought I&rsquo;d talk about a cool trick I came up with to help ease Cassette&rsquo;s Nuget packaging burden.</p>
-
-
-
-
-<h2>The Problem</h2>
-
-
-
-
-<p>Cassette has 7 Nuget packages:</p>
-
-
-
-
-<ul>
-<li>Cassette + symbols</li>
-<li>Cassette.Views + symbols</li>
-<li>Cassette.Web + symbols</li>
-<li>Cassette.MSBuild</li>
-</ul>
-
-
-
-
-<p>This means Andrew has to maintain 7 separate Nuspec files. Imagine now if we were forced to create a new .NET 3.5-specific Nuget package or MVC2-specific package or whatever; we&rsquo;d have even more Nuspecs to deal with.</p>
-
-
-
-
-<p>What&rsquo;s even worse is that all the Nuspec files share common metadata. Typically the only metadata that differs is: <code>id</code>, <code>description</code>, <code>dependencies</code>, and <code>references</code>.</p>
-
-
-
-
-<h2>XDT Transformations to the Rescue</h2>
-
-
-
-
-<p>In MSBuild 4, Microsoft introduced the concept of <a href="http://msdn.microsoft.com/en-us/library/dd465326.aspx">XML Document Transformation</a>. This made it really helpful to create Debug/Release-specific <code>web.config</code> files for your site.</p>
-
-
-
-
-<p>However, what you may not know is that XDT can be used on <em>any</em> document. It can <a href="http://geekswithblogs.net/EltonStoneman/archive/2010/08/20/using-msbuild-4.0-web.config-transformation-to-generate-any-config-file.aspx">also be used manually</a> in your MSBuild file:</p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;UsingTask</span> <span class="na">TaskName=</span><span class="s">&quot;TransformXml&quot;</span> <span class="na">AssemblyFile=</span><span class="s">&quot;$(MSBuildExtensionPath)\Microsoft\VisualStudio\v10.0\Web\Microsoft.Web.Publishing.Tasks.dll&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;Target</span> <span class="na">Name=</span><span class="s">&quot;GenerateConfigs&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;MakeDir</span> <span class="na">Directories=</span><span class="s">&quot;$(BuildOutput)&quot;</span> <span class="na">Condition=</span><span class="s">&quot;!Exists(&#39;$(BuildOutput)&#39;)&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;TransformXml</span> <span class="na">Source=</span><span class="s">&quot;Web.config&quot;</span>
-</span><span class='line'>                  <span class="na">Transform=</span><span class="s">&quot;Web.$(Configuration).config&quot;</span>
-</span><span class='line'>                  <span class="na">Destination=</span><span class="s">&quot;$(BuildOutput)\Web.config&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;/Target&gt;</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>Neat. I thought about this a bit and figured, &ldquo;Hey, why not use this to reduce Nuspec maintenance headache!&rdquo;</p>
-
-
-
-
-<p>So I did a toy exercise by creating a <code>Cassette.Shared.nuspec</code> file:</p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-</span><span class='line'><span class="c">&lt;!&mdash; Cassette Shared Nuspec File; all packges share this &mdash;&gt;</span>
-</span><span class='line'><span class="nt">&lt;package</span> <span class="na">xmlns=</span><span class="s">&quot;<a href="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&amp;quot;">http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&amp;quot;</a></span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;metadata&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;version&gt;</span>$version$<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;authors&gt;</span>Andrew Davey<span class="nt">&lt;/authors&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;owners&gt;</span>Andrew Davey<span class="nt">&lt;/owners&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;copyright&gt;</span>© 2011 Andrew Davey<span class="nt">&lt;/copyright&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;licenseUrl&gt;</span><a href="http://getcassette.net/licensing">http://getcassette.net/licensing</a><span class="nt">&lt;/licenseUrl&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;projectUrl&gt;</span><a href="http://getcassette.net/">http://getcassette.net/</a><span class="nt">&lt;/projectUrl&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;tags&gt;</span>web javascript coffeescript css html templates asp.net<span class="nt">&lt;/tags&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/metadata&gt;</span>
-</span><span class='line'><span class="nt">&lt;/package&gt;</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>And a &ldquo;Cassette.Web.nutrans&rdquo; transformation file that just added the extra data required:</p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-</span><span class='line'><span class="nt">&lt;package</span> <span class="na">xmlns=</span><span class="s">&quot;<a href="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&amp;quot;">http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&amp;quot;</a></span> <span class="na">xmlns:xdt=</span><span class="s">&quot;<a href="http://schemas.microsoft.com/XML-Document-Transform&amp;quot;">http://schemas.microsoft.com/XML-Document-Transform&amp;quot;</a></span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;metadata&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;id</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span><span class="nt">&gt;</span>Cassette.Web<span class="nt">&lt;/id&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;description</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span><span class="nt">&gt;</span>ASP.NET support for Cassette. Cassette automatically builds JavaScript, CSS and HTML template modules based on the dependencies between files. CoffeeScript and LESS are also supported.<span class="nt">&lt;/description&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;dependencies</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;dependency</span> <span class="na">id=</span><span class="s">&quot;Cassette&quot;</span> <span class="na">version=</span><span class="s">&quot;$version$&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;dependency</span> <span class="na">id=</span><span class="s">&quot;Cassette.Views&quot;</span> <span class="na">version=</span><span class="s">&quot;$version$&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/dependencies&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/metadata&gt;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nt">&lt;files</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;....\build\bin\lib40\Cassette.Web.dll&quot;</span> <span class="na">target=</span><span class="s">&quot;lib\net40&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;....\build\bin\lib35\Cassette.Web.dll&quot;</span> <span class="na">target=</span><span class="s">&quot;lib\net35&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;CassetteConfiguration.cs.pp&quot;</span> <span class="na">target=</span><span class="s">&quot;content&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;web.config.transform&quot;</span> <span class="na">target=</span><span class="s">&quot;content&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/files&gt;</span>
-</span><span class='line'><span class="nt">&lt;/package&gt;</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p><strong>Mind = blown.</strong> It worked! As I stroked my five-o-clock shadow, I wondered. <em>Wow, if this works, how far can we take it?</em></p>
-
-
-
-
-<h2>Nuspec Inheritance: Say what?!</h2>
-
-
-
-
-<p>Let&rsquo;s consider the symbols packaging for Cassette. Being able to transform all these Nuspecs is great and will reduce headaches, but what happens when a Nuspec is a subset of yet another Nuspec? The symbols package typically just adds some PDB files and a <code>**\*.cs</code> line.</p>
-
-
-
-
-<p>Furthermore, I&rsquo;d <strong>really</strong> like to avoid calling the <code>TransformXml</code> task on each symbols Nuspec individually.</p>
-
-
-
-
-<p>No, what I really want is a way to make my Nuspecs inherit from each other to create a chain of transformation.</p>
-
-
-
-
-<p><strong>So that&rsquo;s what I did.</strong> Nuget package developers of the world, I present to you an inline MSBuild task that will follow a chain of inheritance and transform your Nuspecs:</p>
-
-
-
-
-<script src="https://gist.github.com/1918022.js?file=Transforms.xml"></script>
-
-
-
-
-<p>It looks complicated but it really isn&rsquo;t. I had to workaround <a href="http://stackoverflow.com/questions/9455354/msbuild-inline-task-reference-non-standard-microsoft-assemblies">an issue with MSBuild inline tasks</a> by loading up the Microsoft.Web.Publishing.Tasks assembly via Reflection. The rest of the code discovers the inheritance chain and performs the transformations. I developed this in a standalone console application first, then copy/pasted it into the inline task definition, changing whatever I needed.</p>
-
-
-
-
-<p>I could have made this into a standalone DLL but what fun is that? Then I&rsquo;d have to manage a solution and project and blah blah blah. No, I wanted this to be simple and easy to just add to any MSBuild project.</p>
-
-
-
-
-<h2>Example Usage</h2>
-
-
-
-
-<p>Let&rsquo;s take the symbols example now and see what we can do.</p>
-
-
-
-
-<p><strong>Cassette.Web.nutrans</strong></p>
-
-
-
-
-<p>We have to add an extra attribute to the <code>&lt;package&gt;</code> element:</p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;package</span> <span class="na">inherits=</span><span class="s">&quot;../Cassette.Shared.nuspec&quot;</span> <span class="err">&hellip;</span><span class="nt">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>The <code>inherits</code> attribute is relative to the directory the nutrans file is in.</p>
-
-
-
-
-<p><strong>Cassette.Web.symbols.nutrans</strong></p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-</span><span class='line'><span class="nt">&lt;package</span> <span class="na">inherits=</span><span class="s">&quot;Cassette.Web.nutrans&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;<a href="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&amp;quot;">http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&amp;quot;</a></span> <span class="na">xmlns:xdt=</span><span class="s">&quot;<a href="http://schemas.microsoft.com/XML-Document-Transform&amp;quot;">http://schemas.microsoft.com/XML-Document-Transform&amp;quot;</a></span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;files&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;file</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span> <span class="na">src=</span><span class="s">&quot;....\build\bin\lib40\Cassette.Web.pdb&quot;</span> <span class="na">target=</span><span class="s">&quot;lib\net40&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;file</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span> <span class="na">src=</span><span class="s">&quot;....\build\bin\lib35\Cassette.Web.pdb&quot;</span> <span class="na">target=</span><span class="s">&quot;lib\net35&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;file</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span> <span class="na">src=</span><span class="s">&quot;***.cs&quot;</span> <span class="na">target=</span><span class="s">&quot;src&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/files&gt;</span>
-</span><span class='line'><span class="nt">&lt;/package&gt;</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>Now, using the <code>inherits</code> attribute, we can transform the Cassette.Web transformation file letting us create a chain of transformations.</p>
-
-
-
-
-<p>To use this task, we can easily pass it the list of transforms to use and let it work its magic.</p>
-
-
-
-
-<p><strong>build.xml</strong></p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;Target</span> <span class="na">Name=</span><span class="s">&quot;NugetPack&quot;</span> <span class="na">DependsOnTargets=</span><span class="s">&quot;Build&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;ItemGroup&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;Transforms</span> <span class="na">Include=</span><span class="s">&quot;src***.nutrans&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/ItemGroup&gt;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="c">&lt;!&mdash; Transform Nuspecs &mdash;&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;TransformXmlHierarchy</span>
-</span><span class='line'>            <span class="na">Source=</span><span class="s">&quot;%(Transforms.Identity)&quot;</span>
-</span><span class='line'>            <span class="na">Destination=</span><span class="s">&quot;src\%(Transforms.RecursiveDir)%(Transforms.Filename).nuspec&quot;</span>
-</span><span class='line'>            <span class="na">TaskDirectory=</span><span class="s">&quot;$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\Web&amp;quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;/Target&gt;</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>And there you have it! For every transform file MSBuild finds, it will execute our task and generate our Nuspec files so they all contain the same shared metadata. I hope this makes someone&rsquo;s Nuget packaging life easier.</p>
-
-
-
-
-<p>You can find the source and examples <a href="https://gist.github.com/1918022">in my gist</a>.</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2012-02-27T02:16:16+00:00" pubdate data-updated="true">Feb 27<span>th</span>, 2012</time>
     
 
 

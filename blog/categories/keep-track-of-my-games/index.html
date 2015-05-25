@@ -67,6 +67,78 @@
         <div class="row">
           <div class="col-md-offset-2 col-md-8">
             <article>
+  <h2><a href="/blog/2015/05/25/knockout-binding-report/">Knockout.js Binding Report for Performance Tuning</a></h2>
+  
+  <p>
+    <p>I use a lot of <a href="http://knockoutjs.com">Knockout.js</a> on <a href="http://keeptrackofmygames.com">Keep Track of My Games</a>. I love Knockout but sometimes it makes it difficult to understand what&rsquo;s slowing my page down. For the game list, there&rsquo;s a lot of binding going on because I have to bind not only the list of games but also the toolbar.</p>
+
+<p><img src="http://41.media.tumblr.com/fefa8f95951ed13a2f4d22e758bb807b/tumblr_inline_nonu62Tr1J1qlpzxk_540.png" alt="KTOMG list" /></p>
+
+<p>Before I deploy the newest update (shown above), I&rsquo;d prefer it if the list binding performance was better than it is now. Currently there&rsquo;s a visible block on the UI thread when returning results from the API, about 500-1000ms. <strong>This is unacceptable.</strong></p>
+
+<p>A quick Google search did not yield anything regarding a &ldquo;real&rdquo; performance tool for Knockout. What I would love is an extension that would overlay performance statistics over the UI of my app after binding is complete. This way I could visualize and easily pinpoint what bindings are causing performance issues.</p>
+
+<p>I&rsquo;ve made a small step towards that dream by creating a simple reporting script that outputs a &ldquo;binding report&rdquo; to the Chrome console:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7795861/5a10389a-02d9-11e5-9462-056fa9e4da18.png" alt="Binding report" /></p>
+
+<p>The report displays the total duration of the binding process (which is all bindings that occur after a 500ms wait time) as well as the top binding according to total duration.</p>
+
+<p>It also displays each binding summary in a table (<code>console.table</code>). You can drill-down by expanding the array entries underneath the table (sorted by duration).</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7795969/8fb1c828-02da-11e5-8b81-fe88f466812e.png" alt="Drill-down" /></p>
+
+<p>The script works by wrapping all the binding handlers (even custom ones) in a wrapper function that calculates the duration of the call to <code>init</code> or <code>update</code>. You just need to include it after your custom binding handlers and before the <code>applyBindings</code> call.</p>
+
+<p>The script requires <a href="http://underscorejs.org">Underscore</a> and Google Chrome. Here&rsquo;s the gist:</p>
+
+<script src="https://gist.github.com/kamranayub/65399fa247a6c182bc65.js"></script>
+
+
+<p>As you can see in my own performance report, I have some work to do to fix my <code>if</code> bindings. It doesn&rsquo;t exactly pinpoint the problem binding, but it gets me a step closer to understanding what&rsquo;s going on.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7796086/f407dc76-02db-11e5-90e7-b89613408174.png" alt="Uh oh" /></p>
+
+<p>Now if you&rsquo;ll execuse me, I&rsquo;ve got some work to do.</p>
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-05-25T10:30:00+00:00" pubdate data-updated="true">May 25<span>th</span>, 2015</time>
+    
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/chrome/'>Chrome</a>, <a class='category' href='/blog/categories/javascript/'>Javascript</a>, <a class='category' href='/blog/categories/keep-track-of-my-games/'>Keep Track of My Games</a>, <a class='category' href='/blog/categories/knockout-dot-js/'>Knockout.js</a>, <a class='category' href='/blog/categories/performance/'>Performance</a>
+  
+</span>
+
+
+  </span>
+
+  
+</article>
+
+          </div>
+        </div>
+      
+        
+        <div class="row">
+          <div class="col-md-offset-2 col-md-8">
+            <article>
   <h2><a href="/blog/2015/05/21/chrome-multi-user/">Use a Separate Chrome Profile to Manage Your Apps</a></h2>
   
   <p>

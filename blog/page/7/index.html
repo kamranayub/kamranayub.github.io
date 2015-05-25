@@ -90,6 +90,321 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/posts/32/using-nuspec-inheritance-to-reduce-nuget-maintenan">Using Nuspec Inheritance to Reduce Nuget Maintenance Headaches</a></h2>
+  
+  <p>
+    <p>I&rsquo;ve been <a href="https://github.com/andrewdavey/cassette/pull/191">helping Cassette support .NET 3.5</a> and it&rsquo;s the biggest open source contribution I&rsquo;ve ever made. Granted, I started it so that we could use Cassette at work but I did it of my own accord. I learned a lot in the process (which I&rsquo;ll write another post on) but I thought I&rsquo;d talk about a cool trick I came up with to help ease Cassette&rsquo;s Nuget packaging burden.</p>
+
+
+
+
+<h2>The Problem</h2>
+
+
+
+
+<p>Cassette has 7 Nuget packages:</p>
+
+
+
+
+<ul>
+<li>Cassette + symbols</li>
+<li>Cassette.Views + symbols</li>
+<li>Cassette.Web + symbols</li>
+<li>Cassette.MSBuild</li>
+</ul>
+
+
+
+
+<p>This means Andrew has to maintain 7 separate Nuspec files. Imagine now if we were forced to create a new .NET 3.5-specific Nuget package or MVC2-specific package or whatever; we&rsquo;d have even more Nuspecs to deal with.</p>
+
+
+
+
+<p>What&rsquo;s even worse is that all the Nuspec files share common metadata. Typically the only metadata that differs is: <code>id</code>, <code>description</code>, <code>dependencies</code>, and <code>references</code>.</p>
+
+
+
+
+<h2>XDT Transformations to the Rescue</h2>
+
+
+
+
+<p>In MSBuild 4, Microsoft introduced the concept of <a href="http://msdn.microsoft.com/en-us/library/dd465326.aspx">XML Document Transformation</a>. This made it really helpful to create Debug/Release-specific <code>web.config</code> files for your site.</p>
+
+
+
+
+<p>However, what you may not know is that XDT can be used on <em>any</em> document. It can <a href="http://geekswithblogs.net/EltonStoneman/archive/2010/08/20/using-msbuild-4.0-web.config-transformation-to-generate-any-config-file.aspx">also be used manually</a> in your MSBuild file:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;UsingTask</span> <span class="na">TaskName=</span><span class="s">&quot;TransformXml&quot;</span> <span class="na">AssemblyFile=</span><span class="s">&quot;$(MSBuildExtensionPath)\Microsoft\VisualStudio\v10.0\Web\Microsoft.Web.Publishing.Tasks.dll&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;Target</span> <span class="na">Name=</span><span class="s">&quot;GenerateConfigs&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;MakeDir</span> <span class="na">Directories=</span><span class="s">&quot;$(BuildOutput)&quot;</span> <span class="na">Condition=</span><span class="s">&quot;!Exists(&#39;$(BuildOutput)&#39;)&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;TransformXml</span> <span class="na">Source=</span><span class="s">&quot;Web.config&quot;</span>
+</span><span class='line'>                  <span class="na">Transform=</span><span class="s">&quot;Web.$(Configuration).config&quot;</span>
+</span><span class='line'>                  <span class="na">Destination=</span><span class="s">&quot;$(BuildOutput)\Web.config&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/Target&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Neat. I thought about this a bit and figured, &ldquo;Hey, why not use this to reduce Nuspec maintenance headache!&rdquo;</p>
+
+
+
+
+<p>So I did a toy exercise by creating a <code>Cassette.Shared.nuspec</code> file:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+</span><span class='line'><span class="c">&lt;!&mdash; Cassette Shared Nuspec File; all packges share this &mdash;&gt;</span>
+</span><span class='line'><span class="nt">&lt;package</span> <span class="na">xmlns=</span><span class="s">&quot;<a href="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&amp;quot;">http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&amp;quot;</a></span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;metadata&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>$version$<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;authors&gt;</span>Andrew Davey<span class="nt">&lt;/authors&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;owners&gt;</span>Andrew Davey<span class="nt">&lt;/owners&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;copyright&gt;</span>© 2011 Andrew Davey<span class="nt">&lt;/copyright&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;licenseUrl&gt;</span><a href="http://getcassette.net/licensing">http://getcassette.net/licensing</a><span class="nt">&lt;/licenseUrl&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;projectUrl&gt;</span><a href="http://getcassette.net/">http://getcassette.net/</a><span class="nt">&lt;/projectUrl&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;tags&gt;</span>web javascript coffeescript css html templates asp.net<span class="nt">&lt;/tags&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/metadata&gt;</span>
+</span><span class='line'><span class="nt">&lt;/package&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>And a &ldquo;Cassette.Web.nutrans&rdquo; transformation file that just added the extra data required:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;package</span> <span class="na">xmlns=</span><span class="s">&quot;<a href="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&amp;quot;">http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&amp;quot;</a></span> <span class="na">xmlns:xdt=</span><span class="s">&quot;<a href="http://schemas.microsoft.com/XML-Document-Transform&amp;quot;">http://schemas.microsoft.com/XML-Document-Transform&amp;quot;</a></span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;metadata&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;id</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span><span class="nt">&gt;</span>Cassette.Web<span class="nt">&lt;/id&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;description</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span><span class="nt">&gt;</span>ASP.NET support for Cassette. Cassette automatically builds JavaScript, CSS and HTML template modules based on the dependencies between files. CoffeeScript and LESS are also supported.<span class="nt">&lt;/description&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;dependencies</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;dependency</span> <span class="na">id=</span><span class="s">&quot;Cassette&quot;</span> <span class="na">version=</span><span class="s">&quot;$version$&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;dependency</span> <span class="na">id=</span><span class="s">&quot;Cassette.Views&quot;</span> <span class="na">version=</span><span class="s">&quot;$version$&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/dependencies&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/metadata&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nt">&lt;files</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;....\build\bin\lib40\Cassette.Web.dll&quot;</span> <span class="na">target=</span><span class="s">&quot;lib\net40&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;....\build\bin\lib35\Cassette.Web.dll&quot;</span> <span class="na">target=</span><span class="s">&quot;lib\net35&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;CassetteConfiguration.cs.pp&quot;</span> <span class="na">target=</span><span class="s">&quot;content&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;web.config.transform&quot;</span> <span class="na">target=</span><span class="s">&quot;content&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/files&gt;</span>
+</span><span class='line'><span class="nt">&lt;/package&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><strong>Mind = blown.</strong> It worked! As I stroked my five-o-clock shadow, I wondered. <em>Wow, if this works, how far can we take it?</em></p>
+
+
+
+
+<h2>Nuspec Inheritance: Say what?!</h2>
+
+
+
+
+<p>Let&rsquo;s consider the symbols packaging for Cassette. Being able to transform all these Nuspecs is great and will reduce headaches, but what happens when a Nuspec is a subset of yet another Nuspec? The symbols package typically just adds some PDB files and a <code>**\*.cs</code> line.</p>
+
+
+
+
+<p>Furthermore, I&rsquo;d <strong>really</strong> like to avoid calling the <code>TransformXml</code> task on each symbols Nuspec individually.</p>
+
+
+
+
+<p>No, what I really want is a way to make my Nuspecs inherit from each other to create a chain of transformation.</p>
+
+
+
+
+<p><strong>So that&rsquo;s what I did.</strong> Nuget package developers of the world, I present to you an inline MSBuild task that will follow a chain of inheritance and transform your Nuspecs:</p>
+
+
+
+
+<script src="https://gist.github.com/1918022.js?file=Transforms.xml"></script>
+
+
+
+
+<p>It looks complicated but it really isn&rsquo;t. I had to workaround <a href="http://stackoverflow.com/questions/9455354/msbuild-inline-task-reference-non-standard-microsoft-assemblies">an issue with MSBuild inline tasks</a> by loading up the Microsoft.Web.Publishing.Tasks assembly via Reflection. The rest of the code discovers the inheritance chain and performs the transformations. I developed this in a standalone console application first, then copy/pasted it into the inline task definition, changing whatever I needed.</p>
+
+
+
+
+<p>I could have made this into a standalone DLL but what fun is that? Then I&rsquo;d have to manage a solution and project and blah blah blah. No, I wanted this to be simple and easy to just add to any MSBuild project.</p>
+
+
+
+
+<h2>Example Usage</h2>
+
+
+
+
+<p>Let&rsquo;s take the symbols example now and see what we can do.</p>
+
+
+
+
+<p><strong>Cassette.Web.nutrans</strong></p>
+
+
+
+
+<p>We have to add an extra attribute to the <code>&lt;package&gt;</code> element:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;package</span> <span class="na">inherits=</span><span class="s">&quot;../Cassette.Shared.nuspec&quot;</span> <span class="err">&hellip;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The <code>inherits</code> attribute is relative to the directory the nutrans file is in.</p>
+
+
+
+
+<p><strong>Cassette.Web.symbols.nutrans</strong></p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;package</span> <span class="na">inherits=</span><span class="s">&quot;Cassette.Web.nutrans&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;<a href="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&amp;quot;">http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&amp;quot;</a></span> <span class="na">xmlns:xdt=</span><span class="s">&quot;<a href="http://schemas.microsoft.com/XML-Document-Transform&amp;quot;">http://schemas.microsoft.com/XML-Document-Transform&amp;quot;</a></span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;files&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;file</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span> <span class="na">src=</span><span class="s">&quot;....\build\bin\lib40\Cassette.Web.pdb&quot;</span> <span class="na">target=</span><span class="s">&quot;lib\net40&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;file</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span> <span class="na">src=</span><span class="s">&quot;....\build\bin\lib35\Cassette.Web.pdb&quot;</span> <span class="na">target=</span><span class="s">&quot;lib\net35&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;file</span> <span class="na">xdt:Transform=</span><span class="s">&quot;Insert&quot;</span> <span class="na">src=</span><span class="s">&quot;***.cs&quot;</span> <span class="na">target=</span><span class="s">&quot;src&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/files&gt;</span>
+</span><span class='line'><span class="nt">&lt;/package&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Now, using the <code>inherits</code> attribute, we can transform the Cassette.Web transformation file letting us create a chain of transformations.</p>
+
+
+
+
+<p>To use this task, we can easily pass it the list of transforms to use and let it work its magic.</p>
+
+
+
+
+<p><strong>build.xml</strong></p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;Target</span> <span class="na">Name=</span><span class="s">&quot;NugetPack&quot;</span> <span class="na">DependsOnTargets=</span><span class="s">&quot;Build&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;ItemGroup&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;Transforms</span> <span class="na">Include=</span><span class="s">&quot;src***.nutrans&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/ItemGroup&gt;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c">&lt;!&mdash; Transform Nuspecs &mdash;&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;TransformXmlHierarchy</span>
+</span><span class='line'>            <span class="na">Source=</span><span class="s">&quot;%(Transforms.Identity)&quot;</span>
+</span><span class='line'>            <span class="na">Destination=</span><span class="s">&quot;src\%(Transforms.RecursiveDir)%(Transforms.Filename).nuspec&quot;</span>
+</span><span class='line'>            <span class="na">TaskDirectory=</span><span class="s">&quot;$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\Web&amp;quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/Target&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>And there you have it! For every transform file MSBuild finds, it will execute our task and generate our Nuspec files so they all contain the same shared metadata. I hope this makes someone&rsquo;s Nuget packaging life easier.</p>
+
+
+
+
+<p>You can find the source and examples <a href="https://gist.github.com/1918022">in my gist</a>.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2012-02-27T02:16:16+00:00" pubdate data-updated="true">Feb 27<span>th</span>, 2012</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/posts/31/this-this-is-ux">This&#8230; This Is UX</a></h2>
   
   <p>
@@ -2002,137 +2317,6 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
 
 
 <time datetime="2011-11-02T19:25:08+00:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2011</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/posts/22/whats-the-most-efficient-way-to-read-config-settin">What&#8217;s the Most Efficient Way to Read Config Settings in .NET?</a></h2>
-  
-  <p>
-    <p>In a project I&rsquo;m contributing to, I saw some code like this (simplified but boiling down to):</p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="n">ConfigValue</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">get</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">System</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">ConfigurationManager</span><span class="p">.</span><span class="n">AppSettings</span><span class="p">[</span><span class="s">&quot;ConfigValue&quot;</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>Is there anything wrong with this? It&rsquo;s a static read-only property. That seems pretty reasonable!</p>
-
-
-
-
-<h3>Storage matters</h3>
-
-
-
-
-<p>The issue that I saw was that there&rsquo;s no real reason to do this. You could do this just as easily:</p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">static</span> <span class="k">readonly</span> <span class="kt">string</span> <span class="n">ConfigValue</span> <span class="p">=</span>
-</span><span class='line'>     <span class="n">System</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">ConfigurationManager</span><span class="p">.</span><span class="n">AppSettings</span><span class="p">[</span><span class="s">&quot;ConfigValue&quot;</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p><em>So, who cares? It looks the same to me!</em> As far as I can tell, you should care, even a little bit. Check this out:</p>
-
-
-
-
-<p><img src="/blog/images/34.png" alt="Perf Timer" /></p>
-
-
-
-
-<p>Notice anything? The <code>static readonly</code> field is far and away faster than any other approach (400 <em>nanoseconds</em>). The other three approaches are pretty similar, ranging from 95ms to 104ms. I&rsquo;ll do the math for you:</p>
-
-
-
-
-<blockquote><p><strong>A <code>static readonly</code> field is upwards of 200x faster</strong> than the equivalent property implementation.</p></blockquote>
-
-
-
-
-<p>The reason is simple: <code>get/set</code> are translated into methods by the compiler. A field is simply a field. Any property will incur some penalty for wrapping methods, so a field will always be faster! I use properties all the time but sometimes it might make sense to forgo a property in favor of a field.</p>
-
-
-
-
-<h3>The test case</h3>
-
-
-
-
-<p>Will you ever notice differences this small? I doubt it (the test was 100000 iterations). I did this for a learning experiment and for future reference. <strike>However, reading a config file is I/O at its core. To me, that says you should care about minimizing possible calls to the disk. Under a substantial load test, perhaps this would incur a visible penalty to page load time depending on how many calls you had to your settings wrapper.</strike> (<strong>Update:</strong> One of my colleagues pointed out that app config is probably loaded on start-up, so there shouldn&rsquo;t any disk I/O happening.)</p>
-
-
-
-
-<p><strong>Performance matters</strong> but this is probably so picky that you really don&rsquo;t ever need to worry about it. As my co-worker said to me after reading this:</p>
-
-
-
-
-<blockquote><p>&ldquo;A single call to a suboptimal EF/NHibernate/SQL query is far more damaging than 100,000 calls to these simple properties/fields. If a query took 1 second it would be roughly equivalent to 1,000,000 calls to the most inefficient property implementation. I would say spend your time where you get the biggest bang for your buck.&rdquo;</p></blockquote>
-
-
-
-
-<p>Couldn&rsquo;t have said it better myself! If you&rsquo;re doing perf testing, make changes where it matters. This is only a microscopic change compared to some that would make more of a difference (such as how you handle <code>Regex</code>).</p>
-
-
-
-
-<p>Here&rsquo;s the test case. I am not entirely positive if there&rsquo;s unseen overhead but the other three examples are common things I&rsquo;ve seen or even done in regards to this type of pattern:</p>
-
-
-
-
-<script src="https://gist.github.com/1302236.js?file=PerfTestCaseBackingMethods.cs"></script>
-
-
-
-
-<p>Let me know if I made a mistake in the test case that&rsquo;s skewing results and I&rsquo;ll fix it.</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2011-10-21T01:33:09+00:00" pubdate data-updated="true">Oct 21<span>st</span>, 2011</time>
     
 
 
