@@ -5,9 +5,11 @@ date: 2015-05-25 12:30:00 +0200
 comments: true
 published: true
 categories:
-- Performance
+- Knockout
 - Javascript
-- Knockout.js
+- Gists
+- OSS
+- Performance
 - Chrome
 - Keep Track of My Games
 ---
@@ -45,3 +47,5 @@ As you can see in my own performance report, I have some work to do to fix my `i
 ![Uh oh](https://cloud.githubusercontent.com/assets/563819/7796086/f407dc76-02db-11e5-90e7-b89613408174.png)
 
 Now if you'll execuse me, I've got some work to do.
+
+**Update:** Using this little script, I was able to get down to <150ms from 600-900ms (and this is a slow laptop). This is much more acceptable for a release this week!
