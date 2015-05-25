@@ -12,7 +12,11 @@ categories:
 - Keep Track of My Games
 ---
 
-I use a lot of [Knockout.js](http://knockoutjs.com) on [Keep Track of My Games](http://keeptrackofmygames.com). I love Knockout but sometimes it makes it difficult to understand what's slowing my page down. For the game list, there's a lot of binding going on because I have to bind not only the list of games but also the toolbar.
+I use a lot of [Knockout.js](http://knockoutjs.com) on [Keep Track of My Games](http://keeptrackofmygames.com). I love Knockout but sometimes it makes it difficult to understand what's slowing my page down. 
+
+<!-- More -->
+
+For the game list, there's a lot of binding going on because I have to bind not only the list of games but also the toolbar.
 
 ![KTOMG list](http://41.media.tumblr.com/fefa8f95951ed13a2f4d22e758bb807b/tumblr_inline_nonu62Tr1J1qlpzxk_540.png)
 
