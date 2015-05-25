@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Performance | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/performance/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2015-05-25T10:53:05+00:00</updated>
+  <updated>2015-05-25T11:51:06+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -18,7 +18,12 @@
     <link href="http://kamranicus.com/blog/2015/05/25/knockout-binding-report/"/>
     <updated>2015-05-25T10:30:00+00:00</updated>
     <id>http://kamranicus.com/blog/2015/05/25/knockout-binding-report</id>
-    <content type="html"><![CDATA[<p>I use a lot of <a href="http://knockoutjs.com">Knockout.js</a> on <a href="http://keeptrackofmygames.com">Keep Track of My Games</a>. I love Knockout but sometimes it makes it difficult to understand what&rsquo;s slowing my page down. For the game list, there&rsquo;s a lot of binding going on because I have to bind not only the list of games but also the toolbar.</p>
+    <content type="html"><![CDATA[<p>I use a lot of <a href="http://knockoutjs.com">Knockout.js</a> on <a href="http://keeptrackofmygames.com">Keep Track of My Games</a>. I love Knockout but sometimes it makes it difficult to understand what&rsquo;s slowing my page down.</p>
+
+<!-- More -->
+
+
+<p>For the game list, there&rsquo;s a lot of binding going on because I have to bind not only the list of games but also the toolbar.</p>
 
 <p><img src="http://41.media.tumblr.com/fefa8f95951ed13a2f4d22e758bb807b/tumblr_inline_nonu62Tr1J1qlpzxk_540.png" alt="KTOMG list" /></p>
 
