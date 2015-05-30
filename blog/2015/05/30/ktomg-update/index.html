@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Behind the Major Update to Keep Track of My Games - Kamranicus</title>
+  <meta name="author" content="Kamran">
+
+  
+  <meta name="description" content="Behind the Major Update to Keep Track of My Games written May 30th, 2015 in CSS3, Front-End, HTML5, Javascript, Keep Track of My Games, Projects &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kamranicus.com/blog/2015/05/30/ktomg-update">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+  <body>
+    <a href="/" class="home-icon">
+      <img src="/images/home.png"/>
+    </a>
+
+    <article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
+        <h1>Behind the Major Update to Keep Track of My Games</h1>
+        <div class="meta">
+          written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-05-30T22:13:00+00:00" pubdate data-updated="true">May 30<span>th</span>, 2015</time>
+          
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/css3/'>CSS3</a>, <a class='category' href='/blog/categories/front-end/'>Front-End</a>, <a class='category' href='/blog/categories/html5/'>HTML5</a>, <a class='category' href='/blog/categories/javascript/'>Javascript</a>, <a class='category' href='/blog/categories/keep-track-of-my-games/'>Keep Track of My Games</a>, <a class='category' href='/blog/categories/projects/'>Projects</a>
+  
+</span>
+
+
+        </div>
+        <p>Today I just pushed a <strong>major</strong> update to <a href="http://keeptrackofmygames.com">KTOMG</a>. <em>Psst, you should join!</em></p>
+
+<!-- More -->
+
+
+<p>You can <a href="http://blog.keeptrackofmygames.com/post/120264549011/updates-for-may-2015">reference the blog post</a> for details on features but on the technical side I&rsquo;m pretty proud because I got to implement a bunch of new tech that I&rsquo;ve been wanting to learn properly.</p>
+
+<h2>At a glance</h2>
+
+<p>The site is built using <a href="http://getbootstrap.com">Bootstrap</a>, <a href="http://lesscss.org">LESS</a>, and <a href="http://knockoutjs.com">Knockout.js</a>. It is totally responsive and yes, every feature is available on every view. I don&rsquo;t yet have offline mode or some more app-y things like local storage quite yet but it&rsquo;s on my to-do list. By far the hardest thing to make responsive was the list view but using Flexbox and toolbar configurations, it&rsquo;s manageable. It could always be simpler though, my work is never done.</p>
+
+<h2>CSS3 Flexbox</h2>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7899652/94500830-072c-11e5-8656-59fb097ecf36.png" alt="Lists" /></p>
+
+<p>The list view is using <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">CSS3 Flexbox</a> with <code>display: table</code> fallback w/JavaScript. A Flexbox grid is perfect for a modern responsive app, which KTOMG is. It scales down to mobile fine (and if you don&rsquo;t have Flexbox or if the fallback fails, the worst you get is a stacked list). For different breakpoints I customize the flex basis of the items to create 1-3 column layouts. The homepage will soon use Flexbox as soon as I get to it (right now it&rsquo;s using <code>display: table</code> to maintain equal-height columns). All of the modern browsers support Flexbox and for those that don&rsquo;t, they just get a wrapping grid.</p>
+
+<p>I also use Flexbox for any grid of games using table display as a fallback; this prevents me from needing to have fixed column sizes for different screen sizes so the games will just wrap as they need to.</p>
+
+<p><strong>Aside:</strong> The box art image grid for the list is simply just the first four games in the list (dynamically updated, since the entire page uses Knockout) positioned using <code>background-size</code> and <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_multiple_backgrounds">multiple backgrounds</a>. It uses a placeholder image repeated 4 times, in case the games are missing artwork and during loading.</p>
+
+<p>Most of the CSS3/HTML5 stuff I have fallbacks by detecting features using <a href="http://modernizr.com/">Modernizr</a>.</p>
+
+<h2>HTML5 Drag and Drop</h2>
+
+<p>The other cool thing Flexbox gives you is some hot drag and drop action by allowing dynamic insertion of flex items:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7899631/1b7db50c-072b-11e5-9977-49c7b6c3b176.gif" alt="Drag and drop" /></p>
+
+<p>I wrote the drag and drop code in vanilla HTML5 Javascript, it wasn&rsquo;t too bad <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Drag_and_drop">using MDN as a guide</a>. The fallback if that isn&rsquo;t supported is simply toolbar icons (which really is faster anyway for moving things far).</p>
+
+<p>I admit I haven&rsquo;t tried a browser that <em>doesn&rsquo;t</em> support Flexbox but <em>does</em> support drag/drop, so that case might still need some tweaking.</p>
+
+<h2>Hopscotch Tutorials</h2>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7899658/bda3d91e-072c-11e5-80ea-932d2f309681.png" alt="Tutorials" /></p>
+
+<p>Since lists are pretty powerful, people might need some help remembering all the things they can do.</p>
+
+<p>I use a modified version of <a href="http://linkedin.github.io/hopscotch">Hopscotch</a> for an introduction tutorial. I struggled at first to figure out how I wanted to do tutorials. I ended up just using a string array on every user that I fill in when they finish a tutorial, allowing for an infinite number of tutorials and everyone not seeing them by default. I keep a master list of valid tutorials on the server.</p>
+
+<p>It&rsquo;s a simple solution that will let me add tutorials as I can make them. It took me a little finnagling, but I also got the tour working fine on small screens.</p>
+
+<h2>Stats with Chart.js</h2>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7899666/222e5d5a-072d-11e5-9328-f52ae59c9e76.png" alt="Stats" /></p>
+
+<p>I use <a href="http://www.chartjs.org/">Chart.js</a> for profile and list stats. The API is easy to use and easy to extend, as well as being sufficiently sexy. The stats I show right now are just the tip of the iceberg. I look forward to generating some cool charts later on (especially the Radar ones for comparisons).</p>
+
+<p>Also, I apparently really like Action/Adventure and RPGs. But I knew that already, tell me something I don&rsquo;t know! Like maybe my &ldquo;burndown&rdquo; for finishing my backlog&hellip;</p>
+
+<h2>I&rsquo;m excited</h2>
+
+<p>I worked on this update all month as my wife will attest. I still have <a href="ktomg.uservoice.com/">plenty</a> to do but <a href="http://kamranicus.com/blog/2015/05/21/5-things-for-6-months-abroad/">our vacation</a> is coming to an end. I don&rsquo;t think I&rsquo;ll be able to release such massive updates each month but this one definitely gets me closer to completing the vision I have. I&rsquo;m pretty excited! The updates are just in time for the big gaming conferences, if only I could get public lists out by the end of June&hellip;</p>
+
+
+        <hr class="divider-short"/>
+
+        
+        <section>
+          <h1>Comments</h1>
+          <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </section>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
+        
+          <a class="pull-left" href="/blog/2015/05/25/knockout-binding-report/" title="Previous Post: Knockout.js Binding Report for Performance Tuning">&laquo; Previous: Knockout.js Binding Report for Performance Tuning</a>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="her-row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+  <a href="/"><h4>Home</h4></a>
+</div>
+
+<div class="col-md-2">
+  <div class="social-icon-list">
+    
+    <a href="https://twitter.com/kamranayub"><img src="/images/glyphicons_social_31_twitter.png"/></a>
+    
+
+    
+    <a href="https://github.com/kamranayub"><img src="/images/glyphicons_social_21_github.png"/></a>
+    
+
+    
+
+    
+  </div>
+</div>
+
+<div class="pull-right">
+  <h4>Powered by <a href="http://octopress.org/">Octopress</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+    
+      
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        // var disqus_developer = 1;
+        
+        var disqus_identifier = 'http://kamranicus.com/blog/2015/05/30/ktomg-update/';
+        
+        var disqus_url = 'http://kamranicus.com/blog/2015/05/30/ktomg-update/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+    
+  </body>
+</html>
