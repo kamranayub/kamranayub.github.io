@@ -17,9 +17,9 @@ categories:
 
 Today I just pushed a **major** update to [KTOMG](http://keeptrackofmygames.com). *Psst, you should join!*
 
-<!-- More -->
-
 You can [reference the blog post](http://blog.keeptrackofmygames.com/post/120264549011/updates-for-may-2015) for details on features but on the technical side I'm pretty proud because I got to implement a bunch of new tech that I've been wanting to learn properly.
+
+<!-- More -->
 
 ## At a glance
 
