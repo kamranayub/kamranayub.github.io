@@ -13,6 +13,8 @@ categories:
 - Javascript
 ---
 
+![My profile](https://cloud.githubusercontent.com/assets/563819/7899619/b3154994-072a-11e5-8da1-b9a9703a8b57.png)
+
 Today I just pushed a **major** update to [KTOMG](http://keeptrackofmygames.com). *Psst, you should join!*
 
 <!-- More -->
