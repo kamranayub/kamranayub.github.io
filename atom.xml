@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2015-07-29T01:27:00+00:00</updated>
+  <updated>2015-07-29T01:28:05+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -14,9 +14,9 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Install Windows 10 Immediately]]></title>
+    <title type="html"><![CDATA[Install Windows 10 Immediately Before Rollout]]></title>
     <link href="http://kamranicus.com/blog/2015/07/28/install-windows-10-immediately/"/>
-    <updated>2015-07-28T00:00:00+00:00</updated>
+    <updated>2015-07-28T06:20:13+00:00</updated>
     <id>http://kamranicus.com/blog/2015/07/28/install-windows-10-immediately</id>
     <content type="html"><![CDATA[<p>This is only applicable for the next few hours until your machine gets Windows 10 rolled out. If you&rsquo;re inpatient like me, a friend tipped me off that he was able to install Windows 10 prematurely by simply forcing Windows Update to download Windows 10 and then setting his system time forward a day (BIOS, I&rsquo;m thinking).</p>
 
