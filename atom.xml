@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2015-07-29T03:15:58+00:00</updated>
+  <updated>2015-07-29T03:30:56+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Use Special Gmail Addresses to Redirect and Filter Incoming Mail or Bypass Unique Email Checks]]></title>
+    <link href="http://kamranicus.com/blog/2015/07/29/gmail-special-address/"/>
+    <updated>2015-07-29T04:23:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2015/07/29/gmail-special-address</id>
+    <content type="html"><![CDATA[<p>If you have a Gmail account, there&rsquo;s a sweet feature you might not know about.</p>
+
+<p>Let&rsquo;s say your email is:</p>
+
+<p><code>johndoe@gmail.com</code></p>
+
+<p>First tip: adding dots (.) does not change the email. The following emails are identical to Google and will route email to <code>johndoe@gmail.com</code>:</p>
+
+<ul>
+<li><code>john.doe@gmail.com</code></li>
+<li><code>john....doe@gmail.com</code></li>
+<li>etc.</li>
+</ul>
+
+
+<p>Next tip: you can add a plus sign to the end of your email and then type in whatever you want. It&rsquo;ll <em>still</em> get sent to you. You can use this to your advantage by filtering mail sent to that specific tagged address or you can bypass &ldquo;unique email&rdquo; checks on websites but still get email sent to you:</p>
+
+<ul>
+<li><code>johndoe+medium.com@gmail.com</code></li>
+<li><code>johndoe+microsoft.com@gmail.com</code></li>
+<li><code>johndoe+spam@gmail.com</code></li>
+</ul>
+
+
+<p>So you could filter incoming mail based on those addresses above. This comes in really handy for sites you don&rsquo;t care about but still need at least one email from them&mdash;the rest can be filtered. It can also be useful to identify spam email sources&mdash;who leaked your email? If you saw spam addressed to <code>johndoe+spamsite@gmail.com</code>, you know <code>spamsite</code> was responsible for leaking/sharing your email.</p>
+
+<p>Happy power-Gmailing!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Updated] Install Windows 10 Immediately Before Rollout]]></title>
@@ -1315,23 +1350,6 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
 <p>This was a sample game I wrote to learn OO design and WPF. There&rsquo;s some cool animations, sound effects, and a pretty fun Blackjack implementation. It&rsquo;s very &ldquo;simple&rdquo; and should be easy to digest. I never got around to implementing all the cool AI but now that it&rsquo;s on GitHub for all to see, maybe someone will pick it up.</p>
 
 <p>I also think it&rsquo;d be fun to port it to Windows 8 C# and XAML. It could be an app I release on the store, free and open source.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[TCCC15: See You Again in April!]]></title>
-    <link href="http://kamranicus.com/blog/posts/78/tccc15-see-you-again-in-april"/>
-    <updated>2013-10-21T02:11:30+00:00</updated>
-    <id>http://kamranicus.com/blog/posts/78/tccc15-see-you-again-in-april</id>
-    <content type="html"><![CDATA[<p>Well, that was a blast. Yesterday was <a href="http://twincitiescodecamp.com">TCCC15</a> and it was great. Many awesome sessions, including several by my fellow co-workers <a href="http://twitter.com/ErikOnarhem">Erik Onarheim</a> and <a href="http://twitter.com/StephenErstad">Stephen Erstad</a>.</p>
-
-<p>Thanks to all who attended <a href="http://kamranicus.com/Blog/Posts/77/tccc15-leveling-up-your-windows-phone-app">my talk</a>! I got +10 votes on the code camp speaker site and 9 llamas, which made me feel pretty good!</p>
-
-<p>Please send me feedback at my email or leave a comment here with your thoughts. The code will be available (soon) at <a href="http://github.com/kamranayub/wp-bowling">http://github.com/kamranayub/wp-bowling</a>. It&rsquo;ll be released under an open license but is meant to be educational. The app will also be available soon in the Windows Phone store.</p>
-
-<p>If you missed my talk, you can still get all the bits once I release the app on GitHub. Sure, there won&rsquo;t be droning voice over the code, but you can still see all the steps I took to enhance it.</p>
-
-<p>There was only one big hiccup where Nuget would not install a package, even when I had it in my local repository (it installed the other ones). I remembered some time ago Scott Hanselman mentioning that Nuget packages were just zip files. I quickly changed my Nuget package extension (because I didn&rsquo;t have Nuget Package Explorer installed), got the DLL, and added it as a project reference to quickly save my skin. Thanks Scott!</p>
 ]]></content>
   </entry>
   

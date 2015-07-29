@@ -90,6 +90,284 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/posts/13/my-git-workflow-for-net-based-projects">My Git Workflow for .NET-based Projects</a></h2>
+  
+  <p>
+    <p>When I was new to Git, it was very confusing for me to get up and running with how to deal with the command-line interface (if you&rsquo;re fancy and use a GUI, leave now). Once you do get the hang of it, it&rsquo;s super nice and fluid. I used to do terminal CVS at my last job so I&rsquo;m not out of touch with using version control from a console.</p>
+
+
+
+
+<h1>Set up your .gitignore</h1>
+
+
+
+
+<p>Here&rsquo;s mine:</p>
+
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#OS junk files
+</span><span class='line'>[Tt]humbs.db
+</span><span class='line'><em>.DS_Store
+</span><span class='line'>
+</span><span class='line'>#Visual Studio files
+</span><span class='line'></em>.[Oo]bj
+</span><span class='line'><em>.exe
+</span><span class='line'></em>.pdb
+</span><span class='line'><em>.user
+</span><span class='line'></em>.aps
+</span><span class='line'><em>.pch
+</span><span class='line'></em>.vspscc
+</span><span class='line'><em>.vssscc
+</span><span class='line'></em><em>i.c
+</span><span class='line'>*</em>p.c
+</span><span class='line'><em>.ncb
+</span><span class='line'></em>.suo
+</span><span class='line'><em>.tlb
+</span><span class='line'></em>.tlh
+</span><span class='line'><em>.bak
+</span><span class='line'></em>.[Cc]ache
+</span><span class='line'><em>.ilk
+</span><span class='line'></em>.log
+</span><span class='line'><em>.lib
+</span><span class='line'></em>.sbr
+</span><span class='line'><em>.sdf
+</span><span class='line'></em>.docstates
+</span><span class='line'>ipch/
+</span><span class='line'>obj/
+</span><span class='line'>[Bb]in
+</span><span class='line'>[Dd]ebug<em>/
+</span><span class='line'>[Rr]elease</em>/
+</span><span class='line'>[Pp]ublish<em>/
+</span><span class='line'>Ankh.NoLoad
+</span><span class='line'>
+</span><span class='line'>#Tooling
+</span><span class='line'>_ReSharper</em>/
+</span><span class='line'><em>.resharper
+</span><span class='line'>[Tt]est[Rr]esult</em>
+</span><span class='line'>
+</span><span class='line'>#Project files
+</span><span class='line'>[Bb]uild/
+</span><span class='line'>
+</span><span class='line'>#Subversion files
+</span><span class='line'>.svn
+</span><span class='line'>
+</span><span class='line'># Office Temp Files
+</span><span class='line'>~$<em>
+</span><span class='line'>
+</span><span class='line'># Custom
+</span><span class='line'></em>.private
+</span><span class='line'>readme.html</span></code></pre></td></tr></table></div></figure></p>
+
+<p>At the end, you can add whatever you want. For some projects, I store API keys in a <code>.private</code> file. You might want to as well.</p>
+
+
+
+
+<h1>Init your repo</h1>
+
+
+
+
+<p>The first command you&rsquo;ll need to execute is <code>git init</code>. This will make whatever folder you&rsquo;re in a new Git repository (repo).</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>Kamran@Kamranicus /c/Projects/Contrib/.JSON
+</span><span class='line'><span class="nv">$ </span>git init
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>You should then add all your files and commit them for an initial &ldquo;base&rdquo; version.</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git add .
+</span><span class='line'>git commit -am <span class="s2">&quot;Initial project commit&quot;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Because of your <code>.gitignore</code> file, Git will ignore all the unnecessary files .NET solutions tend to generate.</p>
+
+
+
+
+<h1>Set up a remote</h1>
+
+
+
+
+<p>If you&rsquo;re doing stuff on AppHarbor or GitHub, you&rsquo;ll need to add a &ldquo;remote.&rdquo; This is just a remote Git repository you can associate with your local repository. You can have lots of remotes. I tend to have one or two.</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git remote add <a href="https://kamranayub@github.com/&amp;lt;some">https://kamranayub@github.com/&amp;lt;some</a> url&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>This information is usually provided by your remote site (GitHub has it when you create a new repo on the site).</p>
+
+
+
+
+<h1>Status, Add, Commit, Push</h1>
+
+
+
+
+<p>I do a lot of my projects on <a href="http://appharbor.com">AppHarbor</a> now. It&rsquo;s just a real nice workflow and I&rsquo;ll explain why.</p>
+
+
+
+
+<p>I make changes to my .NET solution and when I&rsquo;m ready to commit (usually after a feature or bug fix) my console  command history looks like this:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git status
+</span><span class='line'>git add .
+</span><span class='line'>git commit -am <span class="s2">&quot;My commit message&quot;</span>
+</span><span class='line'>git push appharbor master
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>git status</h2>
+
+
+
+
+<p>This command will display what things you currently have pending and what changes are untracked. Use this to determine if you should not track a certain change (using <code>git checkout -- &lt;file&gt;</code>).</p>
+
+
+
+
+<h2>git add .</h2>
+
+
+
+
+<p>This command will add whatever &ldquo;untracked&rdquo; and modified changes you have currently pending to ready your commit. Deletes, adds, etc. usually are untracked. Git tracks modifications and renames. The <code>.</code> adds all files (relative to your current folder). You can be as specific or as generic as you want.</p>
+
+
+
+
+<h2>git commit -am [message]</h2>
+
+
+
+
+<p>This command commits your changes. The <code>-am</code> switch is for all changes (a) with a message (m). You can type <code>-?</code> to get a list of switches you might want to use. If you don&rsquo;t use the <code>-a</code> switch, your untracked changes may not be committed. If someone wants to explain why this is the case, I&rsquo;d love to know (or I guess I could look it up). Whatever the reason is, use <code>-am</code> unless you know otherwise.</p>
+
+
+
+
+<h2>git push [remote] [branch]</h2>
+
+
+
+
+<p>This command will send a git <code>push</code> command to your remote server. In my case, it&rsquo;s appharbor. GitHub will usually tell you to add their remote as <code>origin</code> but you can name them whatever you want. I tend to have <code>appharbor</code> and <code>appharbor-d</code> for staging.</p>
+
+
+
+
+<p>Once you push, your latest changes will be on the remote server. It is usually a good idea to wait to push until you have a stable release ready for your branch. It could be after one commit or after 10 commits.</p>
+
+
+
+
+<h1>Git pushin&#8217;</h1>
+
+
+
+
+<p>So now you know what a typical workflow is for my .NET development. If you&rsquo;re interested in file structure, check out my <a href="http://github.com/kamranayub/.JSON">.JSON</a> project.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2011-06-28T22:38:24+00:00" pubdate data-updated="true">Jun 28<span>th</span>, 2011</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/posts/12/pass-in-your-variables-to-consolelog-as-parameters">Pass in Your Variables to console.log as Parameters to Make Them Navigable</a></h2>
   
   <p>
@@ -803,191 +1081,6 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
 
 
 <time datetime="2011-04-07T20:14:55+00:00" pubdate data-updated="true">Apr 7<span>th</span>, 2011</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/posts/3/a-better-mvc-label-helper">A Better MVC Label Helper</a></h2>
-  
-  <p>
-    <p>I have high standards for web-based forms, after having spent the last 7 months ankle deep in them at work.</p>
-
-
-
-
-<p>I have decided on a standard way for defining my forms:</p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;form&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;fieldset&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;legend&gt;</span>A form area<span class="nt">&lt;/legend&gt;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;field text&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;firstName&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>                First Name
-</span><span class='line'>                <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;note&quot;</span><span class="nt">&gt;</span>Enter your first name<span class="nt">&lt;/span&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/label&gt;</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;firstName&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/fieldset&gt;</span>
-</span><span class='line'><span class="nt">&lt;/form&gt;</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>In a future post, I will more formally present a form solution and my stylesheet that goes with it. For now, let&rsquo;s talk about generating that <code>&lt;label&gt;</code> above from metadata alone.</p>
-
-
-
-
-<h3>First, the end result</h3>
-
-
-
-
-<p>Here is what my Razor view looks like for that form field above:</p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;field text&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    @Html.FieldLabelFor(m =&gt; m.FirstName)
-</span><span class='line'>    @Html.EditorFor(m =&gt; m.FirstName)
-</span><span class='line'>    @Html.ValidationMessageFor(m =&gt; m.FirstName)
-</span><span class='line'><span class="nt">&lt;/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>Based off of:</p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'><span class="na">    [DisplayName(&quot;First Name&quot;)]</span>
-</span><span class='line'><span class="na">    [Description(&quot;Please enter a first name&quot;)]</span>
-</span><span class='line'><span class="na">    [Required]</span> <span class="c1">// leave off to add &#39;(optional)&#39; to label</span>
-</span><span class='line'>    <span class="k">public</span> <span class="kt">string</span> <span class="n">FirstName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>That&rsquo;s it.</p>
-
-
-
-
-<h3>Building a better LabelFor</h3>
-
-
-
-
-<p>My helper is called <code>FieldLabelFor</code> but you can call it whatever you want. Here&rsquo;s what it does:</p>
-
-
-
-
-<ul>
-<li>Is entirely based off metadata attributes</li>
-<li>Label text is based off of <code>[DisplayName]</code> attribute (via ModelMetadata)</li>
-<li>Adds an <em>(optional)</em> if a field isn&rsquo;t required</li>
-<li>Adds a <code>&lt;span class="note"&gt;</code> to the label if a <code>[Description()]</code> attribute is found</li>
-<li>Supports both attributes decorating the model and via <code>[MetadataType]</code> attribute</li>
-</ul>
-
-
-
-
-<p>It outputs the <code>&lt;label&gt;</code> markup found above.</p>
-
-
-
-
-<p>I&rsquo;ve made it a Gist, so you can hack and slash it to your needs:</p>
-
-
-
-
-<script src="https://gist.github.com/907780.js?file=FieldLabelFor.cs"></script>
-
-
-
-
-<p>Remember to add <code>@using YourProject.Library.Extensions;</code> to the top of your razor file (or add the namespace to your <code>Views\web.config</code>).</p>
-
-
-
-
-<p>I&rsquo;ve styled my forms so that a full field will look something like:</p>
-
-
-
-
-<p><img src="/blog/images/5.png" alt="Field label style" /></p>
-
-
-
-
-<p>As you can probably tell, I subscribe to the notion that all fields are required unless otherwise marked. I think for a user filling out a form, this is what they assume to be the case and more often that not, more fields are required than optional.</p>
-
-
-
-
-<h3>Off you go!</h3>
-
-
-
-
-<p>Start building better forms with MVC. Look for a post at a later date that will delve deeper into my opinions on web forms (hint: they suck!).</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2011-04-07T18:54:05+00:00" pubdate data-updated="true">Apr 7<span>th</span>, 2011</time>
     
 
 

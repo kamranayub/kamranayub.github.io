@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Gmail | Kamranicus]]></title>
+  <link href="http://kamranicus.com/blog/categories/gmail/atom.xml" rel="self"/>
+  <link href="http://kamranicus.com/"/>
+  <updated>2015-07-29T03:30:56+00:00</updated>
+  <id>http://kamranicus.com/</id>
+  <author>
+    <name><![CDATA[Kamran]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Use Special Gmail Addresses to Redirect and Filter Incoming Mail or Bypass Unique Email Checks]]></title>
+    <link href="http://kamranicus.com/blog/2015/07/29/gmail-special-address/"/>
+    <updated>2015-07-29T04:23:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2015/07/29/gmail-special-address</id>
+    <content type="html"><![CDATA[<p>If you have a Gmail account, there&rsquo;s a sweet feature you might not know about.</p>
+
+<p>Let&rsquo;s say your email is:</p>
+
+<p><code>johndoe@gmail.com</code></p>
+
+<p>First tip: adding dots (.) does not change the email. The following emails are identical to Google and will route email to <code>johndoe@gmail.com</code>:</p>
+
+<ul>
+<li><code>john.doe@gmail.com</code></li>
+<li><code>john....doe@gmail.com</code></li>
+<li>etc.</li>
+</ul>
+
+
+<p>Next tip: you can add a plus sign to the end of your email and then type in whatever you want. It&rsquo;ll <em>still</em> get sent to you. You can use this to your advantage by filtering mail sent to that specific tagged address or you can bypass &ldquo;unique email&rdquo; checks on websites but still get email sent to you:</p>
+
+<ul>
+<li><code>johndoe+medium.com@gmail.com</code></li>
+<li><code>johndoe+microsoft.com@gmail.com</code></li>
+<li><code>johndoe+spam@gmail.com</code></li>
+</ul>
+
+
+<p>So you could filter incoming mail based on those addresses above. This comes in really handy for sites you don&rsquo;t care about but still need at least one email from them&mdash;the rest can be filtered. It can also be useful to identify spam email sources&mdash;who leaked your email? If you saw spam addressed to <code>johndoe+spamsite@gmail.com</code>, you know <code>spamsite</code> was responsible for leaking/sharing your email.</p>
+
+<p>Happy power-Gmailing!</p>
+]]></content>
+  </entry>
+  
+</feed>
