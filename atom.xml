@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2015-07-29T01:51:06+00:00</updated>
+  <updated>2015-07-29T02:02:04+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -18,7 +18,10 @@
     <link href="http://kamranicus.com/blog/2015/07/28/install-windows-10-immediately/"/>
     <updated>2015-07-28T06:20:13+00:00</updated>
     <id>http://kamranicus.com/blog/2015/07/28/install-windows-10-immediately</id>
-    <content type="html"><![CDATA[<p>This is only applicable for the next few hours until your machine gets Windows 10 rolled out. If you&rsquo;re impatient like me, a friend tipped me off that he was able to install Windows 10 prematurely by simply forcing Windows Update to download Windows 10 and then setting his system time forward a day (BIOS, I&rsquo;m thinking).</p>
+    <content type="html"><![CDATA[<p><strong>Update (8:49pm)</strong>: I adjusted my Windows 8 date/time to tomorrow and the progress of the update jumped and I&rsquo;m completed now. I now see a Restart PC to finish installing updates.
+<strong>Update (9:00pm)</strong>: Well it looks like it&rsquo;s a bust with Windows 8.1. My friend tested on Windows 7 and it worked but mine refuses to install&mdash;it just says I have it reserved and it&rsquo;s ready. I tried rebooting multiple times and running the /updatenow command again but no go.</p>
+
+<p>This is only applicable for the next few hours until your machine gets Windows 10 rolled out. If you&rsquo;re impatient like me, a friend tipped me off that he was able to install Windows 10 prematurely by simply forcing Windows Update to download Windows 10 and then setting his system time forward a day (BIOS, I&rsquo;m thinking).</p>
 
 <p>It&rsquo;s kind of unbelievable but it&rsquo;s working so far. I&rsquo;m at 95% complete downloading (you can view in Windows Update window).</p>
 
@@ -36,8 +39,6 @@
 
 
 <p>I will update this post with any new information.</p>
-
-<p><strong>Update (8:49pm)</strong>: I adjusted my Windows 8 date/time to tomorrow and the progress of the update jumped and I&rsquo;m completed now. I now see a Restart PC to finish installing updates.</p>
 ]]></content>
   </entry>
   
