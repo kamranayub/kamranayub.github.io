@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[Updated] Install Windows 10 Immediately Before Rollout"
-date: 2015-07-28 00:20:13 -0600
+date: 2015-07-28 20:13:00 -0600
 comments: true
 published: true
 categories:
