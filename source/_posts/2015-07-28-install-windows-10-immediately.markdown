@@ -17,8 +17,11 @@ It's kind of unbelievable but it's working so far. I'm at 95% complete downloadi
 1. Hit Windows+R to bring up Run command
 2. Type in `wuauclt.exe /updatenow` (**Works**)
 3. Wait for the download to finish (Control Panel -> Windows Update) (**Works**)
-4. Set system time forward a day in BIOS (**Untested**)
-5. Watch Windows 10 install
-6. Try it out!
+4. When Windows Update says, "Preparing for installation...", set system time forward a day in Windows (**Works**)  
+   ![image](https://cloud.githubusercontent.com/assets/563819/8948191/fa639e0a-3569-11e5-97c0-2b79d709c8cf.png)
+5. When progress is done, reboot (**Untested**)
+6. Windows 10 should install (**Untested**)
 
 I will update this post with any new information.
+
+**Update (8:49pm)**: I adjusted my Windows 8 date/time to tomorrow and the progress of the update jumped and I'm completed now. I now see a Restart PC to finish installing updates.
