@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2015-07-29T01:28:34+00:00</updated>
+  <updated>2015-07-29T01:33:37+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -20,7 +20,19 @@
     <id>http://kamranicus.com/blog/2015/07/28/install-windows-10-immediately</id>
     <content type="html"><![CDATA[<p>This is only applicable for the next few hours until your machine gets Windows 10 rolled out. If you&rsquo;re impatient like me, a friend tipped me off that he was able to install Windows 10 prematurely by simply forcing Windows Update to download Windows 10 and then setting his system time forward a day (BIOS, I&rsquo;m thinking).</p>
 
-<p>It&rsquo;s kind of unbelievable but it&rsquo;s working so far. I&rsquo;m at 57% complete downloading (you can view in Windows Update window).</p>
+<p>It&rsquo;s kind of unbelievable but it&rsquo;s working so far. I&rsquo;m at 95% complete downloading (you can view in Windows Update window).</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/8948016/ce3997f0-3567-11e5-8e1e-679fd5b54daa.png" alt="Progress" /></p>
+
+<ol>
+<li>Hit Windows+R to bring up Run command</li>
+<li>Type in <code>wuauclt.exe /updatenow</code></li>
+<li>Wait for the download to finish (Control Panel &ndash;> Windows Update)</li>
+<li>Set system time forward a day in BIOS</li>
+<li>Watch Windows 10 install</li>
+<li>Try it out!</li>
+</ol>
+
 
 <p>I will update this post with any new information.</p>
 ]]></content>
