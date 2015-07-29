@@ -12,4 +12,11 @@ This is only applicable for the next few hours until your machine gets Windows 1
 
 It's kind of unbelievable but it's working so far. I'm at 57% complete downloading (you can view in Windows Update window).
 
+1. Hit Windows+R to bring up Run command
+2. Type in `wuauclt.exe /updatenow`
+3. Wait for the download to finish (Control Panel -> Windows Update)
+4. Set system time forward a day in BIOS
+5. Watch Windows 10 install
+6. Try it out!
+
 I will update this post with any new information.
