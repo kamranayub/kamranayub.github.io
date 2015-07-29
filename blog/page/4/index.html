@@ -90,6 +90,386 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/posts/67/ive-released-my-first-windows-phone-app-centwise">I&#8217;ve Released My First Windows Phone App: Centwise</a></h2>
+  
+  <p>
+    <p>I&rsquo;m excited to talk about my latest project that just went live a couple weeks ago: <a href="http://centwiseapp.com">Centwise</a>. Centwise is a Windows Phone 7 &amp; 8 app client for a service that I use regularly, <a href="http://splitwise.com">Splitwise</a>.</p>
+
+
+
+
+<p>You can download the app to your Windows Phone below:</p>
+
+
+
+
+<p><a href="http://bit.ly/getcentwise"><img src="http://media.tumblr.com/410b39b16d0c759db1cbda923e968f91/tumblr_inline_mjvfbsUlMF1qz4rgp.png" alt="Get the app" /></a></p>
+
+
+
+
+<h2>What&rsquo;s Splitwise?</h2>
+
+
+
+
+<p><a href="http://splitwise.com">Splitwise</a> is a web app that lets you manage IOUs and bill splitting. I use it day-to-day during outings with friends but mainly I use it to keep track of bills and household expenses between me, my fiancee, and our roommate. It&rsquo;s a great tool and they provide native apps for iOS and Android. When I started Centwise, they didn&rsquo;t have a WP app and I figured as an avid user of the service, my first app could be a Splitwise client.</p>
+
+
+
+
+<p>I really want to thank the Splitwise team (Jon &amp; Ryan!) for helping me out, answering questions, and for mentioning Centwise on their blog.</p>
+
+
+
+
+<h2>First app experience</h2>
+
+
+
+
+<p>I bought a HTC 8X when it was announced on Verizon day one. I knew I wanted to leave my old Droid Incredible in the dust and move on to greener pastures. Being a Microsoft stack guy, I figured Windows Phone would be good not only because I like the interface and experience but also because I could make some apps for the platform.</p>
+
+
+
+
+<p>In the past, I&rsquo;ve worked with WPF and XAML before, so learning the ins and outs of the pared-down Silverlight for Windows Phone wasn&rsquo;t too terrible but there were certainly roadblocks. I&rsquo;ve tried to bookmark every article or post I came across that helped me out, which I&rsquo;ll share at the end. Coming from a primarily web-based focus to a native XAML/C# platform was certainly jarring and there were times I slammed my hands on the keyboard exclaiming, &ldquo;THIS WOULD BE WAY EASIER IN CSS AND HTML!&rdquo; Like making a transparent button, for example.</p>
+
+
+
+
+<p>I hope to go more in detail with certain issues as well as share some tips and tricks I learned along my journey to building my first app. There can be a lot of crazy things you wouldn&rsquo;t know XAML can do if you didn&rsquo;t spend time deconstructing bigger open-source libraries (which I <em>highly</em> recommend, I often kept <a href="http://phone.codeplex.com">Phone Toolkit</a> open alongside my own app to see how they built controls).</p>
+
+
+
+
+<h2>The beginnings</h2>
+
+
+
+
+<p>All apps have a beginning. Mine began on paper using the <a href="http://www.flickr.com/photos/michaeldorian/5071511857/">excellent paper templates</a> provided by Michael Bach.</p>
+
+
+
+
+<p>Here are the paper sketches I made that helped me form the screens for the app. I spent most of my time sketching the more complex pages, the ones that needed to do or show a lot of stuff but where I wanted to keep it as simple as possible.</p>
+
+
+
+
+<iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2136892&authkey=ACGYGiJBJeURBfk" width="320" height="180" frameborder="0" scrolling="no"></iframe>
+
+
+
+
+<iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2136893&authkey=AEr0Ed2bQzMJx54" width="320" height="180" frameborder="0" scrolling="no"></iframe>
+
+
+
+
+<iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2136894&authkey=APrH1Wua6J8fLJU" width="320" height="180" frameborder="0" scrolling="no"></iframe>
+
+
+
+
+<p>I&rsquo;ve found it helpful to do these types of sketches to help me visualize the UI. It also helps me see immediately whether or not my idea makes sense.</p>
+
+
+
+
+<p>From there, I could start working on the XAML and the screens to put my ideas into the app. However, as you&rsquo;ll soon see, my first ideas usually weren&rsquo;t the best.</p>
+
+
+
+
+<h2>Optimizing the UX</h2>
+
+
+
+
+<iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2136892&authkey=ACGYGiJBJeURBfk" width="320" height="180" frameborder="0" scrolling="no"></iframe>
+
+
+
+
+<p>If you look at the first image, you can see that my initial idea when creating expenses was to display a list of people to choose from. In fact, pre-1.0 that is exactly what I had done. The flow looked like this:</p>
+
+
+
+
+<ol>
+<li>User specifies &ldquo;Create an IOU&rdquo;</li>
+<li>User chooses other person or chooses from address book</li>
+<li>User is shown IOU screen</li>
+</ol>
+
+
+
+
+<p>This was pretty straightforward&hellip; after all, there are only 3 steps. But that was one step too many. It also ended up complicating my code quite a bit due to managing the back stack (i.e. what happens when a user cancels or hits &lsquo;Back&rsquo;).</p>
+
+
+
+
+<p>In the final 1.0 release, I changed it to be easier and faster:</p>
+
+
+
+
+<ol>
+<li>User chooses to create an IOU</li>
+<li>User is shown screen and either a) the other person is already populated or b) user can tap the avatar placeholder to choose someone</li>
+</ol>
+
+
+
+
+<p>That&rsquo;s just one example of a change I had made that was different from my first implementation.</p>
+
+
+
+
+<p>If you take a look at the second set of sketches, you can see I drastically changed how the IOU (and other) screens were laid out.</p>
+
+
+
+
+<iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2136893&authkey=AEr0Ed2bQzMJx54" width="320" height="180" frameborder="0" scrolling="no"></iframe>
+
+
+
+
+<iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2136609&authkey=AOWlC2tQqkFVW_A" width="180" height="320" frameborder="0" scrolling="no"></iframe>
+
+
+
+
+<p>Here are just some of the changes I made:</p>
+
+
+
+
+<ol>
+<li>Instead of a button, I created a <code>CalculatorTextBox</code> that combines a calculator and amount textbox into one.</li>
+<li>This was huge because it also greatly simplified the UI of the Divide a Bill screen</li>
+<li>Moved the currency button to the appbar menu items because it&rsquo;s not something a user will typically use often.</li>
+<li>Made the static arrow shown between avatars a button to easily swap people in case the user made a mistake</li>
+</ol>
+
+
+
+
+<h2>Easy but not simple</h2>
+
+
+
+
+<p>Someone wise once said:</p>
+
+
+
+
+<blockquote><p>Making things easy is <em>hard</em>.</p></blockquote>
+
+
+
+
+<p>That&rsquo;s been true with everything I&rsquo;ve ever had the pleasure to work on. Easy is hard.</p>
+
+
+
+
+<p>I didn&rsquo;t have any formal beta testers, mainly because the Windows Phone Dev Center didn&rsquo;t let me (<em>sigh</em>), but that didn&rsquo;t stop me from showing it to friends and family to have them test it out.</p>
+
+
+
+
+<p>The core implementation of the app is pretty simple&hellip; it&rsquo;s all the extra work I had to put in to make the <em>app</em> simple that wasn&rsquo;t easy. Not only was it my first time trying to learn Windows Phone development, I also have a tendency to spend a lot of time on little things.</p>
+
+
+
+
+<iframe src="https://skydrive.live.com/embed?cid=0E21D632E0E57AEE&resid=E21D632E0E57AEE%2136736&authkey=AI7_LBxzEW-9MkM" width="180" height="320" frameborder="0" scrolling="no"></iframe>
+
+
+
+
+<p>For example, let&rsquo;s consider the &ldquo;people picker&rdquo; functionality. When a user wants to choose people to add to the expense, there&rsquo;s more logic than simply &ldquo;show the user&rsquo;s friends&rdquo;. The control actually does several things:</p>
+
+
+
+
+<ol>
+<li>If the user adds an expense type in the context of a group, then the picker shows the people in that group first.</li>
+<li>If the user divides a bill from the home screen, the picker shows available groups which:</li>
+<li>Automatically adds all the people in that group to the bill</li>
+<li>Sets the &ldquo;filed in&rdquo; value to the group they chose, regardless of the context the user was in (home screen vs. group)</li>
+<li>Makes sure not to show people already added to the expense</li>
+<li>Let&rsquo;s the user choose someone from the address book (but not for payments!)</li>
+</ol>
+
+
+
+
+<p>I use this people picker anywhere I need to, including when creating a group. By reusing the same experience, the user never has to learn a new way of picking people.</p>
+
+
+
+
+<p>There&rsquo;s just a ton of little things like that throughout the app that the user probably won&rsquo;t ever notice but I hope surfaces in the form of, &ldquo;Hey, this is easy to use!&rdquo;. I didn&rsquo;t want the app to get in the way of the user doing whatever they needed to do.</p>
+
+
+
+
+<p>I cannot count the amount of hours I&rsquo;ve spent so far, although I tried to keep track at first but once I hit 60+ hours in less than a week, I stopped. Luckily, GitHub has a great visualization of how often I worked the app:</p>
+
+
+
+
+<p><strong>Commit Activity</strong></p>
+
+
+
+
+<p><img src="/blog/images/72.png" alt="I am insane" /></p>
+
+
+
+
+<p>Let me break it down for you: I am insane.</p>
+
+
+
+
+<p><img src="/blog/images/73.png" alt="Seriously, insane" /></p>
+
+
+
+
+<p>You can forgive me if I plan to take it a bit slower with updates. I was hoping to finish in time for the Next App Star challenge but unfortunately even spending countless hours during the week, the app just wasn&rsquo;t in a good state in time for that deadline.</p>
+
+
+
+
+<h2>What&rsquo;s next?</h2>
+
+
+
+
+<p>I hope to go into more technical detail around some of the things I did with my app at a later point. I was really excited to learn how to build a Windows Phone app and am very pleased with the result. I didn&rsquo;t build it expecting to make thousands of dollars; I&rsquo;ll be lucky (and happy) if I break $500 but making it a paid-for app motivates me as a single developer to keep the app up-to-date and full of useful features. I have personal projects and open projects that eat up time that I need to make sure I can support each one of them.</p>
+
+
+
+
+<p>As far as what I have planned, you can keep tabs on <a href="http://centwiseapp.com">CentwiseApp.com</a> or follow Centwise on <a href="http://twitter.com/centwiseapp">Twitter</a> or <a href="http://facebook.com/centwise">Facebook</a>. I hope to do a UI refresh soon and I have about 20+ enhancements to incrementally add. I already released the <a href="http://centwiseapp.com/post/46850512483/update-v1-1-will-be-available-today">1.1 update</a> that added several new features, so that&rsquo;s a good start!</p>
+
+
+
+
+<h2>Resources</h2>
+
+
+
+
+<p>Here are all my bookmarks currently under my Windows Phone folder:</p>
+
+
+
+
+<ul>
+<li><a href="http://www.windowsphone.com/en-us/store/app/centwise/faeb5f7b-fbb6-41c6-8fac-17d81dae703d">Centwise | Windows Phone Apps+Games Store (United States)</a></li>
+<li><a href="http://bartwullems.blogspot.com/2012/08/caliburnmicro-design-time-support.html">The art of simplicity: Caliburn.Micro: Design time support</a></li>
+<li><a href="http://elegantcode.com/2009/04/07/wpf-stringformat-in-xaml-with-the-stringformat-attribute/">Elegant Code » WPF String.Format in XAML with the StringFormat attribute</a></li>
+<li><a href="http://blogs.msdn.com/b/pfxteam/archive/2010/11/21/10094564.aspx">Processing Sequences of Asynchronous Operations with Tasks &ndash; .NET Parallel Programming &ndash; Site Home &ndash; MSDN Blogs</a></li>
+<li><a href="http://www.windowsphonegeek.com/articles/Implementing-Windows-Phone-7-DataTemplateSelector-and-CustomDataTemplateSelector">Implementing Windows Phone 7 DataTemplateSelector and CustomDataTemplateSelector | WindowsPhoneGeek</a></li>
+<li><a href="http://www.jeff.wilcox.name/2011/07/creating-a-global-progressindicator-experience-using-the-windows-phone-7-1-sdk-beta-2/">Jeff Wilcox – Creating a global ProgressIndicator experience using the Windows Phone 7.1 SDK Beta 2</a></li>
+<li><a href="http://danielvaughan.orpius.com/post/Binding-the-WP7-ProgressIndicator-in-XAML.aspx">Daniel Vaughan | Binding the WP7 ProgressIndicator in XAML</a></li>
+<li><a href="http://cyberherbalist.wordpress.com/2011/03/20/addingremoving-appbar-buttons-on-the-fly/">Adding/Removing AppBar Buttons on the fly « Cyberherbalist&#39;s Blog</a></li>
+<li><a href="http://weblogs.asp.net/dotjosh/archive/2009/11/05/bringintoview-extension-method-for-silverlight-with-behavior.aspx">Silverlight BringIntoView() extension method (with OnGotFocus behavior) &ndash; Josh Schwartzberg high-fives the CLR</a></li>
+<li><a href="http://blogs.msdn.com/b/jaimer/archive/2010/11/23/working-with-gif-images-in-windows-phone.aspx">Working with GIF images in Windows Phone &ndash; Jaime Rodriguez &ndash; Site Home &ndash; MSDN Blogs</a></li>
+<li><a href="http://compiledexperience.com/blog/posts/wp7-context-menus-with-caliburn-micro">WP7 Context Menus with Caliburn Micro &ndash; Compiled Experience &ndash; Freelance Windows 8 and Windows Phone Application Development</a></li>
+<li><a href="http://caliburnmicro.codeplex.com/">Caliburn Micro: WPF, Silverlight, WP7 and WinRT/Metro made easy. &ndash; Home</a></li>
+<li><a href="http://blog.falafel.com/blogs/josh-eastburn/2011/09/16/silverlight_listbox_add_and_remove_animations">Silverlight ListBox Add and Remove Animations</a></li>
+<li><a href="http://blogs.msdn.com/b/bclteam/archive/2012/10/22/using-async-await-without-net-framework-4-5.aspx">Using async/await without .NET Framework 4.5 &ndash; BCL Team Blog &ndash; Site Home &ndash; MSDN Blogs</a></li>
+<li><a href="http://www.scottlogic.co.uk/blog/colin/2011/05/metro-in-motion-part-4-tilt-effect/">Metro In Motion Part #4 – Tilt Effect | Colin Eberhardt&#39;s Technology Adventures</a></li>
+<li><a href="http://blogs.msdn.com/b/pfxteam/archive/2011/09/28/10217876.aspx">Task Exception Handling in .NET 4.5 &ndash; .NET Parallel Programming &ndash; Site Home &ndash; MSDN Blogs</a></li>
+<li><a href="http://social.msdn.microsoft.com/Forums/en-US/async/thread/b536336f-812a-4227-8abe-fd123df49fc1">good way to cancel async method</a></li>
+<li><a href="http://msdn.microsoft.com/en-us/library/dd537607.aspx">How to: Cancel a Task and Its Children</a></li>
+<li><a href="http://msdn.microsoft.com/en-us/library/dd997364.aspx">Cancellation in Managed Threads</a></li>
+<li><a href="http://msdn.microsoft.com/en-us/library/dd997396.aspx">Task Cancellation</a></li>
+<li><a href="http://blogs.msdn.com/b/fiddler/archive/2010/10/15/fiddler-and-the-windows-phone-emulator.aspx">Fiddler and the Windows Phone 7 Emulator &ndash; Fiddler Web Debugger &ndash; Site Home &ndash; MSDN Blogs</a></li>
+<li><a href="http://www.silverlightplayground.org/post/2009/07/10/Silverlight-30-RTW-The-CollectionViewSource.aspx">Silverlight 3.0 RTW: The CollectionViewSource</a></li>
+<li><a href="http://windowsphonegeek.com/tips/how-to-search-for-a-contact-and-get-contact-picture-in-windows-phone">How to: Search for a Contact and get Contact Picture in Windows Phone | WindowsPhoneGeek</a></li>
+<li><a href="http://www.silverlightshow.net/items/Windows-Phone-7-Part-3-Understanding-navigation.aspx">Windows Phone 7 &ndash; Part #3: Understanding navigation</a></li>
+<li><a href="http://blogs.msdn.com/b/ptorr/archive/2010/08/28/redirecting-an-initial-navigation.aspx">Redirecting an initial navigation &ndash; Peter Torr&#39;s Blog &ndash; Site Home &ndash; MSDN Blogs</a></li>
+<li><a href="http://blogs.claritycon.com/windowsphone7/">Clarity on Windows Phone 7</a></li>
+<li><a href="http://msdn.microsoft.com/en-us/library/hh487164(v=VS.92">How to: Encrypt Data in a Windows Phone Application</a>.aspx)</li>
+<li><a href="http://multitouch.codeplex.com/">Windows Phone, Silverlight and WPF Multi-Touch Manipulations &ndash; Home</a></li>
+<li><a href="http://msdn.microsoft.com/en-us/expression/ff624123.aspx">Dynamic Layout and Transitions in Expression Blend 4</a></li>
+<li><a href="http://blogs.claritycon.com/blog/2011/02/silverlight-4-property-triggers/">Silverlight 4 Property Triggers | Clarity Blogs</a></li>
+<li><a href="http://expressionblend.codeplex.com/">Expression Blend Samples &ndash; Home</a></li>
+<li><a href="http://jacob4u2.blogspot.com/2011/02/silverlight-4-property-triggers.html">Jacob Gable: Silverlight 4 Property Triggers</a></li>
+<li><a href="http://www.codeproject.com/Articles/150166/Loading-Data-when-the-User-Scrolls-to-the-End-of-a">Loading Data when the User Scrolls to the End of a List in Windows Phone 7 &ndash; CodeProject</a></li>
+<li><a href="http://blogs.msdn.com/b/expression/archive/2010/03/16/dynamic-layout-and-transitions-in-expression-blend-4.aspx">Dynamic Layout and Transitions in Expression Blend 4 &ndash; Expression Blend and Design &ndash; Site Home &ndash; MSDN Blogs</a></li>
+<li><a href="http://msdn.microsoft.com/id-id/library/windowsphone/develop/jj206997(v=vs.105">How to target multiple versions with your app for Windows Phone</a>.aspx#linked_projects)</li>
+<li><a href="http://msdn.microsoft.com/library/windowsphone/design/jj662929(v=vs.105">Tile design guidelines for Windows Phone</a>.aspx)</li>
+<li><a href="http://msdn.microsoft.com/en-US/library/windowsphone/develop/jj206974(v=vs.105">Multi-resolution apps for Windows Phone 8</a>.aspx)</li>
+<li><a href="http://www.codeproject.com/Articles/412435/Logging-exceptions-of-Windows-Phone-applications-t">Logging exceptions of Windows Phone applications to a central server with the help of FogBugz &ndash; CodeProject</a></li>
+<li><a href="http://blogs.msdn.com/b/priozersk/archive/2010/09/20/creating-progress-dialog-for-wp7.aspx">Creating Progress Dialog for WP7. &ndash; Alex Yakhnin&#39;s Blog &ndash; Site Home &ndash; MSDN Blogs</a></li>
+<li><a href="http://dotnetapp.com/blog/2012/05/21/how-to-fix-the-standard-header-of-a-pivot-control-using-a-style-and-how-to-fix-a-page-using-the-titlecontrol/">How to fix the standard header of a pivot control using a style and how to fix &ndash; ge using the TitleControl » .NET App</a></li>
+<li><a href="http://nikovrdoljak.wordpress.com/2012/02/20/how-to-crash-other-wp7-applications/">How to crash other WP7 applications? | Niko Vrdoljak&#39;s Blog</a></li>
+<li><a href="http://mikaelkoskinen.net/wp7-splitting-application-to-multiple-assemblies-when-using-caliburn-micro">WP7: Splitting Application to Multiple Assemblies when using Caliburn.Micro &ndash; Mikael Koskinen</a></li>
+<li><a href="http://blogs.msdn.com/b/ptorr/archive/2011/07/11/background-agents-part-1-of-3.aspx">Background Agents &ndash; Part 1 of 3 &ndash; Peter Torr&#39;s Blog &ndash; Site Home &ndash; MSDN Blogs</a></li>
+<li><a href="http://www.nachmore.com/talks/">Oren Nachman » Talks</a></li>
+<li><a href="http://sterling.codeplex.com/">Sterling NoSQL OODB for .NET 4.0, Silverlight 4 and 5, and Windows Phone 7 &ndash; Home</a></li>
+<li><a href="http://msdn.microsoft.com/en-us/magazine/hh205658.aspx">MSDN Magazine: Windows Phone 7 &ndash; Sterling for Isolated Storage on Windows Phone 7</a></li>
+<li><a href="http://modernuiicons.com/">Modern UI Icons</a></li>
+<li><a href="http://blog.humann.info/post/2011/08/28/Save-disk-space-with-IsolatedStorageGZipFileStream.aspx">Nicolas Humann | Save disk space with IsolatedStorageGZipFileStream</a></li>
+<li><a href="http://msdn.microsoft.com/en-us/library/hh821020.aspx">Using Isolated Storage on the Phone</a></li>
+<li><a href="http://channel9.msdn.com/Events/Build/2012/3-045">Windows Phone 8: Critical Developer Practices for Delivering Outstanding Apps | Build 2012 | Channel 9</a></li>
+<li><a href="http://blogs.claritycon.com/windowsphone7/2011/01/wicked-wireframes-wp7-vector-ux-kit-3/">» Wicked Wireframes: WP7 Vector UX Kit on Windows Phone 7</a></li>
+<li><a href="http://www.flickr.com/photos/michaeldorian/5071511857/">Windows Phone 7 Wireframe Paper Sketching Template | Flickr &ndash; Photo Sharing!</a></li>
+<li><a href="http://www.jeff.wilcox.name/2012/01/jeffwilcox-maps/">Jeff Wilcox – Displaying static maps on the Windows Phone for performance and scenario wins</a></li>
+<li><a href="http://msdn.microsoft.com/en-us/library/windowsphone/develop/ff769542(v=vs.105">Launchers and Choosers for Windows Phone</a>.aspx)</li>
+<li><a href="http://usdpe.ohours.org/">People Hosting Open Office Hours</a></li>
+<li><a href="http://iconmonstr.com/">iconmonstr &ndash; Free simple icons for your next project</a></li>
+</ul>
+
+
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-04-12T03:47:42+00:00" pubdate data-updated="true">Apr 12<span>th</span>, 2013</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/posts/66/about-my-web-api-session-at-twin-cities-code-camp">About My Web API Session at Twin Cities Code Camp</a></h2>
   
   <p>
@@ -1128,167 +1508,6 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
 
 
 <time datetime="2012-10-03T22:41:20+00:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2012</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/posts/56/what-would-a-windows-8-halo-app-look-like">What Would a Windows 8 Halo App Look Like?</a></h2>
-  
-  <p>
-    <p><strong>Update (10/24)</strong>: There&rsquo;s a good indication there&rsquo;ll be an API. If you log into <a href="http://dewxp.com">DewXP</a> with your Xbox Live account, it will display your spartan player model using a URL I haven&rsquo;t seen before:</p>
-
-
-
-
-<blockquote><p><a href="https://stats.svc.halowaypoint.com/players/subkamran/h4/spartans/fullbody">https://stats.svc.halowaypoint.com/players/subkamran/h4/spartans/fullbody</a></p></blockquote>
-
-
-
-
-<p>Nothing is at the root of that URL, but I assume the <strong>h4</strong> is for Halo 4-related stats. It also looked like it used OAuth to allow the DewXP &ldquo;app&rdquo; access to my profile. This is a good sign!</p>
-
-
-
-
-<hr />
-
-
-
-
-<p>I&rsquo;m a Halo fan. I enjoy playing with my friends, it&rsquo;s fun to be competitive and it&rsquo;s fun to compete against each other. One of the things me and my friends love is the ability to view our stats and history. It&rsquo;s all about bragging rights. Bungie used to have a <em>fan-fucking-tastic</em> site to view stats. Since the handover to 343, seeing stats has just not been the same nor as in-depth, though the core features have remained.</p>
-
-
-
-
-<p>There are mixed reactions to this in the community, I would say leaning more on the negative side, even among my friends. However, after seeing all the footage of Halo 4, I have high hopes for the game as long as it continues to be competitive and to provide a source of stats and feedback.</p>
-
-
-
-
-<p>So what does Halo have to do with Windows 8? Well, before Bungie handed the franchise off, they worked on releasing Halo Waypoint to several devices including <a href="http://itunes.apple.com/us/app/halo-waypoint/id468457600?mt=8">iOS</a>, <a href="https://play.google.com/store/apps/details?id=com.halo.companion&amp;hl=en">Android</a>, and <a href="http://www.shacknews.com/article/71466/halo-waypoint-premium-mobile-app-add-on-features-real-time">Windows Phone</a>. These apps are great for people like us who like to see our stats on the go or when we&rsquo;re not at the computer (like in front of the Xbox). I wanted to build a similar app for Windows 8 that just showed stats of my friends or other players. Simple, right? Wrong.</p>
-
-
-
-
-<p>Bungie had originally released a <a href="http://www.bungie.net/fanclub/statsapi/Group/Resources/Article.aspx?cid=545064">poorly documented</a> (it&rsquo;s true) public API for their Halo stats but <em>at least</em> it was an API. Fan sites were able to run with this, creating sites like <a href="http://halotracker.com">HaloTracker</a>. The problem is, since 343i came into the picture, there has been no effort that we can see to provide an API (the old Bungie one is deprecated). This leaves site developers to resort to less-than-savory tactics to get at the stats, including screen scraping.</p>
-
-
-
-
-<p>The only glimmering light on the horizon is that there are <a href="https://forums.halo.xbox.com/yaf_postst97564_Probably-confirmation-of-a-Halo-4-API.aspx">rumblings</a> of a Halo 4 API, which would be a god-send for the community. But it&rsquo;s just that, a hope and no confirmation.</p>
-
-
-
-
-<h2>There must be an API somewhere, though</h2>
-
-
-
-
-<p>There is. If you can get at the traffic on your mobile device that has Halo Waypoint, and you can get as far as seeing where that traffic goes, you&rsquo;ll discover there <em>is indeed a JSON web service</em>. Unfortunately, it requires authentication to the xbox.com domain, because the authentication cookie is sent on every request. In other words, it&rsquo;s not public and 343 probably doesn&rsquo;t want us using it.</p>
-
-
-
-
-<p>I&rsquo;m not sure if WinRT&rsquo;s <a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh750287.aspx">Web Authentication Broker</a> could help in this case, but as far as I can tell, Xbox Live does not have an authentication endpoint. There must be <em>something</em>, as the Windows 8 Games app can connect to Xbox Live but I&rsquo;m assuming this isn&rsquo;t available to just anyone and that there&rsquo;s black magic involved. Even if you could somehow manage to authenticate and pass those headers into the WinJS XHR calls, there&rsquo;s still the tiny problem that we probably aren&rsquo;t <em>supposed</em> to be able to use this Waypoint API.</p>
-
-
-
-
-<h2>My plea to 343</h2>
-
-
-
-
-<p>343: you need to have an API. If the rumors are true that Halo 4 will be getting an API, that&rsquo;s <em>excellent</em> news because I strongly feel that if you want to build a community around the game, you really should let us go wild with the data.</p>
-
-
-
-
-<p>Even if that pipe dream does come to pass, there&rsquo;s still the issue of previous Halo games. We know you have the stats. We know you have the API. Just figure out a way to make it public! Release the Waypoint API so we can start somewhere; secure it with API keys or OAuth or whatever else you need to do.</p>
-
-
-
-
-<p>Because if you don&rsquo;t? People can&rsquo;t have an app like this unless <em>you</em> release it, and let&rsquo;s be honest: wouldn&rsquo;t you rather spend resources creating a great API to view stats and then let us do the dirty work and build around it?</p>
-
-
-
-
-<p><img src="/blog/images/69.png" alt="MetroHalo" /></p>
-
-
-
-
-<p><img src="/blog/images/70.png" alt="MetroHalo Lookup" /></p>
-
-
-
-
-<p><img src="/blog/images/71.png" alt="MetroHalo Search" /></p>
-
-
-
-
-<p>This is a real app, living on my hard drive right now. It can fetch any player&rsquo;s data, integrates with Search, and is pretty sexy to see in motion. Unfortunately, none of you reading this post will ever get to see it, simply because it violates the Terms of Service. It screen-scrapes the Halo Waypoint site to get this data, which is not an acceptable way of getting data.</p>
-
-
-
-
-<p>343, if you <em>are</em> planning to release a Windows 8 application, good on you! But my point still stands: this took me a couple days to put together and you didn&rsquo;t spend a dime on it, or assign Joe Bob 50% to innovation, or call your agency and have them put together mockups and charge you thousands of dollars. I did this in two evenings with a little bit of free time. There are so many things that are possible with a platform like Windows 8:</p>
-
-
-
-
-<ul>
-<li>Leaderboards among your friends</li>
-<li>Live tile updates of your games</li>
-<li>Beautiful high-res imagery of medals, ranks, and your spartan models</li>
-<li>Awesome win/lose charts and game history</li>
-<li>Map breakdowns</li>
-<li>Weapon overviews and tips</li>
-<li>Clan or group management</li>
-<li>Delivering video and other rich content to your users</li>
-</ul>
-
-
-
-
-<p>And that&rsquo;s what I could think of on-the-spot, I&rsquo;m sure after seeing these screenshots people could think of a lot more.</p>
-
-
-
-
-<p>Release an API, 343. Your community will thank you for it.</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2012-10-03T03:49:51+00:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2012</time>
     
 
 

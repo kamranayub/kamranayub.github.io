@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2015-07-14T01:57:46+00:00</updated>
+  <updated>2015-07-29T01:27:00+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Install Windows 10 Immediately]]></title>
+    <link href="http://kamranicus.com/blog/2015/07/28/install-windows-10-immediately/"/>
+    <updated>2015-07-28T00:00:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2015/07/28/install-windows-10-immediately</id>
+    <content type="html"><![CDATA[<p>This is only applicable for the next few hours until your machine gets Windows 10 rolled out. If you&rsquo;re inpatient like me, a friend tipped me off that he was able to install Windows 10 prematurely by simply forcing Windows Update to download Windows 10 and then setting his system time forward a day (BIOS, I&rsquo;m thinking).</p>
+
+<p>It&rsquo;s kind of unbelievable but it&rsquo;s working so far. I&rsquo;m at 57% complete downloading (you can view in Windows Update window).</p>
+
+<p>I will update this post with any new information.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Behind the Major Update to Keep Track of My Games]]></title>
@@ -1296,35 +1309,6 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
 <p>If you missed my talk, you can still get all the bits once I release the app on GitHub. Sure, there won&rsquo;t be droning voice over the code, but you can still see all the steps I took to enhance it.</p>
 
 <p>There was only one big hiccup where Nuget would not install a package, even when I had it in my local repository (it installed the other ones). I remembered some time ago Scott Hanselman mentioning that Nuget packages were just zip files. I quickly changed my Nuget package extension (because I didn&rsquo;t have Nuget Package Explorer installed), got the DLL, and added it as a project reference to quickly save my skin. Thanks Scott!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[TCCC15: Leveling Up Your Windows Phone App]]></title>
-    <link href="http://kamranicus.com/blog/posts/77/tccc15-leveling-up-your-windows-phone-app"/>
-    <updated>2013-10-17T20:17:14+00:00</updated>
-    <id>http://kamranicus.com/blog/posts/77/tccc15-leveling-up-your-windows-phone-app</id>
-    <content type="html"><![CDATA[<p>It&rsquo;s talk time again! I&rsquo;m lucky to be giving yet another talk at Twin Cities Code Camp (my second one!). Last time was a lot of fun! This time, we&rsquo;re <a href="http://kamranicus.com/Blog/Posts/66/about-my-web-api-session-at-twin-cities-code-camp">leaving the Web API pasture</a> and exploring the fun world of Windows Phone development.</p>
-
-<p>TCCC15 is October 19 and I&rsquo;ll be <a href="http://twincitiescodecamp.com/TCCC/Fall2013/Schedule.aspx">speaking in Rapson 45 at 2:15pm</a>, so come say hi!</p>
-
-<h2>Why You Should Attend</h2>
-
-<p>If you&rsquo;re an experienced or even a beginning Windows Phone developer, come. If you&rsquo;re still not sure why Windows Phone is cool, come.</p>
-
-<p>The code I&rsquo;ll be showing will start out at a beginner level and move all the way passed intermediate to advanced. By the end, for example, you&rsquo;ll see how to implement a custom message box that fully supports Caliburn binding, dismissal, and the view lifecycle.</p>
-
-<p>Finally, all the code will be available on GitHub soon after (this weekend?). I just need time to remove any secrets and figure out a license that will let me publish the app and own it while still allowing you all to learn from it.</p>
-
-<h2>What We&rsquo;ll Talk About</h2>
-
-<p>I&rsquo;ll be doing a &ldquo;live coding&rdquo; presentation. In reality, I&rsquo;ll be coding and switching to Git branches that showcase the fully completed code then walk through it. The app I&rsquo;ll be presenting is actually a &ldquo;complete&rdquo; app; meaning that it works fine and does everything I need it to. However, anyone whose done app development can tell you that the work isn&rsquo;t done when your app runs and all your tests pass; there&rsquo;s still plenty of work making it &ldquo;production ready.&rdquo; That&rsquo;s what I&rsquo;ll cover in my session!</p>
-
-<p>Right now, my talk is divided into 5 sections covering MVVM, fast resume, logging, about page, and UX improvement. The sections are designed in a way that will expose you to many different parts of my preferred MVVM framework, Caliburn. Along the way, you&rsquo;ll also learn some great tips &amp; tricks I&rsquo;ve found along my journey designing Windows Phone apps.</p>
-
-<p>I&rsquo;m excited because we&rsquo;ll start with the basic premise of an app (which works) and then take it to a production-ready application. Literally, <strong>by the end of the presentation</strong>, I could publish my app to the store and feel good about it.</p>
-
-<p>I hope to see you on Saturday!</p>
 ]]></content>
   </entry>
   
