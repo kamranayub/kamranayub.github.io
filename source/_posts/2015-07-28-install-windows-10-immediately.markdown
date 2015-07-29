@@ -15,9 +15,9 @@ It's kind of unbelievable but it's working so far. I'm at 95% complete downloadi
 ![Progress](https://cloud.githubusercontent.com/assets/563819/8948016/ce3997f0-3567-11e5-8e1e-679fd5b54daa.png)
 
 1. Hit Windows+R to bring up Run command
-2. Type in `wuauclt.exe /updatenow`
-3. Wait for the download to finish (Control Panel -> Windows Update)
-4. Set system time forward a day in BIOS
+2. Type in `wuauclt.exe /updatenow` (**Works**)
+3. Wait for the download to finish (Control Panel -> Windows Update) (**Works**)
+4. Set system time forward a day in BIOS (**Untested**)
 5. Watch Windows 10 install
 6. Try it out!
 
