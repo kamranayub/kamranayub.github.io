@@ -1,0 +1,5 @@
+This is only applicable for the next few hours until your machine gets Windows 10 rolled out. If you're inpatient like me, a friend tipped me off that he was able to install Windows 10 prematurely by simply forcing Windows Update to download Windows 10 and then setting his system time forward a day (BIOS, I'm thinking).
+
+It's kind of unbelievable but it's working so far. I'm at 57% complete downloading (you can view in Windows Update window).
+
+I will update this post with any new information.
