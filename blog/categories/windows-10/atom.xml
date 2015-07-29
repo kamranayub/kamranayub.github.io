@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Windows 10 | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/windows-10/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2015-07-29T01:33:37+00:00</updated>
+  <updated>2015-07-29T01:34:52+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -26,9 +26,9 @@
 
 <ol>
 <li>Hit Windows+R to bring up Run command</li>
-<li>Type in <code>wuauclt.exe /updatenow</code></li>
-<li>Wait for the download to finish (Control Panel &ndash;> Windows Update)</li>
-<li>Set system time forward a day in BIOS</li>
+<li>Type in <code>wuauclt.exe /updatenow</code> (<strong>Works</strong>)</li>
+<li>Wait for the download to finish (Control Panel &ndash;> Windows Update) (<strong>Works</strong>)</li>
+<li>Set system time forward a day in BIOS (<strong>Untested</strong>)</li>
 <li>Watch Windows 10 install</li>
 <li>Try it out!</li>
 </ol>
