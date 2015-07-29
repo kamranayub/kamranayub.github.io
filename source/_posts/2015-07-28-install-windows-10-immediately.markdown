@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Install Windows 10 Immediately Before Rollout"
+title: "[Updated] Install Windows 10 Immediately Before Rollout"
 date: 2015-07-28 00:20:13 -0600
 comments: true
 published: true
@@ -13,6 +13,10 @@ categories:
 **Update (9:00pm)**: Well it looks like it's a bust with Windows 8.1. My friend tested on Windows 7 and it worked but mine refuses to install--it just says I have it reserved and it's ready. I tried rebooting multiple times and running the /updatenow command again but no go.
 
 ![image](https://cloud.githubusercontent.com/assets/563819/8948430/c0f67f0e-356c-11e5-9daf-8cafb3521042.png)
+
+**Update (10:00pm CST):** No luck on my other PC, same situation. Guess I'll just have to wait in line like everybody else!
+
+---
 
 This is only applicable for the next few hours until your machine gets Windows 10 rolled out. If you're impatient like me, a friend tipped me off that he was able to install Windows 10 prematurely by simply forcing Windows Update to download Windows 10 and then setting his system time forward a day (BIOS, I'm thinking).
 
