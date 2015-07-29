@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Windows 10 | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/windows-10/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2015-07-29T03:30:56+00:00</updated>
+  <updated>2015-07-29T03:31:20+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[Updated] Install Windows 10 Immediately Before Rollout]]></title>
-    <link href="http://kamranicus.com/blog/2015/07/28/install-windows-10-immediately/"/>
-    <updated>2015-07-28T06:20:13+00:00</updated>
-    <id>http://kamranicus.com/blog/2015/07/28/install-windows-10-immediately</id>
+    <link href="http://kamranicus.com/blog/2015/07/29/install-windows-10-immediately/"/>
+    <updated>2015-07-29T02:13:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2015/07/29/install-windows-10-immediately</id>
     <content type="html"><![CDATA[<p><strong>Update (8:49pm)</strong>: I adjusted my Windows 8 date/time to tomorrow and the progress of the update jumped and I&rsquo;m completed now. I now see a Restart PC to finish installing updates.</p>
 
 <p><strong>Update (9:00pm)</strong>: Well it looks like it&rsquo;s a bust with Windows 8.1. My friend tested on Windows 7 and it worked but mine refuses to install&mdash;it just says I have it reserved and it&rsquo;s ready. I tried rebooting multiple times and running the /updatenow command again but no go.</p>

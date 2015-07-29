@@ -9,11 +9,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Use Special Gmail Addresses to Redirect and Filter Incoming Mail or Bypass Unique Email Checks - Kamranicus</title>
+  <title>[Updated] Install Windows 10 Immediately Before Rollout - Kamranicus</title>
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="Use Special Gmail Addresses to Redirect and Filter Incoming Mail or Bypass Unique Email Checks written Jul 29th, 2015 in Gmail, Tips & Tricks If you &hellip;">
+  <meta name="description" content="[Updated] Install Windows 10 Immediately Before Rollout written Jul 29th, 2015 in Windows 10 Update (8:49pm): I adjusted my Windows 8 date/time to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -22,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://kamranicus.com/blog/2015/07/29/gmail-special-address">
+  <link rel="canonical" href="http://kamranicus.com/blog/2015/07/29/install-windows-10-immediately">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
@@ -55,7 +55,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
-        <h1>Use Special Gmail Addresses to Redirect and Filter Incoming Mail or Bypass Unique Email Checks</h1>
+        <h1>[Updated] Install Windows 10 Immediately Before Rollout</h1>
         <div class="meta">
           written 
 
@@ -70,45 +70,46 @@
 
 
 
-<time datetime="2015-07-29T04:23:00+00:00" pubdate data-updated="true">Jul 29<span>th</span>, 2015</time>
+<time datetime="2015-07-29T02:13:00+00:00" pubdate data-updated="true">Jul 29<span>th</span>, 2015</time>
           
 
 in
 <span class="categories">
   
-    <a class='category' href='/blog/categories/gmail/'>Gmail</a>, <a class='category' href='/blog/categories/tips-and-tricks/'>Tips & Tricks</a>
+    <a class='category' href='/blog/categories/windows-10/'>Windows 10</a>
   
 </span>
 
 
         </div>
-        <p>If you have a Gmail account, there&rsquo;s a sweet feature you might not know about.</p>
+        <p><strong>Update (8:49pm)</strong>: I adjusted my Windows 8 date/time to tomorrow and the progress of the update jumped and I&rsquo;m completed now. I now see a Restart PC to finish installing updates.</p>
 
-<p>Let&rsquo;s say your email is:</p>
+<p><strong>Update (9:00pm)</strong>: Well it looks like it&rsquo;s a bust with Windows 8.1. My friend tested on Windows 7 and it worked but mine refuses to install&mdash;it just says I have it reserved and it&rsquo;s ready. I tried rebooting multiple times and running the /updatenow command again but no go.</p>
 
-<p><code>johndoe@gmail.com</code></p>
+<p><img src="https://cloud.githubusercontent.com/assets/563819/8948430/c0f67f0e-356c-11e5-9daf-8cafb3521042.png" alt="image" /></p>
 
-<p>First tip: adding dots (.) does not change the email. The following emails are identical to Google and will route email to <code>johndoe@gmail.com</code>:</p>
+<p><strong>Update (10:00pm CST):</strong> No luck on my other PC, same situation. Guess I&rsquo;ll just have to wait in line like everybody else!</p>
 
-<ul>
-<li><code>john.doe@gmail.com</code></li>
-<li><code>john....doe@gmail.com</code></li>
-<li>etc.</li>
-</ul>
+<hr />
+
+<p>This is only applicable for the next few hours until your machine gets Windows 10 rolled out. If you&rsquo;re impatient like me, a friend tipped me off that he was able to install Windows 10 prematurely by simply forcing Windows Update to download Windows 10 and then setting his system time forward a day (BIOS, I&rsquo;m thinking).</p>
+
+<p>It&rsquo;s kind of unbelievable but it&rsquo;s working so far. I&rsquo;m at 95% complete downloading (you can view in Windows Update window).</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/8948016/ce3997f0-3567-11e5-8e1e-679fd5b54daa.png" alt="Progress" /></p>
+
+<ol>
+<li>Hit Windows+R to bring up Run command</li>
+<li>Type in <code>wuauclt.exe /updatenow</code> (<strong>Works</strong>)</li>
+<li>Wait for the download to finish (Control Panel &ndash;> Windows Update) (<strong>Works</strong>)</li>
+<li>When Windows Update says, &ldquo;Preparing for installation&hellip;&rdquo;, set system time forward a day in Windows (<strong>Works</strong>)<br/>
+<img src="https://cloud.githubusercontent.com/assets/563819/8948191/fa639e0a-3569-11e5-97c0-2b79d709c8cf.png" alt="image" /></li>
+<li>When progress is done, reboot (<strong>Untested</strong>)</li>
+<li>Windows 10 should install (<strong>Untested</strong>)</li>
+</ol>
 
 
-<p>Next tip: you can add a plus sign to the end of your email and then type in whatever you want. It&rsquo;ll <em>still</em> get sent to you. You can use this to your advantage by filtering mail sent to that specific tagged address or you can bypass &ldquo;unique email&rdquo; checks on websites but still get email sent to you:</p>
-
-<ul>
-<li><code>johndoe+medium.com@gmail.com</code></li>
-<li><code>johndoe+microsoft.com@gmail.com</code></li>
-<li><code>johndoe+spam@gmail.com</code></li>
-</ul>
-
-
-<p>So you could filter incoming mail based on those addresses above. This comes in really handy for sites you don&rsquo;t care about but still need at least one email from them&mdash;the rest can be filtered. It can also be useful to identify spam email sources&mdash;who leaked your email? If you saw spam addressed to <code>johndoe+spamsite@gmail.com</code>, you know <code>spamsite</code> was responsible for leaking/sharing your email.</p>
-
-<p>Happy power-Gmailing!</p>
+<p>I will update this post with any new information.</p>
 
 
         <hr class="divider-short"/>
@@ -132,9 +133,11 @@ in
     <div class="row">
       <div class="col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
         
-          <a class="pull-left" href="/blog/2015/07/29/install-windows-10-immediately/" title="Previous Post: [Updated] Install Windows 10 Immediately Before Rollout">&laquo; Previous: [Updated] Install Windows 10 Immediately Before Rollout</a>
+          <a class="pull-left" href="/blog/2015/05/30/ktomg-update/" title="Previous Post: Behind the Major Update to Keep Track of My Games">&laquo; Previous: Behind the Major Update to Keep Track of My Games</a>
         
 
+        
+          <a class="pull-right" href="/blog/2015/07/29/gmail-special-address/" title="Next Post: Use special Gmail addresses to redirect and filter incoming mail or bypass unique email checks">Next: Use special Gmail addresses to redirect and filter incoming mail or bypass unique email checks &raquo;</a>
         
       </div>
     </div>
@@ -182,9 +185,9 @@ in
         
         // var disqus_developer = 1;
         
-        var disqus_identifier = 'http://kamranicus.com/blog/2015/07/29/gmail-special-address/';
+        var disqus_identifier = 'http://kamranicus.com/blog/2015/07/29/install-windows-10-immediately/';
         
-        var disqus_url = 'http://kamranicus.com/blog/2015/07/29/gmail-special-address/';
+        var disqus_url = 'http://kamranicus.com/blog/2015/07/29/install-windows-10-immediately/';
         var disqus_script = 'embed.js';
       
     (function () {
