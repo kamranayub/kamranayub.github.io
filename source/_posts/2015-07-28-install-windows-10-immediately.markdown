@@ -8,6 +8,9 @@ categories:
 - Windows 10
 ---
 
+**Update (8:49pm)**: I adjusted my Windows 8 date/time to tomorrow and the progress of the update jumped and I'm completed now. I now see a Restart PC to finish installing updates.
+**Update (9:00pm)**: Well it looks like it's a bust with Windows 8.1. My friend tested on Windows 7 and it worked but mine refuses to install--it just says I have it reserved and it's ready. I tried rebooting multiple times and running the /updatenow command again but no go.
+
 This is only applicable for the next few hours until your machine gets Windows 10 rolled out. If you're impatient like me, a friend tipped me off that he was able to install Windows 10 prematurely by simply forcing Windows Update to download Windows 10 and then setting his system time forward a day (BIOS, I'm thinking).
 
 It's kind of unbelievable but it's working so far. I'm at 95% complete downloading (you can view in Windows Update window).
@@ -23,5 +26,3 @@ It's kind of unbelievable but it's working so far. I'm at 95% complete downloadi
 6. Windows 10 should install (**Untested**)
 
 I will update this post with any new information.
-
-**Update (8:49pm)**: I adjusted my Windows 8 date/time to tomorrow and the progress of the update jumped and I'm completed now. I now see a Restart PC to finish installing updates.
