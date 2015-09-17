@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2015-07-29T03:31:20+00:00</updated>
+  <updated>2015-09-17T03:12:47+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,22 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[PowerShell Script to Generate an HTML5 Offline Manifest]]></title>
+    <link href="http://kamranicus.com/blog/2015/09/17/powershell-html5-offline-manifest/"/>
+    <updated>2015-09-17T02:40:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2015/09/17/powershell-html5-offline-manifest</id>
+    <content type="html"><![CDATA[<p>In my new role at work I&rsquo;ve been learning PowerShell to administrate our systems (I&rsquo;m a half developer, half sys admin monster). I&rsquo;ve been a developer for a long time and been living in .NET for about as long&mdash;I still had not really <em>embraced</em> PowerShell as something I could use in my daily development routine. I&rsquo;ve changed my tune. <strong>PowerShell is awesome.</strong> It&rsquo;s also not too hard to pick up once you learn how it works. I recommend you take a serious look at learning it. I recommend <a href="https://www.microsoftvirtualacademy.com/en-us/training-courses/getting-started-with-powershell-3-0-jump-start-8276">following the PowerShell 3 Jumpstart course</a> and trial and error.</p>
+
+<p>Anyway, for some of the games we write as part of <a href="http://excaliburjs.com">Excalibur.js</a> for game jams we would like to run them offline. To do this, you need to create an <a href="http://www.html5rocks.com/en/tutorials/appcache/beginner/">HTML5 Application Manifest file</a>. However, this file is super finicky, as outlined in the linked article. In order to assist, I wrote a small PowerShell script that generates an <code>appcache</code> manifest file with each file&rsquo;s MD5 checksum. Therefore, the manifest file will only change when dependent assets change. I do some more work to disable it locally and only enable for release, but you can run this script as part of your build.</p>
+
+<script src="https://gist.github.com/kamranayub/cc2c4d371a83aec8279e.js"></script>
+
+
+<p>Modify the script to be specific to your project and it should output an appropriate manifest file. Feel free to change as you see fit.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Use Special Gmail Addresses to Redirect and Filter Incoming Mail or Bypass Unique Email Checks]]></title>
@@ -1332,24 +1348,6 @@ and compile it yourself too, if you&rsquo;re really interested in using it right
 <p>I decided to switch because I can leverage GitHub Pages which are <strong>free</strong> and I can use a custom domain. It&rsquo;s a perfect fit because I can just piggyback on GitHub&rsquo;s cloud hosting for free and not worry about incurring any downtime due to database issues (something that happened more than a few times with the last ASP.NET MVC and SQL-based site).</p>
 
 <p>I really enjoyed setting up Octopress, it was easy to migrate my posts. I highly recommend it! It would be even better to have a .NET/C#-based static site generator that supported all of Jekyll&rsquo;s configuration options, except with Razor-based layouts and templating. Mmmm, that sounds pretty good. Someone get on that.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Just Pushed: Blackjack Sample Game]]></title>
-    <link href="http://kamranicus.com/blog/posts/79/just-pushed-blackjack-sample-game"/>
-    <updated>2013-12-03T09:09:04+00:00</updated>
-    <id>http://kamranicus.com/blog/posts/79/just-pushed-blackjack-sample-game</id>
-    <content type="html"><![CDATA[<p>It&rsquo;s finally done! I sat down today and dug through my backups to find my original WPF BlackJack game I wrote way back when WPF was really cool. I converted it to VS 2013, made sure it still ran, organized the solution, and hit deploy. It&rsquo;s now up on GitHub for your learning pleasure. There are no Nuget packages here! This was before Nuget where I had to find code to learn from and, ahem, copy. The deck is also something I found online. If I find the source, I&rsquo;ll be sure to attribute it properly.</p>
-
-<p><strong>Code:</strong> <a href="https://github.com/kamranayub/blackjack/">https://github.com/kamranayub/blackjack/</a></p>
-
-<iframe src="http://kamranicus.com//player.vimeo.com/video/5122176" width="500" height="338" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-
-
-<p>This was a sample game I wrote to learn OO design and WPF. There&rsquo;s some cool animations, sound effects, and a pretty fun Blackjack implementation. It&rsquo;s very &ldquo;simple&rdquo; and should be easy to digest. I never got around to implementing all the cool AI but now that it&rsquo;s on GitHub for all to see, maybe someone will pick it up.</p>
-
-<p>I also think it&rsquo;d be fun to port it to Windows 8 C# and XAML. It could be an app I release on the store, free and open source.</p>
 ]]></content>
   </entry>
   
