@@ -9,11 +9,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Keep Track of My Games - Kamranicus</title>
+  <title>Using Azure CDN Origin Pull With Cassette - Kamranicus</title>
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="Category: Keep Track of My Games">
+  <meta name="description" content="Using Azure CDN Origin Pull With Cassette written Oct 10th, 2015 in .NET, Azure, C#, Keep Track of My Games For the October update for Keep Track of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -22,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://kamranicus.comblog/categories/keep-track-of-my-games">
+  <link rel="canonical" href="http://kamranicus.com/blog/2015/10/10/azure-cdn-cassette">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
@@ -51,39 +51,56 @@
       <img src="/images/home.png"/>
     </a>
 
-    <div class="all-posts">
+    <article role="article" class="full-single-article">
   <div class="container">
     <div class="row">
-      <div class="list-title col-md-offset-2 col-md-8">
-        <h4>Posts in Keep Track of My Games</h4>
-      </div>
-    </div>
-  </div>
+      <div class="col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
+        <h1>Using Azure CDN Origin Pull With Cassette</h1>
+        <div class="meta">
+          written 
 
-  <div class="article-list">
-    <div class="container">
-      
-        
-        <div class="row">
-          <div class="col-md-offset-2 col-md-8">
-            <article>
-  <h2><a href="/blog/2015/10/10/azure-cdn-cassette/">Using Azure CDN Origin Pull With Cassette</a></h2>
+
+
+
+
+
+
+
   
-  <p>
-    <p>For the October update for <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> I wanted to offload my web assets to a CDN. Since I&rsquo;m already using <a href="http://azure.com">Microsoft Azure</a> to host the site, I decided to use <a href="https://azure.microsoft.com/en-us/services/cdn/">Azure CDN</a>.</p>
+
+
+
+<time datetime="2015-10-10T00:30:00+00:00" pubdate data-updated="true">Oct 10<span>th</span>, 2015</time>
+          
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/dot-net/'>.NET</a>, <a class='category' href='/blog/categories/azure/'>Azure</a>, <a class='category' href='/blog/categories/c-number/'>C#</a>, <a class='category' href='/blog/categories/keep-track-of-my-games/'>Keep Track of My Games</a>
+  
+</span>
+
+
+        </div>
+        <p>For the October update for <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> I wanted to offload my web assets to a CDN. Since I&rsquo;m already using <a href="http://azure.com">Microsoft Azure</a> to host the site, I decided to use <a href="https://azure.microsoft.com/en-us/services/cdn/">Azure CDN</a>.</p>
 
 <p>I set it up for &ldquo;Origin Pull&rdquo; which means that instead of uploading my assets to the CDN (Azure Blob storage), you request a file from the CDN and Azure will go and get it from your website and then cache it on their servers.</p>
 
 <p>So as an example:</p>
 
-<p><code>
-User requests http://az888888.vo.msecnd.net/stylesheets/foo.png
-|
-|
-CDN: have I cached "stylesheets/foo.png?"
-  Yes: Serve content from edge cache (closest to user)
-  No: Request http://yourwebsites.com/stylesheets/foo.png and serve
-</code></p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>User requests http://az888888.vo.msecnd.net/stylesheets/foo.png
+</span><span class='line'>|
+</span><span class='line'>|
+</span><span class='line'>CDN: have I cached "stylesheets/foo.png?"
+</span><span class='line'>  Yes: Serve content from edge cache (closest to user)
+</span><span class='line'>  No: Request http://yourwebsites.com/stylesheets/foo.png and serve</span></code></pre></td></tr></table></div></figure>
+
 
 <p>You can read more about <a href="https://azure.microsoft.com/en-us/documentation/articles/cdn-create-new-endpoint/">how to set up origin pull in Azure CDN</a>. In my case, I used &ldquo;Custom Origin&rdquo; of &ldquo;<a href="http://keeptrackofmygames.com">http://keeptrackofmygames.com</a>&rdquo;.</p>
 
@@ -104,22 +121,23 @@ CDN: have I cached "stylesheets/foo.png?"
 
 <p>In debug mode:</p>
 
-<p>```
-Bundle: ~/Content/core</p>
-
-<ul>
-<li>/cassette.axd/asset/Content/bootstrap.css?hash</li>
-<li>/cassette.axd/asset/Content/site.css?hash</li>
-<li>/cassette.axd/asset/Content/app.css?hash
-```</li>
-</ul>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Bundle: ~/Content/core
+</span><span class='line'>
+</span><span class='line'>- /cassette.axd/asset/Content/bootstrap.css?hash
+</span><span class='line'>- /cassette.axd/asset/Content/site.css?hash
+</span><span class='line'>- /cassette.axd/asset/Content/app.css?hash</span></code></pre></td></tr></table></div></figure>
 
 
 <p>And in production:</p>
 
-<p><code>
-/cassette.axd/stylesheet/{hash}/Content/core
-</code></p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/cassette.axd/stylesheet/{hash}/Content/core</span></code></pre></td></tr></table></div></figure>
+
 
 <p>But if we want to serve assets over the CDN, we need to plug in our special CDN URL prefix&mdash;not only for script/stylesheet references but also references to images <em>in</em> those files.</p>
 
@@ -132,9 +150,9 @@ Bundle: ~/Content/core</p>
 
 <p>In production, this will produce the following output:</p>
 
-<p><code>
-https://az99999.vo.msecnd.net/cassette.axd/stylesheet/{hash}/Content/core
-</code></p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://az99999.vo.msecnd.net/cassette.axd/stylesheet/{hash}/Content/core</span></code></pre></td></tr></table></div></figure>
+
 
 <p>To allow local debugging and CDN in production I just use an app setting in the web.config. In Azure, I also add an application setting (<code>CdnUrl</code>) through the portal in my production slot with the correct CDN URL and voila&mdash;all my assets will now be served over CDN.</p>
 
@@ -147,183 +165,33 @@ https://az99999.vo.msecnd.net/cassette.axd/stylesheet/{hash}/Content/core
 </ul>
 
 
-  </p>
-  <span class="meta">
-    written 
 
+        <hr class="divider-short"/>
 
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2015-10-10T00:30:00+00:00" pubdate data-updated="true">Oct 10<span>th</span>, 2015</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/dot-net/'>.NET</a>, <a class='category' href='/blog/categories/azure/'>Azure</a>, <a class='category' href='/blog/categories/c-number/'>C#</a>, <a class='category' href='/blog/categories/keep-track-of-my-games/'>Keep Track of My Games</a>
-  
-</span>
-
-
-  </span>
-
-  
-</article>
-
-          </div>
-        </div>
-      
         
-        <div class="row">
-          <div class="col-md-offset-2 col-md-8">
-            <article>
-  <h2><a href="/blog/2015/05/30/ktomg-update/">Behind the Major Update to Keep Track of My Games</a></h2>
-  
-  <p>
-    <p><img src="https://cloud.githubusercontent.com/assets/563819/7899619/b3154994-072a-11e5-8da1-b9a9703a8b57.png" alt="My profile" /></p>
-
-<p>Today I just pushed a <strong>major</strong> update to <a href="http://keeptrackofmygames.com">KTOMG</a>. <em>Psst, you should join!</em></p>
-
-<p>You can <a href="http://blog.keeptrackofmygames.com/post/120264549011/updates-for-may-2015">reference the blog post</a> for details on features but on the technical side I&rsquo;m pretty proud because I got to implement a bunch of new tech that I&rsquo;ve been wanting to learn properly.</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2015-05-30T22:13:00+00:00" pubdate data-updated="true">May 30<span>th</span>, 2015</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/css3/'>CSS3</a>, <a class='category' href='/blog/categories/front-end/'>Front-End</a>, <a class='category' href='/blog/categories/html5/'>HTML5</a>, <a class='category' href='/blog/categories/javascript/'>Javascript</a>, <a class='category' href='/blog/categories/keep-track-of-my-games/'>Keep Track of My Games</a>, <a class='category' href='/blog/categories/projects/'>Projects</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2015/05/30/ktomg-update/">Read on &rarr;</a>
-  
-</article>
-
-          </div>
-        </div>
-      
+        <section>
+          <h1>Comments</h1>
+          <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </section>
         
-        <div class="row">
-          <div class="col-md-offset-2 col-md-8">
-            <article>
-  <h2><a href="/blog/2015/05/25/knockout-binding-report/">Knockout.js Binding Report for Performance Tuning</a></h2>
-  
-  <p>
-    <p>I use a lot of <a href="http://knockoutjs.com">Knockout.js</a> on <a href="http://keeptrackofmygames.com">Keep Track of My Games</a>. I love Knockout but sometimes it makes it difficult to understand what&rsquo;s slowing my page down.</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2015-05-25T10:30:00+00:00" pubdate data-updated="true">May 25<span>th</span>, 2015</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/chrome/'>Chrome</a>, <a class='category' href='/blog/categories/gists/'>Gists</a>, <a class='category' href='/blog/categories/javascript/'>Javascript</a>, <a class='category' href='/blog/categories/keep-track-of-my-games/'>Keep Track of My Games</a>, <a class='category' href='/blog/categories/knockout/'>Knockout</a>, <a class='category' href='/blog/categories/oss/'>OSS</a>, <a class='category' href='/blog/categories/performance/'>Performance</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2015/05/25/knockout-binding-report/">Read on &rarr;</a>
-  
+      </div>
+    </div>
+  </div>
 </article>
 
-          </div>
-        </div>
-      
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
         
-        <div class="row">
-          <div class="col-md-offset-2 col-md-8">
-            <article>
-  <h2><a href="/blog/2015/05/21/chrome-multi-user/">Use a Separate Chrome Profile to Manage Your Apps</a></h2>
-  
-  <p>
-    <p>If you&rsquo;re an app or site developer, you&rsquo;ve probably got a bunch of
-tabs or bookmarks for your dashboards, social network accounts,
-blog, and more. For <a href="http://keeptrackofmygames.com">Keep Track of My Games</a>,
-I have UserVoice, Azure, RavenDB, social profiles, etc. that I
-need to manage and track (haha).</p>
+          <a class="pull-left" href="/blog/2015/09/17/powershell-html5-offline-manifest/" title="Previous Post: PowerShell Script to Generate an HTML5 Offline Manifest">&laquo; Previous: PowerShell Script to Generate an HTML5 Offline Manifest</a>
+        
 
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2015-05-21T13:45:00+00:00" pubdate data-updated="true">May 21<span>st</span>, 2015</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/chrome/'>Chrome</a>, <a class='category' href='/blog/categories/google/'>Google</a>, <a class='category' href='/blog/categories/keep-track-of-my-games/'>Keep Track of My Games</a>, <a class='category' href='/blog/categories/productivity/'>Productivity</a>, <a class='category' href='/blog/categories/tips/'>Tips</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2015/05/21/chrome-multi-user/">Read on &rarr;</a>
-  
-</article>
-
-          </div>
-        </div>
-      
+        
+      </div>
     </div>
   </div>
 </div>
@@ -359,6 +227,28 @@ in
     </div>
   </div>
 </footer>
+
+    
+      
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        // var disqus_developer = 1;
+        
+        var disqus_identifier = 'http://kamranicus.com/blog/2015/10/10/azure-cdn-cassette/';
+        
+        var disqus_url = 'http://kamranicus.com/blog/2015/10/10/azure-cdn-cassette/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
 
     
   </body>

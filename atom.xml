@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2015-09-17T03:12:47+00:00</updated>
+  <updated>2015-10-10T01:09:40+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,96 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Using Azure CDN Origin Pull With Cassette]]></title>
+    <link href="http://kamranicus.com/blog/2015/10/10/azure-cdn-cassette/"/>
+    <updated>2015-10-10T00:30:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2015/10/10/azure-cdn-cassette</id>
+    <content type="html"><![CDATA[<p>For the October update for <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> I wanted to offload my web assets to a CDN. Since I&rsquo;m already using <a href="http://azure.com">Microsoft Azure</a> to host the site, I decided to use <a href="https://azure.microsoft.com/en-us/services/cdn/">Azure CDN</a>.</p>
+
+<p>I set it up for &ldquo;Origin Pull&rdquo; which means that instead of uploading my assets to the CDN (Azure Blob storage), you request a file from the CDN and Azure will go and get it from your website and then cache it on their servers.</p>
+
+<p>So as an example:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>User requests http://az888888.vo.msecnd.net/stylesheets/foo.png
+</span><span class='line'>|
+</span><span class='line'>|
+</span><span class='line'>CDN: have I cached "stylesheets/foo.png?"
+</span><span class='line'>  Yes: Serve content from edge cache (closest to user)
+</span><span class='line'>  No: Request http://yourwebsites.com/stylesheets/foo.png and serve</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can read more about <a href="https://azure.microsoft.com/en-us/documentation/articles/cdn-create-new-endpoint/">how to set up origin pull in Azure CDN</a>. In my case, I used &ldquo;Custom Origin&rdquo; of &ldquo;<a href="http://keeptrackofmygames.com">http://keeptrackofmygames.com</a>&rdquo;.</p>
+
+<h2>Using CDN with Cassette</h2>
+
+<p>I use the .NET library <a href="http://getcassette.com">Cassette</a> for bundling &amp; minification for KTOMG&mdash;when I started KTOMG there was no Microsoft provided option and Cassette has been really stable.</p>
+
+<p>It works pretty much as you&rsquo;d expect:</p>
+
+<ul>
+<li>Define &ldquo;bundles&rdquo; which are sets of scripts/stylesheets</li>
+<li>Render bundles onto page(s)</li>
+<li>If debug mode, render individually otherwise minify and concatenate</li>
+</ul>
+
+
+<p>By default, Cassette will render URLs like this in your source code:</p>
+
+<p>In debug mode:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Bundle: ~/Content/core
+</span><span class='line'>
+</span><span class='line'>- /cassette.axd/asset/Content/bootstrap.css?hash
+</span><span class='line'>- /cassette.axd/asset/Content/site.css?hash
+</span><span class='line'>- /cassette.axd/asset/Content/app.css?hash</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And in production:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/cassette.axd/stylesheet/{hash}/Content/core</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But if we want to serve assets over the CDN, we need to plug in our special CDN URL prefix&mdash;not only for script/stylesheet references but also references to images <em>in</em> those files.</p>
+
+<p>Luckily, Cassette provides a facility to modify generated URLs by letting you register a <code>IUrlGenerator</code>. Here&rsquo;s my full implementation of this for my CDN:</p>
+
+<script src="https://gist.github.com/kamranayub/2da4ccfec3e7812c8367.js"></script>
+
+
+<p>As you can see, I register a custom <code>IUrlGenerator</code> and a custom <code>IUrlModifier</code>. The default <code>IUrlModifider</code> is Cassette&rsquo;s <code>VirtualDirectoryPrepender</code> and it just prepends &ldquo;/&rdquo; to the beginning of every URL but in our case we want to conditionally prepend the Azure CDN endpoint in production.</p>
+
+<p>In production, this will produce the following output:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://az99999.vo.msecnd.net/cassette.axd/stylesheet/{hash}/Content/core</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To allow local debugging and CDN in production I just use an app setting in the web.config. In Azure, I also add an application setting (<code>CdnUrl</code>) through the portal in my production slot with the correct CDN URL and voila&mdash;all my assets will now be served over CDN.</p>
+
+<h3>Notes</h3>
+
+<ul>
+<li><p>Azure CDN does not yet support HTTPS for custom origin domains. So if you want to serve content over <a href="http://static.yoursite.com">http://static.yoursite.com</a> you can&rsquo;t serve it over HTTPS because Azure doesn&rsquo;t allow you to upload or set a SSL certificate to use and insteads uses their own certificate which is not valid for your domain. <a href="http://feedback.azure.com/forums/169397-cdn/suggestions/1332683-allow-https-for-custom-cdn-domain-names">Vote up the UserVoice issue</a> on this.</p></li>
+<li><p>Azure CDN origin pull does not seem to respect <code>Cache-Control: private</code> HTTP header. For example, by default MVC serves pages with private cache control which means browsers won&rsquo;t cache that page and neither <em>should</em> Azure CDN&mdash;but it does anyway. In my case, I really don&rsquo;t want a true mirror of my site, I just wants assets served over CDN and Cassette sets <code>Cache-Control: public</code> on them automatically. <a href="http://feedback.azure.com/forums/169397-cdn/suggestions/10148280-respect-cache-control-private-for-origin-pull">You can upvote my feature request on UserVoice</a>.</p></li>
+<li><p>I am choosing <strong>not</strong> to point my entire domain to the CDN. Some folks choose to serve their entire site over the CDN which is definitely something you can do. However, in my case, I didn&rsquo;t want to do that. If you instead chose to point your domain to the CDN endpoint, you don&rsquo;t need to do any of this&mdash;<strong>everything</strong> will be served over the CDN.</p></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[PowerShell Script to Generate an HTML5 Offline Manifest]]></title>
@@ -1335,19 +1425,6 @@ request was taken from that contrib project.</p>
 <p>I do not know what the release schedule is like for the next version of MiniProfiler, but I have my
 RavenDB-based branch compiled and am using it for my site currently. You can bring down my fork
 and compile it yourself too, if you&rsquo;re really interested in using it right now.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Kamranicus: Now With 100% More Octopress]]></title>
-    <link href="http://kamranicus.com/blog/2013/12/05/kamranicus-now-with-100-percent-more-octopress/"/>
-    <updated>2013-12-05T05:18:28+00:00</updated>
-    <id>http://kamranicus.com/blog/2013/12/05/kamranicus-now-with-100-percent-more-octopress</id>
-    <content type="html"><![CDATA[<p>I&rsquo;ve just pushed a new version of Kamranicus that is built using the static site generator, <a href="http://octopress.org">Octopress</a>. Octopress uses <a href="http://jekyllrb.com/">Jekyll</a> to generate static sites.</p>
-
-<p>I decided to switch because I can leverage GitHub Pages which are <strong>free</strong> and I can use a custom domain. It&rsquo;s a perfect fit because I can just piggyback on GitHub&rsquo;s cloud hosting for free and not worry about incurring any downtime due to database issues (something that happened more than a few times with the last ASP.NET MVC and SQL-based site).</p>
-
-<p>I really enjoyed setting up Octopress, it was easy to migrate my posts. I highly recommend it! It would be even better to have a .NET/C#-based static site generator that supported all of Jekyll&rsquo;s configuration options, except with Razor-based layouts and templating. Mmmm, that sounds pretty good. Someone get on that.</p>
 ]]></content>
   </entry>
   

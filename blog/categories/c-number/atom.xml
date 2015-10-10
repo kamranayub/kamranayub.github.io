@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Azure | Kamranicus]]></title>
-  <link href="http://kamranicus.com/blog/categories/azure/atom.xml" rel="self"/>
+  <title><![CDATA[Category: C# | Kamranicus]]></title>
+  <link href="http://kamranicus.com/blog/categories/c-number/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
   <updated>2015-10-10T01:09:40+00:00</updated>
   <id>http://kamranicus.com/</id>
@@ -94,33 +94,6 @@ https://az99999.vo.msecnd.net/cassette.axd/stylesheet/{hash}/Content/core
 <li><p>I am choosing <strong>not</strong> to point my entire domain to the CDN. Some folks choose to serve their entire site over the CDN which is definitely something you can do. However, in my case, I didn&rsquo;t want to do that. If you instead chose to point your domain to the CDN endpoint, you don&rsquo;t need to do any of this&mdash;<strong>everything</strong> will be served over the CDN.</p></li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Getting WebSockets to Work on Windows Azure]]></title>
-    <link href="http://kamranicus.com/blog/2014/02/09/websockets-on-windows-azure/"/>
-    <updated>2014-02-09T03:52:48+00:00</updated>
-    <id>http://kamranicus.com/blog/2014/02/09/websockets-on-windows-azure</id>
-    <content type="html"><![CDATA[<p>I was banging my head against the wall for the past hour or so wondering why I was falling back to XHR polling when I deployed my Node.js application to Azure. I&rsquo;m using socket.io and everything looks like it&rsquo;s in order, works locally, etc. It was failing with a WebSocket handshake error.</p>
-
-<p>What I saw in the Chrome developer console was something like:</p>
-
-<pre><code>Error during WebSocket handshake: Unexpected response code: 502
-</code></pre>
-
-<p>In my Azure Node.js console (<code>azure site log tail SITENAME</code>), I was seeing <code>EPIPE</code> errors.</p>
-
-<p>It turns out, this little tidbit from the <a href="http://blogs.msdn.com/b/windowsazure/archive/2013/11/14/introduction-to-websockets-on-windows-azure-web-sites.aspx">original Windows Azure blog post</a> on Web Sockets did the trick.</p>
-
-<p>Modify your <strong>web.config</strong> and add:</p>
-
-<pre><code>&lt;webSocket enabled="false" /&gt;
-</code></pre>
-
-<p>To your <code>system.webServer</code> configuration. Also, another good point in that blog post is to use SSL, since you get SSL for free with a <code>*.azurewebsites.net</code> site.</p>
-
-<p>Hope this helps someone else out there. This should be added to the <a href="http://www.windowsazure.com/en-us/documentation/articles/web-sites-nodejs-chat-app-socketio/">official Azure tutorial</a> on using web sockets with Node.js.</p>
 ]]></content>
   </entry>
   
