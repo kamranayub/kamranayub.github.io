@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2015-10-10T01:09:40+00:00</updated>
+  <updated>2015-11-06T17:43:52+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,171 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Impersonating a User During Automated Testing Scenarios]]></title>
+    <link href="http://kamranicus.com/blog/2015/11/06/impersonating-during-testing/"/>
+    <updated>2015-11-06T16:00:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2015/11/06/impersonating-during-testing</id>
+    <content type="html"><![CDATA[<p>I&rsquo;m starting to introduce privacy controls to <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> and I ran into the following scenario when writing my tests:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Scenario: Anonymous user should be able to view a public custom list
+</span><span class='line'>  Given a user has a list
+</span><span class='line'>  And a user's list is public
+</span><span class='line'>  When I request access to the list
+</span><span class='line'>  Then I have read-only access</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In this context, <strong>I</strong> am the anonymous user. This is the exact <a href="http://www.specflow.org/">SpecFlow</a> scenario I wrote. Do you know why I may have run into issues?</p>
+
+<p>Let&rsquo;s look at the first two steps:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[Given(@&quot;a user has a list&quot;)]</span>
+</span><span class='line'><span class="k">public</span> <span class="k">void</span> <span class="nf">GivenAUserHasAList</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">_listResult</span> <span class="p">=</span> <span class="n">_context</span><span class="p">.</span><span class="n">ListService</span><span class="p">.</span><span class="n">CreateList</span><span class="p">(</span><span class="n">_newList</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">[Given(@&quot;a user&#39;s list is public&quot;)]</span>
+</span><span class='line'><span class="k">public</span> <span class="k">void</span> <span class="nf">GivenAUsersListIsPublic</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">_privacySettings</span><span class="p">.</span><span class="n">Level</span> <span class="p">=</span> <span class="n">PrivacyLevel</span><span class="p">.</span><span class="n">Public</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">_context</span><span class="p">.</span><span class="n">ListService</span><span class="p">.</span><span class="n">UpdateListPrivacy</span><span class="p">(</span><span class="n">_listResult</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span> <span class="n">_privacySettings</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Why would this cause a problem with my given scenario?</p>
+
+<ol>
+<li>In the first step, I&rsquo;m creating a new list.</li>
+<li>In the second step, I&rsquo;m taking the new list I just made from the first step and updating the privacy settings on it.</li>
+</ol>
+
+
+<p>The problem is that my service assumes the context is an authenticated user and will apply changes to the <strong>current user&rsquo;s</strong> list. Well, since I did not call my login helpers before these two steps, I am in an anonymous context so the service calls fail. That&rsquo;s good! But how can I tell my steps to call a service method <em>on behalf</em> of another user without having <em>every</em> step use the current user context?</p>
+
+<p>You might say I should just create a new method that accepts a username and refactor my methods. I <em>could</em> do that but not only is my entire service designed around the current user context, my service layer is essentially the interface of my public API. I would never allow one user to create a list for another user (unless that was a feature). So the same way I wouldn&rsquo;t expose an API method to do something on behalf of someone, I won&rsquo;t add a public method in my service layer to do the same. I could choose to make the method private or internal and grant access to the assembly for testing&mdash;true, I <em>could</em> but that seems like a workaround where I need to expose special functionality just for testing.</p>
+
+<p>The approach I ended up doing was simpler and more elegant and leveraged an existing pattern I was relying on: injecting an <code>IUserContext</code> into my service layer like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="nf">ListService</span><span class="p">(</span><span class="n">IUserContext</span> <span class="n">userContext</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">_userContext</span> <span class="p">=</span> <span class="n">userContext</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is using standard dependency injection (Ninject, in my case) to inject a context for the current user. That context gets created and maintained outside this class, so it doesn&rsquo;t care who provided it or where it came from, it just uses it to determine business logic.</p>
+
+<p>So since I&rsquo;m already injecting the current user context and mocking it in my tests, why not simply swap out the context when I need to?</p>
+
+<h2>Creating an impersonation context</h2>
+
+<p>That&rsquo;s what I ended up doing. Here&rsquo;s my implementation of a <code>TestingImpersonationContext</code> (<a href="https://gist.github.com/kamranayub/9654d6581fbcf63cf481">https://gist.github.com/kamranayub/9654d6581fbcf63cf481</a>):</p>
+
+<script src="https://gist.github.com/kamranayub/9654d6581fbcf63cf481.js"></script>
+
+
+<p>It should be clear what&rsquo;s happening but let me explain further. Specifically in SpecFlow you can inject a context into your testing steps like so:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">StepBase</span> <span class="p">:</span> <span class="n">TechTalk</span><span class="p">.</span><span class="n">SpecFlow</span><span class="p">.</span><span class="n">Steps</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">protected</span> <span class="n">TestingContext</span> <span class="n">_context</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">public</span> <span class="nf">StepBase</span><span class="p">(</span><span class="n">TestingContext</span> <span class="n">context</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">_context</span> <span class="p">=</span> <span class="n">context</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As long as your step classes inherit that <code>StepBase</code>, you have access to a context. All I did was build a method off that context that swapped out my existing dependency that was injected for <code>IUserContext</code> with a temporary context that impersonated the requested user. Once it is disposed, it restores the original context. Easy as pie!</p>
+
+<p>If you are <strong>not</strong> using SpecFlow which is probably the case, don&rsquo;t fret&mdash;all you really need is a class or helper method that you can access in your test classes. However you want to achieve that is up to you. Create a base class, don&rsquo;t even bother with dependency injection, etc. This is entirely doable without DI but since my app relies on it I also leverage it during testing.</p>
+
+<p>Now given we have an impersonation context helper, here&rsquo;s how our two testing steps have changed:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[Given(@&quot;a user has a list&quot;)]</span>
+</span><span class='line'><span class="k">public</span> <span class="k">void</span> <span class="nf">GivenAUserHasAList</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">using</span> <span class="p">(</span><span class="n">_context</span><span class="p">.</span><span class="n">Impersonate</span><span class="p">(</span><span class="s">&quot;user&quot;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">_listResult</span> <span class="p">=</span> <span class="n">_context</span><span class="p">.</span><span class="n">ListService</span><span class="p">.</span><span class="n">CreateList</span><span class="p">(</span><span class="n">_newList</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">[Given(@&quot;a user&#39;s list is public&quot;)]</span>
+</span><span class='line'><span class="k">public</span> <span class="k">void</span> <span class="nf">GivenAUsersListIsPublic</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">using</span> <span class="p">(</span><span class="n">_context</span><span class="p">.</span><span class="n">Impersonate</span><span class="p">(</span><span class="s">&quot;user&quot;</span><span class="p">))</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">_privacySettings</span><span class="p">.</span><span class="n">Level</span> <span class="p">=</span> <span class="n">PrivacyLevel</span><span class="p">.</span><span class="n">Public</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">_context</span><span class="p">.</span><span class="n">ListService</span><span class="p">.</span><span class="n">UpdateListPrivacy</span><span class="p">(</span><span class="n">_listResult</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span> <span class="n">_privacySettings</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I could even update my scenario to be specific about <strong>who&rsquo;s list</strong> I&rsquo;m accessing (so it&rsquo;s not ambiguous between logged in user vs. another user) but since I only have two users in my testing context, it doesn&rsquo;t really matter.</p>
+
+<p>Now for the test results:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">Given</span> <span class="n">a</span> <span class="n">user</span> <span class="n">has</span> <span class="n">a</span> <span class="n">list</span>
+</span><span class='line'><span class="p">-&gt;</span> <span class="n">done</span><span class="p">:</span> <span class="n">ListSteps</span><span class="p">.</span><span class="n">GivenAUserHasAList</span><span class="p">()</span> <span class="p">(</span><span class="m">0.2</span><span class="n">s</span><span class="p">)</span>
+</span><span class='line'><span class="n">And</span> <span class="n">a</span> <span class="n">user</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">list</span> <span class="k">is</span> <span class="k">public</span>
+</span><span class='line'><span class="p">-&gt;</span> <span class="n">done</span><span class="p">:</span> <span class="n">ListSteps</span><span class="p">.</span><span class="n">GivenAUsersListIsPublic</span><span class="p">()</span> <span class="p">(</span><span class="m">0.0</span><span class="n">s</span><span class="p">)</span>
+</span><span class='line'><span class="n">When</span> <span class="n">I</span> <span class="n">request</span> <span class="n">access</span> <span class="n">to</span> <span class="n">the</span> <span class="n">list</span>
+</span><span class='line'><span class="p">-&gt;</span> <span class="n">done</span><span class="p">:</span> <span class="n">ListSteps</span><span class="p">.</span><span class="n">WhenIRequestAccessToTheList</span><span class="p">()</span> <span class="p">(</span><span class="m">0.1</span><span class="n">s</span><span class="p">)</span>
+</span><span class='line'><span class="n">Then</span> <span class="n">I</span> <span class="n">have</span> <span class="n">read</span><span class="p">-</span><span class="n">only</span> <span class="n">access</span>
+</span><span class='line'><span class="p">-&gt;</span> <span class="n">done</span><span class="p">:</span> <span class="n">ListSteps</span><span class="p">.</span><span class="n">ThenIHaveReadAccess</span><span class="p">()</span> <span class="p">(</span><span class="m">0.0</span><span class="n">s</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The tests are green and now I&rsquo;m a happy coder. By the way, if you aren&rsquo;t using <a href="http://specflow.org">SpecFlow</a> for .NET you should consider it, I love it.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Using Azure CDN Origin Pull With Cassette]]></title>
@@ -1366,65 +1531,6 @@ for open source projects.</p>
 If you&rsquo;re a fellow developer, feel free to send me a pull request with any bug fixes or enhancements. I want to keep it focused on
 the simple use case of scoring a bowling game; I don&rsquo;t need it to track multiple games or keep track of history. It&rsquo;s purpose is to serve
 as a production-ready sample app and to also be good at what it aims to do.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[MiniProfiler RavenDB Pull Request Accepted]]></title>
-    <link href="http://kamranicus.com/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/"/>
-    <updated>2013-12-05T14:32:08+00:00</updated>
-    <id>http://kamranicus.com/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted</id>
-    <content type="html"><![CDATA[<p>I just got a notification that my <a href="https://github.com/MiniProfiler/dotnet/pull/15">pull request</a> for
-adding RavenDB support to MiniProfiler went through! It&rsquo;s always really cool to see your contributions
-get pulled in. The MiniProfiler guys were really easy-going, <a href="https://github.com/yellis">@yellis</a> was even kind enough to take on
-the testing. That kind of acceptance for pull requests is great to see because it makes me feel good
-about contributing and is a bit less intimidating.</p>
-
-<!-- More -->
-
-
-<p>The &ldquo;official&rdquo; MiniProfiler RavenDB plugin does several things:</p>
-
-<ul>
-<li>Integrates with all existing MiniProfiler settings</li>
-<li>Displays the query duration just like you&rsquo;d expect in a separate raven column
-
-<ul>
-<li>This let&rsquo;s you see the raven percentage individually just like SQL</li>
-<li>It matches the experience of using EF with MiniProfiler exactly</li>
-</ul>
-</li>
-<li>Allows you to dig into the exact request details ala EF integration</li>
-<li>(not included) It&rsquo;s possible to also include the <em>results</em> of the request but in my pull request I don&rsquo;t because it was way too much
-overhead to include the full response in the web interface (displaying 50 complex objects in JSON slowed down the UI too much)
-
-<ul>
-<li>You can just copy the query to see the results in Raven Studio anyway</li>
-<li>Possibly you could just display the query URL and open the request in a new tab</li>
-</ul>
-</li>
-</ul>
-
-
-<p>I have only just begun my exploration of RavenDB but one of the downsides from moving from EF was
-the excellent MiniProfiler integration. I was really surprised to find adding the same level
-of support to Raven was pretty straightforward in the latest iteration of MiniProfiler.</p>
-
-<p>There are two packages I found that added profiling to Raven, the <a href="https://github.com/ravendb/ravendb/tree/master/Raven.Client.MvcIntegration">&ldquo;official&rdquo; Raven profiler</a> and another
-<a href="http://blog.csainty.com/MvcMiniProfiler.RavenDb/">MiniProfiler plugin</a>, but both of those are lacking. The official one didn&rsquo;t seem to handle AJAX requests
-and the other only seemed to add profiling steps; it didn&rsquo;t provide any details about the request.
-I wanted <strong>full</strong> integration with MiniProfiler on the same level as EF and I didn&rsquo;t want to enable <em>two</em> profilers at once. I was
-already using MiniProfiler to profile my MVC app, I didn&rsquo;t want to enable Raven Profiler and MiniProfiler
-at the same time.</p>
-
-<p>There is <a href="https://github.com/ravendb/ravendb.contrib/tree/master/src/Raven.Client.Contrib.Profiling">a RavenDb.Contrib project</a> that added MiniProfiler integration on the level I wanted, but unfortunately it was not integrated
-tightly into the MiniProfiler codebase (it was using reflection and other hacks) and it also was not built against the latest version of the codebase
-that simplified the steps to create a new custom timing. Still, credit is due, because some of the formatting logic and general direction of my pull
-request was taken from that contrib project.</p>
-
-<p>I do not know what the release schedule is like for the next version of MiniProfiler, but I have my
-RavenDB-based branch compiled and am using it for my site currently. You can bring down my fork
-and compile it yourself too, if you&rsquo;re really interested in using it right now.</p>
 ]]></content>
   </entry>
   
