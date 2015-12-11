@@ -90,6 +90,301 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/2015/12/11/kudu-deployment-flags-in-commit-messages/">Influencing Your Kudu Deployment Through Git Commit Messages</a></h2>
+  
+  <p>
+    <p>If you&rsquo;re on Windows Azure and using continuous deployment through Git, you may not know you are using an open source platform called
+<a href="https://github.com/projectkudu/kudu">Kudu</a> behind-the-scenes that performs your deployment. If this is the first time you&rsquo;ve heard of Kudu and you&rsquo;ve been
+using Azure for awhile, it&rsquo;s time to <a href="https://github.com/projectkudu/kudu">get acquainted</a>. Kudu is amazing. It has a whole REST API that lets you manage
+deployments, trigger builds, trigger webjobs, view processes, a command prompt, and a ton more.</p>
+
+
+
+
+<p>You can get to your Kudu console by visiting</p>
+
+
+
+
+<pre><code>https://&lt;yoursite&gt;.scm.azurewebsites.net
+</code></pre>
+
+
+
+
+<p>The <strong>.scm.</strong> part is the key, as that is where the Kudu site is hosted.</p>
+
+
+
+
+<h2>Customizing Kudu deployments</h2>
+
+
+
+
+<p>One of the other things it offers is a <a href="https://github.com/projectkudu/kudu/wiki/Custom-Deployment-Script">customized deployment script</a>. I&rsquo;ve customized mine because I have a test
+project where I run automated tests during the build. This is useful since it&rsquo;ll fail the build if I make any changes
+that break my tests and forces me to keep things up-to-date resulting in a higher quality codebase.</p>
+
+
+
+
+<p>If you want to generate your own script, it&rsquo;s pretty easy. Just follow the steps <a href="https://github.com/projectkudu/kudu/wiki/Custom-Deployment-Script">outlined here</a>. For example, after
+customizing my script here&rsquo;s what my section looks like to run my tests:</p>
+
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>:: 3. Build unit tests
+</span><span class='line'>call :ExecuteCmd &ldquo;%MSBUILD_PATH%&rdquo; &ldquo;%DEPLOYMENT_SOURCE%\src\Tests\Tests.csproj&rdquo; /nologo /verbosity:m /t:Build /p:AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir=&ldquo;%DEPLOYMENT_SOURCE%.\&rdquo; %SCM_BUILD_ARGS%
+</span><span class='line'>
+</span><span class='line'>IF !ERRORLEVEL! NEQ 0 goto error</span></code></pre></td></tr></table></div></figure></p>
+
+<p>All I really did was copy step 2 in the script that builds my web project and just change the path to my tests project.</p>
+
+
+
+
+<p>Finally, I run the tests using the packaged Nunit test runner (checked into source control):</p>
+
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>call :ExecuteCmd &ldquo;%DEPLOYMENT_SOURCE%\tools\nunit\nunit-console.exe&rdquo; &ldquo;%DEPLOYMENT_SOURCE%\src\Tests\bin\Release\Tests.dll&rdquo; /framework:v4.5.1
+</span><span class='line'>IF !ERRORLEVEL! NEQ 0 goto error</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Simple!</p>
+
+
+
+
+<h2>Now the fun part</h2>
+
+
+
+
+<p>One thing you&rsquo;ll notice if you start running tests on your builds is that this starts to slow down your continuous deployment workflow.
+For 90% of the time this is acceptable, after all, you can wait a few minutes to see your changes show up on the site. But sometimes,
+especially for production hotfixes or trial-and-error config changes, that 3-5 minutes becomes unbearable.</p>
+
+
+
+
+<p>In cases like this, I&rsquo;ve set up a little addition to my script that will read the git commit message and take action depending on what phrases it sees.</p>
+
+
+
+
+<p>For example, let&rsquo;s say I commit a change that is just a config change and I know I don&rsquo;t need to run any tests or I really want the quick build.
+This is what my commit message looks like:</p>
+
+
+
+
+<pre><code>[notest] just changing App.config
+</code></pre>
+
+
+
+
+<p>That phrase <code>[notest]</code> is something my script looks for at build time and if it&rsquo;s present it will skip running tests!
+You can use this same logic to do pretty much anything you want. Here&rsquo;s what it looks like after step 3 in my script:</p>
+
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>:: Above at top of file
+</span><span class='line'>
+</span><span class='line'>IF NOT DEFINED RUN_TESTS (
+</span><span class='line'>   SET RUN_TESTS=1
+</span><span class='line'>)
+</span><span class='line'>
+</span><span class='line'>:: 4. Run unit tests
+</span><span class='line'>echo Latest commit ID is &ldquo;%SCM_COMMIT_ID%&rdquo;
+</span><span class='line'>
+</span><span class='line'>call git show -s &ldquo;%SCM_COMMIT_ID%&rdquo; &mdash;pretty=%%%%s &gt; commitmessage.txt
+</span><span class='line'>SET /p COMMIT_MESSAGE=&lt;commitmessage.txt
+</span><span class='line'>
+</span><span class='line'>echo Latest commit message is &ldquo;%COMMIT_MESSAGE%&rdquo;
+</span><span class='line'>
+</span><span class='line'>IF NOT &ldquo;x%COMMIT_MESSAGE:[notest]=%&rdquo;==&ldquo;x%COMMIT_MESSAGE%&rdquo; (
+</span><span class='line'>   SET RUN_TESTS=0
+</span><span class='line'>)
+</span><span class='line'>
+</span><span class='line'>IF /I &ldquo;%RUN_TESTS%&rdquo; NEQ &ldquo;0&rdquo; (
+</span><span class='line'>  echo Running unit tests
+</span><span class='line'>  call :ExecuteCmd &ldquo;%DEPLOYMENT_SOURCE%\tools\nunit\nunit-console.exe&rdquo; &ldquo;%DEPLOYMENT_SOURCE%\src\Tests\bin\Release\Tests.dll&rdquo; /framework:v4.5.1
+</span><span class='line'>  IF !ERRORLEVEL! NEQ 0 goto error
+</span><span class='line'>) ELSE (
+</span><span class='line'>  echo Not running unit tests because [notest] was present in commit message
+</span><span class='line'>)</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Alright, there&rsquo;s definitely some batch file black magic incantations going on here! So let&rsquo;s break it down.</p>
+
+
+
+
+<pre><code>echo Latest commit ID is "%SCM_COMMIT_ID%"
+</code></pre>
+
+
+
+
+<p>Kudu defines several useful <a href="https://github.com/projectkudu/kudu/wiki/Deployment-Environment">environment variables</a> that you have access to, including the current commit ID.
+I&rsquo;m just echoing it out so I can debug when viewing the log output.</p>
+
+
+
+
+<pre><code>call git show -s "%SCM_COMMIT_ID%" --pretty=%%%%s &gt; commitmessage.txt
+SET /p COMMIT_MESSAGE=&lt;commitmessage.txt
+</code></pre>
+
+
+
+
+<p>Alright. This took me some real trial and error. Git lets you <a href="https://git-scm.com/docs/git-show"><code>show</code> any commit message</a> and can format it using a printf format string (<code>--pretty=%s</code>).
+However, due to the weird escaping rules of batch files and variables, this requires not one but <strong>four</strong> <code>%</code> signs. Go figure.</p>
+
+
+
+
+<p>Next I pipe it to a file, this is only so I can read the file back and store the message in a batch variable (<code>COMMIT_MESSAGE</code>), on the next line.
+<strong>Kudu team:</strong> It would be sweet to add a <code>SCM_COMMIT_MESSAGE</code> environment variable!</p>
+
+
+
+
+<pre><code>IF NOT "x%COMMIT_MESSAGE:[notest]=%"=="x%COMMIT_MESSAGE%" (
+   SET RUN_TESTS=0
+)
+</code></pre>
+
+
+
+
+<p>Okay, what&rsquo;s going on here? I&rsquo;ll <a href="http://stackoverflow.com/questions/7005951/batch-file-find-if-substring-is-in-string-not-in-a-file">let StackOverflow explain</a>. The <code>:[notest]=</code> portion REPLACES the term &ldquo;[notest]&rdquo; in
+the preceding variable (<code>COMMIT_MESSAGE</code>) with an empty string. The <code>x</code> prefix character guards against batch file weirdness.
+So if <code>[notest]</code> is NOT present, this will return true (the strings match). If it is present, the condition will be false and so we do <code>IF NOT</code>
+since we want to execute when that is the case.</p>
+
+
+
+
+<p>If <code>[notest]</code> is present in the message, we set another variable, <code>RUN_TESTS</code> to 0.</p>
+
+
+
+
+<pre><code>IF /I "%RUN_TESTS%" NEQ "0" (
+    echo Running unit tests
+    call :ExecuteCmd "%DEPLOYMENT_SOURCE%\tools\nunit\nunit-console.exe" "%DEPLOYMENT_SOURCE%\src\Tests\bin\Release\Tests.dll" /framework:v4.5.1
+    IF !ERRORLEVEL! NEQ 0 goto error
+) ELSE (
+    echo Not running unit tests because [notest] was present in commit message
+)
+</code></pre>
+
+
+
+
+<p>If <code>RUN_TESTS</code> does not evaluate to 0, then we run the tests! Otherwise we echo out an informative message as to why it was skipped.</p>
+
+
+
+
+<p>Phew. So how much time do we save on <code>[notest]</code> builds now?</p>
+
+
+
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/11734864/9a5e5e10-9f80-11e5-92ff-b93a1d9c994a.png" alt="No test build" /></p>
+
+
+
+
+<p>Compared to a build with tests:</p>
+
+
+
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/11734880/b874bed0-9f80-11e5-9af2-8e0425a02563.png" alt="Build with tests" /></p>
+
+
+
+
+<p>So that flag cuts the build in half! Nice! There are probably some other ways to improve the time. By the way, if you&rsquo;re wondering what&rsquo;s taking so long
+in your build, you can use the Kudu <a href="https://github.com/projectkudu/kudu/wiki/REST-API">REST endpoint</a> to see your deployment logs (<strong>/api/deployments</strong> endoint) which contain full timestamp information!</p>
+
+
+
+
+<p>Happy continuous deployment!</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-12-11T01:30:00+00:00" pubdate data-updated="true">Dec 11<span>th</span>, 2015</time>
+    
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/continuous-deployment/'>Continuous Deployment</a>, <a class='category' href='/blog/categories/continuous-integration/'>Continuous Integration</a>, <a class='category' href='/blog/categories/git/'>Git</a>, <a class='category' href='/blog/categories/kudu/'>Kudu</a>, <a class='category' href='/blog/categories/testing/'>Testing</a>
+  
+</span>
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/2015/11/06/impersonating-during-testing/">Impersonating a User During Automated Testing Scenarios</a></h2>
   
   <p>
@@ -942,54 +1237,6 @@ in
 
   
     <a class="full-article-link pull-right" rel="full-article" href="/blog/2015/05/21/chrome-multi-user/">Read on &rarr;</a>
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/2015/05/11/extending-knockout-with-urlsync/">Extending Knockout Observables to Sync With Address Bar</a></h2>
-  
-  <p>
-    <p>I made a tiny Knockout extender called <code>urlSync</code> that syncs an observable with the URL.</p>
-
-
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2015-05-11T16:20:00+00:00" pubdate data-updated="true">May 11<span>th</span>, 2015</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/gists/'>Gists</a>, <a class='category' href='/blog/categories/javascript/'>Javascript</a>, <a class='category' href='/blog/categories/knockout/'>Knockout</a>, <a class='category' href='/blog/categories/oss/'>OSS</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2015/05/11/extending-knockout-with-urlsync/">Read on &rarr;</a>
   
 </article>
 

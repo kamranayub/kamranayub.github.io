@@ -90,6 +90,110 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/posts/40/ux-applies-to-api-design-too">UX Applies to API Design Too</a></h2>
+  
+  <p>
+    <p>I&rsquo;m working on enhancing a component we use for cryptography at work today. Previously it had a lot of useful methods, but no documentation. I was able to add XML documentation and now it&rsquo;s fully Intellisense-friendly:</p>
+
+
+
+
+<p><img src="/blog/images/38.png" alt="Intellisense" /></p>
+
+
+
+
+<p>That&rsquo;s one step for making your API friendly, even though it&rsquo;s a little more work.</p>
+
+
+
+
+<p>What I want to point out is that I also made exceptions friendly. Cryptography is not an easy thing to understand and even I don&rsquo;t understand all of it. We have a method that lets you generate a new key for a given algorithm (the API defaults to <code>RijndaelManaged</code> as best practice), but it also lets you specify a key size.</p>
+
+
+
+
+<p>I did a couple things:</p>
+
+
+
+
+<ol>
+<li><p>The argument accepts key size in bits, as that is what the .NET API uses and is what you see online (&ldquo;128 bit&rdquo;).</p></li>
+<li><p>The API will tell you if the key size is invalid. Not only that, it will list out what the acceptable key sizes are.</p></li>
+</ol>
+
+
+
+
+<p>Check it out:</p>
+
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Test method SymmetricEncryption_Should_Throw_Exception_For_Invalid_Key_Sizes threw exception:
+</span><span class='line'>
+</span><span class='line'>System.ArgumentException: 56 bits is not a valid key size for RijndaelManaged. Valid key sizes: 128 bits, 192 bits, 256 bits
+</span><span class='line'>
+</span><span class='line'>Parameter name: keySize</span></code></pre></td></tr></table></div></figure></p>
+
+<p>And it didn&rsquo;t even take much code:</p>
+
+
+
+
+<script src="https://gist.github.com/2292726.js?file=SymmetricEncryption.cs"></script>
+
+
+
+
+<p>Never forget:</p>
+
+
+
+
+<blockquote><p>UX is just as important for API design</p></blockquote>
+
+
+
+
+<p>Put yourself in your consumer&rsquo;s shoes and design it with them in mind. They&rsquo;ll thank you for it, trust me.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2012-04-03T20:05:22+00:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2012</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/posts/39/a-few-hours-with-webapi-mvc-the-good-and-the-bad">A Few Hours With WebAPI + MVC, the Good and the Bad</a></h2>
   
   <p>
@@ -1496,58 +1600,6 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
 
 
 <time datetime="2012-02-02T21:21:04+00:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2012</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/posts/29/programming-is-difficult-business-it-should-never">Programming Is Difficult Business. It Should Never Be Undertaken in Ignorance.</a></h2>
-  
-  <p>
-    <blockquote><p>&ldquo;Programming is difficult business. It should never be undertaken in ignorance.&rdquo; &ndash; <em>Javascript: The Good Parts</em>, Douglas Crockford</p></blockquote>
-
-
-
-
-<p>What a great quote to program by.</p>
-
-
-
-
-<p>I&rsquo;ve been undertaking a pet project (a <em>game</em>, no less) that&rsquo;s forced me to brush up on my Javascriptings. I would highly recommend this book if you also want to get your hands dirty with Javascript.</p>
-
-
-
-
-<p>Oh, my game? Yah, I can&rsquo;t talk about it yet. I&rsquo;ve never made a game before (but I&rsquo;ve always wanted to) and I think I&rsquo;ve finally come up with something I could possibly do (i.e. not 3D, not requiring 25 art designers, and not in a language I don&rsquo;t know). We&rsquo;ll see how it goes and I&rsquo;ll let you know.</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2012-01-23T21:44:30+00:00" pubdate data-updated="true">Jan 23<span>rd</span>, 2012</time>
     
 
 

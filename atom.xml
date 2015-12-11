@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2015-11-06T17:43:52+00:00</updated>
+  <updated>2015-12-11T03:13:37+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,179 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Influencing Your Kudu Deployment Through Git Commit Messages]]></title>
+    <link href="http://kamranicus.com/blog/2015/12/11/kudu-deployment-flags-in-commit-messages/"/>
+    <updated>2015-12-11T01:30:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2015/12/11/kudu-deployment-flags-in-commit-messages</id>
+    <content type="html"><![CDATA[<p>If you&rsquo;re on Windows Azure and using continuous deployment through Git, you may not know you are using an open source platform called
+<a href="https://github.com/projectkudu/kudu">Kudu</a> behind-the-scenes that performs your deployment. If this is the first time you&rsquo;ve heard of Kudu and you&rsquo;ve been
+using Azure for awhile, it&rsquo;s time to <a href="https://github.com/projectkudu/kudu">get acquainted</a>. Kudu is amazing. It has a whole REST API that lets you manage
+deployments, trigger builds, trigger webjobs, view processes, a command prompt, and a ton more.</p>
+
+<p>You can get to your Kudu console by visiting</p>
+
+<pre><code>https://&lt;yoursite&gt;.scm.azurewebsites.net
+</code></pre>
+
+<p>The <strong>.scm.</strong> part is the key, as that is where the Kudu site is hosted.</p>
+
+<h2>Customizing Kudu deployments</h2>
+
+<p>One of the other things it offers is a <a href="https://github.com/projectkudu/kudu/wiki/Custom-Deployment-Script">customized deployment script</a>. I&rsquo;ve customized mine because I have a test
+project where I run automated tests during the build. This is useful since it&rsquo;ll fail the build if I make any changes
+that break my tests and forces me to keep things up-to-date resulting in a higher quality codebase.</p>
+
+<p>If you want to generate your own script, it&rsquo;s pretty easy. Just follow the steps <a href="https://github.com/projectkudu/kudu/wiki/Custom-Deployment-Script">outlined here</a>. For example, after
+customizing my script here&rsquo;s what my section looks like to run my tests:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>:: 3. Build unit tests
+</span><span class='line'>call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\src\Tests\Tests.csproj" /nologo /verbosity:m /t:Build /p:AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
+</span><span class='line'>
+</span><span class='line'>IF !ERRORLEVEL! NEQ 0 goto error</span></code></pre></td></tr></table></div></figure>
+
+
+<p>All I really did was copy step 2 in the script that builds my web project and just change the path to my tests project.</p>
+
+<p>Finally, I run the tests using the packaged Nunit test runner (checked into source control):</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>call :ExecuteCmd "%DEPLOYMENT_SOURCE%\tools\nunit\nunit-console.exe" "%DEPLOYMENT_SOURCE%\src\Tests\bin\Release\Tests.dll" /framework:v4.5.1
+</span><span class='line'>IF !ERRORLEVEL! NEQ 0 goto error</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Simple!</p>
+
+<h2>Now the fun part</h2>
+
+<p>One thing you&rsquo;ll notice if you start running tests on your builds is that this starts to slow down your continuous deployment workflow.
+For 90% of the time this is acceptable, after all, you can wait a few minutes to see your changes show up on the site. But sometimes,
+especially for production hotfixes or trial-and-error config changes, that 3-5 minutes becomes unbearable.</p>
+
+<p>In cases like this, I&rsquo;ve set up a little addition to my script that will read the git commit message and take action depending on what phrases it sees.</p>
+
+<p>For example, let&rsquo;s say I commit a change that is just a config change and I know I don&rsquo;t need to run any tests or I really want the quick build.
+This is what my commit message looks like:</p>
+
+<pre><code>[notest] just changing App.config
+</code></pre>
+
+<p>That phrase <code>[notest]</code> is something my script looks for at build time and if it&rsquo;s present it will skip running tests!
+You can use this same logic to do pretty much anything you want. Here&rsquo;s what it looks like after step 3 in my script:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>:: Above at top of file
+</span><span class='line'>
+</span><span class='line'>IF NOT DEFINED RUN_TESTS (
+</span><span class='line'>   SET RUN_TESTS=1
+</span><span class='line'>)
+</span><span class='line'>
+</span><span class='line'>:: 4. Run unit tests
+</span><span class='line'>echo Latest commit ID is "%SCM_COMMIT_ID%"
+</span><span class='line'>
+</span><span class='line'>call git show -s "%SCM_COMMIT_ID%" --pretty=%%%%s &gt; commitmessage.txt
+</span><span class='line'>SET /p COMMIT_MESSAGE=&lt;commitmessage.txt
+</span><span class='line'>
+</span><span class='line'>echo Latest commit message is "%COMMIT_MESSAGE%"
+</span><span class='line'>
+</span><span class='line'>IF NOT "x%COMMIT_MESSAGE:[notest]=%"=="x%COMMIT_MESSAGE%" (
+</span><span class='line'>   SET RUN_TESTS=0
+</span><span class='line'>)
+</span><span class='line'>
+</span><span class='line'>IF /I "%RUN_TESTS%" NEQ "0" (
+</span><span class='line'>  echo Running unit tests
+</span><span class='line'>  call :ExecuteCmd "%DEPLOYMENT_SOURCE%\tools\nunit\nunit-console.exe" "%DEPLOYMENT_SOURCE%\src\Tests\bin\Release\Tests.dll" /framework:v4.5.1
+</span><span class='line'>  IF !ERRORLEVEL! NEQ 0 goto error
+</span><span class='line'>) ELSE (
+</span><span class='line'>  echo Not running unit tests because [notest] was present in commit message
+</span><span class='line'>)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Alright, there&rsquo;s definitely some batch file black magic incantations going on here! So let&rsquo;s break it down.</p>
+
+<pre><code>echo Latest commit ID is "%SCM_COMMIT_ID%"
+</code></pre>
+
+<p>Kudu defines several useful <a href="https://github.com/projectkudu/kudu/wiki/Deployment-Environment">environment variables</a> that you have access to, including the current commit ID.
+I&rsquo;m just echoing it out so I can debug when viewing the log output.</p>
+
+<pre><code>call git show -s "%SCM_COMMIT_ID%" --pretty=%%%%s &gt; commitmessage.txt
+SET /p COMMIT_MESSAGE=&lt;commitmessage.txt
+</code></pre>
+
+<p>Alright. This took me some real trial and error. Git lets you <a href="https://git-scm.com/docs/git-show"><code>show</code> any commit message</a> and can format it using a printf format string (<code>--pretty=%s</code>).
+However, due to the weird escaping rules of batch files and variables, this requires not one but <strong>four</strong> <code>%</code> signs. Go figure.</p>
+
+<p>Next I pipe it to a file, this is only so I can read the file back and store the message in a batch variable (<code>COMMIT_MESSAGE</code>), on the next line.
+<strong>Kudu team:</strong> It would be sweet to add a <code>SCM_COMMIT_MESSAGE</code> environment variable!</p>
+
+<pre><code>IF NOT "x%COMMIT_MESSAGE:[notest]=%"=="x%COMMIT_MESSAGE%" (
+   SET RUN_TESTS=0
+)
+</code></pre>
+
+<p>Okay, what&rsquo;s going on here? I&rsquo;ll <a href="http://stackoverflow.com/questions/7005951/batch-file-find-if-substring-is-in-string-not-in-a-file">let StackOverflow explain</a>. The <code>:[notest]=</code> portion REPLACES the term &ldquo;[notest]&rdquo; in
+the preceding variable (<code>COMMIT_MESSAGE</code>) with an empty string. The <code>x</code> prefix character guards against batch file weirdness.
+So if <code>[notest]</code> is NOT present, this will return true (the strings match). If it is present, the condition will be false and so we do <code>IF NOT</code>
+since we want to execute when that is the case.</p>
+
+<p>If <code>[notest]</code> is present in the message, we set another variable, <code>RUN_TESTS</code> to 0.</p>
+
+<pre><code>IF /I "%RUN_TESTS%" NEQ "0" (
+    echo Running unit tests
+    call :ExecuteCmd "%DEPLOYMENT_SOURCE%\tools\nunit\nunit-console.exe" "%DEPLOYMENT_SOURCE%\src\Tests\bin\Release\Tests.dll" /framework:v4.5.1
+    IF !ERRORLEVEL! NEQ 0 goto error
+) ELSE (
+    echo Not running unit tests because [notest] was present in commit message
+)
+</code></pre>
+
+<p>If <code>RUN_TESTS</code> does not evaluate to 0, then we run the tests! Otherwise we echo out an informative message as to why it was skipped.</p>
+
+<p>Phew. So how much time do we save on <code>[notest]</code> builds now?</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/11734864/9a5e5e10-9f80-11e5-92ff-b93a1d9c994a.png" alt="No test build" /></p>
+
+<p>Compared to a build with tests:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/11734880/b874bed0-9f80-11e5-9af2-8e0425a02563.png" alt="Build with tests" /></p>
+
+<p>So that flag cuts the build in half! Nice! There are probably some other ways to improve the time. By the way, if you&rsquo;re wondering what&rsquo;s taking so long
+in your build, you can use the Kudu <a href="https://github.com/projectkudu/kudu/wiki/REST-API">REST endpoint</a> to see your deployment logs (<strong>/api/deployments</strong> endoint) which contain full timestamp information!</p>
+
+<p>Happy continuous deployment!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Impersonating a User During Automated Testing Scenarios]]></title>
@@ -1517,20 +1690,6 @@ return the data <em>you actually want</em> in your controllers, greatly simplify
     <content type="html"><![CDATA[<p>I just published an article on Tech.pro that <a href="http://tech.pro/tutorial/1749/get-your-ci-on-with-travis-ci">walks through getting started with Travis CI</a>. We use it for Excalibur.js and that was my first
 time configuring it, so I thought I might as well write up a nice tutorial for other people. It&rsquo;s really an awesome service, especially
 for open source projects.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Just Released: Bowling Calculator App]]></title>
-    <link href="http://kamranicus.com/blog/2013/12/11/just-released-bowling-calculator-app/"/>
-    <updated>2013-12-11T03:02:26+00:00</updated>
-    <id>http://kamranicus.com/blog/2013/12/11/just-released-bowling-calculator-app</id>
-    <content type="html"><![CDATA[<p><img src="http://cdn.marketplaceimages.windowsphone.com/v8/images/4eb4e175-0dd5-4e48-860b-639e6796b01b?rotation=90" alt="Screenshot" /></p>
-
-<p>I just released my second Windows Phone app, <a href="http://www.windowsphone.com/en-us/store/app/bowling-calculator/9287a99a-6068-4ff4-925b-988c8c99dbf6">Bowling Calculator</a>. It&rsquo;s an <a href="http://github.com/kamranayub/wp-bowling">open source app</a> that I created when <a href="http://kamranicus.com/blog/posts/77/tccc15-leveling-up-your-windows-phone-app">I gave my talk at TCCC15</a>.
-If you&rsquo;re a fellow developer, feel free to send me a pull request with any bug fixes or enhancements. I want to keep it focused on
-the simple use case of scoring a bowling game; I don&rsquo;t need it to track multiple games or keep track of history. It&rsquo;s purpose is to serve
-as a production-ready sample app and to also be good at what it aims to do.</p>
 ]]></content>
   </entry>
   
