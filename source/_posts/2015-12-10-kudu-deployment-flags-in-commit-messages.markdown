@@ -10,6 +10,7 @@ categories:
 - Testing
 - Continuous Deployment
 - Continuous Integration
+- Windows Azure
 ---
 
 If you're on Windows Azure and using continuous deployment through Git, you may not know you are using an open source platform called 
