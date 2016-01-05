@@ -2,498 +2,498 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://kamranicus.com/blog/posts/1/welcome-to-kamranicus-yaps</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/2/befriending-appharbor-and-making-it-work-for-you
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/3/a-better-mvc-label-helper</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/4/come-visit-me-at-mix-11</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/5/all-the-code-you-write-is-wrong</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/6/mix-11-day-15</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/7/mix-11-day-2-kinects-celebrities-kings-and-clubbin
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/8/entity-framework-polymorphism-and-automapper-cant
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/9/fixing-the-post-value-of-the-button-element-in-ie
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/10/released-nuget-package-of-json</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/11/using-squishit-without-writing-to-the-file-system
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/12/pass-in-your-variables-to-consolelog-as-parameters
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/13/my-git-workflow-for-net-based-projects</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/14/resolving-http-500-errors-when-deploying-to-apphar
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/15/announcing-keep-track-of-my-games</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/16/i-love-github-so-much-im-a-paying-member-now
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/19/immersive-ui-in-rpgs-thoughts-concerns-et-al
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/20/some-thoughts-on-the-new-mileage-stats-net-sample
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/21/integrated-disqus-comment-system-into-kamranicus
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/22/whats-the-most-efficient-way-to-read-config-settin
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/23/mvc-pro-tip-dont-use-the-id-url-parameter-in-your
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/24/skyrim-mod-request-compilation</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/25/vs-extension-for-js-template-support</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/26/tips-when-using-backbonejs-in-a-net-world</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/27/using-cassette-for-semi-complicated-scenarios-upda
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/28/i-just-transferred-all-my-domains-away-from-my-god
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/29/programming-is-difficult-business-it-should-never
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/30/playing-with-node-writing-a-reddit-cli</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/31/this-this-is-ux</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/32/using-nuspec-inheritance-to-reduce-nuget-maintenan
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/33/underscoreko-want-some-lumps-of-underscorejs-sugar
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/34/i-wish-i-could-do-all-the-things</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/35/working-with-computed-columns-in-ef-43</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/37/getting-cassettes-compiled-knockout-templates-to-w
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/38/can-i-use-signalr-to-design-a-typical-single-page
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/39/a-few-hours-with-webapi-mvc-the-good-and-the-bad
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/40/ux-applies-to-api-design-too</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/41/jqueryformatxml-plugin</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/42/windows-8-windows-phone-7-and-ktomg</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/43/attributerouting-now-supports-web-api</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/44/why-am-i-forced-to-store-my-users-contact-informat
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/45/sitecore-and-net-framework-45</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/46/please-go-watch-the-pluralsight-ux-fundamentals-of
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/47/some-thoughts-on-the-vs11-betarcrtm-interface
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/48/tips-for-updating-from-webapi-beta-to-webapi-rc
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/49/use-enums-to-reduce-markup-maintenance-mvc</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/50/frustration-with-the-vs2012-team-explorer-tool-win
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/51/protip-show-db-usage-in-your-ef-application</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/52/experiences-in-the-wild-away-signs-and-picture-fra
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/53/how-to-install-a-ssl-certificate-into-appharbor
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/54/2-computers-1-desk</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/56/what-would-a-windows-8-halo-app-look-like</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/57/enter-a-windows-8-contest-just-do-it</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/58/using-calc-and-media-queries-to-create-a-combinati
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/59/using-knockout-bindings-in-your-winjs-application
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/60/disappointed-in-the-windows-store-submission-proce
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/61/a-smarter-checked-binding-for-knockoutjs</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/62/renderroutes-expose-your-routes-to-your-javascript
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/65/i-forked-fastjson</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/64/bindableappbar-for-caliburn-micro</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/66/about-my-web-api-session-at-twin-cities-code-camp
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/67/ive-released-my-first-windows-phone-app-centwise
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/68/upcoming-events-rwd-workshop-code-camp-and-dotnetc
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/69/put-the-cloud-to-work-pt-1-create-a-background-wor
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/70/protip-using-anti-forgery-token-with-aspnet-web-ap
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/71/anecdote-i-frustrate-easily</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/72/i-was-a-ux-expert-when-i-was-13</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/73/slides-and-resources-for-tccc14-web-api-talk
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/74/debounced-after-render-pattern-for-knockoutjs
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/75/test-retina-images-without-a-retina-screen</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/posts/76/minnesota-developer-conference-2013-connected-apps
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/77/tccc15-leveling-up-your-windows-phone-app</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/78/tccc15-see-you-again-in-april</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/posts/79/just-pushed-blackjack-sample-game</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/2013/12/05/kamranicus-now-with-100-percent-more-octopress/
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2013/12/11/just-released-bowling-calculator-app/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2013/12/19/get-your-ci-on-with-travis-ci/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2013/12/24/just-released-have-i-been-pwned/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2014/01/29/5-tips-to-improve-your-mvc-site/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2014/02/09/websockets-on-windows-azure/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2014/05/01/ludum-dare-29-game-jam-success/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/2014/11/04/just-released-the-new-keep-track-of-my-games-beta/
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2015/02/26/continuous-deployment-with-travis-ci/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>
             http://kamranicus.com/blog/2015/03/29/triggering-a-travis-build-programmatically/
         </loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2015/04/30/101-ideas-for-the-microsoft-hololens/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2015/05/11/extending-knockout-with-urlsync/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2015/05/21/chrome-multi-user/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2015/05/21/5-things-for-6-months-abroad/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2015/05/25/knockout-binding-report/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2015/05/30/ktomg-update/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2015/07/29/install-windows-10-immediately/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2015/07/29/gmail-special-address/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2015/09/17/powershell-html5-offline-manifest/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2015/10/10/azure-cdn-cassette/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2015/11/06/impersonating-during-testing/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2015/12/11/kudu-deployment-flags-in-commit-messages/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/2016/01/05/year-in-review/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/blog/archives/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/posts/</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
     <url>
         <loc>http://kamranicus.com/robots.txt</loc>
-        <lastmod>2016-01-05T03:31:36+00:00</lastmod>
+        <lastmod>2016-01-05T03:40:28+00:00</lastmod>
     </url>
 </urlset>

@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2016-01-05T03:32:00+00:00</updated>
+  <updated>2016-01-05T03:41:01+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -21,6 +21,8 @@
     <content type="html"><![CDATA[<p>2015 was a very eventful (and fulfilling) year for me and my wife. Let&rsquo;s break it down, shall we?</p>
 
 <h2>Living abroad for 6 months</h2>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/2000/1*-h8wTj1iOSrHHtnGMxR60w.jpeg" alt="Bordeaux, France" /></p>
 
 <p>By far the most impressive thing I did last year was to <a href="http://kamranicus.com/blog/2015/05/21/5-things-for-6-months-abroad/">take a 6 month sabbatical</a> and live abroad in France with my wife. Though I&rsquo;ve written about it previously, I left out the entire part where we chronicled our adventure in a series of publications on <a href="http://medium.com">Medium</a>. We kept it anonymous during the trip to avoid any potential issues but now that it&rsquo;s over, I will list the different publications so you can read back through what we did for 6 months (spoiler: we did <em>a lot</em>).</p>
 
@@ -43,21 +45,32 @@
 
 <h2>New House</h2>
 
-<p>We weren&rsquo;t in a position to buy a house so soon after a 6 month sabbatical but we still thought it was best to move from apartment living to a real house, especially after living in a 400 sq ft space in France. We found a great place to rent in Minneapolis that&rsquo;s pretty close to both workplaces, friends, and family. We&rsquo;ve done a few things to it to make it more like home and we&rsquo;ve been really enjoying it so far and our landlord is superb.</p>
+<p><img src="https://cloud.githubusercontent.com/assets/563819/12107000/cd7f12cc-b32a-11e5-852e-78b839331383.png" alt="Bay window" /></p>
+
+<p>We weren&rsquo;t in a position to buy a house so soon after a 6 month sabbatical but we still thought it was best to move from apartment living to a real house, especially after living in a 400 sq ft space in France. We found a great place to rent in Minneapolis that&rsquo;s pretty close to both workplaces, friends, and family. We&rsquo;ve done a few things to it to make it more like home and we&rsquo;ve been really enjoying it so far and our landlord is superb. The photo above is our enhancement to the bay window. My brother-in-law built the spanning bench between the bookcases and I built the cushion. I removed the tall blinds that covered the window so we could open up the room and add extra seating. It turned out so good!</p>
 
 <h2>New Dog</h2>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/12107029/1b61acac-b32b-11e5-9bee-3325f44374db.png" alt="Dogger" /></p>
 
 <p>My wife has always wanted a dog ever since we moved into an apartment together&mdash;except our apartment complex never let us have dogs. We cat-sat (is that a word?) for 2 years for some friends and then they took her back down to Texas where they bought a house and she happily frolicks outside. In August (Dogust?) we went to the humane society and on pretty-much-a-whim took in a cute dog we named Rennes (after <a href="https://medium.com/aix-squared/rennes-france-d4957bf17d4e">one of our favorite French cities</a> we visited). She&rsquo;s a black lab and border collie mix. She&rsquo;s awesome even though she jumps the fence to chase squirrels (we&rsquo;re working on that). We love her a ton.</p>
 
 <h2>Keep Track of My Games</h2>
 
+<p><img src="http://41.media.tumblr.com/fe33ac3443fbfeab5b2e4da2c6fe170e/tumblr_inline_nyz1izCCVg1qlpzxk_500.png" alt="KTOMG" /></p>
+
 <p>2015 marked the <a href="http://blog.keeptrackofmygames.com/post/124929587854/happy-4th-birthday-to-keep-track-of-my-games">4th year</a> that <a href="http://keeptrackofmygames.com">KTOMG</a> has been around since its humble beginnings and while I was abroad it gave me time to focus and finish a <a href="http://kamranicus.com/blog/2015/05/30/ktomg-update/">major rewrite of the codebase in May</a>. Since then I&rsquo;ve released <a href="http://blog.keeptrackofmygames.com/post/134750555276/updates-for-november-2015">public lists</a> and capping the year off with <a href="http://blog.keeptrackofmygames.com/post/135781123861/updates-for-december-2015">Steam syncing</a>, just to name a few features.</p>
 
 <h2>Speaking</h2>
 
+<iframe width="420" height="315" src="https://www.youtube.com/embed/kb7tvaBJeMs" frameborder="0" allowfullscreen></iframe>
+
+
 <p>Even though I was abroad for 6 months, I still managed to give a talk this year at Twin Cities Code Camp 19: an update to my popular <a href="http://kamranicus.com/presentations/demystifying-typescript">Demystifying TypeScript</a> presentation. You can also find 2014&rsquo;s version <a href="https://www.youtube.com/watch?v=kb7tvaBJeMs">on YouTube</a>.</p>
 
 <h2>Making Games</h2>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/12107063/7b1593c0-b32b-11e5-9148-0470e84acfb4.png" alt="Minotaur" /></p>
 
 <p>In August, I participated in the <a href="http://ludumdare.com/compo/ludum-dare-33/">Ludum Dare 33</a> game jam where some friends and I created a minotaur hack-n-slash game, <a href="http://excaliburjs.com/ludum-33/">Crypt of the Minotaur</a> (<a href="https://github.com/excaliburjs/ludum-33">source</a>). I love participating in game jams and by extension, helping to contribute to the <a href="http://excaliburjs.com">Excalibur.js</a> game engine.</p>
 
