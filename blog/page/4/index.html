@@ -90,6 +90,73 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/posts/73/slides-and-resources-for-tccc14-web-api-talk">Slides and Resources for TCCC14 Web API Talk</a></h2>
+  
+  <p>
+    <p>I gave a talk this past weekend at Twin Cities Code Camp; it was my first public talk (hopefully the first of many?). It was a deep dive on selected ASP.NET Web API topics (as voted on by the audience) and you can view it on <a href="https://speakerdeck.com/kamranayub/diving-into-the-deep-wih-asp-dot-net">SpeakerDeck</a>.</p>
+
+
+
+
+<p>You can also <a href="http://sdrv.ms/ZgUuGI">download the notes</a> (i.e. links, comments, resources) from my SkyDrive.</p>
+
+
+
+
+<p>If you were there and saw me present, <a href="http://spkr8.com/t/21961">please rate how I did</a>! It&rsquo;s the only way I really have of getting feedback.</p>
+
+
+
+
+<h3>Thoughts</h3>
+
+
+
+
+<p>I thought it went decent for my first talk. I was pretty nervous; I even forgot to say my name&hellip; but whatever! Hopefully by volunteering to do more talks I&rsquo;ll get the hang of it. All those business leadership classes paid off, my friends said that I didn&rsquo;t appear nervous, I projected my voice, and some folks were kind enough to say they liked it which is all I wanted. I also got the largest room right after lunch and it was probably 200 degrees. The Wi-Fi was deathly slow (&lt; 1Mbps) so that didn&rsquo;t help. Next time I&rsquo;ll plan to either take more screenshots or limit the online interaction.</p>
+
+
+
+
+<p>I also think I had too many topics; I knew we couldn&rsquo;t get through all of them but one of my co-workers suggested to scale it down in order to hit specific topics and spend more time on each. It&rsquo;s so hard because they&rsquo;re all great topics to talk about&hellip; I didn&rsquo;t even list content negotiation or automatic documentation.</p>
+
+
+
+
+<p>Overall I was pleased with the outcome; I said what I wanted to say and it was a lot of fun.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-04-30T03:39:24+00:00" pubdate data-updated="true">Apr 30<span>th</span>, 2013</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/posts/72/i-was-a-ux-expert-when-i-was-13">I Was a UX Expert When I Was 13</a></h2>
   
   <p>
@@ -1126,118 +1193,6 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
 
 
 <time datetime="2013-03-05T23:00:00+00:00" pubdate data-updated="true">Mar 5<span>th</span>, 2013</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/posts/62/renderroutes-expose-your-routes-to-your-javascript">RenderRoutes: Expose Your Routes to Your Javascript</a></h2>
-  
-  <p>
-    <p>When you&rsquo;re working on an AJAX-enabled application, you&rsquo;ll soon discover it can be a pain to manage URLs. In fact, when you&rsquo;re working with ASP.NET MVC in general, working with routes is a pain. As soon as you want to change one, you have to go and find everywhere it&rsquo;s used.</p>
-
-
-
-
-<p>I came up with a solution that works well for me and may for you.</p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="c1">// Are you writing code like this?</span>
-</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span> <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;/products/&quot;</span> <span class="o">+</span> <span class="nx">productId</span> <span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// Wouldn&#39;t you rather write this?</span>
-</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span> <span class="nx">url</span><span class="o">:</span> <span class="nx">Router</span><span class="p">.</span><span class="nx">url</span><span class="p">(</span><span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="nx">productId</span><span class="p">)</span> <span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>In MVC, you have the notion of &ldquo;named&rdquo; routes, like this:</p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">routes</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="p">{</span> <span class="n">RouteName</span> <span class="p">=</span> <span class="s">&quot;product&quot;</span><span class="p">,</span> <span class="n">Url</span> <span class="p">=</span> <span class="s">&quot;product/{productId}&quot;</span> <span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>(<em>Side Protip: <a href="http://kamranicus.com/Blog/Posts/23/mvc-pro-tip-dont-use-the-id-url-parameter-in-your">Don&rsquo;t use &ldquo;{id}&rdquo; in MVC routes</a></em>)</p>
-
-
-
-
-<p>However, in the default MVC world, you would need to create these entries in your Global ASAX or wherever you set up your routes, and once you have enough, it will quickly get out of hand.</p>
-
-
-
-
-<p>Awhile back, I started using <a href="http://attributerouting.net">AttributeRouting</a> to help organize my routing and remove the shackles of the default MVC routing experience. I even <a href="/Blog/Posts/43/attributerouting-now-supports-web-api">contributed the first Web API implementation</a> to the project.</p>
-
-
-
-
-<p>One of the bonuses of using AR is that it uses a standard interface for any routes it creates, <code>IAttributeRoute</code>. I knew that when I started using Web API more that I needed an easy way to bring my server-side routes to my client-side in a way that was easy to use and that I didn&rsquo;t need to manually maintain.</p>
-
-
-
-
-<p>Thus was born my <code>RenderRoutes</code> extension:</p>
-
-
-
-
-<script src="https://gist.github.com/4438411.js"></script>
-
-
-
-
-<p>In order to use this properly in your Javascript, you&rsquo;ll need to create a helper utility. The one that I use is very simplistic, doing basic search and replace on parameters, which is the only thing I really need with my routes.</p>
-
-
-
-
-<p>The dependencies my solution has are:</p>
-
-
-
-
-<ul>
-<li><a href="http://attributerouting.net">AttributeRouting</a></li>
-<li><a href="http://underscorejs.org">Underscore.js</a></li>
-</ul>
-
-
-
-
-<p>That&rsquo;s only because it was easier to leverage my existing dependencies. A more intrepid soul might be willing to de-couple my solution from these dependencies, and if you do, let me know so I can update my Gist. In fact, you should just fork my gist. Hmm, that sounds wrong.</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-01-03T04:03:43+00:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2013</time>
     
 
 

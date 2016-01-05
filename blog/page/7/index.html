@@ -90,6 +90,70 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/posts/41/jqueryformatxml-plugin">jquery.formatXml Plugin</a></h2>
+  
+  <p>
+    <p>Awhile ago I wrote a <a href="https://github.com/kamranayub/jQuery-XML-Helper">shim for jQuery to add pseudo-XML compatibility</a> that makes it easier to manipulate and read XML cross-browser on the client. I did it because I was working on a legacy application that decided it was a good idea to store the model in XML in a hidden input. No, I can&rsquo;t switch to Knockout, as much as I&rsquo;d want to.</p>
+
+
+
+
+<p>However, I really liked the trick of showing a JSON output of a Knockout view model on a page while debugging on another project since it made it easier to see what was happening behind the scenes.</p>
+
+
+
+
+<p>I came back to do some work on this legacy app and missed that in-your-face feedback. So I wrote an extension to my own plugin that traverses an XML jquery object and creates a tree to output to the page:</p>
+
+
+
+
+<script src="https://gist.github.com/2346014.js?file=jquery.formatXml.js"></script>
+
+
+
+
+<p>Here&rsquo;s a jsFiddle of the output:</p>
+
+
+
+
+<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/kamranayub/XJGLe/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2012-04-10T00:42:53+00:00" pubdate data-updated="true">Apr 10<span>th</span>, 2012</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/posts/40/ux-applies-to-api-design-too">UX Applies to API Design Too</a></h2>
   
   <p>
@@ -1403,203 +1467,6 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
 
 
 <time datetime="2012-02-22T20:18:10+00:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2012</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/posts/30/playing-with-node-writing-a-reddit-cli">Playing With Node: Writing a Reddit CLI</a></h2>
-  
-  <p>
-    <p>This is not a complete post about how to write a fully featured CLI application for Reddit, like <a href="http://cortex.glacicle.org/">Cortex</a>. However, I think it demonstrates the ease and simplicity in making such an application.</p>
-
-
-
-
-<h3>The idea</h3>
-
-
-
-
-<p>I love <a href="http://reddit.com">Reddit</a>. Except for one thing: I don&rsquo;t have much time to browse or keep up with it due to life getting in the way. What I wanted was a simple app I could run that would simply show me the top stories at that moment so I could glance at them and visit them.</p>
-
-
-
-
-<p>I spent about 20 mins (mostly looking for CLI npm packages) and came up with this:</p>
-
-
-
-
-<p><img src="/blog/images/35.png" alt="Reddit CLI" /></p>
-
-
-
-
-<p>Pretty simple. It goes to the front page, grabs the JSON results, and formats it all into a nice list (shortening titles if they get too uppity), displaying the information I mostly care about: subreddit, score, # of comments, and the poster.</p>
-
-
-
-
-<p>Now, I haven&rsquo;t yet implemented a way to actually visit the URL of any of these, mainly because I&rsquo;m short on time. But maybe you can!</p>
-
-
-
-
-<h3>The code</h3>
-
-
-
-
-<p>The code is pretty straightforward. I&rsquo;m using the <a href="http://search.npmjs.org/#/colors">colors</a>, <a href="http://search.npmjs.org/#/request">request</a>, and <a href="http://search.npmjs.org/#/cli">cli</a> npm packages.</p>
-
-
-
-
-<p>I wanted to do something really quick. The <code>cli</code> package is way more than I need, in fact, I wrote this originally without using <code>cli</code> but for future improvement I added it in. The steps I wanted to perform from the get-go were:</p>
-
-
-
-
-<ol>
-<li>Get the JSON for the homepage</li>
-<li>Parse it and build a colorized &ldquo;row&rdquo; (two rows, in fact)</li>
-<li>Trim titles so they didn&rsquo;t mess up the flow (my console window is 140 columns)</li>
-</ol>
-
-
-
-
-<p>Here it is, all 43 lines of it:</p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">cli</span>     <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;cli&#39;</span><span class="p">),</span>
-</span><span class='line'>    <span class="nx">http</span>    <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">),</span>
-</span><span class='line'>    <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;request&#39;</span><span class="p">),</span>
-</span><span class='line'>    <span class="nx">colors</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;colors&#39;</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">cli</span><span class="p">.</span><span class="nx">main</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;<strong><strong><strong><strong><strong><em>&quot;</span><span class="p">.</span><span class="nx">rainbow</span><span class="p">);</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Node Reddit&quot;</span><span class="p">.</span><span class="nx">cyan</span><span class="p">);</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;</em></strong></strong></strong></strong></strong>\n\n&quot;</span><span class="p">.</span><span class="nx">rainbow</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nx">request</span><span class="p">(</span><span class="s1">&#39;<a href="http://reddit.com/.json&amp;#39;">http://reddit.com/.json&amp;#39;</a></span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">err</span> <span class="o">&amp;&amp;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">===</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">reddit</span>  <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
-</span><span class='line'>          <span class="nx">stories</span> <span class="o">=</span> <span class="nx">reddit</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                      <span class="k">return</span> <span class="nx">s</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
-</span><span class='line'>                    <span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="c1">// Descending score</span>
-</span><span class='line'>      <span class="nx">stories</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">b</span><span class="p">.</span><span class="nx">score</span> <span class="o">&ndash;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">score</span><span class="p">;</span> <span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="nx">stories</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">story</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="kd">var</span> <span class="nx">row</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-</span><span class='line'>          <span class="nx">title</span> <span class="o">=</span> <span class="nx">story</span><span class="p">.</span><span class="nx">title</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">100</span>
-</span><span class='line'>                <span class="o">?</span> <span class="nx">story</span><span class="p">.</span><span class="nx">title</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&hellip;&quot;</span>
-</span><span class='line'>                <span class="o">:</span> <span class="nx">story</span><span class="p">.</span><span class="nx">title</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="c1">// Build row</span>
-</span><span class='line'>        <span class="c1">// [score] [title] [comments] [subreddit]</span>
-</span><span class='line'>        <span class="c1">// This sucks</span>
-</span><span class='line'>        <span class="nx">row</span> <span class="o">+=</span> <span class="nx">story</span><span class="p">.</span><span class="nx">score</span><span class="p">.</span><span class="nx">toString</span><span class="p">().</span><span class="nx">green</span> <span class="o">+</span> <span class="s2">&quot;\t&quot;</span><span class="p">;</span>
-</span><span class='line'>        <span class="nx">row</span> <span class="o">+=</span> <span class="nx">title</span><span class="p">.</span><span class="nx">bold</span>
-</span><span class='line'>        <span class="nx">row</span> <span class="o">+=</span> <span class="s2">&quot; (&quot;</span> <span class="o">+</span> <span class="nx">story</span><span class="p">.</span><span class="nx">domain</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">;</span>
-</span><span class='line'>        <span class="nx">row</span> <span class="o">+=</span> <span class="p">(</span><span class="s2">&quot; /r/&quot;</span> <span class="o">+</span> <span class="nx">story</span><span class="p">.</span><span class="nx">subreddit</span><span class="p">).</span><span class="nx">cyan</span><span class="p">;</span>
-</span><span class='line'>        <span class="nx">row</span> <span class="o">+=</span> <span class="s2">&quot;\n\t&quot;</span><span class="p">;</span>
-</span><span class='line'>        <span class="nx">row</span> <span class="o">+=</span> <span class="nx">story</span><span class="p">.</span><span class="nx">author</span><span class="p">.</span><span class="nx">grey</span><span class="p">;</span>
-</span><span class='line'>        <span class="nx">row</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">story</span><span class="p">.</span><span class="nx">num_comments</span> <span class="o">+</span> <span class="s2">&quot; comments&quot;</span><span class="p">).</span><span class="nx">italic</span><span class="p">.</span><span class="nx">yellow</span><span class="p">;</span>
-</span><span class='line'>        <span class="nx">row</span> <span class="o">+=</span> <span class="s2">&quot;\n&quot;</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">row</span><span class="p">);</span>
-</span><span class='line'>      <span class="p">});</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>  <span class="p">});</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>As you can see, definitely pretty light. That&rsquo;s all there is to it. Now imagine adding in commands (via <code>cli.parse</code>) or even <a href="http://search.npmjs.org/#/growl">growl</a> support (I forked it and added Growl for Windows support, hopefully I can get it working decently and commit it). Then letting it monitor your specific subreddits, perhaps once every 15 minutes or so. Then adding in support for viewing links (interactive CLI app).</p>
-
-
-
-
-<p>That&rsquo;s all more than I have time for, but maybe some of you that want to learn more about the Power of Node have more time. If so, I welcome additions.</p>
-
-
-
-
-<p>It&rsquo;s <a href="https://github.com/kamranayub/node-reddit">available on GitHub</a>. Feel free to dissect it and improve it, fork it and b0rk it. Have fun!</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2012-02-02T21:21:04+00:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2012</time>
     
 
 
