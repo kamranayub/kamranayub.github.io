@@ -5,8 +5,9 @@ ul {
   list-style: circle inside;
 }
 
-.article-list .row img {
-	max-width: 100%;
+.article-list .row img,
+.full-single-article img {
+  max-width: 100%;
 }
 
 .full-single-article ol, .article-list .row ol {
