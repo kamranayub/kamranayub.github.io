@@ -90,6 +90,63 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/posts/9/fixing-the-post-value-of-the-button-element-in-ie">Fixing the POST Value of the Button Element in IE 7 and Below</a></h2>
+  
+  <p>
+    <p>Please <a href="http://www.peterbe.com/plog/button-tag-in-IE">see this write up</a> for the exact issue. Basically, IE 7 and below do not properly submit the &ldquo;value&rdquo; of the <code>&lt;button&gt;</code> tag, opting instead to submit the <code>innerText</code>. We just hit this issue while testing with our users who used IE7 on a project I&rsquo;m on.</p>
+
+
+
+
+<p>Here is the fix I&rsquo;m using which I prefer to all the other alternatives I saw in the comments of that post. It meets two of my objectives:</p>
+
+
+
+
+<ul>
+<li>It&rsquo;s totally transparent</li>
+<li>It&rsquo;s only for IE 7 and 6</li>
+</ul>
+
+
+
+
+<script src="https://gist.github.com/981360.js?file=iebuttonfix.js"></script>
+
+
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2011-05-19T23:07:48+00:00" pubdate data-updated="true">May 19<span>th</span>, 2011</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/posts/8/entity-framework-polymorphism-and-automapper-cant">Entity Framework, Polymorphism, and AutoMapper: Can&#8217;t We All Be Friends?</a></h2>
   
   <p>
