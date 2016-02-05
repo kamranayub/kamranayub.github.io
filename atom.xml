@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2016-02-05T01:32:16+00:00</updated>
+  <updated>2016-02-05T02:12:41+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,853 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Using Typewriter to Strongly-Type Your Client-Side Models and Services]]></title>
+    <link href="http://kamranicus.com/blog/2016/02/04/typewriter/"/>
+    <updated>2016-02-04T02:08:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2016/02/04/typewriter</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve recently discovered <a href="http://frhagn.github.io/Typewriter/index.html">Typewriter for Visual Studio</a>, a T4-style code-generator specifically meant for generating Typescript files. I&rsquo;ve been using it since in all my projects, at work and at home. It&rsquo;s just <strong>so</strong> good. Let me explain what Typewriter does and why it&rsquo;s so awesome.</p>
+
+<!-- more -->
+
+
+<h2>Setting the stage</h2>
+
+<p>It&rsquo;s 2016. The web app you&rsquo;re working on is a mix of Javascript, C#, and controllers for MVC or Web API. Your solution looks something like this:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/12835031/1f2c4cfc-cb72-11e5-8f99-d6b3a4af3e83.png" alt="Folder structure" /></p>
+
+<p>You&rsquo;ve got a standard folder structure with a MVC controller and API controller. You want to leverage a client-side library to make it easier to have a dynamic and responsive interface, let&rsquo;s say <a href="http://knockoutjs.com">Knockout.js</a>. You start creating a Knockout view model and you want to bind it to your view. What do you do now at this point for binding the initial data to your view?</p>
+
+<p>Do you&hellip;</p>
+
+<ol>
+<li>Serialize the server model into JSON and pass it into your Knockout view model manually</li>
+<li>Don&rsquo;t even bother and fetch the data via AJAX when the page loads</li>
+</ol>
+
+
+<p>In either case, you&rsquo;re left with a realization: <strong>I need to pass in my server model so I can use it in my client-side code.</strong> You&rsquo;re left doing something like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">TaskListViewModel</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">model</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>   <span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="nx">vm</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">ko</span><span class="p">.</span><span class="nx">observable</span><span class="p">(</span><span class="nx">model</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+</span><span class='line'>   <span class="nx">vm</span><span class="p">.</span><span class="nx">tasks</span> <span class="o">=</span> <span class="nx">ko</span><span class="p">.</span><span class="nx">observableArray</span><span class="p">(</span><span class="nx">model</span><span class="p">.</span><span class="nx">tasks</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">t</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">TaskViewModel</span><span class="p">(</span><span class="nx">t</span><span class="p">);</span> <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">return</span> <span class="nx">vm</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="nx">TaskListViewModel</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">model</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">ko</span><span class="p">.</span><span class="nx">applyBindings</span><span class="p">(</span><span class="nx">vm</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And then passing in your server model, serialized from JSON either via AJAX or embedded in the view:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script&gt;</span>
+</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">model</span> <span class="o">=</span> <span class="err">@</span><span class="nx">Html</span><span class="p">.</span><span class="nx">Raw</span><span class="p">(</span><span class="nx">JsonConvert</span><span class="p">.</span><span class="nx">SerializeObject</span><span class="p">(</span><span class="nx">Model</span><span class="p">));</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// or</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="s1">&#39;/api/tasks&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">tasks</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="nx">TaskListViewModel</span><span class="p">(</span><span class="nx">tasks</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">ko</span><span class="p">.</span><span class="nx">applyBindings</span><span class="p">(</span><span class="nx">vm</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We&rsquo;ve all done something like this because no matter what approach you choose, you have to map the models <em>somewhere</em>. You could use a mapping library like <a href="http://knockoutjs.com/documentation/plugins-mapping.html">ko.mapping</a> to help. But even with help, you still have the same problem:</p>
+
+<blockquote><p>What happens when you change your model in C#?</p></blockquote>
+
+<p>The answer is, &ldquo;I have to go and update all the references in my client-side Javascript.&rdquo; So what do we do? We try to leave it as much alone as we can, preferring not to change things so we can avoid Happy JS Refactoring Funtime.</p>
+
+<h2>Enter Typescript, stage left</h2>
+
+<p>We can address one aspect of this problem using <a href="http://typescriptlang.org">Typescript</a>, the typed superset of Javascript introduced by Microsoft several years ago. My love for Typescript is <a href="http://kamranicus.com/presentations/demystifying-typescript">well-documented</a> and I encourage you to go through that presentation if you haven&rsquo;t already.</p>
+
+<p>Here&rsquo;s one reason why I love it: we can create interfaces that strongly-type our C# models.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kr">interface</span> <span class="nx">TaskListViewModel</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">id</span><span class="o">:</span> <span class="nx">number</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">name</span><span class="o">:</span> <span class="nx">string</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">author</span><span class="o">:</span> <span class="nx">string</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">created</span><span class="o">:</span> <span class="nb">Date</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">tasks</span><span class="o">:</span> <span class="nx">TaskViewModel</span><span class="p">[];</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kr">interface</span> <span class="nx">TaskViewModel</span> <span class="p">{</span>
+</span><span class='line'>   <span class="nx">order</span><span class="o">:</span> <span class="nx">number</span><span class="p">;</span>
+</span><span class='line'>   <span class="nx">canMarkDone</span><span class="o">:</span> <span class="kr">boolean</span><span class="p">;</span>
+</span><span class='line'>   <span class="nx">task</span><span class="o">:</span> <span class="nx">Task</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kr">interface</span> <span class="nx">Task</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">text</span><span class="o">:</span> <span class="nx">string</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">done</span><span class="o">:</span> <span class="kr">boolean</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">created</span><span class="o">:</span> <span class="nb">Date</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">modified</span><span class="o">:</span> <span class="nb">Date</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now I&rsquo;ve created an interface that mirrors my serialized C# model representation. So now with Typescript, <strong>anytime</strong> I use a server-side model, I can ensure I never have any problems with misspellings/refactoring or type changes (e.g. &ldquo;author&rdquo; changing from a string to a <code>User</code> model). At compile-time, Typescript will ensure my references are correct.</p>
+
+<p>Using type information, we can strongly type our previous JS view model:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">TaskListViewModel</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">model</span><span class="o">:</span> <span class="nx">TaskListViewModel</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>   <span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="nx">vm</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">ko</span><span class="p">.</span><span class="nx">observable</span><span class="o">&lt;</span><span class="nx">string</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">model</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+</span><span class='line'>   <span class="nx">vm</span><span class="p">.</span><span class="nx">tasks</span> <span class="o">=</span> <span class="nx">ko</span><span class="p">.</span><span class="nx">observableArray</span><span class="o">&lt;</span><span class="nx">TaskViewModel</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">model</span><span class="p">.</span><span class="nx">tasks</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">t</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">TaskViewModel</span><span class="p">(</span><span class="nx">t</span><span class="p">);</span> <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">return</span> <span class="nx">vm</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But we still have one problem: how can we avoid the headaches when our server model changes? We <em>still</em> need to update our TS models manually.</p>
+
+<h2>Enter Typewriter, stage right</h2>
+
+<p><a href="http://frhagn.github.io/Typewriter/index.html">Typewriter</a> is a Visual Studio extension that does one thing and does it well: it lets you create <strong>Typescript Template</strong> files. These are <em>basically</em> T4 templates but they&rsquo;re abstracted to the point where it&rsquo;s actually <em>easy</em> to use (sorry T4). When you save your C# files, Typewriter reflects over them and will run the template and generate corresponding Typescript files. This lets you do simple things like mirror types to crazy things like&hellip; generate an entire AJAX web service.</p>
+
+<p>So, using Typewriter, what would the template file look like to mirror our models?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">namespace</span> <span class="nx">TypewriterBlogPost</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$Classes</span><span class="p">(</span><span class="nx">TypewriterBlogPost</span><span class="p">.</span><span class="nx">Models</span><span class="p">.</span><span class="o">*</span><span class="p">)[</span>
+</span><span class='line'>    <span class="cm">/**</span>
+</span><span class='line'><span class="cm">     * Interface for: $FullName</span>
+</span><span class='line'><span class="cm">     */</span>
+</span><span class='line'>    <span class="kr">export</span> <span class="kr">interface</span> <span class="nx">$Name</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">$Properties</span><span class="p">[</span>
+</span><span class='line'>        <span class="nx">$name</span><span class="o">:</span> <span class="nx">$Type</span><span class="p">;]</span>
+</span><span class='line'>    <span class="p">}]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The syntax of the template file is pretty straightforward, as <a href="http://frhagn.github.io/Typewriter/pages/getting-started.html">explained in the documentation</a>. Let&rsquo;s walk through it.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$Classes</span><span class="p">(</span><span class="nx">TypewriterBlogPost</span><span class="p">.</span><span class="nx">Models</span><span class="p">.</span><span class="o">*</span><span class="p">)[</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>Classes</code> keyword tells Typewriter to search for all public classes in a file. In parenthesis, you can filter classes by FullName using wildcard syntax. Typewriter also supports Lambda functions to filter by a predicate:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$Classes</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span><span class="p">.</span><span class="nx">FullName</span><span class="p">.</span><span class="nx">Length</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">)[</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The open square bracket indicates a repeated block of code of Typescript. We declare an interface since we want to add type safety, not an implementation (although you could, which you&rsquo;ll see next!). You can append another square pair for a separator string if there are > 1 items that match (i.e. multiple classes in a file, multiple properties, multiple methods).</p>
+
+<p>Next, we list the properties using the same syntax. By the way, Typewriter has full Intellisense for all these keywords and variable names.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/12796507/baabed5c-ca84-11e5-99bf-2079d85dabf0.png" alt="Intellisense" /></p>
+
+<h2>Customize Knockout View Models</h2>
+
+<p>Now that we have our models reflected and auto-syncing with our client-side code, we can do some extra fun stuff to <em>automatically generate Knockout view models.</em></p>
+
+<p>The goal here is to auto-generate a base view model that we can then extend with custom methods, properties, and computed observables.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$</span><span class="p">{</span>
+</span><span class='line'>    <span class="nx">string</span> <span class="nx">KnockoutType</span><span class="p">(</span><span class="nx">Property</span> <span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">Type</span><span class="p">.</span><span class="nx">IsEnumerable</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nx">p</span><span class="p">.</span><span class="nx">Type</span><span class="p">.</span><span class="nx">Name</span><span class="p">.</span><span class="nx">TrimEnd</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">p</span><span class="p">.</span><span class="nx">Type</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">string</span> <span class="nx">KnockoutValue</span><span class="p">(</span><span class="nx">Property</span> <span class="nx">property</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">KnockoutType</span><span class="p">(</span><span class="nx">property</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="nx">IsEnumerableViewModel</span><span class="p">(</span><span class="nx">property</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nx">$</span><span class="s2">&quot;ko.observableArray&lt;Knockout{type}&gt;([])&quot;</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">property</span><span class="p">.</span><span class="nx">Type</span><span class="p">.</span><span class="nx">IsEnumerable</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nx">$</span><span class="s2">&quot;ko.observableArray&lt;{type}&gt;([])&quot;</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">$</span><span class="s2">&quot;ko.observable&lt;{type}&gt;()&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">bool</span> <span class="nx">IsEnumerableViewModel</span><span class="p">(</span><span class="nx">Property</span> <span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">string</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">KnockoutType</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">p</span><span class="p">.</span><span class="nx">Type</span><span class="p">.</span><span class="nx">IsEnumerable</span> <span class="o">&amp;&amp;</span> <span class="nx">type</span><span class="p">.</span><span class="nx">EndsWith</span><span class="p">(</span><span class="s2">&quot;ViewModel&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nx">namespace</span> <span class="nx">TypewriterBlogPost</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$Classes</span><span class="p">(</span><span class="o">*</span><span class="nx">ViewModel</span><span class="p">)[</span>
+</span><span class='line'>    <span class="cm">/**</span>
+</span><span class='line'><span class="cm">     * Interface for: $FullName</span>
+</span><span class='line'><span class="cm">     */</span>
+</span><span class='line'>    <span class="kr">export</span> <span class="kr">interface</span> <span class="nx">$Name</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">$Properties</span><span class="p">[</span>
+</span><span class='line'>        <span class="nx">$name</span><span class="o">:</span> <span class="nx">$Type</span><span class="p">;]</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="cm">/**</span>
+</span><span class='line'><span class="cm">     * Knockout base view model for $FullName</span>
+</span><span class='line'><span class="cm">     */</span>
+</span><span class='line'>    <span class="kr">export</span> <span class="kr">class</span> <span class="nx">Knockout$Name</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">$Properties</span><span class="p">[</span>
+</span><span class='line'>        <span class="kr">public</span> <span class="nx">$name</span> <span class="o">=</span> <span class="nx">$KnockoutValue</span><span class="p">;]</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">constructor</span><span class="p">(</span><span class="nx">model</span><span class="o">:</span> <span class="nx">$Name</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">this</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">model</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="cm">/**</span>
+</span><span class='line'><span class="cm">         * Map $Name model to Knockout view model</span>
+</span><span class='line'><span class="cm">         */</span>
+</span><span class='line'>        <span class="kr">public</span> <span class="nx">map</span><span class="p">(</span><span class="nx">model</span><span class="o">:</span> <span class="nx">$Name</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">$Properties</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="nx">IsEnumerableViewModel</span><span class="p">(</span><span class="nx">x</span><span class="p">))[</span>
+</span><span class='line'>            <span class="k">this</span><span class="p">.</span><span class="nx">$name</span><span class="p">(</span><span class="nx">model</span><span class="p">.</span><span class="nx">$name</span><span class="p">);]</span>
+</span><span class='line'>            <span class="nx">$Properties</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">IsEnumerableViewModel</span><span class="p">(</span><span class="nx">x</span><span class="p">))[</span>
+</span><span class='line'>            <span class="k">this</span><span class="p">.</span><span class="nx">$name</span><span class="p">(</span><span class="nx">model</span><span class="p">.</span><span class="nx">$name</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">map$Name</span><span class="p">));]</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">$Properties</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">IsEnumerableViewModel</span><span class="p">(</span><span class="nx">x</span><span class="p">))[</span>
+</span><span class='line'>        <span class="cm">/**</span>
+</span><span class='line'><span class="cm">         * Map $KnockoutType equivalent Knockout view model. Override to customize.</span>
+</span><span class='line'><span class="cm">         */</span>
+</span><span class='line'>        <span class="kr">public</span> <span class="nx">map$Name</span><span class="p">(</span><span class="nx">model</span><span class="o">:</span> <span class="nx">$KnockoutType</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="k">new</span> <span class="nx">Knockout$KnockoutType</span><span class="p">(</span><span class="nx">model</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}]</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="cm">/**</span>
+</span><span class='line'><span class="cm">         * Returns a plain JSON object with current model properties</span>
+</span><span class='line'><span class="cm">         */</span>
+</span><span class='line'>        <span class="kr">public</span> <span class="nx">getModel</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nx">$Properties</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="nx">IsEnumerableViewModel</span><span class="p">(</span><span class="nx">x</span><span class="p">))[</span>
+</span><span class='line'>                <span class="nx">$name</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">$name</span><span class="p">(),]</span>
+</span><span class='line'>                <span class="nx">$Properties</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">IsEnumerableViewModel</span><span class="p">(</span><span class="nx">x</span><span class="p">))[</span>
+</span><span class='line'>                <span class="nx">$name</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">$name</span><span class="p">().</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span><span class="p">.</span><span class="nx">getModel</span><span class="p">())][,]</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Oh man! This one&rsquo;s a doozy. All we&rsquo;re really doing is ensuring we recursively map KO view models for collections (we ignore non-ViewModels). We also added a couple convenient helper methods like <code>getModel()</code> that returns a JSON object with the current KO model values. <code>map$Name</code> allows us to customize how we map each collection, for example, to override what view model to use (such as a custom view model).</p>
+
+<p>Typewriter allows you to create &ldquo;helper&rdquo; functions that you can then use in the template. We created ones for parsing out the Knockout types (trimming square brackets).</p>
+
+<p>You might ask why prepend the name with <code>Knockout</code>? So that it won&rsquo;t conflict with the interfaces named after the view models. Since we want to pass in JSON from the server, we still need an interface that represents the server-side view model.</p>
+
+<p>Here&rsquo;s an example of what this template will generate for <code>TaskListViewModel</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">namespace</span> <span class="nx">TypewriterBlogPost</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="cm">/**</span>
+</span><span class='line'><span class="cm">     * Interface for: TypewriterBlogPost.ViewModels.TaskListViewModel</span>
+</span><span class='line'><span class="cm">     */</span>
+</span><span class='line'>    <span class="kr">export</span> <span class="kr">interface</span> <span class="nx">TaskListViewModel</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">id</span><span class="o">:</span> <span class="nx">number</span><span class="p">;</span>
+</span><span class='line'>        <span class="nx">name</span><span class="o">:</span> <span class="nx">string</span><span class="p">;</span>
+</span><span class='line'>        <span class="nx">author</span><span class="o">:</span> <span class="nx">string</span><span class="p">;</span>
+</span><span class='line'>        <span class="nx">created</span><span class="o">:</span> <span class="nb">Date</span><span class="p">;</span>
+</span><span class='line'>        <span class="nx">tasks</span><span class="o">:</span> <span class="nx">TaskViewModel</span><span class="p">[];</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="cm">/**</span>
+</span><span class='line'><span class="cm">     * Knockout base view model for TypewriterBlogPost.ViewModels.TaskListViewModel</span>
+</span><span class='line'><span class="cm">     */</span>
+</span><span class='line'>    <span class="kr">export</span> <span class="kr">class</span> <span class="nx">KnockoutTaskListViewModel</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kr">public</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">ko</span><span class="p">.</span><span class="nx">observable</span><span class="o">&lt;</span><span class="nx">number</span><span class="o">&gt;</span><span class="p">();</span>
+</span><span class='line'>        <span class="kr">public</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">ko</span><span class="p">.</span><span class="nx">observable</span><span class="o">&lt;</span><span class="nx">string</span><span class="o">&gt;</span><span class="p">();</span>
+</span><span class='line'>        <span class="kr">public</span> <span class="nx">author</span> <span class="o">=</span> <span class="nx">ko</span><span class="p">.</span><span class="nx">observable</span><span class="o">&lt;</span><span class="nx">string</span><span class="o">&gt;</span><span class="p">();</span>
+</span><span class='line'>        <span class="kr">public</span> <span class="nx">created</span> <span class="o">=</span> <span class="nx">ko</span><span class="p">.</span><span class="nx">observable</span><span class="o">&lt;</span><span class="nb">Date</span><span class="o">&gt;</span><span class="p">();</span>
+</span><span class='line'>        <span class="kr">public</span> <span class="nx">tasks</span> <span class="o">=</span> <span class="nx">ko</span><span class="p">.</span><span class="nx">observableArray</span><span class="o">&lt;</span><span class="nx">KnockoutTaskViewModel</span><span class="o">&gt;</span><span class="p">([]);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">constructor</span><span class="p">(</span><span class="nx">model</span><span class="o">:</span> <span class="nx">TaskListViewModel</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">this</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">model</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="cm">/**</span>
+</span><span class='line'><span class="cm">         * Map TaskListViewModel model to Knockout view model</span>
+</span><span class='line'><span class="cm">         */</span>
+</span><span class='line'>        <span class="kr">public</span> <span class="nx">map</span><span class="p">(</span><span class="nx">model</span><span class="o">:</span> <span class="nx">TaskListViewModel</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">(</span><span class="nx">model</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+</span><span class='line'>            <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">(</span><span class="nx">model</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+</span><span class='line'>            <span class="k">this</span><span class="p">.</span><span class="nx">author</span><span class="p">(</span><span class="nx">model</span><span class="p">.</span><span class="nx">author</span><span class="p">);</span>
+</span><span class='line'>            <span class="k">this</span><span class="p">.</span><span class="nx">created</span><span class="p">(</span><span class="nx">model</span><span class="p">.</span><span class="nx">created</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="k">this</span><span class="p">.</span><span class="nx">tasks</span><span class="p">(</span><span class="nx">model</span><span class="p">.</span><span class="nx">tasks</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">mapTasks</span><span class="p">));</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>        <span class="cm">/**</span>
+</span><span class='line'><span class="cm">         * Map TaskViewModel equivalent Knockout view model. Override to customize.</span>
+</span><span class='line'><span class="cm">         */</span>
+</span><span class='line'>        <span class="kr">public</span> <span class="nx">mapTasks</span><span class="p">(</span><span class="nx">model</span><span class="o">:</span> <span class="nx">TaskViewModel</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="k">new</span> <span class="nx">KnockoutTaskViewModel</span><span class="p">(</span><span class="nx">model</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="cm">/**</span>
+</span><span class='line'><span class="cm">         * Returns a plain JSON object with current model properties</span>
+</span><span class='line'><span class="cm">         */</span>
+</span><span class='line'>        <span class="kr">public</span> <span class="nx">getModel</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="nx">id</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">(),</span>
+</span><span class='line'>                <span class="nx">name</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">(),</span>
+</span><span class='line'>                <span class="nx">author</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">author</span><span class="p">(),</span>
+</span><span class='line'>                <span class="nx">created</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">created</span><span class="p">(),</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="nx">tasks</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">tasks</span><span class="p">().</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span><span class="p">.</span><span class="nx">getModel</span><span class="p">())</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Awesome? You bet! So how would I use this in practice? I would just <code>extend</code> the auto-generated code with my custom code!</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">namespace</span> <span class="nx">TypewriterBlogPost</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kr">export</span> <span class="kr">class</span> <span class="nx">ViewModel</span> <span class="kr">extends</span> <span class="nx">KnockoutTaskListViewModel</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">constructor</span><span class="p">(</span><span class="nx">model</span><span class="o">:</span> <span class="nx">TaskListViewModel</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="kr">super</span><span class="p">(</span><span class="nx">model</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">addTask</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="c1">// todo call service</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// apply KO bindings and use JSON object from server</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">ko</span><span class="p">.</span><span class="nx">applyBindings</span><span class="p">(</span><span class="k">new</span> <span class="nx">ViewModel</span><span class="p">((</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="nb">window</span><span class="p">).</span><span class="nx">viewModel</span><span class="p">)));</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Strongly-typing your API controllers</h2>
+
+<p>Now that we&rsquo;ve got our view models squared away, how can we leverage Typewriter to help us with our Web API methods? Well, Typewriter comes with an awesome Web API extension that makes it easy to generate strongly-typed service classes.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$</span><span class="p">{</span>
+</span><span class='line'>    <span class="nx">using</span> <span class="nx">Typewriter</span><span class="p">.</span><span class="nx">Extensions</span><span class="p">.</span><span class="nx">WebApi</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">string</span> <span class="nx">ReturnType</span><span class="p">(</span><span class="nx">Method</span> <span class="nx">m</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Type</span><span class="p">.</span><span class="nx">Name</span> <span class="o">==</span> <span class="s2">&quot;IHttpActionResult&quot;</span> <span class="o">?</span> <span class="s2">&quot;void&quot;</span> <span class="o">:</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Type</span><span class="p">.</span><span class="nx">Name</span><span class="p">;</span>
+</span><span class='line'>    <span class="nx">string</span> <span class="nx">ServiceName</span><span class="p">(</span><span class="nx">Class</span> <span class="nx">c</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Name</span><span class="p">.</span><span class="nx">Replace</span><span class="p">(</span><span class="s2">&quot;Controller&quot;</span><span class="p">,</span> <span class="s2">&quot;Service&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">string</span> <span class="nx">ParentServiceName</span><span class="p">(</span><span class="nx">Method</span> <span class="nx">m</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">ServiceName</span><span class="p">((</span><span class="nx">Class</span><span class="p">)</span><span class="nx">m</span><span class="p">.</span><span class="nx">Parent</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">module</span> <span class="nx">TypewriterBlogPost</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$Classes</span><span class="p">(</span><span class="o">:</span><span class="nx">ApiController</span><span class="p">)[</span>
+</span><span class='line'>    <span class="kr">export</span> <span class="kr">class</span> <span class="nx">$ServiceName</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">$Methods</span><span class="p">[</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// $HttpMethod: $Url</span>
+</span><span class='line'>        <span class="kr">public</span> <span class="kr">static</span> <span class="nx">Route$Name</span> <span class="o">=</span> <span class="p">(</span><span class="nx">$Parameters</span><span class="p">(</span><span class="nx">p</span> <span class="o">=&gt;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">Type</span><span class="p">.</span><span class="nx">IsPrimitive</span><span class="p">)[</span><span class="nx">$name</span><span class="o">:</span> <span class="nx">$Type</span><span class="p">][,</span> <span class="p">])</span> <span class="o">=&gt;</span> <span class="err">`</span><span class="nx">$Url</span><span class="err">`</span><span class="p">;</span>
+</span><span class='line'>        <span class="kr">public</span> <span class="kr">static</span> <span class="nx">$name</span><span class="p">(</span><span class="nx">$Parameters</span><span class="p">[</span><span class="nx">$name</span><span class="o">:</span> <span class="nx">$Type</span><span class="p">][,</span> <span class="p">])</span><span class="o">:</span> <span class="nx">JQueryPromise</span><span class="o">&lt;</span><span class="nx">$ReturnType</span><span class="o">&gt;</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span><span class='line'>                <span class="nx">url</span><span class="o">:</span> <span class="nx">$ParentServiceName</span><span class="p">.</span><span class="nx">Route$Name</span><span class="p">(</span><span class="nx">$Parameters</span><span class="p">(</span><span class="nx">p</span> <span class="o">=&gt;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">Type</span><span class="p">.</span><span class="nx">IsPrimitive</span><span class="p">)[</span><span class="nx">$name</span><span class="p">][,</span> <span class="p">]),</span>
+</span><span class='line'>                <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;$HttpMethod&#39;</span><span class="p">,</span>
+</span><span class='line'>                <span class="nx">data</span><span class="o">:</span> <span class="nx">$RequestData</span>
+</span><span class='line'>            <span class="p">});</span>
+</span><span class='line'>        <span class="p">}]</span>
+</span><span class='line'>    <span class="p">}]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, let&rsquo;s break it down:</p>
+
+<ol>
+<li>Include the WebApi extensions</li>
+<li>Create some helper methods to rename the controllers and provide the right return type</li>
+<li>For all classes that inherit <code>ApiController</code>
+
+<ol>
+<li>Create a service class</li>
+<li>For each method:
+
+<ol>
+<li>Create a route helper function that returns a URL formatted with the right parameters</li>
+<li>Create a JQuery AJAX call that sends a request to the right URL and includes the right request information</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+
+<p>The <code>TasksController</code> we have defined looks like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span><span class='line'><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+</span><span class='line'><span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
+</span><span class='line'><span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
+</span><span class='line'><span class="k">using</span> <span class="nn">System.Net.Http</span><span class="p">;</span>
+</span><span class='line'><span class="k">using</span> <span class="nn">System.Web.Http</span><span class="p">;</span>
+</span><span class='line'><span class="k">using</span> <span class="nn">TypewriterBlogPost.Models</span><span class="p">;</span>
+</span><span class='line'><span class="k">using</span> <span class="nn">TypewriterBlogPost.ViewModels</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">namespace</span> <span class="nn">TypewriterBlogPost.Controllers</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">public</span> <span class="k">class</span> <span class="nc">TasksController</span> <span class="p">:</span> <span class="n">ApiController</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">private</span> <span class="k">static</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">TaskListViewModel</span><span class="p">&gt;</span> <span class="n">_taskLists</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">TaskListViewModel</span><span class="p">&gt;()</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="k">new</span> <span class="nf">TaskListViewModel</span><span class="p">()</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">Name</span> <span class="p">=</span> <span class="s">&quot;Todos&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">Author</span> <span class="p">=</span> <span class="s">&quot;Kamranicus&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">Created</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">Id</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">Tasks</span> <span class="p">=</span>
+</span><span class='line'>                <span class="p">{</span>
+</span><span class='line'>                    <span class="k">new</span> <span class="nf">TaskViewModel</span><span class="p">()</span> <span class="p">{</span> <span class="n">Task</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Task</span><span class="p">()</span> <span class="p">{</span> <span class="n">Text</span> <span class="p">=</span> <span class="s">&quot;Get milk from store&quot;</span> <span class="p">}</span> <span class="p">},</span>
+</span><span class='line'>                    <span class="k">new</span> <span class="nf">TaskViewModel</span><span class="p">()</span> <span class="p">{</span> <span class="n">Task</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Task</span><span class="p">()</span> <span class="p">{</span> <span class="n">Text</span> <span class="p">=</span> <span class="s">&quot;Get deli meat&quot;</span><span class="p">,</span> <span class="n">Done</span> <span class="p">=</span> <span class="k">true</span>  <span class="p">}</span> <span class="p">}</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">public</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">TaskListViewModel</span><span class="p">&gt;</span> <span class="n">GetAll</span><span class="p">()</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">_taskLists</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">public</span> <span class="n">TaskListViewModel</span> <span class="nf">GetById</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">_taskLists</span><span class="p">.</span><span class="n">First</span><span class="p">(</span><span class="n">t</span> <span class="p">=&gt;</span> <span class="n">t</span><span class="p">.</span><span class="n">Id</span> <span class="p">==</span> <span class="n">id</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">public</span> <span class="k">void</span> <span class="nf">Post</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="n">Task</span> <span class="n">task</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="kt">var</span> <span class="n">t</span> <span class="p">=</span> <span class="n">GetById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">t</span><span class="p">.</span><span class="n">Tasks</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">TaskViewModel</span><span class="p">()</span> <span class="p">{</span> <span class="n">Task</span> <span class="p">=</span> <span class="n">task</span> <span class="p">});</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A few things to note:</p>
+
+<ol>
+<li>To avoid name collisions, I use <code>getAll</code> and <code>getById</code></li>
+<li>To use with Typewriter, I return simple types&mdash;using <code>HttpResponseMessage</code> won&rsquo;t allow you to strongly-type the service. However you can still be flexible with errors by throwing <code>HttpExceptions</code> and Web API will serialize your response.</li>
+</ol>
+
+
+<p>What gets generated is what you&rsquo;d expect:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">module</span> <span class="nx">TypewriterBlogPost</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kr">export</span> <span class="kr">class</span> <span class="nx">TasksService</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// get: api/tasks/</span>
+</span><span class='line'>        <span class="kr">public</span> <span class="kr">static</span> <span class="nx">RouteGetAll</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">`</span><span class="nx">api</span><span class="o">/</span><span class="nx">tasks</span><span class="o">/</span><span class="err">`</span><span class="p">;</span>
+</span><span class='line'>        <span class="kr">public</span> <span class="kr">static</span> <span class="nx">getAll</span><span class="p">()</span><span class="o">:</span> <span class="nx">JQueryPromise</span><span class="o">&lt;</span><span class="nx">TaskListViewModel</span><span class="p">[]</span><span class="o">&gt;</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span><span class='line'>                <span class="nx">url</span><span class="o">:</span> <span class="nx">TasksService</span><span class="p">.</span><span class="nx">RouteGetAll</span><span class="p">(),</span>
+</span><span class='line'>                <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span>
+</span><span class='line'>                <span class="nx">data</span><span class="o">:</span> <span class="kc">null</span>
+</span><span class='line'>            <span class="p">});</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// get: api/tasks/${id}</span>
+</span><span class='line'>        <span class="kr">public</span> <span class="kr">static</span> <span class="nx">RouteGetById</span> <span class="o">=</span> <span class="p">(</span><span class="nx">id</span><span class="o">:</span> <span class="nx">number</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="err">`</span><span class="nx">api</span><span class="o">/</span><span class="nx">tasks</span><span class="o">/</span><span class="nx">$</span><span class="p">{</span><span class="nx">id</span><span class="p">}</span><span class="err">`</span><span class="p">;</span>
+</span><span class='line'>        <span class="kr">public</span> <span class="kr">static</span> <span class="nx">getById</span><span class="p">(</span><span class="nx">id</span><span class="o">:</span> <span class="nx">number</span><span class="p">)</span><span class="o">:</span> <span class="nx">JQueryPromise</span><span class="o">&lt;</span><span class="nx">TaskListViewModel</span><span class="o">&gt;</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span><span class='line'>                <span class="nx">url</span><span class="o">:</span> <span class="nx">TasksService</span><span class="p">.</span><span class="nx">RouteGetById</span><span class="p">(</span><span class="nx">id</span><span class="p">),</span>
+</span><span class='line'>                <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span>
+</span><span class='line'>                <span class="nx">data</span><span class="o">:</span> <span class="kc">null</span>
+</span><span class='line'>            <span class="p">});</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// post: api/tasks/${id}</span>
+</span><span class='line'>        <span class="kr">public</span> <span class="kr">static</span> <span class="nx">RoutePost</span> <span class="o">=</span> <span class="p">(</span><span class="nx">id</span><span class="o">:</span> <span class="nx">number</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="err">`</span><span class="nx">api</span><span class="o">/</span><span class="nx">tasks</span><span class="o">/</span><span class="nx">$</span><span class="p">{</span><span class="nx">id</span><span class="p">}</span><span class="err">`</span><span class="p">;</span>
+</span><span class='line'>        <span class="kr">public</span> <span class="kr">static</span> <span class="nx">post</span><span class="p">(</span><span class="nx">id</span><span class="o">:</span> <span class="nx">number</span><span class="p">,</span> <span class="nx">task</span><span class="o">:</span> <span class="nx">Task</span><span class="p">)</span><span class="o">:</span> <span class="nx">JQueryPromise</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span><span class='line'>                <span class="nx">url</span><span class="o">:</span> <span class="nx">TasksService</span><span class="p">.</span><span class="nx">RoutePost</span><span class="p">(</span><span class="nx">id</span><span class="p">),</span>
+</span><span class='line'>                <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;post&#39;</span><span class="p">,</span>
+</span><span class='line'>                <span class="nx">data</span><span class="o">:</span> <span class="nx">task</span>
+</span><span class='line'>            <span class="p">});</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Man, <em>how sexy is that?</em> Not only have we ensured our models and view models stay in-sync, our API is also reflected on the client-side so we don&rsquo;t need to worry about hard-coding routes!</p>
+
+<p>Now we can implement our view model method properly:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">addTask</span><span class="p">(</span><span class="nx">id</span><span class="o">:</span> <span class="nx">number</span><span class="p">,</span> <span class="nx">task</span><span class="o">:</span> <span class="nx">Task</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">TasksService</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">task</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span>
+</span><span class='line'>    <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">toastr</span><span class="p">.</span><span class="nx">success</span><span class="p">(</span><span class="s2">&quot;Posted new task successfully&quot;</span><span class="p">));</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Obviously there&rsquo;s much more you can do such as automatically handling errors, customizing options, creating Angular services, etc.</p>
+
+<h2>So, that&rsquo;s why Typewriter is awesome</h2>
+
+<p>I&rsquo;ve walked through a simple use case of why Typewriter is super useful&mdash;as a developer I&rsquo;m always interested in ways to make my life easier and not worrying about differences between my client and server is always helpful. That&rsquo;s why I love TypeScript and why I love Typewriter. Hope you found this helpful!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Planet Wars AI Competition With C# and Excalibur.js]]></title>
@@ -1460,293 +2307,6 @@ you can fix them until your build passes.</p>
 <p>To your <code>system.webServer</code> configuration. Also, another good point in that blog post is to use SSL, since you get SSL for free with a <code>*.azurewebsites.net</code> site.</p>
 
 <p>Hope this helps someone else out there. This should be added to the <a href="http://www.windowsazure.com/en-us/documentation/articles/web-sites-nodejs-chat-app-socketio/">official Azure tutorial</a> on using web sockets with Node.js.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[5 Tips to Improve Your ASP.NET MVC Codebase]]></title>
-    <link href="http://kamranicus.com/blog/2014/01/29/5-tips-to-improve-your-mvc-site/"/>
-    <updated>2014-01-29T19:16:11+00:00</updated>
-    <id>http://kamranicus.com/blog/2014/01/29/5-tips-to-improve-your-mvc-site</id>
-    <content type="html"><![CDATA[<p>I have an urge to write a quick list of tips for improving an ASP.NET MVC application because
-I just got done reviewing some code for a support ticket at work. It&rsquo;s still fresh
-in my mind and I wanted to get some of my thoughts down to share with others. If you
-have been doing MVC for a while, I don&rsquo;t think much of this is news. It&rsquo;s more
-for those of you that don&rsquo;t do MVC often or are new to MVC.</p>
-
-<!-- More -->
-
-
-<p>Imagine this: you&rsquo;ve been tasked to figure out why a web application is using 2GB of memory on the
-production web servers. You pull down the version that&rsquo;s currently in production and run it locally
-to profile and debug.</p>
-
-<p>After looking through the code, doing some profiling, maybe shaking your head a bit, you&rsquo;ve figured
-out what the issue is and now you need to give some feedback.</p>
-
-<p>That&rsquo;s exactly what happened to me today and out of that experience, 5 tips you can follow to keep
-your ASP.NET MVC codebase working as you&rsquo;d expect.</p>
-
-<h3>1. Understand the queries in your problem domain</h3>
-
-<p>The root cause of the support ticket I received was a simple case of fetching too much
-data from the database, causing obscene amounts of memory usage.</p>
-
-<p>It&rsquo;s a common enough issue. You&rsquo;re building a simple blog, it has posts and it has media (images, videos, attachments).
-You put a Media array onto your Post domain object. Your Media domain object has all the image
-data stored in a byte array. Since you&rsquo;re using an ORM, there&rsquo;s a certain way you need to design your domain model
-to play nice; we&rsquo;ve all experienced this.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">BlogPost</span> <span class="p">{</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">public</span> <span class="n">ICollection</span><span class="p">&lt;</span><span class="n">BlogMedia</span><span class="p">&gt;</span> <span class="n">Media</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">BlogMedia</span> <span class="p">{</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">public</span> <span class="kt">byte</span><span class="p">[]</span> <span class="n">Data</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>There&rsquo;s nothing absolutely wrong with this design. You&rsquo;ve modeled your domain accurately. The problem is, when you
-issue a query through your favorite ORM, it eagerly loads all the data associated with your blog post:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">BlogPost</span><span class="p">&gt;</span> <span class="n">GetNewestPosts</span><span class="p">(</span><span class="kt">int</span> <span class="n">take</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">_db</span><span class="p">.</span><span class="n">BlogPosts</span><span class="p">.</span><span class="n">OrderByDescending</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">PostDate</span><span class="p">).</span><span class="n">Take</span><span class="p">(</span><span class="n">take</span><span class="p">).</span><span class="n">ToList</span><span class="p">();</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>A seemingly innocuous line (unless you&rsquo;ve been bitten), a sneaky monster is lying in wait with big consequences if you haven&rsquo;t disabled
-lazy loading or didn&rsquo;t tell your ORM to ignore that big <code>Data</code> property on blog media.</p>
-
-<p>It&rsquo;s important to understand how your ORM queries and maps objects and make sure you only query what you need (for example using projection).</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">PostSummary</span><span class="p">&gt;</span> <span class="n">GetNewestPosts</span><span class="p">(</span><span class="kt">int</span> <span class="n">take</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">_db</span><span class="p">.</span><span class="n">BlogPosts</span><span class="p">.</span><span class="n">OrderByDescending</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">PostDate</span><span class="p">).</span><span class="n">Take</span><span class="p">(</span><span class="n">take</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">PostSummary</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>      <span class="n">Title</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">Title</span><span class="p">,</span>
-</span><span class='line'>      <span class="n">Id</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">Id</span>
-</span><span class='line'>  <span class="p">}).</span><span class="n">ToList</span><span class="p">();</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This ensures we only grab the amount of data we really need for the task. If all you&rsquo;re doing is using the title and ID to build a link on the homepage, <em>just ask</em>.</p>
-
-<p>It&rsquo;s OK to have more than 5 methods on a repository; be as granular as you need to be for your UI.</p>
-
-<h3>2. Don&rsquo;t call your repositories from your views</h3>
-
-<p>This one&rsquo;s a little sneaky. Consider this line in an MVC view:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">@foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">post</span> <span class="k">in</span> <span class="n">Model</span><span class="p">.</span><span class="n">RelatedPosts</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="p">...</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It <em>seems</em> innocent enough. But if we take a look at what exactly that model property is hiding:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">MyViewModel</span> <span class="p">{</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">public</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">BlogPost</span><span class="p">&gt;</span> <span class="n">RelatedPosts</span> <span class="p">{</span>
-</span><span class='line'>      <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">BlogRepository</span><span class="p">().</span><span class="n">GetRelatedPosts</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">Tags</span><span class="p">);</span> <span class="p">}</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Yikes! Your &ldquo;view model&rdquo; has business logic in it on top of calling a data access method directly. Now you&rsquo;ve introduced data
-access code somewhere it doesn&rsquo;t belong and hidden it inside a property. Move that into the controller so you can wrangle it in
-and populate the view model conciously.</p>
-
-<p>This is a good opportunity to point out that implementing proper unit tests would uncover issues like this; because you definitely can&rsquo;t intercept calls to something like that and then you&rsquo;d realize injecting a repository into a view model is probably not something you want to be doing.</p>
-
-<h3>3. Use partials and child actions to your advantage</h3>
-
-<p>If you need to perform business logic in a view, that should be a sign you need to revisit your view model and logic.
-I don&rsquo;t think it&rsquo;s advisable to do this in your MVC Razor view:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="err">@</span><span class="p">{</span>
-</span><span class='line'>  <span class="kt">var</span> <span class="n">blogController</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BlogController</span><span class="p">();</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="n">ul</span><span class="p">&gt;</span>
-</span><span class='line'><span class="n">@foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">tag</span> <span class="k">in</span> <span class="n">blogController</span><span class="p">.</span><span class="n">GetTagsForPost</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">Id</span><span class="p">))</span> <span class="p">{</span>
-</span><span class='line'>  <span class="p">&lt;</span><span class="n">li</span><span class="p">&gt;</span><span class="n">@tag</span><span class="p">.</span><span class="n">Name</span><span class="p">&lt;/</span><span class="n">li</span><span class="p">&gt;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="p">&lt;/</span><span class="n">ul</span><span class="p">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Putting business logic in the view is a no-no, but on top of that you&rsquo;re creating a <em>controller</em>! Move that into your action method and use
-that view model you made for what it&rsquo;s intended for. You can also move that logic into a separate action method that only gets called inside views
-so you can cache it separately if needed.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="c1">//In the controller:</span>
-</span><span class='line'>
-</span><span class='line'><span class="na">[ChildActionOnly]</span>
-</span><span class='line'><span class="na">[OutputCache(Duration=2000)]</span>
-</span><span class='line'><span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">TagsForPost</span><span class="p">(</span><span class="kt">int</span> <span class="n">postId</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">return</span> <span class="nf">View</span><span class="p">();</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">//In the view:</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">@</span><span class="p">{</span><span class="n">Html</span><span class="p">.</span><span class="n">RenderAction</span><span class="p">(</span><span class="s">&quot;TagsForPost&quot;</span><span class="p">,</span> <span class="k">new</span> <span class="p">{</span> <span class="n">postId</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">Id</span> <span class="p">});}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Notice the <code>ChildActionOnly</code> attribute. From <a href="http://msdn.microsoft.com/en-us/library/system.web.mvc.childactiononlyattribute(v=vs.118).aspx">MSDN</a>:</p>
-
-<blockquote><p>Any method that is marked with <code>ChildActionOnlyAttribute</code> can be called only with the <code>Action</code> or <code>RenderAction</code> HTML extension methods.</p></blockquote>
-
-<p>This means people can&rsquo;t see your child action by manipulating the URL (if you&rsquo;re using the default route).</p>
-
-<p>Partial views and child actions are useful tools in the MVC arsenal; use them to your advantage!</p>
-
-<h3>4. Cache what matters</h3>
-
-<p>Given the code smells above, what do you think will happen if you only cached your view model?</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Index</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>  <span class="kt">var</span> <span class="n">homepageViewModel</span> <span class="p">=</span> <span class="n">HttpContext</span><span class="p">.</span><span class="n">Current</span><span class="p">.</span><span class="n">Cache</span><span class="p">[</span><span class="s">&quot;homepageModel&quot;</span><span class="p">]</span> <span class="k">as</span> <span class="n">HomepageViewModel</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">homepageViewModel</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="n">homepageViewModel</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HomepageViewModel</span><span class="p">();</span>
-</span><span class='line'>      <span class="n">homepageViewModel</span><span class="p">.</span><span class="n">RecentPosts</span> <span class="p">=</span> <span class="n">_blogRepository</span><span class="p">.</span><span class="n">GetNewestPosts</span><span class="p">(</span><span class="m">5</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="n">HttpContext</span><span class="p">.</span><span class="n">Current</span><span class="p">.</span><span class="n">Cache</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;homepageModel&quot;</span><span class="p">,</span> <span class="n">homepageViewModel</span><span class="p">,</span> <span class="p">...);</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">return</span> <span class="nf">View</span><span class="p">(</span><span class="n">homepageViewModel</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Nothing! There will not be any performance gain because you&rsquo;re accessing the data layer through a controller variable in the view and
-through a property in the view model&hellip; caching the view model won&rsquo;t help anything.</p>
-
-<p>Instead, consider caching the <em>output</em> of the MVC action instead:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[OutputCache(Duration=2000)]</span>
-</span><span class='line'><span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Index</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>  <span class="kt">var</span> <span class="n">homepageViewModel</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HomepageViewModel</span><span class="p">();</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">homepageViewModel</span><span class="p">.</span><span class="n">RecentPosts</span> <span class="p">=</span> <span class="n">_blogRepository</span><span class="p">.</span><span class="n">GetNewestPosts</span><span class="p">(</span><span class="m">5</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">return</span> <span class="nf">View</span><span class="p">(</span><span class="n">homepageViewModel</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Notice the handy <code>OutputCache</code> attribute. MVC supports ASP.NET Output Caching; use it to your advantage when it applies. If you are
-going to cache the model, your model needs to essentially be a POCO with automatic (and read-only) properties&hellip; not something that calls other
-repository methods.</p>
-
-<p>As an added benefit, I haven&rsquo;t ever done this but you can <a href="http://msdn.microsoft.com/en-us/magazine/gg650661.aspx">implement different output caching providers</a> allowing you to cache on
-AppFabric/NoSQL/anywhere if you ever needed it. MVC is super extensible.</p>
-
-<h3>5. Don&rsquo;t be afraid to leverage your ORM</h3>
-
-<p>If you&rsquo;re not going to take advantage of your ORM&rsquo;s feature set, you are missing out. In the codebase
-I was reviewing, they were using NHibernate but they weren&rsquo;t <em>using</em> it. They were totally missing out on <a href="http://nhforge.org/doc/nh/en/index.html#querycriteria-projection">its advanced projection
-capabilities</a> to solve some of these memory issues. Some of this stems from rigidity in using a &ldquo;repository pattern&rdquo; and some of it stems from lack of knowledge.</p>
-
-<p>By taking advantage of EF or NHibernate&rsquo;s features, your repositories can do a lot more than just use basic generic methods. They can shape and
-return the data <em>you actually want</em> in your controllers, greatly simplifying your controller logic. Do yourself a favor and read through the ORM&rsquo;s documentation to get a handle on what it can offer.</p>
-
-<p>I think when people adopt the repository pattern, it&rsquo;s almost like they pull down a shade over the bright light shining in from their ORM window. When I started playing with RavenDB, I <strong>got rid</strong> of my repository layer (in fact, my <em>entire data project</em>) and went full-metal using Raven queries in my application service layer with a little bit of extension methods to reuse query logic. I found that <em>a lot</em> of my logic was really context-specific and benefited from simply taking advantage of Raven&rsquo;s extensive features to project, shape, and batch my queries.</p>
-
-<h4>That&rsquo;s just, like, your opinion man&hellip;</h4>
-
-<p>If you think you can abstract your ORM, I challenge you to think about it differently. The ORM <em>is</em> your abstraction and if you believe swapping out your existing ORM with another ORM will be a piece of cake because it&rsquo;s &ldquo;abstracted&rdquo;, you&rsquo;d be surprised. That&rsquo;s what I thought too until I learned the hard way that switching to Raven really changed my entire codebase in ways I didn&rsquo;t expect. Your ORM doesn&rsquo;t only affect data access, it affects the domain and it affects your business logic, it even will have an effect on your UI. By removing the repository abstraction, I actually <em>reduced the overall complexity</em> of my data access code.</p>
-
-<h3>&ldquo;Common sense is not so common&rdquo;</h3>
-
-<p>Or so my dad loves to remind me at times. Sometimes it just takes a good code review to remind oneself that what you thought everyone knew isn&rsquo;t the case; you probably learned it through experience or frantic Googling and just assumed other people already knew it.</p>
-
-<p>I hope this helped someone else out!</p>
 ]]></content>
   </entry>
   

@@ -90,6 +90,137 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/posts/22/whats-the-most-efficient-way-to-read-config-settin">What&#8217;s the Most Efficient Way to Read Config Settings in .NET?</a></h2>
+  
+  <p>
+    <p>In a project I&rsquo;m contributing to, I saw some code like this (simplified but boiling down to):</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="n">ConfigValue</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">get</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">System</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">ConfigurationManager</span><span class="p">.</span><span class="n">AppSettings</span><span class="p">[</span><span class="s">&quot;ConfigValue&quot;</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Is there anything wrong with this? It&rsquo;s a static read-only property. That seems pretty reasonable!</p>
+
+
+
+
+<h3>Storage matters</h3>
+
+
+
+
+<p>The issue that I saw was that there&rsquo;s no real reason to do this. You could do this just as easily:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">static</span> <span class="k">readonly</span> <span class="kt">string</span> <span class="n">ConfigValue</span> <span class="p">=</span>
+</span><span class='line'>     <span class="n">System</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">ConfigurationManager</span><span class="p">.</span><span class="n">AppSettings</span><span class="p">[</span><span class="s">&quot;ConfigValue&quot;</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><em>So, who cares? It looks the same to me!</em> As far as I can tell, you should care, even a little bit. Check this out:</p>
+
+
+
+
+<p><img src="/blog/images/34.png" alt="Perf Timer" /></p>
+
+
+
+
+<p>Notice anything? The <code>static readonly</code> field is far and away faster than any other approach (400 <em>nanoseconds</em>). The other three approaches are pretty similar, ranging from 95ms to 104ms. I&rsquo;ll do the math for you:</p>
+
+
+
+
+<blockquote><p><strong>A <code>static readonly</code> field is upwards of 200x faster</strong> than the equivalent property implementation.</p></blockquote>
+
+
+
+
+<p>The reason is simple: <code>get/set</code> are translated into methods by the compiler. A field is simply a field. Any property will incur some penalty for wrapping methods, so a field will always be faster! I use properties all the time but sometimes it might make sense to forgo a property in favor of a field.</p>
+
+
+
+
+<h3>The test case</h3>
+
+
+
+
+<p>Will you ever notice differences this small? I doubt it (the test was 100000 iterations). I did this for a learning experiment and for future reference. <strike>However, reading a config file is I/O at its core. To me, that says you should care about minimizing possible calls to the disk. Under a substantial load test, perhaps this would incur a visible penalty to page load time depending on how many calls you had to your settings wrapper.</strike> (<strong>Update:</strong> One of my colleagues pointed out that app config is probably loaded on start-up, so there shouldn&rsquo;t any disk I/O happening.)</p>
+
+
+
+
+<p><strong>Performance matters</strong> but this is probably so picky that you really don&rsquo;t ever need to worry about it. As my co-worker said to me after reading this:</p>
+
+
+
+
+<blockquote><p>&ldquo;A single call to a suboptimal EF/NHibernate/SQL query is far more damaging than 100,000 calls to these simple properties/fields. If a query took 1 second it would be roughly equivalent to 1,000,000 calls to the most inefficient property implementation. I would say spend your time where you get the biggest bang for your buck.&rdquo;</p></blockquote>
+
+
+
+
+<p>Couldn&rsquo;t have said it better myself! If you&rsquo;re doing perf testing, make changes where it matters. This is only a microscopic change compared to some that would make more of a difference (such as how you handle <code>Regex</code>).</p>
+
+
+
+
+<p>Here&rsquo;s the test case. I am not entirely positive if there&rsquo;s unseen overhead but the other three examples are common things I&rsquo;ve seen or even done in regards to this type of pattern:</p>
+
+
+
+
+<script src="https://gist.github.com/1302236.js?file=PerfTestCaseBackingMethods.cs"></script>
+
+
+
+
+<p>Let me know if I made a mistake in the test case that&rsquo;s skewing results and I&rsquo;ll fix it.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2011-10-21T01:33:09+00:00" pubdate data-updated="true">Oct 21<span>st</span>, 2011</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/posts/21/integrated-disqus-comment-system-into-kamranicus">Integrated Disqus Comment System Into Kamranicus</a></h2>
   
   <p>
@@ -1480,63 +1611,6 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
 
 
 <time datetime="2011-06-22T19:16:11+00:00" pubdate data-updated="true">Jun 22<span>nd</span>, 2011</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/posts/10/released-nuget-package-of-json">Released NuGet Package of .JSON</a></h2>
-  
-  <p>
-    <p>Yesterday I released my <a href="http://github.com/kamranayub/.JSON">.JSON</a> library as a NuGet package (about time). It is named <strong>DotJson.Source</strong> to follow current conventions. If you need me to, I can also release it as a compiled DLL.</p>
-
-
-
-
-<p>You can get it via Visual Studio or the <a href="http://nuget.org/List/Packages/DotJson.Source">Nuget.org</a> page.</p>
-
-
-
-
-<h2>To Use It</h2>
-
-
-
-
-<p>Add it as a library reference via Nuget. In your code file, you can add a <code>using DotJson;</code> and then start using the library. That&rsquo;s all you have to do.</p>
-
-
-
-
-<p>See the <a href="http://github.com/kamranayub/.JSON/wiki">documentation wiki</a> for more information.</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2011-06-17T00:49:32+00:00" pubdate data-updated="true">Jun 17<span>th</span>, 2011</time>
     
 
 
