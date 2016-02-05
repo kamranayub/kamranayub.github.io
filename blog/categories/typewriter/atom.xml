@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Typewriter | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/typewriter/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2016-02-05T02:12:41+00:00</updated>
+  <updated>2016-02-05T02:19:17+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -484,6 +484,7 @@ using TypewriterBlogPost.ViewModels;</p>
 <ol>
 <li>To avoid name collisions, I use <code>getAll</code> and <code>getById</code></li>
 <li>To use with Typewriter, I return simple types&mdash;using <code>HttpResponseMessage</code> won&rsquo;t allow you to strongly-type the service. However you can still be flexible with errors by throwing <code>HttpExceptions</code> and Web API will serialize your response.</li>
+<li>This is terrible code and is for illustrative purposes only</li>
 </ol>
 
 
