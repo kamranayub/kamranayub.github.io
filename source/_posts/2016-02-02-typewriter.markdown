@@ -438,6 +438,7 @@ A few things to note:
 
 1. To avoid name collisions, I use `getAll` and `getById`
 2. To use with Typewriter, I return simple types--using `HttpResponseMessage` won't allow you to strongly-type the service. However you can still be flexible with errors by throwing `HttpExceptions` and Web API will serialize your response.
+3. This is terrible code and is for illustrative purposes only
 
 What gets generated is what you'd expect:
 
