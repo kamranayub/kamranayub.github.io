@@ -1,22 +1,23 @@
 ---
 layout: post
 title: "Using Typewriter to Strongly-Type Your Client-Side Models and Services"
-date: 2016-02-02 07:00:00 -0600
+date: 2016-02-03 20:08:00 -0600
 comments: true
-published: false
+published: true
 categories:
 - Javascript
 - Typescript
 - Typewriter
+- Visual Studio
 - C#
 - Knockout.js
 ---
 
-I've recently discovered [Typewriter for Visual Studio](http://frhagn.github.io/Typewriter/index.html) and since then I've been using it in all my projects, at work and at home. It's just **so** good. Let me explain what Typewriter does and why it's so awesome.
+I've recently discovered [Typewriter for Visual Studio](http://frhagn.github.io/Typewriter/index.html), a T4-style code-generator specifically meant for generating Typescript files. I've been using it since in all my projects, at work and at home. It's just **so** good. Let me explain what Typewriter does and why it's so awesome.
 
 <!-- more -->
 
-## The setting
+## Setting the stage
 
 It's 2016. The web app you're working on is a mix of Javascript, C#, and controllers for MVC or Web API. Your solution looks something like this:
 
@@ -40,6 +41,12 @@ var TaskListViewModel = function (model) {
    
    return vm;
 };
+
+$(function () {
+  var vm = TaskListViewModel(window.model);
+  
+  ko.applyBindings(vm);
+});
 ```
 
 And then passing in your server model, serialized from JSON either via AJAX or embedded in the view:
@@ -67,7 +74,9 @@ The answer is, "I have to go and update all the references in my client-side Jav
 
 ## Enter Typescript, stage left
 
-We can address one aspect of this problem using [Typescript](http://typescriptlang.org). My preferences for Typescript are [well-documented](http://kamranicus.com/presentations/demystifying-typescript). Here's one reason why: we can create interfaces that strongly-type our C# models.
+We can address one aspect of this problem using [Typescript](http://typescriptlang.org), the typed superset of Javascript introduced by Microsoft several years ago. My love for Typescript is [well-documented](http://kamranicus.com/presentations/demystifying-typescript) and I encourage you to go through that presentation if you haven't already. 
+
+Here's one reason why I love it: we can create interfaces that strongly-type our C# models.
 
 ```js
 interface TaskListViewModel {
@@ -111,7 +120,7 @@ But we still have one problem: how can we avoid the headaches when our server mo
 
 ## Enter Typewriter, stage right
 
-[Typewriter](http://frhagn.github.io/Typewriter/index.html) is a Visual Studio extension that does one thing and does it well: it lets you create a **Typescript Template** files. These are *basically* T4 templates but they're abstracted to the point where it's actually *easy* to use (sorry T4). When you save your C# files, Typewriter reflects over them and will run the template and generate corresponding Typescript files. This lets you do simple things like mirror types to crazy things like... generate an entire AJAX web service.
+[Typewriter](http://frhagn.github.io/Typewriter/index.html) is a Visual Studio extension that does one thing and does it well: it lets you create **Typescript Template** files. These are *basically* T4 templates but they're abstracted to the point where it's actually *easy* to use (sorry T4). When you save your C# files, Typewriter reflects over them and will run the template and generate corresponding Typescript files. This lets you do simple things like mirror types to crazy things like... generate an entire AJAX web service.
 
 So, using Typewriter, what would the template file look like to mirror our models?
 
@@ -234,9 +243,11 @@ namespace TypewriterBlogPost {
 }
 ```
 
-Oh man! This one's a doozy. All we're really doing is ensuring we cascade-map KO view models for collections that contain other view models. We also added a couple convenient helper methods like `getModel()` that returns a JSON object with the current KO model values. `map$Name` allows us to customize how we map each collection, for example, to override what view model to use (such as a custom view model).
+Oh man! This one's a doozy. All we're really doing is ensuring we recursively map KO view models for collections (we ignore non-ViewModels). We also added a couple convenient helper methods like `getModel()` that returns a JSON object with the current KO model values. `map$Name` allows us to customize how we map each collection, for example, to override what view model to use (such as a custom view model).
 
-Typewriter allows you to create "helper" functions that you can then use in the template. We created ones for parsing out the Knockout types (trimming square brackets)
+Typewriter allows you to create "helper" functions that you can then use in the template. We created ones for parsing out the Knockout types (trimming square brackets).
+
+You might ask why prepend the name with `Knockout`? So that it won't conflict with the interfaces named after the view models. Since we want to pass in JSON from the server, we still need an interface that represents the server-side view model.
 
 Here's an example of what this template will generate for `TaskListViewModel`:
 
