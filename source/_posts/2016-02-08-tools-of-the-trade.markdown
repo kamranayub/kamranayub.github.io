@@ -13,6 +13,8 @@ categories:
 
 Sometimes you get so caught up in the work you do on a daily basis that you forget what it was like to start your job on day one--not knowing anything about what tools, extensions, and general utilities you take for granted now, 6 years into your career. It seems like on a monthly basis I find a new extension or utility that is useful to me. I wanted to share my toolbelt, in case it contains something you've never heard of and causes you to exclaim in excitement about something awesome that you'll start using today.
 
+<!-- More -->
+
 This list is organized by function--i.e. what the tool contributes to for my work. If I use extensions for a tool, I will list them under the tool. I've definitely used more things than I list here but I use these on a day-by-day basis typically and are what I would consider essential to my workflow. Share any awesome tools you use that I missed in the comments! If I think of more, I'll add them below.
 
 ## Coding
