@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Visual Studio | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/visual-studio/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2016-02-09T03:29:50+00:00</updated>
+  <updated>2016-02-09T03:50:46+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -63,6 +63,10 @@
 
 <p>I use Sublime for note-taking (auto-save) and quick file editing since it&rsquo;s so fast and has a context-menu shortcut to edit files.</p>
 
+<h3><a href="http://github.com">GitHub</a></h3>
+
+<p>I pay for a plan at GitHub for private source code hosting but I also use it for all my <a href="http://github.com/kamranayub">OSS development</a>. It&rsquo;s a staple of my coding workflow.</p>
+
 <h3><a href="http://desktop.github.com">GitHub Desktop</a></h3>
 
 <p>For working with GitHub projects and local Git repositories, I also like that launches posh-git for the shell.</p>
@@ -79,7 +83,7 @@
 
 <p>The default shell for GH Desktop (above), posh-git is a PowerShell prompt with Git integration.</p>
 
-<h2>Graphics</h2>
+<h2>Multimedia</h2>
 
 <h3><a href="http://www.adobe.com/creativecloud.html">Adobe Creative Cloud</a></h3>
 
@@ -93,7 +97,23 @@
 
 <p>For creating game maps using the spritesheets and tilesets I made from ASE/Photoshop (or purchased). Tiled also exports to JSON, making it easy to <a href="http://github.com/excaliburjs/excalibur-tiled">integrate with game engines</a>.</p>
 
+<h3><a href="http://www.audacityteam.org/">Audacity</a></h3>
+
+<p>I use Audacity for audio editing since it&rsquo;s easy to use and very lightweight.</p>
+
+<h3><a href="http://www.virtualdub.org/">VirtualDub</a></h3>
+
+<p>Simple video editor and great for transencoding video formats.</p>
+
+<h3><a href="https://obsproject.com/download#mp">Open Broadcasting Studio</a></h3>
+
+<p>For streaming and screen recording, you can&rsquo;t beat the FOSS OBS Studio. The new version is hot stuff and is a total rewrite of the &ldquo;Classic&rdquo; version.</p>
+
 <h2>Productivity</h2>
+
+<h3><a href="http://www.teamviewer.com/en-us/">TeamViewer</a></h3>
+
+<p>I use TeamViewer because it&rsquo;s dead simple to set up and manage remote access to my machines without fiddling with firewalls or port forwarding. They also have native mobile clients for on-the-go RDP.</p>
 
 <h3><a href="https://products.office.com/en-us/office-365-home">OneNote / Office 365</a></h3>
 
@@ -110,6 +130,30 @@
 <h3><a href="http://trello.com">Trello</a></h3>
 
 <p>My wife and I use Trello to manage our household information&mdash;events, shopping, to-do lists, restaurants to eat at, blog posts to write, etc. My wife loves how she can use it easily on her iPhone and get notifications whenever someone changes/adds something. We both like the flexibility it offers and its ease of use. At work, we use it to manage our tasks and work for the team alongside TFS (because, you know, TFS).</p>
+
+<h3><a href="https://play.google.com/store/apps/details?id=com.snoggdoggler.android.applications.doggcatcher.v1_0&amp;hl=en">Doggcatcher</a>, <a href="http://audible.com">Audible</a>, <a href="http://iheartradio.com">iHeartRadio</a>, <a href="http://spotify.com">Spotify</a></h3>
+
+<p>You have to listen to something while you work, right? Do you just listen to the local radio on your commutes? Podcasts are invaluable for staying current with tech news and listening to books makes it easy to be &ldquo;literate&rdquo; on the go.</p>
+
+<p><strong>Podcasts</strong></p>
+
+<p>I paid for <a href="https://play.google.com/store/apps/details?id=com.snoggdoggler.android.applications.doggcatcher.v1_0&amp;hl=en">Doggcatcher</a> and it&rsquo;s money well spent. It works flawlessly and I listen to podcasts in the car on the way to and from work everyday. Usually I do one day podcasts, one day book, to keep it sane. I also pick and choose the episodes I listen to.</p>
+
+<ul>
+<li><a href="https://www.dotnetrocks.com/">.NET Rocks</a></li>
+<li><a href="https://twit.tv/shows/this-week-in-tech">This Week in Tech</a></li>
+<li><a href="http://www.polygon.com/minimap">Polygon Minimap</a></li>
+<li><a href="http://www.giantbomb.com/podcasts/">Giant Bombcast</a></li>
+<li><a href="http://maximumfun.org/shows/my-brother-my-brother-and-me">My Brother, My Brother, and Me</a></li>
+<li><a href="http://www.thisamericanlife.org/">This American Life</a></li>
+</ul>
+
+
+<p>I listen to <a href="http://audible.com">Audible</a> for books on commutes. I&rsquo;ve been a member for over 6 years and through it own over 100 books and probably have saved myself hundreds of dollars on books.</p>
+
+<p>For radio at home, I hooked up my old Android Moto G to a Bluetooth stereo and use <a href="http://iheartradio.com">iHeartRadio</a>.</p>
+
+<p>For streaming music, I subscribe to <a href="http://spotify.com">Spotify</a> that my wife and I share on our devices. I can also use Spotify/iHeartRadio in the basement on my PS4.</p>
 
 <h3>OK Google</h3>
 
@@ -132,6 +176,10 @@
 <h3><a href="http://draeton.github.io/stitches/">Stitches</a></h3>
 
 <p>An HTML5-based sprite sheet generator.</p>
+
+<h3><a href="https://emby.media/">Emby</a></h3>
+
+<p>Not work-related but I use Emby (it&rsquo;s free!) to stream media to my consoles and other devices. It has a great web interface for remote viewing too!</p>
 ]]></content>
   </entry>
   
