@@ -117,6 +117,10 @@ I use LastPass Password Manager for its browser integration, always available cl
 
 My wife and I use Trello to manage our household information--events, shopping, to-do lists, restaurants to eat at, blog posts to write, etc. My wife loves how she can use it easily on her iPhone and get notifications whenever someone changes/adds something. We both like the flexibility it offers and its ease of use. At work, we use it to manage our tasks and work for the team alongside TFS (because, you know, TFS).
 
+### [PowerArchiver](http://www.powerarchiver.com/)
+
+Yeah, I pay for an archiving software... it's awesome, easy to use, unzips anything, has Explorer-integration, etc. It was only $23 and they do free upgrades for the Personal edition.
+
 ### [Doggcatcher](https://play.google.com/store/apps/details?id=com.snoggdoggler.android.applications.doggcatcher.v1_0&hl=en), [Audible](http://audible.com), [iHeartRadio](http://iheartradio.com), [Spotify](http://spotify.com)
 
 You have to listen to something while you work, right? Do you just listen to the local radio on your commutes? Podcasts are invaluable for staying current with tech news and listening to books makes it easy to be "literate" on the go. 
