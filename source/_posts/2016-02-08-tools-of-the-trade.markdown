@@ -132,7 +132,7 @@ I paid for [Doggcatcher](https://play.google.com/store/apps/details?id=com.snogg
 - [My Brother, My Brother, and Me](http://maximumfun.org/shows/my-brother-my-brother-and-me)
 - [This American Life](http://www.thisamericanlife.org/)
 
-I listen to [Audible](http://audible.com) for books on commutes. I've been a member for over 6 years and through it own over 100 books and probably have saved myself hundreds of dollars on books. 
+I listen to [Audible](http://audible.com) for books on commutes. I've been a member for over 6 years and through it own over 100 books and probably have saved myself hundreds of dollars on books. PS. Check out the [Matthew Corbett series](http://www.audible.com/series/ref=a_search_c4_1_1_1srSrs_sa?asin=B0085NK3SS), Edoardo Ballerini is a fucking awesome narrator.
 
 For radio at home, I hooked up my old Android Moto G to a Bluetooth stereo and use [iHeartRadio](http://iheartradio.com). 
 
