@@ -90,6 +90,132 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/posts/23/mvc-pro-tip-dont-use-the-id-url-parameter-in-your">MVC Pro Tip: Don&#8217;t Use the &#8220;Id&#8221; URL Parameter in Your Routes</a></h2>
+  
+  <p>
+    <p>By default, MVC will use a route layout like this:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">routes</span><span class="p">.</span><span class="n">MapRoute</span><span class="p">(</span>
+</span><span class='line'>  <span class="s">&quot;Default&quot;</span><span class="p">,</span> <span class="c1">// Route name</span>
+</span><span class='line'>  <span class="s">&quot;{controller}/{action}/{id}&quot;</span><span class="p">,</span> <span class="c1">// URL with parameters</span>
+</span><span class='line'>  <span class="k">new</span> <span class="p">{</span> <span class="n">controller</span> <span class="p">=</span> <span class="s">&quot;Home&quot;</span><span class="p">,</span> <span class="n">action</span> <span class="p">=</span> <span class="s">&quot;Index&quot;</span><span class="p">,</span> <span class="n">id</span> <span class="p">=</span> <span class="n">UrlParameter</span><span class="p">.</span><span class="n">Optional</span> <span class="p">}</span> <span class="c1">// Parameter defaults</span>
+</span><span class='line'><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Besides the fact that you shouldn&rsquo;t use the default route (use named routes!), there&rsquo;s another issue.</p>
+
+
+
+
+<p>Do you have any domain models like this?</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">public</span> <span class="kt">int</span> <span class="n">Id</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Now, let&rsquo;s say you wanted to add a new Edit method for this model:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="n">FooController</span> <span class="p">{</span>
+</span><span class='line'><span class="na">    [HttpPost]</span>
+</span><span class='line'>    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Edit</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="n">Foo</span> <span class="n">foo</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>There will be a problem here if you expect to be able to change this ID (rare but it happens). MVC will model bind the route&rsquo;s <code>id</code> parameter to your model&rsquo;s ID, possibly breaking your code. This is because MVC does not differentiate your two <code>id</code> and <code>Id</code> parameters, it sees them as one in the same (this has to do with the underlying <code>Request</code> collection).</p>
+
+
+
+
+<h3>Fix it!</h3>
+
+
+
+
+<p>It&rsquo;s simple to fix. Instead of using <code>id</code> as a URL parameter throughout your application, use something else! I typically use <code>identifier</code>:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">routes</span><span class="p">.</span><span class="n">MapRoute</span><span class="p">(</span>
+</span><span class='line'>  <span class="s">&quot;Default&quot;</span><span class="p">,</span> <span class="c1">// Route name</span>
+</span><span class='line'>  <span class="s">&quot;{controller}/{action}/{identifier}&quot;</span><span class="p">,</span> <span class="c1">// URL with parameters</span>
+</span><span class='line'>  <span class="k">new</span> <span class="p">{</span> <span class="n">controller</span> <span class="p">=</span> <span class="s">&quot;Home&quot;</span><span class="p">,</span> <span class="n">action</span> <span class="p">=</span> <span class="s">&quot;Index&quot;</span><span class="p">,</span> <span class="n">identifier</span> <span class="p">=</span> <span class="n">UrlParameter</span><span class="p">.</span><span class="n">Optional</span> <span class="p">}</span> <span class="c1">// Parameter defaults</span>
+</span><span class='line'><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Controller</span>
+</span><span class='line'><span class="k">public</span> <span class="n">FooController</span> <span class="p">{</span>
+</span><span class='line'><span class="na">    [HttpPost]</span>
+</span><span class='line'>    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Edit</span><span class="p">(</span><span class="kt">int</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">Foo</span> <span class="n">foo</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Voila. No more model binding issues!</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2011-11-02T19:25:08+00:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2011</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/posts/22/whats-the-most-efficient-way-to-read-config-settin">What&#8217;s the Most Efficient Way to Read Config Settings in .NET?</a></h2>
   
   <p>
@@ -1559,58 +1685,6 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
 
 
 <time datetime="2011-06-27T19:24:54+00:00" pubdate data-updated="true">Jun 27<span>th</span>, 2011</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/posts/11/using-squishit-without-writing-to-the-file-system">Using SquishIt Without Writing to the File System</a></h2>
-  
-  <p>
-    <p>I&rsquo;m a big fan of <a href="https://github.com/jetheredge/SquishIt/">SquishIt</a>, which is a library that compresses and minifies CSS and JS. It automatically keeps thing uncompressed locally and then on your web server, versions and compresses your files. The versioning is based on a checksum of your files so it automatically handles any changes you make, it&rsquo;s gold.</p>
-
-
-
-
-<p>The thing that I don&rsquo;t like is that by default, it writes to your file system which is usually a no-no on shared hosts or even enterprise applications.</p>
-
-
-
-
-<p>I asked if you could use SquishIt programmatically and you can! I <a href="https://github.com/jetheredge/SquishIt/wiki/Using-SquishIt-programmatically-without-the-file-system">wrote up a wiki article</a> on their project page to show how it&rsquo;s done.</p>
-
-
-
-
-<p>If you haven&rsquo;t used SquishIt, I&rsquo;d highly recommend it!</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2011-06-22T19:16:11+00:00" pubdate data-updated="true">Jun 22<span>nd</span>, 2011</time>
     
 
 

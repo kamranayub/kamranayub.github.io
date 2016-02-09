@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C# | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/c-number/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2016-02-05T02:20:46+00:00</updated>
+  <updated>2016-02-09T03:27:52+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,125 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Tools of the Trade 2016]]></title>
+    <link href="http://kamranicus.com/blog/2016/02/09/tools-of-the-trade/"/>
+    <updated>2016-02-09T03:09:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2016/02/09/tools-of-the-trade</id>
+    <content type="html"><![CDATA[<p>Sometimes you get so caught up in the work you do on a daily basis that you forget what it was like to start your job on day one&mdash;not knowing anything about what tools, extensions, and general utilities you take for granted now, 6 years into your career. It seems like on a monthly basis I find a new extension or utility that is useful to me. I wanted to share my toolbelt, in case it contains something you&rsquo;ve never heard of and causes you to exclaim in excitement about something awesome that you&rsquo;ll start using today.</p>
+
+<p>This list is organized by function&mdash;i.e. what the tool contributes to for my work. If I use extensions for a tool, I will list them under the tool. I&rsquo;ve definitely used more things than I list here but I use these on a day-by-day basis typically and are what I would consider essential to my workflow. Share any awesome tools you use that I missed in the comments! If I think of more, I&rsquo;ll add them below.</p>
+
+<h2>Coding</h2>
+
+<p>I work with JavaScript/TypeScript, HTML, CSS, and C# on a daily basis. Here&rsquo;s what I use and for what.</p>
+
+<h3><a href="https://go.microsoft.com/fwlink/?LinkId=691978&amp;clcid=0x409">Visual Studio 2015 Pro/Community</a></h3>
+
+<p>For primary .NET work, web app work, and work-work. I use Community edition at home, it&rsquo;s free!</p>
+
+<p><strong>Extensions</strong></p>
+
+<ul>
+<li><a href="https://www.jetbrains.com/resharper/download/">ReSharper 10</a> &ndash; Oodles of time-saving refactoring helpers and code analysis</li>
+<li><a href="https://visualstudiogallery.msdn.microsoft.com/3b329021-cd7a-4a01-86fc-714c2d05bb6c">Web Compiler</a> &ndash; for LESS, SASS compiling</li>
+<li><a href="https://visualstudiogallery.msdn.microsoft.com/e1d68248-f30e-4a5d-bf18-31399a0bcfa6">Typewriter</a> (see my recent <a href="http://kamranicus.com/blog/2016/02/04/typewriter/">blog post</a>) &ndash; for T4-style TypeScript codegen</li>
+<li><a href="https://visualstudiogallery.msdn.microsoft.com/ee6e6d8c-c837-41fb-886a-6b50ae2d06a2">Web Essentials 2015</a> &ndash; for web dev</li>
+<li><a href="https://visualstudiogallery.msdn.microsoft.com/1f6ec6ff-e89b-4c47-8e79-d2d68df894ec">Razor Generator</a> &ndash; for Razor templates for emails</li>
+<li><a href="https://visualstudiogallery.msdn.microsoft.com/dd1dc8a5-d627-48a2-a19d-df4fe0c47f19">Node.js Tools for Visual Studio</a> &ndash; for Node.js projects</li>
+<li><a href="https://visualstudiogallery.msdn.microsoft.com/c9eb3ba8-0c59-4944-9a62-6eee37294597">PowerShell Tools for Visual Studio</a> &ndash; for interactive PowerShell prompt and editing</li>
+<li><a href="https://visualstudiogallery.msdn.microsoft.com/410e9b9f-65f3-4495-b68e-15567e543c58">Rebracer</a> &ndash; save formatting settings per solution</li>
+</ul>
+
+
+<h3><a href="http://code.visualstudio.com">Visual Studio Code</a></h3>
+
+<p>For working on lots of my JS/TS-based OSS projects like <a href="http://excaliburjs.com">Excalibur.js</a>. The cross-platform, Git-integrated nature of the IDE is awesome along with per-project user settings to keep everyone in-sync.</p>
+
+<p><strong>Extensions</strong></p>
+
+<ul>
+<li>ReStructured Text &ndash; for <a href="http://docs.excaliburjs.com">Excalibur docs</a></li>
+<li>PowerShell &ndash; for scripts</li>
+</ul>
+
+
+<h3><a href="https://www.sublimetext.com">Sublime Text 3</a></h3>
+
+<p>I use Sublime for note-taking (auto-save) and quick file editing since it&rsquo;s so fast and has a context-menu shortcut to edit files.</p>
+
+<h3><a href="http://desktop.github.com">GitHub Desktop</a></h3>
+
+<p>For working with GitHub projects and local Git repositories, I also like that launches posh-git for the shell.</p>
+
+<h3><a href="http://linqpad.com">Linqpad 5</a></h3>
+
+<p>For quick C# script testing, database queries, etc.</p>
+
+<h3><a href="https://technet.microsoft.com/en-us/scriptcenter/dd742419.aspx">PowerShell &amp; ISE</a></h3>
+
+<p>I recently <a href="http://kamranicus.com/blog/2015/09/17/powershell-html5-offline-manifest/">became a believer</a> in PowerShell, for automation and scripting it&rsquo;s awesome. Just <a href="https://mva.microsoft.com/en-US/training-courses/getting-started-with-powershell-3-0-jump-start-8276">take the few hours</a> and learn it, you won&rsquo;t regret it. ISE is the scripting editor built into Windows.</p>
+
+<h3><a href="https://github.com/dahlbyk/posh-git">posh-git</a></h3>
+
+<p>The default shell for GH Desktop (above), posh-git is a PowerShell prompt with Git integration.</p>
+
+<h2>Graphics</h2>
+
+<h3><a href="http://www.adobe.com/creativecloud.html">Adobe Creative Cloud</a></h3>
+
+<p>The subscription-based model softens the blow of owning Adobe products and, perhaps, costs more over time but the benefits outweigh the negatives&mdash;namely, I own the full suite of Adobe products (<em>cough</em> legally) and they&rsquo;re <strong>always</strong> up-to-date with new versions so I don&rsquo;t need to pay up-the-nose every year. I also really like TypeKit for syncing new fonts.</p>
+
+<h3><a href="http://www.aseprite.org/">aseprite Editor</a></h3>
+
+<p>This is for pixel graphics and sprites, ASE is great for pixel-perfect drawings and animations.</p>
+
+<h3><a href="http://www.mapeditor.org/">Tiled Map Editor</a></h3>
+
+<p>For creating game maps using the spritesheets and tilesets I made from ASE/Photoshop (or purchased). Tiled also exports to JSON, making it easy to <a href="http://github.com/excaliburjs/excalibur-tiled">integrate with game engines</a>.</p>
+
+<h2>Productivity</h2>
+
+<h3><a href="https://products.office.com/en-us/office-365-home">OneNote / Office 365</a></h3>
+
+<p>I use OneNote for password-protected information (it&rsquo;s actually encrypted) and for cross-device note syncing. O365 is great for the cross-platform Office and syncing via OneDrive.</p>
+
+<h3><a href="http://onedrive.com">OneDrive</a></h3>
+
+<p>I use OneDrive for its cross-platform syncing (PC/Android/iPhone), cloud storage, and PC Windows-explorer integration. It just works. It also means my OneNote notebooks are available everywhere.</p>
+
+<h3><a href="http://lastpass.com">LastPass</a></h3>
+
+<p>I use LastPass Password Manager for its browser integration, always available cloud vault, and cross-device syncing (to my Android).</p>
+
+<h3><a href="http://trello.com">Trello</a></h3>
+
+<p>My wife and I use Trello to manage our household information&mdash;events, shopping, to-do lists, restaurants to eat at, blog posts to write, etc. My wife loves how she can use it easily on her iPhone and get notifications whenever someone changes/adds something. We both like the flexibility it offers and its ease of use. At work, we use it to manage our tasks and work for the team alongside TFS (because, you know, TFS).</p>
+
+<h3>OK Google</h3>
+
+<p>I use OK Google on my phone (Cortana before, on my Windows Phone) to add reminders and to-dos on-the-go.</p>
+
+<h2>Misc</h2>
+
+<h3>Chrome</h3>
+
+<p>I use <a href="http://kamranicus.com/blog/2015/05/21/chrome-multi-user/">supervised user profiles</a> to keep my work separated.</p>
+
+<h3><a href="https://conemu.github.io/">ConEmu</a></h3>
+
+<p>An awesome multi-tabbed customizable command prompt host&mdash;I use it to create shortcuts for Azure Powershell SDK, Visual Studio CMD prompt, Posh-Git, CMD prompt, etc.</p>
+
+<h3><a href="http://regexr.com/">RegExr</a></h3>
+
+<p>An awesome Regular Expression engine in the browser, my go-to Regex reference/tester.</p>
+
+<h3><a href="http://draeton.github.io/stitches/">Stitches</a></h3>
+
+<p>An HTML5-based sprite sheet generator.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Using Typewriter to Strongly-Type Your Client-Side Models and Services]]></title>
