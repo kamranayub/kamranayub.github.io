@@ -49,6 +49,10 @@ For working on lots of my JS/TS-based OSS projects like [Excalibur.js](http://ex
 
 I use Sublime for note-taking (auto-save) and quick file editing since it's so fast and has a context-menu shortcut to edit files.
 
+### [GitHub](http://github.com)
+
+I pay for a plan at GitHub for private source code hosting but I also use it for all my [OSS development](http://github.com/kamranayub). It's a staple of my coding workflow.
+
 ### [GitHub Desktop](http://desktop.github.com)
 
 For working with GitHub projects and local Git repositories, I also like that launches posh-git for the shell.
@@ -65,7 +69,7 @@ I recently [became a believer](http://kamranicus.com/blog/2015/09/17/powershell-
 
 The default shell for GH Desktop (above), posh-git is a PowerShell prompt with Git integration.
 
-## Graphics
+## Multimedia
 
 ### [Adobe Creative Cloud](http://www.adobe.com/creativecloud.html)
 
@@ -79,7 +83,23 @@ This is for pixel graphics and sprites, ASE is great for pixel-perfect drawings 
 
 For creating game maps using the spritesheets and tilesets I made from ASE/Photoshop (or purchased). Tiled also exports to JSON, making it easy to [integrate with game engines](http://github.com/excaliburjs/excalibur-tiled).
 
+### [Audacity](http://www.audacityteam.org/)
+
+I use Audacity for audio editing since it's easy to use and very lightweight.
+
+### [VirtualDub](http://www.virtualdub.org/)
+
+Simple video editor and great for transencoding video formats.
+
+### [Open Broadcasting Studio](https://obsproject.com/download#mp)
+
+For streaming and screen recording, you can't beat the FOSS OBS Studio. The new version is hot stuff and is a total rewrite of the "Classic" version.
+
 ## Productivity
+
+### [TeamViewer](http://www.teamviewer.com/en-us/)
+
+I use TeamViewer because it's dead simple to set up and manage remote access to my machines without fiddling with firewalls or port forwarding. They also have native mobile clients for on-the-go RDP.
 
 ### [OneNote / Office 365](https://products.office.com/en-us/office-365-home)
 
@@ -96,6 +116,27 @@ I use LastPass Password Manager for its browser integration, always available cl
 ### [Trello](http://trello.com)
 
 My wife and I use Trello to manage our household information--events, shopping, to-do lists, restaurants to eat at, blog posts to write, etc. My wife loves how she can use it easily on her iPhone and get notifications whenever someone changes/adds something. We both like the flexibility it offers and its ease of use. At work, we use it to manage our tasks and work for the team alongside TFS (because, you know, TFS).
+
+### [Doggcatcher](https://play.google.com/store/apps/details?id=com.snoggdoggler.android.applications.doggcatcher.v1_0&hl=en), [Audible](http://audible.com), [iHeartRadio](http://iheartradio.com), [Spotify](http://spotify.com)
+
+You have to listen to something while you work, right? Do you just listen to the local radio on your commutes? Podcasts are invaluable for staying current with tech news and listening to books makes it easy to be "literate" on the go. 
+
+**Podcasts**
+
+I paid for [Doggcatcher](https://play.google.com/store/apps/details?id=com.snoggdoggler.android.applications.doggcatcher.v1_0&hl=en) and it's money well spent. It works flawlessly and I listen to podcasts in the car on the way to and from work everyday. Usually I do one day podcasts, one day book, to keep it sane. I also pick and choose the episodes I listen to.
+
+- [.NET Rocks](https://www.dotnetrocks.com/)
+- [This Week in Tech](https://twit.tv/shows/this-week-in-tech)
+- [Polygon Minimap](http://www.polygon.com/minimap)
+- [Giant Bombcast](http://www.giantbomb.com/podcasts/)
+- [My Brother, My Brother, and Me](http://maximumfun.org/shows/my-brother-my-brother-and-me)
+- [This American Life](http://www.thisamericanlife.org/)
+
+I listen to [Audible](http://audible.com) for books on commutes. I've been a member for over 6 years and through it own over 100 books and probably have saved myself hundreds of dollars on books. 
+
+For radio at home, I hooked up my old Android Moto G to a Bluetooth stereo and use [iHeartRadio](http://iheartradio.com). 
+
+For streaming music, I subscribe to [Spotify](http://spotify.com) that my wife and I share on our devices. I can also use Spotify/iHeartRadio in the basement on my PS4.
 
 ### OK Google
 
@@ -118,3 +159,7 @@ An awesome Regular Expression engine in the browser, my go-to Regex reference/te
 ### [Stitches](http://draeton.github.io/stitches/)
 
 An HTML5-based sprite sheet generator.
+
+### [Emby](https://emby.media/)
+
+Not work-related but I use Emby (it's free!) to stream media to my consoles and other devices. It has a great web interface for remote viewing too!
