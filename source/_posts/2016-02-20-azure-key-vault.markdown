@@ -10,26 +10,42 @@ categories:
 - Security
 ---
 
-Secrets. Where should you store them? I've seen many ways in my career:
+Secrets. We all have them. I'm talking about secrets like your database connection strings, API keys and encryption keys. Where are you storing yours? Are you storing them...
 
-1. In the source code, accessible via Reflection
-2. In the app settings config, acessible via source control
-3. In a database, accessible if you have permissions
-4. In a managed portal interface, like Windows Azure, accessible if you have permissions
+1. In your application's source code?
+2. In a config file (`appSettings` or otherwise) checked into source control?
+3. In a database?
+4. In a managed portal, like Azure?
 
-These are pretty much in order of least secure to pretty secure, but options 3 and 4 typically still require local secrets during development. It's hard to escape that need unless you force your app to rely on connectivity to retrieve secrets which makes it hard to work offline.
+I hope you aren't storing them hardcoded. You're probably doing option 2 or a hybrid of options 2-4. Even if you use an external data source, it's hard to escape the need for secrets in local development unless you force your app to rely on having connectivity which makes it hard to work offline.
+
+In this post I'm going to provide some suggestions on how to store your secrets better using Azure Key Vault and config file encryption, specifically for cloud applications.
 
 <!-- More -->
 
-Is it possible to store secrets in a way that **no one** can see them, even if they have access to the database/portal *and* file system? Furthermore, even secrets are stored in memory--so what can we do about that? I haven't even mentioned **encryption keys**. If someone got ahold of them, it's game over--keys need to be protected at all costs.
+# Why bother?
 
-Some of you might say, "It's okay if it's in the config, no one can see it on the web server." You'd think so, but I ran into an exploit last year where you could see files on the web server by passing in the path you wanted to see (the exploit has since been fixed by the vendor).
+If you are already storing secrets in the config or an external system, does this even matter? Let me ask you, can a human being find your encryption key? If the answer is Yes, it matters--because the answer should be **No.**
 
-You might also (rightfully) say that if an attacker got access to your Azure portal, it's game over anyway--they could perform remote debugging, see files, etc. That's true but they can't download a signed certificate from the portal, so if we store secrets away in Key Vault and encrypt our Azure AD client ID and **don't store in the portal**, they would have a very hard time accessing the secrets. I'll talk about these approaches below.
+Some of you might say, "It's okay if my secret is in the config, no one but an admin can see it on the web server." You'd think so, but I ran into an exploit last year where you could see files on the web server using a custom file handler vulnerability (the exploit has since been fixed by the vendor). If your secrets are in your configs, are you checking them into source control? If you work in an organization and your code is on the web servers, anyone with access to those servers can see your config files.
+
+You might also (rightfully) say that if an attacker got access to your Azure portal, it's game over anyway. Yes, absolutely. If an app is compromised at the filesystem level where an attacker can upload files, you're pretty much done for anyway. That's why your portal account should have a strong password and have Two-Factor Authentication enabled. If you're using source control integration, that also needs to be protected with the same amount of security--go and [enable TFA for GitHub](https://help.github.com/articles/about-two-factor-authentication/) if you haven't already.  The goal is that we want to avoid storing plaintext secrets on the filesystem and in the portal itself, instead opting to store them in a secure location so that only **our application** has access to them, no one else.
+
+So then, what exactly *are* the benefits of moving secrets out of the portal then?
+
+- Logging -- Azure Key Vault logs all operations, so if someone did compromise your application, you'd have the logs or could monitor them closely for strange actions
+- Least privilege -- You can grant a service principal Read-only access so even if the app was compromised, an attacker couldn't change or delete anything (unless they had access to change the policies in Key Vault)
+- Eliminate non-application access -- By storing secrets away from your application, you at *least* guarantee only the application can access secrets whereas anyone with Read access to the portal can see app settings
+- Defense in depth -- You're just adding one more layer of security for an attacker to penetrate
+- Right thing to do -- You owe it to your users and to your business to protect their data to the best of your ability
+
+With that in mind, let's move on!
 
 # Encryption keys
 
-The most important secret in your app is probably your **encryption key**. This is the skeleton key to your kingdom. If someone got ahold of it, they could unlock your user's data and tarnish your reputation. So how can you protect this key if none of the options above truly secure it? What if I told you... that **you don't need to know the key**. If you don't know it, no one can steal it! But how does that work exactly?
+The most important secret in your app is probably your **encryption key**. This is the skeleton key to your kingdom. If someone got ahold of it, they could unlock your user's data and tarnish your reputation. If your Azure or portal account was compromised (even after Two Factor Auth), would attackers have access to your keys? They would if you stored them in a config or in the portal. So how can you protect this key if none of the options above truly secure it? 
+
+Well, what if I told you... that **you don't need to know the key**. If nobody knows it, no one can steal it! But how does that work exactly? Magic? Not exactly...
 
 # Enter the vault
 
@@ -57,7 +73,9 @@ Yes! And you are right to point out that it doesn't really solve the secrets pro
 
 # Certificates to the rescue
 
-Instead of using the default authentication to Azure AD, a "client ID" and "secret token", we will actually provide a secure X.509 certificate that we'll upload to Azure. Since you can't download the certificate from Azure or access the private key, it will authenticate your application without exposing the key to your vault.
+Instead of using the default authentication to Azure AD, a "client ID" and "secret token", we will actually provide a secure X.509 certificate that we'll upload to Azure. Since you can't download the certificate from Azure or access the private key, it will authenticate your application without exposing the key to your vault in a config or portal interface.
+
+# Let's do it!
 
 I followed these two guides for setting up Key Vault and authenticating using a certificate:
 
@@ -101,22 +119,27 @@ If you don't do this correctly, your application will throw a `Keyset does not e
 
 # Alright, so what about local secrets?
 
-Ah you got me again! You could still use Key Vault locally, except you'd depend on connectivity. Instead, there's something we can do even if we don't end up using Azure Key Vault. We can **encrypt the settings** in the web.config. Follow [this guide](http://eren.ws/2014/02/04/encrypting-the-web-config-file-of-an-azure-cloud-service) to encrypting the configuration sections (I recommend `appSettings` and `connectionStrings`). You can use the same certificate we created above.
+We have the cloud secrets squared away. You *could* still use Key Vault locally, except you'd depend on connectivity (and pay for the usage). Instead, there's something we can do even if we don't end up using Azure Key Vault. We can **encrypt the settings** in the web.config. 
 
-There is one major change though. You need to use a different `PKCS12ProtectedConfigurationProvider`, one that can specify the "StoreLocation" of where to load certificates from the **CurrentUser** store, not the LocalMachine since Azure certs are stored in the CurrentUser store. If you're running through IIS, you will need to set the config property to load certificate from the LocalMachine store.
+I started with [this guide](http://eren.ws/2014/02/04/encrypting-the-web-config-file-of-an-azure-cloud-service) to encrypting the configuration sections (I recommend `appSettings` and `connectionStrings`). You **cannot** use the same certificate you generated in the tutorial above (well, maybe you could but you need the `-exchange sky` switch to `makecert` and I didn't try that initially so I generated a separate certificate).
 
-Here's a modified version:
+There's another thing. You also need to use a different `PKCS12ProtectedConfigurationProvider`. The one provided **only** searches the `LocalMachine` certificate store but in Azure, your cert is installed for the current user, so the provider fails to decrypt the config when you try to build your app on Azure because it cannot find the certificate. You need a provider that can specify the `StoreLocation` of where to load certificates from. For Azure, it must be the **CurrentUser** store.
+
+Here's my modified version:
 
 <script src="https://gist.github.com/kamranayub/eaf4c4e4983ecb2d0b37.js"></script>
 
-You will need to compile it with a signature (in Release mode), generate one in the "Signing" tab of the project properties. You'll also need to get the `publicKeyToken` of the Release DLL, I use [ILSpy](http://ilspy.net/) to do that. Once done, you can add a new attribute to the config:
+You can download the DLL directly from [GitHub](https://github.com/kamranayub/PKCS12ProtectedConfigurationProvider/releases/tag/v1.0.1). Once done, you can change the entry in the config to:
 
 ```
-<add 
-  name="CustomProvider" 
-  thumbprint="xxx" 
-  storeLocation="LocalMachine" 
-  type="..." />
+    <configProtectedData>
+        <providers>
+            <add name="CustomProvider"
+                 thumbprint="xxx"
+                 storeLocation="LocalMachine"
+                 type="Pkcs12ProtectedConfigurationProvider.Pkcs12ProtectedConfigurationProvider, PKCS12ProtectedConfigurationProvider, Version=1.0.1.0, Culture=neutral, PublicKeyToken=455a6e7bdbdc9023" />
+        </providers>
+    </configProtectedData>
 ```
 
 A few notes:
@@ -125,7 +148,7 @@ A few notes:
 1. You will need to install the PKCS12ProtectedConfigurationProvider.dll to the GAC before running the `aspnet_regiis` command. Just run `gacutil -i PKCS12ProtectedConfigurationProvider.dll` beforehand.
 2. You will need to reference your custom compiled DLL instead of the one in the guide (make sure to grab your new public key token).
 3. Despite this StackOverflow answer, you **can** use encryption with configuration files using the PKCS12 provider.
-4. You may need to add a `web.Release.config` transform to set the PKCS provider to use the CurrentUser when building on Azure
+4. If you are using IIS, you will probably need to run your app pool under your identity (see `Azure` section in my [config repository](https://github.com/kamranayub/PKCS12ProtectedConfigurationProvider))
 
 # So where are we at?
 
@@ -148,7 +171,7 @@ I ran into a bunch of problems during the writing of this guide. Hopefully these
 
 ## When I run my app and try to get a secret from Key Vault I get a "Keyset does not exist" error
 
-Your app pool/user running the app does not have access to the private key. Follow my advice above to make sure the certificate is imported to **both** Current User and Local Machine stores and then **grant permissions to the private keys**. Then modify the Key Vault `GetCertificate` helper to use the appropriate store at runtime, like this:
+Your app pool/user running the app does not have access to the private key. Follow my advice above to change the app pool identity to your own user account. Then modify the Key Vault `GetCertificate` helper to use the appropriate store at runtime, like this:
 
 ```
 StoreLocation storeLocation = AppSettings.RuntimeEnvironment >= RuntimeEnvironment.D
