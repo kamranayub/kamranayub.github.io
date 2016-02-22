@@ -35,9 +35,13 @@ So then, what exactly *are* the benefits of moving secrets out of the portal the
 
 - Logging -- Azure Key Vault logs all operations, so if someone did compromise your application, you'd have the logs or could monitor them closely for strange actions
 - Least privilege -- You can grant a service principal Read-only access so even if the app was compromised, an attacker couldn't change or delete anything (unless they had access to change the policies in Key Vault)
-- Eliminate non-application access -- By storing secrets away from your application, you at *least* guarantee only the application can access secrets whereas anyone with Read access to the portal can see app settings
-- Defense in depth -- You're just adding one more layer of security for an attacker to penetrate
+- As-needed access -- By storing secrets away from your application, you at *least* guarantee only the application can access secrets whereas anyone with Read access to the portal can see app settings
+- Defense in depth -- You're just adding one more layer of security between an attacker and your data
 - Right thing to do -- You owe it to your users and to your business to protect their data to the best of your ability
+
+[This article](http://blogs.msdn.com/b/data_insights_global_practice/archive/2015/09/24/protecting-sensitive-data-with-azure-key-vault.aspx) sums it up nicely:
+
+> One of the key security principals that is implicitly being applied here is to compartmentalize management of privileged data to security domains for which this is appropriate. An instance of Key Vault is used to manage the Twitter keys as a shared resource in the customer's environment, with access granted by whomever manages the Twitter account on an as-needed basis to specific applications and users. Applications are then responsible for managing only their application-specific Key Vault access tokens.
 
 With that in mind, let's move on!
 
@@ -97,25 +101,19 @@ When executing `Set-AzureKeyVaultAccessPolicy` make sure to add the switch `-Per
 
 **Note:** The article tells you to grant `all` permissions to both keys and secrets. In reality, for production, you may want to only grant specific rights. See [this MSDN article](https://msdn.microsoft.com/en-us/library/dn903607.aspx) for the different access policies.
 
+## Certificates...?
+
+If you're like me, certificates are confusing. Are you making an SSL cert? Not exactly. *Most* SSL certs are X.509 certs (not all) but they also can be used to encrypt web traffic. "Plain" X.509 certs can be used to sign things or encrypt/authenticate, which is what we're doing. If you Google around, you'll see they can be called "client certificates" or "personal" certificates. There are two places a cert can be installed ("stores"), one is the "Local Machine" store and the other is the "Current User" store. The machine store can be accessed by *any* user account, the current user store can only be accessed by the user running the process (usually, you). A "cer" file is the **public key** for your certificate. You can distribute it to anyone. The "pfx" file contains **both the private AND public key**. **DO NOT GIVE IT TO ANYONE.** You want the PFX file for yourself only and to import into your PC and into Azure. The PFX file is protected by a password, I recommend a strong one and *don't lose it.*
+
 ## Self-signed vs. commercial certs
 
-In guide 2, you create a self-signed certificate and in the C# code, you tell .NET **not** to validate the Root CA, since it won't be valid. You can do this but it's probably better to use a signed certificate from a trusted authority. Comodo provides a "[Free Email Certificate](https://www.instantssl.com/ssl-certificate-products/free-email-certificate.html)" that is a signed X.509 cert. When you install it, you can Export it to a file (include the private key) and use it.
+In guide 2, you create a self-signed certificate and in the C# code (`GetCertificate`), you tell .NET **not** to validate the Root CA, since it won't be valid. You can do this but it's probably better to use a signed certificate from a trusted authority. Comodo provides a "[Free Email Certificate](https://www.instantssl.com/ssl-certificate-products/free-email-certificate.html)" that is a signed X.509 cert. When you install it, you can Export it to a file (include the private key) and use it.
 
 ## Install the certificate
 
-For guide 2, after generating the certificate you need to install it locally to test Azure Key Vault. If you run your app under IIS and the app pool is `ApplicationPoolIdentity`, you need to install the certificate at the machine-level, not just the current user as the article suggests because the app pool does not have permissions to use *your* certs. You also need to modify the code to look at `StoreLocation.Machine` locally instead of `CurrentUser` on Azure.
+For guide 2, after generating the certificate you need to install it locally to test Azure Key Vault. If you run your app under IIS and the app pool is `ApplicationPoolIdentity`, it's best to just [change it](http://www.iis.net/learn/manage/configuring-security/application-pool-identities) to run under your account. Trust me, it'll be easier. Since Azure requires the certificate to be in the `CurrentUser` store, the default app pool runs under a different account (see [this StackOverflow post](http://stackoverflow.com/a/3176253/109458)), so you'd have to install the cert at the machine level.
 
-In the folder where your cert was generated, you can run the following PowerShell command to import:
-
-    Import-PfxCertificate -filepath "mycert.pfx" -CertStoreLocation "cert:\LocalMachine\My" -Confirm
-
-Otherwise, [follow this guide](http://www.databasemart.com/howto/SQLoverssl/How_To_Import_Personal_Certificate_With_MMC.aspx) to do it from the MMC console. I imported the `.cer` file first, then the `.pfx` but you can just import the PFX (I think) since it contains the public *and* private key.
-
-Once imported, right-click the certificate, click All Tasks -> Manage Private Keys and then add `IIS_IUSRS` account to grant permissions. See [this StackOverflow post](http://stackoverflow.com/a/3176253/109458) for details.
-
-If you don't do this correctly, your application will throw a `Keyset does not exist` error.
-
-**Note:** Import the certificate to the current user AND local machine stores.
+In the folder where your cert was generated, right-click the `.pfx` file and select Install. Enter the password you chose. You can also [follow this guide](http://www.databasemart.com/howto/SQLoverssl/How_To_Import_Personal_Certificate_With_MMC.aspx) to do it from the MMC console.
 
 # Alright, so what about local secrets?
 
@@ -129,7 +127,7 @@ Here's my modified version:
 
 <script src="https://gist.github.com/kamranayub/eaf4c4e4983ecb2d0b37.js"></script>
 
-You can download the DLL directly from [GitHub](https://github.com/kamranayub/PKCS12ProtectedConfigurationProvider/releases/tag/v1.0.1). Once done, you can change the entry in the config to:
+I've also added it to [GitHub](https://github.com/kamranayub/PKCS12ProtectedConfigurationProvider). You can download the DLL directly from [GitHub](https://github.com/kamranayub/PKCS12ProtectedConfigurationProvider/releases/tag/v1.0.1). Once done, you can change the entry in the config to:
 
 ```
     <configProtectedData>
@@ -146,24 +144,36 @@ A few notes:
 
 1. This **is not** the same certificate you generated for Azure AD and Key Vault. This is a separate RSA certificate for use with configuration encryption. You must *also* upload the PFX for this to Azure.
 1. You will need to install the PKCS12ProtectedConfigurationProvider.dll to the GAC before running the `aspnet_regiis` command. Just run `gacutil -i PKCS12ProtectedConfigurationProvider.dll` beforehand.
-2. You will need to reference your custom compiled DLL instead of the one in the guide (make sure to grab your new public key token).
-3. Despite this StackOverflow answer, you **can** use encryption with configuration files using the PKCS12 provider.
-4. If you are using IIS, you will probably need to run your app pool under your identity (see `Azure` section in my [config repository](https://github.com/kamranayub/PKCS12ProtectedConfigurationProvider))
+2. You will need to reference the custom compiled DLL instead of the one in the guide
+3. I found [this StackOverflow question](http://stackoverflow.com/questions/17189441/web-config-encryption-for-web-sites) but there was no answer. Now there is.
 
 # So where are we at?
 
 If you followed all the guides I linked to and followed the notes, you should have the following:
 
-1. An Azure Key Vault set up
+1. An Azure Key Vault set up with a secret to test with
 2. A certificate that authenticates against Azure AD
 3. A certificate that can encrypt/decrypt your web.config
 4. Both certificates uploaded to Azure through the portal
 
 Phew! With all this in place, here's what this gets you:
 
-1. Encryption keys are not known, therefore cannot be discovered unless by some Act of God (practically)
+1. Encryption keys are not known, therefore the **most** an attacker could do if they compromised the application is to decrypt every user through Key Vault which is an audited system and slows them down
 2. Your production secrets are not stored anywhere in your application or source control, local secrets and connection strings are encrypted
-3. No tokens are used to access Key Vault, instead a signed certificate is used
+3. No cleartext tokens are used to access Key Vault, instead a signed certificate is used
+
+# Some implementation code
+
+The article above for getting started with a web app is a good place to start but I did a few things to make it easy to test and work with locally.
+
+1. I created an `ISecretsProvider` interface with two implementations: a config provider and a Key Vault provider. This also lets me mock for testability.
+2. When I bind the `ISecretsProvider` for dependency injection, I inspect the current environment and use the appropriate provider (config locally, key vault otherwise)
+
+Some other thoughts of what you might want to do:
+
+- Add some logging/telemetry around calls to key vault, such as [App Insights' track dependency](https://azure.microsoft.com/en-us/documentation/articles/app-insights-api-custom-events-metrics/#track-dependency)
+- When the Key Vault client supports returning `SecureStrings`, you could use that to protect secrets in memory
+- Rotate encryption keys every so often (store the version of the key used on the entities), though this might be pricey for HSM keys
 
 # Troubleshooting
 
