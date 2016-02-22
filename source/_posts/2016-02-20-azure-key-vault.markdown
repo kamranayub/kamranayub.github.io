@@ -50,7 +50,7 @@ With that in mind, let's move on!
 
 The most important secret in your app is probably your **encryption key**. This is the skeleton key to your kingdom. If someone got ahold of it, they could unlock your user's data and tarnish your reputation. If your Azure or portal account was compromised (even after Two Factor Auth), would attackers have access to your keys? They would if you stored them in a config or in the portal. So how can you protect this key if none of the options above truly secure it? 
 
-Well, what if I told you... that **you don't need to know the key**. If nobody knows it, no one can steal it! But how does that work exactly? Magic? Not exactly...
+Well, what if I told you that **you don't need to know the key**. If nobody knows it, no one can steal it! But how does that work exactly? Magic? Not exactly...
 
 # Enter the vault
 
