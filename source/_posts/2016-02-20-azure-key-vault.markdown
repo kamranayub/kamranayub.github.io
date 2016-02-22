@@ -174,6 +174,7 @@ Some other thoughts of what you might want to do:
 - Add some logging/telemetry around calls to key vault, such as [App Insights' track dependency](https://azure.microsoft.com/en-us/documentation/articles/app-insights-api-custom-events-metrics/#track-dependency)
 - When the Key Vault client supports returning `SecureStrings`, you could use that to protect secrets in memory
 - Rotate encryption keys every so often (store the version of the key used on the entities), though this might be pricey for HSM keys
+- Encrypt secrets before storing them and then decrypt them at runtime (might be overkill)
 
 # Troubleshooting
 
@@ -181,15 +182,7 @@ I ran into a bunch of problems during the writing of this guide. Hopefully these
 
 ## When I run my app and try to get a secret from Key Vault I get a "Keyset does not exist" error
 
-Your app pool/user running the app does not have access to the private key. Follow my advice above to change the app pool identity to your own user account. Then modify the Key Vault `GetCertificate` helper to use the appropriate store at runtime, like this:
-
-```
-StoreLocation storeLocation = AppSettings.RuntimeEnvironment >= RuntimeEnvironment.D
-  ? StoreLocation.CurrentUser
-  : StoreLocation.LocalMachine;
-
-  X509Store store = new X509Store(StoreName.My, storeLocation);
-```
+Your app pool/user running the app does not have access to the private key. Follow my advice above to change the app pool identity to your own user account.
 
 I use an app setting to determine where my app is running.
 
@@ -199,6 +192,11 @@ You are trying to use the same cert you made for Azure AD, you can't do this. Fo
 
 ## When I build my app in Azure through Continuous Deployment, it's not able to decrypt the web.config
 
-1. Ensure you uploaded the cert through the portal
+1. Ensure you uploaded the PFX file through the portal
 2. Ensure you restarted the application (or Stop then Start)
-3. Ensure the `storeLocation` attribute is set to `CurrentUser`. If you are using `LocalMachine` locally, you can set the store location at build time through a `web.Release.config` transform (see above)
+  - You can use the Kudu console to run Powershell to check if your cert is uploaded.
+  - `PS> Set-Location Cert:\CurrentUser\My`
+  - `PS> Get-ChildItem`
+3. Ensure the `storeLocation` attribute in the web.config is set to `CurrentUser`
+
+I tried to figure out how to run with `LocalMachine` in dev and `CurrentUser` in Azure but I couldn't do it via config, because the web.config is decrypted *before* any transforms happen. You could probably roll your own provider that checks for certain environment configuration but it was easier to just run my app as my own user in IIS to work around it.
