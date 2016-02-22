@@ -37,6 +37,7 @@ So then, what exactly *are* the benefits of moving secrets out of the portal the
 - Least privilege -- You can grant a service principal Read-only access so even if the app was compromised, an attacker couldn't change or delete anything (unless they had access to change the policies in Key Vault)
 - As-needed access -- By storing secrets away from your application, you at *least* guarantee only the application can access secrets whereas anyone with Read access to the portal can see app settings
 - Defense in depth -- You're just adding one more layer of security between an attacker and your data
+- Shared storage -- If you have multiple apps or services, using a single vault is useful and you can grant access policies at the secret/key level
 - Right thing to do -- You owe it to your users and to your business to protect their data to the best of your ability
 
 [This article](http://blogs.msdn.com/b/data_insights_global_practice/archive/2015/09/24/protecting-sensitive-data-with-azure-key-vault.aspx) sums it up nicely:
