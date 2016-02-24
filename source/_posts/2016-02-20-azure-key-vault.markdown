@@ -122,7 +122,7 @@ In the folder where your cert was generated, right-click the `.pfx` file and sel
 
 We have the cloud secrets squared away. You *could* still use Key Vault locally, except you'd depend on connectivity (and pay for the usage). Instead, there's something we can do even if we don't end up using Azure Key Vault. We can **encrypt the settings** in the web.config. 
 
-I started with [this guide](http://eren.ws/2014/02/04/encrypting-the-web-config-file-of-an-azure-cloud-service) to encrypting the configuration sections (I recommend `appSettings` and `connectionStrings`). You **cannot** use the same certificate you generated in the tutorial above (well, maybe you could but you need the `-exchange sky` switch to `makecert` and I didn't try that initially so I generated a separate certificate).
+I started with [this guide](http://eren.ws/2014/02/04/encrypting-the-web-config-file-of-an-azure-cloud-service) to encrypting the configuration sections (but **NOT** `appSettings`, see below). You **cannot** use the same certificate you generated in the tutorial above (well, maybe you could but you need the `-exchange sky` switch to `makecert` and I didn't try that initially so I generated a separate certificate).
 
 There's another thing. You also need to use a different `PKCS12ProtectedConfigurationProvider`. The one provided **only** searches the `LocalMachine` certificate store but in Azure, your cert is installed for the current user, so the provider fails to decrypt the config when you try to build your app on Azure because it cannot find the certificate. You need a provider that can specify the `StoreLocation` of where to load certificates from. For Azure, it must be the **CurrentUser** store.
 
