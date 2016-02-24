@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Cloud | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/cloud/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2016-02-24T02:35:44+00:00</updated>
+  <updated>2016-02-24T18:06:39+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -37,7 +37,7 @@
 
 <h2>Why bother?</h2>
 
-<p>Some of you might say, &ldquo;It&rsquo;s okay if my secret is in a config file or an environment variable, only an admin can see that.&rdquo; You&rsquo;d assume so, wouldn&rsquo;t you? But I ran into an exploit last year where you could <strong>ANY</strong> file on the web server using a custom file handler vulnerability (the exploit has since been fixed by the vendor). Just pass in the path you cared about and the handler would helpfully spit out the contents of the file! If your secrets are in cleartext in your configs, are you checking them into source control? Anyone can read those if they have access. If you work in an organization and your code is on the web servers, anyone with access to those servers can see the file system (and therefore, your precious &ldquo;secrets&rdquo;).</p>
+<p>Some of you might say, &ldquo;It&rsquo;s okay if my secret is in a config file or an environment variable, only an admin can see that.&rdquo; You&rsquo;d assume so, wouldn&rsquo;t you? But I ran into an exploit last year where you could view <strong>ANY</strong> file on the web server using a custom file handler vulnerability (the exploit has since been fixed by the vendor). Just pass in the path you cared about and the handler would helpfully spit out the contents of the file! If your secrets are in cleartext in your configs, are you checking them into source control? Anyone can read those if they have access. If you work in an organization and your code is on the web servers, anyone with access to those servers can see the file system (and therefore, your precious &ldquo;secrets&rdquo;).</p>
 
 <p>You might also (rightfully) say that if an attacker got access to your Azure portal, it&rsquo;s game over anyway. Yes, absolutely. If an app is compromised at the filesystem level where an attacker can upload files, you&rsquo;re pretty much done for. That&rsquo;s why your portal account should have a strong password and have Two-Factor Authentication enabled. If you&rsquo;re using source control integration, that also needs to be protected with the same amount of security to prevent someone from checking in malicious files and having them deployed through automation to the web server&mdash;go and <a href="https://help.github.com/articles/about-two-factor-authentication/">enable TFA for GitHub</a> if you haven&rsquo;t already.  The goal is that we want to avoid storing plaintext secrets on the filesystem and in the portal itself, instead opting to store them in a secure location so that only <strong>our application</strong> has access to them, no one else.</p>
 
