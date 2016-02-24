@@ -237,7 +237,14 @@ Some other thoughts of what you might want to do:
 
 ### A word on storing secrets in-memory
 
-Ideally you would only access secrets as-needed and not store them in memory. But to be honest, if an attacker has compromised your process memory somehow, they've owned you anyway. At least with the *current* KeyVault client, it does **not** return secrets as `SecureStrings`, so it will be in cleartext in memory anyway. It's up to you.
+Ideally you would only access secrets as-needed and not store them in memory. But there are some things to consider: 
+
+- If an attacker has compromised your process memory somehow, they've owned you anyway.
+- While $0.13/10,000 operations seems cheap, it would add up if you had to call Key Vault **every** time you needed to use a secret
+- Calling Azure Key Vault does incur some latency, even if it's minimal--remember that their SLA is 99.9% within 5 seconds so it's possible latency could be pretty poor
+- At least with the *current* KeyVault client, it does **not** return secrets as `SecureStrings`, so it will be in cleartext in memory *anyway* so what's the difference? (Maybe [they will fix that](https://github.com/Azure/azure-sdk-for-net/issues/1819).) 
+
+It's up to you but those are my thoughts.
 
 ## Troubleshooting
 
