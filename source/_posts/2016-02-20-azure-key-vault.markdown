@@ -150,6 +150,38 @@ A few notes:
 2. You will need to reference the custom compiled DLL instead of the one in the guide
 3. I found [this StackOverflow question](http://stackoverflow.com/questions/17189441/web-config-encryption-for-web-sites) but there was no answer. Now there is.
 
+### Storing secrets outside `<appSettings>`
+
+I ran into a major hurdle that caused me some grief. It turns out, **YOU CANNOT ENCRYPT THE `<appSettings>` SECTION!** See [this SO question](http://stackoverflow.com/questions/15067759/why-cant-i-encrypt-web-config-appsettings-using-a-custom-configprotectionprovid).
+
+Other sections are just fine but for whatever reason, IIS just **requires** you to GAC the config provider for it to work. In Azure web apps, we cannot GAC. So what can we do? We can use our **own** config section!
+
+Here's an implementation example of an `ISecretsProvider` contract and a `ConfigSecretsProvider` example implementation. You'd also create an `AzureKeyVaultSecretsProvider` probably to handle getting secrets from Azure Key Vault using the code from the guides above.
+
+<script src="https://gist.github.com/kamranayub/eb6518356ac2b2f1a72a.js"></script>
+
+The `ConfigSecretsProvider` will use environment variables defined in Azure *first* then fallback to the config. This mirrors how app settings work in Azure.
+
+**Note:** Here I am deciding to use only one provider per environment. You might want an implementation that actually uses both. My Key Vault implementation actually uses the `ConfigSecretsProvider` to find the URL to load the secret for, so that in Azure, the app settings just specify the Key Vault secret URL to load:
+
+![App settings in Azure](https://cloud.githubusercontent.com/assets/563819/13271735/9a0f600a-da5c-11e5-9ff0-106d5e009464.png)
+
+This way, locally I can use the raw value (encrypted) and then in Azure, reference the URL for the secret.
+
+To encrypt the `<appSecrets>` section, just run the the command (in the same directory as the web.config and using the Visual Studio Command Prompt):
+
+```
+aspnet_regiis -pef appSecrets . -prov CustomProvider
+```
+
+And to decrypt:
+
+```
+aspnet_regiis -pdf appSecrets .
+```
+
+Easy peasy!
+
 ## So where are we at?
 
 If you followed all the guides I linked to and followed the notes, you should have the following:
@@ -158,6 +190,7 @@ If you followed all the guides I linked to and followed the notes, you should ha
 2. A certificate that authenticates against Azure AD
 3. A certificate that can encrypt/decrypt your web.config
 4. Both certificates uploaded to Azure through the portal
+5. A `<appSecrets>` section in your config for local secrets that is encrypted
 
 Phew! With all this in place, here's what this gets you:
 
