@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Securing Secrets and Keys using Azure Key Vault"
-date: 2016-02-20 20:30:00 -0600
+title: "Securing Secrets Using Azure Key Vault and Config Encryption"
+date: 2016-02-23 20:30:00 -0600
 comments: true
 published: false
 categories:
@@ -10,6 +10,7 @@ categories:
 - Security
 - Encryption
 - Cloud
+- Secrets
 ---
 
 Secrets. We all have them. I'm talking about secrets like your database connection strings, API keys and encryption keys. Where are you storing yours? Are you storing them...
@@ -21,26 +22,25 @@ Secrets. We all have them. I'm talking about secrets like your database connecti
 
 I hope you aren't storing them hardcoded. You're probably doing option 2 or a hybrid of options 2-4. Even if you use an external data source, it's hard to escape the need for secrets in local development unless you force your app to rely on having connectivity which makes it hard to work offline.
 
-In this post I'm going to provide some suggestions on how to store your secrets better using Azure Key Vault and config file encryption, specifically for cloud applications.
+In this post I'm going to provide some suggestions on how to store your secrets better using Azure Key Vault and config file encryption, specifically in the context of Azure but the concepts apply to any hosting environment.
 
 <!-- More -->
 
 ## Why bother?
 
-If you are already storing secrets in the config or an external system, does this even matter? Let me ask you, can a human being find your encryption key? If the answer is Yes, it matters--because the answer should be **No.**
+Some of you might say, "It's okay if my secret is in a config file or an environment variable, only an admin can see that." You'd assume so, wouldn't you? But I ran into an exploit last year where you could **ANY** file on the web server using a custom file handler vulnerability (the exploit has since been fixed by the vendor). Just pass in the path you cared about and the handler would helpfully spit out the contents of the file! If your secrets are in cleartext in your configs, are you checking them into source control? Anyone can read those if they have access. If you work in an organization and your code is on the web servers, anyone with access to those servers can see the file system (and therefore, your precious "secrets").
 
-Some of you might say, "It's okay if my secret is in the config, no one but an admin can see it on the web server." You'd think so, but I ran into an exploit last year where you could see files on the web server using a custom file handler vulnerability (the exploit has since been fixed by the vendor). If your secrets are in your configs, are you checking them into source control? If you work in an organization and your code is on the web servers, anyone with access to those servers can see your config files.
+You might also (rightfully) say that if an attacker got access to your Azure portal, it's game over anyway. Yes, absolutely. If an app is compromised at the filesystem level where an attacker can upload files, you're pretty much done for. That's why your portal account should have a strong password and have Two-Factor Authentication enabled. If you're using source control integration, that also needs to be protected with the same amount of security to prevent someone from checking in malicious files and having them deployed through automation to the web server--go and [enable TFA for GitHub](https://help.github.com/articles/about-two-factor-authentication/) if you haven't already.  The goal is that we want to avoid storing plaintext secrets on the filesystem and in the portal itself, instead opting to store them in a secure location so that only **our application** has access to them, no one else.
 
-You might also (rightfully) say that if an attacker got access to your Azure portal, it's game over anyway. Yes, absolutely. If an app is compromised at the filesystem level where an attacker can upload files, you're pretty much done for anyway. That's why your portal account should have a strong password and have Two-Factor Authentication enabled. If you're using source control integration, that also needs to be protected with the same amount of security--go and [enable TFA for GitHub](https://help.github.com/articles/about-two-factor-authentication/) if you haven't already.  The goal is that we want to avoid storing plaintext secrets on the filesystem and in the portal itself, instead opting to store them in a secure location so that only **our application** has access to them, no one else.
+There are more benefits to separating your secrets from your application:
 
-So then, what exactly *are* the benefits of moving secrets out of the portal then?
-
-- Logging -- Azure Key Vault logs all operations, so if someone did compromise your application, you'd have the logs or could monitor them closely for strange actions
-- Least privilege -- You can grant a service principal Read-only access so even if the app was compromised, an attacker couldn't change or delete anything (unless they had access to change the policies in Key Vault)
-- As-needed access -- By storing secrets away from your application, you at *least* guarantee only the application can access secrets whereas anyone with Read access to the portal can see app settings
-- Defense in depth -- You're just adding one more layer of security between an attacker and your data
-- Shared storage -- If you have multiple apps or services, using a single vault is useful and you can grant access policies at the secret/key level
-- Right thing to do -- You owe it to your users and to your business to protect their data to the best of your ability
+- **Logging** -- Azure Key Vault logs all operations, so if someone did compromise your application, you'd have the logs or could monitor them closely for strange actions
+- **Least privilege** -- You can grant a service principal Read-only access so even if the app was compromised, an attacker couldn't change or delete anything (unless they also had access to change the policies in Key Vault)
+- **As-needed access** -- By storing secrets away from your application, you at *least* guarantee only the application can access secrets whereas anyone with Read access to the portal can see app settings
+- **Defense in depth** -- You're just adding one more layer of security between an attacker and your data
+- **Shared storage** -- If you have multiple apps or services, using a single vault is useful and you can grant access policies at the secret or key level
+- **Encrypted configs** -- Instead of storing secrets in cleartext in source control, I will show you how to encrypt sections of your web.config (and it works in Azure!)
+- **Right thing to do** -- You owe it to your users and to your business to protect their data to the best of your ability
 
 [This article](http://blogs.msdn.com/b/data_insights_global_practice/archive/2015/09/24/protecting-sensitive-data-with-azure-key-vault.aspx) sums it up nicely:
 
@@ -50,13 +50,20 @@ With that in mind, let's move on!
 
 ## Encryption keys
 
-The most important secret in your app is probably your **encryption key**. This is the skeleton key to your kingdom. If someone got ahold of it, they could unlock your user's data and tarnish your reputation. If your Azure or portal account was compromised (even after Two Factor Auth), would attackers have access to your keys? They would if you stored them in a config or in the portal. So how can you protect this key if none of the options above truly secure it? 
+The most important secret in your app is probably your **encryption key** (aka "keys"). This is the skeleton key to your kingdom. If someone got ahold of it, they could unlock your user's data and tarnish your reputation. If your Azure or portal account was compromised (even after Two Factor Auth), would attackers have access to your keys? They would if you stored them in a config or in the portal. So how can you protect this key if none of the options above truly secure it? 
 
 Well, what if I told you that **you don't need to know the key**. If nobody knows it, no one can steal it! But how does that work exactly? Magic? Not exactly...
 
-## Enter the vault
+## Welcome to the vault
 
-Enter [Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/) which is basically the most hardcore thing ever when you read about how they secure your keys. If you opt for the Premium service tier, your key is stored on **dedicated hardware** called a Hardware Security Module (HSM). I had never heard of these so let me clue you in: they are **[devices](https://en.wikipedia.org/wiki/Hardware_security_module)** where all they do is encrypt and decrypt data and never let the key leave their boundaries. That means, essentially, you present the data you want to encrypt to the device, it encrypts it using a key that **nobody knows**, and spits out the ciphertext for you to store in your system. Azure Key Vault also supports *software-protected* keys which can operate under the same conditions except they are not stored on a dedicated device. The HSM is validated to be [FIPS 140-2 Level 2](https://en.wikipedia.org/wiki/FIPS_140-2#Level_2) compliant (out of 4 levels). What does that mean exactly?
+Enter [Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/).
+
+Azure Key Vault does two things:
+
+- It stores encryption "keys" which **you cannot retrieve** so that you can encrypt and decrypt data, you'd use this for user data like PII (Personally Identifiable Information)
+- It stores "secrets" which **you can** retrieve, these are things like passwords, API tokens, or other items you pass around
+
+A word about how Azure Key Vault stores keys. It's basically the most hardcore thing ever. If you opt for the Premium service tier, your key is stored on **dedicated hardware** called a Hardware Security Module (HSM). I had never heard of these so let me clue you in: they are **[devices](https://en.wikipedia.org/wiki/Hardware_security_module)** where all they do is encrypt and decrypt data and never let the key leave their boundaries. That means, essentially, you present the data you want to encrypt to the device, it encrypts it using a key that **nobody knows**, and spits out the ciphertext for you to store in your system. Azure Key Vault also supports *software-protected* keys which can operate under the same conditions except they are not stored on a dedicated device. The HSM is validated to be [FIPS 140-2 Level 2](https://en.wikipedia.org/wiki/FIPS_140-2#Level_2) compliant (out of 4 levels). What does that mean exactly?
 
 Well, here's Level 1 security:
 
@@ -84,14 +91,14 @@ Instead of using the default authentication to Azure AD, a "client ID" and "secr
 
 ## Let's do it!
 
-I followed these two guides for setting up Key Vault and authenticating using a certificate:
+I followed these two guides for setting up Key Vault and authenticating using a certificate, so I won't repeat the steps here but I do have several notes below that augment the guides:
 
 1. [Getting Started with Azure Key Vault](https://azure.microsoft.com/en-us/documentation/articles/key-vault-get-started/)
 2. [Using Azure Key Vault from a Web Application](https://azure.microsoft.com/en-us/documentation/articles/key-vault-use-from-web-application)
 
 Follow the appendix in guide 2 to generate a certificate to authenticate to Azure AD.
 
-Here are some notes:
+As you work through the guides, reference the notes below.
 
 ### PowerShell Cmdlet Changes
 
@@ -106,7 +113,7 @@ When executing `Set-AzureKeyVaultAccessPolicy` make sure to add the switch `-Per
 
 ### Certificates...?
 
-If you're like me, you probably find certificates can be confusing. Are you making an SSL cert? Not exactly. *Most* SSL certs are X.509 certs (not all) but they also can be used to encrypt web traffic. "Plain" X.509 certs can be used to sign things or encrypt/authenticate, which is what we're doing. If you Google around, you'll see they can be called "client certificates" or "personal" certificates. There are two places a cert can be installed ("stores"), one is the "Local Machine" store and the other is the "Current User" store. The machine store can be accessed by *any* user account, the current user store can only be accessed by the user running the process (usually, you). A "cer" file is the **public key** for your certificate. You can distribute it to anyone. The "pfx" file contains **both the private AND public key**. **DO NOT GIVE IT TO ANYONE.** You want the PFX file for yourself only and to import into your PC and into Azure. The PFX file is protected by a password, I recommend a strong one and *don't lose it.*
+If you're like me, you probably find certificates can be confusing. Are you making an SSL cert? Not exactly. *Most* SSL certs are X.509 certs (not all) but they also can be used to encrypt web traffic. "Plain" X.509 certs can be used to sign things or encrypt/authenticate, which is what we're doing. If you Google around, you'll see they can be called "client certificates" or "personal" certificates. There are two places a cert can be installed ("stores"), one is the "Local Machine" store and the other is the "Current User" store. The machine store can be accessed by *any* user account, the current user store can only be accessed by the user running the process (usually, you). A "cer" file is the **public key** for your certificate. You can distribute it to anyone. The "pfx" file contains **both the private AND public key**. **DO NOT GIVE IT TO ANYONE.** You want the PFX file for yourself only and to import into your PC and into Azure. The PFX file is protected by a password, I recommend a strong one and *don't lose it.* Rule of thumb: **NEVER let the private key leave your machine. This means don't email it. Yes, this has really happened before.**
 
 ### Certificate key length
 
@@ -154,7 +161,7 @@ A few notes:
 1. This **is not** the same certificate you generated for Azure AD and Key Vault. This is a separate RSA certificate for use with configuration encryption. You must *also* upload the PFX for this to Azure.
 1. You will need to install the PKCS12ProtectedConfigurationProvider.dll to the GAC before running the `aspnet_regiis` command. Just run `gacutil -i PKCS12ProtectedConfigurationProvider.dll` beforehand.
 2. You will need to reference the custom compiled DLL instead of the one in the guide
-3. I found [this StackOverflow question](http://stackoverflow.com/questions/17189441/web-config-encryption-for-web-sites) but there was no answer. Now there is.
+3. I found [this StackOverflow question](http://stackoverflow.com/questions/17189441/web-config-encryption-for-web-sites) which asks about encrypting the web.config for Azure web apps. Using the PKCS12 provider, **it works.**
 
 ### Storing secrets outside `<appSettings>`
 
@@ -262,11 +269,11 @@ You are trying to use the same cert you made for Azure AD, you can't do this. Fo
 
 ### When I build my app in Azure through Continuous Deployment, it's not able to decrypt the web.config
 
-1. Ensure you uploaded the PFX file through the portal
+1. Ensure you uploaded the config PFX file through the portal
 2. Ensure you restarted the application (or Stop then Start)
   - You can use the Kudu console to run Powershell to check if your cert is uploaded.
   - `PS> Set-Location Cert:\CurrentUser\My`
   - `PS> Get-ChildItem`
 3. Ensure the `storeLocation` attribute in the web.config is set to `CurrentUser`
-
-I tried to figure out how to run with `LocalMachine` in dev and `CurrentUser` in Azure but I couldn't do it via config, because the web.config is decrypted *before* any transforms happen. You could probably roll your own provider that checks for certain environment configuration but it was easier to just run my app as my own user in IIS to work around it.
+4. Ensure you **are not** encrypting the `<appSettings>` config section, it's not supported (use the `appSecrets` workaround above)
+5. Ensure your `thumbprint` matches the certificate thumbprint
