@@ -3,7 +3,7 @@ layout: post
 title: "Securing Secrets Using Azure Key Vault and Config Encryption"
 date: 2016-02-23 20:30:00 -0600
 comments: true
-published: false
+published: true
 categories:
 - C#
 - Azure
