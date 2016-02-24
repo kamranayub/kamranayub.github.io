@@ -90,6 +90,74 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/2016/02/24/azure-key-vault-config-encryption-azure/">Securing Secrets Using Azure Key Vault and Config Encryption</a></h2>
+  
+  <p>
+    <p>Secrets. We all have them. I&rsquo;m talking about secrets like your database connection strings, API keys and encryption keys. Where are you storing yours? Are you storing them&hellip;</p>
+
+
+
+
+<ol>
+<li>In your application&rsquo;s source code?</li>
+<li>In a config file (<code>appSettings</code> or otherwise) checked into source control?</li>
+<li>In a database?</li>
+<li>In a managed portal, like Azure?</li>
+</ol>
+
+
+
+
+<p>I hope you aren&rsquo;t storing them hardcoded. You&rsquo;re probably doing option 2 or a hybrid of options 2-4. Even if you use an external data source, it&rsquo;s hard to escape the need for secrets in local development unless you force your app to rely on having connectivity which makes it hard to work offline.</p>
+
+
+
+
+<p>In this post I&rsquo;m going to provide some suggestions on how to store your secrets better using Azure Key Vault and config file encryption, specifically in the context of Azure but the concepts apply to any hosting environment.</p>
+
+
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2016-02-24T02:30:00+00:00" pubdate data-updated="true">Feb 24<span>th</span>, 2016</time>
+    
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/azure/'>Azure</a>, <a class='category' href='/blog/categories/c-number/'>C#</a>, <a class='category' href='/blog/categories/cloud/'>Cloud</a>, <a class='category' href='/blog/categories/encryption/'>Encryption</a>, <a class='category' href='/blog/categories/secrets/'>Secrets</a>, <a class='category' href='/blog/categories/security/'>Security</a>
+  
+</span>
+
+
+  </span>
+
+  
+    <a class="full-article-link pull-right" rel="full-article" href="/blog/2016/02/24/azure-key-vault-config-encryption-azure/">Read on &rarr;</a>
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/2016/02/09/tools-of-the-trade/">Tools of the Trade 2016</a></h2>
   
   <p>
@@ -1277,103 +1345,6 @@ in
 <span class="categories">
   
     <a class='category' href='/blog/categories/gmail/'>Gmail</a>, <a class='category' href='/blog/categories/tips-and-tricks/'>Tips & Tricks</a>
-  
-</span>
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/2015/07/29/install-windows-10-immediately/">[Updated] Install Windows 10 Immediately Before Rollout</a></h2>
-  
-  <p>
-    <p><strong>Update (8:49pm)</strong>: I adjusted my Windows 8 date/time to tomorrow and the progress of the update jumped and I&rsquo;m completed now. I now see a Restart PC to finish installing updates.</p>
-
-
-
-
-<p><strong>Update (9:00pm)</strong>: Well it looks like it&rsquo;s a bust with Windows 8.1. My friend tested on Windows 7 and it worked but mine refuses to install&mdash;it just says I have it reserved and it&rsquo;s ready. I tried rebooting multiple times and running the /updatenow command again but no go.</p>
-
-
-
-
-<p><img src="https://cloud.githubusercontent.com/assets/563819/8948430/c0f67f0e-356c-11e5-9daf-8cafb3521042.png" alt="image" /></p>
-
-
-
-
-<p><strong>Update (10:00pm CST):</strong> No luck on my other PC, same situation. Guess I&rsquo;ll just have to wait in line like everybody else!</p>
-
-
-
-
-<hr />
-
-
-
-
-<p>This is only applicable for the next few hours until your machine gets Windows 10 rolled out. If you&rsquo;re impatient like me, a friend tipped me off that he was able to install Windows 10 prematurely by simply forcing Windows Update to download Windows 10 and then setting his system time forward a day (BIOS, I&rsquo;m thinking).</p>
-
-
-
-
-<p>It&rsquo;s kind of unbelievable but it&rsquo;s working so far. I&rsquo;m at 95% complete downloading (you can view in Windows Update window).</p>
-
-
-
-
-<p><img src="https://cloud.githubusercontent.com/assets/563819/8948016/ce3997f0-3567-11e5-8e1e-679fd5b54daa.png" alt="Progress" /></p>
-
-
-
-
-<ol>
-<li>Hit Windows+R to bring up Run command</li>
-<li>Type in <code>wuauclt.exe /updatenow</code> (<strong>Works</strong>)</li>
-<li>Wait for the download to finish (Control Panel &ndash;> Windows Update) (<strong>Works</strong>)</li>
-<li>When Windows Update says, &ldquo;Preparing for installation&hellip;&rdquo;, set system time forward a day in Windows (<strong>Works</strong>)<br/>
-<img src="https://cloud.githubusercontent.com/assets/563819/8948191/fa639e0a-3569-11e5-97c0-2b79d709c8cf.png" alt="image" /></li>
-<li>When progress is done, reboot (<strong>Untested</strong>)</li>
-<li>Windows 10 should install (<strong>Untested</strong>)</li>
-</ol>
-
-
-
-
-<p>I will update this post with any new information.</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2015-07-29T02:13:00+00:00" pubdate data-updated="true">Jul 29<span>th</span>, 2015</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/windows-10/'>Windows 10</a>
   
 </span>
 

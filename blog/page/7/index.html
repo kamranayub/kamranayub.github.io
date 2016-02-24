@@ -90,6 +90,92 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/posts/45/sitecore-and-net-framework-45">Sitecore and .NET Framework 4.5</a></h2>
+  
+  <p>
+    <p><strong>Update 1 (8/28/2012)</strong>: As of Sitecore CMS 6.5.0 rev. 120706 (6.5.0 Update-5), this issue should have been fixed. <a href="http://sdn.sitecore.net/Products/Sitecore%20V5/Sitecore%20CMS%206/ReleaseNotes/ChangeLog.aspx#650update5">See here</a> under &ldquo;Miscellaneous&rdquo; fixes.</p>
+
+
+
+
+<p>Just a quick note that as of this post, Sitecore (6.5.x) does not yet support .NET Framework 4.5. If you try to install Sitecore, you will be able to access the homepage and login page, but you won&rsquo;t be able to login. You&rsquo;ll see an error like this:</p>
+
+
+
+
+<p><img src="/blog/images/40.png" alt="Error" /></p>
+
+
+
+
+<blockquote><p>Object of type &lsquo;System.Int32&rsquo; cannot be converted to type &lsquo;System.Web.Security.Cryptography.Purpose&rsquo;</p></blockquote>
+
+
+
+
+<p>This is because in .NET 4.5 there are some new namespaces in <code>System.Web</code> that I guess return a different value than what Sitecore was expecting (or previous .NET 4 consumers).</p>
+
+
+
+
+<p>I googled this error to no avail. Sitecore knows about it but I am posting it in case anyone else (which there will be more soon) run into this.</p>
+
+
+
+
+<h2>Fix it</h2>
+
+
+
+
+<p>Unfortunately, this requires you to (in this order):</p>
+
+
+
+
+<ul>
+<li>Uninstall VS11 if you have it installed</li>
+<li>Uninstall .NET 4.5 (Multi-Targeting and the core one)</li>
+<li>Reinstall .NET 4 (yes, you need to)</li>
+</ul>
+
+
+
+
+<p>I&rsquo;m a bit sad since a few of my projects are MVC4 so in order to use SC locally I now can&rsquo;t work on those projects on this computer. If you have the ability to use a VM or equivalent, I&rsquo;d go that route to avoid having to muck up your main work environment.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2012-05-11T18:24:25+00:00" pubdate data-updated="true">May 11<span>th</span>, 2012</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/posts/44/why-am-i-forced-to-store-my-users-contact-informat">Why Am I Forced to Store My User&#8217;s Contact Information?</a></h2>
   
   <p>
@@ -1093,137 +1179,6 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
 
 
 <time datetime="2012-03-18T04:38:15+00:00" pubdate data-updated="true">Mar 18<span>th</span>, 2012</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/posts/34/i-wish-i-could-do-all-the-things">I Wish I Could Do All the Things</a></h2>
-  
-  <p>
-    <p>Do you ever have the problem where you have so many &ldquo;cool&rdquo; ideas you want to work on, but don&rsquo;t have enough time? When I started out in web development, I had a ton of time, being a high school student. I ran out of ideas by the time I was in college, but now after some time working &ldquo;in the real world,&rdquo; I&rsquo;ve lately had a torrent of ideas that I wish I could spend time on. For some, I&rsquo;ve started on them, but I find it hard to make time for them.</p>
-
-
-
-
-<h2>The Ideas</h2>
-
-
-
-
-<p>Here&rsquo;s a rundown of all the ideas in my head that I wish I could spend time on:</p>
-
-
-
-
-<ul>
-<li>A web-based multiplayer game (I have started working on this)</li>
-<li>A web app related to coding (I started it a little)</li>
-<li>A web site (just ideas written down)</li>
-<li>A project for work (I started a little)</li>
-<li>A crazy idea for an app (IDE?) for writing code (yah, right, I&rsquo;ll never be able to do this&hellip; unless it was web-based)</li>
-<li>A GitHub-style front-end for TFS because TFS is not social</li>
-<li><a href="http://keeptrackofmygames.com">Keep Track of My Games</a> (v1 finished, but wish I could work on v2)</li>
-<li><a href="http://getcassette.net">Cassette</a> for Node.js
-
-<ul>
-<li>I have no idea if this makes sense for Node, but I&rsquo;ve found existing asset management packages not as easy to use as Cassette</li>
-</ul>
-</li>
-</ul>
-
-
-
-
-<p>You can be sure there&rsquo;s more but these are off the top of my head.</p>
-
-
-
-
-<h2>What&rsquo;s blocking?</h2>
-
-
-
-
-<p>Is it totally true I don&rsquo;t have time to work on these? Not exactly. My problem is that having two really big hobbies (gaming + development) and having to work in one hobby (development) conflict with each other. After coming home from developing all day, I am sometimes motivated to work hard on an idea for a few hours (or all night) but that quickly turns to me being burnt out and I have a hard time recovering from it to continue being motivated to work on an idea. More often, I want to relax and play some games or spend time with friends.</p>
-
-
-
-
-<p>The other issue is that my idea list and what I <em>want</em> for each of these ideas quickly turns into a humongous wish list and I start to doubt I can even begin to finish the list. I&rsquo;ve done enough &ldquo;agile&rdquo; development at work to realize I can prioritize and start small and then iterate, which is what I did with KTOMG but then I have so many other ideas, it still feels like too much.</p>
-
-
-
-
-<p>Money is also an issue. I want to implement this and that, but it&rsquo;s going to cost <em>me</em> money to do it. I have loans to pay off (thanks, education), a car to payoff, and rent to pay, not to mention daily or life expenses. I already spend quite a bit and KTOMG still costs me a fair amount to keep running (especially now that AppHarbor has $10 custom domains and $20 SSL). Partly that is dictated by technology, right? I could write everything in PHP and pay for cheap hosting, but I like being a .NET developer and lately I like being a Node/JS developer. Furthermore, complex ideas sometimes need complex hosting. KTOMG has a scheduled job but because I&rsquo;m cheap, it&rsquo;s not a background worker&hellip; it&rsquo;s a scheduled URL request to a &ldquo;secret&rdquo; URL that initiates a 2 minute job. My database is hosted at a different host, which makes the site slower because it&rsquo;s expensive to host SQL Server on AppHarbor.</p>
-
-
-
-
-<p>If an idea I had were to generate revenue, and several of my ideas I&rsquo;m working on <em>could</em>, expenses would be less of an issue. When I released TorrentTyphoon, hosting was cheap and the site paid for itself (I think during my 4 years of high school I made around $10,000 in freelance and ad revenue). The main issue is that I still need to pay for the idea while I&rsquo;m developing it or testing it, and what happens if I release it and it goes nowhere? I&rsquo;m the one who has to pay for it.</p>
-
-
-
-
-<h2>So what&rsquo;s the solution?</h2>
-
-
-
-
-<p>I&rsquo;ve found that if I <em>force myself to start</em> working on an idea, I will be carried off and will work on it continuously for awhile. The hard part is actually sitting down and opening up the project. For KTOMG, I said to myself that I&rsquo;d spend an hour a day for a week working on the site. What happened was that &ldquo;hour&rdquo; turned into several hours and it was really fun. The reward was making an app that actually accomplished what I wanted. Then the ideas started getting bigger (make it AJAX, support multiple release dates, let me organize, let me tag, etc. etc.) and it&rsquo;s almost as if I became scared to work on it&hellip; for fear of it taking so much time; <em>plus</em> those features were not the core of what I wanted for myself, and if I don&rsquo;t really want to use them, what&rsquo;s the motivation for me to implement them? There are around 80 people that use the site&hellip; and it does <em>exactly what I need it to</em>. It&rsquo;s hard for me to justify spending time adding more features, <em>even though I realize deep down it&rsquo;ll attract more users.</em></p>
-
-
-
-
-<p>What I have had luck with is creating and working on tiny ideas. DotJson was a tiny idea. My latest UnderscoreKO was a tiny idea. This site was a tiny idea. These ideas are 1 week projects or less and they have a finite end, which I seem to do better on. They are spawned because <em>I</em> want to use them and I make them public so others can too.</p>
-
-
-
-
-<p>I&rsquo;ve also learned, as I related above, that &ldquo;chunked&rdquo; development works well for me. Spend an hour a day, or aim to spend 5 hours a week, if I make the goal small, I tend to have more fun which makes me more motivated. If I start to see a working prototype or actual result, it snowballs until I finish something consumable. The other thing that motivates me pretty well is doing something new; developing a game is not something I&rsquo;ve done before, and getting a chance to learn Node.js, Socket.io, and other new stuff is pretty fun.</p>
-
-
-
-
-<p>The other thing that seems to help is working with someone else. Even if it&rsquo;s bouncing ideas, or including them in my repository, it becomes fun to work on an idea. So far I haven&rsquo;t had a chance to work with someone <em>coding-wise</em> on an idea, but I&rsquo;ve had the chance to do feature or mechanic work with other people. Everyone else is just as busy, or more busy, than I am.</p>
-
-
-
-
-<p>Finally, one of the things I could do is to throw my ideas and all my documentation out there and let someone else run with it. The problem with that, is that I&rsquo;d be worried I wouldn&rsquo;t have a say in what happens or worse, would lose control of the idea. The last thing I want is for someone else to take my idea, not tell me, and then profit off of it. Perhaps that&rsquo;s a cynical point of view but it is something I worry about. For things that I know I probably don&rsquo;t have enough knowledge to do or are just &ldquo;Wouldn&rsquo;t it be nice?&rdquo; ideas, I don&rsquo;t mind sharing them (like some ideas I listed above).</p>
-
-
-
-
-<p>Does anyone else have this problem? Have you had it and solved it? Do you have it and wish you could solve it? I&rsquo;m interested in knowing.</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2012-03-16T21:29:32+00:00" pubdate data-updated="true">Mar 16<span>th</span>, 2012</time>
     
 
 

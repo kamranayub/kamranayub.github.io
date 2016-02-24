@@ -90,6 +90,257 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/posts/2/befriending-appharbor-and-making-it-work-for-you">Befriending AppHarbor and Making It Work for You</a></h2>
+  
+  <p>
+    <p>I chose to partially host my site on <a href="http://appharbor.com">AppHarbor</a> because it affords several luxuries for <strong>free</strong>:</p>
+
+
+
+
+<ul>
+<li>Load balancing</li>
+<li>Automatic builds and deploys</li>
+<li>Fast and easy setup/maintenance</li>
+<li>Private Git hosting</li>
+</ul>
+
+
+
+
+<p>However, it does fall short in a couple areas:</p>
+
+
+
+
+<ol>
+<li>Native support for a staging environment</li>
+<li>Free database is only 20MB and it&rsquo;s $10/mo for a 10GB database</li>
+<li>Any more instances incur about $36/mo each</li>
+</ol>
+
+
+
+
+<p>There are workarounds for the first two issues, which I will cover here. The third is a judgement call on your part, whether you think it&rsquo;s worth the cost. For me, I don&rsquo;t need another instance.</p>
+
+
+
+
+<h2>Setting up a Staging Environment</h2>
+
+
+
+
+<p>You <em>can</em> set up a staging environment in AppHarbor. I needed several things for my staging environment:</p>
+
+
+
+
+<ol>
+<li>Is a sub-domain</li>
+<li>Is protected so only I can access it</li>
+</ol>
+
+
+
+
+<p>Here is what I did:</p>
+
+
+
+
+<ol>
+<li>In AppHarbor, create a new application (e.g. <em>Kamranicus-Dev</em>)</li>
+<li>Locally, add this new application as a new remote to your Git:
+
+<ul>
+<li><code>git remote add appharbor-stage {your new app Git url}</code></li>
+</ul>
+</li>
+<li>In the <strong>Configuration Variables</strong> section of your AppHarbor application, add a new variable:
+
+<ul>
+<li><code>RuntimeEnvironment</code> with a value of <code>Staging</code></li>
+</ul>
+</li>
+<li>In your <strong>web.config</strong>, you can now add a new <code>appSetting</code>:
+
+<ul>
+<li><code>&lt;add key="RuntimeEnvironment" value="Local" /&gt;</code></li>
+</ul>
+</li>
+</ol>
+
+
+
+
+<p>Now, when you push to your new <code>appharbor-stage</code> remote, AppHarbor will automatically replace that app setting with the value <code>Staging</code>.</p>
+
+
+
+
+<p>At this point, you&rsquo;re all done. You can now add a host name like <strong>stage.kamranicus.com</strong> to point to your staging site.</p>
+
+
+
+
+<p>To push to your staging environment:</p>
+
+
+
+
+<pre><code>git push appharbor-stage master
+</code></pre>
+
+
+
+
+<p>If you&rsquo;re wondering about connection strings, you will need to test for the current <code>RuntimeEnvironment</code> and use one of your choosing:</p>
+
+
+
+
+<pre><code>var runtimeEnvironment = ConfigurationManager.AppSettings["RuntimeEnvironment"].ToString();
+</code></pre>
+
+
+
+
+<h3>Adding protection</h3>
+
+
+
+
+<p>If you&rsquo;re like me, you don&rsquo;t want everyone looking at your new changes before they&rsquo;re ready and you sure as hell don&rsquo;t want people adding stuff to your development database.</p>
+
+
+
+
+<p>I am using Forms authentication in conjunction with OpenID for Kamranicus. Thus, I needed a to make a special attribute for my <code>BaseController</code> that programmatically decided whether or not to restrict access to the controller based on the runtime environment.</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span><span class='line'><span class="k">using</span> <span class="nn">System.Configuration</span><span class="p">;</span>
+</span><span class='line'><span class="k">using</span> <span class="nn">System.Web.Mvc</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">namespace</span> <span class="nn">System.Web.Mvc</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">public</span> <span class="k">class</span> <span class="nc">AuthorizeLocalAttribute</span> <span class="p">:</span> <span class="n">AuthorizeAttribute</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">private</span> <span class="k">const</span> <span class="kt">string</span> <span class="n">LOCAL</span> <span class="p">=</span> <span class="s">&quot;Local&quot;</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">private</span> <span class="k">const</span> <span class="kt">string</span> <span class="n">STAGING</span> <span class="p">=</span> <span class="s">&quot;Staging&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">protected</span> <span class="k">override</span> <span class="kt">bool</span> <span class="nf">AuthorizeCore</span><span class="p">(</span><span class="n">HttpContextBase</span> <span class="n">httpContext</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="c1">// Ignore all Account controller calls (Anonymous)</span>
+</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="n">httpContext</span><span class="p">.</span><span class="n">Request</span><span class="p">.</span><span class="n">RequestContext</span><span class="p">.</span><span class="n">RouteData</span><span class="p">.</span><span class="n">Values</span><span class="p">[</span><span class="s">&quot;controller&quot;</span><span class="p">].</span><span class="n">ToString</span><span class="p">()</span> <span class="p">==</span> <span class="s">&quot;Account&quot;</span><span class="p">)</span>
+</span><span class='line'>              <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="c1">// Get runtime environment</span>
+</span><span class='line'>          <span class="kt">string</span> <span class="n">runtimeEnvironment</span> <span class="p">=</span> <span class="n">ConfigurationManager</span><span class="p">.</span><span class="n">AppSettings</span><span class="p">[</span><span class="s">&quot;RuntimeEnvironment&quot;</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="n">runtimeEnvironment</span> <span class="p">==</span> <span class="n">STAGING</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>              <span class="k">return</span> <span class="k">base</span><span class="p">.</span><span class="n">AuthorizeCore</span><span class="p">(</span><span class="n">httpContext</span><span class="p">);</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>          <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>              <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>You can then apply this attribute to your <code>BaseController</code>:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[AuthorizeLocal(Users = &quot;MyAdminID&quot;)]</span>
+</span><span class='line'><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">BaseController</span> <span class="p">:</span> <span class="n">Controller</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// yada yada yada</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>Does it work?</h2>
+
+
+
+
+<p>This is the method I use and it seems to work great. Note that you can create any number of environments like this and programmatically do different things based on what gets injected in by AppHarbor.</p>
+
+
+
+
+<h2>Taking care of storage</h2>
+
+
+
+
+<p>For my blog I store all my images in the database. This means that I would quickly run over the 20MB in the free database allotted by AppHarbor. I also don&rsquo;t want to pay an extra $10/mo for a database.</p>
+
+
+
+
+<p>Instead, I already have an account with <a href="http://arvixe.com">Arvixe</a> and as far as I could tell, it is not against the TOS of AppHarbor to host your database externally. So that&rsquo;s what I did. I get to use my Arvixe account for not only DB hosting, but also the mail server and other hosting provider options for a measley $10/mo (it also hosts some other sites I own).</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2011-04-06T21:11:44+00:00" pubdate data-updated="true">Apr 6<span>th</span>, 2011</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/posts/1/welcome-to-kamranicus-yaps">Welcome to Kamranicus [YAPS]</a></h2>
   
   <p>
