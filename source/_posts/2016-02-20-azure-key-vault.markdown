@@ -108,9 +108,15 @@ When executing `Set-AzureKeyVaultAccessPolicy` make sure to add the switch `-Per
 
 If you're like me, you probably find certificates can be confusing. Are you making an SSL cert? Not exactly. *Most* SSL certs are X.509 certs (not all) but they also can be used to encrypt web traffic. "Plain" X.509 certs can be used to sign things or encrypt/authenticate, which is what we're doing. If you Google around, you'll see they can be called "client certificates" or "personal" certificates. There are two places a cert can be installed ("stores"), one is the "Local Machine" store and the other is the "Current User" store. The machine store can be accessed by *any* user account, the current user store can only be accessed by the user running the process (usually, you). A "cer" file is the **public key** for your certificate. You can distribute it to anyone. The "pfx" file contains **both the private AND public key**. **DO NOT GIVE IT TO ANYONE.** You want the PFX file for yourself only and to import into your PC and into Azure. The PFX file is protected by a password, I recommend a strong one and *don't lose it.*
 
-### Self-signed vs. commercial certs
+### Certificate key length
 
-In guide 2, you create a self-signed certificate and in the C# code (`GetCertificate`), you tell .NET **not** to validate the Root CA, since it won't be valid. You can do this but it's probably better to use a signed certificate from a trusted authority. Comodo provides a "[Free Email Certificate](https://www.instantssl.com/ssl-certificate-products/free-email-certificate.html)" that is a signed X.509 cert. When you install it, you can Export it to a file (include the private key) and use it.
+In guide 2, you create a self-signed certificate. For production should you use a commercially-signed cert? I can't think of a reason why that would add any extra benefit since the **key length** is what matters (if you *can* think of a reason, I'd be interested in hearing it). What I *would* recommend is generating a certificate with a 4096-bit length key instead of the default 2048 length. In Windows 10 at least, this works:
+
+```
+makecert -sv mykey.pvk -n "cn=KVWebApp" KVWebApp.cer -b 02/23/2016 -e 02/23/2018 -len 4096 -r
+```
+
+If you live in fear, you can buy "personal" certs from trusted authorities like [Comodo](https://ssl.comodo.com/personal-authentication.php) and use that instead.
 
 ### Install the certificate
 
@@ -202,8 +208,25 @@ Phew! With all this in place, here's what this gets you:
 
 The article above for getting started with a web app is a good place to start but I did a few things to make it easy to test and work with locally.
 
-1. I created an `ISecretsProvider` interface with two implementations: a config provider and a Key Vault provider. This also lets me mock for testability.
+1. I created an `ISecretsProvider` interface with two implementations: a config provider (see above) and a Key Vault provider. This also lets me mock for testability.
 2. When I bind the `ISecretsProvider` for dependency injection, I inspect the current environment and use the appropriate provider (config locally, key vault otherwise)
+
+```csharp
+// Ninject example
+
+// Secrets provider
+kernel.Bind<ISecretsProvider>().ToMethod(ctx =>
+{
+    switch (AppSettings.RuntimeEnvironment)
+    {
+        case RuntimeEnvironment.D:
+        case RuntimeEnvironment.P:
+            return new AzureKeyVaultSecretsProvider();
+        default:
+            return new ConfigSecretsProvider();
+    }
+}).InSingletonScope();
+```
 
 Some other thoughts of what you might want to do:
 
