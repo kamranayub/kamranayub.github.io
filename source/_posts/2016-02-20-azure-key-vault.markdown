@@ -235,6 +235,10 @@ Some other thoughts of what you might want to do:
 - Rotate encryption keys every so often (store the version of the key used on the entities), though this might be pricey for HSM keys
 - Encrypt secrets before storing them and then decrypt them at runtime (might be overkill)
 
+### A word on storing secrets in-memory
+
+Ideally you would only access secrets as-needed and not store them in memory. But to be honest, if an attacker has compromised your process memory somehow, they've owned you anyway. At least with the *current* KeyVault client, it does **not** return secrets as `SecureStrings`, so it will be in cleartext in memory anyway. It's up to you.
+
 ## Troubleshooting
 
 I ran into a bunch of problems during the writing of this guide. Hopefully these help:
