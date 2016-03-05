@@ -1024,7 +1024,12 @@ in
   <h2><a href="/blog/2015/10/10/azure-cdn-cassette/">Using Azure CDN Origin Pull With Cassette</a></h2>
   
   <p>
-    <p>For the October update for <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> I wanted to offload my web assets to a CDN. Since I&rsquo;m already using <a href="http://azure.com">Microsoft Azure</a> to host the site, I decided to use <a href="https://azure.microsoft.com/en-us/services/cdn/">Azure CDN</a>.</p>
+    <p><strong>Update (Feb 2016)</strong>: Updated to use new CDN Profiles.</p>
+
+
+
+
+<p>For the October update for <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> I wanted to offload my web assets to a CDN. Since I&rsquo;m already using <a href="http://azure.com">Microsoft Azure</a> to host the site, I decided to use <a href="https://azure.microsoft.com/en-us/documentation/articles/cdn-how-to-use-cdn/">Azure CDN</a>.</p>
 
 
 
@@ -1043,7 +1048,7 @@ in
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>User requests <a href="http://az888888.vo.msecnd.net/stylesheets/foo.png">http://az888888.vo.msecnd.net/stylesheets/foo.png</a>
+</pre></td><td class='code'><pre><code class=''><span class='line'>User requests <a href="http://mysite.azureedge.net/stylesheets/foo.png">http://mysite.azureedge.net/stylesheets/foo.png</a>
 </span><span class='line'>|
 </span><span class='line'>|
 </span><span class='line'>CDN: have I cached &ldquo;stylesheets/foo.png?&rdquo;
@@ -1128,7 +1133,7 @@ in
 
 
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'><a href="https://az99999.vo.msecnd.net/cassette.axd/stylesheet/">https://az99999.vo.msecnd.net/cassette.axd/stylesheet/</a>{hash}/Content/core</span></code></pre></td></tr></table></div></figure></p>
+</pre></td><td class='code'><pre><code class=''><span class='line'><a href="https://mysite.azureedge.net/cassette.axd/stylesheet/">https://mysite.azureedge.net/cassette.axd/stylesheet/</a>{hash}/Content/core</span></code></pre></td></tr></table></div></figure></p>
 
 <p>To allow local debugging and CDN in production I just use an app setting in the web.config. In Azure, I also add an application setting (<code>CdnUrl</code>) through the portal in my production slot with the correct CDN URL and voila&mdash;all my assets will now be served over CDN.</p>
 
@@ -1142,8 +1147,8 @@ in
 
 <ul>
 <li><p>Azure CDN does not yet support HTTPS for custom origin domains. So if you want to serve content over <a href="http://static.yoursite.com">http://static.yoursite.com</a> you can&rsquo;t serve it over HTTPS because Azure doesn&rsquo;t allow you to upload or set a SSL certificate to use and insteads uses their own certificate which is not valid for your domain. <a href="http://feedback.azure.com/forums/169397-cdn/suggestions/1332683-allow-https-for-custom-cdn-domain-names">Vote up the UserVoice issue</a> on this.</p></li>
-<li><p>Azure CDN origin pull does not seem to respect <code>Cache-Control: private</code> HTTP header. For example, by default MVC serves pages with private cache control which means browsers won&rsquo;t cache that page and neither <em>should</em> Azure CDN&mdash;but it does anyway. In my case, I really don&rsquo;t want a true mirror of my site, I just wants assets served over CDN and Cassette sets <code>Cache-Control: public</code> on them automatically. <a href="http://feedback.azure.com/forums/169397-cdn/suggestions/10148280-respect-cache-control-private-for-origin-pull">You can upvote my feature request on UserVoice</a>.</p></li>
-<li><p>I am choosing <strong>not</strong> to point my entire domain to the CDN. Some folks choose to serve their entire site over the CDN which is definitely something you can do. However, in my case, I didn&rsquo;t want to do that. If you instead chose to point your domain to the CDN endpoint, you don&rsquo;t need to do any of this&mdash;<strong>everything</strong> will be served over the CDN.</p></li>
+<li><p>Azure CDN will serve your entire site, not just assets. There may be a way to prevent browsing the site over CDN (i.e. &ldquo;assets only&rdquo;). <a href="https://social.msdn.microsoft.com/Forums/en-US/azurecdn/thread/055bb85f-0bde-4710-8c4d-bce122d5938c/">See this MSDN thread</a>. I have not yet implemented the proposed fix.</p></li>
+<li><p>I am choosing <strong>not</strong> to point my entire domain to the CDN. Some folks choose to serve their entire site over the CDN which is definitely something you can do. However, in my case, I didn&rsquo;t want to do that. If you instead chose to point your domain to the CDN endpoint, you don&rsquo;t need to do any of this&mdash;<strong>everything</strong> will be served over the CDN. However, note that if your site is highly dynamic this results in a double hop&mdash;once to CDN, once to the origin, so you will not see much benefit unless your entire site is mostly static.</p></li>
 </ul>
 
 
