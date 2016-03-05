@@ -11,14 +11,16 @@ categories:
 - Keep Track of My Games
 ---
 
-For the October update for [Keep Track of My Games](http://keeptrackofmygames.com) I wanted to offload my web assets to a CDN. Since I'm already using [Microsoft Azure](http://azure.com) to host the site, I decided to use [Azure CDN](https://azure.microsoft.com/en-us/services/cdn/).
+**Update (Feb 2016)**: Updated to use new CDN Profiles.
+
+For the October update for [Keep Track of My Games](http://keeptrackofmygames.com) I wanted to offload my web assets to a CDN. Since I'm already using [Microsoft Azure](http://azure.com) to host the site, I decided to use [Azure CDN](https://azure.microsoft.com/en-us/documentation/articles/cdn-how-to-use-cdn/).
 
 I set it up for "Origin Pull" which means that instead of uploading my assets to the CDN (Azure Blob storage), you request a file from the CDN and Azure will go and get it from your website and then cache it on their servers.
 
 So as an example:
 
 ```
-User requests http://az888888.vo.msecnd.net/stylesheets/foo.png
+User requests http://mysite.azureedge.net/stylesheets/foo.png
 |
 |
 CDN: have I cached "stylesheets/foo.png?"
@@ -67,7 +69,7 @@ As you can see, I register a custom `IUrlGenerator` and a custom `IUrlModifier`.
 In production, this will produce the following output:
 
 ```
-https://az99999.vo.msecnd.net/cassette.axd/stylesheet/{hash}/Content/core
+https://mysite.azureedge.net/cassette.axd/stylesheet/{hash}/Content/core
 ```
 
 To allow local debugging and CDN in production I just use an app setting in the web.config. In Azure, I also add an application setting (`CdnUrl`) through the portal in my production slot with the correct CDN URL and voila--all my assets will now be served over CDN.
@@ -76,6 +78,6 @@ To allow local debugging and CDN in production I just use an app setting in the 
 
 - Azure CDN does not yet support HTTPS for custom origin domains. So if you want to serve content over http://static.yoursite.com you can't serve it over HTTPS because Azure doesn't allow you to upload or set a SSL certificate to use and insteads uses their own certificate which is not valid for your domain. [Vote up the UserVoice issue](http://feedback.azure.com/forums/169397-cdn/suggestions/1332683-allow-https-for-custom-cdn-domain-names) on this.
 
-- Azure CDN origin pull does not seem to respect `Cache-Control: private` HTTP header. For example, by default MVC serves pages with private cache control which means browsers won't cache that page and neither *should* Azure CDN--but it does anyway. In my case, I really don't want a true mirror of my site, I just wants assets served over CDN and Cassette sets `Cache-Control: public` on them automatically. [You can upvote my feature request on UserVoice](http://feedback.azure.com/forums/169397-cdn/suggestions/10148280-respect-cache-control-private-for-origin-pull).
+- Azure CDN will serve your entire site, not just assets. There may be a way to prevent browsing the site over CDN (i.e. "assets only"). [See this MSDN thread](https://social.msdn.microsoft.com/Forums/en-US/azurecdn/thread/055bb85f-0bde-4710-8c4d-bce122d5938c/). I have not yet implemented the proposed fix.
 
-- I am choosing **not** to point my entire domain to the CDN. Some folks choose to serve their entire site over the CDN which is definitely something you can do. However, in my case, I didn't want to do that. If you instead chose to point your domain to the CDN endpoint, you don't need to do any of this--**everything** will be served over the CDN.
+- I am choosing **not** to point my entire domain to the CDN. Some folks choose to serve their entire site over the CDN which is definitely something you can do. However, in my case, I didn't want to do that. If you instead chose to point your domain to the CDN endpoint, you don't need to do any of this--**everything** will be served over the CDN. However, note that if your site is highly dynamic this results in a double hop--once to CDN, once to the origin, so you will not see much benefit unless your entire site is mostly static.
