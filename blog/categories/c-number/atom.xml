@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C# | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/c-number/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2016-03-06T16:13:10+00:00</updated>
+  <updated>2016-03-06T16:28:04+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -42,30 +42,30 @@ Access-Control-Allow-Origin: http://mydomain.com
  &lt;/customHeaders&gt;
 </code></pre>
 
-<p>   </httpProtocol></p>
+<p>   </httpProtocol>
+   <rewrite></p>
 
-<pre><code>    &lt;rewrite&gt;            
-        &lt;outboundRules&gt;
-            &lt;clear /&gt;                
-            &lt;rule name="AddCrossDomainHeader"&gt;
-                &lt;match serverVariable="RESPONSE_Access_Control_Allow_Origin" pattern=".*" /&gt;
-                &lt;conditions logicalGrouping="MatchAll" trackAllCaptures="true"&gt;
-                    &lt;add input="{HTTP_ORIGIN}" pattern="(http(s)?:\/\/((.+\.)?mydomain\.com))" /&gt;
-                &lt;/conditions&gt;
-                &lt;action type="Rewrite" value="{C:0}" /&gt;
-            &lt;/rule&gt;           
-        &lt;/outboundRules&gt;
-    &lt;/rewrite&gt;
+<pre><code>  &lt;outboundRules&gt;
+      &lt;clear /&gt;                
+      &lt;rule name="AddCrossDomainHeader"&gt;
+          &lt;match serverVariable="RESPONSE_Access_Control_Allow_Origin" pattern=".*" /&gt;
+          &lt;conditions logicalGrouping="MatchAll" trackAllCaptures="true"&gt;
+              &lt;add input="{HTTP_ORIGIN}" pattern="(http(s)?:\/\/((.+\.)?mydomain\.com))" /&gt;
+          &lt;/conditions&gt;
+          &lt;action type="Rewrite" value="{C:0}" /&gt;
+      &lt;/rule&gt;           
+  &lt;/outboundRules&gt;
 </code></pre>
 
-<p> &lt;/system.webServer>
- ```</p>
+<p>   </rewrite>
+&lt;/system.webServer>
+```</p>
 
 <p>This is using special syntax of the URL Rewrite module (<code>RESPONSE_</code>) to add a outgoing response header (dashes replaced with underscores). Then it matches the <em>incoming</em> <code>Origin</code> header, compares the value, and if it matches includes the CORS header with the value of my domain.</p>
 
-<p> That was all I had to do!</p>
+<p>That was all I had to do!</p>
 
-<p> <strong>Note:</strong> Since I just converted over to always SSL, I no longer need this workaround but multiple origins is pretty common when dealing with CORS so this solution will come in handy.</p>
+<p><strong>Note:</strong> Since I just converted over to always SSL, I no longer need this workaround but multiple origins is pretty common when dealing with CORS so this solution will come in handy.</p>
 ]]></content>
   </entry>
   

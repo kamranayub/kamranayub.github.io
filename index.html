@@ -117,63 +117,58 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
 <p>Rather than messing with C# and modifying outgoing responses what I ended up using was a simple URL rewrite rule, proposed by <a href="http://stackoverflow.com/a/31084390/109458">this Stack Overflow answer</a>. All it does is add a header to the outbound response when the regular expression matches&mdash;in this case, whitelisting only the HTTP and HTTPS version of my domain (or subdomain).</p>
 
 
-
-
-<p>&#8220;`
-&lt;system.webServer>
-   <httpProtocol></p>
-
-
-
-
-<pre><code> &lt;customHeaders&gt;
-     &lt;add name="Access-Control-Allow-Headers" value="Origin, X-Requested-With, Content-Type, Accept" /&gt;
-     &lt;add name="Access-Control-Allow-Methods" value="POST,GET,OPTIONS,PUT,DELETE" /&gt;
- &lt;/customHeaders&gt;
-</code></pre>
-
-
-
-
-<p>   </httpProtocol></p>
-
-
-
-
-<pre><code>    &lt;rewrite&gt;            
-        &lt;outboundRules&gt;
-            &lt;clear /&gt;                
-            &lt;rule name="AddCrossDomainHeader"&gt;
-                &lt;match serverVariable="RESPONSE_Access_Control_Allow_Origin" pattern=".*" /&gt;
-                &lt;conditions logicalGrouping="MatchAll" trackAllCaptures="true"&gt;
-                    &lt;add input="{HTTP_ORIGIN}" pattern="(http(s)?:\/\/((.+\.)?mydomain\.com))" /&gt;
-                &lt;/conditions&gt;
-                &lt;action type="Rewrite" value="{C:0}" /&gt;
-            &lt;/rule&gt;           
-        &lt;/outboundRules&gt;
-    &lt;/rewrite&gt;
-</code></pre>
-
-
-
-
-<p> &lt;/system.webServer>
- &#8220;`</p>
-
-
-
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;system.webServer&gt;
+</span><span class='line'>   &lt;httpProtocol&gt;
+</span><span class='line'>     &lt;customHeaders&gt;
+</span><span class='line'>         &lt;add name=&ldquo;Access-Control-Allow-Headers&rdquo; value=&ldquo;Origin, X-Requested-With, Content-Type, Accept&rdquo; /&gt;
+</span><span class='line'>         &lt;add name=&ldquo;Access-Control-Allow-Methods&rdquo; value=&ldquo;POST,GET,OPTIONS,PUT,DELETE&rdquo; /&gt;
+</span><span class='line'>     &lt;/customHeaders&gt;
+</span><span class='line'>   &lt;/httpProtocol&gt;
+</span><span class='line'>   &lt;rewrite&gt;          <br/>
+</span><span class='line'>      &lt;outboundRules&gt;
+</span><span class='line'>          &lt;clear /&gt;              <br/>
+</span><span class='line'>          &lt;rule name=&ldquo;AddCrossDomainHeader&rdquo;&gt;
+</span><span class='line'>              &lt;match serverVariable=&ldquo;RESPONSE_Access_Control_Allow_Origin&rdquo; pattern=&ldquo;.*&rdquo; /&gt;
+</span><span class='line'>              &lt;conditions logicalGrouping=&ldquo;MatchAll&rdquo; trackAllCaptures=&ldquo;true&rdquo;&gt;
+</span><span class='line'>                  &lt;add input=&ldquo;{HTTP_ORIGIN}&rdquo; pattern=&ldquo;(http(s)?:\/\/((.+.)?mydomain.com))&rdquo; /&gt;
+</span><span class='line'>              &lt;/conditions&gt;
+</span><span class='line'>              &lt;action type=&ldquo;Rewrite&rdquo; value=&ldquo;{C:0}&rdquo; /&gt;
+</span><span class='line'>          &lt;/rule&gt;         <br/>
+</span><span class='line'>      &lt;/outboundRules&gt;
+</span><span class='line'>   &lt;/rewrite&gt;
+</span><span class='line'>&lt;/system.webServer&gt;</span></code></pre></td></tr></table></div></figure></p>
 
 <p>This is using special syntax of the URL Rewrite module (<code>RESPONSE_</code>) to add a outgoing response header (dashes replaced with underscores). Then it matches the <em>incoming</em> <code>Origin</code> header, compares the value, and if it matches includes the CORS header with the value of my domain.</p>
 
 
 
 
-<p> That was all I had to do!</p>
+<p>That was all I had to do!</p>
 
 
 
 
-<p> <strong>Note:</strong> Since I just converted over to always SSL, I no longer need this workaround but multiple origins is pretty common when dealing with CORS so this solution will come in handy.</p>
+<p><strong>Note:</strong> Since I just converted over to always SSL, I no longer need this workaround but multiple origins is pretty common when dealing with CORS so this solution will come in handy.</p>
 
 
   </p>
