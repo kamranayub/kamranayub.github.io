@@ -32,23 +32,23 @@ Rather than messing with C# and modifying outgoing responses what I ended up usi
          <add name="Access-Control-Allow-Methods" value="POST,GET,OPTIONS,PUT,DELETE" />
      </customHeaders>
    </httpProtocol>
-        <rewrite>            
-            <outboundRules>
-                <clear />                
-                <rule name="AddCrossDomainHeader">
-                    <match serverVariable="RESPONSE_Access_Control_Allow_Origin" pattern=".*" />
-                    <conditions logicalGrouping="MatchAll" trackAllCaptures="true">
-                        <add input="{HTTP_ORIGIN}" pattern="(http(s)?:\/\/((.+\.)?mydomain\.com))" />
-                    </conditions>
-                    <action type="Rewrite" value="{C:0}" />
-                </rule>           
-            </outboundRules>
-        </rewrite>
- </system.webServer>
- ```
+   <rewrite>            
+      <outboundRules>
+          <clear />                
+          <rule name="AddCrossDomainHeader">
+              <match serverVariable="RESPONSE_Access_Control_Allow_Origin" pattern=".*" />
+              <conditions logicalGrouping="MatchAll" trackAllCaptures="true">
+                  <add input="{HTTP_ORIGIN}" pattern="(http(s)?:\/\/((.+\.)?mydomain\.com))" />
+              </conditions>
+              <action type="Rewrite" value="{C:0}" />
+          </rule>           
+      </outboundRules>
+   </rewrite>
+</system.webServer>
+```
  
 This is using special syntax of the URL Rewrite module (`RESPONSE_`) to add a outgoing response header (dashes replaced with underscores). Then it matches the *incoming* `Origin` header, compares the value, and if it matches includes the CORS header with the value of my domain.
  
- That was all I had to do!
+That was all I had to do!
  
- **Note:** Since I just converted over to always SSL, I no longer need this workaround but multiple origins is pretty common when dealing with CORS so this solution will come in handy.
+**Note:** Since I just converted over to always SSL, I no longer need this workaround but multiple origins is pretty common when dealing with CORS so this solution will come in handy.
