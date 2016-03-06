@@ -9,11 +9,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Security - Kamranicus</title>
+  <title>Handling Multiple Origins in CORS Using URL Rewrite - Kamranicus</title>
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="Category: Security">
+  <meta name="description" content="Handling Multiple Origins in CORS Using URL Rewrite written Mar 6th, 2016 in Azure, C#, Security Here&rsquo;s a quick tip if you&rsquo;re trying to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -22,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://kamranicus.comblog/categories/security">
+  <link rel="canonical" href="http://kamranicus.com/blog/2016/03/06/cors-multiple-origins-iis">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
@@ -51,32 +51,44 @@
       <img src="/images/home.png"/>
     </a>
 
-    <div class="all-posts">
+    <article role="article" class="full-single-article">
   <div class="container">
     <div class="row">
-      <div class="list-title col-md-offset-2 col-md-8">
-        <h4>Posts in Security</h4>
-      </div>
-    </div>
-  </div>
+      <div class="col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
+        <h1>Handling Multiple Origins in CORS Using URL Rewrite</h1>
+        <div class="meta">
+          written 
 
-  <div class="article-list">
-    <div class="container">
-      
-        
-        <div class="row">
-          <div class="col-md-offset-2 col-md-8">
-            <article>
-  <h2><a href="/blog/2016/03/06/cors-multiple-origins-iis/">Handling Multiple Origins in CORS Using URL Rewrite</a></h2>
+
+
+
+
+
+
+
   
-  <p>
-    <p>Here&rsquo;s a quick tip if you&rsquo;re trying to figure out how to handle <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">cross-origin requests (CORS)</a> when you have multiple origins (namely, HTTP and HTTPS). This works in IIS 8.0 and above, including Azure, as long as you have the <a href="http://www.iis.net/downloads/microsoft/url-rewrite">URL Rewrite module</a> installed.</p>
+
+
+
+<time datetime="2016-03-06T15:50:00+00:00" pubdate data-updated="true">Mar 6<span>th</span>, 2016</time>
+          
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/azure/'>Azure</a>, <a class='category' href='/blog/categories/c-number/'>C#</a>, <a class='category' href='/blog/categories/security/'>Security</a>
+  
+</span>
+
+
+        </div>
+        <p>Here&rsquo;s a quick tip if you&rsquo;re trying to figure out how to handle <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">cross-origin requests (CORS)</a> when you have multiple origins (namely, HTTP and HTTPS). This works in IIS 8.0 and above, including Azure, as long as you have the <a href="http://www.iis.net/downloads/microsoft/url-rewrite">URL Rewrite module</a> installed.</p>
 
 <p>The CORS header looks like this:</p>
 
-<p><code>
-Access-Control-Allow-Origin: http://mydomain.com
-</code></p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Access-Control-Allow-Origin: http://mydomain.com</span></code></pre></td></tr></table></div></figure>
+
 
 <p>The spec is very strict. The header can only return a single value and it must be absolutely qualified, which means if you have a site that is served over HTTP and HTTPS (or multiple domains), you need to <em>dynamically</em> build this header in your response. Many tutorials and blog posts say to specify <code>*</code> as the value&mdash;<strong>DO NOT DO THIS!</strong> This means any origin (domain) can embed/request assets from your website. Unless you have hundreds of sites doing this (aka CDN), you should only whitelist the domains that can include resources from your site.</p>
 
@@ -84,7 +96,7 @@ Access-Control-Allow-Origin: http://mydomain.com
 
 <p>Rather than messing with C# and modifying outgoing responses what I ended up using was a simple URL rewrite rule, proposed by <a href="http://stackoverflow.com/a/31084390/109458">this Stack Overflow answer</a>. All it does is add a header to the outbound response when the regular expression matches&mdash;in this case, whitelisting only the HTTP and HTTPS version of my domain (or subdomain).</p>
 
-<p>```xml
+<p>&#8220;`xml
 &lt;system.webServer>
    <httpProtocol></p>
 
@@ -111,7 +123,7 @@ Access-Control-Allow-Origin: http://mydomain.com
 </code></pre>
 
 <p> &lt;/system.webServer>
- ```</p>
+ &#8220;`</p>
 
 <p>This is using special syntax of the URL Rewrite module (<code>RESPONSE_</code>) to add a outgoing response header (dashes replaced with underscores). Then it matches the <em>incoming</em> <code>Origin</code> header, compares the value, and if it matches includes the CORS header with the value of my domain.</p>
 
@@ -119,97 +131,33 @@ Access-Control-Allow-Origin: http://mydomain.com
 
 <p> <strong>Note:</strong> Since I just converted over to always SSL, I no longer need this workaround but multiple origins is pretty common when dealing with CORS so this solution will come in handy.</p>
 
-  </p>
-  <span class="meta">
-    written 
 
+        <hr class="divider-short"/>
 
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2016-03-06T15:50:00+00:00" pubdate data-updated="true">Mar 6<span>th</span>, 2016</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/azure/'>Azure</a>, <a class='category' href='/blog/categories/c-number/'>C#</a>, <a class='category' href='/blog/categories/security/'>Security</a>
-  
-</span>
-
-
-  </span>
-
-  
-</article>
-
-          </div>
-        </div>
-      
         
-        <div class="row">
-          <div class="col-md-offset-2 col-md-8">
-            <article>
-  <h2><a href="/blog/2016/02/24/azure-key-vault-config-encryption-azure/">Securing Secrets Using Azure Key Vault and Config Encryption</a></h2>
-  
-  <p>
-    <p>Secrets. We all have them. I&rsquo;m talking about secrets like your database connection strings, API keys and encryption keys. Where are you storing yours? Are you storing them&hellip;</p>
-
-<ol>
-<li>In your application&rsquo;s source code?</li>
-<li>In a config file (<code>appSettings</code> or otherwise) checked into source control?</li>
-<li>In a database?</li>
-<li>In a managed portal, like Azure?</li>
-</ol>
-
-
-<p>I hope you aren&rsquo;t storing them hardcoded. You&rsquo;re probably doing option 2 or a hybrid of options 2-4. Even if you use an external data source, it&rsquo;s hard to escape the need for secrets in local development unless you force your app to rely on having connectivity which makes it hard to work offline.</p>
-
-<p>In this post I&rsquo;m going to provide some suggestions on how to store your secrets better using Azure Key Vault and config file encryption, specifically in the context of Azure but the concepts apply to any hosting environment.</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2016-02-24T02:30:00+00:00" pubdate data-updated="true">Feb 24<span>th</span>, 2016</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/azure/'>Azure</a>, <a class='category' href='/blog/categories/c-number/'>C#</a>, <a class='category' href='/blog/categories/cloud/'>Cloud</a>, <a class='category' href='/blog/categories/encryption/'>Encryption</a>, <a class='category' href='/blog/categories/secrets/'>Secrets</a>, <a class='category' href='/blog/categories/security/'>Security</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2016/02/24/azure-key-vault-config-encryption-azure/">Read on &rarr;</a>
-  
+        <section>
+          <h1>Comments</h1>
+          <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </section>
+        
+      </div>
+    </div>
+  </div>
 </article>
 
-          </div>
-        </div>
-      
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
+        
+          <a class="pull-left" href="/blog/2016/02/24/azure-key-vault-config-encryption-azure/" title="Previous Post: Securing Secrets Using Azure Key Vault and Config Encryption">&laquo; Previous: Securing Secrets Using Azure Key Vault and Config Encryption</a>
+        
+
+        
+      </div>
     </div>
   </div>
 </div>
@@ -245,6 +193,28 @@ in
     </div>
   </div>
 </footer>
+
+    
+      
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        // var disqus_developer = 1;
+        
+        var disqus_identifier = 'http://kamranicus.com/blog/2016/03/06/cors-multiple-origins-iis/';
+        
+        var disqus_url = 'http://kamranicus.com/blog/2016/03/06/cors-multiple-origins-iis/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
 
     
   </body>

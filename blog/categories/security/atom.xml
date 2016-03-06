@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Security | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/security/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2016-03-06T15:49:49+00:00</updated>
+  <updated>2016-03-06T16:04:49+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,62 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Handling Multiple Origins in CORS Using URL Rewrite]]></title>
+    <link href="http://kamranicus.com/blog/2016/03/06/cors-multiple-origins-iis/"/>
+    <updated>2016-03-06T15:50:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2016/03/06/cors-multiple-origins-iis</id>
+    <content type="html"><![CDATA[<p>Here&rsquo;s a quick tip if you&rsquo;re trying to figure out how to handle <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">cross-origin requests (CORS)</a> when you have multiple origins (namely, HTTP and HTTPS). This works in IIS 8.0 and above, including Azure, as long as you have the <a href="http://www.iis.net/downloads/microsoft/url-rewrite">URL Rewrite module</a> installed.</p>
+
+<p>The CORS header looks like this:</p>
+
+<p><code>
+Access-Control-Allow-Origin: http://mydomain.com
+</code></p>
+
+<p>The spec is very strict. The header can only return a single value and it must be absolutely qualified, which means if you have a site that is served over HTTP and HTTPS (or multiple domains), you need to <em>dynamically</em> build this header in your response. Many tutorials and blog posts say to specify <code>*</code> as the value&mdash;<strong>DO NOT DO THIS!</strong> This means any origin (domain) can embed/request assets from your website. Unless you have hundreds of sites doing this (aka CDN), you should only whitelist the domains that can include resources from your site.</p>
+
+<p>If you are sharing resources with a known number of hosts, the following method will help. If it&rsquo;s a <em>dynamic</em> list, you will need to programmatically add the <code>Access-Control-Allow-Origin</code> header depending on the incoming <code>Origin</code> header&mdash;something I won&rsquo;t cover here.</p>
+
+<p>Rather than messing with C# and modifying outgoing responses what I ended up using was a simple URL rewrite rule, proposed by <a href="http://stackoverflow.com/a/31084390/109458">this Stack Overflow answer</a>. All it does is add a header to the outbound response when the regular expression matches&mdash;in this case, whitelisting only the HTTP and HTTPS version of my domain (or subdomain).</p>
+
+<p>```xml
+&lt;system.webServer>
+   <httpProtocol></p>
+
+<pre><code> &lt;customHeaders&gt;
+     &lt;add name="Access-Control-Allow-Headers" value="Origin, X-Requested-With, Content-Type, Accept" /&gt;
+     &lt;add name="Access-Control-Allow-Methods" value="POST,GET,OPTIONS,PUT,DELETE" /&gt;
+ &lt;/customHeaders&gt;
+</code></pre>
+
+<p>   </httpProtocol></p>
+
+<pre><code>    &lt;rewrite&gt;            
+        &lt;outboundRules&gt;
+            &lt;clear /&gt;                
+            &lt;rule name="AddCrossDomainHeader"&gt;
+                &lt;match serverVariable="RESPONSE_Access_Control_Allow_Origin" pattern=".*" /&gt;
+                &lt;conditions logicalGrouping="MatchAll" trackAllCaptures="true"&gt;
+                    &lt;add input="{HTTP_ORIGIN}" pattern="(http(s)?:\/\/((.+\.)?mydomain\.com))" /&gt;
+                &lt;/conditions&gt;
+                &lt;action type="Rewrite" value="{C:0}" /&gt;
+            &lt;/rule&gt;           
+        &lt;/outboundRules&gt;
+    &lt;/rewrite&gt;
+</code></pre>
+
+<p> &lt;/system.webServer>
+ ```</p>
+
+<p>This is using special syntax of the URL Rewrite module (<code>RESPONSE_</code>) to add a outgoing response header (dashes replaced with underscores). Then it matches the <em>incoming</em> <code>Origin</code> header, compares the value, and if it matches includes the CORS header with the value of my domain.</p>
+
+<p> That was all I had to do!</p>
+
+<p> <strong>Note:</strong> Since I just converted over to always SSL, I no longer need this workaround but multiple origins is pretty common when dealing with CORS so this solution will come in handy.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Securing Secrets Using Azure Key Vault and Config Encryption]]></title>
