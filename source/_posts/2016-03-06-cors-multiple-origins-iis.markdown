@@ -24,7 +24,7 @@ If you are sharing resources with a known number of hosts, the following method 
 
 Rather than messing with C# and modifying outgoing responses what I ended up using was a simple URL rewrite rule, proposed by [this Stack Overflow answer](http://stackoverflow.com/a/31084390/109458). All it does is add a header to the outbound response when the regular expression matches--in this case, whitelisting only the HTTP and HTTPS version of my domain (or subdomain).
 
-```xml
+```
 <system.webServer>
    <httpProtocol>
      <customHeaders>
