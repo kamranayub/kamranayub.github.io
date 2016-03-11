@@ -26,7 +26,7 @@ The free Kinect was definitely a surprise and an awesome perk of going to MIX. U
 
 ## My inner fanboy is satiated
 
-[![Me, Hanselman, and Haack](http://desmond.yfrog.com/Himg615/scaled.php?tn=0&server=615&filename=sl2zrh.jpg&xsize=640&ysize=640)](http://yfrog.com/h3sl2zrhj)
+![Scott Hanselman and Phil Haack](https://cloud.githubusercontent.com/assets/563819/13689832/773877a0-e6f1-11e5-8ad9-1cf4641cfc7b.png)
 
 [Scott Hanselman](http://twitter.com/shanselman) and [Phil Haack](http://haacked.com). I was also within 10 feet of [Rob Conery](http://wekeroad.com) so that counts, too. 'nuff said.
 
