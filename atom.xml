@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2016-03-11T00:56:02+00:00</updated>
+  <updated>2016-03-11T01:04:25+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[See You at Build 2016]]></title>
+    <link href="http://kamranicus.com/blog/2016/03/11/attending-build-2016/"/>
+    <updated>2016-03-11T00:31:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2016/03/11/attending-build-2016</id>
+    <content type="html"><![CDATA[<p>I love attending conferences. At the end of January me and some friends <a href="https://www.instagram.com/p/BBJQ-PTuIzZ">attended PAX South</a> in San Antonio and it was a blast (not for work). A gaming convention has a different air than a developer conference. There&rsquo;s a certain energy and it&rsquo;s very motivating being around fellow developers, learning new tech, and seeing what&rsquo;s new. I&rsquo;ve attended Build several times in the past and it&rsquo;s always been fun&mdash;especially <a href="http://kamranicus.com/blog/posts/7/mix-11-day-2-kinects-celebrities-kings-and-clubbin/">when you meet coding &ldquo;celebs&rdquo;</a>. Usually I take my wife even though she doesn&rsquo;t attend the conference, we will typically stay longer. This year, not only will she be joining but our friend will be coming as well&mdash;both of them will be traipsing around San Francisco while I and a few coworkers will attend the conference. My partners in crime, <a href="http://twitter.com/erikonarheim">Erik</a> &amp; <a href="http://twitter.com/alangrgic">Alan</a>, will be joining me so it&rsquo;ll be a <em>ton</em> of fun (yes, we all work together and yes we <em>just</em> went to PAX together). Going to a conference is fun, going to a conference <em>with your friends</em> is even more fun.</p>
+
+<p>After Build we&rsquo;ll be leaving my coworkers behind and we&rsquo;ll be flying up to Portland to explore the area. I&rsquo;ve been to downtown Seattle for PAX Prime before but I&rsquo;ve only been in the surrounding area once when I was a teenager and I always thought it was beautiful. My wife never has been to the Pacific northwest so we thought it&rsquo;d be fun to spend a few days extra and drive around. We&rsquo;re all looking forward to it.</p>
+
+<p>If you&rsquo;re at Build and you follow me, be sure to <a href="http://twitter.com/kamranayub">send me a tweet</a> and we&rsquo;ll meet up!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Handling Multiple Origins in CORS Using URL Rewrite]]></title>
@@ -2689,143 +2702,6 @@ I&rsquo;m really proud of what I have, here&rsquo;s what it looks like in the UI
 <p>All set. Now when you commit to one repository, you can trigger a build for another one. This allows us to automatically <a href="http://excaliburjs.com/docs/api/edge">keep our docs up-to-date</a> with whatever <code>master</code> has.</p>
 
 <p>You can <a href="https://github.com/excaliburjs/Excalibur/blob/master/deploy-docs.js">reference Excalibur</a> to see how we execute the script. Additionally, you can reference <a href="https://github.com/excaliburjs/excaliburjs.github.io/blob/site/.travis.yml">excaliburjs.com&rsquo;s Travis configuration</a> to see how we use <a href="http://typedoc.io">TypeDoc</a> to generate documentation for the latest version of <code>master</code>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Continuous Deployment With Travis-CI]]></title>
-    <link href="http://kamranicus.com/blog/2015/02/26/continuous-deployment-with-travis-ci/"/>
-    <updated>2015-02-26T16:18:22+00:00</updated>
-    <id>http://kamranicus.com/blog/2015/02/26/continuous-deployment-with-travis-ci</id>
-    <content type="html"><![CDATA[<p>One of the fun things we did for <a href="http://playsweepstacks.com">Sweep Stacks</a> (our Ludum Dare entry)
-during development was to setup continuous deployment. Since our GitHub
-repository was public, we could leverage the excellent Travis CI build tool.</p>
-
-<!-- More -->
-
-
-<p>This allowed us to work on the game and have our dedicated tester play every new build
-hot off the press. It reduced the amount of bugs we shipped with and created a very
-fast feedback loop for QA. In the end it allowed us to push a polished game an hour
-or so before the deadline hit. After the voting began, it also allowed us to quickly
-push bug fixes that were reported by players.</p>
-
-<p>If you&rsquo;re new to Travis CI, you can learn more about what it is and
-how to get started by reading <a href="http://tech.pro/tutorial/1749/get-your-ci-on-with-travis-ci">my Tech.pro tutorial</a>.</p>
-
-<p>Once you have your project building, you can then write a little bash script to
-deploy it! By &ldquo;deploying&rdquo;, what I really mean is pushing your built code to your production branch on GitHub for final deployment. For example, we use GitHub pages to host Sweep Stacks.</p>
-
-<p>Let&rsquo;s look at the process.</p>
-
-<h2>Customizing Travis Config</h2>
-
-<p>You will need to execute a script to deploy your site, so you will need to
-customize your <strong>_travis.yml</strong> file.</p>
-
-<p>Here is what mine looks like for this blog (built using Octopress):</p>
-
-<pre><code>language: ruby
-rvm:
-  - 1.9.3
-branches:
-  only:
-    - source
-env:
-  global:
-  - GH_REF: github.com/kamranayub/kamranayub.github.io.git
-script:
-  - bundle exec rake generate
-  - chmod ugo+x deploy.sh
-  - '[ "${TRAVIS_PULL_REQUEST}" != "false" ] || ./deploy.sh'
-</code></pre>
-
-<p>Let&rsquo;s break it down:</p>
-
-<pre><code>language: ruby
-</code></pre>
-
-<p>Easy, since I use <a href="http://octopress.org">Octopress</a> (built on Jekyll) for my blog, we need to use Ruby.</p>
-
-<pre><code>rvm:
-  - 1.9.3
-</code></pre>
-
-<p>The version of Octopress I use requires Ruby 1.9.3.</p>
-
-<pre><code>branches:
-  only:
-    - source
-</code></pre>
-
-<p>We only want Travis to initiate builds for the <code>source</code> branch, since that is where
-the source files are for my blog.</p>
-
-<pre><code>env:
-  global:
-  - GH_REF: github.com/kamranayub/kamranayub.github.io.git
-</code></pre>
-
-<p>We will need to be able to clone and push to our repository, so we store it in an
-environment variable for easy access. <code>GH_REF</code> will be available to our bash script.</p>
-
-<pre><code>script:
-  - bundle exec rake generate
-  - chmod ugo+x deploy.sh
-  - '[ "${TRAVIS_PULL_REQUEST}" != "false" ] || ./deploy.sh''
-</code></pre>
-
-<p>In our Travis script, we build the blog (<code>rake generate</code>). We then mark our <code>deploy.sh</code> file
-as executable (since I&rsquo;m on Windows). After that we execute our deploy as long as this isn&rsquo;t
-a pull request (don&rsquo;t want to build other people&rsquo;s changes!). Disabling pull request builds
-can also be set in your Travis project settings.</p>
-
-<h2>Deploy script</h2>
-
-<p>Here&rsquo;s the script I use to do the deployment:</p>
-
-<script src="https://gist.github.com/kamranayub/ca7b6866ab43771d9da8.js"></script>
-
-
-<p>As you can see it&rsquo;s fairly simple. One thing to make sure of is hiding your access token (<code>GH_TOKEN</code>),
-we use to authenticate which I&rsquo;ll show you how to generate and use.</p>
-
-<h2>The access token</h2>
-
-<p>The whole reason this works is because we are authenticating to GitHub using a <em>Personal
-Access Token</em> (stored in <code>GH_TOKEN</code>). This is an OAuth token that you can create when
-using Two-Factor Auth to authenticate 3rd party tools like Visual Studio, or in our case, authenticating in a script.</p>
-
-<p>You can generate a token by:</p>
-
-<ol>
-<li>Going to <a href="https://github.com/settings/applications">Applications</a> in your Settings</li>
-<li>Clicking &ldquo;Generate New Token&rdquo;</li>
-<li>Selecting your permissions (for Travis, all you need is <code>public_repo</code>)</li>
-<li>Once created, copy the token to your clipboard (you <em>must</em> regenerate it if you lose it)</li>
-</ol>
-
-
-<p>Now we need to configure Travis to expose this token securely to our script.</p>
-
-<ol>
-<li>On Travis, go to the Settings of your project (top-right)</li>
-<li>Click the &ldquo;Environment Variables&rdquo; tab (and ensure Build Pull Requests is &lsquo;Off&rsquo;)</li>
-<li>Create a new environment variable called <code>GH_TOKEN</code></li>
-<li>In the Value field, paste in your token, being sure to remove any trailing whitespace</li>
-<li>Ensure &ldquo;Display value in build logs&rdquo; is Off</li>
-</ol>
-
-
-<p>Once created, you&rsquo;re all set! <code>GH_TOKEN</code> will now be available to your <strong>deploy.sh</strong> script.</p>
-
-<h2>Testing it out</h2>
-
-<p>You should be ready to test your deployment. Commit any changes you have to your repository
-and you should start seeing the build output once it starts. If there are any errors, now
-you can fix them until your build passes.</p>
-
-<p>Happy deploying!</p>
 ]]></content>
   </entry>
   

@@ -90,6 +90,65 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/2015/09/17/powershell-html5-offline-manifest/">PowerShell Script to Generate an HTML5 Offline Manifest</a></h2>
+  
+  <p>
+    <p>In my new role at work I&rsquo;ve been learning PowerShell to administrate our systems (I&rsquo;m a half developer, half sys admin monster). I&rsquo;ve been a developer for a long time and been living in .NET for about as long&mdash;I still had not really <em>embraced</em> PowerShell as something I could use in my daily development routine. I&rsquo;ve changed my tune. <strong>PowerShell is awesome.</strong> It&rsquo;s also not too hard to pick up once you learn how it works. I recommend you take a serious look at learning it. I recommend <a href="https://www.microsoftvirtualacademy.com/en-us/training-courses/getting-started-with-powershell-3-0-jump-start-8276">following the PowerShell 3 Jumpstart course</a> and trial and error.</p>
+
+
+
+
+<p>Anyway, for some of the games we write as part of <a href="http://excaliburjs.com">Excalibur.js</a> for game jams we would like to run them offline. To do this, you need to create an <a href="http://www.html5rocks.com/en/tutorials/appcache/beginner/">HTML5 Application Manifest file</a>. However, this file is super finicky, as outlined in the linked article. In order to assist, I wrote a small PowerShell script that generates an <code>appcache</code> manifest file with each file&rsquo;s MD5 checksum. Therefore, the manifest file will only change when dependent assets change. I do some more work to disable it locally and only enable for release, but you can run this script as part of your build.</p>
+
+
+
+
+<script src="https://gist.github.com/kamranayub/cc2c4d371a83aec8279e.js"></script>
+
+
+
+
+<p>Modify the script to be specific to your project and it should output an appropriate manifest file. Feel free to change as you see fit.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-09-17T02:40:00+00:00" pubdate data-updated="true">Sep 17<span>th</span>, 2015</time>
+    
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/html5/'>HTML5</a>, <a class='category' href='/blog/categories/powershell/'>PowerShell</a>, <a class='category' href='/blog/categories/tips-and-tricks/'>Tips & Tricks</a>
+  
+</span>
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/2015/07/29/gmail-special-address/">Use Special Gmail Addresses to Redirect and Filter Incoming Mail or Bypass Unique Email Checks</a></h2>
   
   <p>
@@ -624,56 +683,6 @@ in
 
   
     <a class="full-article-link pull-right" rel="full-article" href="/blog/2015/03/29/triggering-a-travis-build-programmatically/">Read on &rarr;</a>
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/2015/02/26/continuous-deployment-with-travis-ci/">Continuous Deployment With Travis-CI</a></h2>
-  
-  <p>
-    <p>One of the fun things we did for <a href="http://playsweepstacks.com">Sweep Stacks</a> (our Ludum Dare entry)
-during development was to setup continuous deployment. Since our GitHub
-repository was public, we could leverage the excellent Travis CI build tool.</p>
-
-
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2015-02-26T16:18:22+00:00" pubdate data-updated="true">Feb 26<span>th</span>, 2015</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/automation/'>Automation</a>, <a class='category' href='/blog/categories/ci/'>CI</a>, <a class='category' href='/blog/categories/tips/'>Tips</a>, <a class='category' href='/blog/categories/travis-ci/'>Travis-CI</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2015/02/26/continuous-deployment-with-travis-ci/">Read on &rarr;</a>
   
 </article>
 
