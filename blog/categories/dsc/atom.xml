@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: PowerShell | Kamranicus]]></title>
-  <link href="http://kamranicus.com/blog/categories/powershell/atom.xml" rel="self"/>
+  <title><![CDATA[Category: DSC | Kamranicus]]></title>
+  <link href="http://kamranicus.com/blog/categories/dsc/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
   <updated>2016-04-05T03:06:05+00:00</updated>
   <id>http://kamranicus.com/</id>
@@ -49,7 +49,7 @@ szOID_ENHANCED_KEY_USAGE = &ldquo;2.5.29.37&rdquo;
 szOID_DOCUMENT_ENCRYPTION = &ldquo;1.3.6.1.4.1.311.80.1&rdquo;</p>
 
 <p>[NewRequest]
-Subject = &ldquo;cn=<a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#58;&#109;&#x65;&#x40;&#x65;&#120;&#97;&#x6d;&#112;&#108;&#x65;&#46;&#99;&#x6f;&#x6d;">&#x6d;&#101;&#x40;&#x65;&#120;&#x61;&#109;&#x70;&#x6c;&#x65;&#46;&#x63;&#111;&#109;</a>&rdquo;
+Subject = &ldquo;cn=<a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#x6f;&#x3a;&#109;&#101;&#x40;&#x65;&#x78;&#x61;&#109;&#x70;&#108;&#101;&#46;&#99;&#111;&#109;">&#x6d;&#x65;&#64;&#x65;&#120;&#x61;&#x6d;&#x70;&#x6c;&#101;&#46;&#99;&#x6f;&#109;</a>&rdquo;
 MachineKeySet = false
 KeyLength = 2048
 KeySpec = AT_KEYEXCHANGE
@@ -82,22 +82,6 @@ ValidityPeriodUnits = &ldquo;1000&rdquo;</p>
 <p><img src="https://cloud.githubusercontent.com/assets/563819/14269791/dac55acc-fa9c-11e5-8352-55881c3150ed.png" alt="Example screenshot" /></p>
 
 <p>Until you get a signed certificate from your CA, this should work. Hope that helps!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[PowerShell Script to Generate an HTML5 Offline Manifest]]></title>
-    <link href="http://kamranicus.com/blog/2015/09/17/powershell-html5-offline-manifest/"/>
-    <updated>2015-09-17T02:40:00+00:00</updated>
-    <id>http://kamranicus.com/blog/2015/09/17/powershell-html5-offline-manifest</id>
-    <content type="html"><![CDATA[<p>In my new role at work I&rsquo;ve been learning PowerShell to administrate our systems (I&rsquo;m a half developer, half sys admin monster). I&rsquo;ve been a developer for a long time and been living in .NET for about as long&mdash;I still had not really <em>embraced</em> PowerShell as something I could use in my daily development routine. I&rsquo;ve changed my tune. <strong>PowerShell is awesome.</strong> It&rsquo;s also not too hard to pick up once you learn how it works. I recommend you take a serious look at learning it. I recommend <a href="https://www.microsoftvirtualacademy.com/en-us/training-courses/getting-started-with-powershell-3-0-jump-start-8276">following the PowerShell 3 Jumpstart course</a> and trial and error.</p>
-
-<p>Anyway, for some of the games we write as part of <a href="http://excaliburjs.com">Excalibur.js</a> for game jams we would like to run them offline. To do this, you need to create an <a href="http://www.html5rocks.com/en/tutorials/appcache/beginner/">HTML5 Application Manifest file</a>. However, this file is super finicky, as outlined in the linked article. In order to assist, I wrote a small PowerShell script that generates an <code>appcache</code> manifest file with each file&rsquo;s MD5 checksum. Therefore, the manifest file will only change when dependent assets change. I do some more work to disable it locally and only enable for release, but you can run this script as part of your build.</p>
-
-<script src="https://gist.github.com/kamranayub/cc2c4d371a83aec8279e.js"></script>
-
-
-<p>Modify the script to be specific to your project and it should output an appropriate manifest file. Feel free to change as you see fit.</p>
 ]]></content>
   </entry>
   

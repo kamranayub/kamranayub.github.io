@@ -90,6 +90,53 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/2013/12/05/kamranicus-now-with-100-percent-more-octopress/">Kamranicus: Now With 100% More Octopress</a></h2>
+  
+  <p>
+    <p>I&rsquo;ve just pushed a new version of Kamranicus that is built using the static site generator, <a href="http://octopress.org">Octopress</a>. Octopress uses <a href="http://jekyllrb.com/">Jekyll</a> to generate static sites.</p>
+
+
+
+
+<p>I decided to switch because I can leverage GitHub Pages which are <strong>free</strong> and I can use a custom domain. It&rsquo;s a perfect fit because I can just piggyback on GitHub&rsquo;s cloud hosting for free and not worry about incurring any downtime due to database issues (something that happened more than a few times with the last ASP.NET MVC and SQL-based site).</p>
+
+
+
+
+<p>I really enjoyed setting up Octopress, it was easy to migrate my posts. I highly recommend it! It would be even better to have a .NET/C#-based static site generator that supported all of Jekyll&rsquo;s configuration options, except with Razor-based layouts and templating. Mmmm, that sounds pretty good. Someone get on that.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-12-05T05:18:28+00:00" pubdate data-updated="true">Dec 5<span>th</span>, 2013</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/posts/79/just-pushed-blackjack-sample-game">Just Pushed: Blackjack Sample Game</a></h2>
   
   <p>
@@ -641,150 +688,6 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
 
 
 <time datetime="2013-04-25T01:59:46+00:00" pubdate data-updated="true">Apr 25<span>th</span>, 2013</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/posts/70/protip-using-anti-forgery-token-with-aspnet-web-ap">Protip: Using Anti-Forgery Token With ASP.NET Web API on MVC 4 on AppHarbor</a></h2>
-  
-  <p>
-    <p>I just ran into and solved this problem so I thought I&rsquo;d share (I&rsquo;ll also be talking about this at my upcoming talk).</p>
-
-
-
-
-<h3>Anti-Forgery in MVC</h3>
-
-
-
-
-<p>In vanilla MVC, you&rsquo;d do anti-forgery like this in your Razor view:</p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>@Html.AntiForgeryToken()
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>Then in a controller (POST):</p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[ValidateAntiForgeryToken]</span>
-</span><span class='line'><span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">DoSomething</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>Cool. But what about Web API? It uses a totally different pipeline and likely you&rsquo;re interacting with it via JQuery or other AJAX framework.</p>
-
-
-
-
-<h3>ValidateHttpAntiForgeryToken</h3>
-
-
-
-
-<p>Here are some references I used when trying to implement Anti-Forgery with Web API:</p>
-
-
-
-
-<ul>
-<li><a href="http://stackoverflow.com/questions/11725988/problems-implementing-validatingantiforgerytoken-attribute-for-web-api-with-mvc">Problems implementing ValidatingAntiForgeryToken attribute for Web API with MVC 4 RC</a></li>
-<li><a href="http://stackoverflow.com/questions/11476883/web-api-and-validateantiforgerytoken">Web API and ValidateAntiForgeryToken</a></li>
-<li><a href="http://www.asp.net/web-api/overview/security/preventing-cross-site-request-forgery-(csrf">Preventing Cross-Site Request Forgery (CSRF) Attacks</a>-attacks)</li>
-<li>MVC 4 SPA template</li>
-</ul>
-
-
-
-
-<p>Here&rsquo;s the rub: the two SO posts above implement this quite differently than the MVC 4 SPA template and the last article referenced. Both approaches actually worked locally for me, but both failed once I deployed to AppHarbor.</p>
-
-
-
-
-<p>The long and short of it is that I was using the HTTP header <code>__RequestVerificationToken</code>. This is a no-no and I&rsquo;m sort of the dumb one here in that I should <em>know</em> not to use custom headers like that.</p>
-
-
-
-
-<p>My friends, the <em>proper</em> way is to use the <code>X-*</code> convention, so the HTTP header in your AJAX requests become <code>X-XSRF-Token</code> instead.</p>
-
-
-
-
-<p>Apparently, AppHarbor was stripping off the other header on AJAX POST. I was receiving an error about the given header could not be found.</p>
-
-
-
-
-<p>The working solution is below:</p>
-
-
-
-
-<script src="https://gist.github.com/kamranayub/5449779.js"></script>
-
-
-
-
-<p>The <code>machineKey</code> thing is also key to remember on a cloud host/web farm environment.</p>
-
-
-
-
-<p>I hope that helps somebody out there.</p>
-
-
-
-
-<h3>Aside</h3>
-
-
-
-
-<p>In the last article referenced, the <code>AntiForgery.GetTokens()</code> didn&rsquo;t work for me on AH. I kept getting the error:</p>
-
-
-
-
-<pre><code>System.Web.Mvc.HttpAntiForgeryException (0x80004005): The required anti-forgery cookie "__RequestVerificationToken" is not present.
-</code></pre>
-
-
-
-
-<p>I didn&rsquo;t get far enough to see what actual cookies were present because I switched to the other method outlined in the two SO posts. I just thought you should know that it just didn&rsquo;t work. I believe it&rsquo;s because <code>GetTokens</code> does not create a new cookie if the <code>cookieToken</code> has a value where as using <code>@Html.AntiForgeryToken()</code> does. The <a href="http://aspnetwebstack.codeplex.com/SourceControl/changeset/view/9a83b63f3f889e3f2c979274fe3e8f7610e06b98#src/System.Web.WebPages/Helpers/AntiXsrf/AntiForgeryWorker.cs">source code</a> makes that clear in the comments. Why it worked locally I have no idea and at this point, don&rsquo;t care!</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-04-24T10:14:06+00:00" pubdate data-updated="true">Apr 24<span>th</span>, 2013</time>
     
 
 
