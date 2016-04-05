@@ -3,7 +3,7 @@ layout: post
 title: "Generating an Encryption Certificate for PowerShell DSC in WMF5"
 date: 2016-04-04 21:43:00 -0600
 comments: true
-published: false
+published: true
 categories:
 - PowerShell
 - DSC
