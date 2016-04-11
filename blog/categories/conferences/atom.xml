@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Conferences | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/conferences/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2016-04-05T03:06:05+00:00</updated>
+  <updated>2016-04-11T17:46:31+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,24 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[TypeScript in Action at Twin Cities Code Camp 20 (TCCC20)]]></title>
+    <link href="http://kamranicus.com/blog/2016/04/11/tccc20-typescript-in-action/"/>
+    <updated>2016-04-11T18:38:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2016/04/11/tccc20-typescript-in-action</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ll be speaking at 8:30am this weekend at <a href="http://twincitiescodecamp.com">Twin Cities Code Camp</a>. My talk will about using TypeScript
+in the context of an Angular 2 ASP.NET MVC web application but will focus on how TypeScript enhances my productivity and showcases some features of the language. I&rsquo;ve done the talk previously internally at General Mills and had a great response so I thought I&rsquo;d piggyback on the success of my previous <a href="http://kamranicus.com/presentations/demystifying-typescript/#/">Demystifying TypeScript</a> talk (which is also on <a href="https://www.youtube.com/watch?v=kb7tvaBJeMs">YouTube</a>).</p>
+
+<p>If you&rsquo;re at all interested in seeing how TypeScript development looks in action, you should attend and I&rsquo;d recommend going through my
+previous talk if you&rsquo;re still not convinced TypeScript is awesome. This talk assumes you are at least open to the idea of developing
+in TypeScript and are curious to see how it can be used.</p>
+
+<p>It&rsquo;ll be a fun time and a busy weekend&mdash;I&rsquo;ll have to leave the conference right after my talk to participate in Ludum Dare, where I&rsquo;ll
+be helping to build a game in 72 hours. I&rsquo;m sad I&rsquo;ll miss the speaker happy hour and the prizes but it&rsquo;s for a good reason!
+Hope to see you Saturday!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[See You at Build 2016]]></title>

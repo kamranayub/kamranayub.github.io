@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: JavaScript | Kamranicus]]></title>
-  <link href="http://kamranicus.com/blog/categories/javascript/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Talks | Kamranicus]]></title>
+  <link href="http://kamranicus.com/blog/categories/talks/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
   <updated>2016-04-11T17:46:31+00:00</updated>
   <id>http://kamranicus.com/</id>

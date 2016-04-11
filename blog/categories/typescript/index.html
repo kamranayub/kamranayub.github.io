@@ -9,11 +9,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Typescript - Kamranicus</title>
+  <title>Category: TypeScript - Kamranicus</title>
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="Category: Typescript">
+  <meta name="description" content="Category: TypeScript">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -55,7 +55,7 @@
   <div class="container">
     <div class="row">
       <div class="list-title col-md-offset-2 col-md-8">
-        <h4>Posts in Typescript</h4>
+        <h4>Posts in TypeScript</h4>
       </div>
     </div>
   </div>
@@ -67,10 +67,19 @@
         <div class="row">
           <div class="col-md-offset-2 col-md-8">
             <article>
-  <h2><a href="/blog/2016/02/04/typewriter/">Using Typewriter to Strongly-Type Your Client-Side Models and Services</a></h2>
+  <h2><a href="/blog/2016/04/11/tccc20-typescript-in-action/">TypeScript in Action at Twin Cities Code Camp 20 (TCCC20)</a></h2>
   
   <p>
-    <p>I&rsquo;ve recently discovered <a href="http://frhagn.github.io/Typewriter/index.html">Typewriter for Visual Studio</a>, a T4-style code-generator specifically meant for generating Typescript files. I&rsquo;ve been using it since in all my projects, at work and at home. It&rsquo;s just <strong>so</strong> good. Let me explain what Typewriter does and why it&rsquo;s so awesome.</p>
+    <p>I&rsquo;ll be speaking at 8:30am this weekend at <a href="http://twincitiescodecamp.com">Twin Cities Code Camp</a>. My talk will about using TypeScript
+in the context of an Angular 2 ASP.NET MVC web application but will focus on how TypeScript enhances my productivity and showcases some features of the language. I&rsquo;ve done the talk previously internally at General Mills and had a great response so I thought I&rsquo;d piggyback on the success of my previous <a href="http://kamranicus.com/presentations/demystifying-typescript/#/">Demystifying TypeScript</a> talk (which is also on <a href="https://www.youtube.com/watch?v=kb7tvaBJeMs">YouTube</a>).</p>
+
+<p>If you&rsquo;re at all interested in seeing how TypeScript development looks in action, you should attend and I&rsquo;d recommend going through my
+previous talk if you&rsquo;re still not convinced TypeScript is awesome. This talk assumes you are at least open to the idea of developing
+in TypeScript and are curious to see how it can be used.</p>
+
+<p>It&rsquo;ll be a fun time and a busy weekend&mdash;I&rsquo;ll have to leave the conference right after my talk to participate in Ludum Dare, where I&rsquo;ll
+be helping to build a game in 72 hours. I&rsquo;m sad I&rsquo;ll miss the speaker happy hour and the prizes but it&rsquo;s for a good reason!
+Hope to see you Saturday!</p>
 
   </p>
   <span class="meta">
@@ -87,68 +96,13 @@
 
 
 
-<time datetime="2016-02-04T02:08:00+00:00" pubdate data-updated="true">Feb 4<span>th</span>, 2016</time>
+<time datetime="2016-04-11T18:38:00+00:00" pubdate data-updated="true">Apr 11<span>th</span>, 2016</time>
     
 
 in
 <span class="categories">
   
-    <a class='category' href='/blog/categories/c-number/'>C#</a>, <a class='category' href='/blog/categories/javascript/'>Javascript</a>, <a class='category' href='/blog/categories/knockout-dot-js/'>Knockout.js</a>, <a class='category' href='/blog/categories/typescript/'>Typescript</a>, <a class='category' href='/blog/categories/typewriter/'>Typewriter</a>, <a class='category' href='/blog/categories/visual-studio/'>Visual Studio</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2016/02/04/typewriter/">Read on &rarr;</a>
-  
-</article>
-
-          </div>
-        </div>
-      
-        
-        <div class="row">
-          <div class="col-md-offset-2 col-md-8">
-            <article>
-  <h2><a href="/blog/2016/01/25/planet-wars-ai-competition-excaliburjs-csharp/">Planet Wars AI Competition With C# and Excalibur.js</a></h2>
-  
-  <p>
-    <p><img src="https://zippy.gfycat.com/BraveBlushingImpala.gif" alt="Planet Wars" /></p>
-
-<p>This past weekend <a href="http://twitter.com/erikonarheim">Erik</a> and I built out a <a href="https://github.com/eonarheim/planet-wars-competition">Planet Wars</a> server (written in C#) and an <a href="http://excaliburjs.com">Excalibur.js</a>-powered visualization (written in TypeScript). Planet Wars is an AI competition where you build an AI that competes against another player to control a solar system. A map consists of several planets that have different growth rates and an initial number of ships. You have to send out a &ldquo;fleet&rdquo; of ships to colonize other planets and the player who controls the most planets and has destroyed their opponent&rsquo;s ships wins the game.</p>
-
-<p>At work we are hosting our 6th Code Camp and recently we started hosting an AI competition internally. You can find past competition agents for <a href="https://github.com/eonarheim/AntAICompetition">Ants</a> and <a href="https://github.com/eonarheim/BellTowerEscape">Elevators</a>, for example.</p>
-
-<p>The <a href="https://github.com/eonarheim/planet-wars-competition/tree/master/PlanetWars/Scripts/game">visualization for Planet Wars</a> is fairly simple, made even simpler using the power of <a href="http://excaliburjs.com">Excalibur.js</a>, the engine we work on during our spare time. We basically just use an Excalibur timer to query the status of the game state and update the state of all the actors in the game. For moving the fleets, we just use the <a href="http://excaliburjs.com/docs/api/edge/classes/ex.actioncontext.html">Actor Action API</a>.</p>
-
-<p>For the <a href="https://github.com/eonarheim/planet-wars-competition/tree/master/PlanetWars/Server">game server</a>, we are using a <a href="https://github.com/eonarheim/planet-wars-competition/blob/master/PlanetWars/Server/HighFrequencyTimer.cs">HighFrequencyTimer</a> to run a 30fps server and then clients just send commands via HTTP, so any kind of agent will work like Python, Perl, PowerShell, or whatever! Anything that speaks HTTP can be a client. The server runs in the context of a website so we can easily query the state using a singleton <code>GameManager</code>. This wouldn&rsquo;t work in a load-balanced environment but it doesn&rsquo;t matter since people develop agents locally and we run the simulations on one server at high-speed to produce the results. If you backed the server with a data store, you could replay games but right now there&rsquo;s only an in-memory implementation.</p>
-
-<p>To keep the server and client models in-sync, we use <a href="http://frhagn.github.io/Typewriter/index.html">Typewriter for Visual Studio</a> which is <strong>amazing</strong> and super useful not just for syncing client/server but also generating web clients, interfaces, etc. from C# code. I plan to write a separate post on some Typewriter tips for Knockout.js and Web API.</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2016-01-25T18:30:00+00:00" pubdate data-updated="true">Jan 25<span>th</span>, 2016</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/ai/'>AI</a>, <a class='category' href='/blog/categories/c-number/'>C#</a>, <a class='category' href='/blog/categories/excalibur-dot-js/'>Excalibur.js</a>, <a class='category' href='/blog/categories/games/'>Games</a>, <a class='category' href='/blog/categories/javascript/'>Javascript</a>, <a class='category' href='/blog/categories/typescript/'>Typescript</a>, <a class='category' href='/blog/categories/typewriter/'>Typewriter</a>
+    <a class='category' href='/blog/categories/conferences/'>Conferences</a>, <a class='category' href='/blog/categories/javascript/'>JavaScript</a>, <a class='category' href='/blog/categories/talks/'>Talks</a>, <a class='category' href='/blog/categories/typescript/'>TypeScript</a>
   
 </span>
 

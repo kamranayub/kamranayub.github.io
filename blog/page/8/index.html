@@ -90,6 +90,132 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/posts/39/a-few-hours-with-webapi-mvc-the-good-and-the-bad">A Few Hours With WebAPI + MVC, the Good and the Bad</a></h2>
+  
+  <p>
+    <p>I&rsquo;m working on the next version of <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> and it&rsquo;s an opportunity to upgrade to and play with MVC 4, especially the new <a href="http://asp.net/web-api">WebAPI</a>.</p>
+
+
+
+
+<h2>Getting WebAPI</h2>
+
+
+
+
+<p>This was not super apparent from the tutorials on asp.net but to get the WebAPI, you can simply obtain it from Nuget. Most of the tutorials start with File > New Project, but I wanted to incorporate it into a newly upgraded MVC 4 project. <em>Fun fact:</em> MVC4 is also available on Nuget, score!</p>
+
+
+
+
+<p><img src="/blog/images/37.png" alt="Nuget" /></p>
+
+
+
+
+<p>Which one?! Since there&rsquo;s no description or information regarding the &ldquo;Data&rdquo; package (assuming it will make it easy to integrate with EF), I went with the <strong>ASP.NET Web API (Beta)</strong> package.</p>
+
+
+
+
+<h2>WebAPI is Not MVC</h2>
+
+
+
+
+<p>I dislike things that cause friction. Unfortunately, there&rsquo;s some friction with using WebAPI for the first time. I&rsquo;m not sure if all of it can be removed, but hopefully some of it can be mitigated. If you haven&rsquo;t used WebAPI before, it&rsquo;s important to know <strong>WebAPI is not MVC</strong>.</p>
+
+
+
+
+<p>Here&rsquo;s what I struggled with:</p>
+
+
+
+
+<ol>
+<li><p>Configuration is separate. You have to use the not-very-intuitively-named <code>GlobalConfiguration.Configuration</code> singleton to configure WebAPI. Seriously? Why not <code>HttpConfiguration</code> or even better, <code>ApiConfiguration</code>? To match typical MVC conventions (GlobalFilters.Filters, RouteTable.Routes), I&rsquo;d propose <code>HttpApi.Api</code> or something along those lines.</p></li>
+<li><p>Routing is separate. I use <a href="https://github.com/mccalltd/AttributeRouting">AttributeRouting</a> and while I haven&rsquo;t explicitly tried it with WebAPI, I don&rsquo;t think it will work, but maybe it will. You register routes using the <code>MapHttpRoute</code> extension.</p></li>
+<li><p>It doesn&rsquo;t plug into MVC&rsquo;s <code>DependencyResolver</code>. This was annoying. I use Ninject.MVC3 for my DI container, but that doesn&rsquo;t automatically make it available to WebAPI. Nay, <a href="http://haacked.com/archive/2012/03/11/itrsquos-the-little-things-about-asp-net-mvc-4.aspx">you have to jump through some hoops</a> to get it to work. Once you do, it works just as you&rsquo;d expect. <strong>Update:</strong> At a presentation today at Twin Cities Code Camp, Matt Milner presented on Web API and I saw he used a simpler method to plug Ninject into Web API:</p>
+
+<pre><code> configuration.SetResolver(t =&gt; kernel.TryGet(t), t =&gt; kernel.GetAll(t));
+</code></pre></li>
+<li><p>Attributes are different. Do you have a custom <code>[Authorize]</code> attribute in MVC? You&rsquo;ll have to port it to WebAPI. This isn&rsquo;t a bad thing, it&rsquo;s just not apparent when you see this:</p>
+
+<pre><code> [Authorize]
+ Product GetProductById(int id) { }
+</code></pre>
+
+<p> To follow the convention, I prefixed my custom attributes with <code>Http</code> to make it more apparent they&rsquo;re different.</p></li>
+<li><p>JSON.NET <em>will be</em> the default JSON serializer, but it&rsquo;s not <em>yet</em>. This means you have to register a custom formatter. I used the one <a href="http://www.west-wind.com/weblog/posts/2012/Mar/09/Using-an-alternate-JSON-Serializer-in-ASPNET-Web-API">on Rick Strahl&rsquo;s blog</a> (with some modifications) but you could try the several JsonNet Nuget packages for WebAPI (<a href="http://nuget.org/packages/WebAPIContrib.Formatters.JsonNet/0.6.0">WebAPIContrib.Formatters.JsonNet</a> or <a href="http://nuget.org/packages/netfx-WebApi.JsonNetFormatter/1.0.0.11">NetFx</a>).</p></li>
+</ol>
+
+
+
+
+<p>And that&rsquo;s about it. Once I overcame those &ldquo;frictions&rdquo; everything started to go smoothly. I haven&rsquo;t played with it a ton, but I&rsquo;m sure I&rsquo;ll write about it as I use it more.</p>
+
+
+
+
+<h2>Removing the friction</h2>
+
+
+
+
+<p>While I understand WebAPI is separate (but equal?) from MVC to allow for self-hosting or MVC-independent use cases, let&rsquo;s be honest: who are going to be the majority consumers of the API? MVC peeps. If there isn&rsquo;t already, there needs to be a &ldquo;bridge&rdquo; that makes it easier to use for MVC consumers.</p>
+
+
+
+
+<p>The bridge should:</p>
+
+
+
+
+<ol>
+<li><strike>Plug into routing (so AttributeRouting sees it?)</strike> <a href="https://github.com/mccalltd/AttributeRouting/pull/57">I&rsquo;ve added Web API support</a> to AttributeRouting directly. It will be in v2.</li>
+<li>Plug into whatever dependency resolver you have set</li>
+<li>Do something else I haven&rsquo;t run into yet</li>
+</ol>
+
+
+
+
+<p>A Nuget package that added a WebActivator start up wouldn&rsquo;t be too hard. Maybe it doesn&rsquo;t even need to &ldquo;plug&rdquo; into the pipeline, it can simply make it easier to see and configure WebAPI. The auto-DI integration alone would be a big win.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2012-04-03T18:42:13+00:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2012</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/posts/38/can-i-use-signalr-to-design-a-typical-single-page">Can I Use SignalR to Design a &#8220;Typical&#8221; Single Page Application?</a></h2>
   
   <p>
@@ -1422,88 +1548,6 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
 
 
 <time datetime="2012-01-23T21:44:30+00:00" pubdate data-updated="true">Jan 23<span>rd</span>, 2012</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/posts/28/i-just-transferred-all-my-domains-away-from-my-god">I Just Transferred All My Domains Away From My GoDaddy Reseller Because of SOPA</a></h2>
-  
-  <p>
-    <p>Since I started hosting my own domains and doing web work, I&rsquo;ve been using a website aptly named <a href="http://cheap-domainregistration.com">Cheap-DomainRegistration.com</a>. I also read today that <a href="http://www.reddit.com/r/politics/comments/nntxp/godaddys_response_to_the_boycott_go_daddy_has/">GoDaddy supports SOPA</a>. This is a Bad Thing<sup>TM</sup>. The proposed <a href="http://americancensorship.org/">SOPA legislation is bad</a>, just like drinking anti-freeze is bad for dogs.</p>
-
-
-
-
-<blockquote><p>&ldquo;Hah!&rdquo; I said to myself, grinning in self-assuredness, &ldquo;I am not using GoDaddy. This does not pertain to me.&rdquo;</p></blockquote>
-
-
-
-
-<p>There was a linear relationship between the width of my grin and the amount of uneasiness about issuing my previous utterance. <em>Hmmm. To be frank, I am not sure exactly who owns my current domain host.</em> Now the wheels in my head began turning (<em>Since I looked at that loony, old man</em>). I visited the site&hellip; tried searching for who the company was registered under. I couldn&rsquo;t find anything. It felt&hellip; wrong.</p>
-
-
-
-
-<p>It turns out with a <a href="http://www.godaddy.com/reseller/domain-reseller.aspx?ci=21918">little</a> <a href="http://www.who.is/website-information/godaddy.com/">Internet</a> <a href="http://www.who.is/website-information/cheap-domainregistration.com/">detectivery</a>, I discovered that my now-late host was, in fact, a <strong>GoDaddy reseller.</strong></p>
-
-
-
-
-<ol>
-<li>The reseller template CDR used was the <em>first</em> reseller template available from GD, namely, &ldquo;Black, Yellow, and Red&rdquo;. You can see that by clicking &ldquo;Quick Tour&rdquo; on the GD Reseller page.</li>
-<li>The addresses are the same for both WHOIS records. Coincidence?</li>
-<li>The Legal Agreement for CDR also cites the same address.</li>
-<li>CDR uses secureserver.net for DNS, which is owned by GoDaddy.</li>
-</ol>
-
-
-
-
-<p>Despair kicked in. I glanced at the brand new JA Henckels chef knife my friend got me for Christmas&mdash;the sharp blade, laser edged to perfection&hellip; it would be <em>so</em> easy to&mdash;&ldquo;No,&rdquo; I said. <em>Keep hold of yourself, man!</em></p>
-
-
-
-
-<p>Turns out, there&rsquo;s a great host called <a href="http://namecheap.com">Namecheap.com</a> that is <a href="http://community.namecheap.com/blog/2011/12/22/we-say-no-to-sopa/">against SOPA</a> (as you should be). Needless to say, I&rsquo;ve initiated a bulk transfer of all my domains over to Namecheap. <a href="http://latersgd.com/">I&rsquo;ve done my part</a>.</p>
-
-
-
-
-<p>So now the question is, are <strong>you</strong> inadvertently using a GoDaddy reseller? I highly recommend you double-check because you might just be surprised at what you find.</p>
-
-
-
-
-<p><em>The more you know&hellip;</em></p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2011-12-24T01:12:45+00:00" pubdate data-updated="true">Dec 24<span>th</span>, 2011</time>
     
 
 
