@@ -98,7 +98,11 @@ in
 
 <p>If you read my <a href="http://kamranicus.com/blog/2016/02/24/azure-key-vault-config-encryption-azure/">previous foray into certificates with Azure Key Vault</a>, you know I&rsquo;m pretty green when it comes to certificate management and terminology. I really didn&rsquo;t know what this stuff meant&mdash;I mean, I understand a certificate has key usages and enhanced key usages, but <strong>how does it get them?</strong> It has to do with the certificate request and the template used to provision your certificate.</p>
 
-<p>It turns out Microsoft recommends obtaining a certificate from Active Directory Certificate Services. That&rsquo;s cool, but I&rsquo;m just a developer who wants to work on DSC, I don&rsquo;t have an ADCS server to give me certificates during testing&mdash;that&rsquo;s a different team altogether and when they&rsquo;re primary guy is out of the office, I&rsquo;m a bit stuck. Frustratingly, TechNet doesn&rsquo;t provide any helpful information on generating the required certificate!</p>
+<p>It turns out Microsoft recommends obtaining a certificate from Active Directory Certificate Services. That&rsquo;s cool, but I&rsquo;m just a developer who wants to work on DSC, I don&rsquo;t have an ADCS server to give me certificates during testing&mdash;that&rsquo;s a different team altogether and when they&rsquo;re primary guy is out of the office, I&rsquo;m a bit stuck.</p>
+
+<p><strong>Update (4/13)</strong>: <a href="https://msdn.microsoft.com/en-us/powershell/dsc/securemof">TechNet</a> now has a guide on how to generate certificates for WMF5. I&rsquo;m leaving the rest of this post as-is for posterity.</p>
+
+<hr />
 
 <p>I thought I could maybe use a self-signed certificate while I wait for a &ldquo;for real&rdquo; one later. After searching around for a method to create a certificate with the required KU and EKU specs, I found a lot of answers suggesting using OpenSSL. I&rsquo;ve never used OpenSSL before so I thought I&rsquo;d give it a try and I found it a bit confusing&mdash;I think I could have gotten it to work but instead I came across a random PowerShell article (unrelated to anything) using a utility called <code>certreq</code> that could handle providing custom key usages, problem solved!</p>
 
