@@ -23,7 +23,11 @@ In the recent Windows Management Framework 5 release, Microsoft has improved its
 
 If you read my [previous foray into certificates with Azure Key Vault](http://kamranicus.com/blog/2016/02/24/azure-key-vault-config-encryption-azure/), you know I'm pretty green when it comes to certificate management and terminology. I really didn't know what this stuff meant--I mean, I understand a certificate has key usages and enhanced key usages, but **how does it get them?** It has to do with the certificate request and the template used to provision your certificate.
 
-It turns out Microsoft recommends obtaining a certificate from Active Directory Certificate Services. That's cool, but I'm just a developer who wants to work on DSC, I don't have an ADCS server to give me certificates during testing--that's a different team altogether and when they're primary guy is out of the office, I'm a bit stuck. Frustratingly, TechNet doesn't provide any helpful information on generating the required certificate!
+It turns out Microsoft recommends obtaining a certificate from Active Directory Certificate Services. That's cool, but I'm just a developer who wants to work on DSC, I don't have an ADCS server to give me certificates during testing--that's a different team altogether and when they're primary guy is out of the office, I'm a bit stuck.
+
+**Update (4/13)**: [TechNet](https://msdn.microsoft.com/en-us/powershell/dsc/securemof) now has a guide on how to generate certificates for WMF5. I'm leaving the rest of this post as-is for posterity.
+
+---
 
 I thought I could maybe use a self-signed certificate while I wait for a "for real" one later. After searching around for a method to create a certificate with the required KU and EKU specs, I found a lot of answers suggesting using OpenSSL. I've never used OpenSSL before so I thought I'd give it a try and I found it a bit confusing--I think I could have gotten it to work but instead I came across a random PowerShell article (unrelated to anything) using a utility called `certreq` that could handle providing custom key usages, problem solved!
 
