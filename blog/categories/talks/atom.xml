@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Talks | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/talks/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2016-04-14T03:12:05+00:00</updated>
+  <updated>2016-04-20T22:41:41+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -18,7 +18,9 @@
     <link href="http://kamranicus.com/blog/2016/04/11/tccc20-typescript-in-action/"/>
     <updated>2016-04-11T18:38:00+00:00</updated>
     <id>http://kamranicus.com/blog/2016/04/11/tccc20-typescript-in-action</id>
-    <content type="html"><![CDATA[<p>I&rsquo;ll be speaking at 8:30am this weekend at <a href="http://twincitiescodecamp.com">Twin Cities Code Camp</a>. My talk will about using TypeScript
+    <content type="html"><![CDATA[<p><strong>Update (4/20/16)</strong>: The presentation is now up on <a href="https://www.youtube.com/watch?v=eeh-FcC6Sew">YouTube</a> (and <a href="http://kamranicus.com/presentations/typescript-in-action/#/">the slides</a>).</p>
+
+<p>I&rsquo;ll be speaking at 8:30am this weekend at <a href="http://twincitiescodecamp.com">Twin Cities Code Camp</a>. My talk will about using TypeScript
 in the context of an Angular 2 ASP.NET MVC web application but will focus on how TypeScript enhances my productivity and showcases some features of the language. I&rsquo;ve done the talk previously internally at General Mills and had a great response so I thought I&rsquo;d piggyback on the success of my previous <a href="http://kamranicus.com/presentations/demystifying-typescript/#/">Demystifying TypeScript</a> talk (which is also on <a href="https://www.youtube.com/watch?v=kb7tvaBJeMs">YouTube</a>).</p>
 
 <p>If you&rsquo;re at all interested in seeing how TypeScript development looks in action, you should attend and I&rsquo;d recommend going through my
