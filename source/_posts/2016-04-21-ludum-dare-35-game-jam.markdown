@@ -56,7 +56,7 @@ So as I drove home that night I was frustrated and afraid--we just spent the ent
 
 ## Creativity needs some downtime
 
-I find some of my best ideas, in game jams and outside of them, come when I give my brain time to think--driving home late at night, right before bed, etc. This is pretty well-known. Your brain can pull together random stuff and tie it together when you push everything out and the time that *usually* can occur is before bed.
+I find some of my best ideas, in game jams and outside of them, come when I give my brain time to think--driving home late at night, right before bed, etc. [This is a pretty well-known phenomena](http://www.bbc.com/future/story/20131205-how-sleep-makes-you-more-creative) and also why it's SO IMPORTANT to sleep during a game jam. Give your brain a rest. Your brain can pull together random stuff and tie it together when you push everything out and the time that *usually* can occur is before bed.
 
 So it was like a brick in the face, when on my way home, I had an idea. An idea that I was so excited about, I couldn't sleep until I had made sure to note it all down. In the morning, I was pretty excited:
 
