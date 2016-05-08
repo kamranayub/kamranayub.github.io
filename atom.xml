@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2016-05-08T03:16:32+00:00</updated>
+  <updated>2016-05-08T04:14:04+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,92 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Adding Subresource Integrity Support to Cassette .NET]]></title>
+    <link href="http://kamranicus.com/blog/2016/05/08/cassette-subresource-integrity-sri/"/>
+    <updated>2016-05-08T05:13:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2016/05/08/cassette-subresource-integrity-sri</id>
+    <content type="html"><![CDATA[<p>If you aren&rsquo;t familiar with <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">Subresource Integrity</a>, it&rsquo;s a browser-based security measure to protect embedded content like scripts and stylesheets using a file content hash to help protect against XSS attacks.</p>
+
+<p>For example, let&rsquo;s say you&rsquo;re including a script from a CDN:</p>
+
+<pre><code>&lt;script src="https://mycdn.com/jquery/1.0/jquery.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>Then let&rsquo;s say the CDN is compromised and instead of returning jquery, the script returns some malicious code that could compromise your site. Even if you&rsquo;re using Content Security Policy (CSP), you won&rsquo;t be protected because you whitelisted the CDN.</p>
+
+<p>Subresource Integrity allows you to put a hash of the file&rsquo;s contents in an attribute of the tag. The browser will then hash the contents of the response from the CDN and compare it against the attribute provided. If the hashes don&rsquo;t match, the browser won&rsquo;t include the response and will throw an error.</p>
+
+<pre><code>&lt;script src="https://mycdn.com/jquery/1.0/jquery.js" integrity="sha256-hfhsh02929fhgh303yg"&gt;&lt;/script&gt;
+</code></pre>
+
+<h2>Integrating with Cassette</h2>
+
+<p>I use <a href="http://getcassette.net">Cassette</a> to perform my bundling/minification and I also <a href="http://kamranicus.com/blog/2015/10/10/azure-cdn-cassette/">host my assets on a CDN</a>. Even though they are my own assets, I still want to ensure they are served securely and take advantage of SRI.</p>
+
+<p>For third-party scripts, it is fairly easy to take advantage of SRI by <a href="https://srihash.org/">hashing the contents online</a> and customizing the CDN reference in Cassette:</p>
+
+<pre><code>bundles.AddUrl("http://mycdn.com/jquery/1.0/jquery.js", bundle =&gt;
+    bundle.HtmlAttributes.Add("integrity", "sha256-jquerysfilehash"));
+</code></pre>
+
+<p>But since my <em>own</em> files are dynamic, how can we still leverage Cassette <em>and</em> automatically hash the file contents when outputting to the page?</p>
+
+<p>Luckily, Cassette is pretty extensible and includes a way to <a href="http://getcassette.net/documentation/v2/bundle-pipelines">customize the bundle pipeline</a>. So what we can do is essentially override the rendering of the HTML and add the <code>integrity</code> tag to the output.</p>
+
+<p>To make this easy, I&rsquo;ve created an open source Nuget package called <a href="https://github.com/kamranayub/cassette-sri">Cassette.SubresourceIntegrity</a>. All you do is install the package and <strong>that&rsquo;s it.</strong> Since Cassette automatically scans for bundle customizations, all I did was implement a class <code>InsertIntoPipelineSubresourceIntegrity</code> and modify the pipeline to replace a couple parts with SRI-aware code.</p>
+
+<p>The meat of the change is this code here:</p>
+
+<pre><code>string integrity;
+
+using (var stream = asset.OpenStream())
+{
+    using (var sha256 = SHA256.Create())
+    {
+        integrity = $"integrity=\"sha256-{Convert.ToBase64String(sha256.ComputeHash(stream))}\"";
+    }
+}
+
+return $"&lt;script src=\"{_urlGenerator.CreateAssetUrl(asset)}\" " +
+       $"type=\"text/javascript\" " +
+       $"{integrity}{bundle.HtmlAttributes.ToAttributeString()}&gt;&lt;/script&gt;";
+</code></pre>
+
+<p>I am just getting the asset stream and hashing the contents using SHA256, then adding the attribute to the output. You&rsquo;ll notice that the <strong>URLs are not changed</strong>, so Cassette will continue to use SHA1 hashes internally. It&rsquo;s <em>only when rendering</em> we use SHA256 because that&rsquo;s the only place we need it.</p>
+
+<p>While the code is interesting, it&rsquo;s nothing too crazy&mdash;in fact, most of the code required is because Cassette doesn&rsquo;t expose certain needed classes used in the rendering pipeline so I had to basically copy/paste a lot of the helper classes.</p>
+
+<h2>The end result</h2>
+
+<p>Now Cassette will automatically include SRI hashes for individual assets:</p>
+
+<pre><code>&lt;link href="cassette.axd/asset/Content/bootstrap/bootstrap-ext.css?cabc6264a89106c4b9021c293cfa5c2cae7a0549" 
+    integrity="sha256-sNfA6O5zvZPmMJ474pm2w6UyZbz5tfukxTEZXrsLm7Q=" type="text/css" rel="stylesheet"/&gt;
+&lt;link href="cassette.axd/asset/Content/modules/typeahead.css?00581b47ff3848da273d91c31adb8270e9ef8707" 
+    integrity="sha256-W6JAiwRw2ER1QoXjXL/YxsY/On1Y7MhW4TtoWY0XuH8=" type="text/css" rel="stylesheet"/&gt;
+&lt;link href="cassette.axd/asset/Content/modules/toastr.css?32e90a136e05728ac23995ff8fe33077df9f50ca" 
+    integrity="sha256-JT6UwDlczdRDx+9mnMCzvxwABJP0cSDgNLmT+WumJrQ=" type="text/css" rel="stylesheet"/&gt;
+&lt;link href="cassette.axd/asset/Content/hopscotch/hopscotch.css?58ea04e54df958c33cf9e6bfed9f39a166354e9c" 
+    integrity="sha256-Bq06LI6L0XMhxF+CoJo+4L12w2Orsbh2oRjOZ+fpmWc=" type="text/css" rel="stylesheet"/&gt;
+&lt;link href="cassette.axd/asset/Content/core.css?a3b4fcb8b7d9b0e8465a4fea29d60247ea47fd87" 
+    integrity="sha256-fAqyFLkOx1cFONu7NXX3c7/G1DSmXeHgtPtcWU72a4E=" type="text/css" rel="stylesheet"/&gt;
+&lt;link href="cassette.axd/asset/Content/library.css?2c2746a086737dc588e313c0cc2c5adf8b947605" 
+    integrity="sha256-SaP9kdYfbafIVes+qntAiDLPsi4JaXnit4eN6IfU9lA=" type="text/css" rel="stylesheet"/&gt;
+</code></pre>
+
+<p><em>and</em> bundles:</p>
+
+<pre><code>&lt;link href="cassette.axd/stylesheet/ba58f2a04873e41b6a599274ea6768db1a61a650/Content/core" 
+    integrity="sha256-thzkrIApz9dAI9nfJGleO1jbNFXXVT/BxoSynI2pEPw=" type="text/css" rel="stylesheet"/&gt;
+&lt;link href="cassette.axd/stylesheet/2c2746a086737dc588e313c0cc2c5adf8b947605/Content/library.css" 
+    integrity="sha256-6LgYbxu4UwouRBqvUdHZAQc0lewdik6aZYpDgrtAWJ4=" type="text/css" rel="stylesheet"/&gt;
+</code></pre>
+
+<p>Voila!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Designing Hexshaper, a Game for the Ludum Dare 35 Game Jam]]></title>
@@ -2535,84 +2621,6 @@ in your build, you can use the Kudu <a href="https://github.com/projectkudu/kudu
 <p>Challenge yourself. I didn&rsquo;t think I&rsquo;d be into going to Morocco but it was <strong>amazing</strong> and I&rsquo;d go back again. Using GPS to navigate the labyrinth of souks while being hassled by shop owners is definitely an experience you won&rsquo;t get anywhere else.</p>
 
 <p><img src="https://cloud.githubusercontent.com/assets/563819/7751434/40bec6b0-ffda-11e4-89cb-1df305332f13.png" alt="Souks" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Use a Separate Chrome Profile to Manage Your Apps]]></title>
-    <link href="http://kamranicus.com/blog/2015/05/21/chrome-multi-user/"/>
-    <updated>2015-05-21T13:45:00+00:00</updated>
-    <id>http://kamranicus.com/blog/2015/05/21/chrome-multi-user</id>
-    <content type="html"><![CDATA[<p>If you&rsquo;re an app or site developer, you&rsquo;ve probably got a bunch of
-tabs or bookmarks for your dashboards, social network accounts,
-blog, and more. For <a href="http://keeptrackofmygames.com">Keep Track of My Games</a>,
-I have UserVoice, Azure, RavenDB, social profiles, etc. that I
-need to manage and track (haha).</p>
-
-<!-- More -->
-
-
-<p>It can be a chore to manage all of this easily but I have a tip.
-A little while back Chrome <a href="https://support.google.com/chrome/answer/2364824?hl=en">introduced a new feature</a> that lets
-you switch between multiple profiles super easily. I use it
-for me and my wife, since she has a Google account and goes
-to knitting sites and does whatever she likes doing&mdash;I don&rsquo;t want that filth in <em>my</em> Chrome instance! :)</p>
-
-<p><img src="https://cloud.githubusercontent.com/assets/563819/7749041/784a45e2-ffca-11e4-8a5f-ce5d1c445d4e.png" alt="Chrome user switcher is in the corner" /></p>
-
-<p>The user switcher is in the top-right of Chrome, shown above. You can single-click to bring up a modal or right-click to quickly switch.
-Chrome profiles are kept separate, with their own settings, extensions,
-and bookmarks. This keeps tabs and work separated neatly and creates a
-so-called &ldquo;separation of concerns&rdquo; for your browsing.</p>
-
-<p>Here&rsquo;s the rub: A full Chrome user is tied to a Google account. I don&rsquo;t want to create a separate Google account just for KTOMG.
-The Google+, YouTube, email, etc. is all linked to my primary Google Account.
-The issue is, Chrome will not let more than one
-Google account exist on a single PC. So how can we take advantage of the profile separation but still
-keep my primary Google account?</p>
-
-<p>The answer is: we&rsquo;ll create a
-<a href="https://support.google.com/chrome/answer/3463947">Supervised User Account</a>. Did you notice I said &ldquo;full user&rdquo; before?
-A SUA is just a lower privilege profile (meant for children) that you can
-control via your primary Google account. BUT, if you <strong>don&rsquo;t restrict anything</strong>,
-it&rsquo;ll just be like a &ldquo;full&rdquo; profile!</p>
-
-<p>We&rsquo;ll follow the instructions above in the Google help article:</p>
-
-<ol>
-<li>Under your Chrome profile, go to Settings</li>
-<li>Scroll down to Users</li>
-<li>Click &ldquo;Add User&rdquo; and enter your app&rsquo;s name and avatar for a picture</li>
-<li>Click &ldquo;Control and view websites this person visits from [your Google account]&rdquo;</li>
-</ol>
-
-
-<p><img src="https://cloud.githubusercontent.com/assets/563819/7749183/8dd90398-ffcb-11e4-8f8a-095f4a2e4beb.png" alt="Supervised user" /></p>
-
-<p>Now you&rsquo;ve made a &ldquo;supervised&rdquo; app account managed by your main Google one. Nice! You can set up all your tabs as you want, <del>extensions with any
-specific accounts (TweetDeck)</del>, and pinned dashboard tabs, all within a separate context from your primary Chrome profile. <strong>Update:</strong> It appears, after I tried, that SUA&rsquo;s cannot use extensions. There&rsquo;s an <a href="https://code.google.com/p/chromium/issues/detail?id=354178">open issue</a> for it, so hopefully whitelist ability will be added soon.</p>
-
-<p>For example, here&rsquo;s what <a href="http://keeptrackofmygames.com">Keep Track of My Games</a>
-looks like in its own Chrome profile:</p>
-
-<p><img src="https://cloud.githubusercontent.com/assets/563819/7749251/1de36eb0-ffcc-11e4-8be9-fa78b45a69da.png" alt="KTOMG profile" /></p>
-
-<p>And the full experience:</p>
-
-<p><img src="https://cloud.githubusercontent.com/assets/563819/7749724/e2d07ed6-ffcf-11e4-93cd-f307718c2c82.png" alt="KTOMG browser" /></p>
-
-<p>When you&rsquo;re the only one managing a bunch of apps, this
-is a real productivity booster. You could even go as far as
-creating separate profiles for each environment, if you like. Hell, this doesn&rsquo;t have to be for apps, it could be for whatever browsing contexts you want to separate.</p>
-
-<p>Just make sure you have enough RAM because Chrome will
-suck it all up.</p>
-
-<p><img src="https://cloud.githubusercontent.com/assets/563819/7749876/db3a810c-ffd0-11e4-8a35-5d96e41b874f.png" alt="Task manager" /></p>
-
-<p>Dumb puny laptop.</p>
-
-<p>Hope this helps! Happy managing.</p>
 ]]></content>
   </entry>
   

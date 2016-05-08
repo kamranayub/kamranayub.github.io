@@ -90,6 +90,118 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/posts/62/renderroutes-expose-your-routes-to-your-javascript">RenderRoutes: Expose Your Routes to Your Javascript</a></h2>
+  
+  <p>
+    <p>When you&rsquo;re working on an AJAX-enabled application, you&rsquo;ll soon discover it can be a pain to manage URLs. In fact, when you&rsquo;re working with ASP.NET MVC in general, working with routes is a pain. As soon as you want to change one, you have to go and find everywhere it&rsquo;s used.</p>
+
+
+
+
+<p>I came up with a solution that works well for me and may for you.</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="c1">// Are you writing code like this?</span>
+</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span> <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;/products/&quot;</span> <span class="o">+</span> <span class="nx">productId</span> <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Wouldn&#39;t you rather write this?</span>
+</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span> <span class="nx">url</span><span class="o">:</span> <span class="nx">Router</span><span class="p">.</span><span class="nx">url</span><span class="p">(</span><span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="nx">productId</span><span class="p">)</span> <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>In MVC, you have the notion of &ldquo;named&rdquo; routes, like this:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">routes</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="p">{</span> <span class="n">RouteName</span> <span class="p">=</span> <span class="s">&quot;product&quot;</span><span class="p">,</span> <span class="n">Url</span> <span class="p">=</span> <span class="s">&quot;product/{productId}&quot;</span> <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>(<em>Side Protip: <a href="http://kamranicus.com/Blog/Posts/23/mvc-pro-tip-dont-use-the-id-url-parameter-in-your">Don&rsquo;t use &ldquo;{id}&rdquo; in MVC routes</a></em>)</p>
+
+
+
+
+<p>However, in the default MVC world, you would need to create these entries in your Global ASAX or wherever you set up your routes, and once you have enough, it will quickly get out of hand.</p>
+
+
+
+
+<p>Awhile back, I started using <a href="http://attributerouting.net">AttributeRouting</a> to help organize my routing and remove the shackles of the default MVC routing experience. I even <a href="/Blog/Posts/43/attributerouting-now-supports-web-api">contributed the first Web API implementation</a> to the project.</p>
+
+
+
+
+<p>One of the bonuses of using AR is that it uses a standard interface for any routes it creates, <code>IAttributeRoute</code>. I knew that when I started using Web API more that I needed an easy way to bring my server-side routes to my client-side in a way that was easy to use and that I didn&rsquo;t need to manually maintain.</p>
+
+
+
+
+<p>Thus was born my <code>RenderRoutes</code> extension:</p>
+
+
+
+
+<script src="https://gist.github.com/4438411.js"></script>
+
+
+
+
+<p>In order to use this properly in your Javascript, you&rsquo;ll need to create a helper utility. The one that I use is very simplistic, doing basic search and replace on parameters, which is the only thing I really need with my routes.</p>
+
+
+
+
+<p>The dependencies my solution has are:</p>
+
+
+
+
+<ul>
+<li><a href="http://attributerouting.net">AttributeRouting</a></li>
+<li><a href="http://underscorejs.org">Underscore.js</a></li>
+</ul>
+
+
+
+
+<p>That&rsquo;s only because it was easier to leverage my existing dependencies. A more intrepid soul might be willing to de-couple my solution from these dependencies, and if you do, let me know so I can update my Gist. In fact, you should just fork my gist. Hmm, that sounds wrong.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-01-03T04:03:43+00:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2013</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/posts/61/a-smarter-checked-binding-for-knockoutjs">A Smarter `checked` Binding for KnockoutJS</a></h2>
   
   <p>
@@ -1437,174 +1549,6 @@ Source: <a href="http://wpcornerpeelplugin.com/html/">http://wpcornerpeelplugin.
 
 
 <time datetime="2012-06-15T22:44:35+00:00" pubdate data-updated="true">Jun 15<span>th</span>, 2012</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/posts/51/protip-show-db-usage-in-your-ef-application">Protip: Show DB Usage in Your EF Application</a></h2>
-  
-  <p>
-    <p>My staging application is on <a href="http://appharbor.com">AppHarbor</a> so I gave it the shared Yocto SQL database which has a limit of 20MB. That&rsquo;s not much, so I wanted a way to display my current usage level in staging when I test the site in case I want to flush it out. It was fairly easy (with a gotcha)!</p>
-
-
-
-
-<p><strong>MVC Layout</strong></p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>@if (AppSettings.RuntimeEnvironment != RuntimeEnvironment.P)
-</span><span class='line'>{
-</span><span class='line'>    <span class="nt">&lt;p&gt;</span>DB Usage: @{ Html.RenderAction(&quot;DbUsage&quot;, &quot;Stats&quot;); }<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>}
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>I am rendering an action since I need to call out to my service layer.</p>
-
-
-
-
-<p><strong>StatsController</strong></p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[ChildActionOnly]</span>
-</span><span class='line'><span class="na">[GET(&quot;stats/dbusage&quot;)]</span>
-</span><span class='line'><span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">DbUsage</span><span class="p">()</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">AppSettings</span><span class="p">.</span><span class="n">RuntimeEnvironment</span> <span class="p">!=</span> <span class="n">RuntimeEnvironment</span><span class="p">.</span><span class="n">P</span><span class="p">)</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="nf">Content</span><span class="p">(</span><span class="n">SomeAbstraction</span><span class="p">.</span><span class="n">GetDatabaseUsageStat</span><span class="p">());</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">return</span> <span class="k">new</span> <span class="nf">EmptyResult</span><span class="p">();</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>I am using <a href="https://github.com/mccalltd/AttributeRouting">AttributeRouting</a>, and if you use <code>RenderAction</code> you should know it requires a route to be made. I use <code>ChildActionOnly</code> to prevent browsing to the action. I also return an empty result if it&rsquo;s production (I only have 3 states).</p>
-
-
-
-
-<p><strong>IRepository</strong></p>
-
-
-
-
-<p>In my project, I have a application service layer that uses an injectable repository. I&rsquo;ve found this makes integration testing pretty easy as my controllers are dumb as heck and leave all the logic up to the service layer where there&rsquo;s no need to mock any HTTP stuff.</p>
-
-
-
-
-<p>I&rsquo;ll skip to the repository since that&rsquo;s where the actual code is.</p>
-
-
-<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="kt">string</span> <span class="nf">GetDbUsage</span><span class="p">()</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">try</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="n">IEnumerable</span> <span class="n">dt</span> <span class="p">=</span> <span class="n">_dbContext</span><span class="p">.</span><span class="n">Database</span><span class="p">.</span><span class="n">SqlQuery</span><span class="p">(</span><span class="k">typeof</span> <span class="p">(</span><span class="n">DbUsage</span><span class="p">),</span> <span class="s">&quot;sp_spaceused&quot;</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">dt</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
-</span><span class='line'>            <span class="k">return</span> <span class="s">&quot;Unknown&quot;</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="kt">var</span> <span class="n">usage</span> <span class="p">=</span> <span class="n">dt</span><span class="p">.</span><span class="n">OfType</span><span class="p">&lt;</span><span class="n">DbUsage</span><span class="p">&gt;().</span><span class="n">FirstOrDefault</span><span class="p">();</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">return</span> <span class="n">usage</span><span class="p">.</span><span class="n">database_size</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span> <span class="k">catch</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="s">&quot;Unknown&quot;</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">private</span> <span class="k">class</span> <span class="nc">DbUsage</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">public</span> <span class="kt">string</span> <span class="n">database_name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'>    <span class="k">public</span> <span class="kt">string</span> <span class="n">database_size</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>This just executes the stored proc <code>sp_spaceused</code> and coerces it into the <code>DbUsage</code> type. The gotcha is that there&rsquo;s another column, &ldquo;unallocated space&rdquo; which <strong>for some ungodly, inconsistent reason</strong> has a space in it. I cannot figure out how to get it without resorting to an ADO.NET data reader. I&rsquo;d appreciate any advice on how to grab that additional column as well.</p>
-
-
-
-
-<p>If you want to log an error, you should, but I don&rsquo;t really care if I can&rsquo;t access the size&hellip; so I just ignore it. It&rsquo;s only for debugging.</p>
-
-
-
-
-<p>And as for the result? Handy!</p>
-
-
-
-
-<p><img src="/blog/images/53.png" alt="DB Usage" /></p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2012-06-15T11:19:29+00:00" pubdate data-updated="true">Jun 15<span>th</span>, 2012</time>
     
 
 
