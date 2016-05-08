@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Designing Hexshaper, a game for the Ludum Dare 35 Game Jam"
-date: 2016-04-30 15:28:00 -0600
+date: 2016-05-07 20:10:00 -0600
 comments: true
-published: false
+published: true
 categories:
 - Games
 - Javascript
@@ -95,8 +95,8 @@ Think of even the most basic game and try to find the theme--you'll see that the
 
 ## Think and work in the abstract until the theme reveals itself
 
-This experience also reinforces the value of *focusing on the mechanics first* rather than theming right away. One of the first things we did Saturday was design the spaceship! Instead, we should have focused on the mechanical ideas abstractly and *then* let the theme reveal itself. By using abstract design first, our minds could have been able to make connections faster to think of a consistent theme. When you're looking and playing with grey boxes, it becomes easier to imagine what the game might be like. When we decided to do art first, we pigeon-holed **our minds** into believing the final game needed to be space-themed rather than it being open-ended.
+This experience also reinforces the value of *focusing on the mechanics first* rather than theming right away. One of the first things we did Saturday was design the spaceship! Instead, we should have focused on the mechanical ideas abstractly and *then* let the theme reveal itself. By using abstract design first, our minds could have been able to make connections faster to think of a consistent theme. When you're looking and playing with grey boxes, it becomes easier to imagine what the game might be like. When we decided to do art first, we pigeon-holed **our brains** into believing the final game needed to be space-themed rather than it being open-ended.
 
-If we had decided on a more consistent theme before we started development, we could have probably done even more by the end of the jam. When we designed [Sweep Stacks](http://playsweepstacks.com), we knew exactly what the mechanics would be--so the theme was evident and we had scoped it to what we could finish in a jam.
+If we had decided on a more consistent theme before we started development, we could have probably done even more by the end of the jam. When we designed [Sweep Stacks](http://playsweepstacks.com), we knew exactly what the mechanics would be--so the theme was evident and we had scoped it to what we could finish in a jam. Sometimes what can help (and we didn't necessarily do this in this jam) is to write on a board the mechanics you want, then try to come up with creative ways they tie together. Don't spend too much time on one idea--someone should say let's move on and the group discusses a different idea entirely. This way, you can kind of avoid designing yourself into a corner by exploring all sorts of other ideas and how they relate to the mechanics you want.
 
 Only by a lucky burst of creativity, "Ship Shape" became Hexshaper and turned out to be even better than we first thought.
