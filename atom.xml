@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2016-04-30T20:35:21+00:00</updated>
+  <updated>2016-05-08T03:16:32+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,117 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Designing Hexshaper, a Game for the Ludum Dare 35 Game Jam]]></title>
+    <link href="http://kamranicus.com/blog/2016/05/08/ludum-dare-35-game-jam/"/>
+    <updated>2016-05-08T02:10:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2016/05/08/ludum-dare-35-game-jam</id>
+    <content type="html"><![CDATA[<p>This last weekend I took part in the global <a href="http://ludumdare.com">Ludum Dare 35</a> game jam. If you&rsquo;ve been following me for awhile, you know I&rsquo;ve participated in the past too. This time we <a href="http://excaliburjs.com/ludum-35">made a game called Hexshaper</a>&mdash;where the goal is to fly around, absorbing magic to seal portals to another dimension to prevent monsters from overtaking the world. The backstory, while not communicated directly, informed our design&mdash;but it wasn&rsquo;t like that at first.</p>
+
+<!-- more -->
+
+
+<p>It&rsquo;s interesting to look at where the game was 24 hours into the competition because <strong>it looks nothing like the final game</strong>:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/14938110/522d02f8-0edf-11e6-9329-7af08f8f9ecc.png" alt="Ship in space" /></p>
+
+<p>A ship shooting bullets at vampire bats in space? That is <em>nothing</em> like a witch flying around inside a castle closing portals!</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/14938116/935df5ca-0edf-11e6-8694-507052c8f6cf.png" alt="Witchcraft" /></p>
+
+<p>How did that come to be?</p>
+
+<h2>Let&rsquo;s make a shmup</h2>
+
+<p>This being our fourth LD jam, we have a process for how we do things now. Friday is spent brainstorming and coming up with ideas and then Saturday-Monday we build out our idea. This jam was a little different though&mdash;by the end of the night the group agreed we wanted to make a shoot &lsquo;em up (&ldquo;shmup&rdquo;) but we didn&rsquo;t quite know what the game would be about. All the ideas seemed to be too involved for a jam:</p>
+
+<ul>
+<li>&ldquo;Let&rsquo;s make an Ikaruga style shoot &lsquo;em up with enemies and levels&rdquo;</li>
+<li>&ldquo;Let&rsquo;s have different kinds of shooting styles&rdquo;</li>
+<li>&ldquo;Let&rsquo;s make different shields that absorb certain bullets&rdquo;</li>
+<li>&ldquo;Let&rsquo;s do a Geometry Wars style arena shooter&rdquo;</li>
+</ul>
+
+
+<p>The most important thing you can do during a jam is to scope your idea to something that makes sense. We know from experience we never make more than one level or develop different enemy designs&mdash;all of that is stuff you do <strong>after</strong> the game proves fun and interesting, which usually ends up being the last day :)</p>
+
+<p>We ended up landing on the last two ideas Friday night but I don&rsquo;t think any of us really saw a coherent design in our heads. We knew the mechanics we wanted but that&rsquo;s about it.</p>
+
+<h2>Designing yourself into a corner</h2>
+
+<p>We began working on the game Saturday morning. We made a space ship, we made monsters, we had shooting and we had an arena&hellip; but by the end of the night, I was frustrated and I think several other team members were too. There were too many open questions in my mind:</p>
+
+<ol>
+<li>What was interesting about the game?</li>
+<li>How will shields work?</li>
+<li>Why are there vampire bats in space?</li>
+<li>Why are you shooting them?</li>
+<li>It feels wrong to constrain <em>space</em>, space is open and vast, why are you trapped?</li>
+</ol>
+
+
+<p>The problem was clear in hindsight and something that was nagging at me all throughout the day: <strong>we did not have an internally consistent idea.</strong> Our idea was too abstract and didn&rsquo;t tie together the reasons why the mechanics existed. There was no point of reference for the mechanics, the <em>why</em> of it all. Why were you a spaceship shooting bats in outer space? I don&rsquo;t know! None of us could explain why anything was happening.</p>
+
+<p>So as I drove home that night I was frustrated and afraid&mdash;we just spent the entire day working on a game but I have no idea to what end. It just didn&rsquo;t feel right. We had a spaceship, we had a space theme, how the heck could this make any sense? I felt like we designed ourselves into a corner.</p>
+
+<h2>Creativity needs some downtime</h2>
+
+<p>I find some of my best ideas, in game jams and outside of them, come when I give my brain time to think&mdash;driving home late at night, right before bed, etc. <a href="http://www.bbc.com/future/story/20131205-how-sleep-makes-you-more-creative">This is a pretty well-known phenomena</a> and also why it&rsquo;s SO IMPORTANT to sleep during a game jam. Give your brain a rest. Your brain can pull together random stuff and tie it together when you push everything out and the time that <em>usually</em> can occur is before bed.</p>
+
+<p>So it was like a brick in the face, when on my way home, I had an idea. An idea that I was so excited about, I couldn&rsquo;t sleep until I had made sure to note it all down. In the morning, I was pretty excited:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/14938261/683c1bc0-0ee3-11e6-9da2-8e6481cdd1aa.png" alt="image" /></p>
+
+<h2>The importance of an internally consistent theme</h2>
+
+<p>When the team assembled, I told them I had a way to tie it all together&mdash;with minimal changes to existing mechanics. I was a little hesitant, would they like it? I was excited but started to doubt myself a little&mdash;was it a bit too farfetched?</p>
+
+<blockquote><p>&ldquo;OK, what if you&rsquo;re a witch or a wizard and you&rsquo;re trying to make some kind of crazy potion. But then your dumb assistant bumps the ingredients and they all fall and mix together, creating interdimensional portals! The potions correspond to the shield types and you are trying to close the portals by killing the monsters. The arena is closed because you&rsquo;re actually INSIDE on a broomstick and you&rsquo;re in a castle. So the goal is to close all the portals to save the world!&rdquo;</p></blockquote>
+
+<p>I had nothing to worry about. Everyone loved it and then <strong>everyone</strong> started to contribute their ideas:</p>
+
+<ul>
+<li>&ldquo;What if the monsters and the portals are colored to show their association?&rdquo;</li>
+<li>&ldquo;What if we use shapes to denote the bullets and shield types?&rdquo;</li>
+<li>&ldquo;What if we did waves, so like the first wave introduces the player to the idea and then have more waves until you win?&rdquo;</li>
+<li>&ldquo;What if we showed an opening sequence where you bump all the potions into a pile and a HUGE PILLAR OF LIGHT AND ENERGY SHOOTS UP FROM THE GROUND AND THEN THE SCREEN FLASHES WHITE AND WHEN IT COMES BACK THE CASTLE IS IN RUINS!?&rdquo; (that was how I saw the intro in my head)</li>
+</ul>
+
+
+<p>You see, <strong>when you have an idea that is internally consistent you can answer all these kinds of questions easily and things just make sense.</strong> <em>Why are you flying around?</em> Because you&rsquo;re a witch! <em>Why are their monsters?</em> Because there are interdimensional portals! <em>Why do you have a shield?</em> They are hexes! <em>How do you close portals?</em> Absorb the magical energy to close them!</p>
+
+<p>And then what happens is the theme helps get rid of mechanics you <em>thought</em> you wanted but turned out to just hinder the goal:</p>
+
+<ul>
+<li>Q: &ldquo;Why are you shooting?&rdquo;</li>
+<li>A: &ldquo;I don&rsquo;t know, what if we get rid of shooting?&rdquo;</li>
+</ul>
+
+
+<p>And sure enough when we did the game felt more natural&mdash;instead of shooting working against the primary mechanic of changing shields, now the only thing you can do is absorb magic and run into monsters. That felt much better! The new theme brought together the rest of the design ideas: you&rsquo;re in a castle, there are portals, it should be fantasy-themed, etc. It all just tied together nicely and all it took was re-skinning what we had Saturday night.</p>
+
+<p>An internally consistent theme is extremely important in any game for obvious reasons:</p>
+
+<ul>
+<li>It explains the internal lore of the game</li>
+<li>It energizes team members</li>
+<li>It gets the creative juices flowing</li>
+<li>It defines what the game will be</li>
+</ul>
+
+
+<p>Think of even the most basic game and try to find the theme&mdash;you&rsquo;ll see that the mechanics and design all play off each other, even if the theme is never communicated formally. This realization isn&rsquo;t anything new&mdash;I&rsquo;ve read the <a href="http://www.amazon.com/Art-Game-Design-book-lenses/dp/0123694965">Art of Game Design</a> and many of the &ldquo;lenses&rdquo; discussed help you design a coherent theme. It&rsquo;s just something that can be hard to land on within 72 hours and easy to lose sight of in the excitement of a game jam.</p>
+
+<h2>Think and work in the abstract until the theme reveals itself</h2>
+
+<p>This experience also reinforces the value of <em>focusing on the mechanics first</em> rather than theming right away. One of the first things we did Saturday was design the spaceship! Instead, we should have focused on the mechanical ideas abstractly and <em>then</em> let the theme reveal itself. By using abstract design first, our minds could have been able to make connections faster to think of a consistent theme. When you&rsquo;re looking and playing with grey boxes, it becomes easier to imagine what the game might be like. When we decided to do art first, we pigeon-holed <strong>our brains</strong> into believing the final game needed to be space-themed rather than it being open-ended.</p>
+
+<p>If we had decided on a more consistent theme before we started development, we could have probably done even more by the end of the jam. When we designed <a href="http://playsweepstacks.com">Sweep Stacks</a>, we knew exactly what the mechanics would be&mdash;so the theme was evident and we had scoped it to what we could finish in a jam. Sometimes what can help (and we didn&rsquo;t necessarily do this in this jam) is to write on a board the mechanics you want, then try to come up with creative ways they tie together. Don&rsquo;t spend too much time on one idea&mdash;someone should say let&rsquo;s move on and the group discusses a different idea entirely. This way, you can kind of avoid designing yourself into a corner by exploring all sorts of other ideas and how they relate to the mechanics you want.</p>
+
+<p>Only by a lucky burst of creativity, &ldquo;Ship Shape&rdquo; became Hexshaper and turned out to be even better than we first thought.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[TypeScript in Action at Twin Cities Code Camp 20 (TCCC20)]]></title>
@@ -2502,119 +2613,6 @@ suck it all up.</p>
 <p>Dumb puny laptop.</p>
 
 <p>Hope this helps! Happy managing.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Extending Knockout Observables to Sync With Address Bar]]></title>
-    <link href="http://kamranicus.com/blog/2015/05/11/extending-knockout-with-urlsync/"/>
-    <updated>2015-05-11T16:20:00+00:00</updated>
-    <id>http://kamranicus.com/blog/2015/05/11/extending-knockout-with-urlsync</id>
-    <content type="html"><![CDATA[<p>I made a tiny Knockout extender called <code>urlSync</code> that syncs an observable with the URL.</p>
-
-<!-- More -->
-
-
-<p>For <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> I&rsquo;ve been adding filtering to the game library.
-I&rsquo;m really proud of what I have, here&rsquo;s what it looks like in the UI:</p>
-
-<p><img src="http://kamranicus.com/blog/images/2015-05-11-filtering.png" alt="Filtering UI" /></p>
-
-<p>A modal allows the user to drill down and pick what filters to apply, the modal updates to show what filters are applied and what&rsquo;s available with the current resultset.</p>
-
-<p><img src="http://kamranicus.com/blog/images/2015-05-11-filtering-modal.png" alt="Filtering Modal" /></p>
-
-<p>When you&rsquo;re outside the modal, I show any filters being applied allowing one-click removal or toggling the filtering method between AND/OR.</p>
-
-<p>To make it easy to serialize/deserialize filters, I created a custom filtering expression that is pretty standard around town:</p>
-
-<pre><code>{facetName}:{facetValue},{facetValue},...|...
-</code></pre>
-
-<p>For example, representing the screenshot above, the filtering expression would be:</p>
-
-<pre><code>Lists:6|Status:8|My+Platforms:1
-</code></pre>
-
-<p>If you muck with the expression, there shouldn&rsquo;t be any issues. Facets are validated against whatever the original unfiltered resultset is, so you cannot add arbitrary expressions&mdash;if you do, they will not show up in the server response. Strings are special because potentially they can include characters used to parse the expression, the simplest way to deal with it is by encoding them and then decoding the value.</p>
-
-<pre><code>Tags:my%20awesome%2ctag,tag2|Status:4
-</code></pre>
-
-<p>Now, I wanted to talk about the filtering expression because it makes it really easy to do a bunch of things:</p>
-
-<ol>
-<li>Reading/writing from querystring or hash</li>
-<li>Create a command textbox that can parse and autocomplete expressions</li>
-<li>Allow the user to save &ldquo;views&rdquo; of their games</li>
-</ol>
-
-
-<p>Items 2 and 3 might be on the agenda for some later date but item 1 is required for being able to create pre-filtered routes or create links. Since the library is loaded through Knockout and Web API, we need to be able to pass any filter or parameters when the page is loaded and also keep track of what the current values are for filtering.</p>
-
-<p>To achieve this, I created a really simple <a href="http://knockoutjs.com/documentation/extenders.html">Knockout Extender</a> called <strong>urlSync.</strong> All it does is initially load an observable from the hash (if found) or the querystring (if found). Then it observes the observable and keeps the <code>window.location.hash</code> updated.</p>
-
-<p>This could easily be extended to use <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history">HTML5 <code>pushState</code></a>, if you wished. For now, managing the hash is &ldquo;good enough&rdquo; for my use case.</p>
-
-<p>Here is a Gist of the extender:</p>
-
-<script src="https://gist.github.com/kamranayub/3feba45dd2da3262b872.js"></script>
-
-
-<p>It depends on <a href="http://medialize.github.io/URI.js">URI.js</a> and the <a href="http://medialize.github.io/URI.js/docs.html#fragment-abuse">URI.fragmentQuery</a> component. It also uses <a href="http://underscorejs.org">Underscore.js</a>, but that&rsquo;s just because I have it in my project already.</p>
-
-<p>It&rsquo;s really simple to use, for example here&rsquo;s a snippet from my collection view model:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>// Flattened facets
-</span><span class='line'>ViewModel.facets = ko.observableArray([]);
-</span><span class='line'>
-</span><span class='line'>// Selected (applied) facets
-</span><span class='line'>ViewModel.selectedFacets = ko.observableArray([]).extend({
-</span><span class='line'>    urlSync: {
-</span><span class='line'>      param: "filterBy",
-</span><span class='line'>      read: function(value) {
-</span><span class='line'>         return kt.utils.facetsFromString(value, ViewModel.facets);
-</span><span class='line'>      },
-</span><span class='line'>      write: kt.utils.facetsToString
-</span><span class='line'>    }
-</span><span class='line'>});
-</span><span class='line'>
-</span><span class='line'>// Filter AND toggle
-</span><span class='line'>ViewModel.filterAnd = ko.observable(false).extend({ urlSync: "filterAnd" });</span></code></pre></td></tr></table></div></figure>
-
-
-<p>As you can see, the extender allows you to intercept read/write so you can perform any custom transformations (e.g. filtering objects to/from string). Because we&rsquo;re deserializing from a string and because the <code>checkedValue</code> binding is by reference, I pass in the existing facets collection to my utility, in order to preserve object references when required. On initial page load, this isn&rsquo;t required as the games haven&rsquo;t been fetched from the API yet. Once they are, my fetch method updates the observables. I could also modify the way I handle binding the checkboxes but this works.</p>
-
-<p>The <code>urlSync</code> extender will then bind the observable values to the URL like this:</p>
-
-<pre><code>users/kamran.ayub/lists/all#?
-    sortBy=Name&amp;
-    filterAnd=true&amp;
-    filterBy=Status%3A8%7CLists%3A6%7CMy+Platforms%3A1
-</code></pre>
-
-<p>Since the extender can also fallback to reading from the querystring, we can create URLs that filter a user&rsquo;s collection:</p>
-
-<pre><code>users/somebody/lists/all?filterBy=Platforms:2,5,40
-</code></pre>
-
-<p>Pretty neat and now allows anyone to copy/paste the URL and preserve any needed filtering state!</p>
 ]]></content>
   </entry>
   
