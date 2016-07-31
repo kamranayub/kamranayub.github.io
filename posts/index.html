@@ -13,7 +13,7 @@
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="All Posts Adding Subresource Integrity Support to Cassette .NET If you aren&rsquo;t familiar with Subresource Integrity, it&rsquo;s a browser-based &hellip;">
+  <meta name="description" content="All Posts ASP.NET Core Sample Demo Game At General Mills we do semi-annual code camps where the developer organization gets together for a half-day &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -62,6 +62,85 @@
 
   <div class="article-list">
     <div class="container">
+      
+      
+      <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+          <article>
+  <h2><a href="/blog/2016/07/31/aspnet-core-demo-game/">ASP.NET Core Sample Demo Game</a></h2>
+  
+  <p>
+    <p>At General Mills we do semi-annual code camps where the developer organization gets together for a half-day of talks and fun. This past code camp myself and my partner in crime, <a href="http://twitter.com/erikonarheim">Erik Onarheim</a> gave a talk around ASP.NET Core. It&rsquo;s part of our roadmap to be familiar with hosting ASP.NET Core so we wanted to build something and showcase to developers what&rsquo;s changed in Core vs. the typical Framework application.</p>
+
+
+
+
+<p>We made a trivial demo game built on top of SignalR and .NET Core while also showing off other new features of the stack, including:</p>
+
+
+
+
+<ul>
+<li>Depdendency Injection</li>
+<li>Custom Tag Helpers</li>
+<li>Cascading Configuration</li>
+<li>Multi-Environment Support</li>
+<li>Strongly-Typed Options</li>
+<li>Injecting Services into Views</li>
+<li>Injected MVC Filters</li>
+<li>Bundling &amp; Minification</li>
+<li>Publishing to Azure</li>
+</ul>
+
+
+
+
+<p>We had the demo running on Azure during the talk so people could join the game and we even attempted showing Linux support, though web sockets were not behaving nicely behind nginx. The game is not really a game but more of a showcase of using web sockets to allow some real-time multiplayer server action. It is definitely <em>not</em> how you&rsquo;d implement a &ldquo;real&rdquo; multiplayer game but it&rsquo;s a fun demo.</p>
+
+
+
+
+<p>You can check out the source code on GitHub: <a href="https://github.com/eonarheim/aspnet-core-demogame">https://github.com/eonarheim/aspnet-core-demogame</a>. It&rsquo;s commented pretty heavily to help understand the different parts, it&rsquo;s based on the default out-of-the-box web template (<code>dotnet new -t web</code>).</p>
+
+
+
+
+<p>We may or may not upload the talk onto YouTube since there wasn&rsquo;t really anything specific about our work until the very end, which we can strip out without losing any important bits.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2016-07-31T18:05:00+00:00" pubdate data-updated="true">Jul 31<span>st</span>, 2016</time>
+    
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/dot-net-core/'>.NET Core</a>, <a class='category' href='/blog/categories/asp-dot-net/'>ASP.NET</a>, <a class='category' href='/blog/categories/c-number/'>C#</a>, <a class='category' href='/blog/categories/mvc/'>MVC</a>, <a class='category' href='/blog/categories/signalr/'>SignalR</a>
+  
+</span>
+
+
+  </span>
+
+  
+</article>
+
+        </div>
+      </div>
       
       
       <div class="row">
@@ -459,7 +538,7 @@ in
 </span><span class='line'>szOID_DOCUMENT_ENCRYPTION = &ldquo;1.3.6.1.4.1.311.80.1&rdquo;
 </span><span class='line'>
 </span><span class='line'>[NewRequest]
-</span><span class='line'>Subject = &ldquo;cn=<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#x3a;&#109;&#101;&#x40;&#101;&#x78;&#97;&#x6d;&#x70;&#108;&#x65;&#46;&#99;&#x6f;&#x6d;">&#x6d;&#x65;&#64;&#101;&#120;&#97;&#x6d;&#112;&#108;&#101;&#46;&#99;&#111;&#x6d;</a>&rdquo;
+</span><span class='line'>Subject = &ldquo;cn=<a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#58;&#x6d;&#101;&#64;&#x65;&#120;&#97;&#x6d;&#x70;&#x6c;&#101;&#x2e;&#x63;&#x6f;&#x6d;">&#109;&#101;&#64;&#x65;&#x78;&#97;&#x6d;&#112;&#x6c;&#x65;&#x2e;&#99;&#x6f;&#109;</a>&rdquo;
 </span><span class='line'>MachineKeySet = false
 </span><span class='line'>KeyLength = 2048
 </span><span class='line'>KeySpec = AT_KEYEXCHANGE

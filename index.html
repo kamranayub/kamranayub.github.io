@@ -90,6 +90,85 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/2016/07/31/aspnet-core-demo-game/">ASP.NET Core Sample Demo Game</a></h2>
+  
+  <p>
+    <p>At General Mills we do semi-annual code camps where the developer organization gets together for a half-day of talks and fun. This past code camp myself and my partner in crime, <a href="http://twitter.com/erikonarheim">Erik Onarheim</a> gave a talk around ASP.NET Core. It&rsquo;s part of our roadmap to be familiar with hosting ASP.NET Core so we wanted to build something and showcase to developers what&rsquo;s changed in Core vs. the typical Framework application.</p>
+
+
+
+
+<p>We made a trivial demo game built on top of SignalR and .NET Core while also showing off other new features of the stack, including:</p>
+
+
+
+
+<ul>
+<li>Depdendency Injection</li>
+<li>Custom Tag Helpers</li>
+<li>Cascading Configuration</li>
+<li>Multi-Environment Support</li>
+<li>Strongly-Typed Options</li>
+<li>Injecting Services into Views</li>
+<li>Injected MVC Filters</li>
+<li>Bundling &amp; Minification</li>
+<li>Publishing to Azure</li>
+</ul>
+
+
+
+
+<p>We had the demo running on Azure during the talk so people could join the game and we even attempted showing Linux support, though web sockets were not behaving nicely behind nginx. The game is not really a game but more of a showcase of using web sockets to allow some real-time multiplayer server action. It is definitely <em>not</em> how you&rsquo;d implement a &ldquo;real&rdquo; multiplayer game but it&rsquo;s a fun demo.</p>
+
+
+
+
+<p>You can check out the source code on GitHub: <a href="https://github.com/eonarheim/aspnet-core-demogame">https://github.com/eonarheim/aspnet-core-demogame</a>. It&rsquo;s commented pretty heavily to help understand the different parts, it&rsquo;s based on the default out-of-the-box web template (<code>dotnet new -t web</code>).</p>
+
+
+
+
+<p>We may or may not upload the talk onto YouTube since there wasn&rsquo;t really anything specific about our work until the very end, which we can strip out without losing any important bits.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2016-07-31T18:05:00+00:00" pubdate data-updated="true">Jul 31<span>st</span>, 2016</time>
+    
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/dot-net-core/'>.NET Core</a>, <a class='category' href='/blog/categories/asp-dot-net/'>ASP.NET</a>, <a class='category' href='/blog/categories/c-number/'>C#</a>, <a class='category' href='/blog/categories/mvc/'>MVC</a>, <a class='category' href='/blog/categories/signalr/'>SignalR</a>
+  
+</span>
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/2016/05/08/cassette-subresource-integrity-sri/">Adding Subresource Integrity Support to Cassette .NET</a></h2>
   
   <p>
@@ -482,7 +561,7 @@ in
 </span><span class='line'>szOID_DOCUMENT_ENCRYPTION = &ldquo;1.3.6.1.4.1.311.80.1&rdquo;
 </span><span class='line'>
 </span><span class='line'>[NewRequest]
-</span><span class='line'>Subject = &ldquo;cn=<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#x3a;&#109;&#101;&#64;&#x65;&#120;&#97;&#x6d;&#112;&#x6c;&#x65;&#x2e;&#x63;&#111;&#109;">&#x6d;&#x65;&#64;&#101;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x2e;&#99;&#111;&#x6d;</a>&rdquo;
+</span><span class='line'>Subject = &ldquo;cn=<a href="&#x6d;&#97;&#x69;&#108;&#116;&#x6f;&#x3a;&#109;&#101;&#64;&#x65;&#120;&#97;&#x6d;&#x70;&#108;&#101;&#46;&#99;&#x6f;&#x6d;">&#109;&#101;&#64;&#x65;&#x78;&#x61;&#x6d;&#112;&#x6c;&#101;&#46;&#x63;&#x6f;&#109;</a>&rdquo;
 </span><span class='line'>MachineKeySet = false
 </span><span class='line'>KeyLength = 2048
 </span><span class='line'>KeySpec = AT_KEYEXCHANGE
@@ -902,75 +981,6 @@ in
 
   
     <a class="full-article-link pull-right" rel="full-article" href="/blog/2016/02/04/typewriter/">Read on &rarr;</a>
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/2016/01/25/planet-wars-ai-competition-excaliburjs-csharp/">Planet Wars AI Competition With C# and Excalibur.js</a></h2>
-  
-  <p>
-    <p><img src="https://zippy.gfycat.com/BraveBlushingImpala.gif" alt="Planet Wars" /></p>
-
-
-
-
-<p>This past weekend <a href="http://twitter.com/erikonarheim">Erik</a> and I built out a <a href="https://github.com/eonarheim/planet-wars-competition">Planet Wars</a> server (written in C#) and an <a href="http://excaliburjs.com">Excalibur.js</a>-powered visualization (written in TypeScript). Planet Wars is an AI competition where you build an AI that competes against another player to control a solar system. A map consists of several planets that have different growth rates and an initial number of ships. You have to send out a &ldquo;fleet&rdquo; of ships to colonize other planets and the player who controls the most planets and has destroyed their opponent&rsquo;s ships wins the game.</p>
-
-
-
-
-<p>At work we are hosting our 6th Code Camp and recently we started hosting an AI competition internally. You can find past competition agents for <a href="https://github.com/eonarheim/AntAICompetition">Ants</a> and <a href="https://github.com/eonarheim/BellTowerEscape">Elevators</a>, for example.</p>
-
-
-
-
-<p>The <a href="https://github.com/eonarheim/planet-wars-competition/tree/master/PlanetWars/Scripts/game">visualization for Planet Wars</a> is fairly simple, made even simpler using the power of <a href="http://excaliburjs.com">Excalibur.js</a>, the engine we work on during our spare time. We basically just use an Excalibur timer to query the status of the game state and update the state of all the actors in the game. For moving the fleets, we just use the <a href="http://excaliburjs.com/docs/api/edge/classes/ex.actioncontext.html">Actor Action API</a>.</p>
-
-
-
-
-<p>For the <a href="https://github.com/eonarheim/planet-wars-competition/tree/master/PlanetWars/Server">game server</a>, we are using a <a href="https://github.com/eonarheim/planet-wars-competition/blob/master/PlanetWars/Server/HighFrequencyTimer.cs">HighFrequencyTimer</a> to run a 30fps server and then clients just send commands via HTTP, so any kind of agent will work like Python, Perl, PowerShell, or whatever! Anything that speaks HTTP can be a client. The server runs in the context of a website so we can easily query the state using a singleton <code>GameManager</code>. This wouldn&rsquo;t work in a load-balanced environment but it doesn&rsquo;t matter since people develop agents locally and we run the simulations on one server at high-speed to produce the results. If you backed the server with a data store, you could replay games but right now there&rsquo;s only an in-memory implementation.</p>
-
-
-
-
-<p>To keep the server and client models in-sync, we use <a href="http://frhagn.github.io/Typewriter/index.html">Typewriter for Visual Studio</a> which is <strong>amazing</strong> and super useful not just for syncing client/server but also generating web clients, interfaces, etc. from C# code. I plan to write a separate post on some Typewriter tips for Knockout.js and Web API.</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2016-01-25T18:30:00+00:00" pubdate data-updated="true">Jan 25<span>th</span>, 2016</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/ai/'>AI</a>, <a class='category' href='/blog/categories/c-number/'>C#</a>, <a class='category' href='/blog/categories/excalibur-dot-js/'>Excalibur.js</a>, <a class='category' href='/blog/categories/games/'>Games</a>, <a class='category' href='/blog/categories/javascript/'>Javascript</a>, <a class='category' href='/blog/categories/typescript/'>Typescript</a>, <a class='category' href='/blog/categories/typewriter/'>Typewriter</a>
-  
-</span>
-
-
-  </span>
-
   
 </article>
 
