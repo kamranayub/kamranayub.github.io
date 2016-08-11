@@ -4,7 +4,7 @@
   <title><![CDATA[Category: PowerShell | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/powershell/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2016-08-11T23:17:06+00:00</updated>
+  <updated>2016-08-11T23:31:31+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[OpenWeatherMap PowerShell Module]]></title>
+    <link href="http://kamranicus.com/blog/2016/08/12/posh-openweathermap-powershell-module/"/>
+    <updated>2016-08-12T00:15:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2016/08/12/posh-openweathermap-powershell-module</id>
+    <content type="html"><![CDATA[<p>There&rsquo;s no better to way to learn something new than to make a thing. Yesterday I had a strong desire to know what the weather was like from my command prompt. I can&rsquo;t explain it&mdash;I just had to and I thought, &ldquo;Hey, it can&rsquo;t be that bad, right?&rdquo; I decided to try writing and releasing an open-source PowerShell module.</p>
+
+<!-- More -->
+
+
+<p>It turned out to be very easy, in fact. There&rsquo;s an awesome project called <a href="http://openweathermap.org">OpenWeatherMap</a> where you can sign up for a free API key and go to down on their open data API&mdash;limited to 60 calls a minute which isn&rsquo;t a problem for my pet project.</p>
+
+<p>So, what happens when you combine PowerShell and an open weather API? Weather in your command prompt!</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/17608181/4a908116-5ff0-11e6-8bb2-396c8f5a998e.png" alt="Weather" /></p>
+
+<p>I&rsquo;ve <a href="https://github.com/kamranayub/posh-openweathermap/">released the module on GitHub</a> and the <a href="http://www.powershellgallery.com/packages/OpenWeatherMap/">PowerShell Gallery</a> for your enjoyment. I&rsquo;ve already added weather symbols (Unicode is cool) and I&rsquo;m adding friendly forecasting next.</p>
+
+<p>You can set up your PowerShell profile to get the weather each time you boot your prompt, <a href="https://github.com/kamranayub/posh-openweathermap/blob/master/profile.example.ps1">following the example on GitHub</a>.</p>
+
+<p>This also sets up an alias for <code>weather</code> so you can ad-hoc get the weather too:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/17608247/ba82117e-5ff0-11e6-92c3-b06e7216feb3.png" alt="weather command" /></p>
+
+<p>I plan to add the ability to get a quick forecast, so you can know what to plan for the next morning before you get into work! There&rsquo;s probably more neat stuff we can do with coloring the weather conditions but maybe you want to open a PR then?</p>
+
+<p>One interesting thing I noticed was that the Windows Command Prompt (and PowerShell) does not support some Unicode characters. For example, you can probably see this:</p>
+
+<pre><code>⛱
+</code></pre>
+
+<p>But if you try pasting that into command prompt you&rsquo;ll see:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/17608313/4e4c8b3c-5ff1-11e6-9300-200bc4604a39.png" alt="no symbols" /></p>
+
+<p>So that was a little disappointing&mdash;it meant I had to stick to the Unicode symbols that worked in the prompt, which is still a good amount but not as a granular as it could potentially be.</p>
+
+<p>I am not sure why Windows doesn&rsquo;t support those characters but maybe in a future Windows 10 update they&rsquo;ll add support!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Generating an Encryption Certificate for PowerShell DSC in WMF5]]></title>
@@ -53,7 +94,7 @@ szOID_ENHANCED_KEY_USAGE = &ldquo;2.5.29.37&rdquo;
 szOID_DOCUMENT_ENCRYPTION = &ldquo;1.3.6.1.4.1.311.80.1&rdquo;</p>
 
 <p>[NewRequest]
-Subject = &ldquo;cn=<a href="&#109;&#x61;&#105;&#x6c;&#x74;&#111;&#x3a;&#109;&#101;&#x40;&#x65;&#120;&#x61;&#109;&#112;&#x6c;&#101;&#46;&#x63;&#111;&#x6d;">&#x6d;&#x65;&#64;&#101;&#120;&#97;&#x6d;&#112;&#108;&#x65;&#46;&#x63;&#x6f;&#109;</a>&rdquo;
+Subject = &ldquo;cn=<a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#109;&#x65;&#64;&#x65;&#120;&#x61;&#109;&#112;&#x6c;&#101;&#x2e;&#99;&#111;&#109;">&#109;&#x65;&#64;&#101;&#x78;&#97;&#x6d;&#x70;&#108;&#x65;&#x2e;&#x63;&#x6f;&#109;</a>&rdquo;
 MachineKeySet = false
 KeyLength = 2048
 KeySpec = AT_KEYEXCHANGE

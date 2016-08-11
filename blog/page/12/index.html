@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Kamranicus</title>
+  <meta name="author" content="Kamran">
+
+  
+  <meta name="description" content="Kamranicus
+Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I am a web developer and designer, residing in Minnesota. I &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kamranicus.com/blog/page/12">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+  <body>
+    <a href="/" class="home-icon">
+      <img src="/images/home.png"/>
+    </a>
+
+    <div class="home-page">
+  <div class="hero">
+    <h1>Kamranicus</h1>
+<p>Personal and development blog of Kamran Ayub</p>
+
+  </div>
+
+  <div class="home-field">
+    <div class="home-landing her-row">
+      <div class="container">
+        <div class="row">
+          <div id="about-me" class="col-md-offset-3 col-md-6">
+  <h4>about me</h4>
+  <p>Hi, my name is Kamran. I am a web developer and designer,  residing in Minnesota. I&#8217;ve been programming since 2001 and  I am familiar with many different languages, both web-based  and server-based. I love to tinker around and think of new  ways to solve problems.
+</p>
+  <div class="social-icon-list">
+  	
+    <a title="Twitter" href="https://twitter.com/kamranayub"><img src="/images/glyphicons_social_31_twitter.png"/></a>
+    
+    
+    <a title="GitHub" href="https://github.com/kamranayub"><img src="/images/glyphicons_social_21_github.png"/></a>
+    
+    
+    
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="article-list">
+      <div class="container">
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
+  <h2><a href="/blog/posts/1/welcome-to-kamranicus-yaps">Welcome to Kamranicus [YAPS]</a></h2>
+  
+  <p>
+    <h1>YAPS (Yet Another Personal Site)</h1>
+
+
+
+
+<p>My other site <a href="http://intrepidstudios.com">Intrepid Studios</a> will be undergoing some major changes soon, due to my dad taking most of the reigns. It will shift from being mostly my pet project site to an actual commercial site. I won&rsquo;t be doing much directly with it anymore and I needed a new home for all <strong>my</strong> stuff.</p>
+
+
+
+
+<p>Thus, I welcome you to <strong>Kamranicus!</strong> I decided to create my own personal site and learn some new technology in the process. I knew a thing or two about MVC but I had yet to sit down and <em>learn</em> it first-hand. It was great timing because at work I am coming onto some existing ASP.NET MVC applications.</p>
+
+
+
+
+<h2>Overview</h2>
+
+
+
+
+<p>One thing you hopefully <strong>won&rsquo;t</strong> notice is that I don&rsquo;t bother to support any browser less than the latest modern versions (IE9, FF4, Chrome, etc). This is on purpose, mainly to decrease maintenance and development time, but also because I&rsquo;ve always wanted to say <strong>&lsquo;eff you</strong> to all those nasty old browsers (I am including IE8 and below in this category).</p>
+
+
+
+
+<h3>Homepage</h3>
+
+
+
+
+<p>The <a href="/">homepage</a> is all JSON-based, except the blog overview. The &ldquo;feeds&rdquo; use my <a href="http://github.com/kamranayub/.JSON">.JSON</a> library and the code consists of about one line per feed I need:</p>
+
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="kt">dynamic</span><span class="p">[]</span> <span class="n">repositories</span> <span class="p">=</span> <span class="n">JsonService</span><span class="p">.</span><span class="n">GetFrom</span><span class="p">(</span><span class="s">&quot;<a href="http://github.com/api/v2/json/repos/show/kamranayub&amp;quot;">http://github.com/api/v2/json/repos/show/kamranayub&amp;quot;</a></span><span class="p">).</span><span class="n">repositories</span><span class="p">;</span>
+</span><span class='line'><span class="kt">dynamic</span><span class="p">[]</span> <span class="n">forSale</span> <span class="p">=</span> <span class="n">JsonService</span><span class="p">.</span><span class="n">GetFrom</span><span class="p">(</span><span class="s">&quot;<a href="http://marketplace.envato.com/api/v2/new-files-from-user:kayub,codecanyon.json&amp;quot;">http://marketplace.envato.com/api/v2/new-files-from-user:kayub,codecanyon.json&amp;quot;</a></span><span class="p">).</span><span class="n">newfilesfromuser</span><span class="p">;</span>
+</span><span class='line'><span class="kt">dynamic</span><span class="p">[]</span> <span class="n">tweets</span> <span class="p">=</span> <span class="n">JsonService</span><span class="p">.</span><span class="n">GetFrom</span><span class="p">(</span><span class="s">&quot;<a href="http://api.twitter.com/1/statuses/user_timeline.json?screen_name=kamranayub&amp;quot;">http://api.twitter.com/1/statuses/user_timeline.json?screen_name=kamranayub&amp;quot;</a></span><span class="p">);</span>
+</span><span class='line'><span class="kt">dynamic</span> <span class="n">soAnswers</span> <span class="p">=</span> <span class="n">JsonService</span><span class="p">.</span><span class="n">GetFrom</span><span class="p">(</span><span class="s">&quot;<a href="http://api.stackoverflow.com/1.1/users/109458/answers?pagesize=6&amp;amp;sort=creation&amp;quot;">http://api.stackoverflow.com/1.1/users/109458/answers?pagesize=6&amp;amp;sort=creation&amp;quot;</a></span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The <a href="/Blog">blog</a> is custom-made and bare-bones. You ask, &ldquo;But why not use a proven full-fledged blog framework?&rdquo; I wanted the first-class integration, I wanted some custom stuff, and because I just needed a good excuse to learn Razor and MVC 3 properly. This was a great exercise and I hope to share it with you soon.</p>
+
+
+
+
+<h2>MVC 3 Razor Blog Features</h2>
+
+
+
+
+<h3>Admin Panel Free</h3>
+
+
+
+
+<p>I didn&rsquo;t want to build a separate admin panel for my blog. I built it so that I can manage it using a pretty reasonable workflow. When a post is displayed, I see this above it:</p>
+
+
+
+
+<p><img src="/blog/images/1.png" alt="Post Toolbar" /></p>
+
+
+
+
+<p>I can delete it on the spot or edit it inline via AJAX. Over a comment, <em>you</em> and I can see this:</p>
+
+
+
+
+<p><img src="/blog/images/2.png" alt="Comment Toolbar" /></p>
+
+
+
+
+<p>For now I am not putting a time limit for editing or deleting comments&hellip; it is also tied to the same OpenID account you posted the comment as, so if you login with a different one, you won&rsquo;t be the owner. I should mention, the way it is coded, <strong>I cannot delete or edit your comments</strong>. If spam becomes an issue (which I will guess it will) then I&rsquo;ll have to at least be able to mark comments as spam.</p>
+
+
+
+
+<h3>REST-based Design</h3>
+
+
+
+
+<p>I made the routes designed as a poor man&rsquo;s REST implementation. So lots of things support AJAX through the same URLs as browsing without JS.</p>
+
+
+
+
+<p>This allows <em>me</em> to do fun inline-editing of my posts and allows <em>you</em> to inline edit your comments.</p>
+
+
+
+
+<p>It also allows me to not duplicate any templates as I can just pass the same exact partially-rendered views to jQuery as I do normally without JS.</p>
+
+
+
+
+<h3>OpenID Support</h3>
+
+
+
+
+<p>Since I didn&rsquo;t want to create my own membership system, I just use some very basic OpenID using <a href="http://www.dotnetopenauth.net/">DotNetOpenAuth</a>.</p>
+
+
+
+
+<p>I don&rsquo;t store anything except your claim ID, nickname (if given), and email (if given).</p>
+
+
+
+
+<h3>Gravatars</h3>
+
+
+
+
+<p>I don&rsquo;t know why but this was important to me. It&rsquo;s so easy to implement but it just <em>looks</em> awesome.</p>
+
+
+
+
+<h3>Kamdown</h3>
+
+
+
+
+<p>Windows Live Writer is great, but I really love Markdown. This was one big reason I didn&rsquo;t want a huge blog library, I <strong>needed</strong> this. I didn&rsquo;t bother with any Metaweblog API hooks because I liked the web-based approach to updating my blog and the simplicity of Markdown.</p>
+
+
+
+
+<p>I use a slightly enhanced version of Markdown (called Kamdown, <em>har har</em>) for my posts and your comments. For my posts, I implemented the SUPA Java applet to add copy/paste support for images:</p>
+
+
+
+
+<p><img src="/blog/images/3.png" alt="SUPA Upload Popup" /></p>
+
+
+
+
+<p>It just adds the image data to the DB and outputs a URL: <code>![SUPA Image Upload Support](/blog/images/2.png)</code></p>
+
+
+
+
+<p>This works both from clicking a button to open the dialog and also by just hitting Ctrl-V in the textbox.</p>
+
+
+
+
+<p>I also was inspired by GitHub&rsquo;s great interface for Markdown-enabled fields, letting you hotswap between plain text or previewed HTML. I love it!</p>
+
+
+
+
+<p><img src="/blog/images/4.png" alt="Markdown editor" /></p>
+
+
+
+
+<p>I am using the <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a> JS plugin to do syntax highlighting. I initially tried IronPython with Pygments, but there were some memory issues and I decided not to use it as it wasn&rsquo;t stable. A shame since that is the library GitHub uses and it&rsquo;s very nice. I may go back and try to figure out what the problem was.</p>
+
+
+
+
+<p>You use it the same way you use code blocks in GitHub wikis, triple-ticks (`).</p>
+
+
+
+
+<h3>SubSonic + Ninject</h3>
+
+
+
+
+<p>I really liked <a href="http://subsonicproject.com">SubSonic&rsquo;s</a> <code>SimpleRepository</code> so I used it. I didn&rsquo;t bother with much layering and focused more on getting things done so most of my data access code is 1-2 lines wherever I need it.</p>
+
+
+
+
+<p>I use Ninject as my DI framework because it&rsquo;s simple and straight to the point.</p>
+
+
+
+
+<h3>AppHarbor Deployment</h3>
+
+
+
+
+<p>I am using the free <a href="http://appharbor.com">AppHarbor</a> instance to host and deploy the site (using a separate back-end I get for free).</p>
+
+
+
+
+<p>It&rsquo;s a really neat service but it still needs some minor adjustments, such as more separation between environments (for testing). I may talk about this later. That said, it does its job well and the free instance seems to be fast enough for my needs. I do have <a href="http://arvixe.com">Arvixe</a> to fall back on, but their control panel and setup was being too ornery for me.</p>
+
+
+
+
+<h2>So where&rsquo;s the code?</h2>
+
+
+
+
+<p>I hope to release my code soon, as soon as I clean it up and make it somewhat presentable. I figure it&rsquo;d be nice to let other people build their own custom blogs from a small codebase like I did. It&rsquo;s separated into its own Area, so the code is separate from the core site. The great thing is you get all the integration MVC provides and it&rsquo;s as customizable as you need it to be.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2011-04-06T04:10:57+00:00" pubdate data-updated="true">Apr 6<span>th</span>, 2011</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+      </div>
+    </div>
+
+    <hr class="divider-short"/>
+
+    <div class="archive-link">
+      <h3><a href="/blog/archives/">All Posts</a></h3>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="her-row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+  <a href="/"><h4>Home</h4></a>
+</div>
+
+<div class="col-md-2">
+  <div class="social-icon-list">
+    
+    <a href="https://twitter.com/kamranayub"><img src="/images/glyphicons_social_31_twitter.png"/></a>
+    
+
+    
+    <a href="https://github.com/kamranayub"><img src="/images/glyphicons_social_21_github.png"/></a>
+    
+
+    
+
+    
+  </div>
+</div>
+
+<div class="pull-right">
+  <h4>Powered by <a href="http://octopress.org/">Octopress</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+    
+  </body>
+</html>

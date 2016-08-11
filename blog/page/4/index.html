@@ -90,6 +90,92 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/2014/02/09/websockets-on-windows-azure/">Getting WebSockets to Work on Windows Azure</a></h2>
+  
+  <p>
+    <p>I was banging my head against the wall for the past hour or so wondering why I was falling back to XHR polling when I deployed my Node.js application to Azure. I&rsquo;m using socket.io and everything looks like it&rsquo;s in order, works locally, etc. It was failing with a WebSocket handshake error.</p>
+
+
+
+
+<p>What I saw in the Chrome developer console was something like:</p>
+
+
+
+
+<pre><code>Error during WebSocket handshake: Unexpected response code: 502
+</code></pre>
+
+
+
+
+<p>In my Azure Node.js console (<code>azure site log tail SITENAME</code>), I was seeing <code>EPIPE</code> errors.</p>
+
+
+
+
+<p>It turns out, this little tidbit from the <a href="http://blogs.msdn.com/b/windowsazure/archive/2013/11/14/introduction-to-websockets-on-windows-azure-web-sites.aspx">original Windows Azure blog post</a> on Web Sockets did the trick.</p>
+
+
+
+
+<p>Modify your <strong>web.config</strong> and add:</p>
+
+
+
+
+<pre><code>&lt;webSocket enabled="false" /&gt;
+</code></pre>
+
+
+
+
+<p>To your <code>system.webServer</code> configuration. Also, another good point in that blog post is to use SSL, since you get SSL for free with a <code>*.azurewebsites.net</code> site.</p>
+
+
+
+
+<p>Hope this helps someone else out there. This should be added to the <a href="http://www.windowsazure.com/en-us/documentation/articles/web-sites-nodejs-chat-app-socketio/">official Azure tutorial</a> on using web sockets with Node.js.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-02-09T03:52:48+00:00" pubdate data-updated="true">Feb 9<span>th</span>, 2014</time>
+    
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/azure/'>Azure</a>, <a class='category' href='/blog/categories/node-dot-js/'>Node.js</a>, <a class='category' href='/blog/categories/websockets/'>WebSockets</a>
+  
+</span>
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/2014/01/29/5-tips-to-improve-your-mvc-site/">5 Tips to Improve Your ASP.NET MVC Codebase</a></h2>
   
   <p>
@@ -587,58 +673,6 @@ in
 
 
 <time datetime="2013-10-17T20:17:14+00:00" pubdate data-updated="true">Oct 17<span>th</span>, 2013</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/posts/76/minnesota-developer-conference-2013-connected-apps">Minnesota Developer Conference 2013: Connected Apps</a></h2>
-  
-  <p>
-    <p><strong>Update:</strong> My session slides are available online at <a href="https://speakerdeck.com/kamranayub/bending-apis-to-your-will-using-windows-phone">SpeakerDeck</a>. If you attended, I hope you enjoyed it!</p>
-
-
-
-
-<p>Will you be attending <a href="http://mdc.ilmservice.com">Minnesota Developer Conference</a>? Come see me at 12:45pm if you want to get jump started with creating connected Windows Phone apps. I&rsquo;ll be talking about how to connect to APIs and useful patterns I&rsquo;ve learned throughout my (limited) development experience. Even if you <em>have</em> developed an app, I hope to share some tips that might help improve your app and it&rsquo;ll definitely provide a jumping off point if you haven&rsquo;t started yet.</p>
-
-
-
-
-<p>My current rehearsals clock in at around a 45 minute presentation which leaves a healthy 30 minutes for questions and seeing any live code, which will be at the audiences&#8217; whim. I&rsquo;ll be walking through a real application I&rsquo;m in the middle of developing so I hope to share some patterns and practices that I&rsquo;ve found useful when developing connected apps like MVVM, Async/Await, offline storage, and more.</p>
-
-
-
-
-<p>See you on Thursday!</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-09-24T23:58:10+00:00" pubdate data-updated="true">Sep 24<span>th</span>, 2013</time>
     
 
 

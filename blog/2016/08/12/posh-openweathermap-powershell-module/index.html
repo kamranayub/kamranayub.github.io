@@ -9,11 +9,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Demystifying TypeScript at Midwest.js - Kamranicus</title>
+  <title>OpenWeatherMap PowerShell Module - Kamranicus</title>
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="Demystifying TypeScript at Midwest.js written Aug 12th, 2016 in Conferences, Javascript, Talks, TypeScript Today I was excited to give a talk at &hellip;">
+  <meta name="description" content="OpenWeatherMap PowerShell Module written Aug 12th, 2016 in OSS, PowerShell There&rsquo;s no better to way to learn something new than to make a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -22,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://kamranicus.com/blog/2016/08/12/midwestjs-demystifying-typescript">
+  <link rel="canonical" href="http://kamranicus.com/blog/2016/08/12/posh-openweathermap-powershell-module">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
@@ -55,7 +55,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
-        <h1>Demystifying TypeScript at Midwest.js</h1>
+        <h1>OpenWeatherMap PowerShell Module</h1>
         <div class="meta">
           written 
 
@@ -70,25 +70,51 @@
 
 
 
-<time datetime="2016-08-12T00:09:00+00:00" pubdate data-updated="true">Aug 12<span>th</span>, 2016</time>
+<time datetime="2016-08-12T00:15:00+00:00" pubdate data-updated="true">Aug 12<span>th</span>, 2016</time>
           
 
 in
 <span class="categories">
   
-    <a class='category' href='/blog/categories/conferences/'>Conferences</a>, <a class='category' href='/blog/categories/javascript/'>Javascript</a>, <a class='category' href='/blog/categories/talks/'>Talks</a>, <a class='category' href='/blog/categories/typescript/'>TypeScript</a>
+    <a class='category' href='/blog/categories/oss/'>OSS</a>, <a class='category' href='/blog/categories/powershell/'>PowerShell</a>
   
 </span>
 
 
         </div>
-        <p>Today I was excited to give a talk at <a href="http://midwestjs.com">Midwest.js</a> about <a href="http://kamranicus.com/presentations/demystifying-typescript">Demystifying TypeScript</a>. This is not the first time I&rsquo;ve given the talk, it&rsquo;s actually the <strong>fourth</strong> time. Instead of leaving it stale I revamped the theme and updated all the information to be current as of today&mdash;including information about <a href="https://babeljs.io/">Babel.js</a> and <a href="https://flowtype.org/">Flow</a>.</p>
+        <p>There&rsquo;s no better to way to learn something new than to make a thing. Yesterday I had a strong desire to know what the weather was like from my command prompt. I can&rsquo;t explain it&mdash;I just had to and I thought, &ldquo;Hey, it can&rsquo;t be that bad, right?&rdquo; I decided to try writing and releasing an open-source PowerShell module.</p>
 
-<p>Unfortunately due to technical difficulties (no HDMI-to-DisplayPort adapter!) the talk&rsquo;s <em>video</em> wasn&rsquo;t recorded. However, I was mic&rsquo;d and I did use SnagIt to record my screen, so we&rsquo;re hoping we can merge the audio and video tracks to generate a recording. If not, I may need to sit down and record audio for the talk.</p>
+<!-- More -->
 
-<p>I will update this post after the conference and let you know the status&mdash;let&rsquo;s hope we can get it working! Otherwise, I guess you just had to be there ;)</p>
 
-<p>If you attended and have questions, feel free to leave them here or <a href="http://twitter.com/kamranayub">tweet</a> at me!</p>
+<p>It turned out to be very easy, in fact. There&rsquo;s an awesome project called <a href="http://openweathermap.org">OpenWeatherMap</a> where you can sign up for a free API key and go to down on their open data API&mdash;limited to 60 calls a minute which isn&rsquo;t a problem for my pet project.</p>
+
+<p>So, what happens when you combine PowerShell and an open weather API? Weather in your command prompt!</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/17608181/4a908116-5ff0-11e6-8bb2-396c8f5a998e.png" alt="Weather" /></p>
+
+<p>I&rsquo;ve <a href="https://github.com/kamranayub/posh-openweathermap/">released the module on GitHub</a> and the <a href="http://www.powershellgallery.com/packages/OpenWeatherMap/">PowerShell Gallery</a> for your enjoyment. I&rsquo;ve already added weather symbols (Unicode is cool) and I&rsquo;m adding friendly forecasting next.</p>
+
+<p>You can set up your PowerShell profile to get the weather each time you boot your prompt, <a href="https://github.com/kamranayub/posh-openweathermap/blob/master/profile.example.ps1">following the example on GitHub</a>.</p>
+
+<p>This also sets up an alias for <code>weather</code> so you can ad-hoc get the weather too:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/17608247/ba82117e-5ff0-11e6-92c3-b06e7216feb3.png" alt="weather command" /></p>
+
+<p>I plan to add the ability to get a quick forecast, so you can know what to plan for the next morning before you get into work! There&rsquo;s probably more neat stuff we can do with coloring the weather conditions but maybe you want to open a PR then?</p>
+
+<p>One interesting thing I noticed was that the Windows Command Prompt (and PowerShell) does not support some Unicode characters. For example, you can probably see this:</p>
+
+<pre><code>⛱
+</code></pre>
+
+<p>But if you try pasting that into command prompt you&rsquo;ll see:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/17608313/4e4c8b3c-5ff1-11e6-9300-200bc4604a39.png" alt="no symbols" /></p>
+
+<p>So that was a little disappointing&mdash;it meant I had to stick to the Unicode symbols that worked in the prompt, which is still a good amount but not as a granular as it could potentially be.</p>
+
+<p>I am not sure why Windows doesn&rsquo;t support those characters but maybe in a future Windows 10 update they&rsquo;ll add support!</p>
 
 
         <hr class="divider-short"/>
@@ -112,11 +138,9 @@ in
     <div class="row">
       <div class="col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
         
-          <a class="pull-left" href="/blog/2016/07/31/aspnet-core-demo-game/" title="Previous Post: ASP.NET Core Sample Demo Game">&laquo; Previous: ASP.NET Core Sample Demo Game</a>
+          <a class="pull-left" href="/blog/2016/08/12/midwestjs-demystifying-typescript/" title="Previous Post: Demystifying TypeScript at Midwest.js">&laquo; Previous: Demystifying TypeScript at Midwest.js</a>
         
 
-        
-          <a class="pull-right" href="/blog/2016/08/12/posh-openweathermap-powershell-module/" title="Next Post: OpenWeatherMap PowerShell Module">Next: OpenWeatherMap PowerShell Module &raquo;</a>
         
       </div>
     </div>
@@ -164,9 +188,9 @@ in
         
         // var disqus_developer = 1;
         
-        var disqus_identifier = 'http://kamranicus.com/blog/2016/08/12/midwestjs-demystifying-typescript/';
+        var disqus_identifier = 'http://kamranicus.com/blog/2016/08/12/posh-openweathermap-powershell-module/';
         
-        var disqus_url = 'http://kamranicus.com/blog/2016/08/12/midwestjs-demystifying-typescript/';
+        var disqus_url = 'http://kamranicus.com/blog/2016/08/12/posh-openweathermap-powershell-module/';
         var disqus_script = 'embed.js';
       
     (function () {
