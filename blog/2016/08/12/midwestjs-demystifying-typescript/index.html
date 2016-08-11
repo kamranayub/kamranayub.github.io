@@ -9,11 +9,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>ASP.NET Core Sample Demo Game - Kamranicus</title>
+  <title>Demystifying TypeScript at Midwest.js - Kamranicus</title>
   <meta name="author" content="Kamran">
 
   
-  <meta name="description" content="ASP.NET Core Sample Demo Game written Jul 31st, 2016 in .NET Core, ASP.NET, C#, MVC, SignalR At General Mills we do semi-annual code camps where the &hellip;">
+  <meta name="description" content="Demystifying TypeScript at Midwest.js written Aug 12th, 2016 in Conferences, Javascript, Talks, TypeScript Today I was excited to give a talk at &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -22,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://kamranicus.com/blog/2016/07/31/aspnet-core-demo-game">
+  <link rel="canonical" href="http://kamranicus.com/blog/2016/08/12/midwestjs-demystifying-typescript">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
@@ -55,7 +55,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
-        <h1>ASP.NET Core Sample Demo Game</h1>
+        <h1>Demystifying TypeScript at Midwest.js</h1>
         <div class="meta">
           written 
 
@@ -70,40 +70,25 @@
 
 
 
-<time datetime="2016-07-31T18:05:00+00:00" pubdate data-updated="true">Jul 31<span>st</span>, 2016</time>
+<time datetime="2016-08-12T00:09:00+00:00" pubdate data-updated="true">Aug 12<span>th</span>, 2016</time>
           
 
 in
 <span class="categories">
   
-    <a class='category' href='/blog/categories/dot-net-core/'>.NET Core</a>, <a class='category' href='/blog/categories/asp-dot-net/'>ASP.NET</a>, <a class='category' href='/blog/categories/c-number/'>C#</a>, <a class='category' href='/blog/categories/mvc/'>MVC</a>, <a class='category' href='/blog/categories/signalr/'>SignalR</a>
+    <a class='category' href='/blog/categories/conferences/'>Conferences</a>, <a class='category' href='/blog/categories/javascript/'>Javascript</a>, <a class='category' href='/blog/categories/talks/'>Talks</a>, <a class='category' href='/blog/categories/typescript/'>TypeScript</a>
   
 </span>
 
 
         </div>
-        <p>At General Mills we do semi-annual code camps where the developer organization gets together for a half-day of talks and fun. This past code camp myself and my partner in crime, <a href="http://twitter.com/erikonarheim">Erik Onarheim</a> gave a talk around ASP.NET Core. It&rsquo;s part of our roadmap to be familiar with hosting ASP.NET Core so we wanted to build something and showcase to developers what&rsquo;s changed in Core vs. the typical Framework application.</p>
+        <p>Today I was excited to give a talk at <a href="http://midwestjs.com">Midwest.js</a> about <a href="http://kamranicus.com/presentations/demystifying-typescript">Demystifying TypeScript</a>. This is not the first time I&rsquo;ve given the talk, it&rsquo;s actually the <strong>fourth</strong> time. Instead of leaving it stale I revamped the theme and updated all the information to be current as of today&mdash;including information about <a href="https://babeljs.io/">Babel.js</a> and <a href="https://flowtype.org/">Flow</a>.</p>
 
-<p>We made a trivial demo game built on top of SignalR and .NET Core while also showing off other new features of the stack, including:</p>
+<p>Unfortunately due to technical difficulties (no HDMI-to-DisplayPort adapter!) the talk&rsquo;s <em>video</em> wasn&rsquo;t recorded. However, I was mic&rsquo;d and I did use SnagIt to record my screen, so we&rsquo;re hoping we can merge the audio and video tracks to generate a recording. If not, I may need to sit down and record audio for the talk.</p>
 
-<ul>
-<li>Depdendency Injection</li>
-<li>Custom Tag Helpers</li>
-<li>Cascading Configuration</li>
-<li>Multi-Environment Support</li>
-<li>Strongly-Typed Options</li>
-<li>Injecting Services into Views</li>
-<li>Injected MVC Filters</li>
-<li>Bundling &amp; Minification</li>
-<li>Publishing to Azure</li>
-</ul>
+<p>I will update this post after the conference and let you know the status&mdash;let&rsquo;s hope we can get it working! Otherwise, I guess you just had to be there ;)</p>
 
-
-<p>We had the demo running on Azure during the talk so people could join the game and we even attempted showing Linux support, though web sockets were not behaving nicely behind nginx. The game is not really a game but more of a showcase of using web sockets to allow some real-time multiplayer server action. It is definitely <em>not</em> how you&rsquo;d implement a &ldquo;real&rdquo; multiplayer game but it&rsquo;s a fun demo.</p>
-
-<p>You can check out the source code on GitHub: <a href="https://github.com/eonarheim/aspnet-core-demogame">https://github.com/eonarheim/aspnet-core-demogame</a>. It&rsquo;s commented pretty heavily to help understand the different parts, it&rsquo;s based on the default out-of-the-box web template (<code>dotnet new -t web</code>).</p>
-
-<p>We may or may not upload the talk onto YouTube since there wasn&rsquo;t really anything specific about our work until the very end, which we can strip out without losing any important bits.</p>
+<p>If you attended and have questions, feel free to leave them here or <a href="http://twitter.com/kamranayub">tweet</a> at me!</p>
 
 
         <hr class="divider-short"/>
@@ -127,11 +112,9 @@ in
     <div class="row">
       <div class="col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
         
-          <a class="pull-left" href="/blog/2016/05/08/cassette-subresource-integrity-sri/" title="Previous Post: Adding Subresource Integrity support to Cassette .NET">&laquo; Previous: Adding Subresource Integrity support to Cassette .NET</a>
+          <a class="pull-left" href="/blog/2016/07/31/aspnet-core-demo-game/" title="Previous Post: ASP.NET Core Sample Demo Game">&laquo; Previous: ASP.NET Core Sample Demo Game</a>
         
 
-        
-          <a class="pull-right" href="/blog/2016/08/12/midwestjs-demystifying-typescript/" title="Next Post: Demystifying TypeScript at Midwest.js">Next: Demystifying TypeScript at Midwest.js &raquo;</a>
         
       </div>
     </div>
@@ -179,9 +162,9 @@ in
         
         // var disqus_developer = 1;
         
-        var disqus_identifier = 'http://kamranicus.com/blog/2016/07/31/aspnet-core-demo-game/';
+        var disqus_identifier = 'http://kamranicus.com/blog/2016/08/12/midwestjs-demystifying-typescript/';
         
-        var disqus_url = 'http://kamranicus.com/blog/2016/07/31/aspnet-core-demo-game/';
+        var disqus_url = 'http://kamranicus.com/blog/2016/08/12/midwestjs-demystifying-typescript/';
         var disqus_script = 'embed.js';
       
     (function () {

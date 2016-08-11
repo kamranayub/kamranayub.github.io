@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Conferences | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/conferences/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2016-07-31T17:20:09+00:00</updated>
+  <updated>2016-08-11T23:17:06+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Demystifying TypeScript at Midwest.js]]></title>
+    <link href="http://kamranicus.com/blog/2016/08/12/midwestjs-demystifying-typescript/"/>
+    <updated>2016-08-12T00:09:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2016/08/12/midwestjs-demystifying-typescript</id>
+    <content type="html"><![CDATA[<p>Today I was excited to give a talk at <a href="http://midwestjs.com">Midwest.js</a> about <a href="http://kamranicus.com/presentations/demystifying-typescript">Demystifying TypeScript</a>. This is not the first time I&rsquo;ve given the talk, it&rsquo;s actually the <strong>fourth</strong> time. Instead of leaving it stale I revamped the theme and updated all the information to be current as of today&mdash;including information about <a href="https://babeljs.io/">Babel.js</a> and <a href="https://flowtype.org/">Flow</a>.</p>
+
+<p>Unfortunately due to technical difficulties (no HDMI-to-DisplayPort adapter!) the talk&rsquo;s <em>video</em> wasn&rsquo;t recorded. However, I was mic&rsquo;d and I did use SnagIt to record my screen, so we&rsquo;re hoping we can merge the audio and video tracks to generate a recording. If not, I may need to sit down and record audio for the talk.</p>
+
+<p>I will update this post after the conference and let you know the status&mdash;let&rsquo;s hope we can get it working! Otherwise, I guess you just had to be there ;)</p>
+
+<p>If you attended and have questions, feel free to leave them here or <a href="http://twitter.com/kamranayub">tweet</a> at me!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[TypeScript in Action at Twin Cities Code Camp 20 (TCCC20)]]></title>
