@@ -13,7 +13,7 @@ There's no better to way to learn something new than to make a thing. Yesterday 
 
 <!-- More -->
 
-It turned out to be very easy, in fact. There's an awesome project called [OpenWeatherMap](http://openweathermap.org) where you can sign up for a free API key and go to down on their open data API--limited to 60 calls a minute which isn't a problem for my pet project.
+It turned out to be very easy, in fact. There's an awesome project called [OpenWeatherMap](http://openweathermap.org) where you can sign up for a free API key and go to town on their open data API--limited to 60 calls a minute which isn't a problem for my pet project.
 
 So, what happens when you combine PowerShell and an open weather API? Weather in your command prompt!
 
