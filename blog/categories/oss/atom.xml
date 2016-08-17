@@ -4,7 +4,7 @@
   <title><![CDATA[Category: OSS | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/oss/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2016-08-12T01:53:05+00:00</updated>
+  <updated>2016-08-17T01:42:05+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,152 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Extending PowerShell Pester With Custom Assertions]]></title>
+    <link href="http://kamranicus.com/blog/2016/08/17/posh-pester-extend-custom-assertions/"/>
+    <updated>2016-08-17T02:10:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2016/08/17/posh-pester-extend-custom-assertions</id>
+    <content type="html"><![CDATA[<p>After the initial release of <a href="http://kamranicus.com/blog/2016/08/12/posh-openweathermap-powershell-module/">my OpenWeatherMap PowerShell module</a> I decided it might be a good idea to write some tests. This was my first time using <a href="https://github.com/pester/Pester">Pester</a>, a BDD-style testing framework for PowerShell. Coming from <a href="http://jasmine.github.io/">Jasmine</a> Javascript unit testing, I felt right at home.</p>
+
+<!-- More -->
+
+
+<p>Now because my module deals a lot with dates, I wanted to use an assertion that simplified some of the logic of testing a date. For example, this is what it looks like validating a DateTime:</p>
+
+<p>```powershell
+$Result.Time.Year   | Should Be 2015
+$Result.Time.Month  | Should Be 8
+$Result.Time.Day    | Should Be 15</p>
+
+<p>$Result.Time.Hour   | Should Be 13
+$Result.Time.Minute | Should Be 56
+$Result.Time.Second | Should Be 32
+```</p>
+
+<p>The other way would be to compare formatted date strings:</p>
+
+<p><code>powershell
+$Result.Time.ToString("MM/dd/yyyy HH:mm:ss") | Should Be "08/15/2015 13:56:32"
+</code></p>
+
+<p>Which is fine. However, using it as a learning opportunity, I wanted to write my own assertion for Pester, <code>BeDate</code> so I could do:</p>
+
+<p><code>powershell
+$Result.Time | Should BeDate "08/15/2015 13:56:32"
+</code></p>
+
+<p>In C# using NUnit or MSTest, writing custom assertions is pretty straightforward. However, Pester essentially uses a convention where it loads up commands in its module starting with <code>Pester</code> and also having a couple failure message handlers.</p>
+
+<p>So, for example, our <code>BeDate</code> assertion is defined as:</p>
+
+<p>```powershell
+Function PesterBeDate($Value, $Expected) {</p>
+
+<pre><code>$Expected = [System.DateTime]::Parse($Expected)
+
+$Value.Year   | Should Be $Expected.Year
+$Value.Month  | Should Be $Expected.Month
+$Value.Day    | Should Be $Expected.Day
+
+$Value.Hour   | Should Be $Expected.Hour
+$Value.Minute | Should Be $Expected.Minute
+$Value.Second | Should Be $Expected.Second
+</code></pre>
+
+<p>}</p>
+
+<p>Function PesterBeDateFailureMessage($Value, $Expected) {</p>
+
+<pre><code>if (-not (($expected -is [string]) -and ($value -is [System.DateTime])))
+{
+    return "Expected: {$expected}`nBut was:  {$value}"
+}
+
+return "Expected: $Expected\nBut was: $($Value.ToString('MM/dd/YYYY h:mm:ss'))"
+</code></pre>
+
+<p>}</p>
+
+<p>Function NotPesterBeDateFailureMessage($Value, $Expected) {</p>
+
+<pre><code>return PesterBeDateFailureMessage -Value $Value -Expected $Expected
+</code></pre>
+
+<p>}
+```</p>
+
+<p>Now, I don&rsquo;t actually think my <code>PesterBeDateFailureMessage</code> cmdlet ever runs because I&rsquo;m using the basic <code>Be</code> assertion but whatever&mdash;this is the convention.</p>
+
+<p>So, how we do we get Pester to see these functions? Well, like I said, it searches for the assertions <strong>in the scope of the module</strong>. That means if I define these in my own file, it won&rsquo;t see them.</p>
+
+<h2>Defining functions inside a module&rsquo;s scope</h2>
+
+<p>We can use a weird PowerShell &ldquo;hack&rdquo; to actually declare these functions <em>inside the scope of the Pester module</em> if we want.</p>
+
+<p>```powershell
+$pesterModule = Import-Module Pester -PassThru</p>
+
+<p>. $pesterModule {</p>
+
+<pre><code>function PesterBeDate { }
+# etc
+</code></pre>
+
+<p>}
+```</p>
+
+<p>This is what Dave Wyatt suggested <a href="https://github.com/pester/Pester/issues/590#issuecomment-239977094">when I asked about it</a>. Cool, we <strong>could</strong> do that but I would prefer if we could keep my custom assertions separated from my tests since I&rsquo;d have to include this in my <strong>.Tests.ps1</strong> files.</p>
+
+<h2>Using local modules and extending Pester</h2>
+
+<p>The  implication the previous solution has is that the caller (user) has Pester installed globally. Over the years, as a programming community we decided that&rsquo;s a sub-optimal outlook on life hence we have package managers like Nuget and NPM. To my knowledge, there&rsquo;s not yet a <code>package.json</code> equivalent to a PowerShell &ldquo;project&rdquo; besides the Module Manifest (psd1). Ideally, I would be able to type <code>Install-Module</code> in the current directory, PowerShellGet would identify the dependencies (perhaps from psd1 manifest?), and download them. Alas, it doesn&rsquo;t so we can do it ourselves.</p>
+
+<p>To achieve maximum contributability (is that a word?) I decided to roll my own little build script that would bring down the Pester module locally to the project and then extend Pester&rsquo;s assertions by manually copying in my own code.</p>
+
+<p>This only takes a few lines of Powershell:</p>
+
+<p>```powershell
+$PesterVersion = &lsquo;3.4.2&rsquo;</p>
+
+<h1>Save-module locally</h1>
+
+<p>Save-Module -Name Pester -Path &lsquo;.modules\&rsquo; -RequiredVersion $PesterVersion</p>
+
+<h1>Copy custom assertions</h1>
+
+<p>Copy-Item -Path &lsquo;.\Assertions*.ps1&rsquo; -Destination &ldquo;..modules\Pester\$PesterVersion\Functions\Assertions&rdquo;</p>
+
+<h1>Import local Pester module so we can extend built-in assertions</h1>
+
+<p>Import-Module &ldquo;..modules\Pester\$PesterVersion\Pester.psd1&rdquo;</p>
+
+<h1>Run tests</h1>
+
+<p>Invoke-Pester -Script &ldquo;.\OpenWeatherMap.Tests.ps1&rdquo;
+```</p>
+
+<p>So this is fairly straightforward:</p>
+
+<ol>
+<li>Use <code>Save-Module</code> cmdlet to unzip and copy the Pester module locally to a <strong>.modules</strong> folder that we&rsquo;ll exclude from source control</li>
+<li>Copy my <code>*.ps1</code> assertion files under <em>*Assertions*</em> to the local Pester assertions directory</li>
+<li>Import the local Pester module explicitly (this will load our new assertions)</li>
+<li>Invoke Pester on our test script (if you don&rsquo;t qualify it, it will run all the tests in the Pester module also!)</li>
+</ol>
+
+
+<p>Now we achieve both desired effects:</p>
+
+<ol>
+<li>Our repository is now self-contained and can be contributed to without any global dependencies (besides PowerShell 5)</li>
+<li>We can keep our custom assertions separated</li>
+</ol>
+
+
+<p>If you want to see the final product, <a href="https://github.com/kamranayub/posh-openweathermap">give my OpenWeatherMap module a gander</a>!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[OpenWeatherMap PowerShell Module]]></title>
@@ -283,65 +429,6 @@ ViewModel.filterAnd = ko.observable(false).extend({ urlSync: &ldquo;filterAnd&rd
 </code></pre>
 
 <p>Pretty neat and now allows anyone to copy/paste the URL and preserve any needed filtering state!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[MiniProfiler RavenDB Pull Request Accepted]]></title>
-    <link href="http://kamranicus.com/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/"/>
-    <updated>2013-12-05T14:32:08+00:00</updated>
-    <id>http://kamranicus.com/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted</id>
-    <content type="html"><![CDATA[<p>I just got a notification that my <a href="https://github.com/MiniProfiler/dotnet/pull/15">pull request</a> for
-adding RavenDB support to MiniProfiler went through! It&rsquo;s always really cool to see your contributions
-get pulled in. The MiniProfiler guys were really easy-going, <a href="https://github.com/yellis">@yellis</a> was even kind enough to take on
-the testing. That kind of acceptance for pull requests is great to see because it makes me feel good
-about contributing and is a bit less intimidating.</p>
-
-<!-- More -->
-
-
-<p>The &ldquo;official&rdquo; MiniProfiler RavenDB plugin does several things:</p>
-
-<ul>
-<li>Integrates with all existing MiniProfiler settings</li>
-<li>Displays the query duration just like you&rsquo;d expect in a separate raven column
-
-<ul>
-<li>This let&rsquo;s you see the raven percentage individually just like SQL</li>
-<li>It matches the experience of using EF with MiniProfiler exactly</li>
-</ul>
-</li>
-<li>Allows you to dig into the exact request details ala EF integration</li>
-<li>(not included) It&rsquo;s possible to also include the <em>results</em> of the request but in my pull request I don&rsquo;t because it was way too much
-overhead to include the full response in the web interface (displaying 50 complex objects in JSON slowed down the UI too much)
-
-<ul>
-<li>You can just copy the query to see the results in Raven Studio anyway</li>
-<li>Possibly you could just display the query URL and open the request in a new tab</li>
-</ul>
-</li>
-</ul>
-
-
-<p>I have only just begun my exploration of RavenDB but one of the downsides from moving from EF was
-the excellent MiniProfiler integration. I was really surprised to find adding the same level
-of support to Raven was pretty straightforward in the latest iteration of MiniProfiler.</p>
-
-<p>There are two packages I found that added profiling to Raven, the <a href="https://github.com/ravendb/ravendb/tree/master/Raven.Client.MvcIntegration">&ldquo;official&rdquo; Raven profiler</a> and another
-<a href="http://blog.csainty.com/MvcMiniProfiler.RavenDb/">MiniProfiler plugin</a>, but both of those are lacking. The official one didn&rsquo;t seem to handle AJAX requests
-and the other only seemed to add profiling steps; it didn&rsquo;t provide any details about the request.
-I wanted <strong>full</strong> integration with MiniProfiler on the same level as EF and I didn&rsquo;t want to enable <em>two</em> profilers at once. I was
-already using MiniProfiler to profile my MVC app, I didn&rsquo;t want to enable Raven Profiler and MiniProfiler
-at the same time.</p>
-
-<p>There is <a href="https://github.com/ravendb/ravendb.contrib/tree/master/src/Raven.Client.Contrib.Profiling">a RavenDb.Contrib project</a> that added MiniProfiler integration on the level I wanted, but unfortunately it was not integrated
-tightly into the MiniProfiler codebase (it was using reflection and other hacks) and it also was not built against the latest version of the codebase
-that simplified the steps to create a new custom timing. Still, credit is due, because some of the formatting logic and general direction of my pull
-request was taken from that contrib project.</p>
-
-<p>I do not know what the release schedule is like for the next version of MiniProfiler, but I have my
-RavenDB-based branch compiled and am using it for my site currently. You can bring down my fork
-and compile it yourself too, if you&rsquo;re really interested in using it right now.</p>
 ]]></content>
   </entry>
   

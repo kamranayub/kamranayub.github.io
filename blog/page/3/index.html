@@ -90,6 +90,103 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/2015/07/29/install-windows-10-immediately/">[Updated] Install Windows 10 Immediately Before Rollout</a></h2>
+  
+  <p>
+    <p><strong>Update (8:49pm)</strong>: I adjusted my Windows 8 date/time to tomorrow and the progress of the update jumped and I&rsquo;m completed now. I now see a Restart PC to finish installing updates.</p>
+
+
+
+
+<p><strong>Update (9:00pm)</strong>: Well it looks like it&rsquo;s a bust with Windows 8.1. My friend tested on Windows 7 and it worked but mine refuses to install&mdash;it just says I have it reserved and it&rsquo;s ready. I tried rebooting multiple times and running the /updatenow command again but no go.</p>
+
+
+
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/8948430/c0f67f0e-356c-11e5-9daf-8cafb3521042.png" alt="image" /></p>
+
+
+
+
+<p><strong>Update (10:00pm CST):</strong> No luck on my other PC, same situation. Guess I&rsquo;ll just have to wait in line like everybody else!</p>
+
+
+
+
+<hr />
+
+
+
+
+<p>This is only applicable for the next few hours until your machine gets Windows 10 rolled out. If you&rsquo;re impatient like me, a friend tipped me off that he was able to install Windows 10 prematurely by simply forcing Windows Update to download Windows 10 and then setting his system time forward a day (BIOS, I&rsquo;m thinking).</p>
+
+
+
+
+<p>It&rsquo;s kind of unbelievable but it&rsquo;s working so far. I&rsquo;m at 95% complete downloading (you can view in Windows Update window).</p>
+
+
+
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/8948016/ce3997f0-3567-11e5-8e1e-679fd5b54daa.png" alt="Progress" /></p>
+
+
+
+
+<ol>
+<li>Hit Windows+R to bring up Run command</li>
+<li>Type in <code>wuauclt.exe /updatenow</code> (<strong>Works</strong>)</li>
+<li>Wait for the download to finish (Control Panel &ndash;> Windows Update) (<strong>Works</strong>)</li>
+<li>When Windows Update says, &ldquo;Preparing for installation&hellip;&rdquo;, set system time forward a day in Windows (<strong>Works</strong>)<br/>
+<img src="https://cloud.githubusercontent.com/assets/563819/8948191/fa639e0a-3569-11e5-97c0-2b79d709c8cf.png" alt="image" /></li>
+<li>When progress is done, reboot (<strong>Untested</strong>)</li>
+<li>Windows 10 should install (<strong>Untested</strong>)</li>
+</ol>
+
+
+
+
+<p>I will update this post with any new information.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-07-29T02:13:00+00:00" pubdate data-updated="true">Jul 29<span>th</span>, 2015</time>
+    
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/windows-10/'>Windows 10</a>
+  
+</span>
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/2015/05/30/ktomg-update/">Behind the Major Update to Keep Track of My Games</a></h2>
   
   <p>
@@ -540,63 +637,6 @@ in
     <a class='category' href='/blog/categories/announcements/'>Announcements,</a>, <a class='category' href='/blog/categories/gaming/'>Gaming,</a>, <a class='category' href='/blog/categories/ktomg/'>KTOMG</a>, <a class='category' href='/blog/categories/news/'>News,</a>
   
 </span>
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/2014/05/01/ludum-dare-29-game-jam-success/">Ludum Dare 29 Game Jam Success!</a></h2>
-  
-  <p>
-    <p>This last weekend I spent 72 hours working on a game for the <a href="http://ludumdare.com/compo">Ludum Dare 29</a> game jam. LD is a competition where you get a prompt for a game and then have to spend 48 hours (solo) or 72 hours (jam) and bang out a game. The solo competition has strict rules but the game jam has looser rules and allows for team development. It was a caffeine-filled rush and I hope to write a blog post shortly about how it all went down. It was a ton of fun! I worked with my friends <a href="http://erikonarheim.com">Erik Onarheim</a> and <a href="http://twitter.com/joshedeen">Josh Edeen</a>, both primary contributors to the <a href="http://excaliburjs.com">Excalibur.js</a> game engine. I am also a contributor but I haven&rsquo;t done a ton with the engine core, moreso the usability of the API, opening GH issues, and the <a href="http://github.com/excaliburjs/excaliburjs.github.io">website</a>.</p>
-
-
-
-
-<p><img src="http://www.ludumdare.com/compo/wp-content/compo2/342546/34118-shot0.png" alt="Kraken Unchained" /></p>
-
-
-
-
-<p>In the meantime, be sure to check out the fruits of our labor! It&rsquo;s a game where you play as the Kraken and you destroy ships. We originally had a ton of ideas, as you can see in our GitHub repository, but with only 72 hours your scope is pretty narrow. Still, we&rsquo;re very happy with what came out and we&rsquo;re glad that <a href="http://excaliburjs.com">Excalibur.js</a> pulled through!</p>
-
-
-
-
-<p>Play <a href="http://krakenunchained.azurewebsites.net">Kraken Unchained</a>. Vote for it on the <a href="http://www.ludumdare.com/compo/ludum-dare-29/?action=preview&amp;uid=34118">LD site</a>. You can also take a peek at the <a href="http://krakenunchained.azurewebsites.net/post-dare.html">post-LD</a> version which is in on-going development. It does support touch and fixes some issues in IE10/11.</p>
-
-
-
-
-<p>You can also view the entirety of the source code <a href="http://github.com/excaliburjs/ludum-29">on GitHub</a>!</p>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-05-01T13:54:07+00:00" pubdate data-updated="true">May 1<span>st</span>, 2014</time>
-    
 
 
   </span>

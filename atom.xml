@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2016-08-12T01:53:05+00:00</updated>
+  <updated>2016-08-17T01:42:05+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,188 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Extending PowerShell Pester With Custom Assertions]]></title>
+    <link href="http://kamranicus.com/blog/2016/08/17/posh-pester-extend-custom-assertions/"/>
+    <updated>2016-08-17T02:10:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2016/08/17/posh-pester-extend-custom-assertions</id>
+    <content type="html"><![CDATA[<p>After the initial release of <a href="http://kamranicus.com/blog/2016/08/12/posh-openweathermap-powershell-module/">my OpenWeatherMap PowerShell module</a> I decided it might be a good idea to write some tests. This was my first time using <a href="https://github.com/pester/Pester">Pester</a>, a BDD-style testing framework for PowerShell. Coming from <a href="http://jasmine.github.io/">Jasmine</a> Javascript unit testing, I felt right at home.</p>
+
+<!-- More -->
+
+
+<p>Now because my module deals a lot with dates, I wanted to use an assertion that simplified some of the logic of testing a date. For example, this is what it looks like validating a DateTime:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='powershell'><span class='line'><span class="nv">$Result</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">Year</span>   <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="n">2015</span>
+</span><span class='line'><span class="nv">$Result</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">Month</span>  <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="n">8</span>
+</span><span class='line'><span class="nv">$Result</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">Day</span>    <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="n">15</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">$Result</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">Hour</span>   <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="n">13</span>
+</span><span class='line'><span class="nv">$Result</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">Minute</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="n">56</span>
+</span><span class='line'><span class="nv">$Result</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">Second</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="n">32</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The other way would be to compare formatted date strings:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='powershell'><span class='line'><span class="nv">$Result</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s2">&quot;MM/dd/yyyy HH:mm:ss&quot;</span><span class="p">)</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s2">&quot;08/15/2015 13:56:32&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Which is fine. However, using it as a learning opportunity, I wanted to write my own assertion for Pester, <code>BeDate</code> so I could do:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='powershell'><span class='line'><span class="nv">$Result</span><span class="p">.</span><span class="n">Time</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">BeDate</span> <span class="s2">&quot;08/15/2015 13:56:32&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In C# using NUnit or MSTest, writing custom assertions is pretty straightforward. However, Pester essentially uses a convention where it loads up commands in its module starting with <code>Pester</code> and also having a couple failure message handlers.</p>
+
+<p>So, for example, our <code>BeDate</code> assertion is defined as:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='powershell'><span class='line'><span class="k">Function</span> <span class="n">PesterBeDate</span><span class="p">(</span><span class="nv">$Value</span><span class="p">,</span> <span class="nv">$Expected</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nv">$Expected</span> <span class="p">=</span> <span class="no">[System.DateTime]</span><span class="err">::</span><span class="n">Parse</span><span class="p">(</span><span class="nv">$Expected</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nv">$Value</span><span class="p">.</span><span class="n">Year</span>   <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="nv">$Expected</span><span class="p">.</span><span class="n">Year</span>
+</span><span class='line'>    <span class="nv">$Value</span><span class="p">.</span><span class="n">Month</span>  <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="nv">$Expected</span><span class="p">.</span><span class="n">Month</span>
+</span><span class='line'>    <span class="nv">$Value</span><span class="p">.</span><span class="n">Day</span>    <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="nv">$Expected</span><span class="p">.</span><span class="n">Day</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nv">$Value</span><span class="p">.</span><span class="n">Hour</span>   <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="nv">$Expected</span><span class="p">.</span><span class="n">Hour</span>
+</span><span class='line'>    <span class="nv">$Value</span><span class="p">.</span><span class="n">Minute</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="nv">$Expected</span><span class="p">.</span><span class="n">Minute</span>
+</span><span class='line'>    <span class="nv">$Value</span><span class="p">.</span><span class="n">Second</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="nv">$Expected</span><span class="p">.</span><span class="n">Second</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">Function</span> <span class="n">PesterBeDateFailureMessage</span><span class="p">(</span><span class="nv">$Value</span><span class="p">,</span> <span class="nv">$Expected</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="p">((</span><span class="nv">$expected</span> <span class="o">-is</span> <span class="no">[string]</span><span class="p">)</span> <span class="o">-and</span> <span class="p">(</span><span class="nv">$value</span> <span class="o">-is</span> <span class="no">[System.DateTime]</span><span class="p">)))</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="s2">&quot;Expected: {$expected}`nBut was:  {$value}&quot;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="s2">&quot;Expected: $Expected\nBut was: </span><span class="si">$(</span><span class="err">$</span><span class="si">Value.ToString(&#39;MM/dd/YYYY h:mm:ss&#39;)</span><span class="s2">)&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">Function</span> <span class="n">NotPesterBeDateFailureMessage</span><span class="p">(</span><span class="nv">$Value</span><span class="p">,</span> <span class="nv">$Expected</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">PesterBeDateFailureMessage</span> <span class="n">-Value</span> <span class="nv">$Value</span> <span class="n">-Expected</span> <span class="nv">$Expected</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, I don&rsquo;t actually think my <code>PesterBeDateFailureMessage</code> cmdlet ever runs because I&rsquo;m using the basic <code>Be</code> assertion but whatever&mdash;this is the convention.</p>
+
+<p>So, how we do we get Pester to see these functions? Well, like I said, it searches for the assertions <strong>in the scope of the module</strong>. That means if I define these in my own file, it won&rsquo;t see them.</p>
+
+<h2>Defining functions inside a module&rsquo;s scope</h2>
+
+<p>We can use a weird PowerShell &ldquo;hack&rdquo; to actually declare these functions <em>inside the scope of the Pester module</em> if we want.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='powershell'><span class='line'><span class="nv">$pesterModule</span> <span class="p">=</span> <span class="nb">Import-Module</span> <span class="n">Pester</span> <span class="n">-PassThru</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">.</span> <span class="nv">$pesterModule</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">function</span> <span class="n">PesterBeDate</span> <span class="p">{</span> <span class="p">}</span>
+</span><span class='line'>    <span class="c"># etc</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is what Dave Wyatt suggested <a href="https://github.com/pester/Pester/issues/590#issuecomment-239977094">when I asked about it</a>. Cool, we <strong>could</strong> do that but I would prefer if we could keep my custom assertions separated from my tests since I&rsquo;d have to include this in my <strong>.Tests.ps1</strong> files.</p>
+
+<h2>Using local modules and extending Pester</h2>
+
+<p>The  implication the previous solution has is that the caller (user) has Pester installed globally. Over the years, as a programming community we decided that&rsquo;s a sub-optimal outlook on life hence we have package managers like Nuget and NPM. To my knowledge, there&rsquo;s not yet a <code>package.json</code> equivalent to a PowerShell &ldquo;project&rdquo; besides the Module Manifest (psd1). Ideally, I would be able to type <code>Install-Module</code> in the current directory, PowerShellGet would identify the dependencies (perhaps from psd1 manifest?), and download them. Alas, it doesn&rsquo;t so we can do it ourselves.</p>
+
+<p>To achieve maximum contributability (is that a word?) I decided to roll my own little build script that would bring down the Pester module locally to the project and then extend Pester&rsquo;s assertions by manually copying in my own code.</p>
+
+<p>This only takes a few lines of Powershell:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='powershell'><span class='line'><span class="nv">$PesterVersion</span> <span class="p">=</span> <span class="s1">&#39;3.4.2&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Save-module locally</span>
+</span><span class='line'><span class="n">Save-Module</span> <span class="n">-Name</span> <span class="n">Pester</span> <span class="n">-Path</span> <span class="s1">&#39;.modules\&#39;</span> <span class="n">-RequiredVersion</span> <span class="nv">$PesterVersion</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Copy custom assertions</span>
+</span><span class='line'><span class="nb">Copy-Item</span> <span class="n">-Path</span> <span class="s1">&#39;.\Assertions\*.ps1&#39;</span> <span class="n">-Destination</span> <span class="s2">&quot;.\.modules\Pester\$PesterVersion\Functions\Assertions&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Import local Pester module so we can extend built-in assertions</span>
+</span><span class='line'><span class="nb">Import-Module</span> <span class="s2">&quot;.\.modules\Pester\$PesterVersion\Pester.psd1&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Run tests</span>
+</span><span class='line'><span class="nb">Invoke-Pester</span> <span class="n">-Script</span> <span class="s2">&quot;.\OpenWeatherMap.Tests.ps1&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So this is fairly straightforward:</p>
+
+<ol>
+<li>Use <code>Save-Module</code> cmdlet to unzip and copy the Pester module locally to a <strong>.modules</strong> folder that we&rsquo;ll exclude from source control</li>
+<li>Copy my <code>*.ps1</code> assertion files under <em>*Assertions*</em> to the local Pester assertions directory</li>
+<li>Import the local Pester module explicitly (this will load our new assertions)</li>
+<li>Invoke Pester on our test script (if you don&rsquo;t qualify it, it will run all the tests in the Pester module also!)</li>
+</ol>
+
+
+<p>Now we achieve both desired effects:</p>
+
+<ol>
+<li>Our repository is now self-contained and can be contributed to without any global dependencies (besides PowerShell 5)</li>
+<li>We can keep our custom assertions separated</li>
+</ol>
+
+
+<p>If you want to see the final product, <a href="https://github.com/kamranayub/posh-openweathermap">give my OpenWeatherMap module a gander</a>!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[OpenWeatherMap PowerShell Module]]></title>
@@ -2426,42 +2608,6 @@ in your build, you can use the Kudu <a href="https://github.com/projectkudu/kudu
 <p>So you could filter incoming mail based on those addresses above. This comes in really handy for sites you don&rsquo;t care about but still need at least one email from them&mdash;the rest can be filtered. It can also be useful to identify spam email sources&mdash;who leaked your email? If you saw spam addressed to <code>johndoe+spamsite@gmail.com</code>, you know <code>spamsite</code> was responsible for leaking/sharing your email.</p>
 
 <p>Happy power-Gmailing!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Updated] Install Windows 10 Immediately Before Rollout]]></title>
-    <link href="http://kamranicus.com/blog/2015/07/29/install-windows-10-immediately/"/>
-    <updated>2015-07-29T02:13:00+00:00</updated>
-    <id>http://kamranicus.com/blog/2015/07/29/install-windows-10-immediately</id>
-    <content type="html"><![CDATA[<p><strong>Update (8:49pm)</strong>: I adjusted my Windows 8 date/time to tomorrow and the progress of the update jumped and I&rsquo;m completed now. I now see a Restart PC to finish installing updates.</p>
-
-<p><strong>Update (9:00pm)</strong>: Well it looks like it&rsquo;s a bust with Windows 8.1. My friend tested on Windows 7 and it worked but mine refuses to install&mdash;it just says I have it reserved and it&rsquo;s ready. I tried rebooting multiple times and running the /updatenow command again but no go.</p>
-
-<p><img src="https://cloud.githubusercontent.com/assets/563819/8948430/c0f67f0e-356c-11e5-9daf-8cafb3521042.png" alt="image" /></p>
-
-<p><strong>Update (10:00pm CST):</strong> No luck on my other PC, same situation. Guess I&rsquo;ll just have to wait in line like everybody else!</p>
-
-<hr />
-
-<p>This is only applicable for the next few hours until your machine gets Windows 10 rolled out. If you&rsquo;re impatient like me, a friend tipped me off that he was able to install Windows 10 prematurely by simply forcing Windows Update to download Windows 10 and then setting his system time forward a day (BIOS, I&rsquo;m thinking).</p>
-
-<p>It&rsquo;s kind of unbelievable but it&rsquo;s working so far. I&rsquo;m at 95% complete downloading (you can view in Windows Update window).</p>
-
-<p><img src="https://cloud.githubusercontent.com/assets/563819/8948016/ce3997f0-3567-11e5-8e1e-679fd5b54daa.png" alt="Progress" /></p>
-
-<ol>
-<li>Hit Windows+R to bring up Run command</li>
-<li>Type in <code>wuauclt.exe /updatenow</code> (<strong>Works</strong>)</li>
-<li>Wait for the download to finish (Control Panel &ndash;> Windows Update) (<strong>Works</strong>)</li>
-<li>When Windows Update says, &ldquo;Preparing for installation&hellip;&rdquo;, set system time forward a day in Windows (<strong>Works</strong>)<br/>
-<img src="https://cloud.githubusercontent.com/assets/563819/8948191/fa639e0a-3569-11e5-97c0-2b79d709c8cf.png" alt="image" /></li>
-<li>When progress is done, reboot (<strong>Untested</strong>)</li>
-<li>Windows 10 should install (<strong>Untested</strong>)</li>
-</ol>
-
-
-<p>I will update this post with any new information.</p>
 ]]></content>
   </entry>
   
