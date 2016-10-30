@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Publishing | Kamranicus]]></title>
+  <link href="http://kamranicus.com/blog/categories/publishing/atom.xml" rel="self"/>
+  <link href="http://kamranicus.com/"/>
+  <updated>2016-10-30T14:58:46+00:00</updated>
+  <id>http://kamranicus.com/</id>
+  <author>
+    <name><![CDATA[Kamran]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Working With Packt Publishing to Create a TypeScript Video Course]]></title>
+    <link href="http://kamranicus.com/blog/2016/10/30/new-packt-publishing-typescript-course/"/>
+    <updated>2016-10-30T15:45:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2016/10/30/new-packt-publishing-typescript-course</id>
+    <content type="html"><![CDATA[<p><img src="https://cloud.githubusercontent.com/assets/563819/19837411/1ccc4910-9e87-11e6-8d0a-7d5b17711785.png" alt="Packt" /></p>
+
+<p>I have some great news to share! Last week I signed on the dotted line to publish a TypeScript course for <a href="http://packtpub.com">Packt Publishing</a>. I&rsquo;m very excited for this opportunity&mdash;as you know, I&rsquo;m a big fan of TypeScript and <a href="http://kamranicus.com/presentations">I talk about it a lot</a>. This is the first video course I&rsquo;ll have worked on though I&rsquo;m no stranger to screencasts. I&rsquo;m pretty pumped and I think I have some good material to share.</p>
+
+<p>I hope to share more about the recording process as I dive into it&mdash;the first order of business is rigging up all the recording equipment that is sitting in my basement collecting dust and testing it. I already have a recording mic, shock mount, and preamp, for example. They are years old now so I may need to get some new equipment but I&rsquo;m crossing my fingers that most of it will produce a good sound. My Sound Blaster X-Fi Elite Pro that I bought years ago is only half-working&mdash;it seems like it&rsquo;ll output sound for a bit and then crap out, but I&rsquo;m hoping that is only limited to output and that it can still record input. The X-Fi external box supports some of the standard audio plugs I&rsquo;d prefer using. It may end up I&rsquo;ll have to go entirely USB, we&rsquo;ll see.</p>
+
+<p>The course should be ready by mid-February and will be geared towards introducing people to TypeScript. I plan to use practical code to introduce concepts and the final volume of the course should have 2-3 small projects we&rsquo;ll build from scratch.</p>
+]]></content>
+  </entry>
+  
+</feed>

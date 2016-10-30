@@ -90,6 +90,221 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <article>
+  <h2><a href="/blog/posts/47/some-thoughts-on-the-vs11-betarcrtm-interface">Some Thoughts on the VS11 Beta/RC/RTM Interface</a></h2>
+  
+  <p>
+    <p>As you may know, the next version of Visual Studio dubbed VS11 <a href="http://www.microsoft.com/visualstudio/11/en-us">is available in Beta form</a> right now for developers worldwide to <strike>complain about</strike> go wild and test against.</p>
+
+
+
+
+<p>While you can learn more about what VS11 offers in terms of new features, I think the biggest thing you&rsquo;ll hear about is feedback regarding it&rsquo;s new user interface style. I want to write down some thoughts I had as a heavy Visual Studio user and self-professed user experience (UX) <em>aficionado</em>.</p>
+
+
+
+
+<h3>Please don&rsquo;t hurt me</h3>
+
+
+
+
+<p>I want to be clear that I am not here to bash on Visual Studio nor complain about the new interface. Rather, I&rsquo;d like to take a constructive look at a couple of the cosmetic changes in store for us.</p>
+
+
+
+
+<h3>I HEARD U LIEK ALL CAPS</h3>
+
+
+
+
+<p>I think the biggest thing I see on the tubes these days are comments about the ALL CAPS menu change from the Beta to the RC as you can see below (this is the Dark Theme):</p>
+
+
+
+
+<p><strong>Beta:</strong><br/>
+<img src="/blog/images/42.png" alt="Beta Main Menu" /></p>
+
+
+
+
+<p><strong>RC:</strong><br/>
+<img src="/blog/images/41.png" alt="All Caps RC Main Menu" /></p>
+
+
+
+
+<p><strong>What People Are Saying</strong></p>
+
+
+
+
+<p>Why is the main menu SHOUTING AT ME? This is terrible!</p>
+
+
+
+
+<p><strong>What People Are Missing</strong></p>
+
+
+
+
+<p>Whether or not you believe a fundamental user experience principle has been violated here, I think the underlying issue all along has been: why are there <em>so many damn options</em>?</p>
+
+
+
+
+<p>All caps or not, I think the team should be aiming to reduce the amount of time I even need to look at the main menu and even better, totally eliminate or consolidate some of those menus. If I had to list what menus I used the most it would be:</p>
+
+
+
+
+<ol>
+<li>Edit &ndash; to get to some advanced options that I can&rsquo;t remember hotkeys for</li>
+<li>View &ndash; to see a window I closed at some point or find a window</li>
+<li>Build &ndash; to Rebuild/Clean sometimes or build my current project (vs. the entire solution)</li>
+<li>Tools &ndash; to get to extension manager for updates or new extensions</li>
+<li>File &ndash; to open a project when I&rsquo;m not on the start screen</li>
+</ol>
+
+
+
+
+<p>That&rsquo;s about it. So, in other words, I use about 5 out of the 16 total menu options regularly. Does that sound like the Pareto Principle (80/20 rule) at work here? It should at least have crossed your mind. Admittedly, this is <em>just for me</em> but no matter the person, I would expect to find that the typical Visual Studio user does <strong>not</strong> use all the menu options every day or very often.</p>
+
+
+
+
+<p>One of the nice things about VS is that you can totally customize the menu. For example, here&rsquo;s mine right now:</p>
+
+
+
+
+<p><img src="/blog/images/47.png" alt="My Menu" /></p>
+
+
+
+
+<p>Unfortunately, I can&rsquo;t do much more because VS2010 crashes if I try to modify the menus themselves, otherwise I&rsquo;d move Theme, Resharper, Sitecore, and Mindscape into the Tools menu reducing my total menus to only 6. Finally, I&rsquo;d like the ability to hit Alt to enable the menu, otherwise it should be hidden (see Sublime Text). I don&rsquo;t know if there&rsquo;s an extension that enables that.</p>
+
+
+
+
+<p>Just because I have the control to move my menu commands around doesn&rsquo;t mean it solves this problem. There are so many commands in Visual Studio the team could expose but don&rsquo;t simply for that reason, there&rsquo;s just too many. A different kind of menu should be considered that doesn&rsquo;t rely on the &ldquo;classic&rdquo; menu bar pattern.</p>
+
+
+
+
+<p>Is it too crazy to think about a menu inside Visual Studio that acted like the Windows OS menu? It could list my most recent actions or actions I pin, it could group different tasks or let me open an advanced panel to see more tasks. The useful Ctrl-3 shortcut in one of the power tool extensions lets you start typing to search the menu system (and I believe that is what the search box in the top right of VS11 also does); why not build that into a single menu ala Windows 7 Start Menu? Dare I even mention&hellip; a ribbon (<em>shudder</em>)?</p>
+
+
+
+
+<h3>Monochrome is the New Color</h3>
+
+
+
+
+<p>In the VS11 beta, probably the first thing you&rsquo;ll notice is the distinct lack of color. Where&rsquo;d all the pretty icons go?! If you asked me how I felt when I opened it up for the first time, the word &ldquo;depressed&rdquo; probably would make the cut. I know that sounds extreme, but when you talk about how we as humans perceive colors, certain schemes evoke certain emotions.</p>
+
+
+
+
+<p>Again, let&rsquo;s take a look at the dark theme (since it exacerbates the effect):</p>
+
+
+
+
+<p><img src="/blog/images/43.png" alt="Dark Theme in Beta" /></p>
+
+
+
+
+<p>Now, work has been done since the beta to add color back to VS which I believe makes it look <em>so</em> much better:</p>
+
+
+
+
+<p><img src="/blog/images/44.png" alt="Dark Theme in RTM" /></p>
+
+
+
+
+<p>The added color in the icons really makes a difference and I was glad to see it back for the RC and RTM. I also think it&rsquo;s very admirable that the team will release the vector versions alongside Visual Studio for use in our own apps. In this day and age where images need to be scaled for different form factors and &ldquo;Retina&rdquo; displays, I think we&rsquo;ll be seeing more emphasis on vector-based icons. GitHub even <a href="https://github.com/blog/1106-say-hello-to-octicons">created their own font</a> to address the issue. You could argue they may have jumped the gun a bit but hopefully font rendering will continue to improve in modern browsers.</p>
+
+
+
+
+<p>My one criticism is that not all icons will be mono&rsquo;d right away, so with some extensions you&rsquo;ll see something like this:</p>
+
+
+
+
+<p><img src="/blog/images/45.png" alt="Ugh" /></p>
+
+
+
+
+<p>I know they specifically fixed this icon in RC, but I&rsquo;m sure there will be more instances of this, especially in the New File dialog:</p>
+
+
+
+
+<p><img src="/blog/images/46.png" alt="File icons" /></p>
+
+
+
+
+<p>This can be fixed by extension developers, but I hope (as an extension developer myself) that it is not too painful to provide iconography for both the VS2010 and VS11 version of an extension.</p>
+
+
+
+
+<h3>Other Thoughts</h3>
+
+
+
+
+<p>In general, I think those are the two big topics I see while reading blog posts and seeing comments. I may have other thoughts for the overall experience but I&rsquo;ll save them for future posts as I use VS11 more and more.</p>
+
+
+
+
+<p>As always, let me know what you think! Do you have other criticisms of the interface? If you&rsquo;re going to just go on about how you hate M$ and VS11 is terrible, don&rsquo;t bother responding. The VS team would benefit more from constructive feedback.</p>
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2012-05-31T19:07:00+00:00" pubdate data-updated="true">May 31<span>st</span>, 2012</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+          
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <article>
   <h2><a href="/blog/posts/46/please-go-watch-the-pluralsight-ux-fundamentals-of">Please Go Watch the Pluralsight UX Fundamentals of Design Course</a></h2>
   
   <p>
@@ -899,65 +1114,6 @@ Personal and development blog of Kamran Ayub about me Hi, my name is Kamran. I a
 
 
 <time datetime="2012-03-29T21:25:00+00:00" pubdate data-updated="true">Mar 29<span>th</span>, 2012</time>
-    
-
-
-  </span>
-
-  
-</article>
-
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <article>
-  <h2><a href="/blog/posts/37/getting-cassettes-compiled-knockout-templates-to-w">Getting Cassette&#8217;s Compiled Knockout Templates to Work in KO 2.0</a></h2>
-  
-  <p>
-    <p>The Knockout <a href="http://knockoutjs.com/documentation/template-binding.html#note_4_dynamically_choosing_which_template_is_used">template binding</a> documentation does a good job explaining how to use KO with jQuery Templates and even Underscore templates, however, it does not explain how (or if) you can use compiled templates outside of the HTML markup.</p>
-
-
-
-
-<p><a href="http://getcassette.net/documentation/html-templates/knockoutjs-jquery-tmpl">Cassette</a> offers functionality to automatically compile and bundle your HTML templates, making it an excellent tool for more advanced Knockout development where you want to separate your templates. Unfortunately, in KO 2.0.0, it&rsquo;s broken!</p>
-
-
-
-
-<p>The fix is to extend KO&rsquo;s built in jQuery Template engine with some logic to check and see if the named template is already precompiled. KO assumes that the name in a template binding refers to a DOM element with the given ID. Unfortunately, in our case, it refers to the precompiled template name.</p>
-
-
-
-
-<p>Here is a plugin I wrote that fixes this issue. I&rsquo;ve tested it in a limited capacity and I do wonder if <code>text</code> needs to be stubbed out more, but so far this hasn&rsquo;t caused any issues. This should work for adding compiled template support <em>in general</em> to Knockout (for jquery.tmpl), not just Cassette.</p>
-
-
-
-
-<script src="https://gist.github.com/2151977.js?file=knockout.compiledTemplateSource.js"></script>
-
-
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2012-03-22T00:57:31+00:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2012</time>
     
 
 

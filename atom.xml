@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2016-10-18T00:15:44+00:00</updated>
+  <updated>2016-10-30T14:58:46+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Working With Packt Publishing to Create a TypeScript Video Course]]></title>
+    <link href="http://kamranicus.com/blog/2016/10/30/new-packt-publishing-typescript-course/"/>
+    <updated>2016-10-30T15:45:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2016/10/30/new-packt-publishing-typescript-course</id>
+    <content type="html"><![CDATA[<p><img src="https://cloud.githubusercontent.com/assets/563819/19837411/1ccc4910-9e87-11e6-8d0a-7d5b17711785.png" alt="Packt" /></p>
+
+<p>I have some great news to share! Last week I signed on the dotted line to publish a TypeScript course for <a href="http://packtpub.com">Packt Publishing</a>. I&rsquo;m very excited for this opportunity&mdash;as you know, I&rsquo;m a big fan of TypeScript and <a href="http://kamranicus.com/presentations">I talk about it a lot</a>. This is the first video course I&rsquo;ll have worked on though I&rsquo;m no stranger to screencasts. I&rsquo;m pretty pumped and I think I have some good material to share.</p>
+
+<p>I hope to share more about the recording process as I dive into it&mdash;the first order of business is rigging up all the recording equipment that is sitting in my basement collecting dust and testing it. I already have a recording mic, shock mount, and preamp, for example. They are years old now so I may need to get some new equipment but I&rsquo;m crossing my fingers that most of it will produce a good sound. My Sound Blaster X-Fi Elite Pro that I bought years ago is only half-working&mdash;it seems like it&rsquo;ll output sound for a bit and then crap out, but I&rsquo;m hoping that is only limited to output and that it can still record input. The X-Fi external box supports some of the standard audio plugs I&rsquo;d prefer using. It may end up I&rsquo;ll have to go entirely USB, we&rsquo;ll see.</p>
+
+<p>The course should be ready by mid-February and will be geared towards introducing people to TypeScript. I plan to use practical code to introduce concepts and the final volume of the course should have 2-3 small projects we&rsquo;ll build from scratch.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Thoughts on Upgrading to a Dedicated Raven Standard Instance]]></title>
@@ -2621,22 +2636,6 @@ in your build, you can use the Kudu <a href="https://github.com/projectkudu/kudu
 <li><p>I am choosing <strong>not</strong> to point my entire domain to the CDN. Some folks choose to serve their entire site over the CDN which is definitely something you can do. However, in my case, I didn&rsquo;t want to do that. If you instead chose to point your domain to the CDN endpoint, you don&rsquo;t need to do any of this&mdash;<strong>everything</strong> will be served over the CDN. However, note that if your site is highly dynamic this results in a double hop&mdash;once to CDN, once to the origin, so you will not see much benefit unless your entire site is mostly static.</p></li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[PowerShell Script to Generate an HTML5 Offline Manifest]]></title>
-    <link href="http://kamranicus.com/blog/2015/09/17/powershell-html5-offline-manifest/"/>
-    <updated>2015-09-17T02:40:00+00:00</updated>
-    <id>http://kamranicus.com/blog/2015/09/17/powershell-html5-offline-manifest</id>
-    <content type="html"><![CDATA[<p>In my new role at work I&rsquo;ve been learning PowerShell to administrate our systems (I&rsquo;m a half developer, half sys admin monster). I&rsquo;ve been a developer for a long time and been living in .NET for about as long&mdash;I still had not really <em>embraced</em> PowerShell as something I could use in my daily development routine. I&rsquo;ve changed my tune. <strong>PowerShell is awesome.</strong> It&rsquo;s also not too hard to pick up once you learn how it works. I recommend you take a serious look at learning it. I recommend <a href="https://www.microsoftvirtualacademy.com/en-us/training-courses/getting-started-with-powershell-3-0-jump-start-8276">following the PowerShell 3 Jumpstart course</a> and trial and error.</p>
-
-<p>Anyway, for some of the games we write as part of <a href="http://excaliburjs.com">Excalibur.js</a> for game jams we would like to run them offline. To do this, you need to create an <a href="http://www.html5rocks.com/en/tutorials/appcache/beginner/">HTML5 Application Manifest file</a>. However, this file is super finicky, as outlined in the linked article. In order to assist, I wrote a small PowerShell script that generates an <code>appcache</code> manifest file with each file&rsquo;s MD5 checksum. Therefore, the manifest file will only change when dependent assets change. I do some more work to disable it locally and only enable for release, but you can run this script as part of your build.</p>
-
-<script src="https://gist.github.com/kamranayub/cc2c4d371a83aec8279e.js"></script>
-
-
-<p>Modify the script to be specific to your project and it should output an appropriate manifest file. Feel free to change as you see fit.</p>
 ]]></content>
   </entry>
   
