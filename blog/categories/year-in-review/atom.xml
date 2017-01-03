@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Year in Review | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/year-in-review/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2016-12-29T15:13:30+00:00</updated>
+  <updated>2017-01-03T00:48:25+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,92 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[2016: A Year in Review]]></title>
+    <link href="http://kamranicus.com/blog/2017/01/03/year-in-review/"/>
+    <updated>2017-01-03T00:32:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2017/01/03/year-in-review</id>
+    <content type="html"><![CDATA[<p>Another year has passed and it&rsquo;s time to take a look back and see what I accomplished!</p>
+
+<h2>Open Source</h2>
+
+<p>It&rsquo;s been a busy year in open source for me with over 1100+ contributions, let&rsquo;s see&hellip;</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21598070/22a0d308-d11b-11e6-8c8a-2eeef49ae568.png" alt="2016 contributions" /></p>
+
+<ul>
+<li><a href="https://github.com/excaliburjs/Excalibur"><strong>excalibur.js</strong></a>: Excalibur remains one of the largest OSS projects I help maintain. I redesigned the <a href="http://excaliburjs.com">Excalibur.js website</a>. I made
+about <a href="https://github.com/excaliburjs/Excalibur/pulls?page=2&amp;q=is%3Apr+is%3Aclosed+author%3Akamranayub">49 pull requests</a>
+to the codebase. We made 4 releases, bringing us from 0.6 to 0.8 (over 177 issues closed!).</li>
+<li><a href="https://github.com/TypeStrong/typedoc"><strong>TypeDoc</strong></a>: This was a close one, last month I <a href="https://github.com/TypeStrong/typedoc/pull/365">submitted a PR</a> to support TypeScript 2.1.4.</li>
+<li><a href="https://github.com/DefinitelyTyped/DefinitelyTyped/"><strong>DefinitelyTyped</strong></a>: Made <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/pull/13169">my first PR</a> to DefinitelyTyped even though I&rsquo;ve made tons of private declaration files for my projects.</li>
+<li><a href="https://github.com/kamranayub/UnderscoreKO"><strong>UnderscoreKO</strong></a>: Updated for Underscore 1.8</li>
+<li><a href="https://github.com/kamranayub/posh-openweathermap"><strong>PoshOpenWeatherMap</strong></a>: I made a fun little weather Powershell module.</li>
+<li><a href="https://github.com/kamranayub/cassette-sri"><strong>cassette-sri</strong></a>: I needed <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">Subresource Integrity</a> support for KTOMG, so I published an extension to Cassette.</li>
+</ul>
+
+
+<h2>New Tech</h2>
+
+<p>I definitely enjoy learning new things and playing with tech.</p>
+
+<ul>
+<li>Played with <a href="http://kamranicus.com/blog/2016/02/24/azure-key-vault-config-encryption-azure/">Azure Key Vault</a></li>
+<li>Dabbled in some <a href="https://github.com/eonarheim/aspnet-core-demogame">ASP.NET Core</a></li>
+<li>At work I dove deep into Powershell DSC and JFrog Artifactory</li>
+<li>I set up equipment for my course recording: <a href="https://www.amazon.com/gp/product/B008O517IC">Behringer XENYX Q802USB Mixer</a>, <a href="https://www.amazon.com/Audio-Technica-ATR2100-USB-Cardioid-Dynamic-Microphone/dp/B004QJOZS4">ATR2100 Microphone</a></li>
+<li>I got a Raspberry Pi 3 for Christmas and made it into an emulation console using <a href="http://lakka.tv">Lakka</a></li>
+</ul>
+
+
+<h2>Gaming</h2>
+
+<p>Making and playing games remains one of my passions, that much is clear:</p>
+
+<ul>
+<li><a href="http://ktomg.com"><strong>Keep Track of My Games</strong></a>: I <a href="http://blog.keeptrackofmygames.com/tagged/updates">released 10 updates</a> to KTOMG last year, some of the biggest ones so far, adding tons of major new features.</li>
+<li>I <a href="http://kamranicus.com/blog/2016/05/08/ludum-dare-35-game-jam/">participated</a> in the Ludum Dare 35 game jam with the game <a href="http://excaliburjs.com/ludum-35/">Hex Shaper</a>.</li>
+<li>Me and <a href="http://erikonarheim.com">Erik Onarheim</a> made a <a href="http://kamranicus.com/blog/2016/07/31/aspnet-core-demo-game/">ASP.NET Core demo game</a> for a work code camp</li>
+<li>We also made a <a href="http://kamranicus.com/blog/2016/01/25/planet-wars-ai-competition-excaliburjs-csharp/">Planet Wars AI simulator</a> in Excalibur for a work competition</li>
+<li>I&rsquo;ve been working on a (currently private) sample game for Excalibur, it will be used as a the primary learning sample for new users.</li>
+<li>I <a href="https://keeptrackofmygames.com/users/kamranicus/lists/Playing">played some games</a></li>
+</ul>
+
+
+<h2>Speaking &amp; Conferences</h2>
+
+<p>I gave some talks and went to conferences! I spread the TypeScript love.</p>
+
+<ul>
+<li><a href="http://midwestjs.com/"><strong>Midwest.js</strong></a>: I gave a presentation on <a href="http://kamranicus.com/presentations/demystifying-typescript/#/">Demystifying TypeScript</a> at Midwest.js in August this year. It was a lot of fun,
+but the recording still isn&rsquo;t up on YouTube yet.</li>
+<li><a href="http://twincitiescodecamp.com"><strong>TCCC20</strong></a>: I gave a presentation on <a href="https://www.youtube.com/watch?v=eeh-FcC6Sew">TypeScript in Action</a> at Twin Cities Code Camp 20 in April.</li>
+<li><a href="http://build.microsoft.com"><strong>MS Build</strong></a>: I <a href="http://kamranicus.com/blog/2016/03/11/attending-build-2016/">attended</a> Microsoft Build 2016 with my coworkers. It was a blast.</li>
+</ul>
+
+
+<h2>Publishing</h2>
+
+<p>I want to try and commit to beating 2016&rsquo;s blog post count:</p>
+
+<ul>
+<li>I <a href="http://kamranicus.com/blog/archives/">published 16 blog posts</a> in 2016.</li>
+<li>I <a href="http://kamranicus.com/blog/2016/10/30/new-packt-publishing-typescript-course/">accepted a contract</a> to make an Introduction to TypeScript video course with Packt Publishing.</li>
+</ul>
+
+
+<h2>Life</h2>
+
+<ul>
+<li>My wife and I are expecting our first child in February! I&rsquo;m sure this will definitely affect how much time I get to spend on side projects so developing some kind of rhythm will be key.</li>
+</ul>
+
+
+<p>I&rsquo;m sure there&rsquo;s other stuff I&rsquo;m forgetting&mdash;but I&rsquo;m super proud of all the stuff I got done this year. Here&rsquo;s looking forward
+to 2017 as a new father!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[2015: A Year in Review]]></title>
