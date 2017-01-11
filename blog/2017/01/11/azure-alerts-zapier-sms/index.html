@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Site Down Alerts Using Azure App Insights and Zapier - Kamranicus</title>
+  <meta name="author" content="Kamran">
+
+  
+  <meta name="description" content="Site Down Alerts Using Azure App Insights and Zapier written Jan 11th, 2017 in Azure, Cloud, DevOps It&rsquo;s happened again. Even though I do get &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kamranicus.com/blog/2017/01/11/azure-alerts-zapier-sms">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+  <body>
+    <a href="/" class="home-icon">
+      <img src="/images/home.png"/>
+    </a>
+
+    <article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
+        <h1>Site Down Alerts Using Azure App Insights and Zapier</h1>
+        <div class="meta">
+          written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2017-01-11T02:01:00+00:00" pubdate data-updated="true">Jan 11<span>th</span>, 2017</time>
+          
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/azure/'>Azure</a>, <a class='category' href='/blog/categories/cloud/'>Cloud</a>, <a class='category' href='/blog/categories/devops/'>DevOps</a>
+  
+</span>
+
+
+        </div>
+        <p>It&rsquo;s <a href="https://twitter.com/jordan_belinsky/status/818967360132513792">happened again</a>. Even though I <em>do</em> get emailed whenever <a href="http://ktomg.com">KTOMG</a> goes down, I don&rsquo;t pay attention to my email 24/7 and the site can be down for a bit until I realize it. In this case, I was cooking and wasn&rsquo;t at my computer or on my phone. The Twitter notification by a friendly user actually got me to check!</p>
+
+<p>I know this is one of the headaches <a href="https://kamranicus.com/blog/2016/10/18/ravendb-standard-non-commercial-license/">I willingly signed up for</a> by moving to my own VM&mdash;and even though I get emailed when the site&rsquo;s down I hate not knowing that <strong>immediately</strong>.</p>
+
+<!-- More -->
+
+
+<h2>App Insights</h2>
+
+<p>The first thing you should do is get an <a href="https://docs.microsoft.com/en-us/azure/application-insights/app-insights-overview">Azure App Insights account</a>. <strong>It&rsquo;s free.</strong> And you can even use it to <a href="https://docs.microsoft.com/en-us/azure/application-insights/app-insights-monitor-performance-live-website-now">monitor your own VMs</a>! This is how I can still get this for KTOMG:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832425/afa2d62e-d770-11e6-864a-ef6dd5dc13c9.png" alt="Server Metrics" /></p>
+
+<p>It&rsquo;s awesome.</p>
+
+<p>The other thing it can do is handle availability (ping) tests. It&rsquo;s <a href="https://docs.microsoft.com/en-us/azure/application-insights/app-insights-monitor-web-app-availability">very easy to set up</a> and then you can set an alert for it. I&rsquo;ve done this already, where I&rsquo;ve set it to email me whenever KTOMG is down at more than 3 locations over 3 minutes&mdash;in other words, my site has blown up.</p>
+
+<h2>Using a Webhook with Zapier</h2>
+
+<p>I also use <a href="http://zapier.com">Zapier</a>, which is just a (fancier?) <a href="http://ifttt.com">IFTTT</a> clone. When I had deployed via Azure, I had <a href="https://zapier.com/zapbook/windows-azure-web-sites/">set up a Zap to notify me</a> whenever my Azure sites were deployed. Since I&rsquo;m on my own now, I disabled that but now I&rsquo;ll show you how to use it to notify you via SMS and webhooks.</p>
+
+<ol>
+<li><a href="http://zapier.com">Sign up for an account</a></li>
+<li>Create a new Zap</li>
+<li>Select &ldquo;Webhook by Zapier&rdquo; as the trigger</li>
+<li>Go through the steps until you get a new webhook URL</li>
+</ol>
+
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832880/e0233246-d773-11e6-8b83-f974fe706ccd.png" alt="Webhook url" /></p>
+
+<p>Now you&rsquo;ve got a webhook URL which is just an HTTP endpoint you can POST to.</p>
+
+<p>In Azure App Insights, you&rsquo;ll want to paste this URL into your alert &ldquo;Webhook&rdquo; setting:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832621/fe82c604-d771-11e6-839c-df997b44b942.png" alt="Webhook settings" /></p>
+
+<p>Zapier will be asking you to test your hook. It&rsquo;s a bit hard to trigger an Azure alert, but all you really need to do is POST a JSON payload at the endpoint, so <a href="https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/insights-webhooks-alerts">going off this Azure guide</a>, use something like <code>curl</code> or Postman to POST to the endpoint:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832689/7baa2492-d772-11e6-9b9b-d6be7161fc01.png" alt="Testing the hook" /></p>
+
+<p>Now that the hook is tested, Zapier has filled in a bunch of template fields for you, pretty cool! On the left side of the Zap, click the (+) icon and add a Filter:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832706/9f6736c2-d772-11e6-8437-bad812a60201.png" alt="Add Zapier filter" /></p>
+
+<p>We want to only send the Zap if the alert has been &ldquo;Activated&rdquo; (not if it gets Resolved). Chances are, you only care that the alert occurred and after that you can check your email/fix the issue to resolve it.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832731/c9a53d94-d772-11e6-899a-a52a1efea106.png" alt="Filter for Activated" /></p>
+
+<p>Now, add an Action to send an SMS (or really, do whatever you want&mdash;I just want a text message).</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832757/ffe84ea0-d772-11e6-8dc5-9fc4eadd2023.png" alt="SMS action" /></p>
+
+<p>You can use the template fields if you want, but this webhook is customized for our alert so I don&rsquo;t really need any info from the alert. If you were sending <em>multiple</em> alerts to this single hook, you could use the fields of the JSON payload to customize the message here.</p>
+
+<p>I am setting a &ldquo;From number&rdquo; because I can use an app like <a href="https://play.google.com/store/apps/details?id=de.hoernchen.android.firealert2&amp;hl=en">FireAlarm2</a> to read my SMS and page me loudly (even if my phone is on vibrate).</p>
+
+<p>That&rsquo;s it! You can test the Zap and it&rsquo;ll send you an SMS to verify you can receive messages. Now you&rsquo;ll always know when your site&rsquo;s down so you don&rsquo;t need to rely on your users.</p>
+
+
+        <hr class="divider-short"/>
+
+        
+        <section>
+          <h1>Comments</h1>
+          <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </section>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
+        
+          <a class="pull-left" href="/blog/2017/01/03/year-in-review/" title="Previous Post: 2016: A Year in Review">&laquo; Previous: 2016: A Year in Review</a>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="her-row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+  <a href="/"><h4>Home</h4></a>
+</div>
+
+<div class="col-md-2">
+  <div class="social-icon-list">
+    
+    <a href="https://twitter.com/kamranayub"><img src="/images/glyphicons_social_31_twitter.png"/></a>
+    
+
+    
+    <a href="https://github.com/kamranayub"><img src="/images/glyphicons_social_21_github.png"/></a>
+    
+
+    
+
+    
+  </div>
+</div>
+
+<div class="pull-right">
+  <h4>Powered by <a href="http://octopress.org/">Octopress</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+    
+      
+
+<script type="text/javascript">
+      var disqus_shortname = 'kamranicus';
+      
+        
+        // var disqus_developer = 1;
+        
+        var disqus_identifier = 'http://kamranicus.com/blog/2017/01/11/azure-alerts-zapier-sms/';
+        
+        var disqus_url = 'http://kamranicus.com/blog/2017/01/11/azure-alerts-zapier-sms/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+    
+  </body>
+</html>

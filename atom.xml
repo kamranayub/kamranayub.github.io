@@ -4,7 +4,7 @@
   <title><![CDATA[Kamranicus]]></title>
   <link href="http://kamranicus.com/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2017-01-03T00:48:25+00:00</updated>
+  <updated>2017-01-11T02:48:54+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -12,6 +12,72 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Site Down Alerts Using Azure App Insights and Zapier]]></title>
+    <link href="http://kamranicus.com/blog/2017/01/11/azure-alerts-zapier-sms/"/>
+    <updated>2017-01-11T02:01:00+00:00</updated>
+    <id>http://kamranicus.com/blog/2017/01/11/azure-alerts-zapier-sms</id>
+    <content type="html"><![CDATA[<p>It&rsquo;s <a href="https://twitter.com/jordan_belinsky/status/818967360132513792">happened again</a>. Even though I <em>do</em> get emailed whenever <a href="http://ktomg.com">KTOMG</a> goes down, I don&rsquo;t pay attention to my email 24/7 and the site can be down for a bit until I realize it. In this case, I was cooking and wasn&rsquo;t at my computer or on my phone. The Twitter notification by a friendly user actually got me to check!</p>
+
+<p>I know this is one of the headaches <a href="https://kamranicus.com/blog/2016/10/18/ravendb-standard-non-commercial-license/">I willingly signed up for</a> by moving to my own VM&mdash;and even though I get emailed when the site&rsquo;s down I hate not knowing that <strong>immediately</strong>.</p>
+
+<!-- More -->
+
+
+<h2>App Insights</h2>
+
+<p>The first thing you should do is get an <a href="https://docs.microsoft.com/en-us/azure/application-insights/app-insights-overview">Azure App Insights account</a>. <strong>It&rsquo;s free.</strong> And you can even use it to <a href="https://docs.microsoft.com/en-us/azure/application-insights/app-insights-monitor-performance-live-website-now">monitor your own VMs</a>! This is how I can still get this for KTOMG:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832425/afa2d62e-d770-11e6-864a-ef6dd5dc13c9.png" alt="Server Metrics" /></p>
+
+<p>It&rsquo;s awesome.</p>
+
+<p>The other thing it can do is handle availability (ping) tests. It&rsquo;s <a href="https://docs.microsoft.com/en-us/azure/application-insights/app-insights-monitor-web-app-availability">very easy to set up</a> and then you can set an alert for it. I&rsquo;ve done this already, where I&rsquo;ve set it to email me whenever KTOMG is down at more than 3 locations over 3 minutes&mdash;in other words, my site has blown up.</p>
+
+<h2>Using a Webhook with Zapier</h2>
+
+<p>I also use <a href="http://zapier.com">Zapier</a>, which is just a (fancier?) <a href="http://ifttt.com">IFTTT</a> clone. When I had deployed via Azure, I had <a href="https://zapier.com/zapbook/windows-azure-web-sites/">set up a Zap to notify me</a> whenever my Azure sites were deployed. Since I&rsquo;m on my own now, I disabled that but now I&rsquo;ll show you how to use it to notify you via SMS and webhooks.</p>
+
+<ol>
+<li><a href="http://zapier.com">Sign up for an account</a></li>
+<li>Create a new Zap</li>
+<li>Select &ldquo;Webhook by Zapier&rdquo; as the trigger</li>
+<li>Go through the steps until you get a new webhook URL</li>
+</ol>
+
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832880/e0233246-d773-11e6-8b83-f974fe706ccd.png" alt="Webhook url" /></p>
+
+<p>Now you&rsquo;ve got a webhook URL which is just an HTTP endpoint you can POST to.</p>
+
+<p>In Azure App Insights, you&rsquo;ll want to paste this URL into your alert &ldquo;Webhook&rdquo; setting:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832621/fe82c604-d771-11e6-839c-df997b44b942.png" alt="Webhook settings" /></p>
+
+<p>Zapier will be asking you to test your hook. It&rsquo;s a bit hard to trigger an Azure alert, but all you really need to do is POST a JSON payload at the endpoint, so <a href="https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/insights-webhooks-alerts">going off this Azure guide</a>, use something like <code>curl</code> or Postman to POST to the endpoint:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832689/7baa2492-d772-11e6-9b9b-d6be7161fc01.png" alt="Testing the hook" /></p>
+
+<p>Now that the hook is tested, Zapier has filled in a bunch of template fields for you, pretty cool! On the left side of the Zap, click the (+) icon and add a Filter:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832706/9f6736c2-d772-11e6-8437-bad812a60201.png" alt="Add Zapier filter" /></p>
+
+<p>We want to only send the Zap if the alert has been &ldquo;Activated&rdquo; (not if it gets Resolved). Chances are, you only care that the alert occurred and after that you can check your email/fix the issue to resolve it.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832731/c9a53d94-d772-11e6-899a-a52a1efea106.png" alt="Filter for Activated" /></p>
+
+<p>Now, add an Action to send an SMS (or really, do whatever you want&mdash;I just want a text message).</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832757/ffe84ea0-d772-11e6-8dc5-9fc4eadd2023.png" alt="SMS action" /></p>
+
+<p>You can use the template fields if you want, but this webhook is customized for our alert so I don&rsquo;t really need any info from the alert. If you were sending <em>multiple</em> alerts to this single hook, you could use the fields of the JSON payload to customize the message here.</p>
+
+<p>I am setting a &ldquo;From number&rdquo; because I can use an app like <a href="https://play.google.com/store/apps/details?id=de.hoernchen.android.firealert2&amp;hl=en">FireAlarm2</a> to read my SMS and page me loudly (even if my phone is on vibrate).</p>
+
+<p>That&rsquo;s it! You can test the Zap and it&rsquo;ll send you an SMS to verify you can receive messages. Now you&rsquo;ll always know when your site&rsquo;s down so you don&rsquo;t need to rely on your users.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[2016: A Year in Review]]></title>
@@ -2465,171 +2531,6 @@ since we want to execute when that is the case.</p>
 in your build, you can use the Kudu <a href="https://github.com/projectkudu/kudu/wiki/REST-API">REST endpoint</a> to see your deployment logs (<strong>/api/deployments</strong> endoint) which contain full timestamp information!</p>
 
 <p>Happy continuous deployment!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Impersonating a User During Automated Testing Scenarios]]></title>
-    <link href="http://kamranicus.com/blog/2015/11/06/impersonating-during-testing/"/>
-    <updated>2015-11-06T16:00:00+00:00</updated>
-    <id>http://kamranicus.com/blog/2015/11/06/impersonating-during-testing</id>
-    <content type="html"><![CDATA[<p>I&rsquo;m starting to introduce privacy controls to <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> and I ran into the following scenario when writing my tests:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Scenario: Anonymous user should be able to view a public custom list
-</span><span class='line'>  Given a user has a list
-</span><span class='line'>  And a user's list is public
-</span><span class='line'>  When I request access to the list
-</span><span class='line'>  Then I have read-only access</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In this context, <strong>I</strong> am the anonymous user. This is the exact <a href="http://www.specflow.org/">SpecFlow</a> scenario I wrote. Do you know why I may have run into issues?</p>
-
-<p>Let&rsquo;s look at the first two steps:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[Given(@&quot;a user has a list&quot;)]</span>
-</span><span class='line'><span class="k">public</span> <span class="k">void</span> <span class="nf">GivenAUserHasAList</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>    <span class="n">_listResult</span> <span class="p">=</span> <span class="n">_context</span><span class="p">.</span><span class="n">ListService</span><span class="p">.</span><span class="n">CreateList</span><span class="p">(</span><span class="n">_newList</span><span class="p">)</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="na">[Given(@&quot;a user&#39;s list is public&quot;)]</span>
-</span><span class='line'><span class="k">public</span> <span class="k">void</span> <span class="nf">GivenAUsersListIsPublic</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">_privacySettings</span><span class="p">.</span><span class="n">Level</span> <span class="p">=</span> <span class="n">PrivacyLevel</span><span class="p">.</span><span class="n">Public</span><span class="p">;</span>
-</span><span class='line'>  <span class="n">_context</span><span class="p">.</span><span class="n">ListService</span><span class="p">.</span><span class="n">UpdateListPrivacy</span><span class="p">(</span><span class="n">_listResult</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span> <span class="n">_privacySettings</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Why would this cause a problem with my given scenario?</p>
-
-<ol>
-<li>In the first step, I&rsquo;m creating a new list.</li>
-<li>In the second step, I&rsquo;m taking the new list I just made from the first step and updating the privacy settings on it.</li>
-</ol>
-
-
-<p>The problem is that my service assumes the context is an authenticated user and will apply changes to the <strong>current user&rsquo;s</strong> list. Well, since I did not call my login helpers before these two steps, I am in an anonymous context so the service calls fail. That&rsquo;s good! But how can I tell my steps to call a service method <em>on behalf</em> of another user without having <em>every</em> step use the current user context?</p>
-
-<p>You might say I should just create a new method that accepts a username and refactor my methods. I <em>could</em> do that but not only is my entire service designed around the current user context, my service layer is essentially the interface of my public API. I would never allow one user to create a list for another user (unless that was a feature). So the same way I wouldn&rsquo;t expose an API method to do something on behalf of someone, I won&rsquo;t add a public method in my service layer to do the same. I could choose to make the method private or internal and grant access to the assembly for testing&mdash;true, I <em>could</em> but that seems like a workaround where I need to expose special functionality just for testing.</p>
-
-<p>The approach I ended up doing was simpler and more elegant and leveraged an existing pattern I was relying on: injecting an <code>IUserContext</code> into my service layer like this:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="nf">ListService</span><span class="p">(</span><span class="n">IUserContext</span> <span class="n">userContext</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">_userContext</span> <span class="p">=</span> <span class="n">userContext</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This is using standard dependency injection (Ninject, in my case) to inject a context for the current user. That context gets created and maintained outside this class, so it doesn&rsquo;t care who provided it or where it came from, it just uses it to determine business logic.</p>
-
-<p>So since I&rsquo;m already injecting the current user context and mocking it in my tests, why not simply swap out the context when I need to?</p>
-
-<h2>Creating an impersonation context</h2>
-
-<p>That&rsquo;s what I ended up doing. Here&rsquo;s my implementation of a <code>TestingImpersonationContext</code> (<a href="https://gist.github.com/kamranayub/9654d6581fbcf63cf481">https://gist.github.com/kamranayub/9654d6581fbcf63cf481</a>):</p>
-
-<script src="https://gist.github.com/kamranayub/9654d6581fbcf63cf481.js"></script>
-
-
-<p>It should be clear what&rsquo;s happening but let me explain further. Specifically in SpecFlow you can inject a context into your testing steps like so:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">StepBase</span> <span class="p">:</span> <span class="n">TechTalk</span><span class="p">.</span><span class="n">SpecFlow</span><span class="p">.</span><span class="n">Steps</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">protected</span> <span class="n">TestingContext</span> <span class="n">_context</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">public</span> <span class="nf">StepBase</span><span class="p">(</span><span class="n">TestingContext</span> <span class="n">context</span><span class="p">)</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="n">_context</span> <span class="p">=</span> <span class="n">context</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>As long as your step classes inherit that <code>StepBase</code>, you have access to a context. All I did was build a method off that context that swapped out my existing dependency that was injected for <code>IUserContext</code> with a temporary context that impersonated the requested user. Once it is disposed, it restores the original context. Easy as pie!</p>
-
-<p>If you are <strong>not</strong> using SpecFlow which is probably the case, don&rsquo;t fret&mdash;all you really need is a class or helper method that you can access in your test classes. However you want to achieve that is up to you. Create a base class, don&rsquo;t even bother with dependency injection, etc. This is entirely doable without DI but since my app relies on it I also leverage it during testing.</p>
-
-<p>Now given we have an impersonation context helper, here&rsquo;s how our two testing steps have changed:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[Given(@&quot;a user has a list&quot;)]</span>
-</span><span class='line'><span class="k">public</span> <span class="k">void</span> <span class="nf">GivenAUserHasAList</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">using</span> <span class="p">(</span><span class="n">_context</span><span class="p">.</span><span class="n">Impersonate</span><span class="p">(</span><span class="s">&quot;user&quot;</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="n">_listResult</span> <span class="p">=</span> <span class="n">_context</span><span class="p">.</span><span class="n">ListService</span><span class="p">.</span><span class="n">CreateList</span><span class="p">(</span><span class="n">_newList</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="na">[Given(@&quot;a user&#39;s list is public&quot;)]</span>
-</span><span class='line'><span class="k">public</span> <span class="k">void</span> <span class="nf">GivenAUsersListIsPublic</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">using</span> <span class="p">(</span><span class="n">_context</span><span class="p">.</span><span class="n">Impersonate</span><span class="p">(</span><span class="s">&quot;user&quot;</span><span class="p">))</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="n">_privacySettings</span><span class="p">.</span><span class="n">Level</span> <span class="p">=</span> <span class="n">PrivacyLevel</span><span class="p">.</span><span class="n">Public</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">_context</span><span class="p">.</span><span class="n">ListService</span><span class="p">.</span><span class="n">UpdateListPrivacy</span><span class="p">(</span><span class="n">_listResult</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span> <span class="n">_privacySettings</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I could even update my scenario to be specific about <strong>who&rsquo;s list</strong> I&rsquo;m accessing (so it&rsquo;s not ambiguous between logged in user vs. another user) but since I only have two users in my testing context, it doesn&rsquo;t really matter.</p>
-
-<p>Now for the test results:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">Given</span> <span class="n">a</span> <span class="n">user</span> <span class="n">has</span> <span class="n">a</span> <span class="n">list</span>
-</span><span class='line'><span class="p">-&gt;</span> <span class="n">done</span><span class="p">:</span> <span class="n">ListSteps</span><span class="p">.</span><span class="n">GivenAUserHasAList</span><span class="p">()</span> <span class="p">(</span><span class="m">0.2</span><span class="n">s</span><span class="p">)</span>
-</span><span class='line'><span class="n">And</span> <span class="n">a</span> <span class="n">user</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">list</span> <span class="k">is</span> <span class="k">public</span>
-</span><span class='line'><span class="p">-&gt;</span> <span class="n">done</span><span class="p">:</span> <span class="n">ListSteps</span><span class="p">.</span><span class="n">GivenAUsersListIsPublic</span><span class="p">()</span> <span class="p">(</span><span class="m">0.0</span><span class="n">s</span><span class="p">)</span>
-</span><span class='line'><span class="n">When</span> <span class="n">I</span> <span class="n">request</span> <span class="n">access</span> <span class="n">to</span> <span class="n">the</span> <span class="n">list</span>
-</span><span class='line'><span class="p">-&gt;</span> <span class="n">done</span><span class="p">:</span> <span class="n">ListSteps</span><span class="p">.</span><span class="n">WhenIRequestAccessToTheList</span><span class="p">()</span> <span class="p">(</span><span class="m">0.1</span><span class="n">s</span><span class="p">)</span>
-</span><span class='line'><span class="n">Then</span> <span class="n">I</span> <span class="n">have</span> <span class="n">read</span><span class="p">-</span><span class="n">only</span> <span class="n">access</span>
-</span><span class='line'><span class="p">-&gt;</span> <span class="n">done</span><span class="p">:</span> <span class="n">ListSteps</span><span class="p">.</span><span class="n">ThenIHaveReadAccess</span><span class="p">()</span> <span class="p">(</span><span class="m">0.0</span><span class="n">s</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The tests are green and now I&rsquo;m a happy coder. By the way, if you aren&rsquo;t using <a href="http://specflow.org">SpecFlow</a> for .NET you should consider it, I love it.</p>
 ]]></content>
   </entry>
   
