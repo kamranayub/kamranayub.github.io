@@ -33,11 +33,17 @@ Chrome profiles are kept separate, with their own settings, extensions,
 and bookmarks. This keeps tabs and work separated neatly and creates a 
 so-called "separation of concerns" for your browsing.
 
-Here's the rub: A full Chrome user is tied to a Google account. I don't want to create a separate Google account just for KTOMG. 
+~~Here's the rub: A full Chrome user is tied to a Google account. I don't want to create a separate Google account just for KTOMG. 
 The Google+, YouTube, email, etc. is all linked to my primary Google Account.
 The issue is, Chrome will not let more than one
 Google account exist on a single PC. So how can we take advantage of the profile separation but still
-keep my primary Google account? 
+keep my primary Google account?~~
+
+**Update:** Good news! Chrome now supports standalone profiles, so you *no longer* need to create a Supervised user! Better yet, extensions are fully supported!
+
+I've left the rest of the post for posterity but it no longer applies.
+
+--
 
 The answer is: we'll create a 
 [Supervised User Account](https://support.google.com/chrome/answer/3463947). Did you notice I said "full user" before?
