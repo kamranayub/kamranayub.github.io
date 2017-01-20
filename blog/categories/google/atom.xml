@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Google | Kamranicus]]></title>
   <link href="http://kamranicus.com/blog/categories/google/atom.xml" rel="self"/>
   <link href="http://kamranicus.com/"/>
-  <updated>2017-01-11T02:48:54+00:00</updated>
+  <updated>2017-01-20T20:41:02+00:00</updated>
   <id>http://kamranicus.com/</id>
   <author>
     <name><![CDATA[Kamran]]></name>
@@ -40,11 +40,17 @@ Chrome profiles are kept separate, with their own settings, extensions,
 and bookmarks. This keeps tabs and work separated neatly and creates a
 so-called &ldquo;separation of concerns&rdquo; for your browsing.</p>
 
-<p>Here&rsquo;s the rub: A full Chrome user is tied to a Google account. I don&rsquo;t want to create a separate Google account just for KTOMG.
+<p><del>Here&rsquo;s the rub: A full Chrome user is tied to a Google account. I don&rsquo;t want to create a separate Google account just for KTOMG.
 The Google+, YouTube, email, etc. is all linked to my primary Google Account.
 The issue is, Chrome will not let more than one
 Google account exist on a single PC. So how can we take advantage of the profile separation but still
-keep my primary Google account?</p>
+keep my primary Google account?</del></p>
+
+<p><strong>Update:</strong> Good news! Chrome now supports standalone profiles, so you <em>no longer</em> need to create a Supervised user! Better yet, extensions are fully supported!</p>
+
+<p>I&rsquo;ve left the rest of the post for posterity but it no longer applies.</p>
+
+<p>&mdash;</p>
 
 <p>The answer is: we&rsquo;ll create a
 <a href="https://support.google.com/chrome/answer/3463947">Supervised User Account</a>. Did you notice I said &ldquo;full user&rdquo; before?
