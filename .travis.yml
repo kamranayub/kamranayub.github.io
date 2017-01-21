@@ -6,7 +6,6 @@ cache:
   directories:
     - node_modules
     - node_cache
-    - tools
 branches:
   only:
     - source
@@ -22,10 +21,8 @@ before_install:
 - mkdir wyam
 install:
 - unzip tools/Wyam-${WYAM_VERSION}.zip -d wyam
-- PATH=$PATH:wyam
 script:
-- npm run semantic
-- wyam/wyam -r Blog -t CleanBlog
+- npm run build_ci
 after_success:
 - chmod ugo+x deploy.sh
 - '[ "${TRAVIS_PULL_REQUEST}" != "false" ] || ./deploy.sh'

@@ -8,8 +8,10 @@
   ],
   "scripts": {
     "wyam": "wyam -r Blog -t CleanBlog",
+    "wyam_ci": "wyam/wyam -r Blog -t CleanBlog",
     "semantic": "gulp build --gulpfile semantic/gulpfile.js",
-    "build": "npm run semantic && npm run wyam"
+    "build": "npm run semantic && npm run wyam",
+    "build_ci": "npm run semantic && npm run wyam_ci"
   },
   "author": "Kamran Ayub",
   "license": "ISC",
