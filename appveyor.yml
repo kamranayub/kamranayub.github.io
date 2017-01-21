@@ -35,7 +35,7 @@ build_script:
 on_success:
   - set /P CURRENT_COMMIT=< git rev-parse HEAD
   - git clone -b master "https://%GH_TOKEN%@%GH_REF%" _deploy
-  - ps: del _deploy/ -r
+  - del _deploy /f /q
   - xcopy output _deploy /E
   - cd _deploy
   - git status
