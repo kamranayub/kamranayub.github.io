@@ -20,7 +20,7 @@ addons:
 before_install:
 - mkdir wyam
 install:
-- 7za x tools/Wyam-${WYAM_VERSION}.zip -o wyam
+- 7z x tools/Wyam-${WYAM_VERSION}.zip -owyam
 script:
 - npm run build_ci
 after_success:
