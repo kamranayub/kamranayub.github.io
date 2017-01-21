@@ -29,7 +29,7 @@ install:
   - npm install
 
 build_script:
-  - wyam/Wyam -r Blog -t CleanBlog
+  - ./wyam/Wyam -r Blog -t CleanBlog
 
 on_success:
   - set /P CURRENT_COMMIT=< git rev-parse HEAD
