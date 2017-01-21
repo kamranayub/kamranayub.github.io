@@ -16,11 +16,11 @@ env:
 addons:
   apt:
     packages:
-      - unzip
+      - p7zip-full
 before_install:
 - mkdir wyam
 install:
-- unzip tools/Wyam-${WYAM_VERSION}.zip -d wyam
+- 7z x tools/Wyam-${WYAM_VERSION}.zip -o wyam -r
 script:
 - npm run build_ci
 after_success:
