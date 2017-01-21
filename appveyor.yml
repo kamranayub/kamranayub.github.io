@@ -32,11 +32,13 @@ install:
 build_script:
   - .\wyam\Wyam.exe -r Blog -t CleanBlog
 
+test: off
+
 on_success:
   - set /P CURRENT_COMMIT=< git rev-parse HEAD
   - git clone -b master "https://%GH_TOKEN%@%GH_REF%" _deploy
   - del _deploy /f /q
-  - xcopy output _deploy /E
+  - xcopy output _deploy /e /y
   - cd _deploy
   - git status
   - git config user.name "Appveyor"
