@@ -13,14 +13,11 @@ env:
   global:
   - GH_REF: github.com/kamranayub/kamranayub.github.io.git
   - WYAM_VERSION: v0.15.8-beta
-addons:
-  apt:
-    packages:
-      - p7zip-full
 before_install:
 - mkdir wyam
 install:
-- 7z x tools/Wyam-${WYAM_VERSION}.zip -owyam
+- unzip tools/Wyam-${WYAM_VERSION}.zip -d wyam
+- npm run install
 script:
 - npm run build_ci
 after_success:
