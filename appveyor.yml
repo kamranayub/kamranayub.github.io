@@ -35,11 +35,12 @@ build_script:
 test: off
 
 on_success:
-  - set /P CURRENT_COMMIT=< git rev-parse HEAD
-  - git clone -b master "https://%GH_TOKEN%@%GH_REF%" _deploy
-  - del _deploy /f /q
-  - xcopy output _deploy /e /y
+  - git rev-parse HEAD > _commit.txt
+  - set /P CURRENT_COMMIT=< _commit.txt
+  - git clone -b master "https://%GH_TOKEN%@%GH_REF%" _deploy  
   - cd _deploy
+  - git rm -rf .
+  - xcopy ../output . /e /y
   - git status
   - git config user.name "Appveyor"
   - git config user.email "appveyor@kamranicus.com"
