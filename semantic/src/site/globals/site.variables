@@ -1,0 +1,20 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+/*-------------------
+       Fonts
+--------------------*/
+
+@fontName          : 'Overpass';
+@googleFontSizes   : '400,700,400i,700i';
+
+/*-------------------
+      Base Sizes
+--------------------*/
+
+/* This is the single variable that controls them all */
+@emSize   : 16px;
+
+/* The size of page text  */
+@fontSize : 16px;

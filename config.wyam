@@ -1,0 +1,19 @@
+#n -p Wyam.Less
+#n -p Wyam.Minification
+
+Settings.Host = "kamranicus.com";
+Settings.LinksUseHttps = true;
+
+GlobalMetadata["Title"] = "Kamranicus";
+GlobalMetadata["Description"] = "Kamran Ayub";
+GlobalMetadata["Intro"] = "Hi, I'm a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.";
+GlobalMetadata["FeedUrl"] = "http://feeds.feedburner.com/Kamranicus";
+GlobalMetadata["CaseInsensitiveTags"] = true;
+GlobalMetadata["AtomPath"] = "atom.xml";
+
+Pipelines.Add("Less",
+    ReadFiles("**/*.less"),
+    Less(),
+    //MinifyCss(),
+    WriteFiles(".css")
+);

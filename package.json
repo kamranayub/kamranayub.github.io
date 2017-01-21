@@ -1,0 +1,20 @@
+{
+  "name": "kamranayub.github.io",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal blog for Kamran Ayub",
+  "keywords": [
+    "blog"
+  ],
+  "scripts": {
+    "wyam": "wyam -r Blog -t CleanBlog",
+    "semantic": "gulp build --gulpfile semantic/gulpfile.js",
+    "build": "npm run semantic && npm run wyam"
+  },
+  "author": "Kamran Ayub",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "semantic-ui": "^2.2.7"
+  }
+}

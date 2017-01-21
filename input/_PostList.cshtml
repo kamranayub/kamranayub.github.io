@@ -1,0 +1,28 @@
+@model IEnumerable<IDocument>
+
+<div class="ui hidden divider"></div>
+
+<div class="ui divided items">
+  @foreach (IDocument doc in Model)
+  {
+    string lead = doc.String(BlogKeys.Lead);
+    
+    <div class="item">
+      <div class="content">
+
+        <a href="@Context.GetLink(doc)" class="header">
+          @doc.String(BlogKeys.Title)                            
+        </a>
+
+        <div class="meta">
+          Posted on @(doc.Get<DateTime>(BlogKeys.Published).ToLongDateString())
+        </div>
+
+        @if(!string.IsNullOrWhiteSpace(lead))
+        {
+          <div class="description">@lead</div>
+        }
+      </div>
+    </div>
+  }
+</div>

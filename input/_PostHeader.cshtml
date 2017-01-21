@@ -1,0 +1,35 @@
+@{
+    var Lead = Model.String(BlogKeys.Lead);
+    var Published = Model.Get<DateTime>(BlogKeys.Published);   
+    var Tags = Model.Get<string[]>(BlogKeys.Tags);
+}
+
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      @Model.String(BlogKeys.Title)
+      @if(!string.IsNullOrWhiteSpace(Lead))
+      {
+        <div class="ui sub header">@Lead</div>
+      }
+    </h1>
+                
+    <div class="ui inverted sub header">        
+        @if (Published != default(DateTime))
+        {
+            <text>Published on @Published.ToLongDateString()<br></text>
+        }
+    </div>
+    @if (Tags != null)
+    {
+        <div class="ui basic vertical spaced segment">
+            @foreach (string tag in Tags.OrderBy(x => x))
+            {
+                IDocument tagDocument = Documents[BlogKeys.Tags].FirstOrDefault(x => x.String(BlogKeys.Tag) == tag);
+                if(tagDocument != null)
+                {                
+                    <a role="button" href="@Context.GetLink(tagDocument)" class="ui inverted small compact button">@tag</a>
+                }
+            }
+        </div>     
+    } 
+</div>

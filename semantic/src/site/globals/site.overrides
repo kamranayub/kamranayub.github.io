@@ -1,0 +1,34 @@
+/*******************************
+         Site Overrides
+*******************************/
+
+#intro-header {
+  margin-bottom: 1.5em;
+}
+
+nav.ui.site.menu .header.item {
+  font-size: 1.5em;
+  text-transform: lowercase;
+  letter-spacing: 1.75;
+}
+
+.masthead.segment {
+  min-height: 350px;
+
+  h1.ui.header {
+    margin-top: 1.5em;
+    font-size: 4em;
+  }
+
+  .social.links {
+    margin-bottom: 3em;
+  }
+}
+
+.spaced.segment .button {
+  margin-bottom: 0.75em;
+}
+
+.spaced.list .item {
+  margin-bottom: 0.75em;
+}

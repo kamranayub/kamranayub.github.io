@@ -1,0 +1,16 @@
+Title: Archive
+RedirectFrom: blog/archives
+---
+
+@{
+    foreach(IGrouping<int, IDocument> year in Documents[BlogKeys.Posts]
+        .Where(x => x.ContainsKey("Published"))
+        .OrderByDescending(x => x.Get<DateTime>("Published"))
+        .GroupBy(x => x.Get<DateTime>("Published").Year)
+        .OrderByDescending(x => x.Key))
+    {
+        <h1 class="ui dividing center aligned header">@year.Key</h1>
+        
+        @Html.Partial("_PostList", year);
+    }
+}

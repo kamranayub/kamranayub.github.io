@@ -1,0 +1,15 @@
+@{
+    Layout = "_Layout.cshtml";
+}
+
+@section Header {
+    @Html.Partial("_PostHeader.cshtml")
+}
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  @RenderBody()
+</div>
+
+@Html.Partial("_PostFooter.cshtml")

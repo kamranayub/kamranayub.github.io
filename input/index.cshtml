@@ -1,0 +1,83 @@
+@section Header {
+    @Html.Partial("_IndexHeader")
+}
+
+<div class="ui stackable grid container">
+    <div class="ten wide column">      
+        @{
+            bool first = true;
+            foreach(IDocument doc in Documents[BlogKeys.Posts].Take(3))
+            {                
+                if (!first)
+                {
+                    <div class="ui hidden divider"></div>
+                }
+                first = false;
+                string lead = doc.String(BlogKeys.Lead);
+                <div class="post-preview">
+                  <p class="ui grey sub header">
+                    Posted on @(doc.Get<DateTime>(BlogKeys.Published).ToLongDateString())
+                  </p>
+                  <a href="@Context.GetLink(doc)">
+                    <h2 class="ui post title header">
+                      @doc.String(BlogKeys.Title)
+
+                      @if(!string.IsNullOrWhiteSpace(lead))
+                      {
+                        <div class="sub header">@lead</div>
+                      }
+                    </h2>
+                      
+                  </a>                    
+
+                  <div class="ui vertical post content segment">
+                    @Html.Raw(doc.String(BlogKeys.Excerpt))       
+                  </div>      
+                </div>       
+            }
+        }
+    </div>
+    <div class="six wide column">
+               
+      <a href="@Context.String("FeedUrl")" class="ui orange right labeled icon button">
+        Subscribe to posts
+        <i class="right rss icon"></i>
+      </a>
+
+      <h3 class="ui header">Tags</h3>
+
+      <div class="ui basic vertical spaced segment">
+          @foreach (IDocument tagDocument in Documents[BlogKeys.Tags].OrderByDescending(x => x.DocumentList(BlogKeys.Posts).Count()).Take(10))
+          { 
+              string tag = tagDocument.String(BlogKeys.Tag);
+              string postCount = tagDocument.DocumentList(BlogKeys.Posts).Count().ToString();
+              <a role="button" href="@Context.GetLink(tagDocument)" class="ui small compact basic button">
+                @tag (@postCount)
+              </a>
+          }
+      </div>
+
+      <a href="/tags" class="ui right labeled icon button">
+        View All Tags
+        <i class="right arrow icon"></i>
+      </a>
+      
+      <div class="ui divider"></div>
+
+      <h3 class="ui header">Older Posts</h3>
+
+      <div class="ui spaced list">
+        @foreach(IDocument doc in Documents[BlogKeys.Posts].Skip(3).Take(4))
+        {        
+          <a class="item" href="@Context.GetLink(doc)">@doc.String(BlogKeys.Title)</a>
+        }
+      </div>
+
+      <a class="ui right labeled icon button" href="@Context.GetLink("/posts")">
+        Archive 
+        <i class="right arrow icon"></i>
+      </a>
+
+      @Html.Partial("_Sidebar")
+    </div> 
+</div>

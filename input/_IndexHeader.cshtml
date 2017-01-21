@@ -1,0 +1,15 @@
+@if(Context.String(BlogKeys.Description) != null)
+{
+    <h1 class="ui inverted header">@Context.String(BlogKeys.Description)</h1>
+}
+
+@if(Context.String(BlogKeys.Intro) != null)
+{            
+    <img class="ui centered small circular image" src="/assets/images/me.jpg" title="Kamran Ayub">
+    
+    <h3>@Context.String(BlogKeys.Intro)</h3>
+}
+
+<div class="social links">
+  @Html.Partial("_SocialLinks")
+</div>
