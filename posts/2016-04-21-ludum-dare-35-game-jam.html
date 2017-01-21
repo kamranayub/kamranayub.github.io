@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Designing Hexshaper, a game for the Ludum Dare 35 Game Jam</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Designing Hexshaper, a game for the Ludum Dare 35 Game Jam" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2016-04-21-ludum-dare-35-game-jam" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Designing Hexshaper, a game for the Ludum Dare 35 Game Jam
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Sunday, May 8, 2016<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/excalibur.js" class="ui inverted small compact button">Excalibur.js</a>
+                    <a role="button" href="/tags/game-jams" class="ui inverted small compact button">Game Jams</a>
+                    <a role="button" href="/tags/games" class="ui inverted small compact button">Games</a>
+                    <a role="button" href="/tags/javascript" class="ui inverted small compact button">Javascript</a>
+                    <a role="button" href="/tags/ludum-dare" class="ui inverted small compact button">Ludum Dare</a>
+                    <a role="button" href="/tags/typescript" class="ui inverted small compact button">TypeScript</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p>This last weekend I took part in the global <a href="http://ludumdare.com">Ludum Dare 35</a> game jam. If you've been following me for awhile, you know I've participated in the past too. This time we <a href="http://excaliburjs.com/ludum-35">made a game called Hexshaper</a>--where the goal is to fly around, absorbing magic to seal portals to another dimension to prevent monsters from overtaking the world. The backstory, while not communicated directly, informed our design--but it wasn't like that at first.</p>
+<!-- more -->
+<p>It's interesting to look at where the game was 24 hours into the competition because <strong>it looks nothing like the final game</strong>:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/563819/14938110/522d02f8-0edf-11e6-9329-7af08f8f9ecc.png" class="img-fluid" alt="Ship in space" /></p>
+<p>A ship shooting bullets at vampire bats in space? That is <em>nothing</em> like a witch flying around inside a castle closing portals!</p>
+<p><img src="https://cloud.githubusercontent.com/assets/563819/14938116/935df5ca-0edf-11e6-8694-507052c8f6cf.png" class="img-fluid" alt="Witchcraft" /></p>
+<p>How did that come to be?</p>
+<h2 id="lets-make-a-shmup">Let's make a shmup</h2>
+<p>This being our fourth LD jam, we have a process for how we do things now. Friday is spent brainstorming and coming up with ideas and then Saturday-Monday we build out our idea. This jam was a little different though--by the end of the night the group agreed we wanted to make a shoot 'em up (&quot;shmup&quot;) but we didn't quite know what the game would be about. All the ideas seemed to be too involved for a jam:</p>
+<ul>
+<li>&quot;Let's make an Ikaruga style shoot 'em up with enemies and levels&quot;</li>
+<li>&quot;Let's have different kinds of shooting styles&quot;</li>
+<li>&quot;Let's make different shields that absorb certain bullets&quot;</li>
+<li>&quot;Let's do a Geometry Wars style arena shooter&quot;</li>
+</ul>
+<p>The most important thing you can do during a jam is to scope your idea to something that makes sense. We know from experience we never make more than one level or develop different enemy designs--all of that is stuff you do <strong>after</strong> the game proves fun and interesting, which usually ends up being the last day :)</p>
+<p>We ended up landing on the last two ideas Friday night but I don't think any of us really saw a coherent design in our heads. We knew the mechanics we wanted but that's about it.</p>
+<h2 id="designing-yourself-into-a-corner">Designing yourself into a corner</h2>
+<p>We began working on the game Saturday morning. We made a space ship, we made monsters, we had shooting and we had an arena... but by the end of the night, I was frustrated and I think several other team members were too. There were too many open questions in my mind:</p>
+<ol>
+<li>What was interesting about the game?</li>
+<li>How will shields work?</li>
+<li>Why are there vampire bats in space?</li>
+<li>Why are you shooting them?</li>
+<li>It feels wrong to constrain <em>space</em>, space is open and vast, why are you trapped?</li>
+</ol>
+<p>The problem was clear in hindsight and something that was nagging at me all throughout the day: <strong>we did not have an internally consistent idea.</strong> Our idea was too abstract and didn't tie together the reasons why the mechanics existed. There was no point of reference for the mechanics, the <em>why</em> of it all. Why were you a spaceship shooting bats in outer space? I don't know! None of us could explain why anything was happening.</p>
+<p>So as I drove home that night I was frustrated and afraid--we just spent the entire day working on a game but I have no idea to what end. It just didn't feel right. We had a spaceship, we had a space theme, how the heck could this make any sense? I felt like we designed ourselves into a corner.</p>
+<h2 id="creativity-needs-some-downtime">Creativity needs some downtime</h2>
+<p>I find some of my best ideas, in game jams and outside of them, come when I give my brain time to think--driving home late at night, right before bed, etc. <a href="http://www.bbc.com/future/story/20131205-how-sleep-makes-you-more-creative">This is a pretty well-known phenomena</a> and also why it's SO IMPORTANT to sleep during a game jam. Give your brain a rest. Your brain can pull together random stuff and tie it together when you push everything out and the time that <em>usually</em> can occur is before bed.</p>
+<p>So it was like a brick in the face, when on my way home, I had an idea. An idea that I was so excited about, I couldn't sleep until I had made sure to note it all down. In the morning, I was pretty excited:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/563819/14938261/683c1bc0-0ee3-11e6-9da2-8e6481cdd1aa.png" class="img-fluid" alt="image" /></p>
+<h2 id="the-importance-of-an-internally-consistent-theme">The importance of an internally consistent theme</h2>
+<p>When the team assembled, I told them I had a way to tie it all together--with minimal changes to existing mechanics. I was a little hesitant, would they like it? I was excited but started to doubt myself a little--was it a bit too farfetched?</p>
+<blockquote class="blockquote">
+<p>&quot;OK, what if you're a witch or a wizard and you're trying to make some kind of crazy potion. But then your dumb assistant bumps the ingredients and they all fall and mix together, creating interdimensional portals! The potions correspond to the shield types and you are trying to close the portals by killing the monsters. The arena is closed because you're actually INSIDE on a broomstick and you're in a castle. So the goal is to close all the portals to save the world!&quot;</p>
+</blockquote>
+<p>I had nothing to worry about. Everyone loved it and then <strong>everyone</strong> started to contribute their ideas:</p>
+<ul>
+<li>&quot;What if the monsters and the portals are colored to show their association?&quot;</li>
+<li>&quot;What if we use shapes to denote the bullets and shield types?&quot;</li>
+<li>&quot;What if we did waves, so like the first wave introduces the player to the idea and then have more waves until you win?&quot;</li>
+<li>&quot;What if we showed an opening sequence where you bump all the potions into a pile and a HUGE PILLAR OF LIGHT AND ENERGY SHOOTS UP FROM THE GROUND AND THEN THE SCREEN FLASHES WHITE AND WHEN IT COMES BACK THE CASTLE IS IN RUINS!?&quot; (that was how I saw the intro in my head)</li>
+</ul>
+<p>You see, <strong>when you have an idea that is internally consistent you can answer all these kinds of questions easily and things just make sense.</strong> <em>Why are you flying around?</em> Because you're a witch! <em>Why are their monsters?</em> Because there are interdimensional portals! <em>Why do you have a shield?</em> They are hexes! <em>How do you close portals?</em> Absorb the magical energy to close them!</p>
+<p>And then what happens is the theme helps get rid of mechanics you <em>thought</em> you wanted but turned out to just hinder the goal:</p>
+<ul>
+<li>Q: &quot;Why are you shooting?&quot;</li>
+<li>A: &quot;I don't know, what if we get rid of shooting?&quot;</li>
+</ul>
+<p>And sure enough when we did the game felt more natural--instead of shooting working against the primary mechanic of changing shields, now the only thing you can do is absorb magic and run into monsters. That felt much better! The new theme brought together the rest of the design ideas: you're in a castle, there are portals, it should be fantasy-themed, etc. It all just tied together nicely and all it took was re-skinning what we had Saturday night.</p>
+<p>An internally consistent theme is extremely important in any game for obvious reasons:</p>
+<ul>
+<li>It explains the internal lore of the game</li>
+<li>It energizes team members</li>
+<li>It gets the creative juices flowing</li>
+<li>It defines what the game will be</li>
+</ul>
+<p>Think of even the most basic game and try to find the theme--you'll see that the mechanics and design all play off each other, even if the theme is never communicated formally. This realization isn't anything new--I've read the <a href="http://www.amazon.com/Art-Game-Design-book-lenses/dp/0123694965">Art of Game Design</a> and many of the &quot;lenses&quot; discussed help you design a coherent theme. It's just something that can be hard to land on within 72 hours and easy to lose sight of in the excitement of a game jam.</p>
+<h2 id="think-and-work-in-the-abstract-until-the-theme-reveals-itself">Think and work in the abstract until the theme reveals itself</h2>
+<p>This experience also reinforces the value of <em>focusing on the mechanics first</em> rather than theming right away. One of the first things we did Saturday was design the spaceship! Instead, we should have focused on the mechanical ideas abstractly and <em>then</em> let the theme reveal itself. By using abstract design first, our minds could have been able to make connections faster to think of a consistent theme. When you're looking and playing with grey boxes, it becomes easier to imagine what the game might be like. When we decided to do art first, we pigeon-holed <strong>our brains</strong> into believing the final game needed to be space-themed rather than it being open-ended.</p>
+<p>If we had decided on a more consistent theme before we started development, we could have probably done even more by the end of the jam. When we designed <a href="http://playsweepstacks.com">Sweep Stacks</a>, we knew exactly what the mechanics would be--so the theme was evident and we had scoped it to what we could finish in a jam. Sometimes what can help (and we didn't necessarily do this in this jam) is to write on a board the mechanics you want, then try to come up with creative ways they tie together. Don't spend too much time on one idea--someone should say let's move on and the group discusses a different idea entirely. This way, you can kind of avoid designing yourself into a corner by exploring all sorts of other ideas and how they relate to the mechanics you want.</p>
+<p>Only by a lucky burst of creativity, &quot;Ship Shape&quot; became Hexshaper and turned out to be even better than we first thought.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = 'http://kamranicus.com/blog/2016/05/08/ludum-dare-35-game-jam/';
+    var disqus_title = 'Designing Hexshaper, a game for the Ludum Dare 35 Game Jam';
+    var disqus_url = 'https://kamranicus.com/posts/2016-04-21-ludum-dare-35-game-jam';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

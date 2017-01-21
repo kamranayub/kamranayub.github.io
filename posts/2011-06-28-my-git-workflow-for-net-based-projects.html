@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - My Git workflow for .NET-based projects</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - My Git workflow for .NET-based projects" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2011-06-28-my-git-workflow-for-net-based-projects" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      My Git workflow for .NET-based projects
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Tuesday, June 28, 2011<br>    </div>
+        <div class="ui basic vertical spaced segment">
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p>When I was new to Git, it was very confusing for me to get up and running with how to deal with the command-line interface (if you're fancy and use a GUI, leave now). Once you do get the hang of it, it's super nice and fluid. I used to do terminal CVS at my last job so I'm not out of touch with using version control from a console.</p>
+<h1 id="set-up-your.gitignore">Set up your .gitignore</h1>
+<p>Here's mine:</p>
+<pre><code>#OS junk files
+[Tt]humbs.db
+*.DS_Store
+
+#Visual Studio files
+*.[Oo]bj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.[Cc]ache
+*.ilk
+*.log
+*.lib
+*.sbr
+*.sdf
+*.docstates
+ipch/
+obj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+[Pp]ublish*/
+Ankh.NoLoad
+
+#Tooling
+_ReSharper*/
+*.resharper
+[Tt]est[Rr]esult*
+
+#Project files
+[Bb]uild/
+
+#Subversion files
+.svn
+
+# Office Temp Files
+~$*
+
+# Custom
+*.private
+readme.html
+</code></pre>
+<p>At the end, you can add whatever you want. For some projects, I store API keys in a <code>.private</code> file. You might want to as well.</p>
+<h1 id="init-your-repo">Init your repo</h1>
+<p>The first command you'll need to execute is <code>git init</code>. This will make whatever folder you're in a new Git repository (repo).</p>
+<pre><code class="language-bash">Kamran&#64;Kamranicus /c/Projects/Contrib/.JSON
+$ git init
+</code></pre>
+<p>You should then add all your files and commit them for an initial &quot;base&quot; version.</p>
+<pre><code class="language-bash">git add .
+git commit -am &quot;Initial project commit&quot;
+</code></pre>
+<p>Because of your <code>.gitignore</code> file, Git will ignore all the unnecessary files .NET solutions tend to generate.</p>
+<h1 id="set-up-a-remote">Set up a remote</h1>
+<p>If you're doing stuff on AppHarbor or GitHub, you'll need to add a &quot;remote.&quot; This is just a remote Git repository you can associate with your local repository. You can have lots of remotes. I tend to have one or two.</p>
+<pre><code class="language-bash">git remote add https://kamranayub&#64;github.com/&lt;some url&gt;
+</code></pre>
+<p>This information is usually provided by your remote site (GitHub has it when you create a new repo on the site).</p>
+<h1 id="status-add-commit-push">Status, Add, Commit, Push</h1>
+<p>I do a lot of my projects on <a href="http://appharbor.com">AppHarbor</a> now. It's just a real nice workflow and I'll explain why.</p>
+<p>I make changes to my .NET solution and when I'm ready to commit (usually after a feature or bug fix) my console  command history looks like this:</p>
+<pre><code>git status
+git add .
+git commit -am &quot;My commit message&quot;
+git push appharbor master
+</code></pre>
+<h2 id="git-status">git status</h2>
+<p>This command will display what things you currently have pending and what changes are untracked. Use this to determine if you should not track a certain change (using <code>git checkout -- &lt;file&gt;</code>).</p>
+<h2 id="git-add">git add .</h2>
+<p>This command will add whatever &quot;untracked&quot; and modified changes you have currently pending to ready your commit. Deletes, adds, etc. usually are untracked. Git tracks modifications and renames. The <code>.</code> adds all files (relative to your current folder). You can be as specific or as generic as you want.</p>
+<h2 id="git-commit-am-message">git commit -am [message]</h2>
+<p>This command commits your changes. The <code>-am</code> switch is for all changes (a) with a message (m). You can type <code>-?</code> to get a list of switches you might want to use. If you don't use the <code>-a</code> switch, your untracked changes may not be committed. If someone wants to explain why this is the case, I'd love to know (or I guess I could look it up). Whatever the reason is, use <code>-am</code> unless you know otherwise.</p>
+<h2 id="git-push-remote-branch">git push [remote] [branch]</h2>
+<p>This command will send a git <code>push</code> command to your remote server. In my case, it's appharbor. GitHub will usually tell you to add their remote as <code>origin</code> but you can name them whatever you want. I tend to have <code>appharbor</code> and <code>appharbor-d</code> for staging.</p>
+<p>Once you push, your latest changes will be on the remote server. It is usually a good idea to wait to push until you have a stable release ready for your branch. It could be after one commit or after 10 commits.</p>
+<h1 id="git-pushin">Git pushin'</h1>
+<p>So now you know what a typical workflow is for my .NET development. If you're interested in file structure, check out my <a href="http://github.com/kamranayub/.JSON">.JSON</a> project.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '13';
+    var disqus_title = 'My Git workflow for .NET-based projects';
+    var disqus_url = 'https://kamranicus.com/posts/2011-06-28-my-git-workflow-for-net-based-projects';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

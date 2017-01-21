@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Tips for Updating From WebAPI Beta to WebAPI RC</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Tips for Updating From WebAPI Beta to WebAPI RC" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2012-06-01-tips-for-updating-from-webapi-beta-to-webapi-rc" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Tips for Updating From WebAPI Beta to WebAPI RC
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Friday, June 1, 2012<br>    </div>
+        <div class="ui basic vertical spaced segment">
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p>I just installed VS 2012 RC (previous codename VS11) to make sure I am on the latest and greatest and I'd like to mention a few gotchas I ran into along the way while upgrading <a href="http://keeptrackofmygames.com">Keep Track of My Games</a>.</p>
+<h2 id="nuget-packages">Nuget Packages</h2>
+<p>One of the first things I did when opening the solution was to compile and run. WHAM. You will get a MissingMethodException:</p>
+<pre><code>[MissingMethodException: Method not found: 'Void System.Net.Http.Headers.HttpHeaders.AddWithoutValidation(System.String, System.Collections.Generic.IEnumerable`1&lt;System.String&gt;)'.]
+   System.Web.Http.WebHost.HttpControllerHandler.AddHeaderToHttpRequestMessage(HttpRequestMessage httpRequestMessage, String headerName, String[] headerValues) +0
+   System.Web.Http.WebHost.HttpControllerHandler.ConvertRequest(HttpContextBase httpContextBase) +248
+   System.Web.Http.WebHost.HttpControllerHandler.BeginProcessRequest(HttpContextBase httpContextBase, AsyncCallback callback, Object state) +79
+   System.Web.Http.WebHost.HttpControllerHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state) +48
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +268
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +155
+</code></pre>
+<p>First issue: Web API had also been updated along with VS 2012's install. That means your previous beta Nuget packages are out of date. Unfortunately, if you go into <em>Manage Nuget Packages</em> you'll find no help in the Updates panel.</p>
+<p>Turns out, the IDs have changed! Search for <code>Microsoft.AspNet.WebApi</code> and you'll find the RC packages again. In my solution, I am using:</p>
+<pre><code class="language-xml">  &lt;package id=&quot;Microsoft.AspNet.Mvc&quot; version=&quot;4.0.20505.0&quot; /&gt;
+  &lt;package id=&quot;Microsoft.AspNet.Razor&quot; version=&quot;2.0.20505.0&quot; /&gt;
+  &lt;package id=&quot;Microsoft.AspNet.WebApi.Client&quot; version=&quot;4.0.20505.0&quot; /&gt;
+  &lt;package id=&quot;Microsoft.AspNet.WebApi.Core&quot; version=&quot;4.0.20505.0&quot; /&gt;
+  &lt;package id=&quot;Microsoft.AspNet.WebApi.WebHost&quot; version=&quot;4.0.20505.0&quot; /&gt;
+  &lt;package id=&quot;Microsoft.AspNet.WebPages&quot; version=&quot;2.0.20505.0&quot; /&gt;
+  &lt;package id=&quot;Microsoft.Net.Http&quot; version=&quot;2.0.20505.0&quot; /&gt;
+  &lt;package id=&quot;Microsoft.Web.Infrastructure&quot; version=&quot;1.0.0.0&quot; /&gt;
+</code></pre>
+<p>Once you uninstall your beta packages and install the new RC, you will likely run into a few more issues...</p>
+<h2 id="dependency-injection">Dependency Injection</h2>
+<p>I am using Ninject for dependency injection. You will need to adapt this solution to your needs if you <em>aren't</em> using Ninject. You will <a href="http://www.strathweb.com/2012/05/using-ninject-with-the-latest-asp-net-web-api-source/">need to use a new way</a> of setting the DependencyResolver, see this GitHub source repository: <a href="https://github.com/filipw/Ninject-resolver-for-ASP.NET-Web-API">https://github.com/filipw/Ninject-resolver-for-ASP.NET-Web-API</a></p>
+<p>Thanks Filip!</p>
+<h2 id="no-more-generic-httpresponsemessage">No more generic HttpResponseMessage</h2>
+<p>If you had previously been using code like this:</p>
+<pre><code>new HttpResponseMessage&lt;T&gt;(someValue)
+</code></pre>
+<p>You will get compilation errors. The new way to handle this is via the <code>Request</code> property in your controllers:</p>
+<pre><code>Request.CreateResponse(HttpStatusCode.OK, result);
+</code></pre>
+<p>You will need to change any return types from <code>HttpResponseMessage&lt;T&gt;</code> to <code>HttpResponseMessage</code>.</p>
+<h2 id="no-need-for-custom-json.net-formatter">No need for custom JSON.NET formatter</h2>
+<p>If you had previously been using a variant of <a href="http://www.west-wind.com/weblog/posts/2012/Mar/09/Using-an-alternate-JSON-Serializer-in-ASPNET-Web-API">Rick Strahl's JSON.NET formatter</a>, you do not need it anymore as Web API defaults to JSON.NET now. However, if you, like me, want to customize the settings used, you can still do so:</p>
+<p><strong>Global.asax or App_Start</strong></p>
+<pre><code class="language-c#">var formatter = GlobalConfiguration.Configuration.Formatters.OfType&lt;JsonMediaTypeFormatter&gt;().First();
+formatter.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+formatter.SerializerSettings.Converters.Add(new StringEnumConverter());
+</code></pre>
+<p>Thanks to Matt in the comments for trimming the fat off what I had previously.</p>
+<h2 id="no-more-getuserprincipal">No more GetUserPrincipal</h2>
+<p>I had previously been using the extension method <code>GetUserPrincipal</code> in my custom Authorize attribute. No more! You can now use <code>System.Threading.Thread.CurrentPrincipal.Identity</code> if you need the current principal in Web API. There's also a convenient <code>User</code> property in the <code>ApiController</code> base class.</p>
+<h2 id="thats-it">That's it!</h2>
+<p>That's about all I ran into. I am also happy to report that <a href="https://github.com/mccalltd/AttributeRouting">AttributeRouting</a> still seems to work fine against the Web API RC and MVC 4 RC! I did some limited browsing around on my site with heavy AJAX calls and everything seemed to work.</p>
+<p>Hope this saves you some time!</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '48';
+    var disqus_title = 'Tips for Updating From WebAPI Beta to WebAPI RC';
+    var disqus_url = 'https://kamranicus.com/posts/2012-06-01-tips-for-updating-from-webapi-beta-to-webapi-rc';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

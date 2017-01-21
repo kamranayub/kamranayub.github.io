@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Adding Subresource Integrity support to Cassette .NET</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Adding Subresource Integrity support to Cassette .NET" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2016-05-07-cassette-subresource-integrity-sri" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Adding Subresource Integrity support to Cassette .NET
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Sunday, May 8, 2016<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/c%23" class="ui inverted small compact button">C#</a>
+                    <a role="button" href="/tags/nuget" class="ui inverted small compact button">Nuget</a>
+                    <a role="button" href="/tags/oss" class="ui inverted small compact button">OSS</a>
+                    <a role="button" href="/tags/security" class="ui inverted small compact button">Security</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p>If you aren't familiar with <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">Subresource Integrity</a>, it's a browser-based security measure to protect embedded content like scripts and stylesheets using a file content hash to help protect against XSS attacks.</p>
+<p>For example, let's say you're including a script from a CDN:</p>
+<pre><code>&lt;script src=&quot;https://mycdn.com/jquery/1.0/jquery.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Then let's say the CDN is compromised and instead of returning jquery, the script returns some malicious code that could compromise your site. Even if you're using Content Security Policy (CSP), you won't be protected because you whitelisted the CDN.</p>
+<p>Subresource Integrity allows you to put a hash of the file's contents in an attribute of the tag. The browser will then hash the contents of the response from the CDN and compare it against the attribute provided. If the hashes don't match, the browser won't include the response and will throw an error.</p>
+<pre><code>&lt;script src=&quot;https://mycdn.com/jquery/1.0/jquery.js&quot; integrity=&quot;sha256-hfhsh02929fhgh303yg&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h2 id="integrating-with-cassette">Integrating with Cassette</h2>
+<p>I use <a href="http://getcassette.net">Cassette</a> to perform my bundling/minification and I also <a href="http://kamranicus.com/blog/2015/10/10/azure-cdn-cassette/">host my assets on a CDN</a>. Even though they are my own assets, I still want to ensure they are served securely and take advantage of SRI.</p>
+<p>For third-party scripts, it is fairly easy to take advantage of SRI by <a href="https://srihash.org/">hashing the contents online</a> and customizing the CDN reference in Cassette:</p>
+<pre><code>bundles.AddUrl(&quot;http://mycdn.com/jquery/1.0/jquery.js&quot;, bundle =&gt;
+    bundle.HtmlAttributes.Add(&quot;integrity&quot;, &quot;sha256-jquerysfilehash&quot;));
+</code></pre>
+<p>But since my <em>own</em> files are dynamic, how can we still leverage Cassette <em>and</em> automatically hash the file contents when outputting to the page?</p>
+<p>Luckily, Cassette is pretty extensible and includes a way to <a href="http://getcassette.net/documentation/v2/bundle-pipelines">customize the bundle pipeline</a>. So what we can do is essentially override the rendering of the HTML and add the <code>integrity</code> tag to the output.</p>
+<p>To make this easy, I've created an open source Nuget package called <a href="https://github.com/kamranayub/cassette-sri">Cassette.SubresourceIntegrity</a>. All you do is install the package and <strong>that's it.</strong> Since Cassette automatically scans for bundle customizations, all I did was implement a class <code>InsertIntoPipelineSubresourceIntegrity</code> and modify the pipeline to replace a couple parts with SRI-aware code.</p>
+<p>The meat of the change is this code here:</p>
+<pre><code>string integrity;
+
+using (var stream = asset.OpenStream())
+{
+    using (var sha256 = SHA256.Create())
+    {
+        integrity = $&quot;integrity=\&quot;sha256-{Convert.ToBase64String(sha256.ComputeHash(stream))}\&quot;&quot;;
+    }
+}
+
+return $&quot;&lt;script src=\&quot;{_urlGenerator.CreateAssetUrl(asset)}\&quot; &quot; +
+       $&quot;type=\&quot;text/javascript\&quot; &quot; +
+       $&quot;{integrity}{bundle.HtmlAttributes.ToAttributeString()}&gt;&lt;/script&gt;&quot;;
+</code></pre>
+<p>I am just getting the asset stream and hashing the contents using SHA256, then adding the attribute to the output. You'll notice that the <strong>URLs are not changed</strong>, so Cassette will continue to use SHA1 hashes internally. It's <em>only when rendering</em> we use SHA256 because that's the only place we need it.</p>
+<p>While the code is interesting, it's nothing too crazy--in fact, most of the code required is because Cassette doesn't expose certain needed classes used in the rendering pipeline so I had to basically copy/paste a lot of the helper classes.</p>
+<h2 id="the-end-result">The end result</h2>
+<p>Now Cassette will automatically include SRI hashes for individual assets:</p>
+<pre><code>&lt;link href=&quot;cassette.axd/asset/Content/bootstrap/bootstrap-ext.css?cabc6264a89106c4b9021c293cfa5c2cae7a0549&quot; 
+	integrity=&quot;sha256-sNfA6O5zvZPmMJ474pm2w6UyZbz5tfukxTEZXrsLm7Q=&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;link href=&quot;cassette.axd/asset/Content/modules/typeahead.css?00581b47ff3848da273d91c31adb8270e9ef8707&quot; 
+	integrity=&quot;sha256-W6JAiwRw2ER1QoXjXL/YxsY/On1Y7MhW4TtoWY0XuH8=&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;link href=&quot;cassette.axd/asset/Content/modules/toastr.css?32e90a136e05728ac23995ff8fe33077df9f50ca&quot; 
+	integrity=&quot;sha256-JT6UwDlczdRDx+9mnMCzvxwABJP0cSDgNLmT+WumJrQ=&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;link href=&quot;cassette.axd/asset/Content/hopscotch/hopscotch.css?58ea04e54df958c33cf9e6bfed9f39a166354e9c&quot; 
+	integrity=&quot;sha256-Bq06LI6L0XMhxF+CoJo+4L12w2Orsbh2oRjOZ+fpmWc=&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;link href=&quot;cassette.axd/asset/Content/core.css?a3b4fcb8b7d9b0e8465a4fea29d60247ea47fd87&quot; 
+	integrity=&quot;sha256-fAqyFLkOx1cFONu7NXX3c7/G1DSmXeHgtPtcWU72a4E=&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;link href=&quot;cassette.axd/asset/Content/library.css?2c2746a086737dc588e313c0cc2c5adf8b947605&quot; 
+	integrity=&quot;sha256-SaP9kdYfbafIVes+qntAiDLPsi4JaXnit4eN6IfU9lA=&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;/&gt;
+	
+</code></pre>
+<p><em>and</em> bundles:</p>
+<pre><code>&lt;link href=&quot;cassette.axd/stylesheet/ba58f2a04873e41b6a599274ea6768db1a61a650/Content/core&quot; 
+    integrity=&quot;sha256-thzkrIApz9dAI9nfJGleO1jbNFXXVT/BxoSynI2pEPw=&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;link href=&quot;cassette.axd/stylesheet/2c2746a086737dc588e313c0cc2c5adf8b947605/Content/library.css&quot; 
+    integrity=&quot;sha256-6LgYbxu4UwouRBqvUdHZAQc0lewdik6aZYpDgrtAWJ4=&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;/&gt;
+</code></pre>
+<p>Voila!</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = 'http://kamranicus.com/blog/2016/05/08/cassette-subresource-integrity-sri/';
+    var disqus_title = 'Adding Subresource Integrity support to Cassette .NET';
+    var disqus_url = 'https://kamranicus.com/posts/2016-05-07-cassette-subresource-integrity-sri';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

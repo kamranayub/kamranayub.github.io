@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Site Down Alerts using Azure App Insights and Zapier</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Site Down Alerts using Azure App Insights and Zapier" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2017-01-10-azure-alerts-zapier-sms" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Site Down Alerts using Azure App Insights and Zapier
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Wednesday, January 11, 2017<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/azure" class="ui inverted small compact button">Azure</a>
+                    <a role="button" href="/tags/cloud" class="ui inverted small compact button">Cloud</a>
+                    <a role="button" href="/tags/devops" class="ui inverted small compact button">DevOps</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p>It's <a href="https://twitter.com/jordan_belinsky/status/818967360132513792">happened again</a>. Even though I <em>do</em> get emailed whenever <a href="http://ktomg.com">KTOMG</a> goes down, I don't pay attention to my email 24/7 and the site can be down for a bit until I realize it. In this case, I was cooking and wasn't at my computer or on my phone. The Twitter notification by a friendly user actually got me to check!</p>
+<p>I know this is one of the headaches <a href="https://kamranicus.com/blog/2016/10/18/ravendb-standard-non-commercial-license/">I willingly signed up for</a> by moving to my own VM--and even though I get emailed when the site's down I hate not knowing that <strong>immediately</strong>.</p>
+<!-- More -->
+<h2 id="app-insights">App Insights</h2>
+<p>The first thing you should do is get an <a href="https://docs.microsoft.com/en-us/azure/application-insights/app-insights-overview">Azure App Insights account</a>. <strong>It's free.</strong> And you can even use it to <a href="https://docs.microsoft.com/en-us/azure/application-insights/app-insights-monitor-performance-live-website-now">monitor your own VMs</a>! This is how I can still get this for KTOMG:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832425/afa2d62e-d770-11e6-864a-ef6dd5dc13c9.png" class="img-fluid" alt="Server Metrics" /></p>
+<p>It's awesome.</p>
+<p>The other thing it can do is handle availability (ping) tests. It's <a href="https://docs.microsoft.com/en-us/azure/application-insights/app-insights-monitor-web-app-availability">very easy to set up</a> and then you can set an alert for it. I've done this already, where I've set it to email me whenever KTOMG is down at more than 3 locations over 3 minutes--in other words, my site has blown up.</p>
+<h2 id="using-a-webhook-with-zapier">Using a Webhook with Zapier</h2>
+<p>I also use <a href="http://zapier.com">Zapier</a>, which is just a (fancier?) <a href="http://ifttt.com">IFTTT</a> clone. When I had deployed via Azure, I had <a href="https://zapier.com/zapbook/windows-azure-web-sites/">set up a Zap to notify me</a> whenever my Azure sites were deployed. Since I'm on my own now, I disabled that but now I'll show you how to use it to notify you via SMS and webhooks.</p>
+<ol>
+<li><a href="http://zapier.com">Sign up for an account</a></li>
+<li>Create a new Zap</li>
+<li>Select &quot;Webhook by Zapier&quot; as the trigger</li>
+<li>Go through the steps until you get a new webhook URL</li>
+</ol>
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832880/e0233246-d773-11e6-8b83-f974fe706ccd.png" class="img-fluid" alt="Webhook url" /></p>
+<p>Now you've got a webhook URL which is just an HTTP endpoint you can POST to.</p>
+<p>In Azure App Insights, you'll want to paste this URL into your alert &quot;Webhook&quot; setting:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832621/fe82c604-d771-11e6-839c-df997b44b942.png" class="img-fluid" alt="Webhook settings" /></p>
+<p>Zapier will be asking you to test your hook. It's a bit hard to trigger an Azure alert, but all you really need to do is POST a JSON payload at the endpoint, so <a href="https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/insights-webhooks-alerts">going off this Azure guide</a>, use something like <code>curl</code> or Postman to POST to the endpoint:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832689/7baa2492-d772-11e6-9b9b-d6be7161fc01.png" class="img-fluid" alt="Testing the hook" /></p>
+<p>Now that the hook is tested, Zapier has filled in a bunch of template fields for you, pretty cool! On the left side of the Zap, click the (+) icon and add a Filter:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832706/9f6736c2-d772-11e6-8437-bad812a60201.png" class="img-fluid" alt="Add Zapier filter" /></p>
+<p>We want to only send the Zap if the alert has been &quot;Activated&quot; (not if it gets Resolved). Chances are, you only care that the alert occurred and after that you can check your email/fix the issue to resolve it.</p>
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832731/c9a53d94-d772-11e6-899a-a52a1efea106.png" class="img-fluid" alt="Filter for Activated" /></p>
+<p>Now, add an Action to send an SMS (or really, do whatever you want--I just want a text message).</p>
+<p><img src="https://cloud.githubusercontent.com/assets/563819/21832757/ffe84ea0-d772-11e6-8dc5-9fc4eadd2023.png" class="img-fluid" alt="SMS action" /></p>
+<p>You can use the template fields if you want, but this webhook is customized for our alert so I don't really need any info from the alert. If you were sending <em>multiple</em> alerts to this single hook, you could use the fields of the JSON payload to customize the message here.</p>
+<p>I am setting a &quot;From number&quot; because I can use an app like <a href="https://play.google.com/store/apps/details?id=de.hoernchen.android.firealert2&amp;hl=en">FireAlarm2</a> to read my SMS and page me loudly (even if my phone is on vibrate).</p>
+<p>That's it! You can test the Zap and it'll send you an SMS to verify you can receive messages. Now you'll always know when your site's down so you don't need to rely on your users.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = 'http://kamranicus.com/blog/2017/01/11/azure-alerts-zapier-sms/';
+    var disqus_title = 'Site Down Alerts using Azure App Insights and Zapier';
+    var disqus_url = 'https://kamranicus.com/posts/2017-01-10-azure-alerts-zapier-sms';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

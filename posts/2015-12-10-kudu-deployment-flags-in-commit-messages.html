@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Influencing your Kudu deployment through Git commit messages</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Influencing your Kudu deployment through Git commit messages" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2015-12-10-kudu-deployment-flags-in-commit-messages" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Influencing your Kudu deployment through Git commit messages
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Friday, December 11, 2015<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/continuous-deployment" class="ui inverted small compact button">Continuous Deployment</a>
+                    <a role="button" href="/tags/continuous-integration" class="ui inverted small compact button">Continuous Integration</a>
+                    <a role="button" href="/tags/git" class="ui inverted small compact button">Git</a>
+                    <a role="button" href="/tags/kudu" class="ui inverted small compact button">Kudu</a>
+                    <a role="button" href="/tags/testing" class="ui inverted small compact button">Testing</a>
+                    <a role="button" href="/tags/windows-azure" class="ui inverted small compact button">Windows Azure</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p>If you're on Windows Azure and using continuous deployment through Git, you may not know you are using an open source platform called
+<a href="https://github.com/projectkudu/kudu">Kudu</a> behind-the-scenes that performs your deployment. If this is the first time you've heard of Kudu and you've been
+using Azure for awhile, it's time to <a href="https://github.com/projectkudu/kudu">get acquainted</a>. Kudu is amazing. It has a whole REST API that lets you manage
+deployments, trigger builds, trigger webjobs, view processes, a command prompt, and a ton more.</p>
+<p>You can get to your Kudu console by visiting</p>
+<pre><code>https://&lt;yoursite&gt;.scm.azurewebsites.net
+</code></pre>
+<p>The <strong>.scm.</strong> part is the key, as that is where the Kudu site is hosted.</p>
+<h2 id="customizing-kudu-deployments">Customizing Kudu deployments</h2>
+<p>One of the other things it offers is a <a href="https://github.com/projectkudu/kudu/wiki/Custom-Deployment-Script">customized deployment script</a>. I've customized mine because I have a test
+project where I run automated tests during the build. This is useful since it'll fail the build if I make any changes
+that break my tests and forces me to keep things up-to-date resulting in a higher quality codebase.</p>
+<p>If you want to generate your own script, it's pretty easy. Just follow the steps <a href="https://github.com/projectkudu/kudu/wiki/Custom-Deployment-Script">outlined here</a>. For example, after
+customizing my script here's what my section looks like to run my tests:</p>
+<pre><code>:: 3. Build unit tests
+call :ExecuteCmd &quot;%MSBUILD_PATH%&quot; &quot;%DEPLOYMENT_SOURCE%\src\Tests\Tests.csproj&quot; /nologo /verbosity:m /t:Build /p:AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir=&quot;%DEPLOYMENT_SOURCE%\.\\&quot; %SCM_BUILD_ARGS%
+
+IF !ERRORLEVEL! NEQ 0 goto error
+</code></pre>
+<p>All I really did was copy step 2 in the script that builds my web project and just change the path to my tests project.</p>
+<p>Finally, I run the tests using the packaged Nunit test runner (checked into source control):</p>
+<pre><code>call :ExecuteCmd &quot;%DEPLOYMENT_SOURCE%\tools\nunit\nunit-console.exe&quot; &quot;%DEPLOYMENT_SOURCE%\src\Tests\bin\Release\Tests.dll&quot; /framework:v4.5.1
+IF !ERRORLEVEL! NEQ 0 goto error
+</code></pre>
+<p>Simple!</p>
+<h2 id="now-the-fun-part">Now the fun part</h2>
+<p>One thing you'll notice if you start running tests on your builds is that this starts to slow down your continuous deployment workflow.
+For 90% of the time this is acceptable, after all, you can wait a few minutes to see your changes show up on the site. But sometimes,
+especially for production hotfixes or trial-and-error config changes, that 3-5 minutes becomes unbearable.</p>
+<p>In cases like this, I've set up a little addition to my script that will read the git commit message and take action depending on what phrases it sees.</p>
+<p>For example, let's say I commit a change that is just a config change and I know I don't need to run any tests or I really want the quick build.
+This is what my commit message looks like:</p>
+<pre><code>[notest] just changing App.config
+</code></pre>
+<p>That phrase <code>[notest]</code> is something my script looks for at build time and if it's present it will skip running tests!
+You can use this same logic to do pretty much anything you want. Here's what it looks like after step 3 in my script:</p>
+<pre><code>:: Above at top of file
+
+IF NOT DEFINED RUN_TESTS (
+   SET RUN_TESTS=1
+)
+
+:: 4. Run unit tests
+echo Latest commit ID is &quot;%SCM_COMMIT_ID%&quot;
+
+call git show -s &quot;%SCM_COMMIT_ID%&quot; --pretty=%%%%s &gt; commitmessage.txt
+SET /p COMMIT_MESSAGE=&lt;commitmessage.txt
+
+echo Latest commit message is &quot;%COMMIT_MESSAGE%&quot;
+
+IF NOT &quot;x%COMMIT_MESSAGE:[notest]=%&quot;==&quot;x%COMMIT_MESSAGE%&quot; (
+   SET RUN_TESTS=0
+)
+
+IF /I &quot;%RUN_TESTS%&quot; NEQ &quot;0&quot; (
+	echo Running unit tests
+	call :ExecuteCmd &quot;%DEPLOYMENT_SOURCE%\tools\nunit\nunit-console.exe&quot; &quot;%DEPLOYMENT_SOURCE%\src\Tests\bin\Release\Tests.dll&quot; /framework:v4.5.1
+	IF !ERRORLEVEL! NEQ 0 goto error
+) ELSE (
+	echo Not running unit tests because [notest] was present in commit message
+)
+</code></pre>
+<p>Alright, there's definitely some batch file black magic incantations going on here! So let's break it down.</p>
+<pre><code>echo Latest commit ID is &quot;%SCM_COMMIT_ID%&quot;
+</code></pre>
+<p>Kudu defines several useful <a href="https://github.com/projectkudu/kudu/wiki/Deployment-Environment">environment variables</a> that you have access to, including the current commit ID.
+I'm just echoing it out so I can debug when viewing the log output.</p>
+<pre><code>call git show -s &quot;%SCM_COMMIT_ID%&quot; --pretty=%%%%s &gt; commitmessage.txt
+SET /p COMMIT_MESSAGE=&lt;commitmessage.txt
+</code></pre>
+<p>Alright. This took me some real trial and error. Git lets you <a href="https://git-scm.com/docs/git-show"><code>show</code> any commit message</a> and can format it using a printf format string (<code>--pretty=%s</code>).
+However, due to the weird escaping rules of batch files and variables, this requires not one but <strong>four</strong> <code>%</code> signs. Go figure.</p>
+<p>Next I pipe it to a file, this is only so I can read the file back and store the message in a batch variable (<code>COMMIT_MESSAGE</code>), on the next line.
+<strong>Kudu team:</strong> It would be sweet to add a <code>SCM_COMMIT_MESSAGE</code> environment variable!</p>
+<pre><code>IF NOT &quot;x%COMMIT_MESSAGE:[notest]=%&quot;==&quot;x%COMMIT_MESSAGE%&quot; (
+   SET RUN_TESTS=0
+)
+</code></pre>
+<p>Okay, what's going on here? I'll <a href="http://stackoverflow.com/questions/7005951/batch-file-find-if-substring-is-in-string-not-in-a-file">let StackOverflow explain</a>. The <code>:[notest]=</code> portion REPLACES the term &quot;[notest]&quot; in
+the preceding variable (<code>COMMIT_MESSAGE</code>) with an empty string. The <code>x</code> prefix character guards against batch file weirdness.
+So if <code>[notest]</code> is NOT present, this will return true (the strings match). If it is present, the condition will be false and so we do <code>IF NOT</code>
+since we want to execute when that is the case.</p>
+<p>If <code>[notest]</code> is present in the message, we set another variable, <code>RUN_TESTS</code> to 0.</p>
+<pre><code>IF /I &quot;%RUN_TESTS%&quot; NEQ &quot;0&quot; (
+	echo Running unit tests
+	call :ExecuteCmd &quot;%DEPLOYMENT_SOURCE%\tools\nunit\nunit-console.exe&quot; &quot;%DEPLOYMENT_SOURCE%\src\Tests\bin\Release\Tests.dll&quot; /framework:v4.5.1
+	IF !ERRORLEVEL! NEQ 0 goto error
+) ELSE (
+	echo Not running unit tests because [notest] was present in commit message
+)
+</code></pre>
+<p>If <code>RUN_TESTS</code> does not evaluate to 0, then we run the tests! Otherwise we echo out an informative message as to why it was skipped.</p>
+<p>Phew. So how much time do we save on <code>[notest]</code> builds now?</p>
+<p><img src="https://cloud.githubusercontent.com/assets/563819/11734864/9a5e5e10-9f80-11e5-92ff-b93a1d9c994a.png" class="img-fluid" alt="No test build" /></p>
+<p>Compared to a build with tests:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/563819/11734880/b874bed0-9f80-11e5-9af2-8e0425a02563.png" class="img-fluid" alt="Build with tests" /></p>
+<p>So that flag cuts the build in half! Nice! There are probably some other ways to improve the time. By the way, if you're wondering what's taking so long
+in your build, you can use the Kudu <a href="https://github.com/projectkudu/kudu/wiki/REST-API">REST endpoint</a> to see your deployment logs (<strong>/api/deployments</strong> endoint) which contain full timestamp information!</p>
+<p>Happy continuous deployment!</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = 'http://kamranicus.com/blog/2015/12/11/kudu-deployment-flags-in-commit-messages/';
+    var disqus_title = 'Influencing your Kudu deployment through Git commit messages';
+    var disqus_url = 'https://kamranicus.com/posts/2015-12-10-kudu-deployment-flags-in-commit-messages';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

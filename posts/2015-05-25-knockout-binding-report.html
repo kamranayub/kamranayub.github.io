@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Knockout.js Binding Report for Performance Tuning</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Knockout.js Binding Report for Performance Tuning" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2015-05-25-knockout-binding-report" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Knockout.js Binding Report for Performance Tuning
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Monday, May 25, 2015<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/chrome" class="ui inverted small compact button">Chrome</a>
+                    <a role="button" href="/tags/gists" class="ui inverted small compact button">Gists</a>
+                    <a role="button" href="/tags/javascript" class="ui inverted small compact button">Javascript</a>
+                    <a role="button" href="/tags/keep-track-of-my-games" class="ui inverted small compact button">Keep Track of My Games</a>
+                    <a role="button" href="/tags/knockout" class="ui inverted small compact button">Knockout</a>
+                    <a role="button" href="/tags/oss" class="ui inverted small compact button">OSS</a>
+                    <a role="button" href="/tags/performance" class="ui inverted small compact button">Performance</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p>I use a lot of <a href="http://knockoutjs.com">Knockout.js</a> on <a href="http://keeptrackofmygames.com">Keep Track of My Games</a>. I love Knockout but sometimes it makes it difficult to understand what's slowing my page down.</p>
+<!-- More -->
+<p>For the game list, there's a lot of binding going on because I have to bind not only the list of games but also the toolbar.</p>
+<p><img src="http://41.media.tumblr.com/fefa8f95951ed13a2f4d22e758bb807b/tumblr_inline_nonu62Tr1J1qlpzxk_540.png" class="img-fluid" alt="KTOMG list" /></p>
+<p>Before I deploy the newest update (shown above), I'd prefer it if the list binding performance was better than it is now. Currently there's a visible block on the UI thread when returning results from the API, about 500-1000ms. <strong>This is unacceptable.</strong></p>
+<p>A quick Google search did not yield anything regarding a &quot;real&quot; performance tool for Knockout. What I would love is an extension that would overlay performance statistics over the UI of my app after binding is complete. This way I could visualize and easily pinpoint what bindings are causing performance issues.</p>
+<p>I've made a small step towards that dream by creating a simple reporting script that outputs a &quot;binding report&quot; to the Chrome console:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7795861/5a10389a-02d9-11e5-9462-056fa9e4da18.png" class="img-fluid" alt="Binding report" /></p>
+<p>The report displays the total duration of the binding process (which is all bindings that occur after a 500ms wait time) as well as the top binding according to total duration.</p>
+<p>It also displays each binding summary in a table (<code>console.table</code>). You can drill-down by expanding the array entries underneath the table (sorted by duration).</p>
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7795969/8fb1c828-02da-11e5-8b81-fe88f466812e.png" class="img-fluid" alt="Drill-down" /></p>
+<p>The script works by wrapping all the binding handlers (even custom ones) in a wrapper function that calculates the duration of the call to <code>init</code> or <code>update</code>. You just need to include it after your custom binding handlers and before the <code>applyBindings</code> call.</p>
+<p>The script requires <a href="http://underscorejs.org">Underscore</a> and Google Chrome. Here's the gist:</p>
+<script src="https://gist.github.com/kamranayub/65399fa247a6c182bc65.js"></script>
+<p>As you can see in my own performance report, I have some work to do to fix my <code>if</code> bindings. It doesn't exactly pinpoint the problem binding, but it gets me a step closer to understanding what's going on.</p>
+<p><img src="https://cloud.githubusercontent.com/assets/563819/7796086/f407dc76-02db-11e5-90e7-b89613408174.png" class="img-fluid" alt="Uh oh" /></p>
+<p>Now if you'll execuse me, I've got some work to do.</p>
+<p><strong>Update:</strong> Using this little script, I was able to get down to &lt;150ms from 600-900ms (and this is a slow laptop). This is much more acceptable for a release this week!</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = 'http://kamranicus.com/blog/2015/05/25/knockout-binding-report/';
+    var disqus_title = 'Knockout.js Binding Report for Performance Tuning';
+    var disqus_url = 'https://kamranicus.com/posts/2015-05-25-knockout-binding-report';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

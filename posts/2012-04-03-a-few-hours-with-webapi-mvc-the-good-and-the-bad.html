@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - A few hours with WebAPI &#x2B; MVC, the good and the bad</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - A few hours with WebAPI &#x2B; MVC, the good and the bad" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2012-04-03-a-few-hours-with-webapi-mvc-the-good-and-the-bad" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      A few hours with WebAPI &#x2B; MVC, the good and the bad
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Tuesday, April 3, 2012<br>    </div>
+        <div class="ui basic vertical spaced segment">
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p>I'm working on the next version of <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> and it's an opportunity to upgrade to and play with MVC 4, especially the new <a href="http://asp.net/web-api">WebAPI</a>.</p>
+<h2 id="getting-webapi">Getting WebAPI</h2>
+<p>This was not super apparent from the tutorials on asp.net but to get the WebAPI, you can simply obtain it from Nuget. Most of the tutorials start with File &gt; New Project, but I wanted to incorporate it into a newly upgraded MVC 4 project. <em>Fun fact:</em> MVC4 is also available on Nuget, score!</p>
+<p><img src="/posts/images/37.png" class="img-fluid" alt="Nuget" /></p>
+<p>Which one?! Since there's no description or information regarding the &quot;Data&quot; package (assuming it will make it easy to integrate with EF), I went with the <strong>ASP.NET Web API (Beta)</strong> package.</p>
+<h2 id="webapi-is-not-mvc">WebAPI is Not MVC</h2>
+<p>I dislike things that cause friction. Unfortunately, there's some friction with using WebAPI for the first time. I'm not sure if all of it can be removed, but hopefully some of it can be mitigated. If you haven't used WebAPI before, it's important to know <strong>WebAPI is not MVC</strong>.</p>
+<p>Here's what I struggled with:</p>
+<ol>
+<li><p>Configuration is separate. You have to use the not-very-intuitively-named <code>GlobalConfiguration.Configuration</code> singleton to configure WebAPI. Seriously? Why not <code>HttpConfiguration</code> or even better, <code>ApiConfiguration</code>? To match typical MVC conventions (GlobalFilters.Filters, RouteTable.Routes), I'd propose <code>HttpApi.Api</code> or something along those lines.</p>
+</li>
+<li><p>Routing is separate. I use <a href="https://github.com/mccalltd/AttributeRouting">AttributeRouting</a> and while I haven't explicitly tried it with WebAPI, I don't think it will work, but maybe it will. You register routes using the <code>MapHttpRoute</code> extension.</p>
+</li>
+<li><p>It doesn't plug into MVC's <code>DependencyResolver</code>. This was annoying. I use Ninject.MVC3 for my DI container, but that doesn't automatically make it available to WebAPI. Nay, <a href="http://haacked.com/archive/2012/03/11/itrsquos-the-little-things-about-asp-net-mvc-4.aspx">you have to jump through some hoops</a> to get it to work. Once you do, it works just as you'd expect. <strong>Update:</strong> At a presentation today at Twin Cities Code Camp, Matt Milner presented on Web API and I saw he used a simpler method to plug Ninject into Web API:</p>
+<pre><code> configuration.SetResolver(t =&gt; kernel.TryGet(t), t =&gt; kernel.GetAll(t));
+</code></pre>
+</li>
+<li><p>Attributes are different. Do you have a custom <code>[Authorize]</code> attribute in MVC? You'll have to port it to WebAPI. This isn't a bad thing, it's just not apparent when you see this:</p>
+<pre><code> [Authorize]
+ Product GetProductById(int id) { }
+</code></pre>
+<p>To follow the convention, I prefixed my custom attributes with <code>Http</code> to make it more apparent they're different.</p>
+</li>
+<li><p>JSON.NET <em>will be</em> the default JSON serializer, but it's not <em>yet</em>. This means you have to register a custom formatter. I used the one <a href="http://www.west-wind.com/weblog/posts/2012/Mar/09/Using-an-alternate-JSON-Serializer-in-ASPNET-Web-API">on Rick Strahl's blog</a> (with some modifications) but you could try the several JsonNet Nuget packages for WebAPI (<a href="http://nuget.org/packages/WebAPIContrib.Formatters.JsonNet/0.6.0">WebAPIContrib.Formatters.JsonNet</a> or <a href="http://nuget.org/packages/netfx-WebApi.JsonNetFormatter/1.0.0.11">NetFx</a>).</p>
+</li>
+</ol>
+<p>And that's about it. Once I overcame those &quot;frictions&quot; everything started to go smoothly. I haven't played with it a ton, but I'm sure I'll write about it as I use it more.</p>
+<h2 id="removing-the-friction">Removing the friction</h2>
+<p>While I understand WebAPI is separate (but equal?) from MVC to allow for self-hosting or MVC-independent use cases, let's be honest: who are going to be the majority consumers of the API? MVC peeps. If there isn't already, there needs to be a &quot;bridge&quot; that makes it easier to use for MVC consumers.</p>
+<p>The bridge should:</p>
+<ol>
+<li><strike>Plug into routing (so AttributeRouting sees it?)</strike> <a href="https://github.com/mccalltd/AttributeRouting/pull/57">I've added Web API support</a> to AttributeRouting directly. It will be in v2.</li>
+<li>Plug into whatever dependency resolver you have set</li>
+<li>Do something else I haven't run into yet</li>
+</ol>
+<p>A Nuget package that added a WebActivator start up wouldn't be too hard. Maybe it doesn't even need to &quot;plug&quot; into the pipeline, it can simply make it easier to see and configure WebAPI. The auto-DI integration alone would be a big win.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '39';
+    var disqus_title = 'A few hours with WebAPI &#x2B; MVC, the good and the bad';
+    var disqus_url = 'https://kamranicus.com/posts/2012-04-03-a-few-hours-with-webapi-mvc-the-good-and-the-bad';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

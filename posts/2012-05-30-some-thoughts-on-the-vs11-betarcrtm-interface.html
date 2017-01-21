@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Some Thoughts on the VS11 Beta/RC/RTM Interface</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Some Thoughts on the VS11 Beta/RC/RTM Interface" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2012-05-30-some-thoughts-on-the-vs11-betarcrtm-interface" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Some Thoughts on the VS11 Beta/RC/RTM Interface
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Thursday, May 31, 2012<br>    </div>
+        <div class="ui basic vertical spaced segment">
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p>As you may know, the next version of Visual Studio dubbed VS11 <a href="http://www.microsoft.com/visualstudio/11/en-us">is available in Beta form</a> right now for developers worldwide to <strike>complain about</strike> go wild and test against.</p>
+<p>While you can learn more about what VS11 offers in terms of new features, I think the biggest thing you'll hear about is feedback regarding it's new user interface style. I want to write down some thoughts I had as a heavy Visual Studio user and self-professed user experience (UX) <em>aficionado</em>.</p>
+<h3 id="please-dont-hurt-me">Please don't hurt me</h3>
+<p>I want to be clear that I am not here to bash on Visual Studio nor complain about the new interface. Rather, I'd like to take a constructive look at a couple of the cosmetic changes in store for us.</p>
+<h3 id="i-heard-u-liek-all-caps">I HEARD U LIEK ALL CAPS</h3>
+<p>I think the biggest thing I see on the tubes these days are comments about the ALL CAPS menu change from the Beta to the RC as you can see below (this is the Dark Theme):</p>
+<p><strong>Beta:</strong><br />
+<img src="/posts/images/42.png" class="img-fluid" alt="Beta Main Menu" /></p>
+<p><strong>RC:</strong><br />
+<img src="/posts/images/41.png" class="img-fluid" alt="All Caps RC Main Menu" /></p>
+<p><strong>What People Are Saying</strong></p>
+<p>Why is the main menu SHOUTING AT ME? This is terrible!</p>
+<p><strong>What People Are Missing</strong></p>
+<p>Whether or not you believe a fundamental user experience principle has been violated here, I think the underlying issue all along has been: why are there <em>so many damn options</em>?</p>
+<p>All caps or not, I think the team should be aiming to reduce the amount of time I even need to look at the main menu and even better, totally eliminate or consolidate some of those menus. If I had to list what menus I used the most it would be:</p>
+<ol>
+<li>Edit - to get to some advanced options that I can't remember hotkeys for</li>
+<li>View - to see a window I closed at some point or find a window</li>
+<li>Build - to Rebuild/Clean sometimes or build my current project (vs. the entire solution)</li>
+<li>Tools - to get to extension manager for updates or new extensions</li>
+<li>File - to open a project when I'm not on the start screen</li>
+</ol>
+<p>That's about it. So, in other words, I use about 5 out of the 16 total menu options regularly. Does that sound like the Pareto Principle (80/20 rule) at work here? It should at least have crossed your mind. Admittedly, this is <em>just for me</em> but no matter the person, I would expect to find that the typical Visual Studio user does <strong>not</strong> use all the menu options every day or very often.</p>
+<p>One of the nice things about VS is that you can totally customize the menu. For example, here's mine right now:</p>
+<p><img src="/posts/images/47.png" class="img-fluid" alt="My Menu" /></p>
+<p>Unfortunately, I can't do much more because VS2010 crashes if I try to modify the menus themselves, otherwise I'd move Theme, Resharper, Sitecore, and Mindscape into the Tools menu reducing my total menus to only 6. Finally, I'd like the ability to hit Alt to enable the menu, otherwise it should be hidden (see Sublime Text). I don't know if there's an extension that enables that.</p>
+<p>Just because I have the control to move my menu commands around doesn't mean it solves this problem. There are so many commands in Visual Studio the team could expose but don't simply for that reason, there's just too many. A different kind of menu should be considered that doesn't rely on the &quot;classic&quot; menu bar pattern.</p>
+<p>Is it too crazy to think about a menu inside Visual Studio that acted like the Windows OS menu? It could list my most recent actions or actions I pin, it could group different tasks or let me open an advanced panel to see more tasks. The useful Ctrl-3 shortcut in one of the power tool extensions lets you start typing to search the menu system (and I believe that is what the search box in the top right of VS11 also does); why not build that into a single menu ala Windows 7 Start Menu? Dare I even mention... a ribbon (<em>shudder</em>)?</p>
+<h3 id="monochrome-is-the-new-color">Monochrome is the New Color</h3>
+<p>In the VS11 beta, probably the first thing you'll notice is the distinct lack of color. Where'd all the pretty icons go?! If you asked me how I felt when I opened it up for the first time, the word &quot;depressed&quot; probably would make the cut. I know that sounds extreme, but when you talk about how we as humans perceive colors, certain schemes evoke certain emotions.</p>
+<p>Again, let's take a look at the dark theme (since it exacerbates the effect):</p>
+<p><img src="/posts/images/43.png" class="img-fluid" alt="Dark Theme in Beta" /></p>
+<p>Now, work has been done since the beta to add color back to VS which I believe makes it look <em>so</em> much better:</p>
+<p><img src="/posts/images/44.png" class="img-fluid" alt="Dark Theme in RTM" /></p>
+<p>The added color in the icons really makes a difference and I was glad to see it back for the RC and RTM. I also think it's very admirable that the team will release the vector versions alongside Visual Studio for use in our own apps. In this day and age where images need to be scaled for different form factors and &quot;Retina&quot; displays, I think we'll be seeing more emphasis on vector-based icons. GitHub even <a href="https://github.com/blog/1106-say-hello-to-octicons">created their own font</a> to address the issue. You could argue they may have jumped the gun a bit but hopefully font rendering will continue to improve in modern browsers.</p>
+<p>My one criticism is that not all icons will be mono'd right away, so with some extensions you'll see something like this:</p>
+<p><img src="/posts/images/45.png" class="img-fluid" alt="Ugh" /></p>
+<p>I know they specifically fixed this icon in RC, but I'm sure there will be more instances of this, especially in the New File dialog:</p>
+<p><img src="/posts/images/46.png" class="img-fluid" alt="File icons" /></p>
+<p>This can be fixed by extension developers, but I hope (as an extension developer myself) that it is not too painful to provide iconography for both the VS2010 and VS11 version of an extension.</p>
+<h3 id="other-thoughts">Other Thoughts</h3>
+<p>In general, I think those are the two big topics I see while reading blog posts and seeing comments. I may have other thoughts for the overall experience but I'll save them for future posts as I use VS11 more and more.</p>
+<p>As always, let me know what you think! Do you have other criticisms of the interface? If you're going to just go on about how you hate M$ and VS11 is terrible, don't bother responding. The VS team would benefit more from constructive feedback.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '47';
+    var disqus_title = 'Some Thoughts on the VS11 Beta/RC/RTM Interface';
+    var disqus_url = 'https://kamranicus.com/posts/2012-05-30-some-thoughts-on-the-vs11-betarcrtm-interface';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

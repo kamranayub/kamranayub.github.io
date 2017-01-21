@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Using Cassette for semi-complicated scenarios [Updated 1/9/12]</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Using Cassette for semi-complicated scenarios [Updated 1/9/12]" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2011-12-22-using-cassette-for-semi-complicated-scenarios-upda" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Using Cassette for semi-complicated scenarios [Updated 1/9/12]
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Friday, December 23, 2011<br>    </div>
+        <div class="ui basic vertical spaced segment">
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p>I love <a href="http://getcassette.net">Cassette</a>. You should too, because as of today, the project has gone MIT licensed which means <strong>you</strong>, my dear reader, can use it right now.</p>
+<p>It's alright, I'll wait while you download it via Nuget. Done? Great.</p>
+<h3 id="updates">Updates</h3>
+<ul>
+<li><strong>1/9/12</strong>: Added print media example</li>
+<li><strong>1/9/12</strong>: <a href="https://github.com/andrewdavey/cassette/issues/121">Issue #121</a> that I opened was fixed in the latest Cassette update, 1.0.1. I've updated my samples accordingly.</li>
+</ul>
+<h3 id="more-than-a-simple-case">More than a simple case</h3>
+<p>Cassette is <a href="http://hanselminutes.com/260/net-api-design-that-optimizes-for-programmer-joy-with-jonathan-carter">optimized for programmer happiness</a>. It's easy to use and there's a lot of small features that make it stand out from the crowd (SquishIt, Combres, etc.). If you want to get started using Cassette out of the box, you only need to do a couple things and those things are outlined well <a href="http://getcassette.net/documentation/getting-started">in the documentation</a>.</p>
+<p>What I love about Cassette is the flexibility you have when you need to go beyond the simplest use case. For example, let's consider the file structure I am working with on a project right now:</p>
+<pre><code>Web Project
+ |_ Public
+   |_ images
+   |_ print
+     |_ print.css
+   |_ scripts
+     |_ i8n
+       |_ en-US
+       |_ zh-CN
+     |_ special
+       |_ modernizer-2.0.6.js
+     |_ vendor
+       |_ jquery-1.7.1.js
+       |_ other framework files...
+     |_ pages
+       |_ page1.js
+       |_ page2.js
+     |_ app.js
+   |_ themes
+     |_ jquery.ui.core.css
+     |_ other jQuery UI files
+   |_ base.css
+   |_ layout.css
+   |_ otherfiles...
+</code></pre>
+<p>For the most part, this is how the project was organized and I needed to adapt Cassette to work here. I'll walk through a few things I needed to do first.</p>
+<h3 id="file-organization">File organization</h3>
+<p>Before implementing Cassette, <a href="http://modernizr.com">Modernizr</a> was also in the <em>vendor</em> folder. In addition, the localized JS files in <em>i8n</em> were not in sub-folders according to their culture, they were just in <em>i8n</em>.</p>
+<p>In the <em>vendor</em> folder, we have both minified and non-minified JS files (mostly from Nuget). We don't want Cassette to minify an already minified file. I'll show you how I avoided that later on.</p>
+<p>I point this out because Cassette works better when things are organized so that they are &quot;bundlable.&quot; For that reason, I moved the files around so the structure looks like above. Since Modernizr has to be included in the page's <code>&lt;head&gt;</code> (it needs to load before the page loads to set up Respond media queries and HTML5 elements) and all other scripts can be included before the <code>&lt;/body&gt;</code> tag, I separated it into the <em>special</em> folder.</p>
+<p>As for the <em>pages</em> scripts, these need to be only included on a per-page basis. If areas of your site need multiple assets, I would definitely move them into sub-folders (I would go a step farther perhaps and even include them by convention, the same way MVC plays with Views and Controllers but that's for another blog post!).</p>
+<h3 id="configuring-the-bundles">Configuring the bundles</h3>
+<p>I'll walk you through my Cassette configuration file. If you pull down Cassette via Nuget, you will have a new <code>CassetteConfiguration</code> file and class. This is what Cassette picks up and uses to bundle your files. You can move it wherever you want, Cassette magically picks it up. It is important to realize that if you want full control over how Cassette bundles your assets, you'll need to do some configuration. Luckily, it's not bad!</p>
+<h4 id="excluding-directories-minified-and-vsdoc-files">Excluding directories, minified, and VSDoc files</h4>
+<p>Out-of-the-box, Cassette does not provide an easy mechanism to exclude directories when adding bundles per sub-directory. The reason I think this is important is because we want to set up a general &quot;catch-all&quot; method to deal with bundling, namely: treat each directory as a bundle. That way we can add folders/files and have them bundled automatically for us. This creates less work for the team.</p>
+<p>I also wanted to ignore any pre-minified or -vsdoc files (Cassette by default ignores vsdoc files).</p>
+<p>To solve this issue, I just derived a class from <code>FileSearch</code> and added my own requirements:</p>
+<script src="https://gist.github.com/1583784.js"></script>
+<p>I could have also implemented my own <code>IFileSearch</code>, perhaps one that used a fluent interface to exclude directories or file suffixes, but for my limited needs, this would do well and I really only needed to build upon the out-of-the-box <code>FileSearch</code> class. Maybe I will implement a fluent search interface as a fun project.</p>
+<p>The other thing I needed to add into the <em>Regex</em> was the ability to exclude any files ending in &quot;.min&quot; or &quot;-min&quot; (just in case). Cassette recommends you simply delete minified files. That's a good tip, except they'll just be back when you do a Nuget update, so why not just ignore them by default as well (<em>ahem</em>)?</p>
+<p><em>Side note: It seems more efficient to me to allow Cassette to reference minified files but to bypass minification of them. Perhaps this will be implemented in the future?</em></p>
+<h4 id="configuring-stylesheets">Configuring stylesheets</h4>
+<p>For our project, we need to include Google Web Fonts in the page, in addition to the CSS files in the <em>public</em> directory. We keep the jQuery UI themes separate in case we update via Nuget so we can simply overwrite them.</p>
+<pre><code class="language-c#">private void ConfigureStylesheets(BundleCollection bundles)
+{
+    // Sub-folder bundled CSS
+    bundles.AddPerSubDirectory&lt;StylesheetBundle&gt;(&quot;Public&quot;,
+	new ExcludeDirectorySearch(&quot;*.css&quot;, new[] { &quot;scripts&quot; }));
+
+    // Print media bundle
+    bundles.Get&lt;StylesheetBundle&gt;(&quot;~/public/print&quot;).Media = &quot;print&quot;;
+
+
+    // Google Web fonts
+    bundles.AddUrlWithAlias&lt;StylesheetBundle&gt;(
+        Scheme + &quot;://fonts.googleapis.com/css?family=Droid+Sans|Montserrat&quot;, &quot;Fonts&quot;);
+}
+</code></pre>
+<p>The first line tells Cassette to add a bundle per sub-directory, so the following bundles will be made:</p>
+<ul>
+<li>public (our CSS)</li>
+<li>public\themes (jQuery UI)</li>
+<li>public\print (print media)</li>
+</ul>
+<p>It also uses the class above and excludes the &quot;scripts&quot; directory from search, for good measure.</p>
+<p>One of the caveats to the directory exclude is that it technically does <em>not</em> exclude directories; Cassette still creates empty bundles. Thus, if you tried to add a <code>~/public/print</code> bundle, you'd get an exception saying that it already exists. So, we <em>cannot</em> exclude the <code>print</code> directory. Instead, you can reference it directly after it's been added and manually set the <code>Media</code> to print. Problem solved! Ideally, Cassette should not be creating empty bundles.</p>
+<p>The second line includes the direct Google stylesheet reference aliased as <em>Fonts</em> (in references, <code>~/Fonts</code>). In this project, our site is behind a load balancer so SSL is terminated at the balancer. This means you can't just use the built-in ASP.NET <code>Request.IsSecureConnection</code> because by the time the request even hits the web server, SSL is not there. <strike>Therefore, I utilize one of the utilities we have to check if SSL is enabled via server headers that the balancer sets.</strike> The scheme is not identifiable yet in our <code>Application_Start</code>, so we cannot use this method, but I will leave it here for posterity. We switched to always using SSL since our site is under SSL to the user. <strong>Note:</strong> You can simply include fonts normally using the Google Font Loader or by a direct <code>&lt;link&gt;</code> reference, however, why not use Cassette if you're already going that route?</p>
+<pre><code class="language-c#">// Also in CassetteConfiguration.cs
+private string Scheme
+{
+    get { return Utilities.SharedUtils.IsSecureConnection() ? &quot;https&quot; : &quot;http&quot;; }
+}
+</code></pre>
+<p>In our <em>Layout.cshtml</em> file, we now need to reference these two bundles and render them to the page.</p>
+<pre><code class="language-html">&#64;{
+    Bundles.Reference(&quot;public&quot;); // Our CSS
+}
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &#64;Bundles.RenderStylesheets()
+&lt;/head&gt;
+</code></pre>
+<p>So how does Cassette understand in what order to put these references? First, Cassette goes by the order in which you call <code>&#64;Bundles.Reference</code>. To make things easier though, I edited our main <em>layout.css</em> file to add Cassette-compatible references.</p>
+<pre><code class="language-css">/* For Cassette */
+/* &#64;reference ~/Fonts base.css skeleton.css themes */
+</code></pre>
+<p>When Cassette parses <em>layout.css</em>, it will detect these references. Since all files are included in our <em>public</em> bundle, everything goes great and the <code>&lt;link&gt;</code>'s are added in order:</p>
+<pre><code class="language-html">&lt;link href=&quot;http://fonts.googleapis.com/css?family=Droid+Sans|Montserrat&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;link href=&quot;/_cassette/asset/Public/themes/jquery.ui.button.css?165be2c1b488debc298a8dbaa77347b326a0d2a2&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;link href=&quot;/_cassette/asset/Public/themes/jquery.ui.core.css?e5bc0be5bec6729cd338579a99e89c39c844c181&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;link href=&quot;/_cassette/asset/Public/themes/jquery.ui.datepicker.css?6243e68daf6d6b3c03ce47d66abef2feba488d94&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;link href=&quot;/_cassette/asset/Public/themes/jquery.ui.dialog.css?45faa27d7c66d72df00c39c40506da46bed885e3&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;link href=&quot;/_cassette/asset/Public/themes/jquery.ui.resizable.css?a1bf026ec6d01daa0f7853215774c9e3aeb8afa9&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;link href=&quot;/_cassette/asset/Public/themes/jquery.ui.theme.css?83294a0e12785f8dac8d3f0de4bf65f481b55f13&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;link href=&quot;/_cassette/asset/Public/base.css?6401a75dfde8196c81d8bb39c3e5fb25dab89ad1&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;link href=&quot;/_cassette/asset/Public/skeleton.css?d7414571707853cafb3028441861d31291d60789&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;link href=&quot;/_cassette/asset/Public/layout.css?0ac01597826664dcc3a6c031a61c11ffa17fdd3d&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;/&gt;
+</code></pre>
+<h4 id="configuring-javascript">Configuring Javascript</h4>
+<p>The Javascript assets were a bit harder to configure; we needed to do a couple things:</p>
+<ul>
+<li>Auto-bundle everything except a few special cases</li>
+<li>Have a &quot;special&quot; folder for <code>&lt;head&gt;</code> references</li>
+<li>Avoid editing vendor file references so a Nuget update won't blow the changes away</li>
+</ul>
+<p>Here is my Javascript configuration:</p>
+<pre><code class="language-c#">private void ConfigureJavascript(BundleCollection bundles)
+{
+    // Localized JS - i8n/{culture}
+    bundles.AddPerSubDirectory&lt;ScriptBundle&gt;(&quot;Public/scripts/i8n&quot;, true);
+
+    // Per-page JS (eventually may want separate folders as well)
+    bundles.AddPerIndividualFile&lt;ScriptBundle&gt;(&quot;Public/scripts/pages&quot;);
+
+    // Bundle all scripts except special cases above
+    bundles.AddPerSubDirectory&lt;ScriptBundle&gt;(&quot;Public/scripts&quot;,
+	new ExcludeDirectorySearch(&quot;*.js&quot;, new[] { &quot;i8n&quot;, &quot;pages&quot; }));
+}
+</code></pre>
+<p>Our configuration code above does exactly what we need. We can double check by browsing to <em>/_cassette</em> and seeing what Cassette decided to turn into bundles:</p>
+<pre><code>~/Public/scripts
+    app.js
+
+~/Public/scripts/pages
+
+~/Public/scripts/special
+    modernizr-2.0.6.js
+
+~/Public/scripts/vendor
+    jquery-1.7.1.js
+    jquery-ui-1.8.16.js
+    jQuery.tmpl.js
+    jquery.validate.js
+    jquery.validate.unobtrusive.js
+
+~/Public/scripts/i8n/zh-CN
+    jquery.ui.datepicker-zh-CN.js
+    jquery.validate-zh-CN.js
+
+~/Public/scripts/i8n/es-MX
+    jquery.ui.datepicker-es-MX.js
+    jquery.validate-es-MX.js
+
+~/Public/scripts/pages/page1.js
+    ~/Public/scripts/pages/page1.js
+
+~/Public/scripts/pages/page2.js
+    ~/Public/scripts/pages/page2.js
+</code></pre>
+<p>You can see the exclusions worked, since the <em>pages</em> folder is blank (i.e. not bundled up) and each page script is made later on a per-file basis.</p>
+<p>The reason I like this is because now I can just add folders to <em>scripts</em> without worrying about adding a manual Cassette bundle; it will just do it automatically and ignore the two folders I need to make a special case for.</p>
+<p><strong>Including the script assets</strong></p>
+<p>Remember I said Modernizr should be included in <code>&lt;head&gt;</code> but all the rest of the scripts should be before <code>&lt;/body&gt;</code>? We can do that easily with Cassette.</p>
+<pre><code>&#64;* _Layout.cshtml *&#64;
+&#64;{
+    // CSS
+    Bundles.Reference(&quot;public&quot;);
+	
+    // Scripts (vendor first!)
+    Bundles.Reference(&quot;public/scripts/special&quot;, &quot;head&quot;);
+    Bundles.Reference(&quot;public/scripts&quot;);
+}
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &#64;Bundles.RenderStylesheets()
+	
+    &#64;* Modernizr needs to be first *&#64;
+    &#64;Bundles.RenderScripts(&quot;head&quot;)
+&lt;/head&gt;
+&lt;body&gt;
+	
+    &#64;* All other scripts *&#64;    
+    &#64;Bundles.RenderScripts()
+
+    &#64;* Localized scripts *&#64;
+    &#64;RazorHelpers.LocalizedScripts()
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Notice the reference for Modernizr. I am using the overloaded <code>Reference</code> that accepts a <code>pageLocation</code> argument. This is the same as how you can include Razor sections in MVC3. The location is just a string you use when you call <code>&#64;Bundles.RenderScripts({pageLocation})</code>. <strong>Tip:</strong> You can also specify <code>pageLocation</code> when you create a bundle in your <code>CassetteConfiguration</code> class. I did not, since I only needed one script in the <code>head</code> tag, but if you have multiple folders or bundles that need to be in separate locations, you don't have to specify a page location in your view files.</p>
+<p>As with our stylesheets, we need a way to tell Cassette how to order the vendor scripts since we typically have plugins that depend on each other (such as jQuery). You <em>could</em> edit each vendor file and manually add file references to them, but that's no fun is it? In order to reduce headaches and maintenance, create a <a href="http://getcassette.net/documentation/configuration/bundle-descriptor-file">Bundle Descriptor File</a> instead. That way, you will only need to keep that file up-to-date as you add more vendor plugins.</p>
+<p>In the <em>vendors</em> folder, I simply made a <em>bundle.txt</em> file:</p>
+<pre><code>jquery-1.7.1.js
+jquery-ui-1.8.16.js
+jQuery.tmpl.js
+jquery.validate.js
+jquery.validate.unobtrusive.js
+*
+</code></pre>
+<p>The wildcard at the end tells Cassette, &quot;Yo, do whatever you want for the rest of the scripts you find.&quot; How useful! Now there's even <em>less</em> maintenance (didn't I tell you this baby was optimized for happiness?).</p>
+<p>For localization, I just created a Razor helper to include the right culture files for me (this shows you that you can use the <code>Bundles</code> object anywhere in your Razor views and Cassette will include the references):</p>
+<pre><code class="language-c#">//
+// ~/App_Code/RazorHelpers.cshtml
+//
+&#64;helper LocalizedScripts()
+    {
+    string cultureName = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
+
+    if (cultureName != Constants.DefaultCulture)
+    {
+        Bundles.Reference(String.Format(&quot;/public/scripts/i8n/{0}&quot;, cultureName));
+    }
+}
+</code></pre>
+<p>And on individual views, I can now included page-specific JS:</p>
+<pre><code class="language-c#">&#64;* Views\Controller1\View1.cshtml *&#64;
+&#64;{
+    Bundles.Reference(&quot;~/public/scripts/pages/page1.js&quot;);
+}
+</code></pre>
+<p>Cassette is smart and will include the JS automatically in the <em>Layout.cshtml</em> file <em>and</em> in the proper order (in my case, just at the end. If you had references inside, Cassette would know).</p>
+<h4 id="to-debug-or-not-to-debug-that-is-the-question">To debug or not to debug, that is the question!</h4>
+<p>In our environment, we don't necessarily want to turn off Cassette as soon as the web.config's <code>debug</code> flag turns to <em>false</em>. Instead, we have different environments where it might make sense to leave Cassette on. When the site goes out to QA, then it makes sense to turn on Cassette's Release mode, but while developing locally and in staging, we may need to debug a bit more.</p>
+<pre><code class="language-c#">public void Configure(BundleCollection bundles, CassetteSettings settings)
+{
+	// Debug locally and in staging
+	settings.IsDebuggingEnabled = 
+	    Server.CurrentEnvironment == Server.ServerEnvironment.Developer ||
+	    Server.CurrentEnvironment == Server.ServerEnvironment.Development;
+	
+	ConfigureStylesheets(bundles);
+	ConfigureJavascript(bundles);
+}
+</code></pre>
+<p>And there's my full <code>CassetteConfiguration</code> class!</p>
+<h3 id="so-what-are-you-waiting-for">So what are you waiting for?</h3>
+<p>Cassette is awesome and I hope you learned a couple tips for doing things in a semi-complex environment. Let me know if you've found any more good tips &amp; tricks, or if you notice I missed an optimization or hidden feature.</p>
+<p>I would really like to do some performance testing with Cassette. It <em>does</em> add to your overhead on the site, but in my Firebug timings, I noticed much less time being spent on CSS files and more time being spent on JS files. If you are worried about performance on a massive scale, it will <strong>always</strong> be faster to minify and concatenate your files at compile or build time because then IIS is serving the files directly. Components like Cassette are meant to ease your burden by handling that for you, at the expense of some milliseconds. Remember that due to caching and aggressive expiration headers, the browser should <em>not</em> be requesting assets anyway after the first request.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '27';
+    var disqus_title = 'Using Cassette for semi-complicated scenarios [Updated 1/9/12]';
+    var disqus_url = 'https://kamranicus.com/posts/2011-12-22-using-cassette-for-semi-complicated-scenarios-upda';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

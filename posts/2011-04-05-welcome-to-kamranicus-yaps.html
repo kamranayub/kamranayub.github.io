@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Welcome to Kamranicus [YAPS]</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Welcome to Kamranicus [YAPS]" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2011-04-05-welcome-to-kamranicus-yaps" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Welcome to Kamranicus [YAPS]
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Wednesday, April 6, 2011<br>    </div>
+        <div class="ui basic vertical spaced segment">
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <h1 id="yaps-yet-another-personal-site">YAPS (Yet Another Personal Site)</h1>
+<p>My other site <a href="http://intrepidstudios.com">Intrepid Studios</a> will be undergoing some major changes soon, due to my dad taking most of the reigns. It will shift from being mostly my pet project site to an actual commercial site. I won't be doing much directly with it anymore and I needed a new home for all <strong>my</strong> stuff.</p>
+<p>Thus, I welcome you to <strong>Kamranicus!</strong> I decided to create my own personal site and learn some new technology in the process. I knew a thing or two about MVC but I had yet to sit down and <em>learn</em> it first-hand. It was great timing because at work I am coming onto some existing ASP.NET MVC applications.</p>
+<h2 id="overview">Overview</h2>
+<p>One thing you hopefully <strong>won't</strong> notice is that I don't bother to support any browser less than the latest modern versions (IE9, FF4, Chrome, etc). This is on purpose, mainly to decrease maintenance and development time, but also because I've always wanted to say <strong>'eff you</strong> to all those nasty old browsers (I am including IE8 and below in this category).</p>
+<h3 id="homepage">Homepage</h3>
+<p>The <a href="/">homepage</a> is all JSON-based, except the blog overview. The &quot;feeds&quot; use my <a href="http://github.com/kamranayub/.JSON">.JSON</a> library and the code consists of about one line per feed I need:</p>
+<pre><code class="language-c#">dynamic[] repositories = JsonService.GetFrom(&quot;http://github.com/api/v2/json/repos/show/kamranayub&quot;).repositories;
+dynamic[] forSale = JsonService.GetFrom(&quot;http://marketplace.envato.com/api/v2/new-files-from-user:kayub,codecanyon.json&quot;).newfilesfromuser;
+dynamic[] tweets = JsonService.GetFrom(&quot;http://api.twitter.com/1/statuses/user_timeline.json?screen_name=kamranayub&quot;);
+dynamic soAnswers = JsonService.GetFrom(&quot;http://api.stackoverflow.com/1.1/users/109458/answers?pagesize=6&amp;sort=creation&quot;);
+</code></pre>
+<p>The <a href="/Blog">blog</a> is custom-made and bare-bones. You ask, &quot;But why not use a proven full-fledged blog framework?&quot; I wanted the first-class integration, I wanted some custom stuff, and because I just needed a good excuse to learn Razor and MVC 3 properly. This was a great exercise and I hope to share it with you soon.</p>
+<h2 id="mvc-3-razor-blog-features">MVC 3 Razor Blog Features</h2>
+<h3 id="admin-panel-free">Admin Panel Free</h3>
+<p>I didn't want to build a separate admin panel for my blog. I built it so that I can manage it using a pretty reasonable workflow. When a post is displayed, I see this above it:</p>
+<p><img src="/posts/images/1.png" class="img-fluid" alt="Post Toolbar" /></p>
+<p>I can delete it on the spot or edit it inline via AJAX. Over a comment, <em>you</em> and I can see this:</p>
+<p><img src="/posts/images/2.png" class="img-fluid" alt="Comment Toolbar" /></p>
+<p>For now I am not putting a time limit for editing or deleting comments... it is also tied to the same OpenID account you posted the comment as, so if you login with a different one, you won't be the owner. I should mention, the way it is coded, <strong>I cannot delete or edit your comments</strong>. If spam becomes an issue (which I will guess it will) then I'll have to at least be able to mark comments as spam.</p>
+<h3 id="rest-based-design">REST-based Design</h3>
+<p>I made the routes designed as a poor man's REST implementation. So lots of things support AJAX through the same URLs as browsing without JS.</p>
+<p>This allows <em>me</em> to do fun inline-editing of my posts and allows <em>you</em> to inline edit your comments.</p>
+<p>It also allows me to not duplicate any templates as I can just pass the same exact partially-rendered views to jQuery as I do normally without JS.</p>
+<h3 id="openid-support">OpenID Support</h3>
+<p>Since I didn't want to create my own membership system, I just use some very basic OpenID using <a href="http://www.dotnetopenauth.net/">DotNetOpenAuth</a>.</p>
+<p>I don't store anything except your claim ID, nickname (if given), and email (if given).</p>
+<h3 id="gravatars">Gravatars</h3>
+<p>I don't know why but this was important to me. It's so easy to implement but it just <em>looks</em> awesome.</p>
+<h3 id="kamdown">Kamdown</h3>
+<p>Windows Live Writer is great, but I really love Markdown. This was one big reason I didn't want a huge blog library, I <strong>needed</strong> this. I didn't bother with any Metaweblog API hooks because I liked the web-based approach to updating my blog and the simplicity of Markdown.</p>
+<p>I use a slightly enhanced version of Markdown (called Kamdown, <em>har har</em>) for my posts and your comments. For my posts, I implemented the SUPA Java applet to add copy/paste support for images:</p>
+<p><img src="/posts/images/3.png" class="img-fluid" alt="SUPA Upload Popup" /></p>
+<p>It just adds the image data to the DB and outputs a URL: <code>![SUPA Image Upload Support](/posts/images/2.png)</code></p>
+<p>This works both from clicking a button to open the dialog and also by just hitting Ctrl-V in the textbox.</p>
+<p>I also was inspired by GitHub's great interface for Markdown-enabled fields, letting you hotswap between plain text or previewed HTML. I love it!</p>
+<p><img src="/posts/images/4.png" class="img-fluid" alt="Markdown editor" /></p>
+<p>I am using the <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a> JS plugin to do syntax highlighting. I initially tried IronPython with Pygments, but there were some memory issues and I decided not to use it as it wasn't stable. A shame since that is the library GitHub uses and it's very nice. I may go back and try to figure out what the problem was.</p>
+<p>You use it the same way you use code blocks in GitHub wikis, triple-ticks (`).</p>
+<h3 id="subsonic-ninject">SubSonic + Ninject</h3>
+<p>I really liked <a href="http://subsonicproject.com">SubSonic's</a> <code>SimpleRepository</code> so I used it. I didn't bother with much layering and focused more on getting things done so most of my data access code is 1-2 lines wherever I need it.</p>
+<p>I use Ninject as my DI framework because it's simple and straight to the point.</p>
+<h3 id="appharbor-deployment">AppHarbor Deployment</h3>
+<p>I am using the free <a href="http://appharbor.com">AppHarbor</a> instance to host and deploy the site (using a separate back-end I get for free).</p>
+<p>It's a really neat service but it still needs some minor adjustments, such as more separation between environments (for testing). I may talk about this later. That said, it does its job well and the free instance seems to be fast enough for my needs. I do have <a href="http://arvixe.com">Arvixe</a> to fall back on, but their control panel and setup was being too ornery for me.</p>
+<h2 id="so-wheres-the-code">So where's the code?</h2>
+<p>I hope to release my code soon, as soon as I clean it up and make it somewhat presentable. I figure it'd be nice to let other people build their own custom blogs from a small codebase like I did. It's separated into its own Area, so the code is separate from the core site. The great thing is you get all the integration MVC provides and it's as customizable as you need it to be.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '1';
+    var disqus_title = 'Welcome to Kamranicus [YAPS]';
+    var disqus_url = 'https://kamranicus.com/posts/2011-04-05-welcome-to-kamranicus-yaps';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

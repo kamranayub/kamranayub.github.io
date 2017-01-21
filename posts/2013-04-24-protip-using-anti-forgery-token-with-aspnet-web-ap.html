@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Protip: Using Anti-Forgery Token with ASP.NET Web API on MVC 4 on AppHarbor</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Protip: Using Anti-Forgery Token with ASP.NET Web API on MVC 4 on AppHarbor" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2013-04-24-protip-using-anti-forgery-token-with-aspnet-web-ap" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Protip: Using Anti-Forgery Token with ASP.NET Web API on MVC 4 on AppHarbor
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Wednesday, April 24, 2013<br>    </div>
+        <div class="ui basic vertical spaced segment">
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p>I just ran into and solved this problem so I thought I'd share (I'll also be talking about this at my upcoming talk).</p>
+<h3 id="anti-forgery-in-mvc">Anti-Forgery in MVC</h3>
+<p>In vanilla MVC, you'd do anti-forgery like this in your Razor view:</p>
+<pre><code class="language-html">&#64;Html.AntiForgeryToken()
+</code></pre>
+<p>Then in a controller (POST):</p>
+<pre><code class="language-c#">[ValidateAntiForgeryToken]
+public ActionResult DoSomething() { }
+</code></pre>
+<p>Cool. But what about Web API? It uses a totally different pipeline and likely you're interacting with it via JQuery or other AJAX framework.</p>
+<h3 id="validatehttpantiforgerytoken">ValidateHttpAntiForgeryToken</h3>
+<p>Here are some references I used when trying to implement Anti-Forgery with Web API:</p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/11725988/problems-implementing-validatingantiforgerytoken-attribute-for-web-api-with-mvc">Problems implementing ValidatingAntiForgeryToken attribute for Web API with MVC 4 RC</a></li>
+<li><a href="http://stackoverflow.com/questions/11476883/web-api-and-validateantiforgerytoken">Web API and ValidateAntiForgeryToken</a></li>
+<li><a href="http://www.asp.net/web-api/overview/security/preventing-cross-site-request-forgery-(csrf)-attacks">Preventing Cross-Site Request Forgery (CSRF) Attacks</a></li>
+<li>MVC 4 SPA template</li>
+</ul>
+<p>Here's the rub: the two SO posts above implement this quite differently than the MVC 4 SPA template and the last article referenced. Both approaches actually worked locally for me, but both failed once I deployed to AppHarbor.</p>
+<p>The long and short of it is that I was using the HTTP header <code>__RequestVerificationToken</code>. This is a no-no and I'm sort of the dumb one here in that I should <em>know</em> not to use custom headers like that.</p>
+<p>My friends, the <em>proper</em> way is to use the <code>X-*</code> convention, so the HTTP header in your AJAX requests become <code>X-XSRF-Token</code> instead.</p>
+<p>Apparently, AppHarbor was stripping off the other header on AJAX POST. I was receiving an error about the given header could not be found.</p>
+<p>The working solution is below:</p>
+<script src="https://gist.github.com/kamranayub/5449779.js"></script>
+<p>The <code>machineKey</code> thing is also key to remember on a cloud host/web farm environment.</p>
+<p>I hope that helps somebody out there.</p>
+<h3 id="aside">Aside</h3>
+<p>In the last article referenced, the <code>AntiForgery.GetTokens()</code> didn't work for me on AH. I kept getting the error:</p>
+<pre><code>System.Web.Mvc.HttpAntiForgeryException (0x80004005): The required anti-forgery cookie &quot;__RequestVerificationToken&quot; is not present.
+</code></pre>
+<p>I didn't get far enough to see what actual cookies were present because I switched to the other method outlined in the two SO posts. I just thought you should know that it just didn't work. I believe it's because <code>GetTokens</code> does not create a new cookie if the <code>cookieToken</code> has a value where as using <code>&#64;Html.AntiForgeryToken()</code> does. The <a href="http://aspnetwebstack.codeplex.com/SourceControl/changeset/view/9a83b63f3f889e3f2c979274fe3e8f7610e06b98#src/System.Web.WebPages/Helpers/AntiXsrf/AntiForgeryWorker.cs">source code</a> makes that clear in the comments. Why it worked locally I have no idea and at this point, don't care!</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '70';
+    var disqus_title = 'Protip: Using Anti-Forgery Token with ASP.NET Web API on MVC 4 on AppHarbor';
+    var disqus_url = 'https://kamranicus.com/posts/2013-04-24-protip-using-anti-forgery-token-with-aspnet-web-ap';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

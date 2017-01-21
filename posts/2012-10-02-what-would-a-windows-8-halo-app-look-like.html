@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - What would a Windows 8 Halo app look like?</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - What would a Windows 8 Halo app look like?" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2012-10-02-what-would-a-windows-8-halo-app-look-like" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      What would a Windows 8 Halo app look like?
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Wednesday, October 3, 2012<br>    </div>
+        <div class="ui basic vertical spaced segment">
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p><strong>Update (10/24)</strong>: There's a good indication there'll be an API. If you log into <a href="http://dewxp.com">DewXP</a> with your Xbox Live account, it will display your spartan player model using a URL I haven't seen before:</p>
+<blockquote class="blockquote">
+<p><a href="https://stats.svc.halowaypoint.com/players/subkamran/h4/spartans/fullbody">https://stats.svc.halowaypoint.com/players/subkamran/h4/spartans/fullbody</a></p>
+</blockquote>
+<p>Nothing is at the root of that URL, but I assume the <strong>h4</strong> is for Halo 4-related stats. It also looked like it used OAuth to allow the DewXP &quot;app&quot; access to my profile. This is a good sign!</p>
+<hr />
+<p>I'm a Halo fan. I enjoy playing with my friends, it's fun to be competitive and it's fun to compete against each other. One of the things me and my friends love is the ability to view our stats and history. It's all about bragging rights. Bungie used to have a <em>fan-fucking-tastic</em> site to view stats. Since the handover to 343, seeing stats has just not been the same nor as in-depth, though the core features have remained.</p>
+<p>There are mixed reactions to this in the community, I would say leaning more on the negative side, even among my friends. However, after seeing all the footage of Halo 4, I have high hopes for the game as long as it continues to be competitive and to provide a source of stats and feedback.</p>
+<p>So what does Halo have to do with Windows 8? Well, before Bungie handed the franchise off, they worked on releasing Halo Waypoint to several devices including <a href="http://itunes.apple.com/us/app/halo-waypoint/id468457600?mt=8">iOS</a>, <a href="https://play.google.com/store/apps/details?id=com.halo.companion&amp;hl=en">Android</a>, and <a href="http://www.shacknews.com/article/71466/halo-waypoint-premium-mobile-app-add-on-features-real-time">Windows Phone</a>. These apps are great for people like us who like to see our stats on the go or when we're not at the computer (like in front of the Xbox). I wanted to build a similar app for Windows 8 that just showed stats of my friends or other players. Simple, right? Wrong.</p>
+<p>Bungie had originally released a <a href="http://www.bungie.net/fanclub/statsapi/Group/Resources/Article.aspx?cid=545064">poorly documented</a> (it's true) public API for their Halo stats but <em>at least</em> it was an API. Fan sites were able to run with this, creating sites like <a href="http://halotracker.com">HaloTracker</a>. The problem is, since 343i came into the picture, there has been no effort that we can see to provide an API (the old Bungie one is deprecated). This leaves site developers to resort to less-than-savory tactics to get at the stats, including screen scraping.</p>
+<p>The only glimmering light on the horizon is that there are <a href="https://forums.halo.xbox.com/yaf_postst97564_Probably-confirmation-of-a-Halo-4-API.aspx">rumblings</a> of a Halo 4 API, which would be a god-send for the community. But it's just that, a hope and no confirmation.</p>
+<h2 id="there-must-be-an-api-somewhere-though">There must be an API somewhere, though</h2>
+<p>There is. If you can get at the traffic on your mobile device that has Halo Waypoint, and you can get as far as seeing where that traffic goes, you'll discover there <em>is indeed a JSON web service</em>. Unfortunately, it requires authentication to the xbox.com domain, because the authentication cookie is sent on every request. In other words, it's not public and 343 probably doesn't want us using it.</p>
+<p>I'm not sure if WinRT's <a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh750287.aspx">Web Authentication Broker</a> could help in this case, but as far as I can tell, Xbox Live does not have an authentication endpoint. There must be <em>something</em>, as the Windows 8 Games app can connect to Xbox Live but I'm assuming this isn't available to just anyone and that there's black magic involved. Even if you could somehow manage to authenticate and pass those headers into the WinJS XHR calls, there's still the tiny problem that we probably aren't <em>supposed</em> to be able to use this Waypoint API.</p>
+<h2 id="my-plea-to-343">My plea to 343</h2>
+<p>343: you need to have an API. If the rumors are true that Halo 4 will be getting an API, that's <em>excellent</em> news because I strongly feel that if you want to build a community around the game, you really should let us go wild with the data.</p>
+<p>Even if that pipe dream does come to pass, there's still the issue of previous Halo games. We know you have the stats. We know you have the API. Just figure out a way to make it public! Release the Waypoint API so we can start somewhere; secure it with API keys or OAuth or whatever else you need to do.</p>
+<p>Because if you don't? People can't have an app like this unless <em>you</em> release it, and let's be honest: wouldn't you rather spend resources creating a great API to view stats and then let us do the dirty work and build around it?</p>
+<p><img src="/posts/images/69.png" class="img-fluid" alt="MetroHalo" /></p>
+<p><img src="/posts/images/70.png" class="img-fluid" alt="MetroHalo Lookup" /></p>
+<p><img src="/posts/images/71.png" class="img-fluid" alt="MetroHalo Search" /></p>
+<p>This is a real app, living on my hard drive right now. It can fetch any player's data, integrates with Search, and is pretty sexy to see in motion. Unfortunately, none of you reading this post will ever get to see it, simply because it violates the Terms of Service. It screen-scrapes the Halo Waypoint site to get this data, which is not an acceptable way of getting data.</p>
+<p>343, if you <em>are</em> planning to release a Windows 8 application, good on you! But my point still stands: this took me a couple days to put together and you didn't spend a dime on it, or assign Joe Bob 50% to innovation, or call your agency and have them put together mockups and charge you thousands of dollars. I did this in two evenings with a little bit of free time. There are so many things that are possible with a platform like Windows 8:</p>
+<ul>
+<li>Leaderboards among your friends</li>
+<li>Live tile updates of your games</li>
+<li>Beautiful high-res imagery of medals, ranks, and your spartan models</li>
+<li>Awesome win/lose charts and game history</li>
+<li>Map breakdowns</li>
+<li>Weapon overviews and tips</li>
+<li>Clan or group management</li>
+<li>Delivering video and other rich content to your users</li>
+</ul>
+<p>And that's what I could think of on-the-spot, I'm sure after seeing these screenshots people could think of a lot more.</p>
+<p>Release an API, 343. Your community will thank you for it.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '56';
+    var disqus_title = 'What would a Windows 8 Halo app look like?';
+    var disqus_url = 'https://kamranicus.com/posts/2012-10-02-what-would-a-windows-8-halo-app-look-like';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

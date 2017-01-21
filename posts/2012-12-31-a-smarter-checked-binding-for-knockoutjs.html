@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - A Smarter `checked` Binding for KnockoutJS</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - A Smarter `checked` Binding for KnockoutJS" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2012-12-31-a-smarter-checked-binding-for-knockoutjs" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      A Smarter `checked` Binding for KnockoutJS
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Monday, December 31, 2012<br>    </div>
+        <div class="ui basic vertical spaced segment">
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <blockquote class="blockquote">
+<p><strong>Update</strong>: In Knockout 3+, this issue is solved with the new <code>checkedValue</code> binding. Read the <a href="http://knockoutjs.com/documentation/checked-binding.html">documentation</a> for details. You can still use my workaround for KO 2.x and below.</p>
+</blockquote>
+<p>I love KnockoutJS. I've been using it for awhile now and I really enjoy it. That said, there are a few oddities with it, one such being the <code>checked</code> binding.</p>
+<p>Let's say you have this scenario (as I do now):</p>
+<p>You want to <code>foreach</code> a list of items, each one having a checkbox. You want to store the checked items in a list, for use throughout the view model (bulk updates, select all, deselect all, etc.). How do you go about doing this?</p>
+<p>The &quot;recommended&quot; approach would be to add an observable property, <code>isSelected</code>, to each of your items. Then, in your markup, you can bind to that property:</p>
+<pre><code class="language-html">&lt;ul data-bind=&quot;foreach: tasks&quot;&gt;
+  &lt;li&gt;&lt;input type=&quot;checkbox&quot; data-bind=&quot;checked: isSelected&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<p>That is OK. It's OK because what if you need to use that item (assuming you're using a &quot;class&quot; or other reusable object) somewhere else where you don't need that property. You could just attach it where you need it. It also makes it a bit tricky to manage the list of selected items (you'd probably end up creating a <code>computed</code> array), as well as making it difficult to dynamically bind a checkbox list to a computed array.</p>
+<p>What you may decide to do (like me) is to try and bind the <code>checked</code> to your own observable array, and assign the <code>value</code> of the checkbox to a model property like this:</p>
+<pre><code class="language-html">&lt;input type=&quot;checkbox&quot; data-bind=&quot;checked: $root.selectedTaskIds, value: id&quot;&gt;
+</code></pre>
+<p>However, if you do this, you'll soon discover a few oddities:</p>
+<ol>
+<li>When you check the checkbox, the <em>string</em> value of your model property will be placed into the array.</li>
+<li>Your model property <em>will change to this new string value</em> essentially changing your original model.</li>
+</ol>
+<p>There are reasons for these two crazy happenings, which I discovered:</p>
+<ol>
+<li>The <code>checked</code> binding bases its value on the <em>element's</em> value, which is stored as a string.</li>
+<li>The <code>value</code> binding keeps the property you are bound to and the <em>element's value</em> in-sync, which is why your model's ID becomes a string.</li>
+</ol>
+<p>It turns out, we're suffering from some mental model breakdown. If you look at the KO documentation for <code>checked</code>, it's easy to believe the above syntax should work, after all, it says:</p>
+<blockquote class="blockquote">
+<p>Special consideration is given if your parameter resolves to an array. In this case, KO will set the element to be checked if the <strong>value</strong> matches an item in the array, and unchecked if it is not contained in the array.</p>
+</blockquote>
+<p>If the <em>value</em> matches... &quot;Cool!&quot; so I can just bind the <code>value:</code> to my model property? NOPE. You'll run into the aforementioned issues if you try.</p>
+<h3 id="making-a-smarter-checked-binding">Making a smarter <code>checked</code> binding</h3>
+<p>Since I didn't want to add <code>isSelected</code> properties everywhere, I decided to &quot;monkey patch&quot; the <code>checked</code> and <code>value</code> bindings to play nice together.</p>
+<p>Essentially, all my patch does is two things:</p>
+<ol>
+<li>In the <code>checked</code> binding, if it finds a <code>value</code> binding, it binds to that value rather than the element's value.</li>
+<li>In the <code>value</code> binding, it completely ignores any changes if the <code>checked</code> binding is present, essentially nullifying the binding.</li>
+</ol>
+<p>Here are the new binding definitions:</p>
+<script src="https://gist.github.com/4418574.js"></script>
+<p>And you can see it in action here:</p>
+<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/kamranayub/G8YZU/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<p>As you can see, now it works as you'd expect! You can bind the <code>id</code> property to the list. You can also bind <code>$data</code> and you'll have the full object in your selected list.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '61';
+    var disqus_title = 'A Smarter `checked` Binding for KnockoutJS';
+    var disqus_url = 'https://kamranicus.com/posts/2012-12-31-a-smarter-checked-binding-for-knockoutjs';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

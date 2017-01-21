@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Extending PowerShell Pester with Custom Assertions</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Extending PowerShell Pester with Custom Assertions" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2016-08-16-posh-pester-extend-custom-assertions" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Extending PowerShell Pester with Custom Assertions
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Wednesday, August 17, 2016<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/oss" class="ui inverted small compact button">OSS</a>
+                    <a role="button" href="/tags/powershell" class="ui inverted small compact button">PowerShell</a>
+                    <a role="button" href="/tags/testing" class="ui inverted small compact button">Testing</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p>After the initial release of <a href="http://kamranicus.com/blog/2016/08/12/posh-openweathermap-powershell-module/">my OpenWeatherMap PowerShell module</a> I decided it might be a good idea to write some tests. This was my first time using <a href="https://github.com/pester/Pester">Pester</a>, a BDD-style testing framework for PowerShell. Coming from <a href="http://jasmine.github.io/">Jasmine</a> Javascript unit testing, I felt right at home.</p>
+<!-- More -->
+<p>Now because my module deals a lot with dates, I wanted to use an assertion that simplified some of the logic of testing a date. For example, this is what it looks like validating a DateTime:</p>
+<pre><code class="language-powershell">$Result.Time.Year   | Should Be 2015
+$Result.Time.Month  | Should Be 8
+$Result.Time.Day    | Should Be 15
+
+$Result.Time.Hour   | Should Be 13
+$Result.Time.Minute | Should Be 56
+$Result.Time.Second | Should Be 32
+</code></pre>
+<p>The other way would be to compare formatted date strings:</p>
+<pre><code class="language-powershell">$Result.Time.ToString(&quot;MM/dd/yyyy HH:mm:ss&quot;) | Should Be &quot;08/15/2015 13:56:32&quot;
+</code></pre>
+<p>Which is fine. However, using it as a learning opportunity, I wanted to write my own assertion for Pester, <code>BeDate</code> so I could do:</p>
+<pre><code class="language-powershell">$Result.Time | Should BeDate &quot;08/15/2015 13:56:32&quot;
+</code></pre>
+<p>In C# using NUnit or MSTest, writing custom assertions is pretty straightforward. However, Pester essentially uses a convention where it loads up commands in its module starting with <code>Pester</code> and also having a couple failure message handlers.</p>
+<p>So, for example, our <code>BeDate</code> assertion is defined as:</p>
+<pre><code class="language-powershell">Function PesterBeDate($Value, $Expected) {
+    $Expected = [System.DateTime]::Parse($Expected)
+
+    $Value.Year   | Should Be $Expected.Year
+    $Value.Month  | Should Be $Expected.Month
+    $Value.Day    | Should Be $Expected.Day
+
+    $Value.Hour   | Should Be $Expected.Hour
+    $Value.Minute | Should Be $Expected.Minute
+    $Value.Second | Should Be $Expected.Second
+}
+
+Function PesterBeDateFailureMessage($Value, $Expected) {
+    if (-not (($expected -is [string]) -and ($value -is [System.DateTime])))
+    {
+        return &quot;Expected: {$expected}`nBut was:  {$value}&quot;
+    }
+    
+    return &quot;Expected: $Expected\nBut was: $($Value.ToString('MM/dd/YYYY h:mm:ss'))&quot;
+}
+
+Function NotPesterBeDateFailureMessage($Value, $Expected) {
+    return PesterBeDateFailureMessage -Value $Value -Expected $Expected
+}
+</code></pre>
+<p>Now, I don't actually think my <code>PesterBeDateFailureMessage</code> cmdlet ever runs because I'm using the basic <code>Be</code> assertion but whatever--this is the convention.</p>
+<p>So, how we do we get Pester to see these functions? Well, like I said, it searches for the assertions <strong>in the scope of the module</strong>. That means if I define these in my own file, it won't see them.</p>
+<h2 id="defining-functions-inside-a-modules-scope">Defining functions inside a module's scope</h2>
+<p>We can use a weird PowerShell &quot;hack&quot; to actually declare these functions <em>inside the scope of the Pester module</em> if we want.</p>
+<pre><code class="language-powershell">$pesterModule = Import-Module Pester -PassThru
+
+. $pesterModule {
+    function PesterBeDate { }
+    # etc
+}
+</code></pre>
+<p>This is what Dave Wyatt suggested <a href="https://github.com/pester/Pester/issues/590#issuecomment-239977094">when I asked about it</a>. Cool, we <strong>could</strong> do that but I would prefer if we could keep my custom assertions separated from my tests since I'd have to include this in my <strong>.Tests.ps1</strong> files.</p>
+<h2 id="using-local-modules-and-extending-pester">Using local modules and extending Pester</h2>
+<p>The  implication the previous solution has is that the caller (user) has Pester installed globally. Over the years, as a programming community we decided that's a sub-optimal outlook on life hence we have package managers like Nuget and NPM. To my knowledge, there's not yet a <code>package.json</code> equivalent to a PowerShell &quot;project&quot; besides the Module Manifest (psd1). Ideally, I would be able to type <code>Install-Module</code> in the current directory, PowerShellGet would identify the dependencies (perhaps from psd1 manifest?), and download them. Alas, it doesn't so we can do it ourselves.</p>
+<p>To achieve maximum contributability (is that a word?) I decided to roll my own little build script that would bring down the Pester module locally to the project and then extend Pester's assertions by manually copying in my own code.</p>
+<p>This only takes a few lines of Powershell:</p>
+<pre><code class="language-powershell">$PesterVersion = '3.4.2'
+
+# Save-module locally
+Save-Module -Name Pester -Path '.modules\' -RequiredVersion $PesterVersion
+
+# Copy custom assertions
+Copy-Item -Path '.\Assertions\*.ps1' -Destination &quot;.\.modules\Pester\$PesterVersion\Functions\Assertions&quot;
+
+# Import local Pester module so we can extend built-in assertions
+Import-Module &quot;.\.modules\Pester\$PesterVersion\Pester.psd1&quot;
+
+# Run tests
+Invoke-Pester -Script &quot;.\OpenWeatherMap.Tests.ps1&quot;
+</code></pre>
+<p>So this is fairly straightforward:</p>
+<ol>
+<li>Use <code>Save-Module</code> cmdlet to unzip and copy the Pester module locally to a <strong>.modules</strong> folder that we'll exclude from source control</li>
+<li>Copy my <code>*.ps1</code> assertion files under *<em>Assertions*</em> to the local Pester assertions directory</li>
+<li>Import the local Pester module explicitly (this will load our new assertions)</li>
+<li>Invoke Pester on our test script (if you don't qualify it, it will run all the tests in the Pester module also!)</li>
+</ol>
+<p>Now we achieve both desired effects:</p>
+<ol>
+<li>Our repository is now self-contained and can be contributed to without any global dependencies (besides PowerShell 5)</li>
+<li>We can keep our custom assertions separated</li>
+</ol>
+<p>If you want to see the final product, <a href="https://github.com/kamranayub/posh-openweathermap">give my OpenWeatherMap module a gander</a>!</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = 'http://kamranicus.com/blog/2016/08/17/posh-pester-extend-custom-assertions/';
+    var disqus_title = 'Extending PowerShell Pester with Custom Assertions';
+    var disqus_url = 'https://kamranicus.com/posts/2016-08-16-posh-pester-extend-custom-assertions';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

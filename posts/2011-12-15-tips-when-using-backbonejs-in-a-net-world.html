@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Tips When Using Backbone.js in a .NET world</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Tips When Using Backbone.js in a .NET world" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2011-12-15-tips-when-using-backbonejs-in-a-net-world" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Tips When Using Backbone.js in a .NET world
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Friday, December 16, 2011<br>    </div>
+        <div class="ui basic vertical spaced segment">
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p>I am learning <a href="http://documentcloud.github.com/backbone/">Backbone.js</a> so I can re-write the main GUI for <a href="http://keeptrackofmygames.com">KTOMG</a>. I am still learning and I've run into a couple gotchas that I hope I can clear up for anyone else that dares to tread in these woods. Still, I've been able to rewrite the listing of a user's library in one night using Backbone and all my existing back-end code (the farthest up I edited was my controller). Very impressive for a Backbone n00b!</p>
+<h2 id="backbone-is-your-application">Backbone IS your application</h2>
+<p>After watching the <a href="http://peepcode.com/products/backbone-iii">PeepCode screencasts</a> (I, II, and III), I have realized something about Backbone.</p>
+<blockquote class="blockquote">
+<p>Backbone will pretty much replace your MVC views and controller logic.</p>
+</blockquote>
+<p>This didn't hit me until the last episode and at first, this felt threatening. I am working in ASP.NET MVC and it feels wrong to not utilize it. After thinking about it some more, however, there were a few important points to consider:</p>
+<ol>
+<li>Backbone doesn't <em>necessarily</em> have to be your whole app. In fact, right now I am only using Backbone for the main &quot;library&quot; interface and I am keeping the rest of the site in plain-old MVC 3.</li>
+<li>You still use your controllers and could even use your Razor views as HTML templates.</li>
+</ol>
+<p>Considering those points, I felt a lot better about using Backbone. Not only will it be a great experience, it'll also make the most important part of my application very responsive and robust, without needing to worry a ton about the plumbing.</p>
+<p>Who knows? Maybe KTOMG will be running on Node.js by the end of the month.</p>
+<h2 id="tips-when-using-backbone-with-asp.net-mvc">Tips When Using Backbone with ASP.NET MVC</h2>
+<p>There were a few gotchas I ran into when using Backbone in my typical .NET environment.</p>
+<h3 id="use-attributerouting-like-now">Use AttributeRouting, like, now</h3>
+<p><a href="https://github.com/mccalltd/AttributeRouting">AttributeRouting</a> is one of my new favorite packages. It axes the mostly-confusing, mostly-convoluted Global.asax way of handling routes in favor of a more-discoverable (I feel) way of doing routes by decorating actual controller methods:</p>
+<pre><code class="language-c#">using AttributeRouting;
+
+[RoutePrefix(&quot;games&quot;)]
+public class GamesController : Controller {
+  
+  //
+  // GET: /games/
+
+  [GET(&quot;&quot;)
+  public ActionResult Index() {}
+
+  //
+  // POST: /games/
+
+  [POST(&quot;&quot;)
+  public ActionResult New(Model model) {}
+
+}
+</code></pre>
+<p>Hopefully you will see why this is useful. Backbone is opinionated in that it assumes you're using a RESTful interface for your API. In normal vanilla MVC, this could turn your Global.asax into a routing nightmare. However, with AttributeRouting, it's easy! Here's an example of a <a href="http://stackoverflow.com/a/6263133/109458">Backbone-compatible REST controller</a>:</p>
+<pre><code class="language-c#">using AttributeRouting;
+
+[RoutePrefix(&quot;api/games&quot;)]
+public class GamesApiController : Controller {
+	
+	//
+	// GET: /api/games/
+	
+	[GET(&quot;&quot;)]
+	public JsonResult Index() {}
+
+	//
+	// POST: /api/games/
+	
+	[POST(&quot;&quot;)]
+	public JsonResult Create() {}
+	
+	//
+	// GET: /api/games/{id}
+	
+	[GET(&quot;{id}&quot;)]
+	public JsonResult Show(int id) {}
+	
+	//
+	// PUT: /api/games/{id}
+	
+	[PUT(&quot;{id}&quot;)]
+	public JsonResult Update(int id) {}
+	
+	//
+	// DELETE: /api/games/{id}
+	
+	[DELETE(&quot;{id}&quot;)]
+	public JsonResult Delete(int id) {}
+	
+}
+</code></pre>
+<p>Good fodder for a T4 template. If you have a larger site, consider using an <code>Api</code> MVC Area for cleaner separation.</p>
+<h3 id="be-careful-when-serializing-your-objects">Be careful when serializing your objects</h3>
+<p>I ran into two gotchas with serializing my objects.</p>
+<p>First, if you have an <code>Id</code> property/field, Backbone will not be happy. <strike>It needs to be lowercase id</strike>. You should utilize the <a href="https://github.com/documentcloud/backbone/blob/master/backbone.js#L153https://github.com/documentcloud/backbone/blob/master/backbone.js#L153"><code>idAttribute</code></a> option on your Backbone model to override the property name. It took me forever to figure out why nothing was happening when I deleted a model.</p>
+<pre><code class="language-js">class MyModel extends Backbone.Model
+  idAttribute: &quot;Id&quot;
+</code></pre>
+<p>Second, if you are going to serialize EF entities when proxying or lazy-loading is enabled, you need to use a serialization framework like <a href="http://json.codeplex.com/">JSON.NET</a> <strong>or</strong> you need to make flat DTO objects (or view models). I opted for the latter approach first because it was quick, but I am in the process of implementing JSON.NET to do serialization of my entities for me.</p>
+<p>For EF serialization, you need to use a custom <code>ContractResolver</code>. I borrowed <a href="http://stackoverflow.com/questions/6991596/serializing-ef4-1-entities-using-json-net">this one</a>. Furthermore, I also needed to set the <code>ReferenceLoopHandling</code> to <code>Ignore</code> on a new <code>JsonSerializerSettings</code> object so it would avoid circular references.</p>
+<p>Finally, this is optional but considering the first gotcha, I highly recommend you inherit the EF contract resolver above from <code>CamelCasePropertyNamesContractResolver</code> so your JSON is serialized with camelCase properties.</p>
+<h3 id="consider-leveraging-razoraspx-partial-views-for-your-templates">Consider leveraging Razor/ASPX partial views for your templates</h3>
+<p>I haven't actually tried this, but I don't see why it wouldn't work. In a Backbone project you'll typically have plenty of templates. Right now I have 3 but I expect it to grow quite a bit in the future. I was planning on moving all these templates to <code>.cshtml</code> files and then using <code>&#64;Html.Partial(&quot;_TemplateName&quot;)</code> to include them in my main layout. I may even create a small extension method to wrap that in a <code>&lt;script&gt;</code> tag. I will update this post if I do.</p>
+<p>If you happen to be working on an OSS project, you should be using <a href="http://getcassette.net">Cassette</a> because it can package up your HTML/Knockout templates and <a href="http://getcassette.net/documentation/html-templates">include them all in your page for you</a> <strong>automagically</strong>. If I wasn't using AppHarbor and I was using a dedicated server, I would buy Cassette in a second. I wish they had per-site licenses.</p>
+<h3 id="use-those-organization-skills">Use those organization skills</h3>
+<p>ASP.NET MVC comes with a friendly and intuitive file layout out-of-the-box:</p>
+<pre><code>Project
+ |_ Controllers
+ |_ Models
+ |_ Scripts
+ |_ Styles
+ |_ Views
+</code></pre>
+<p>I've shortened mine, plus I've made my scripts directory a bit more Backbone friendly:</p>
+<pre><code>Project
+ |_ Controllers
+ |_ Models
+ |_ Public
+   |_ Images
+   |_ Scripts
+     |_ App
+       |_ Collections.coffee
+       |_ Backbone CoffeeScript files
+     |_ Framework (or Vendor)
+   |_ scss files...
+ |_ Views
+</code></pre>
+<p>It's up to you how you like to organize, and perhaps you'd even like to separate it further down into modules.</p>
+<h3 id="learn-coffeescript-and-sass">Learn CoffeeScript and SASS</h3>
+<p>This technically does not have anything to do with .NET or Backbone. However, your life will be <em>easier</em> if you learn CoffeeScript as that makes using Backbone that much more pleasant:</p>
+<pre><code>class GameView extends Backbone.View
+  className: 'game'
+  template: _.template($(&quot;#game-template&quot;).html())
+
+  initialize: (options) -&gt; 
+    &#64;model.bind 'change', &#64;render, &#64;
+
+  render: -&gt; 
+    $(&#64;el).html &#64;template()
+    &#64; # Never forget this line in render() or you'll regret it
+</code></pre>
+<p>(<em>Disclaimer:</em> This is not real and won't run; it's meant as an illustration of Backbone in CoffeeScript)</p>
+<p>It's much nicer to write in Backbone without all those pesky parenthesis and manual <code>bindAll</code> or <code>extend</code> shenanigans. Again, I'd recommend <a href="http://peepcode.com/products/coffeescript">PeepCode's CoffeeScript screencast</a>, that's about all it takes to learn it properly.</p>
+<p><img src="http://www.mindscapehq.com/upload/web-workbench/preview.png" class="img-fluid" alt="Mindscape Example" /></p>
+<p>If you do decide to take the plunge (it's worth it!), get yourself <a href="http://www.mindscapehq.com/products/web-workbench">Mindscape Web Workbench</a> and you'll be a much happier camper when working with Coffee, SASS, and LESS in Visual Studio.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '26';
+    var disqus_title = 'Tips When Using Backbone.js in a .NET world';
+    var disqus_url = 'https://kamranicus.com/posts/2011-12-15-tips-when-using-backbonejs-in-a-net-world';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

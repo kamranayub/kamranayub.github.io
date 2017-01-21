@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Using Azure CDN Origin Pull With Cassette</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Using Azure CDN Origin Pull With Cassette" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2015-10-09-azure-cdn-cassette" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Using Azure CDN Origin Pull With Cassette
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Saturday, October 10, 2015<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/net" class="ui inverted small compact button">.NET</a>
+                    <a role="button" href="/tags/azure" class="ui inverted small compact button">Azure</a>
+                    <a role="button" href="/tags/c%23" class="ui inverted small compact button">C#</a>
+                    <a role="button" href="/tags/keep-track-of-my-games" class="ui inverted small compact button">Keep Track of My Games</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p><strong>Update (Feb 2016)</strong>: Updated to use new CDN Profiles.</p>
+<p>For the October update for <a href="http://keeptrackofmygames.com">Keep Track of My Games</a> I wanted to offload my web assets to a CDN. Since I'm already using <a href="http://azure.com">Microsoft Azure</a> to host the site, I decided to use <a href="https://azure.microsoft.com/en-us/documentation/articles/cdn-how-to-use-cdn/">Azure CDN</a>.</p>
+<p>I set it up for &quot;Origin Pull&quot; which means that instead of uploading my assets to the CDN (Azure Blob storage), you request a file from the CDN and Azure will go and get it from your website and then cache it on their servers.</p>
+<p>So as an example:</p>
+<pre><code>User requests http://mysite.azureedge.net/stylesheets/foo.png
+|
+|
+CDN: have I cached &quot;stylesheets/foo.png?&quot;
+  Yes: Serve content from edge cache (closest to user)
+  No: Request http://yourwebsites.com/stylesheets/foo.png and serve
+</code></pre>
+<p>You can read more about <a href="https://azure.microsoft.com/en-us/documentation/articles/cdn-create-new-endpoint/">how to set up origin pull in Azure CDN</a>. In my case, I used &quot;Custom Origin&quot; of &quot;<a href="http://keeptrackofmygames.com%22.">http://keeptrackofmygames.com&quot;.</a></p>
+<h2 id="using-cdn-with-cassette">Using CDN with Cassette</h2>
+<p>I use the .NET library <a href="http://getcassette.com">Cassette</a> for bundling &amp; minification for KTOMG--when I started KTOMG there was no Microsoft provided option and Cassette has been really stable.</p>
+<p>It works pretty much as you'd expect:</p>
+<ul>
+<li>Define &quot;bundles&quot; which are sets of scripts/stylesheets</li>
+<li>Render bundles onto page(s)</li>
+<li>If debug mode, render individually otherwise minify and concatenate</li>
+</ul>
+<p>By default, Cassette will render URLs like this in your source code:</p>
+<p>In debug mode:</p>
+<pre><code>Bundle: ~/Content/core
+
+- /cassette.axd/asset/Content/bootstrap.css?hash
+- /cassette.axd/asset/Content/site.css?hash
+- /cassette.axd/asset/Content/app.css?hash
+</code></pre>
+<p>And in production:</p>
+<pre><code>/cassette.axd/stylesheet/{hash}/Content/core
+</code></pre>
+<p>But if we want to serve assets over the CDN, we need to plug in our special CDN URL prefix--not only for script/stylesheet references but also references to images <em>in</em> those files.</p>
+<p>Luckily, Cassette provides a facility to modify generated URLs by letting you register a <code>IUrlGenerator</code>. Here's my full implementation of this for my CDN:</p>
+<script src="https://gist.github.com/kamranayub/2da4ccfec3e7812c8367.js"></script>
+<p>As you can see, I register a custom <code>IUrlGenerator</code> and a custom <code>IUrlModifier</code>. The default <code>IUrlModifider</code> is Cassette's <code>VirtualDirectoryPrepender</code> and it just prepends &quot;/&quot; to the beginning of every URL but in our case we want to conditionally prepend the Azure CDN endpoint in production.</p>
+<p>In production, this will produce the following output:</p>
+<pre><code>https://mysite.azureedge.net/cassette.axd/stylesheet/{hash}/Content/core
+</code></pre>
+<p>To allow local debugging and CDN in production I just use an app setting in the web.config. In Azure, I also add an application setting (<code>CdnUrl</code>) through the portal in my production slot with the correct CDN URL and voila--all my assets will now be served over CDN.</p>
+<h3 id="notes">Notes</h3>
+<ul>
+<li><p>Azure CDN does not yet support HTTPS for custom origin domains. So if you want to serve content over <a href="http://static.yoursite.com">http://static.yoursite.com</a> you can't serve it over HTTPS because Azure doesn't allow you to upload or set a SSL certificate to use and insteads uses their own certificate which is not valid for your domain. <a href="http://feedback.azure.com/forums/169397-cdn/suggestions/1332683-allow-https-for-custom-cdn-domain-names">Vote up the UserVoice issue</a> on this.</p>
+</li>
+<li><p>Azure CDN will serve your entire site, not just assets. There may be a way to prevent browsing the site over CDN (i.e. &quot;assets only&quot;). <a href="https://social.msdn.microsoft.com/Forums/en-US/azurecdn/thread/055bb85f-0bde-4710-8c4d-bce122d5938c/">See this MSDN thread</a>. I have not yet implemented the proposed fix.</p>
+</li>
+<li><p>I am choosing <strong>not</strong> to point my entire domain to the CDN. Some folks choose to serve their entire site over the CDN which is definitely something you can do. However, in my case, I didn't want to do that. If you instead chose to point your domain to the CDN endpoint, you don't need to do any of this--<strong>everything</strong> will be served over the CDN. However, note that if your site is highly dynamic this results in a double hop--once to CDN, once to the origin, so you will not see much benefit unless your entire site is mostly static.</p>
+</li>
+</ul>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = 'http://kamranicus.com/blog/2015/10/10/azure-cdn-cassette/';
+    var disqus_title = 'Using Azure CDN Origin Pull With Cassette';
+    var disqus_url = 'https://kamranicus.com/posts/2015-10-09-azure-cdn-cassette';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

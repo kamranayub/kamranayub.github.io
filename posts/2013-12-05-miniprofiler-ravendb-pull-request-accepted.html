@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - MiniProfiler RavenDB Pull Request Accepted</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - MiniProfiler RavenDB Pull Request Accepted" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2013-12-05-miniprofiler-ravendb-pull-request-accepted" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      MiniProfiler RavenDB Pull Request Accepted
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Thursday, December 5, 2013<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/github" class="ui inverted small compact button">GitHub</a>
+                    <a role="button" href="/tags/oss" class="ui inverted small compact button">OSS</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p>I just got a notification that my <a href="https://github.com/MiniProfiler/dotnet/pull/15">pull request</a> for
+adding RavenDB support to MiniProfiler went through! It's always really cool to see your contributions
+get pulled in. The MiniProfiler guys were really easy-going, <a href="https://github.com/yellis">&#64;yellis</a> was even kind enough to take on
+the testing. That kind of acceptance for pull requests is great to see because it makes me feel good
+about contributing and is a bit less intimidating.</p>
+<!-- More -->
+<p>The &quot;official&quot; MiniProfiler RavenDB plugin does several things:</p>
+<ul>
+<li>Integrates with all existing MiniProfiler settings</li>
+<li>Displays the query duration just like you'd expect in a separate raven column
+<ul>
+<li>This let's you see the raven percentage individually just like SQL</li>
+<li>It matches the experience of using EF with MiniProfiler exactly</li>
+</ul>
+</li>
+<li>Allows you to dig into the exact request details ala EF integration</li>
+<li>(not included) It's possible to also include the <em>results</em> of the request but in my pull request I don't because it was way too much
+overhead to include the full response in the web interface (displaying 50 complex objects in JSON slowed down the UI too much)
+<ul>
+<li>You can just copy the query to see the results in Raven Studio anyway</li>
+<li>Possibly you could just display the query URL and open the request in a new tab</li>
+</ul>
+</li>
+</ul>
+<p>I have only just begun my exploration of RavenDB but one of the downsides from moving from EF was
+the excellent MiniProfiler integration. I was really surprised to find adding the same level
+of support to Raven was pretty straightforward in the latest iteration of MiniProfiler.</p>
+<p>There are two packages I found that added profiling to Raven, the <a href="https://github.com/ravendb/ravendb/tree/master/Raven.Client.MvcIntegration">&quot;official&quot; Raven profiler</a> and another
+<a href="http://blog.csainty.com/MvcMiniProfiler.RavenDb/">MiniProfiler plugin</a>, but both of those are lacking. The official one didn't seem to handle AJAX requests
+and the other only seemed to add profiling steps; it didn't provide any details about the request.
+I wanted <strong>full</strong> integration with MiniProfiler on the same level as EF and I didn't want to enable <em>two</em> profilers at once. I was
+already using MiniProfiler to profile my MVC app, I didn't want to enable Raven Profiler and MiniProfiler
+at the same time.</p>
+<p>There is <a href="https://github.com/ravendb/ravendb.contrib/tree/master/src/Raven.Client.Contrib.Profiling">a RavenDb.Contrib project</a> that added MiniProfiler integration on the level I wanted, but unfortunately it was not integrated
+tightly into the MiniProfiler codebase (it was using reflection and other hacks) and it also was not built against the latest version of the codebase
+that simplified the steps to create a new custom timing. Still, credit is due, because some of the formatting logic and general direction of my pull
+request was taken from that contrib project.</p>
+<p>I do not know what the release schedule is like for the next version of MiniProfiler, but I have my
+RavenDB-based branch compiled and am using it for my site currently. You can bring down my fork
+and compile it yourself too, if you're really interested in using it right now.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = 'http://kamranicus.com/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/';
+    var disqus_title = 'MiniProfiler RavenDB Pull Request Accepted';
+    var disqus_url = 'https://kamranicus.com/posts/2013-12-05-miniprofiler-ravendb-pull-request-accepted';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+	<channel>
+		<title>Kamranicus</title>
+		<link>https://kamranicus.com/</link>
+		<description>Kamran Ayub</description>
+		<copyright>2017</copyright>
+		<pubDate>Sat, 21 Jan 2017 23:36:40 GMT</pubDate>
+		<lastBuildDate>Sat, 21 Jan 2017 23:36:40 GMT</lastBuildDate>
+		<item>
+			<title>Site Down Alerts using Azure App Insights and Zapier</title>
+			<link>https://kamranicus.com/posts/2017-01-10-azure-alerts-zapier-sms</link>
+			<description>&lt;p&gt;It's &lt;a href="https://twitter.com/jordan_belinsky/status/818967360132513792"&gt;happened again&lt;/a&gt;. Even though I &lt;em&gt;do&lt;/em&gt; get emailed whenever &lt;a href="http://ktomg.com"&gt;KTOMG&lt;/a&gt; goes down, I don't pay attention to my email 24/7 and the site can be down for a bit until I realize it. In this case, I was cooking and wasn't at my computer or on my phone. The Twitter notification by a friendly user actually got me to check!&lt;/p&gt;
+&lt;p&gt;I know this is one of the headaches &lt;a href="https://kamranicus.com/blog/2016/10/18/ravendb-standard-non-commercial-license/"&gt;I willingly signed up for&lt;/a&gt; by moving to my own VM--and even though I get emailed when the site's down I hate not knowing that &lt;strong&gt;immediately&lt;/strong&gt;.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2017-01-10-azure-alerts-zapier-sms</guid>
+			<pubDate>Wed, 11 Jan 2017 02:01:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>2016: A Year in Review</title>
+			<link>https://kamranicus.com/posts/2017-01-02-year-in-review</link>
+			<description>&lt;p&gt;Another year has passed and it's time to take a look back and see what I accomplished!&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2017-01-02-year-in-review</guid>
+			<pubDate>Tue, 03 Jan 2017 00:32:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Working with Packt Publishing to Create a TypeScript Video Course</title>
+			<link>https://kamranicus.com/posts/2016-10-30-new-packt-publishing-typescript-course</link>
+			<description>&lt;p&gt;&lt;img src="https://cloud.githubusercontent.com/assets/563819/19837411/1ccc4910-9e87-11e6-8d0a-7d5b17711785.png" class="img-fluid" alt="Packt"&gt;&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2016-10-30-new-packt-publishing-typescript-course</guid>
+			<pubDate>Sun, 30 Oct 2016 15:45:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Thoughts on Upgrading to a Dedicated Raven Standard Instance</title>
+			<link>https://kamranicus.com/posts/2016-10-17-ravendb-standard-non-commercial-license</link>
+			<description>&lt;p&gt;As you may know, I use the NoSQL RavenDB database to power my hobby project &lt;a href="http://ktomg.com"&gt;Keep Track of My Games&lt;/a&gt;. I really like the development workflow and the way it has simplified a lot of my data access logic. Right now I use the hosted &lt;a href="http://ravenhq.com"&gt;RavenHQ&lt;/a&gt; solution for my two databases (staging and production). I've been doing that for some time now for a few reasons:&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2016-10-17-ravendb-standard-non-commercial-license</guid>
+			<pubDate>Tue, 18 Oct 2016 00:11:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Extending PowerShell Pester with Custom Assertions</title>
+			<link>https://kamranicus.com/posts/2016-08-16-posh-pester-extend-custom-assertions</link>
+			<description>&lt;p&gt;After the initial release of &lt;a href="http://kamranicus.com/blog/2016/08/12/posh-openweathermap-powershell-module/"&gt;my OpenWeatherMap PowerShell module&lt;/a&gt; I decided it might be a good idea to write some tests. This was my first time using &lt;a href="https://github.com/pester/Pester"&gt;Pester&lt;/a&gt;, a BDD-style testing framework for PowerShell. Coming from &lt;a href="http://jasmine.github.io/"&gt;Jasmine&lt;/a&gt; Javascript unit testing, I felt right at home.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2016-08-16-posh-pester-extend-custom-assertions</guid>
+			<pubDate>Wed, 17 Aug 2016 02:10:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>OpenWeatherMap PowerShell Module</title>
+			<link>https://kamranicus.com/posts/2016-08-11-posh-openweathermap-powershell-module</link>
+			<description>&lt;p&gt;There's no better to way to learn something new than to make a thing. Yesterday I had a strong desire to know what the weather was like from my command prompt. I can't explain it--I just had to and I thought, "Hey, it can't be that bad, right?" I decided to try writing and releasing an open-source PowerShell module.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2016-08-11-posh-openweathermap-powershell-module</guid>
+			<pubDate>Fri, 12 Aug 2016 00:15:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Demystifying TypeScript at Midwest.js</title>
+			<link>https://kamranicus.com/posts/2016-08-11-midwestjs-demystifying-typescript</link>
+			<description>&lt;p&gt;Today I was excited to give a talk at &lt;a href="http://midwestjs.com"&gt;Midwest.js&lt;/a&gt; about &lt;a href="http://kamranicus.com/presentations/demystifying-typescript"&gt;Demystifying TypeScript&lt;/a&gt;. This is not the first time I've given the talk, it's actually the &lt;strong&gt;fourth&lt;/strong&gt; time. Instead of leaving it stale I revamped the theme and updated all the information to be current as of today--including information about &lt;a href="https://babeljs.io/"&gt;Babel.js&lt;/a&gt; and &lt;a href="https://flowtype.org/"&gt;Flow&lt;/a&gt;.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2016-08-11-midwestjs-demystifying-typescript</guid>
+			<pubDate>Fri, 12 Aug 2016 00:09:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>ASP.NET Core Sample Demo Game</title>
+			<link>https://kamranicus.com/posts/2016-07-31-aspnet-core-demo-game</link>
+			<description>&lt;p&gt;At General Mills we do semi-annual code camps where the developer organization gets together for a half-day of talks and fun. This past code camp myself and my partner in crime, &lt;a href="http://twitter.com/erikonarheim"&gt;Erik Onarheim&lt;/a&gt; gave a talk around ASP.NET Core. It's part of our roadmap to be familiar with hosting ASP.NET Core so we wanted to build something and showcase to developers what's changed in Core vs. the typical Framework application.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2016-07-31-aspnet-core-demo-game</guid>
+			<pubDate>Sun, 31 Jul 2016 18:05:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Adding Subresource Integrity support to Cassette .NET</title>
+			<link>https://kamranicus.com/posts/2016-05-07-cassette-subresource-integrity-sri</link>
+			<description>&lt;p&gt;If you aren't familiar with &lt;a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity"&gt;Subresource Integrity&lt;/a&gt;, it's a browser-based security measure to protect embedded content like scripts and stylesheets using a file content hash to help protect against XSS attacks.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2016-05-07-cassette-subresource-integrity-sri</guid>
+			<pubDate>Sun, 08 May 2016 05:13:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Designing Hexshaper, a game for the Ludum Dare 35 Game Jam</title>
+			<link>https://kamranicus.com/posts/2016-04-21-ludum-dare-35-game-jam</link>
+			<description>&lt;p&gt;This last weekend I took part in the global &lt;a href="http://ludumdare.com"&gt;Ludum Dare 35&lt;/a&gt; game jam. If you've been following me for awhile, you know I've participated in the past too. This time we &lt;a href="http://excaliburjs.com/ludum-35"&gt;made a game called Hexshaper&lt;/a&gt;--where the goal is to fly around, absorbing magic to seal portals to another dimension to prevent monsters from overtaking the world. The backstory, while not communicated directly, informed our design--but it wasn't like that at first.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2016-04-21-ludum-dare-35-game-jam</guid>
+			<pubDate>Sun, 08 May 2016 02:10:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>TypeScript in Action at Twin Cities Code Camp 20 (TCCC20)</title>
+			<link>https://kamranicus.com/posts/2016-04-11-tccc20-typescript-in-action</link>
+			<description>&lt;p&gt;&lt;strong&gt;Update (4/20/16)&lt;/strong&gt;: The presentation is now up on &lt;a href="https://www.youtube.com/watch?v=eeh-FcC6Sew"&gt;YouTube&lt;/a&gt; (and &lt;a href="http://kamranicus.com/presentations/typescript-in-action/#/"&gt;the slides&lt;/a&gt;).&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2016-04-11-tccc20-typescript-in-action</guid>
+			<pubDate>Mon, 11 Apr 2016 18:38:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Generating an Encryption Certificate for PowerShell DSC in WMF5</title>
+			<link>https://kamranicus.com/posts/2016-04-04-wmf5-powershell-dsc-generating-encryption-certificate</link>
+			<description>&lt;p&gt;I'm currently building out a PowerShell DSC pull server cluster at work. If you aren't familiar with DSC, I'll talk more about it in an upcoming post that ties it all together. The long and short of it is that DSC is a way to store configuration as code and automate the configuration of many servers at once.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2016-04-04-wmf5-powershell-dsc-generating-encryption-certificate</guid>
+			<pubDate>Tue, 05 Apr 2016 03:43:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>See you at Build 2016</title>
+			<link>https://kamranicus.com/posts/2016-03-10-attending-build-2016</link>
+			<description>&lt;p&gt;I love attending conferences. At the end of the month I'll be attending &lt;a href="http://buildwindows.com"&gt;Build 2016&lt;/a&gt;. Build is the annual Microsoft conference. At the end of January me and some friends &lt;a href="https://www.instagram.com/p/BBJQ-PTuIzZ"&gt;attended PAX South&lt;/a&gt; in San Antonio and it was a blast (not for work). A gaming convention has a different air than a developer conference. There's a certain energy and it's very motivating being around fellow developers, learning new tech, and seeing what's new. I've attended Build several times in the past and it's always been fun--especially &lt;a href="http://kamranicus.com/blog/posts/7/mix-11-day-2-kinects-celebrities-kings-and-clubbin/"&gt;when you meet coding "celebs"&lt;/a&gt;. Usually I take my wife even though she doesn't attend the conference, we will typically stay longer. This year, not only will she be joining but our friend will be coming as well--both of them will be traipsing around San Francisco while I and a few coworkers will attend the conference. My partners in crime, &lt;a href="http://twitter.com/erikonarheim"&gt;Erik&lt;/a&gt; &amp;amp; &lt;a href="http://twitter.com/alangrgic"&gt;Alan&lt;/a&gt;, will be joining me so it'll be a &lt;em&gt;ton&lt;/em&gt; of fun (yes, we all work together and yes we &lt;em&gt;just&lt;/em&gt; went to PAX together). Going to a conference is fun, going to a conference &lt;em&gt;with your friends&lt;/em&gt; is even more fun.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2016-03-10-attending-build-2016</guid>
+			<pubDate>Fri, 11 Mar 2016 00:31:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Handling Multiple Origins in CORS Using URL Rewrite</title>
+			<link>https://kamranicus.com/posts/2016-03-06-cors-multiple-origins-iis</link>
+			<description>&lt;p&gt;Here's a quick tip if you're trying to figure out how to handle &lt;a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS"&gt;cross-origin requests (CORS)&lt;/a&gt; when you have multiple origins (namely, HTTP and HTTPS). This works in IIS 8.0 and above, including Azure, as long as you have the &lt;a href="http://www.iis.net/downloads/microsoft/url-rewrite"&gt;URL Rewrite module&lt;/a&gt; installed.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2016-03-06-cors-multiple-origins-iis</guid>
+			<pubDate>Sun, 06 Mar 2016 15:50:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Securing Secrets Using Azure Key Vault and Config Encryption</title>
+			<link>https://kamranicus.com/posts/2016-02-20-azure-key-vault-config-encryption-azure</link>
+			<description>&lt;p&gt;Secrets. We all have them. I'm talking about secrets like your database connection strings, API keys and encryption keys. Where are you storing yours? Are you storing them...&lt;/p&gt;
+
+&lt;p&gt;I hope you aren't storing them hardcoded. You're probably doing option 2 or a hybrid of options 2-4. Even if you use an external data source, it's hard to escape the need for secrets in local development unless you force your app to rely on having connectivity which makes it hard to work offline.&lt;/p&gt;
+&lt;p&gt;In this post I'm going to provide some suggestions on how to store your secrets better using Azure Key Vault and config file encryption, specifically in the context of Azure but the concepts apply to any hosting environment.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2016-02-20-azure-key-vault-config-encryption-azure</guid>
+			<pubDate>Wed, 24 Feb 2016 02:30:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Tools of the Trade 2016</title>
+			<link>https://kamranicus.com/posts/2016-02-08-tools-of-the-trade</link>
+			<description>&lt;p&gt;Sometimes you get so caught up in the work you do on a daily basis that you forget what it was like to start your job on day one--not knowing anything about what tools, extensions, and general utilities you take for granted now, 6 years into your career. It seems like on a monthly basis I find a new extension or utility that is useful to me. I wanted to share my toolbelt, in case it contains something you've never heard of and causes you to exclaim in excitement about something awesome that you'll start using today.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2016-02-08-tools-of-the-trade</guid>
+			<pubDate>Tue, 09 Feb 2016 03:09:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Using Typewriter to Strongly-Type Your Client-Side Models and Services</title>
+			<link>https://kamranicus.com/posts/2016-02-02-typewriter</link>
+			<description>&lt;p&gt;I've recently discovered &lt;a href="http://frhagn.github.io/Typewriter/index.html"&gt;Typewriter for Visual Studio&lt;/a&gt;, a T4-style code-generator specifically meant for generating Typescript files. I've been using it since in all my projects, at work and at home. It's just &lt;strong&gt;so&lt;/strong&gt; good. Let me explain what Typewriter does and why it's so awesome.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2016-02-02-typewriter</guid>
+			<pubDate>Thu, 04 Feb 2016 02:08:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Planet Wars AI Competition with C# and Excalibur.js</title>
+			<link>https://kamranicus.com/posts/2016-01-25-planet-wars-ai-competition-excaliburjs-csharp</link>
+			<description>&lt;p&gt;&lt;img src="https://zippy.gfycat.com/BraveBlushingImpala.gif" class="img-fluid" alt="Planet Wars"&gt;&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2016-01-25-planet-wars-ai-competition-excaliburjs-csharp</guid>
+			<pubDate>Mon, 25 Jan 2016 18:30:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>2015: A Year in Review</title>
+			<link>https://kamranicus.com/posts/2016-01-04-year-in-review</link>
+			<description>&lt;p&gt;2015 was a very eventful (and fulfilling) year for me and my wife. Let's break it down, shall we?&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2016-01-04-year-in-review</guid>
+			<pubDate>Tue, 05 Jan 2016 01:30:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Influencing your Kudu deployment through Git commit messages</title>
+			<link>https://kamranicus.com/posts/2015-12-10-kudu-deployment-flags-in-commit-messages</link>
+			<description>&lt;p&gt;If you're on Windows Azure and using continuous deployment through Git, you may not know you are using an open source platform called
+&lt;a href="https://github.com/projectkudu/kudu"&gt;Kudu&lt;/a&gt; behind-the-scenes that performs your deployment. If this is the first time you've heard of Kudu and you've been
+using Azure for awhile, it's time to &lt;a href="https://github.com/projectkudu/kudu"&gt;get acquainted&lt;/a&gt;. Kudu is amazing. It has a whole REST API that lets you manage
+deployments, trigger builds, trigger webjobs, view processes, a command prompt, and a ton more.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2015-12-10-kudu-deployment-flags-in-commit-messages</guid>
+			<pubDate>Fri, 11 Dec 2015 01:30:00 GMT</pubDate>
+		</item>
+	</channel>
+</rss>

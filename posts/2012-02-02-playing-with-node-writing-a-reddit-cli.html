@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Playing with Node: Writing a Reddit CLI</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Playing with Node: Writing a Reddit CLI" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2012-02-02-playing-with-node-writing-a-reddit-cli" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Playing with Node: Writing a Reddit CLI
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Thursday, February 2, 2012<br>    </div>
+        <div class="ui basic vertical spaced segment">
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p>This is not a complete post about how to write a fully featured CLI application for Reddit, like <a href="http://cortex.glacicle.org/">Cortex</a>. However, I think it demonstrates the ease and simplicity in making such an application.</p>
+<h3 id="the-idea">The idea</h3>
+<p>I love <a href="http://reddit.com">Reddit</a>. Except for one thing: I don't have much time to browse or keep up with it due to life getting in the way. What I wanted was a simple app I could run that would simply show me the top stories at that moment so I could glance at them and visit them.</p>
+<p>I spent about 20 mins (mostly looking for CLI npm packages) and came up with this:</p>
+<p><img src="/posts/images/35.png" class="img-fluid" alt="Reddit CLI" /></p>
+<p>Pretty simple. It goes to the front page, grabs the JSON results, and formats it all into a nice list (shortening titles if they get too uppity), displaying the information I mostly care about: subreddit, score, # of comments, and the poster.</p>
+<p>Now, I haven't yet implemented a way to actually visit the URL of any of these, mainly because I'm short on time. But maybe you can!</p>
+<h3 id="the-code">The code</h3>
+<p>The code is pretty straightforward. I'm using the <a href="http://search.npmjs.org/#/colors">colors</a>, <a href="http://search.npmjs.org/#/request">request</a>, and <a href="http://search.npmjs.org/#/cli">cli</a> npm packages.</p>
+<p>I wanted to do something really quick. The <code>cli</code> package is way more than I need, in fact, I wrote this originally without using <code>cli</code> but for future improvement I added it in. The steps I wanted to perform from the get-go were:</p>
+<ol>
+<li>Get the JSON for the homepage</li>
+<li>Parse it and build a colorized &quot;row&quot; (two rows, in fact)</li>
+<li>Trim titles so they didn't mess up the flow (my console window is 140 columns)</li>
+</ol>
+<p>Here it is, all 43 lines of it:</p>
+<pre><code class="language-js">var cli     = require('cli'),
+    http    = require('http'),
+    request = require('request'),
+    colors  = require('colors');
+
+cli.main(function (args, options) {
+  console.log(&quot;***********&quot;.rainbow);
+  console.log(&quot;Node Reddit&quot;.cyan);
+  console.log(&quot;***********\n\n&quot;.rainbow);
+
+  request('http://reddit.com/.json', function (err, res, body) {
+    if (!err &amp;&amp; res.statusCode === 200) {
+      var reddit  = JSON.parse(body),
+          stories = reddit.data.children.map(function (s) { 
+                      return s.data; 
+                    });
+      
+      // Descending score
+      stories.sort(function (a, b) { return b.score - a.score; });
+
+      stories.forEach(function (story) {
+        var row = &quot;&quot;,
+          title = story.title.length &gt; 100
+                ? story.title.substr(0, 100) + &quot;...&quot; 
+                : story.title;
+
+        // Build row
+        // [score] [title] [comments] [subreddit]
+        // This sucks
+        row += story.score.toString().green + &quot;\t&quot;;
+        row += title.bold
+        row += &quot; (&quot; + story.domain + &quot;)&quot;;
+        row += (&quot; /r/&quot; + story.subreddit).cyan;
+        row += &quot;\n\t&quot;;
+        row += story.author.grey;     
+        row += &quot; &quot; + (story.num_comments + &quot; comments&quot;).italic.yellow;
+        row += &quot;\n&quot;;
+
+        console.log(row);
+      });
+    }
+  });
+});
+</code></pre>
+<p>As you can see, definitely pretty light. That's all there is to it. Now imagine adding in commands (via <code>cli.parse</code>) or even <a href="http://search.npmjs.org/#/growl">growl</a> support (I forked it and added Growl for Windows support, hopefully I can get it working decently and commit it). Then letting it monitor your specific subreddits, perhaps once every 15 minutes or so. Then adding in support for viewing links (interactive CLI app).</p>
+<p>That's all more than I have time for, but maybe some of you that want to learn more about the Power of Node have more time. If so, I welcome additions.</p>
+<p>It's <a href="https://github.com/kamranayub/node-reddit">available on GitHub</a>. Feel free to dissect it and improve it, fork it and b0rk it. Have fun!</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '30';
+    var disqus_title = 'Playing with Node: Writing a Reddit CLI';
+    var disqus_url = 'https://kamranicus.com/posts/2012-02-02-playing-with-node-writing-a-reddit-cli';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

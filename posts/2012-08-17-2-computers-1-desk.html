@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - 2 Computers, 1 Desk</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - 2 Computers, 1 Desk" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2012-08-17-2-computers-1-desk" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      2 Computers, 1 Desk
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Saturday, August 18, 2012<br>    </div>
+        <div class="ui basic vertical spaced segment">
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p>At home, I have two main computers and one desk. I use one for my main everyday tasks and for gaming, and I use the other one as a server/development machine.</p>
+<p>As you might guess, this is logistically difficult to manage on a small desk that is meant for only a single PC. You need to have two keyboards/mice and, if you like sound, two sets of speakers. Furthermore, if you're like me, you want to see both computers at once if you have two screens. Personally, I like dual-monitors for my main machine and am fine with only using a single monitor for development.</p>
+<h2 id="two-pcs-one-mouse-and-keyboard">Two PC's, One Mouse and Keyboard</h2>
+<p>The first logistical item to eliminate is how to control both computers with one keyboard and one mouse. There are a couple options:</p>
+<ol>
+<li>Use a hardware KVM switch</li>
+<li>Use a software KVM switch</li>
+</ol>
+<p>Going with option 1 requires some more cables, but is handy in that you purposefully switch to the device you want to use, plus it is using actual hardware, rather than software emulation (which may have issues on Windows 8, see below).</p>
+<p>I went with option 2, using the open source software <a href="http://synergy-foss.org/">Synergy</a>. I have a Windows 7 host (gaming PC) and my server as the client (Windows 8 RTM). If you make sure Synergy starts as a service and is elevated, you won't have issues with starting up and logging in on the client PC.</p>
+<p><em>Notice for Windows 8 users</em>: You may run into an issue with any KVM software out right now, which is being unable to see your mouse cursor. If you do not have any mouse plugged in to the computer, I believe Windows 8 hides the cursor because it assumes a touch interface by default. There are two workarounds: 1) Enable &quot;<a href="http://windows.microsoft.com/is-IS/windows7/Use-Mouse-Keys-to-move-the-mouse-pointer">MouseKeys</a>&quot; but I had to enable this almost every time I restarted or, 2) Plug in a mouse. I opted for #2, with a wireless mouse/kb. This gives me some flexibility where I can use a physical mouse/kb if I really want.</p>
+<h2 id="two-pcs-one-set-of-speakers">Two PC's One Set of Speakers</h2>
+<p>This is the more interesting problem. Is it possible to play both computers through one set of speakers? I am happy to report: yes! However, there is a caveat...</p>
+<p>In order to pull this off, your &quot;main&quot; PC needs to have the ability to accept an input device (like a Digital/SPDIF/Optical-In). My gaming PC has a Sound Blaster X-Fi Elite Pro, so I have a big external console that accepts all kinds of inputs.</p>
+<p>My server has a modern motherboard which can output either SPDIF or Optical. I had an extra SPDIF cable lying around, so I wired it from the server to my X-Fi's console.</p>
+<p>There are a couple things to do in Windows to get this to work:</p>
+<ol>
+<li><p>Right-click your sound icon and go to Playback Devices.</p>
+</li>
+<li><p>Make sure SPDIF is the default playback device:</p>
+<p><img src="/posts/images/66.png" class="img-fluid" alt="SPDIF" /></p>
+</li>
+<li><p>On the main PC, you can &quot;listen&quot; to any recording device, which plays whatever's being sent to the main playback device. Listen to whatever input you're using to send the output of the client PC:</p>
+<p><img src="/posts/images/68.png" class="img-fluid" alt="Listen" /></p>
+</li>
+</ol>
+<p>Voila! As soon as you hit &quot;Apply&quot;, you'll start hearing Iron Maiden blasting through your single set of speakers as you code!</p>
+<p><strong>Note:</strong> This problem can also be solved if the monitor you use has speakers. If you use HDMI to connect your monitor to your client, audio and video will pass through (or you can use one of those speaker-jack cables). It'll sound like crap, though!</p>
+<h2 id="two-pcs-two-monitors">Two PCs, Two Monitors</h2>
+<p>This is straightforward enough. As long as your main monitor accepts multiple inputs (DVI, VGA, HDMI, DisplayPort), you just need to find the right cable from your client to the monitor.</p>
+<p>For example, my gaming PC has a DVI cable to my monitor. My server uses an HDMI cable. You're going to have a tougher time if your display doesn't accept multiple digital inputs (for example, only DVI and VGA...). It'll work, but analog signals look like crap on your nice 1080p display.</p>
+<p>When I am developing, I set my secondary monitor (which is to the right of my main monitor) as the primary monitor for my gaming PC. That way, I can still use my other PC as I'm using my development machine.</p>
+<h2 id="the-end-result">The End Result</h2>
+<p>... is awesome! My desk isn't cluttered with multiple sets of things, and the only manual thing I really have to do is switch my monitor input when I need to switch to using one PC more than the other.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '54';
+    var disqus_title = '2 Computers, 1 Desk';
+    var disqus_url = 'https://kamranicus.com/posts/2012-08-17-2-computers-1-desk';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

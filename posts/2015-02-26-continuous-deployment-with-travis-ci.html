@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Continuous Deployment With Travis-CI</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Continuous Deployment With Travis-CI" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2015-02-26-continuous-deployment-with-travis-ci" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Continuous Deployment With Travis-CI
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Thursday, February 26, 2015<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/automation" class="ui inverted small compact button">Automation</a>
+                    <a role="button" href="/tags/ci" class="ui inverted small compact button">CI</a>
+                    <a role="button" href="/tags/tips" class="ui inverted small compact button">Tips</a>
+                    <a role="button" href="/tags/travis-ci" class="ui inverted small compact button">Travis-CI</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p>One of the fun things we did for <a href="http://playsweepstacks.com">Sweep Stacks</a> (our Ludum Dare entry)
+during development was to setup continuous deployment. Since our GitHub
+repository was public, we could leverage the excellent Travis CI build tool.</p>
+<!-- More -->
+<p>This allowed us to work on the game and have our dedicated tester play every new build
+hot off the press. It reduced the amount of bugs we shipped with and created a very
+fast feedback loop for QA. In the end it allowed us to push a polished game an hour
+or so before the deadline hit. After the voting began, it also allowed us to quickly
+push bug fixes that were reported by players.</p>
+<p>If you're new to Travis CI, you can learn more about what it is and
+how to get started by reading <a href="http://tech.pro/tutorial/1749/get-your-ci-on-with-travis-ci">my Tech.pro tutorial</a>.</p>
+<p>Once you have your project building, you can then write a little bash script to
+deploy it! By &quot;deploying&quot;, what I really mean is pushing your built code to your production branch on GitHub for final deployment. For example, we use GitHub pages to host Sweep Stacks.</p>
+<p>Let's look at the process.</p>
+<h2 id="customizing-travis-config">Customizing Travis Config</h2>
+<p>You will need to execute a script to deploy your site, so you will need to
+customize your <strong>_travis.yml</strong> file.</p>
+<p>Here is what mine looks like for this blog (built using Octopress):</p>
+<pre><code>language: ruby
+rvm:
+  - 1.9.3
+branches:
+  only:
+    - source
+env:
+  global:
+  - GH_REF: github.com/kamranayub/kamranayub.github.io.git
+script:
+  - bundle exec rake generate
+  - chmod ugo+x deploy.sh
+  - '[ &quot;${TRAVIS_PULL_REQUEST}&quot; != &quot;false&quot; ] || ./deploy.sh'
+</code></pre>
+<p>Let's break it down:</p>
+<pre><code>language: ruby
+</code></pre>
+<p>Easy, since I use <a href="http://octopress.org">Octopress</a> (built on Jekyll) for my blog, we need to use Ruby.</p>
+<pre><code>rvm:
+  - 1.9.3
+</code></pre>
+<p>The version of Octopress I use requires Ruby 1.9.3.</p>
+<pre><code>branches:
+  only:
+    - source
+</code></pre>
+<p>We only want Travis to initiate builds for the <code>source</code> branch, since that is where
+the source files are for my blog.</p>
+<pre><code>env:
+  global:
+  - GH_REF: github.com/kamranayub/kamranayub.github.io.git
+</code></pre>
+<p>We will need to be able to clone and push to our repository, so we store it in an
+environment variable for easy access. <code>GH_REF</code> will be available to our bash script.</p>
+<pre><code>script:
+  - bundle exec rake generate
+  - chmod ugo+x deploy.sh
+  - '[ &quot;${TRAVIS_PULL_REQUEST}&quot; != &quot;false&quot; ] || ./deploy.sh''
+</code></pre>
+<p>In our Travis script, we build the blog (<code>rake generate</code>). We then mark our <code>deploy.sh</code> file
+as executable (since I'm on Windows). After that we execute our deploy as long as this isn't
+a pull request (don't want to build other people's changes!). Disabling pull request builds
+can also be set in your Travis project settings.</p>
+<h2 id="deploy-script">Deploy script</h2>
+<p>Here's the script I use to do the deployment:</p>
+<script src="https://gist.github.com/kamranayub/ca7b6866ab43771d9da8.js"></script>
+<p>As you can see it's fairly simple. One thing to make sure of is hiding your access token (<code>GH_TOKEN</code>),
+we use to authenticate which I'll show you how to generate and use.</p>
+<h2 id="the-access-token">The access token</h2>
+<p>The whole reason this works is because we are authenticating to GitHub using a <em>Personal
+Access Token</em> (stored in <code>GH_TOKEN</code>). This is an OAuth token that you can create when
+using Two-Factor Auth to authenticate 3rd party tools like Visual Studio, or in our case, authenticating in a script.</p>
+<p>You can generate a token by:</p>
+<ol>
+<li>Going to <a href="https://github.com/settings/applications">Applications</a> in your Settings</li>
+<li>Clicking &quot;Generate New Token&quot;</li>
+<li>Selecting your permissions (for Travis, all you need is <code>public_repo</code>)</li>
+<li>Once created, copy the token to your clipboard (you <em>must</em> regenerate it if you lose it)</li>
+</ol>
+<p>Now we need to configure Travis to expose this token securely to our script.</p>
+<ol>
+<li>On Travis, go to the Settings of your project (top-right)</li>
+<li>Click the &quot;Environment Variables&quot; tab (and ensure Build Pull Requests is 'Off')</li>
+<li>Create a new environment variable called <code>GH_TOKEN</code></li>
+<li>In the Value field, paste in your token, being sure to remove any trailing whitespace</li>
+<li>Ensure &quot;Display value in build logs&quot; is Off</li>
+</ol>
+<p>Once created, you're all set! <code>GH_TOKEN</code> will now be available to your <strong>deploy.sh</strong> script.</p>
+<h2 id="testing-it-out">Testing it out</h2>
+<p>You should be ready to test your deployment. Commit any changes you have to your repository
+and you should start seeing the build output once it starts. If there are any errors, now
+you can fix them until your build passes.</p>
+<p>Happy deploying!</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = 'http://kamranicus.com/blog/2015/02/26/continuous-deployment-with-travis-ci/';
+    var disqus_title = 'Continuous Deployment With Travis-CI';
+    var disqus_url = 'https://kamranicus.com/posts/2015-02-26-continuous-deployment-with-travis-ci';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

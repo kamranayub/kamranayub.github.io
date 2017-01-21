@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Announcing Keep Track of My Games</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Announcing Keep Track of My Games" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2011-07-24-announcing-keep-track-of-my-games" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Announcing Keep Track of My Games
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Sunday, July 24, 2011<br>    </div>
+        <div class="ui basic vertical spaced segment">
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p>I am working on a new side project, <a href="http://keeptrackofmygames.com/about">Keep Track of My Games</a>.</p>
+<p><img src="/posts/images/10.png" class="img-fluid" alt="Yes." /></p>
+<h3 id="the-rundown">The Rundown</h3>
+<p>The goal is simple: <strong>Manage your collection of games and track games that haven't been released.</strong></p>
+<p>You can read the tour on my <a href="http://blog.keeptrackofmygames.com/post/8003937025/what-is-keep-track-of-my-games">introduction blog post</a>.</p>
+<p>I've setup several social outlets:</p>
+<ul>
+<li><a href="http://twitter.com/keeptrackgames">&#64;keeptrackgames</a></li>
+<li><a href="http://blog.keeptrackofmygames.com/">Blog</a></li>
+<li><a href="http://getsatisfaction.com/keeptrack">GetSatisfaction</a></li>
+</ul>
+<p>I'm also providing a public look into my development cycle via the <a href="http://keeptrackofmygames.com/roadmap">Roadmap</a> page.</p>
+<h3 id="the-technology">The Technology</h3>
+<p>I am using MVC 3 with EF 4.1 and SQL Server 2008 deployed via Mercurial, BitBucket, and AppHarbor. I am using the JSON API from <a href="http://api.giantbomb.com">GiantBomb</a> to fetch search results than caching them locally to the database. I'm not super enthused with the performance but hopefully I can make it better in the coming weeks.</p>
+<p>I use <a href="http://twilio.com">Twilio</a> for SMS and for now, regular old SMTP for emails but I may upgrade depending on load. I use a &quot;scheduled&quot; job that runs through the database and figures out if games are coming out soon or are released or if their release dates have changed.</p>
+<h3 id="the-architecture">The Architecture</h3>
+<p>I have a pretty straightforward and simple architecture: everything goes through application services that do not have any web dependency.</p>
+<p><img src="/posts/images/11.png" class="img-fluid" alt="Layer Diagram" /></p>
+<p>My controllers are pretty stupid; they ask the services for information and process the results:</p>
+<p><img src="/posts/images/12.png" class="img-fluid" alt="Adding item to library" /></p>
+<p>The key is my <code>ActionConfirmation</code> class which I borrowed from my co-worker. I thought it was awesome for Service =&gt; Controller communication. The reason being I can pass error messages / validation results cleanly.</p>
+<p>For example, in this action, if an error occurred when saving tracking settings, I need to go and get the current tracking settings to add some view-specific logic (like, whether or not to show the email/phone checkboxes):</p>
+<p><img src="/posts/images/13.png" class="img-fluid" alt="Saving tracking settings" /></p>
+<p>The <code>currentTracking</code> is of type <code>ActionConfirmation&lt;TrackingViewModel&gt;</code>. So, if a service call was successful, I can retrieve the result via <code>currentTracking.Value</code>. I also use a non-generic <code>ActionConfirmation</code> class that doesn't require any return value.</p>
+<p>Here's an example of the service code returning <code>ActionConfirmation</code>s:</p>
+<p><img src="/posts/images/14.png" class="img-fluid" alt="ActionConfirmation results" /></p>
+<p>I am not 100% OK with this because for complex business validation, the results are coming back one at a time. I will be refactoring later to avoid this.</p>
+<h3 id="the-open-source-agenda">The &quot;Open&quot; Source Agenda</h3>
+<p>I have been playing around with making this source code public. Only a few things prevent me from doing so:</p>
+<ol>
+<li>I need a way to hide secret tokens for APIs and my passwords for some services.</li>
+<li>If people know the code, they'll see all the security holes and it's possible someone could exploit them and steal my user's data (not cool).</li>
+</ol>
+<p>Really item #2 is the big decider. I am using OpenID and DotNetOpenAuth but that doesn't mean the site is totally secure. The worst information that could be obtained is someone's email and phone number, both of which I plan to encrypt for extra safety (once I figure out how that works with EF).</p>
+<p>I am thinking instead of totally making it open source, to allow select contributors I trust into the codebase for reviews and patches.</p>
+<p>If you would be interested in doing that, I have a tester system setup so <a href="http://twitter.com/kamranayub">let me know</a> and we'll talk.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '15';
+    var disqus_title = 'Announcing Keep Track of My Games';
+    var disqus_url = 'https://kamranicus.com/posts/2011-07-24-announcing-keep-track-of-my-games';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

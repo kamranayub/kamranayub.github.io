@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Can I Use SignalR to Design a &quot;Typical&quot; Single Page Application?</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Can I Use SignalR to Design a &quot;Typical&quot; Single Page Application?" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2012-03-29-can-i-use-signalr-to-design-a-typical-single-page" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Can I Use SignalR to Design a &quot;Typical&quot; Single Page Application?
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Thursday, March 29, 2012<br>    </div>
+        <div class="ui basic vertical spaced segment">
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui large basic segment">
+  <p>This post is a stream of conciousness kind of post. I know I may be totally off base on some things but I need somewhere to write this so I can review and think about it, maybe pose it to people and see where my thinking is flawed or if there's an obvious thing I'm not seeing.</p>
+<h2 id="the-context">The Context</h2>
+<p>You're designing some sort of client-based application that communicates via AJAX (it can be Backbone, it can be Knockout, whatever). You're using ASP.NET MVC as the back end, maybe even the new fancy Web API.</p>
+<h2 id="the-problem">The Problem</h2>
+<p>Let's say your API is supposed to be only used by your application; you have no intention of making it available for all to use. The problem is that no matter what measures you take, it's all HTTP and it's all public. For many of us, that isn't what we really want. If I make a URL <code>/api/users/{id}</code>, I really don't want other people requesting that URL.</p>
+<p>So far in my Googling and experience, there are a few things you can do to <strong>reduce</strong> malicious abuse of your API:</p>
+<ol>
+<li>Issue session-based or cookie-based tokens with timeouts</li>
+<li>Include Anti-CSRF tokens in your AJAX headers</li>
+<li>Make sure people are authenticated before issuing authorizable requests</li>
+<li>Do checks and throttle requests (no more than x requests from this user per second)</li>
+</ol>
+<p>I think these are problems we generally face even in a &quot;non-rich&quot; application (simple server-side design). I could easily issue 100 Fiddler requests per second against a page on your site and maybe bring it down. Including an AntiXssToken might help with that. Maybe we don't care about that. However, it seems the problem is exacerbated, or at least more apparent, when we're talking about AJAX requests because we're exposing our data in an easy-to-consume format (JSON/XML/etc). If not properly designed and secured, Joe Developer can write a client that consumes your API. For public APIs, this is great! For APIs you just want to use for your application... not so great.</p>
+<p>One of the things I'm not sure about is how site agnostic these defensive measures are and why it's so hard to find information on how to implement them. Can ASP.NET Web API bake these into the framework? Why or why not? Is this not so common as to warrant more real-world articles/tutorials on how to do it? Am I not searching correctly? Do most people not care?</p>
+<blockquote class="blockquote">
+<p>All I want is a not-so-public API my browser-based app can consume</p>
+</blockquote>
+<h2 id="what-about-signalr">What about SignalR?</h2>
+<p>This is just me thinking out loud. Could a library like SignalR help with this? By using a single connection, no longer will I have to create easily consumable URLs like <code>/api/x</code>. Instead, I could create hubs with my API methods I want, and call them in my client code. Authorizing the requests would work as they usually have in the past.</p>
+<p>On the surface it sounds like a better idea, but am I missing something? Does it help at all? I could see it providing other benefits, like being able to easily implement multi-user interaction if I wanted in the future.</p>
+<p>Would the problem just shift? Now as Joe Developer could I simply reference the generated SignalR scripts and write my own client app? Is it harder or easier to abuse SignalR vs. HTTP URLs?</p>
+<p>I don't know yet but I'd like to research the topic more; learn more about REST security using tokens and session-based methods.</p>
+<h2 id="is-this-even-an-issue">Is this even an issue?</h2>
+<p>Let's say I implemented and took measures to reduce the likelihood of abuse in my exposed API. Is this even an issue anymore? From what I gather, general consensus is that you can't eliminate the ability for an undesirable user to abuse your API, you can only try to mitigate it as best you can. I still wish it was &quot;that easy&quot; to secure it. Am I missing something obvious here?</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '38';
+    var disqus_title = 'Can I Use SignalR to Design a &quot;Typical&quot; Single Page Application?';
+    var disqus_url = 'https://kamranicus.com/posts/2012-03-29-can-i-use-signalr-to-design-a-typical-single-page';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>
