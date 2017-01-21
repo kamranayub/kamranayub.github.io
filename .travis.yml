@@ -19,7 +19,7 @@ install:
 - unzip tools/Wyam-${WYAM_VERSION}.zip -d wyam
 - npm install
 script:
-- npm run build_ci
+- npm run wyam_ci
 after_success:
 - chmod ugo+x deploy.sh
 - '[ "${TRAVIS_PULL_REQUEST}" != "false" ] || ./deploy.sh'
