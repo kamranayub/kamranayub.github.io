@@ -1,0 +1,46 @@
+init:
+  - git config --global core.autocrlf true
+
+environment:
+  matrix:
+    - nodejs_version: "6"
+
+platform:
+  - x64
+
+cache:
+  - node_modules -> package.json
+  - node_cache -> package.json
+
+branches:
+  only:
+    - source
+
+matrix:
+  fast_finish: true
+
+environment:
+  - GH_REF: github.com/kamranayub/kamranayub.github.io.git
+  - WYAM_VERSION: v0.15.8-beta
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - mkdir wyam
+  - 7z x tools/Wyam-$env:WYAM_VERSION.zip -o wyam -r
+  - npm install
+  
+build_script:
+  - npm run wyam_ci
+
+on_success:
+  - set /P CURRENT_COMMIT=< git rev-parse HEAD
+  - git clone -b master "https://$($env:GH_TOKEN)@$env:GH_REF" _deploy
+  - git rm -rf _deploy
+  - xcopy output _deploy /E
+  - cd _deploy
+  - git status
+  - git config user.name "Appveyor"
+  - git config user.email "appveyor@kamranicus.com"
+  - git add -A
+  - git commit --allow-empty -m "Deploying site for $env:CURRENT_COMMIT"
+  - git push origin master
