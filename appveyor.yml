@@ -3,8 +3,8 @@ init:
 
 environment:
   global:
-    - GH_REF: github.com/kamranayub/kamranayub.github.io.git
-    - WYAM_VERSION: v0.15.8-beta
+    GH_REF: github.com/kamranayub/kamranayub.github.io.git
+    WYAM_VERSION: v0.15.8-beta
   matrix:
     - nodejs_version: "6"
 
