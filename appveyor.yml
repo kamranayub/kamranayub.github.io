@@ -25,7 +25,7 @@ matrix:
 install:
   - ps: Install-Product node $env:nodejs_version
   - mkdir wyam
-  - 7z x tools/Wyam-$env:WYAM_VERSION.zip -owyam -r
+  - 7z x tools/Wyam-%WYAM_VERSION%.zip -owyam -r
   - npm install
 
 build_script:
@@ -33,7 +33,7 @@ build_script:
 
 on_success:
   - set /P CURRENT_COMMIT=< git rev-parse HEAD
-  - git clone -b master "https://$($env:GH_TOKEN)@$env:GH_REF" _deploy
+  - git clone -b master "https://%GH_TOKEN%@%GH_REF%" _deploy
   - git rm -rf _deploy
   - xcopy output _deploy /E
   - cd _deploy
@@ -41,5 +41,5 @@ on_success:
   - git config user.name "Appveyor"
   - git config user.email "appveyor@kamranicus.com"
   - git add -A
-  - git commit --allow-empty -m "Deploying site for $env:CURRENT_COMMIT"
+  - git commit --allow-empty -m "Deploying site for %CURRENT_COMMIT%"
   - git push origin master
