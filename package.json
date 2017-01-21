@@ -8,7 +8,6 @@
   ],
   "scripts": {
     "wyam": "Wyam -r Blog -t CleanBlog",
-    "wyam_ci": "wyam/Wyam -r Blog -t CleanBlog",
     "semantic": "gulp build --gulpfile semantic/gulpfile.js",
     "build": "npm run semantic && npm run wyam"
   },
