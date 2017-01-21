@@ -12,8 +12,9 @@ platform:
   - x64
 
 cache:
+  - C:/Users/appveyor/.nuget/packages -> package.json
   - node_modules -> package.json
-  - node_cache -> package.json
+  - node_cache -> package.json  
 
 branches:
   only:
@@ -34,7 +35,7 @@ build_script:
 on_success:
   - set /P CURRENT_COMMIT=< git rev-parse HEAD
   - git clone -b master "https://%GH_TOKEN%@%GH_REF%" _deploy
-  - git rm -rf _deploy
+  - ps: del _deploy/ -r
   - xcopy output _deploy /E
   - cd _deploy
   - git status
