@@ -17,7 +17,7 @@ before_install:
 - mkdir wyam
 install:
 - unzip tools/Wyam-${WYAM_VERSION}.zip -d wyam
-- npm run install
+- npm install
 script:
 - npm run build_ci
 after_success:
