@@ -25,7 +25,7 @@ matrix:
 install:
   - ps: Install-Product node $env:nodejs_version
   - mkdir wyam
-  - 7z x tools/Wyam-$env:WYAM_VERSION.zip -o wyam -r
+  - 7z x tools/Wyam-$env:WYAM_VERSION.zip -owyam -r
   - npm install
 
 build_script:
