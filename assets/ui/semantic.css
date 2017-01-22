@@ -694,6 +694,16 @@ nav.ui.site.menu .header.item {
 .spaced.list .item {
   margin-bottom: 0.75em;
 }
+
+/* Posts */
+
+.post.content.segment ul {
+  line-height: 1.4285em;
+}
+
+.post.content.segment ul li {
+  margin-bottom: 0.5em;
+}
 /*!
  * # Semantic UI 2.2.7 - Button
  * http://github.com/semantic-org/semantic-ui/

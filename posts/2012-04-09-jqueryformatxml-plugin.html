@@ -11,8 +11,8 @@
   <meta name="author" content="Kamran Ayub">
 
   <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.png"" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
 
   <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
   <link href="/assets/css/highlight.css" rel="stylesheet">
@@ -108,7 +108,7 @@ Published on Tuesday, April 10, 2012<br>    </div>
 
 <div class="ui hidden divider"></div>
 
-<div class="ui large basic segment">
+<div class="ui huge basic post content segment">
   <p>Awhile ago I wrote a <a href="https://github.com/kamranayub/jQuery-XML-Helper">shim for jQuery to add pseudo-XML compatibility</a> that makes it easier to manipulate and read XML cross-browser on the client. I did it because I was working on a legacy application that decided it was a good idea to store the model in XML in a hidden input. No, I can't switch to Knockout, as much as I'd want to.</p>
 <p>However, I really liked the trick of showing a JSON output of a Knockout view model on a page while debugging on another project since it made it easier to see what was happening behind the scenes.</p>
 <p>I came back to do some work on this legacy app and missed that in-your-face feedback. So I wrote an extension to my own plugin that traverses an XML jquery object and creates a tree to output to the page:</p>

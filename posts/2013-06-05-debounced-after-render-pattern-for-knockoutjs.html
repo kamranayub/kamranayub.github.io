@@ -11,8 +11,8 @@
   <meta name="author" content="Kamran Ayub">
 
   <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.png"" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
 
   <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
   <link href="/assets/css/highlight.css" rel="stylesheet">
@@ -108,7 +108,7 @@ Published on Thursday, June 6, 2013<br>    </div>
 
 <div class="ui hidden divider"></div>
 
-<div class="ui large basic segment">
+<div class="ui huge basic post content segment">
   <p>When dealing with Knockout-based lists, I think the built-in events/callbacks provided by Knockout leave a bit to be desired. For example, a common case I here people complain about is that the <code>afterRender</code> callback for the <code>foreach/template</code> bindings executes for each item in the array, not after all the elements have been rendered.</p>
 <p>There are probably better ways to <em>resolve</em> this using Promises (pun intended), but here's one way to attack it using <a href="http://underscorejs.org/docs/underscore.html#section-65">Underscore.js</a>'s <code>debounce</code> method that's easy to understand and use.</p>
 <p>The <code>debounce</code> method:</p>

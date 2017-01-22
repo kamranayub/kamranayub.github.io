@@ -11,8 +11,8 @@
   <meta name="author" content="Kamran Ayub">
 
   <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.png"" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
 
   <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
   <link href="/assets/css/highlight.css" rel="stylesheet">
@@ -108,7 +108,7 @@ Published on Thursday, March 22, 2012<br>    </div>
 
 <div class="ui hidden divider"></div>
 
-<div class="ui large basic segment">
+<div class="ui huge basic post content segment">
   <p>The Knockout <a href="http://knockoutjs.com/documentation/template-binding.html#note_4_dynamically_choosing_which_template_is_used">template binding</a> documentation does a good job explaining how to use KO with jQuery Templates and even Underscore templates, however, it does not explain how (or if) you can use compiled templates outside of the HTML markup.</p>
 <p><a href="http://getcassette.net/documentation/html-templates/knockoutjs-jquery-tmpl">Cassette</a> offers functionality to automatically compile and bundle your HTML templates, making it an excellent tool for more advanced Knockout development where you want to separate your templates. Unfortunately, in KO 2.0.0, it's broken!</p>
 <p>The fix is to extend KO's built in jQuery Template engine with some logic to check and see if the named template is already precompiled. KO assumes that the name in a template binding refers to a DOM element with the given ID. Unfortunately, in our case, it refers to the precompiled template name.</p>

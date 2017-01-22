@@ -11,8 +11,8 @@
   <meta name="author" content="Kamran Ayub">
 
   <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.png"" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
 
   <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
   <link href="/assets/css/highlight.css" rel="stylesheet">
@@ -108,7 +108,7 @@ Published on Friday, June 15, 2012<br>    </div>
 
 <div class="ui hidden divider"></div>
 
-<div class="ui large basic segment">
+<div class="ui huge basic post content segment">
   <p>My staging application is on <a href="http://appharbor.com">AppHarbor</a> so I gave it the shared Yocto SQL database which has a limit of 20MB. That's not much, so I wanted a way to display my current usage level in staging when I test the site in case I want to flush it out. It was fairly easy (with a gotcha)!</p>
 <p><strong>MVC Layout</strong></p>
 <pre><code class="language-html">&#64;if (AppSettings.RuntimeEnvironment != RuntimeEnvironment.P)
