@@ -668,6 +668,10 @@ input::selection {
   margin-bottom: 1.5em;
 }
 
+nav.ui.site.menu {
+  font-size: 1rem;
+}
+
 nav.ui.site.menu .header.item {
   font-size: 1.5em;
   text-transform: lowercase;
@@ -681,20 +685,51 @@ nav.ui.site.menu .header.item {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-  }
-
-  nav.ui.site.menu .item {
-    display: block;
+    font-size: 0.8125rem;
   }
 }
 
 .masthead.segment {
-  min-height: 350px;
+  min-height: 150px;
+}
+
+@media only screen and (min-width: 321px) {
+  .masthead.segment {
+    min-height: 250px;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .masthead.segment {
+    min-height: 350px;
+  }
 }
 
 .masthead.segment h1.ui.header {
   margin-top: 1.5em;
-  font-size: 4em;
+  font-size: 2em;
+}
+
+@media only screen and (min-width: 321px) {
+  .masthead.segment h1.ui.header {
+    font-size: 2.5em;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .masthead.segment h1.ui.header {
+    font-size: 4em;
+  }
+}
+
+.masthead.segment h3 {
+  font-size: 1.071rem;
+}
+
+@media only screen and (min-width: 321px) {
+  .masthead.segment h3 {
+    font-size: 1.28rem;
+  }
 }
 
 .masthead.segment .social.links {
@@ -710,6 +745,22 @@ nav.ui.site.menu .header.item {
 }
 
 /* Posts */
+
+.post.content.segment.huge {
+  font-size: 1rem;
+}
+
+@media only screen and (min-width: 321px) {
+  .post.content.segment.huge {
+    font-size: 1.125rem;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .post.content.segment.huge {
+    font-size: 1.4375rem;
+  }
+}
 
 .post.content.segment ul {
   line-height: 1.4285em;

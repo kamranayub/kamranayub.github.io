@@ -7,6 +7,7 @@
 }
 
 nav.ui.site.menu {
+  font-size: @medium;
 
   .header.item {
     font-size: 1.5em;
@@ -17,19 +18,40 @@ nav.ui.site.menu {
   @media only screen and (max-width: 560px) {
     display: block;
     flex-direction: column;
-
-    .item {
-      display: block;
-    }
+    font-size: @mini;
   }
 }
 
 .masthead.segment {
-  min-height: 350px;
+  min-height: 150px;
+
+  @media only screen and (min-width: (@mobileBreakpoint + 1px)) {
+    min-height: 250px;
+  }
+
+  @media only screen and (min-width: (@tabletBreakpoint + 1px)) {
+    min-height: 350px;
+  }
 
   h1.ui.header {
     margin-top: 1.5em;
-    font-size: 4em;
+    font-size: 2em;
+
+    @media only screen and (min-width: (@mobileBreakpoint + 1px)) {
+      font-size: 2.5em;
+    }
+
+    @media only screen and (min-width: (@tabletBreakpoint + 1px)) {
+      font-size: 4em;
+    }    
+  }
+
+  h3 {
+    font-size: @h4;
+
+    @media only screen and (min-width: (@mobileBreakpoint + 1px)) {
+      font-size: @h3;
+    }
   }
 
   .social.links {
@@ -47,6 +69,18 @@ nav.ui.site.menu {
 
 /* Posts */
 .post.content.segment {
+
+  &.huge {
+    font-size: @medium;
+
+    @media only screen and (min-width: (@mobileBreakpoint + 1)) {
+      font-size: @large;
+    }
+
+    @media only screen and (min-width: (@tabletBreakpoint + 1)) {
+      font-size: @huge;
+    }
+  }
 
   // List styles
   ul {
