@@ -1,6 +1,3 @@
-#n -p Wyam.Less
-#n -p Wyam.Minification
-
 Settings.Host = "kamranicus.com";
 Settings.LinksUseHttps = true;
 
@@ -10,10 +7,3 @@ GlobalMetadata["Intro"] = "Hi, I'm a professional full-stack developer who also 
 GlobalMetadata["FeedUrl"] = "http://feeds.feedburner.com/Kamranicus";
 GlobalMetadata["CaseInsensitiveTags"] = true;
 GlobalMetadata["AtomPath"] = "atom.xml";
-
-Pipelines.Add("Less",
-    ReadFiles("**/*.less"),
-    Less(),
-    //MinifyCss(),
-    WriteFiles(".css")
-);
