@@ -40,7 +40,7 @@ on_success:
   - git clone -b master "https://%GH_TOKEN%@%GH_REF%" _deploy  
   - cd _deploy
   - git rm -rf .
-  - xcopy ../output /e /y
+  - xcopy ..\output /e /y
   - git status
   - git config user.name "Appveyor"
   - git config user.email "appveyor@kamranicus.com"
