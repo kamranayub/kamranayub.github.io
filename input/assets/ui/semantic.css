@@ -674,6 +674,20 @@ nav.ui.site.menu .header.item {
   letter-spacing: 1.75;
 }
 
+@media only screen and (max-width: 560px) {
+  nav.ui.site.menu {
+    display: block;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  nav.ui.site.menu .item {
+    display: block;
+  }
+}
+
 .masthead.segment {
   min-height: 350px;
 }

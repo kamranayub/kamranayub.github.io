@@ -6,6 +6,8 @@
         .OrderBy(x => x.Item1);
     foreach(var page in pages)
     {
-        <a class="item" href="@page.Item2">@page.Item1</a>
+      <div class="item">
+        <a href="@page.Item2">@page.Item1</a>
+      </div>
     }
 }
