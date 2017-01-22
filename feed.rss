@@ -5,8 +5,15 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2017</copyright>
-		<pubDate>Sun, 22 Jan 2017 00:26:04 GMT</pubDate>
-		<lastBuildDate>Sun, 22 Jan 2017 00:26:04 GMT</lastBuildDate>
+		<pubDate>Sun, 22 Jan 2017 01:22:41 GMT</pubDate>
+		<lastBuildDate>Sun, 22 Jan 2017 01:22:41 GMT</lastBuildDate>
+		<item>
+			<title>New Year, New Site Design Using Wyam Static Site Generator</title>
+			<link>https://kamranicus.com/posts/2017-01-21-new-design-wyam-generator</link>
+			<description>&lt;p&gt;In preparation for the upcoming release of my new course, &lt;a href="https://www.packtpub.com/application-development/introduction-typescript-video"&gt;Introduction to TypeScript&lt;/a&gt; and because it's 2017, I decided it would be best to update my personal site with a more complete picture of myself.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2017-01-21-new-design-wyam-generator</guid>
+			<pubDate>Sun, 22 Jan 2017 00:25:00 GMT</pubDate>
+		</item>
 		<item>
 			<title>Site Down Alerts using Azure App Insights and Zapier</title>
 			<link>https://kamranicus.com/posts/2017-01-10-azure-alerts-zapier-sms</link>
@@ -143,16 +150,6 @@
 			<description>&lt;p&gt;2015 was a very eventful (and fulfilling) year for me and my wife. Let's break it down, shall we?&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2016-01-04-year-in-review</guid>
 			<pubDate>Tue, 05 Jan 2016 01:30:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Influencing your Kudu deployment through Git commit messages</title>
-			<link>https://kamranicus.com/posts/2015-12-10-kudu-deployment-flags-in-commit-messages</link>
-			<description>&lt;p&gt;If you're on Windows Azure and using continuous deployment through Git, you may not know you are using an open source platform called
-&lt;a href="https://github.com/projectkudu/kudu"&gt;Kudu&lt;/a&gt; behind-the-scenes that performs your deployment. If this is the first time you've heard of Kudu and you've been
-using Azure for awhile, it's time to &lt;a href="https://github.com/projectkudu/kudu"&gt;get acquainted&lt;/a&gt;. Kudu is amazing. It has a whole REST API that lets you manage
-deployments, trigger builds, trigger webjobs, view processes, a command prompt, and a ton more.&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2015-12-10-kudu-deployment-flags-in-commit-messages</guid>
-			<pubDate>Fri, 11 Dec 2015 01:30:00 GMT</pubDate>
 		</item>
 	</channel>
 </rss>

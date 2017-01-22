@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - New Year, New Site Design Using Wyam Static Site Generator</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.png"" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - New Year, New Site Design Using Wyam Static Site Generator" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2017-01-21-new-design-wyam-generator" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text stackable site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+                <a class="item" href="/about">About</a>
+        <a class="item" href="/posts">Archive</a>
+        <a class="item" href="/projects">Projects</a>
+        <a class="item" href="/speaking">Speaking</a>
+        <a class="item" href="/travel">Travel</a>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      New Year, New Site Design Using Wyam Static Site Generator
+        <div class="ui sub header">I&#x27;ve redesigned the site using the .NET-based Wyam static site generator</div>
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Sunday, January 22, 2017<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/net" class="ui inverted small compact button">.NET</a>
+                    <a role="button" href="/tags/design" class="ui inverted small compact button">Design</a>
+                    <a role="button" href="/tags/wyam" class="ui inverted small compact button">Wyam</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui one column grid container">
+    <div class="column">
+      
+
+<div class="ui hidden divider"></div>
+
+<div class="ui huge basic post content segment">
+  <p>In preparation for the upcoming release of my new course, <a href="https://www.packtpub.com/application-development/introduction-typescript-video">Introduction to TypeScript</a> and because it's 2017, I decided it would be best to update my personal site with a more complete picture of myself.</p>
+<!-- More -->
+<p>When <a href="https://kamranicus.com/posts/2011-04-05-welcome-to-kamranicus-yaps">Kamranicus began</a>, I had created a custom MVC blog--complete with a control panel and web editor. This was overkill and I came to realize there was no real reason to have a <em>dynamic</em> site.</p>
+<p>Three years ago I moved <a href="https://kamranicus.com/posts/2013-12-04-kamranicus-now-with-100-percent-more-octopress">onto Octopress</a> since Jekyll was and is still a popular static site generator. However, there were still some downsides to Octopress/Jekyll, namely:</p>
+<ul>
+<li>It requires a Ruby install and I'm on Windows, it's a pain</li>
+<li>It uses Liquid templates which I don't want to deal with</li>
+<li>Plugins are written in Ruby and I don't know Ruby (yet)</li>
+</ul>
+<p>I have <em>no problem</em> with Ruby, I'd like to learn someday in fact. But today is not that day and I would rather like to be able to extend and customize my site with a tech stack I'm familiar with.</p>
+<p>Could there be something better three years later?</p>
+<h2 id="wyam-the.net-static-site-generator">Wyam the .NET static site generator</h2>
+<p>I first heard about <a href="https://wyam.io">Wyam</a> from <a href="http://www.hanselman.com/blog/ExploringWyamANETStaticSiteContentGenerator.aspx">Scott Hanselman's blog post</a> and I was <em>very</em> interested--a site generator written in .NET that I can extend and customize! It is not just for blogs, it can generate static sites based on &quot;Recipes&quot; that you can write yourself and it uses a simple plug and play pipeline system that is fully customizable.</p>
+<p>So finding this week to be the perfect opportunity after sending in my last work for my new course, I decided to jump right in and get this bad boy working.</p>
+<p>I have to give huge props to <a href="https://daveaglick.com/">Dave Glick</a>, the creator. He was friendly and helpful as I was learning my way around, I even <a href="%5B">contributed some bug fixes</a><a href="https://github.com/Wyamio/Wyam/pull/397">https://github.com/Wyamio/Wyam/pull/397</a>) to the themes.</p>
+<h2 id="migrating-to-wyam">Migrating to Wyam</h2>
+<p>Migrating to Wyam from Octopress was not hard but it was a little tedious. The YAML front matter of the blog posts in Wyam are slightly different enough that I had to use some Powershell to do some file transformation (yay <code>Substring</code> and <code>Regex</code>!). For example, the Jekyll <code>date:</code> property needs to be <code>Published:</code>.</p>
+<p>I also had to take care of redirects. In Jekyll, my posts were organized under <code>/blog/yyyy/mm/dd/post/</code> but in Wyam the default is simply <code>/posts/post</code>. You can enable using dates in the URL but frankly I liked the simpler URLs. You can use the <code>RedirectFrom:</code> front matter property to provide a path that Wyam will then generate a redirect for (using meta refresh). Sweet! Again, some simple Powershell allowed me to update all my old posts with the redirect URLs.</p>
+<p>Finally, the old blog was using Disqus for commenting and it turns out the &quot;identifier&quot; Disqus was using was the <em>full URL to the post</em>. Not great. Luckily, any front matter properties are immediately available in the Razor templates, so I added a <code>disqus_identifier</code> property (hold over from Jekyll) and referenced it in my <code>_PostFooter.cshtml</code> template:</p>
+<pre><code class="language-html">&lt;script type=&quot;text/javascript&quot;&gt;
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '&#64;(Model.String(&quot;disqus_identifier&quot;) ?? Model.FilePath(Keys.RelativeFilePath).FileNameWithoutExtension.FullPath)';
+    var disqus_title = '&#64;Model.String(BlogKeys.Title)';
+    var disqus_url = '&#64;Context.GetLink(Model, true)';
+
+    // ... etc
+&lt;/script&gt;
+</code></pre>
+<p>Using the <code>Model.String</code> accessor, you can get at any declared document metadata. In the same fashion, <code>Context.String</code> accesses the global metadata declared in your <code>wyam.config</code>.</p>
+<h2 id="customizing-wyam">Customizing Wyam</h2>
+<p>The default theme, CleanBlog, that is included with the <a href="https://wyam.io/recipes/blog/overview">Wyam blog recipe</a> is pretty awesome--much better than the default themes in Jekyll or Octopress.</p>
+<p>With my Octopress blog, I had always felt that I was doing myself a disservice using a pre-canned theme. I liked its simplicity but as a self-proclaimed &quot;web developer&quot;, I felt I had to, you know, <em>design my own theme</em> and that's what you see now before you.</p>
+<p>To customize the Wyam theme, it was very easy--you just copy the existing theme files to your <strong>input</strong> directory and customize them. The layouts are all Razor templates which was refreshingly familiar. Any non-underscore-prefixed <code>.cshtml</code> or <code>.md</code> files get made into pages. Everything was so simple!</p>
+<p>I ended up really liking the <a href="http://qrohlf.com/trianglify/">Trianglify</a> JavaScript library so I kept that for the hero banners across the site. I removed some extra libraries I didn't need and upgraded the rest. I'm not 100% convinced I even need jQuery still since I'm not using any Semantic UI JavaScript plugins yet.</p>
+<p>Having previously used <a href="http://semantic-ui.com">Semantic UI</a> on the <a href="http://excaliburjs.com">Excalibur.js</a> site redesign, I decided to use it again--I've been pretty happy with it over Bootstrap due to the extra flexibility and modular design. I ripped Bootstrap out of the default theme and replaced it with my own customized Semantic install.</p>
+<p>I built the current design within two days and I'm pretty happy with how it turned out. I still intend to customize it further but for now it's &quot;good enough&quot; in time for the course release.</p>
+<p>You can, of course, <a href="https://github.com/kamranayub/kamranayub.github.io">see my entire site's source code</a> if you're interested. Getting the site to deploy via <a href="http://appveyor.com">AppVeyor</a> was not too bad--just had some trial and error issues with the magic incantations to get my DOS commands to work.</p>
+<h2 id="cloudflare-ssl">CloudFlare SSL</h2>
+<p><a href="http://cloudflare.com">CloudFlare</a> is amazing. I'm using it to provide SSL support for the site, since the site is hosted on GitHub Pages and they don't yet support SSL for custom domains. That's fine by me though, since CloudFlare is free and easy to set up.</p>
+<p>Working in a &quot;dev ops&quot; role right now I've seen examples of how not using SSL can screw over sites. I'm a huge fan of SSL everywhere, even on static sites. I've already enabled <a href="https://blog.cloudflare.com/enforce-web-policy-with-hypertext-strict-transport-security-hsts/">HSTS</a> via CloudFlare on <a href="http://ktomg.com">Keep Track of My Games</a> to ensure the entire site is served over SSL.</p>
+<h2 id="showcasing-more-of-me">Showcasing more of &quot;me&quot;</h2>
+<p>As you may have noticed at the top, I now have some new pages for the <a href="/projects">projects I work on</a>, <a href="/speaking">talks I've given</a>, and <a href="/travel">links to my travel blogs</a>.</p>
+<p>This may all be things you didn't know about me--and I wouldn't blame you. Sure, I tend to mention things on Twitter but I have been wanting to have a place on the site where I can talk about and show the things I've been doing. I'm a busy guy!</p>
+<p>I also include my social profiles at the bottom of every post and in the footer of the site so people know where to find me.</p>
+<h2 id="heres-to-a-new-year">Here's to a new year!</h2>
+<p>I'm excited for the next year. I'll be having my first child in a matter of weeks, the new course will be going live by the end of the month, and I'm exploring some fun new projects for summer and fall.</p>
+<p>Cheers!</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '2017-01-21-new-design-wyam-generator';
+    var disqus_title = 'New Year, New Site Design Using Wyam Static Site Generator';
+    var disqus_url = 'https://kamranicus.com/posts/2017-01-21-new-design-wyam-generator';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>

@@ -4,8 +4,15 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2017</rights>
-	<updated>2017-01-22T00:26:04Z</updated>
+	<updated>2017-01-22T01:22:41Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2017-01-21-new-design-wyam-generator" />
+		<id>https://kamranicus.com/posts/2017-01-21-new-design-wyam-generator</id>
+		<title>New Year, New Site Design Using Wyam Static Site Generator</title>
+		<updated>2017-01-22T00:25:00Z</updated>
+		<summary>&lt;p&gt;In preparation for the upcoming release of my new course, &lt;a href="https://www.packtpub.com/application-development/introduction-typescript-video"&gt;Introduction to TypeScript&lt;/a&gt; and because it's 2017, I decided it would be best to update my personal site with a more complete picture of myself.&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2017-01-10-azure-alerts-zapier-sms" />
 		<id>https://kamranicus.com/posts/2017-01-10-azure-alerts-zapier-sms</id>
@@ -142,15 +149,5 @@
 		<title>2015: A Year in Review</title>
 		<updated>2016-01-05T01:30:00Z</updated>
 		<summary>&lt;p&gt;2015 was a very eventful (and fulfilling) year for me and my wife. Let's break it down, shall we?&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2015-12-10-kudu-deployment-flags-in-commit-messages" />
-		<id>https://kamranicus.com/posts/2015-12-10-kudu-deployment-flags-in-commit-messages</id>
-		<title>Influencing your Kudu deployment through Git commit messages</title>
-		<updated>2015-12-11T01:30:00Z</updated>
-		<summary>&lt;p&gt;If you're on Windows Azure and using continuous deployment through Git, you may not know you are using an open source platform called
-&lt;a href="https://github.com/projectkudu/kudu"&gt;Kudu&lt;/a&gt; behind-the-scenes that performs your deployment. If this is the first time you've heard of Kudu and you've been
-using Azure for awhile, it's time to &lt;a href="https://github.com/projectkudu/kudu"&gt;get acquainted&lt;/a&gt;. Kudu is amazing. It has a whole REST API that lets you manage
-deployments, trigger builds, trigger webjobs, view processes, a command prompt, and a ton more.&lt;/p&gt;</summary>
 	</entry>
 </feed>

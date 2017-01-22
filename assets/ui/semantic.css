@@ -704,6 +704,10 @@ nav.ui.site.menu .header.item {
 .post.content.segment ul li {
   margin-bottom: 0.5em;
 }
+
+.post.content.segment code {
+  color: #A3323A;
+}
 /*!
  * # Semantic UI 2.2.7 - Button
  * http://github.com/semantic-org/semantic-ui/
