@@ -41,4 +41,6 @@ nav.ui.site.menu .header.item {
     line-height: @lineHeight;
     li { margin-bottom: 0.5em; }
   }
+
+  code { color: #A3323A; }
 }
