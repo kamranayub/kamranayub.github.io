@@ -32,3 +32,13 @@ nav.ui.site.menu .header.item {
 .spaced.list .item {
   margin-bottom: 0.75em;
 }
+
+/* Posts */
+.post.content.segment {
+
+  // List styles
+  ul {
+    line-height: @lineHeight;
+    li { margin-bottom: 0.5em; }
+  }
+}
