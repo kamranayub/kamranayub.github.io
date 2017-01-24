@@ -4,8 +4,15 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2017</rights>
-	<updated>2017-01-23T16:26:11Z</updated>
+	<updated>2017-01-24T03:15:48Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2017-01-23-subtle-bugs-exposed-with-slow-ci-servers" />
+		<id>https://kamranicus.com/posts/2017-01-23-subtle-bugs-exposed-with-slow-ci-servers</id>
+		<title>Exposing Subtle Timing Bugs With a Slow CI Server</title>
+		<updated>2017-01-24T02:44:00Z</updated>
+		<summary>&lt;p&gt;We ran into a subtle issue with &lt;a href="http://excaliburjs.com"&gt;Excalibur.js&lt;/a&gt; recently, as documented in &lt;a href="https://github.com/excaliburjs/Excalibur/pull/740"&gt;this pull request&lt;/a&gt;.&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2017-01-21-new-design-wyam-generator" />
 		<id>https://kamranicus.com/posts/2017-01-21-new-design-wyam-generator</id>
@@ -142,12 +149,5 @@
 		<title>Planet Wars AI Competition with C# and Excalibur.js</title>
 		<updated>2016-01-25T18:30:00Z</updated>
 		<summary>&lt;p&gt;&lt;img src="https://zippy.gfycat.com/BraveBlushingImpala.gif" class="img-fluid" alt="Planet Wars"&gt;&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2016-01-04-year-in-review" />
-		<id>https://kamranicus.com/posts/2016-01-04-year-in-review</id>
-		<title>2015: A Year in Review</title>
-		<updated>2016-01-05T01:30:00Z</updated>
-		<summary>&lt;p&gt;2015 was a very eventful (and fulfilling) year for me and my wife. Let's break it down, shall we?&lt;/p&gt;</summary>
 	</entry>
 </feed>
