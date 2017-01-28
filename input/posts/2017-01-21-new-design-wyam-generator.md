@@ -29,7 +29,7 @@ I first heard about [Wyam][4] from [Scott Hanselman's blog post][11] and I was *
 
 So finding this week to be the perfect opportunity after sending in my last work for my new course, I decided to jump right in and get this bad boy working.
 
-I have to give huge props to [Dave Glick](https://daveaglick.com/), the creator. He was friendly and helpful as I was learning my way around, I even [contributed some bug fixes]([)https://github.com/Wyamio/Wyam/pull/397) to the themes.
+I have to give huge props to [Dave Glick](https://daveaglick.com/), the creator. He was friendly and helpful as I was learning my way around, I even [contributed some bug fixes](https://github.com/Wyamio/Wyam/pull/397) to the themes.
 
 ## Migrating to Wyam
 
