@@ -1,5 +1,5 @@
 ﻿Title: Introduction to TypeScript Course Now Available
-Published: 2016-01-31 07:00 -0600
+Published: 2017-01-31 07:00 -0600
 Lead: My Introduction to TypeScript course is available to purchase
 Tags:
 - TypeScript
