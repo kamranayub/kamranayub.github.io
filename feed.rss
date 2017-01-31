@@ -5,8 +5,16 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2017</copyright>
-		<pubDate>Sat, 28 Jan 2017 21:53:37 GMT</pubDate>
-		<lastBuildDate>Sat, 28 Jan 2017 21:53:37 GMT</lastBuildDate>
+		<pubDate>Tue, 31 Jan 2017 15:53:31 GMT</pubDate>
+		<lastBuildDate>Tue, 31 Jan 2017 15:53:31 GMT</lastBuildDate>
+		<item>
+			<title>Introduction to TypeScript Course Now Available</title>
+			<link>https://kamranicus.com/posts/2017-01-31-introduction-to-typescript-course-packt-publishing</link>
+			<description>&lt;p&gt;I'm very excited to share that the course I've been working on the past few months, &lt;a href="https://www.packtpub.com/application-development/introduction-typescript-video"&gt;Introduction to TypeScript&lt;/a&gt; is now available to purchase through Packt Publishing! I should have some discount codes to share soon (will Tweet/update when available).&lt;/p&gt;
+&lt;p&gt;&lt;img src="images%5C2017-01-31-course-cover.jpg" class="img-fluid" alt="Course cover"&gt;&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2017-01-31-introduction-to-typescript-course-packt-publishing</guid>
+			<pubDate>Tue, 31 Jan 2017 13:00:00 GMT</pubDate>
+		</item>
 		<item>
 			<title>Exposing Subtle Timing Bugs With a Slow CI Server</title>
 			<link>https://kamranicus.com/posts/2017-01-23-subtle-bugs-exposed-with-slow-ci-servers</link>
@@ -143,13 +151,6 @@
 			<description>&lt;p&gt;I've recently discovered &lt;a href="http://frhagn.github.io/Typewriter/index.html"&gt;Typewriter for Visual Studio&lt;/a&gt;, a T4-style code-generator specifically meant for generating Typescript files. I've been using it since in all my projects, at work and at home. It's just &lt;strong&gt;so&lt;/strong&gt; good. Let me explain what Typewriter does and why it's so awesome.&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2016-02-02-typewriter</guid>
 			<pubDate>Thu, 04 Feb 2016 02:08:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Planet Wars AI Competition with C# and Excalibur.js</title>
-			<link>https://kamranicus.com/posts/2016-01-25-planet-wars-ai-competition-excaliburjs-csharp</link>
-			<description>&lt;p&gt;&lt;img src="https://zippy.gfycat.com/BraveBlushingImpala.gif" class="img-fluid" alt="Planet Wars"&gt;&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2016-01-25-planet-wars-ai-competition-excaliburjs-csharp</guid>
-			<pubDate>Mon, 25 Jan 2016 18:30:00 GMT</pubDate>
 		</item>
 	</channel>
 </rss>
