@@ -4,7 +4,7 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2017</rights>
-	<updated>2017-01-31T15:53:31Z</updated>
+	<updated>2017-01-31T16:11:25Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
 	<entry>
 		<link href="https://kamranicus.com/posts/2017-01-31-introduction-to-typescript-course-packt-publishing" />
@@ -12,7 +12,7 @@
 		<title>Introduction to TypeScript Course Now Available</title>
 		<updated>2017-01-31T13:00:00Z</updated>
 		<summary>&lt;p&gt;I'm very excited to share that the course I've been working on the past few months, &lt;a href="https://www.packtpub.com/application-development/introduction-typescript-video"&gt;Introduction to TypeScript&lt;/a&gt; is now available to purchase through Packt Publishing! I should have some discount codes to share soon (will Tweet/update when available).&lt;/p&gt;
-&lt;p&gt;&lt;img src="images%5C2017-01-31-course-cover.jpg" class="img-fluid" alt="Course cover"&gt;&lt;/p&gt;</summary>
+&lt;p&gt;&lt;img src="images/2017-01-31-course-cover.jpg" class="img-fluid" alt="Course cover"&gt;&lt;/p&gt;</summary>
 	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2017-01-23-subtle-bugs-exposed-with-slow-ci-servers" />
