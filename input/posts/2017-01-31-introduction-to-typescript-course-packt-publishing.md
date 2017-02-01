@@ -9,7 +9,7 @@ Tags:
 
 I'm very excited to share that the course I've been working on the past few months, [Introduction to TypeScript][1] is now available to purchase through Packt Publishing! I should have some discount codes to share soon (will Tweet/update when available).
 
-![Course cover](images/2017-01-31-course-cover.jpg)
+![Course cover](/posts/images/2017-01-31-course-cover.jpg)
 
 <!-- More -->
 
