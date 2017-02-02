@@ -4,8 +4,15 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2017</rights>
-	<updated>2017-02-01T01:14:32Z</updated>
+	<updated>2017-02-02T01:54:20Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2017-02-01-build-2017" />
+		<id>https://kamranicus.com/posts/2017-02-01-build-2017</id>
+		<title>See You at Build 2017</title>
+		<updated>2017-02-02T01:45:00Z</updated>
+		<summary>&lt;p&gt;Come May 10, I'll be heading to Seattle for the &lt;a href="http://build.microsoft.com"&gt;Microsoft Build 2017&lt;/a&gt; conference with my good friend and co-worker, &lt;a href="http://twitter.com/erikonarheim"&gt;Erik Onarheim&lt;/a&gt;. We'll be looking forward to any talks around Windows Server containers, container orchestration, and other "DevOps" stuff related to what we do at work.&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2017-01-31-introduction-to-typescript-course-packt-publishing" />
 		<id>https://kamranicus.com/posts/2017-01-31-introduction-to-typescript-course-packt-publishing</id>
@@ -143,12 +150,5 @@
 		<title>Tools of the Trade 2016</title>
 		<updated>2016-02-09T03:09:00Z</updated>
 		<summary>&lt;p&gt;Sometimes you get so caught up in the work you do on a daily basis that you forget what it was like to start your job on day one--not knowing anything about what tools, extensions, and general utilities you take for granted now, 6 years into your career. It seems like on a monthly basis I find a new extension or utility that is useful to me. I wanted to share my toolbelt, in case it contains something you've never heard of and causes you to exclaim in excitement about something awesome that you'll start using today.&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2016-02-02-typewriter" />
-		<id>https://kamranicus.com/posts/2016-02-02-typewriter</id>
-		<title>Using Typewriter to Strongly-Type Your Client-Side Models and Services</title>
-		<updated>2016-02-04T02:08:00Z</updated>
-		<summary>&lt;p&gt;I've recently discovered &lt;a href="http://frhagn.github.io/Typewriter/index.html"&gt;Typewriter for Visual Studio&lt;/a&gt;, a T4-style code-generator specifically meant for generating Typescript files. I've been using it since in all my projects, at work and at home. It's just &lt;strong&gt;so&lt;/strong&gt; good. Let me explain what Typewriter does and why it's so awesome.&lt;/p&gt;</summary>
 	</entry>
 </feed>
