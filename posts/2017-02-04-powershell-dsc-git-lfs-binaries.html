@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Store Binaries Next to Powershell DSC Using Git LFS</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Store Binaries Next to Powershell DSC Using Git LFS" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2017-02-04-powershell-dsc-git-lfs-binaries" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+              <div class="item">
+        <a href="/about">About</a>
+      </div>
+      <div class="item">
+        <a href="/posts">Archive</a>
+      </div>
+      <div class="item">
+        <a href="/projects">Projects</a>
+      </div>
+      <div class="item">
+        <a href="/speaking">Speaking</a>
+      </div>
+      <div class="item">
+        <a href="/travel">Travel</a>
+      </div>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Store Binaries Next to Powershell DSC Using Git LFS
+        <div class="ui sub header">Keep your Powershell DSC scripts and dependent binaries together using Git Large File Storage (LFS)</div>
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Saturday, February 4, 2017<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/automation" class="ui inverted small compact button">Automation</a>
+                    <a role="button" href="/tags/devops" class="ui inverted small compact button">DevOps</a>
+                    <a role="button" href="/tags/dsc" class="ui inverted small compact button">DSC</a>
+                    <a role="button" href="/tags/git" class="ui inverted small compact button">Git</a>
+                    <a role="button" href="/tags/powershell" class="ui inverted small compact button">Powershell</a>
+                    <a role="button" href="/tags/tfs" class="ui inverted small compact button">TFS</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui stackable grid container">
+    <div class="column">
+      
+
+<div class="ui huge basic post content segment">
+  <p>A common need when configuring servers using <a href="https://msdn.microsoft.com/en-us/powershell/dsc/overview">Powershell DSC</a> is installing software or copying binary files, for example, installing the Java SDK, Sysinternals, MSI installers, or what have you.</p>
+<!-- More -->
+<h2 id="using-a-network-share">Using a network share</h2>
+<p>Depending on the software, there are multiple ways to do the installation--using the <a href="https://msdn.microsoft.com/en-us/powershell/dsc/packageresource">Package</a> resource, copying files/manipulating the registry, etc. Common to all cases is the fact you need a <em>source</em> of the installation. Typically this is an exe, msi, zip, or some other large binary file.</p>
+<p>If I asked you where to store common installation source files that need to be accessible by any arbitrary server for DSC, you might (rightly) say, &quot;A network share!&quot; This is where most articles on using DSC stop.</p>
+<p>You would do something like this, such as copying a zip file from the share to a target node:</p>
+<pre><code class="language-powershell">Configuration WebServer {
+  Param($Credential)
+
+  File EnsureSysinternalsIsPresentInInstallationSource {
+    Ensure = &quot;Present&quot;
+    DestinationPath = &quot;C:\DSC\Sources\SysInternalsSuite-2016-11-18.zip&quot;
+    SourcePath = &quot;\\contoso.com\DSC\Sources\SysInternalsSuite-2016-11-18.zip&quot;
+    Credential = $Credential
+  }
+
+  Archive EnsureSysInternalsIsInstalled {
+    Ensure = &quot;Present&quot;
+    Destination = &quot;C:\Utilities\Sysinternals&quot;
+    Path = &quot;C:\DSC\Sources\SysInternalsSuite-2016-11-18.zip&quot;
+  }
+
+}
+</code></pre>
+<p>Here we are copying the Sysinternals source archive to the target node for extraction. The network share is secured to some credential we've passed in.</p>
+<p>In some cases, some DSC resources allow using UNC paths as their source but I've found this to be inconsistently implemented, finicky and riddled with permission issues, especially when doing complex installations that may require manual scripting. Behind the scenes Powershell has to mount the remote share and you can run into strange issues because of this--hours and days have been spent diagnosing network issues only to come down to black magic AD configuration. I've been burned too often to recommend this approach.</p>
+<h2 id="binaries-are-configuration-too">Binaries are configuration too</h2>
+<p>There's another issue. As a developer who moved into a more operational role (DevOps!), I've made it a point to store all our DSC in source control (Git, specifically). So now I'm in a situation where all my configuration is versioned and in source control but my installation sources or other binaries are stored separately in a file share.</p>
+<p>I don't like it. You should <em>store things that relate together next to each other.</em> If you don't, it introduces extra complexity:</p>
+<ul>
+<li>I need to ensure the entire team can access the file share</li>
+<li>Anyone could accidentally remove or change a file in the share and kill our DSC</li>
+<li>I need to document the sources somewhere in the repository</li>
+<li>The installation source files are not versioned or audited</li>
+<li>As mentioned above, your mileage may vary with access to network resources</li>
+</ul>
+<p>The fact is installation binaries <em>are still configuration.</em> Changes to the installation sources go hand-in-hand with changes to your DSC because they are married together. In your Git history, you want a record <strong>of all changes to any aspect of your configuration.</strong></p>
+<h2 id="using-git-lfs-to-store-binaries">Using Git LFS to store binaries</h2>
+<p>Normally storing binaries in Git isn't a recommended approach. Git wasn't designed for gigabye repositories. However, there's an extension available called <a href="https://git-lfs.github.com/">Git Large File Storage (LFS)</a>. It supports gigabye files and reduces repository size by storing the binaries on the remote server.</p>
+<p>Since we're using TFS, <a href="https://www.visualstudio.com/en-us/docs/git/manage-large-files">Git LFS is supported</a>. It's also supported on pretty much every major Git hosting provider. The only dependency is that local development requires you to install the Git LFS extension--something easily put into the README of the repository.</p>
+<p>Once you configure Git LFS for a repository:</p>
+<pre><code>git lfs track &quot;*.zip&quot;
+git lfs track &quot;*.exe&quot;
+git lfs track &quot;*.msi&quot;
+</code></pre>
+<p>You can now add these binary files and they'll be tracked in Git LFS (track whatever you need).</p>
+<p>Let's say for our purposes our repository now looks like this:</p>
+<pre><code>configuration/WebServer.ps1
+installers/sysinternals/SysInternalsSuite-2016-11-18.zip
+</code></pre>
+<p>Now you can efficiently store binary files alongside your configuration files!</p>
+<h2 id="downloading-installers-during-dsc-pull">Downloading Installers During DSC Pull</h2>
+<p>We're using DSC pull, which is the recommended approach for using DSC if you want to scale it out across your clusters. How does our DSC change now that we're storing the installers side-by-side?</p>
+<p>Presumably, you've managed to get your configs over to the pull server (which is a series of articles I still intend to write), but your installers are still stored in Git. What to do?</p>
+<p>Instead of copying files from a share, we can use some APIs available to use in TFS (or GitHub or what have you) to <strong>download the installers locally.</strong></p>
+<p>The TFS Rest API is documented and you can see there's a way to <a href="https://www.visualstudio.com/en-us/docs/integrate/api/git/items#get-a-file">download a folder as a zip file or stream a file</a>--which is perfect!</p>
+<p>For TFS, the format of the URL is like this:</p>
+<pre><code>GET https://{instance}/DefaultCollection/_apis/git/repositories/{repository}/items?api-version={version}&amp;scopePath={itemPath}
+</code></pre>
+<p>To get a specific <em>branch</em> (in cases where different branches are for different environments), you can pass <code>&amp;versionType=branch&amp;version={branch}</code>.</p>
+<p>This works for on-premise TFS and VSTS. There are <a href="https://developer.github.com/v3/repos/contents/#get-archive-link">similar APIs</a> for GitHub.</p>
+<p>Using the <a href="https://github.com/PowerShell/xPSDesiredStateConfiguration#xremotefile">xRemoteFile</a> resource, we can bring down our dependencies to the local machine to use, so our configuration above would change:</p>
+<pre><code class="language-powershell">Configuration WebServer {
+  Param($Credential)
+
+  Import-DscResource -Name xPSDesiredStateConfiguration 
+
+  xRemoteFile EnsureSysinternalsIsPresentInInstallationSource {
+    DestinationPath = &quot;C:\DSC\Sources\SysInternalsSuite-2016-11-18.zip&quot;
+    Uri = &quot;https://tfs.contoso.com/tfs/DefaultCollection/_apis/git/repositories/DSC/items?api-version=1.0&amp;scopePath=installers/sysinternals/SysInternalsSuite-2016-11-18.zip&quot;
+    Credential = $Credential
+    MatchSource = $True
+  }
+
+  Archive EnsureSysInternalsIsInstalled {
+    Ensure = &quot;Present&quot;
+    Destination = &quot;C:\Utilities\Sysinternals&quot;
+    Path = &quot;C:\DSC\Sources\SysInternalsSuite-2016-11-18.zip&quot;
+  }
+
+}
+</code></pre>
+<p>To use <code>xRemoteFile</code> we need to import the xPSDesiredStateConfiguration DSC module <a href="https://msdn.microsoft.com/en-us/powershell/dsc/pullserver#placing-configurations-and-resources">which has to be stored</a> on the pull server. Then we can use the appropriate URL to download an individual installer, or we could have downloaded the zip of the <strong>installers</strong> folder and unzipped it locally. The <code>MatchSource</code> parameter should prevent re-downloading the file if it already exists (and we added the version to the zip file). We are still passing a <code>Credential</code> because your source control repository is probably still authenticated.</p>
+<p>If you needed something more sophisticated, you could wrap downloading into a custom resource or Script resource--e.g. <a href="https://www.visualstudio.com/en-us/docs/integrate/api/git/items#get-item-metadata-for">use the SHA1 hash</a> to compare whether it needed to be downloaded again, etc. Where you go from here is your own choice!</p>
+<p>We've been using this pattern with great success--it keeps everything together, it's simple, and it lets us track the versions/history of our installation sources.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '2017-02-04-powershell-dsc-git-lfs-binaries';
+    var disqus_title = 'Store Binaries Next to Powershell DSC Using Git LFS';
+    var disqus_url = 'https://kamranicus.com/posts/2017-02-04-powershell-dsc-git-lfs-binaries';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>
