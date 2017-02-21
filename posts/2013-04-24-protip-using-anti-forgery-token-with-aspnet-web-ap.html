@@ -80,6 +80,9 @@
         <a href="/posts">Archive</a>
       </div>
       <div class="item">
+        <a href="/guides">Guides</a>
+      </div>
+      <div class="item">
         <a href="/projects">Projects</a>
       </div>
       <div class="item">
@@ -117,7 +120,7 @@ Published on Wednesday, April 24, 2013<br>    </div>
 
   <!-- Main Content -->
   <div class="ui stackable grid container">
-    <div class="column">
+    <div class="content column">
       
 
 <div class="ui huge basic post content segment">
@@ -214,13 +217,38 @@ public ActionResult DoSomething() { }
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    </div>
+
+      <!-- Disqus -->
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '70';
+    var disqus_title = 'Protip: Using Anti-Forgery Token with ASP.NET Web API on MVC 4 on AppHarbor';
+    var disqus_url = 'https://kamranicus.com/posts/2013-04-24-protip-using-anti-forgery-token-with-aspnet-web-ap';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>    </div>
   </div>
 
   <div class="ui divider"></div>
-
+  
   <!-- Footer -->
-  <footer>
+  <footer>   
     <div class="ui center aligned container">
   <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
   

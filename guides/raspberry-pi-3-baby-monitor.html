@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Building a Raspberry Pi 3 Baby Monitor</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Building a Raspberry Pi 3 Baby Monitor" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/guides/raspberry-pi-3-baby-monitor" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+              <div class="item">
+        <a href="/about">About</a>
+      </div>
+      <div class="item">
+        <a href="/posts">Archive</a>
+      </div>
+      <div class="item">
+        <a href="/guides">Guides</a>
+      </div>
+      <div class="item">
+        <a href="/projects">Projects</a>
+      </div>
+      <div class="item">
+        <a href="/speaking">Speaking</a>
+      </div>
+      <div class="item">
+        <a href="/travel">Travel</a>
+      </div>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+<h1 class="ui inverted header">Building a Raspberry Pi 3 Baby Monitor</h1>       </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui stackable grid container">
+    <div class="content column">
+      <p>After looking at reviews for baby monitors, a few things were clear:</p>
+<ol>
+<li>Manufacturers aren't putting good cameras in these monitors</li>
+<li>Some have night vision, some don't and the quality usually sucks.</li>
+<li>If the monitor can be viewed remotely, it sometimes runs insecure RF wireless and <a href="https://arstechnica.com/security/2015/09/9-baby-monitors-wide-open-to-hacks-that-expose-users-most-private-moments/">can be snooped on or intercepted</a></li>
+<li>Good monitors aren't actually baby monitors, they're just nice cameras (Nest Cam) and cost $200+</li>
+</ol>
+<p>I knew there had to be a better, more affordable way to keep tabs on our little guy. A <a href="http://raspberrypi.org">Raspberry Pi</a> was a perfect solution--it has a camera module with 1080p resolution, it has USB ports for extra peripherals, it's portable, and it's cheap.</p>
+<p>Check out the resulting image quality:</p>
+<p><strong>720p, low light</strong></p>
+<p><img src="images/raspberry-pi-3-baby-monitor/baby.png" class="img-fluid" alt="Image quality, low light" /></p>
+<p><strong>720p, high light</strong></p>
+<p><img src="images/raspberry-pi-3-baby-monitor/baby-day.png" class="img-fluid" alt="Image quality, high light" /></p>
+<p>It's possible to reach 1080p with the Pi camera, it's up to you--I found 720p to be perfectly acceptable but 1080p caused the image to &quot;zoom in&quot; a bit too much. If I figure that out, I'll update the guide accordingly.</p>
+<p>This guide will show you how to build your own DIY baby monitor using a Raspberry Pi 3. The image and sound will be way better than any low- to mid-level monitors (and cheaper!). Additionally, this will give you a lot of flexibility to add other functionality such as a speaker, etc. Since the Raspberry Pi is under your control, you can choose to expose it only within your home network or securely over the Internet--no weird Internet of Things or cloud &quot;phone home&quot; nonsense or possible vulnerabilities that allow people to view your baby. It will be as secure as your home network and if you choose to expose it publically, you can use encryption and strong passwords to secure it (this guide does not cover that).</p>
+<h2 id="in-this-guide">In This Guide</h2>
+<ul>
+<li><a href="#the-hardware">The Hardware</a></li>
+<li><a href="#who-this-guide-is-for">Who This Guide is For</a></li>
+<li><a href="#nightvision-support">Nightvision Support</a></li>
+<li><a href="#programmable-led-light">Programmable LED Light</a></li>
+<li>How To
+<ul>
+<li><a href="#installing-the-pi-camera">Installing the Pi Camera</a></li>
+<li><a href="#configuring-the-pi">Configuring the Pi</a></li>
+<li><a href="#configuring-raspbian">Configuring Raspbian</a></li>
+<li><a href="#installing-picam">Installing Picam</a></li>
+<li><a href="#running-picam-at-startup">Running Picam at Startup</a></li>
+<li><a href="#installing-nginx">Installing nginx</a></li>
+<li><a href="#mounting-the-monitor">Mounting the Monitor</a></li>
+<li><a href="#viewing-on-a-device">Viewing on a Device</a></li>
+<li><a href="#optionally-adding-a-web-player">(Optionally) Adding a Web Player</a></li>
+<li><a href="#optionally-exposing-over-the-internet">(Optionally) Exposing over the Internet</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="the-hardware">The Hardware</h2>
+<p>Here's what you'll need, it's what I have and it works great:</p>
+<ul>
+<li><a href="https://www.amazon.com/gp/product/B01C6EQNNK/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B01C6EQNNK&amp;linkCode=as2&amp;tag=kamranicus-20&amp;linkId=cefba209294d3cf51f3be3d51bd18990">Raspberry Pi 3 Canakit</a> - $50</li>
+<li><a href="https://www.amazon.com/gp/product/B01ER2SKFS/ref=as_li_tl?ie=UTF8&amp;tag=kamranicus-20&amp;camp=1789&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=B01ER2SKFS&amp;linkId=c4b2ac954d25538e792e193ff088faac">Raspberry Pi Camera Module v2</a> - $30</li>
+<li><a href="https://www.amazon.com/gp/product/B010Q57T02/ref=as_li_tl?ie=UTF8&amp;tag=kamranicus-20&amp;camp=1789&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=B010Q57T02&amp;linkId=6ad18aebc7e3dd06daf87ef2f40910a4">MicroSD card</a> (8GB or higher) - $12</li>
+<li><a href="https://www.amazon.com/gp/product/B00NSOWWIS/ref=as_li_tl?ie=UTF8&amp;tag=kamranicus-20&amp;camp=1789&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=B00NSOWWIS&amp;linkId=b66c7df0a0cac98747907f0815de7727">Kinobo Mini Akiro USB condenser microphone</a> - $15
+<ul>
+<li>Or, less flexible but smaller <a href="https://www.amazon.com/gp/product/B00IR8R7WQ/ref=as_li_tl?ie=UTF8&amp;tag=kamranicus-20&amp;camp=1789&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=B00IR8R7WQ&amp;linkId=177490daf1de57639c4d8a8c1793276d">Kinobo Makio USB microphone</a> - $3</li>
+</ul>
+</li>
+<li><a href="https://www.amazon.com/gp/product/B00D2ZDY2Q/ref=as_li_tl?ie=UTF8&amp;tag=kamranicus-20&amp;camp=1789&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=B00D2ZDY2Q&amp;linkId=b5274841a23c61599f27a6b31c4111ca">i2 Gear USB LED lamp</a> (optional) - $5</li>
+<li><a href="https://www.amazon.com/gp/product/B0126JQ9G6/ref=as_li_tl?ie=UTF8&amp;tag=kamranicus-20&amp;camp=1789&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=B0126JQ9G6&amp;linkId=9523b6886ba2aac0800fc3bacc4f9705">BESTEK phone mount</a> (optional) - $11</li>
+<li>HDMI cable (temporary)</li>
+<li>USB keyboard/mouse (temporary)</li>
+<li>Laptop to configure the Pi</li>
+</ul>
+<p>You can snag all the hardware needed for ~$100 off Amazon. I went with a 32GB SD card but that's just me, you could configure this to store all videos/photos on a network device or cloud account.</p>
+<p>The gooseneck LED light is optional--I want to be able to have the monitor have a night-light attached vs. having to have a separate ambient light at night.</p>
+<p>For mounting the Pi, it's up to you. I need to mount it to the bassinet/crib and a clamp-based gooseneck mount is perfect for me (at least until the little guy starts moving around and grabbing things!). You may want to wall-mount it, use cardboard, etc. Use whatever works for you!</p>
+<h2 id="who-this-guide-is-for">Who This Guide is For</h2>
+<p>I am a developer by trade but I will try to keep this guide as simple as possible. You presumably are ready to get your hands (a little) dirty if you have a Pi but if you're like me, Linux is not your forte. With that in mind I've tried not to assume you know anything about Linux.</p>
+<p>The other nice thing about using a Raspberry Pi is that it's easy-to-use! There are a lot of guides and tutorials available for the device.</p>
+<h2 id="nightvision-support">Nightvision Support</h2>
+<p>Originally I had planned to use the Pi NoIR camera module because it can see infrared light. However, since infrared light is still light (just not visible) I didn't really want to take a chance of accidentally &quot;shining&quot; it straight onto my son's face. <a href="http://www.intersil.com/content/dam/Intersil/documents/an17/an1737.pdf">There is no real evidence</a> to suggest that infrared baby monitors are dangerous to infants--but concentrated IR is still not good to have directed at you. The fact is that nightvision baby monitors probably use a very low light level and it's <em>probably</em> not dangerous at all.</p>
+<p>If you want to add nightvision to this monitor, simply replace the normal camera module above with the <a href="https://www.amazon.com/gp/product/B01ER2SMHY/ref=as_li_tl?ie=UTF8&amp;tag=kamranicus-20&amp;camp=1789&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=B01ER2SMHY&amp;linkId=0f96de503803ea64bfb9b0f854cc9fe0">Pi NoIR Camera module</a>. You will then need to find a suitable infrared light to use at night.</p>
+<p>I have opted to use a simple flexible USB light that I can shine specifically where it makes sense and won't be in the baby's line of sight. It has an on/off switch which comes in handy for my wife at night to simply lean over and switch on too.</p>
+<h2 id="programmable-led-light">Programmable LED Light</h2>
+<p>While I opted for a simple on/off nightlight, you could potentially go crazy with a <a href="https://www.blinkstick.com/products/blinkstick-nano#mini-shop">BlinkStick Nano USB light</a> that is programmable, so you could have it automatically turn on in low-light conditions, program light shows, or what have you.</p>
+<h2 id="installing-the-pi-camera">Installing the Pi Camera</h2>
+<p>To install the camera on the Pi, firmly insert the end of the cable with the silver pins facing <em>toward</em> the HDMI port.</p>
+<p>The reason I picked the Canakit was because the case allows you to just attach the camera on the inside, allowing an integrated camera.</p>
+<p><img src="images/raspberry-pi-3-baby-monitor/canakit-camera-case.jpg" class="img-fluid" alt="Canakit camera" /></p>
+<h2 id="configuring-the-pi">Configuring the Pi</h2>
+<p>First things first, we need to configure our Raspberry Pi. The <a href="https://www.raspberrypi.org/learning/software-guide/quickstart/">software installation guide</a> on the Raspberry Pi site is perfect and easy to understand.</p>
+<p>Follow all the steps until your SD card has NOOBs or Raspbian extracted to it. I used the NOOBS offline (1GB) image.</p>
+<p>Connect the Pi via HDMI to a monitor or TV. Connect a mouse/keyboard to the Pi for configuring. Connect an Ethernet cable unless you want to use Wi-Fi during the guide.</p>
+<p>Boot up your Pi (i.e. plug it in), you should see a screen showing different options of Operating Systems to install. Select Raspbian, connect to Wi-Fi (or use a Ethernet cable) and begin the installation. Wait for it to complete and then proceed.</p>
+<h2 id="configuring-raspbian">Configuring Raspbian</h2>
+<blockquote class="blockquote">
+<p><strong>Advanced Users</strong>: You can SSH into the Pi without using the user interface, you just need to know the IP address (check your router). You also need to use the raw Raspbian image, you can't SSH using the NOOBS installer.</p>
+</blockquote>
+<p>I'm sorry I have to delve into the command-line but because Raspberry Pi is a Linux device, most of the power user features are only available through there. Hey, presumably you're reading this because you want a power user baby monitor! We have to get our hands a little dirty.</p>
+<p>Launch the Terminal app on the Pi (it's in the menu bar at the top).</p>
+<p>Run the following command:</p>
+<pre><code>sudo apt-get update &amp;&amp; sudo apt-get -y dist-upgrade
+</code></pre>
+<p>When the prompt changes to a changelog, press <code>Ctrl-C</code> to close the wall of text, then <code>Enter</code> to continue.</p>
+<p>This takes awhile! This updates Raspbian to the latest updates including security patches. You want to run this every so often to keep the operating system up-to-date. There are more technical guides on <a href="https://wiki.debian.org/UnattendedUpgrades">automatic updating</a> so you don't need to login to keep it up-to-date.</p>
+<h3 id="configure-pi-settings">Configure Pi Settings</h3>
+<p>Time to configure the Raspberry Pi!</p>
+<p>In the terminal, type</p>
+<pre><code>sudo raspi-config
+</code></pre>
+<ol>
+<li>Select Change User Password and <strong>use something more secure</strong>. This is the main password for your device.</li>
+<li>Under option 5, enable the camera</li>
+<li>Under Internationalization Options, change your Timezone</li>
+<li>Under Advanced Options, enable SSH so you can connect to the Pi remotely (or don't! If you want to always configure it using keyboard/mouse/monitor)</li>
+<li>Under Advanced Options, you can change the hostname (recommended). I used <code>babypi</code></li>
+</ol>
+<h3 id="configure-hostname">Configure Hostname</h3>
+<p>The Raspberry Pi can be pinged and connected to via the hostname <code>babypi.local</code> or whatever name you chose in the last step (plus <code>.local</code> at the end). However, the IP address this defaults to is a long one (IPv6). Web browsers can have trouble connecting to the Pi with this enabled, so we need to disable IPv6 hostname resolution.</p>
+<pre><code>sudo nano /etc/avahi/avahi-daemon.conf
+</code></pre>
+<p>On the line <code>use-ipv6=yes</code> change <code>yes</code> to <code>no</code>. Press <code>Ctrl-O</code> to save (hit Enter), then <code>Ctrl-X</code> to exit.</p>
+<p>Now reboot! <code>sudo reboot</code></p>
+<p>You should be able to ping your Pi from another machine:</p>
+<pre><code>ping babypi.local
+ping -4 babypi.local
+</code></pre>
+<p>The second command forces the ping to return the IPv4 address. On Windows you may need the <a href="https://support.apple.com/kb/DL999?locale=en_US">Bonjour service installed</a> if you don't have iTunes installed.</p>
+<p>Some devices (my Android phone for example) still won't be able to use <code>babypi.local</code> so you'll still need the IP address of your Pi, which you can see with <code>ip addr show</code>.</p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> I had some issues on Windows trying to access <a href="http://babypi.local">http://babypi.local</a> in my browser. When I pinged my Pi, I got a private address space back (198.105.x.x) instead of the local IP. I changed my router's DNS to Google's public DNS servers and <em>for some reason</em> that worked. I think CenturyLink (my ISP) was somehow interfering since it would always redirect to some proprietary search results page. However, with the knowledge I have of networking and DNS, this still makes no sense to me!</p>
+</blockquote>
+<h3 id="configure-wi-fi">Configure Wi-Fi</h3>
+<p>If you plan to have your baby Pi be wireless, you will need to connect it to your Wi-Fi network. To do so, just follow this guide: <a href="https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md">https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md</a></p>
+<h2 id="installing-picam">Installing Picam</h2>
+<p>Because we want to stream <em>both</em> audio and video from the camera and USB microphone, we need to use a software project called <a href="https://github.com/iizukanao/picam">Picam</a>.</p>
+<p>Make sure to run <em>all commands</em> from the Pi user directory, i.e. your prompt should look like:</p>
+<pre><code>pi&#64;raspberrypi:~ $
+</code></pre>
+<p>The <code>~</code> denotes your user's home directory.</p>
+<p>Run the following command in the terminal to install some Picam dependencies:</p>
+<pre><code>sudo apt-get install libharfbuzz0b libfontconfig1
+</code></pre>
+<p>Then this entire thing (if you are using SSH, just copy/paste otherwise have fun!):</p>
+<pre><code>cat &gt; make_dirs.sh &lt;&lt;'EOF'
+DEST_DIR=~/picam
+SHM_DIR=/run/shm
+mkdir -p $SHM_DIR/rec
+mkdir -p $SHM_DIR/hooks
+mkdir -p $SHM_DIR/state
+mkdir -p $DEST_DIR/archive
+ln -sfn $DEST_DIR/archive $SHM_DIR/rec/archive
+ln -sfn $SHM_DIR/rec $DEST_DIR/rec
+ln -sfn $SHM_DIR/hooks $DEST_DIR/hooks
+ln -sfn $SHM_DIR/state $DEST_DIR/state
+EOF
+</code></pre>
+<p>Then the following, to execute the script we just made and create the required directories:</p>
+<pre><code>chmod +x make_dirs.sh
+./make_dirs.sh
+</code></pre>
+<p>Now we install Picam directly:</p>
+<pre><code>wget https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary.tar.xz
+tar xvf picam-1.4.6-binary.tar.xz
+cp picam-1.4.6-binary/picam ~/picam/
+</code></pre>
+<p>We now have Picam installed! It's time to get a stream working.</p>
+<p>To configure Picam to use our microphone, we need to know what its &quot;device ID&quot; is. Run the following to list any USB recording devices:</p>
+<pre><code>arecord -l
+</code></pre>
+<p>The name will be Card # and Device #, so for example, here is mine:</p>
+<pre><code>**** List of CAPTURE Hardware Devices ****
+card 1: Device [USB Audio Device], device 0: USB Audio [USB Audio]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+</code></pre>
+<p>You see &quot;card 1&quot; and &quot;device 0&quot; so my microphone ID will be <code>hw:1,0</code>.</p>
+<p>Now, let's make a script we can run to start Picam. <strong>Replace &quot;hw:1,0&quot; with your device ID above if it's different.</strong>:</p>
+<pre><code>echo &quot;/home/pi/picam/picam -o /run/shm/hls --time --alsadev hw:1,0 &gt; /var/log/picam.log 2&amp;&gt;1&quot; &gt; run_picam.sh
+chmod +x run_picam.sh
+</code></pre>
+<p>This creates a <code>run_picam.sh</code> script in our root (<code>~</code>) directory and marks it as executable. The script starts Picam with a HLS stream output to the RAM drive (fast) and uses our microphone as the recording device. It also writes out the current timestamp in the bottom corner of the stream. There are a <a href="https://github.com/iizukanao/picam">ton of other options</a> too including subtitles, etc. The default video resolution is 720p which is fine enough for a babycam.</p>
+<p>The script also writes the Picam output to <code>/var/log/picam.log</code> for debugging purposes.</p>
+<p>To edit this script anytime after creating, just use:</p>
+<pre><code>nano run_picam.sh
+</code></pre>
+<p>The nano editor is very straightforward to use. Ctrl-O to save, Ctrl-X to exit.</p>
+<p>Test the script by typing <code>./run_picam.sh</code>, you should see:</p>
+<pre><code>pi&#64;babypi:~ $ ./run_picam.sh
+created state dir: ./state
+created hooks dir: ./hooks
+created directory: ./rec
+created directory: ./rec/tmp
+created directory: ./rec/archive
+created HLS output directory: /run/shm/hls
+configuring devices
+capturing started
+</code></pre>
+<p>Just press Ctrl-C to exit.</p>
+<h2 id="running-picam-at-startup">Running Picam at startup</h2>
+<p><a href="http://www.stuffaboutcode.com/2012/06/raspberry-pi-run-program-at-start-up.html">There's a great post</a> on how to run a script at startup. We want Picam to run right away when the Pi boots up, so let's do that!</p>
+<p>Create the script:</p>
+<pre><code>sudo nano /etc/init.d/picam
+</code></pre>
+<p>Then copy/paste the following:</p>
+<pre><code>#! /bin/sh
+# /etc/init.d/picam
+
+### BEGIN INIT INFO
+# Provides:          picam
+# Required-Start:    $remote_fs $syslog $network
+# Required-Stop:     $remote_fs $syslog $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Simple script to start Picam at boot
+# Description:       A simple script to start Picam at boot
+### END INIT INFO
+
+# If you want a command to always run, put it here
+
+# Carry out specific functions when asked to by the system
+case &quot;$1&quot; in
+  start)
+    echo &quot;Starting Picam&quot;
+    # run application you want to start
+    sudo /home/pi/run_picam.sh
+    ;;
+  stop)
+    echo &quot;Stopping Picam&quot;
+    # kill application you want to stop
+    killall picam
+    ;;
+  *)
+    echo &quot;Usage: /etc/init.d/picam {start|stop}&quot;
+    exit 1
+    ;;
+esac
+
+exit 0
+</code></pre>
+<p>This is an initialization script that will execute our <code>run_picam.sh</code> script we just made.</p>
+<p>Mark it as executable:</p>
+<pre><code>sudo chmod +x /etc/init.d/picam
+</code></pre>
+<p>Now, let's test it.</p>
+<pre><code>sudo /etc/init.d/picam start
+</code></pre>
+<p>You should see the Picam output. Picam is now running in the background! You can stop it manually like this:</p>
+<pre><code>sudo /etc/init.d/picam stop
+</code></pre>
+<p>Now let's register it on startup:</p>
+<pre><code>sudo update-rc.d picam defaults
+</code></pre>
+<p>All set. We can test it out by rebooting the Pi and verifying the Picam process is running.</p>
+<pre><code>sudo reboot
+</code></pre>
+<p>Once the Pi is booted, type <code>top</code> to see running processes. You should see Picam at the top.</p>
+<p><img src="images/raspberry-pi-3-baby-monitor/top.png" class="img-fluid" alt="Linux top screenshot" /></p>
+<h2 id="installing-nginx">Installing nginx</h2>
+<p>We've set up Picam to output a stream to a file but we need to expose that stream so we can connect to it from our devices or web browsers. &quot;nginx&quot; is a web server that can do that for us.</p>
+<p>Let's install nginx:</p>
+<pre><code>sudo apt-get install nginx
+</code></pre>
+<p>Now let's expose the RAM stream as a directory:</p>
+<pre><code>sudo nano /etc/nginx/sites-available/default
+</code></pre>
+<p>In the editor, scroll down to right before <code>location / {</code> and add a new block above it:</p>
+<pre><code>location /hls/ {
+    root /run/shm;
+}
+</code></pre>
+<p>This adds a new /hls URL that points to the /run/shm/hls directory Picam is outputting the stream to.</p>
+<p>Ensure nginx is started (it will start automatically):</p>
+<pre><code>sudo /etc/init.d/nginx start
+</code></pre>
+<p>This starts the web server. Now you can browse (on the Pi or other device) to the root of the site and view the nginx welcome page.</p>
+<p>For example, type in <code>http://&lt;ip address&gt;/</code> to see the default homepage.</p>
+<h2 id="mounting-the-monitor">Mounting the monitor</h2>
+<p>Now that we've configured the baby Pi, we need to put it near the baby! As I mentioned at the start, I am just using a simple LED light to help when its dark. With a gooseneck mount, we can also position the monitor in whatever way we need that provides the best view of the crib. What's nice is that you can fit everything you need onto a single Pi, so it can travel with you.</p>
+<p><img src="images/raspberry-pi-3-baby-monitor/mount-1.jpg" class="img-fluid" alt="Mounting angle 1" /></p>
+<p><img src="images/raspberry-pi-3-baby-monitor/mount-2.jpg" class="img-fluid" alt="Mounting angle 2" /></p>
+<p>It looks a bit like an angler fish but it does the job!</p>
+<h2 id="viewing-on-a-device">Viewing on a device</h2>
+<p>We're officially all set up! That's all that is needed to use our baby monitor.</p>
+<p>In the first part where you configured the Pi, you choose a hostname (or didn't). You can now access the stream URL at <code>http://babypi.local/hls/index.m3u8</code>. You can open that up in any compatible software to view the livestream.</p>
+<h3 id="vlc-player">VLC Player</h3>
+<p>On a PC, Mac, Android, or iOS, I recommend <a href="http://www.videolan.org/vlc/index.html">VLC Media Player</a>.</p>
+<p>For PC:</p>
+<ol>
+<li>Install VLC</li>
+<li>Open VLC</li>
+<li>Go to File</li>
+<li>Open Network Stream</li>
+<li>Paste in the URL</li>
+</ol>
+<p><img src="images/raspberry-pi-3-baby-monitor/vlc.png" class="img-fluid" alt="VLC network stream" /></p>
+<p>The steps are similar for Android and iOS, just choose &quot;Stream&quot; and type in the same URL.</p>
+<p>You should now see a live stream with video and audio!</p>
+<h2 id="optionally-adding-a-web-player">(Optionally) Adding a web player</h2>
+<p>VLC is a nice player but sometimes it might be nice to just hit the Pi directly in a web browser (open a new tab on your computer, etc.).</p>
+<p>We can optionally add a stream player to our web server. Follow the steps below:</p>
+<pre><code>cd /var/www/html
+sudo git clone https://github.com/kamranayub/picam-viewer.git .
+</code></pre>
+<p>This will bring down a bare metal web player I put together. Feel free to edit it as you see fit. If you changed the URL to where the HLS stream is at on the server, you will need to edit <em>config.json</em>.</p>
+<p>Now, open a browser and visit your Raspberry Pi (e.g. <a href="http://babypi.local/">http://babypi.local/</a>):</p>
+<p><img src="images/raspberry-pi-3-baby-monitor/browser.png" class="img-fluid" alt="Browsing the Pi" /></p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> The viewer is very basic right now, I plan to add some functionality to change the exposure, resolution, white balance, and mute settings for Picam as well. Some Raspberry Pi configuration might be nice too such as rebooting. You can contribute back at <a href="https://github.com/kamranayub/picam-viewer">https://github.com/kamranayub/picam-viewer</a></p>
+</blockquote>
+<h2 id="optionally-exposing-over-the-internet">(Optionally) Exposing over the Internet</h2>
+<p>I have chosen not to expose my Pi to the internet, instead it sits securely on my network behind my router and is not accessible via the Internet. If you choose to expose it remotely, you will need to do the following to ensure it's secure:</p>
+<ol>
+<li><a href="http://www.wikihow.com/Set-Up-Port-Forwarding-on-a-Router">Set up Port Forwarding</a> on your router to forward some random port to port 80 on the Pi</li>
+<li>Enable HLS encryption <a href="https://github.com/iizukanao/picam#enabling-encryption">which is in the Picam documentation</a>.</li>
+<li><a href="https://www.nginx.com/blog/nginx-https-101-ssl-basics-getting-started/">Configure nginx to use HTTPS</a> (and force it) and an SSL certificate (preferably a signed one) for the website</li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-http-authentication-with-nginx-on-ubuntu-12-10">Configure nginx to prompt for a username/password</a> (Basic Authentication) which is secure as long as its over SSL</li>
+<li>Probably <a href="http://raspi.tv/2012/how-to-set-up-keys-and-disable-password-login-for-ssh-on-your-raspberry-pi">disable password authentication</a> in SSH and switch to SSH keys</li>
+</ol>
+<p>These steps are outside the scope of this guide but there are many tutorials online for Nginx, port forwarding, and SSL that you can follow to achieve this. If someone wants to write it up, I will happily add it to this guide! Just remember as soon as you allow your Pi to be exposed, you need to make sure it's the server is secure and encrypted.</p>
+
+
+      <!-- Disqus -->
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = 'raspberry-pi-3-baby-monitor';
+    var disqus_title = 'Building a Raspberry Pi 3 Baby Monitor';
+    var disqus_url = 'https://kamranicus.com/guides/raspberry-pi-3-baby-monitor';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>    </div>
+  </div>
+
+  <div class="ui divider"></div>
+  
+  <!-- Footer -->
+  <footer>   
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>
