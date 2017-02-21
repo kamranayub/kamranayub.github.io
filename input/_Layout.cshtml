@@ -109,15 +109,20 @@
 
   <!-- Main Content -->
   <div class="ui stackable grid container">
-    <div class="column">
+    <div class="content column">
       @RenderBody()
+
+      <!-- Disqus -->
+      @if (Model.Bool("Comments", false)) {
+        @Html.Partial("_Disqus");
+      }
     </div>
   </div>
 
   <div class="ui divider"></div>
-
+  
   <!-- Footer -->
-  <footer>
+  <footer>   
     @Html.Partial("_Footer")
   </footer>
 

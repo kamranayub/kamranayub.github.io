@@ -67,6 +67,11 @@ nav.ui.site.menu {
   margin-bottom: 0.75em;
 }
 
+/* Main content */
+.content.column img {
+  max-width: 100%;
+}
+
 /* Posts */
 .post.content.segment {
 
