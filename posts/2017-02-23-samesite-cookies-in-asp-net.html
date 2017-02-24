@@ -126,7 +126,7 @@ Published on Thursday, February 23, 2017<br>    </div>
 <div class="ui huge basic post content segment">
   <p>I was reading Scott Helme's post on how <a href="https://scotthelme.co.uk/csrf-is-dead/">CSRF is Dead</a> because of the new Same Site cookie spec (which is supported in <a href="http://caniuse.com/#feat=same-site-cookie-attribute">Chrome and soon FF</a>).</p>
 <p>I wanted to add support into <a href="http://ktomg.com">KTOMG</a> so I was trying to figure out how to modify my authentication flow to add the attribute. However, <a href="https://msdn.microsoft.com/en-us/library/system.web.httpcookie(v=vs.110).aspx">HttpCookie</a> is sealed and can't be modified so what's a well meaning security citizen supposed to do?!</p>
-<p>Well, thanks to this StackOverflow answer, it's actually pretty simple and can be done on any IIS website using URL rewrite!</p>
+<p>Well, thanks to <a href="http://stackoverflow.com/a/38957177/109458">this StackOverflow answer</a>, it's actually pretty simple and can be done on any IIS website using URL rewrite!</p>
 <pre><code class="language-xml">&lt;system.webServer&gt;
   &lt;rewrite&gt;
     &lt;outboundRules&gt;
