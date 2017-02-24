@@ -13,6 +13,8 @@ I'm very excited to share that the course I've been working on the past few mont
 
 <!-- More -->
 
+You can watch the [course overview](https://www.packtpub.com/mapt/video/Application%20Development/9781786465207/16234/16923/The+Course+Overview) if you want to learn what's in store.
+
 ## Goals
 
 My goals while developing the course were pretty simple:
