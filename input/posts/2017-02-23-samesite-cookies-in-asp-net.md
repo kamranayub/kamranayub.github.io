@@ -11,7 +11,7 @@ I was reading Scott Helme's post on how [CSRF is Dead](https://scotthelme.co.uk/
 
 I wanted to add support into [KTOMG](http://ktomg.com) so I was trying to figure out how to modify my authentication flow to add the attribute. However, [HttpCookie](https://msdn.microsoft.com/en-us/library/system.web.httpcookie(v=vs.110).aspx) is sealed and can't be modified so what's a well meaning security citizen supposed to do?!
 
-Well, thanks to this StackOverflow answer, it's actually pretty simple and can be done on any IIS website using URL rewrite!
+Well, thanks to [this StackOverflow answer](http://stackoverflow.com/a/38957177/109458), it's actually pretty simple and can be done on any IIS website using URL rewrite!
 
 ```xml
 <system.webServer>
