@@ -129,6 +129,10 @@ Published on Saturday, February 4, 2017<br>    </div>
 <div class="ui huge basic post content segment">
   <p>A common need when configuring servers using <a href="https://msdn.microsoft.com/en-us/powershell/dsc/overview">Powershell DSC</a> is installing software or copying binary files, for example, installing the Java SDK, Sysinternals, MSI installers, or what have you.</p>
 <!-- More -->
+<h2 id="updates">Updates</h2>
+<ul>
+<li><strong>6/14/2017</strong>: My good friend and colleague <a href="https://erikonarheim.com">Erik</a> was going through this exercise at work and let me know the code doesn't <em>actually</em> work. Whoops! Apparently when I tested, the binaries weren't actually in Git LFS since I had already checked them in. However, I did manage to solve the issue but for now you may need to use a custom Script resource until I release a DSC module. <a href="/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts">Check out this post</a> for an explanation and solution. I will update this post again with my new resource once available.</li>
+</ul>
 <h2 id="using-a-network-share">Using a network share</h2>
 <p>Depending on the software, there are multiple ways to do the installation--using the <a href="https://msdn.microsoft.com/en-us/powershell/dsc/packageresource">Package</a> resource, copying files/manipulating the registry, etc. Common to all cases is the fact you need a <em>source</em> of the installation. Typically this is an exe, msi, zip, or some other large binary file.</p>
 <p>If I asked you where to store common installation source files that need to be accessible by any arbitrary server for DSC, you might (rightly) say, &quot;A network share!&quot; This is where most articles on using DSC stop.</p>
@@ -184,7 +188,7 @@ installers/sysinternals/SysInternalsSuite-2016-11-18.zip
 <p>Instead of copying files from a share, we can use some APIs available to use in TFS (or GitHub or what have you) to <strong>download the installers locally.</strong></p>
 <p>The TFS Rest API is documented and you can see there's a way to <a href="https://www.visualstudio.com/en-us/docs/integrate/api/git/items#get-a-file">download a folder as a zip file or stream a file</a>--which is perfect!</p>
 <p>For TFS, the format of the URL is like this:</p>
-<pre><code>GET https://{instance}/DefaultCollection/_apis/git/repositories/{repository}/items?api-version={version}&amp;scopePath={itemPath}
+<pre><code>GET https://{instance}/DefaultCollection/{project}/_apis/git/repositories/{repository}/items?api-version={version}&amp;scopePath={itemPath}
 </code></pre>
 <p>To get a specific <em>branch</em> (in cases where different branches are for different environments), you can pass <code>&amp;versionType=branch&amp;version={branch}</code>.</p>
 <p>This works for on-premise TFS and VSTS. There are <a href="https://developer.github.com/v3/repos/contents/#get-archive-link">similar APIs</a> for GitHub.</p>
@@ -196,7 +200,7 @@ installers/sysinternals/SysInternalsSuite-2016-11-18.zip
 
   xRemoteFile EnsureSysinternalsIsPresentInInstallationSource {
     DestinationPath = &quot;C:\DSC\Sources\SysInternalsSuite-2016-11-18.zip&quot;
-    Uri = &quot;https://tfs.contoso.com/tfs/DefaultCollection/_apis/git/repositories/DSC/items?api-version=1.0&amp;scopePath=installers/sysinternals/SysInternalsSuite-2016-11-18.zip&quot;
+    Uri = &quot;https://tfs.contoso.com/tfs/DefaultCollection/TeamProject/_apis/git/repositories/DSC/items?api-version=1.0&amp;scopePath=installers/sysinternals/SysInternalsSuite-2016-11-18.zip&quot;
     Credential = $Credential
     MatchSource = $True
   }
@@ -210,6 +214,9 @@ installers/sysinternals/SysInternalsSuite-2016-11-18.zip
 }
 </code></pre>
 <p>To use <code>xRemoteFile</code> we need to import the xPSDesiredStateConfiguration DSC module <a href="https://msdn.microsoft.com/en-us/powershell/dsc/pullserver#placing-configurations-and-resources">which has to be stored</a> on the pull server. Then we can use the appropriate URL to download an individual installer, or we could have downloaded the zip of the <strong>installers</strong> folder and unzipped it locally. The <code>MatchSource</code> parameter should prevent re-downloading the file if it already exists (and we added the version to the zip file). We are still passing a <code>Credential</code> because your source control repository is probably still authenticated.</p>
+<blockquote class="blockquote">
+<p><strong>Attention Reader:</strong> This actually doesn't work when using Git LFS. You have to <a href="/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts">shave some yaks</a> before you can get it to work.</p>
+</blockquote>
 <p>If you needed something more sophisticated, you could wrap downloading into a custom resource or Script resource--e.g. <a href="https://www.visualstudio.com/en-us/docs/integrate/api/git/items#get-item-metadata-for">use the SHA1 hash</a> to compare whether it needed to be downloaded again, etc. Where you go from here is your own choice!</p>
 <p>We've been using this pattern with great success--it keeps everything together, it's simple, and it lets us track the versions/history of our installation sources.</p>
 

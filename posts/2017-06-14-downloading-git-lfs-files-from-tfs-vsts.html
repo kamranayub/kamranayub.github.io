@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Downloading Git LFS Files from TFS or VSTS</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Downloading Git LFS Files from TFS or VSTS" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text site menu">
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+              <div class="item">
+        <a href="/about">About</a>
+      </div>
+      <div class="item">
+        <a href="/posts">Archive</a>
+      </div>
+      <div class="item">
+        <a href="/guides">Guides</a>
+      </div>
+      <div class="item">
+        <a href="/projects">Projects</a>
+      </div>
+      <div class="item">
+        <a href="/speaking">Speaking</a>
+      </div>
+      <div class="item">
+        <a href="/travel">Travel</a>
+      </div>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
+    <div class="ui text container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Downloading Git LFS Files from TFS or VSTS
+        <div class="ui sub header">Downloading files stored in TFS/VSTS using Git LFS is not as a simple as it sounds</div>
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Thursday, June 15, 2017<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/automation" class="ui inverted small compact button">Automation</a>
+                    <a role="button" href="/tags/devops" class="ui inverted small compact button">DevOps</a>
+                    <a role="button" href="/tags/git" class="ui inverted small compact button">Git</a>
+                    <a role="button" href="/tags/powershell" class="ui inverted small compact button">Powershell</a>
+                    <a role="button" href="/tags/tfs" class="ui inverted small compact button">TFS</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui stackable grid container">
+    <div class="content column">
+      
+
+<div class="ui huge basic post content segment">
+  <p>Remember that post I wrote about <a href="/posts/2017-02-04-powershell-dsc-git-lfs-binaries">using Git LFS to store installers and binaries</a> when using Powershell DSC? Well, it turns out my sample code was wrong! I <em>thought</em> it was working because my files were previously committed and not actually being hosted via Git LFS.</p>
+<!-- More -->
+<h2 id="the-problem">The problem</h2>
+<p>Turns out, if your files are backed using Git LFS then a &quot;pointer&quot; file is stored instead. It looks like this:</p>
+<pre><code>version https://git-lfs.github.com/spec/v1
+oid sha256:4d7a214614ab2935c943f9e0ff69d22eadbb8f32b1258daaa5e2ca24d17e2393
+size 12345
+(ending \n)
+</code></pre>
+<p>When Git clones your repository, Git LFS intercepts the clone and downloads the file from a remote URL using info from this file.</p>
+<p>That's just how Git LFS works--but surprisingly (to me), the <a href="https://www.visualstudio.com/en-us/docs/integrate/api/overview">TFS REST API</a> apparently doesn't have a mechanism to abstract this. The Items/Blobs API has no way to serve binaries straight from its Git LFS store and I wonder if this is just an oversight. Instead, it simply serves this pointer file and <strong>you</strong> have to figure out what to do with it. We are left alone with our thoughts in a quiet despair weeping gently into a soft pillow asking ourselves why, why did we ever start learning Microsoft FrontPage in high school.</p>
+<p><marquee title="Choo choo!">🚂🚃🚃🚃</marquee></p>
+<p>The first thing I did was <a href="https://www.google.com/#q=programmatically+download+vsts+file+api+using+git+lfs&amp;start=0">call out to the heavens</a> but my queries fell on deaf search ranking algorithms. It appeared no one else had a reason to perform the required black magicks to make this work... or if they did, they were too exhausted by the end of it to write about it. As these things often do, it fell to me to be the flag bearer and charge into the mist unto the oncoming hoard.</p>
+<p>Can you tell I'm practicing some creative writing? I once got an A on a funny paper once.</p>
+<h2 id="figuring-out-git-lfs">Figuring out Git LFS</h2>
+<p>Erik, in a hurry to meet Important Business Objectives just committed his binaries in plain old Git to workaround this problem. After he berated me I begged forgiveness. Before he walked away in scorn, I grabbed his hand and pricked both our forefingers; I pressed them both together as I made a blood vow to solve this for him. Something like that, anyway.</p>
+<p><img src="images/2017-06-15-00-20-48.png" class="img-fluid" alt="A record of this exchange, it was exactly as I described" /></p>
+<p>I hadn't really peeked under the covers of Git LFS until today to solve this issue. I figured that since Git is built on top of HTTP, LFS must be handling binaries the same way and there <em>must</em> be a way to issue the right requests to fix the issue.</p>
+<p>Luckily I wasn't wrong and the entire API specification for Git LFS servers <a href="https://github.com/git-lfs/git-lfs/tree/master/docs/api">is available in the Git repository</a>. The process goes like this:</p>
+<ol>
+<li>Download the pointer file and grab the object ID and size</li>
+<li>Issue a POST request to the LFS &quot;Batch&quot; endpoint to request a download
+<ul>
+<li>This is because for some backing providers there may be extra headers to send, an expiration time, etc. for the download</li>
+</ul>
+</li>
+<li>Issue a GET request to the provided URL returned by the previous call</li>
+</ol>
+<p>It's pretty straightforward. Still, there were some pointy rocks along the way. I'll enumerate the issues I ran into below even though you'll ignore them anyway.</p>
+<h2 id="show-me-the-code">Show me the code!</h2>
+<p>You got it. Here's the Gist:</p>
+<script src="https://gist.github.com/kamranayub/1c6bcb09d3858a86b736ef39593fc575.js"></script>
+<p>Read on for more details about how this came together.</p>
+<h2 id="gotcha-1-tfs-doesnt-tell-you-a-file-is-backed-by-lfs">Gotcha #1: TFS doesn't tell you a file is backed by LFS</h2>
+<p>This was annoying. Ideally, I shouldn't have to download the file and inspect it to determine whether or not it's a Git LFS pointer file yet I didn't see any way <a href="https://www.visualstudio.com/en-us/docs/integrate/api/git/items#get-item-metadata-for">in the REST API</a> to get that determination back.</p>
+<p>The first step is to download the file and pull out the object ID/size. &quot;Wait,&quot; you say, an uncontrollable twitch almost spills coffee over your keyboard, &quot;Download the <em>entire</em> file, even if it's, like, 12GB?!&quot; Quiet down, an open floor plan carries your voice easily and John's looking at you with that face he makes sometimes. In a naïve implementation, yes. But you only need to grab enough bytes for 4 lines (including the ending newline which marks the EOF) and once I figure out how to formally wrap this in a DSC resource, I'll do that. The script above <strong>doesn't</strong> do that so paster beware.</p>
+<blockquote class="blockquote">
+<p><strong>Tip:</strong> The spec says the LFS server URL is determined by appending <code>.git/info/lfs</code> to the end of the repo URL. You can confirm this by inspecting the output of <code>git lfs env</code> in your repo. I mistakenly kept trying to make sure that URL was right by issuing HTTP requests to it--<strong>don't be a dingus like me</strong>, it's not an endpoint it's just the base URL. Go figure.</p>
+</blockquote>
+<h2 id="gotcha-2-tfs-returns-a-deprecated-lfs-response">Gotcha #2: TFS returns a deprecated LFS response</h2>
+<p>When you issue the POST to the batch endpoint, it returns a response containing the objects you requested and the links to the download/upload URLs (whatever you asked for).</p>
+<p>Turns out, prior to Git LFS 0.6.0 the schema for objects looked like:</p>
+<pre><code class="language-js">&quot;objects&quot;: [
+  {
+    &quot;_links&quot;: {
+      &quot;download&quot;: { ... }
+    }
+  }
+]
+</code></pre>
+<p>That's been <a href="https://github.com/git-lfs/git-lfs/issues/2003#issuecomment-284432943">deprecated</a> and the latest docs reflect the new specification, as they should... but guess who returns that response? Yep.</p>
+<h2 id="gotcha-3-tfs-requires-an-accepts-header-to-download">Gotcha #3: TFS requires an Accepts header to download</h2>
+<p>In the official specs of the <a href="https://github.com/git-lfs/git-lfs/blob/master/docs/api/basic-transfers.md#downloads">basic transfer</a> method, the cURL example doesn't contain any Accepts headers. I intend to ask the team if that's an oversight but at the time of this writing it wasn't there--so I kept on getting Bad Request responses from TFS. Grr!</p>
+<p>Well, it turns out you need an <code>Accepts</code> header value of <code>application/vnd.git-lfs</code>. Cool, that fixed it!</p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> It's been <a href="https://blog.jourdant.me/post/3-ways-to-download-files-with-powershell">documented</a> that <code>Start-BitsTransfer</code> is actually much more efficient than <code>Invoke-WebRequest</code> but unfortunately Git LFS (or TFS?) doesn't yet support <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa362846(v=vs.85).aspx">the required HTTP headers</a> to make it work. It's <a href="https://github.com/git-lfs/git-lfs/blob/master/docs/proposals/transfer_adapters.md">been proposed</a>.</p>
+</blockquote>
+<h2 id="thats-it">That's it!</h2>
+<p>Once I figured out all the gotchas the script I wrote worked like a charm and hey, it only took me an afternoon. I haven't yet converted it into a DSC module but an enterprising developer could easily use this in a <code>Script</code> DSC resource for now. The script also works nicely as a standalone cmdlet for all your DevOps needs.</p>
+<p>Hope this helps someone. Give me some time to wrap this up with a bow on it and I'll publish it to Posh gallery for use, we will certainly be using it for our DSC. I'll be reporting this to the VSTS team so let's hope a fix comes out to make this post obsolete and serve as an exemplary specimen of my incredible storytelling ability!</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '2017-06-14-downloading-git-lfs-files-from-tfs-vsts';
+    var disqus_title = 'Downloading Git LFS Files from TFS or VSTS';
+    var disqus_url = 'https://kamranicus.com/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+      <!-- Disqus -->
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+  
+  <!-- Footer -->
+  <footer>   
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe to posts
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">                
+      //
+      // Header background
+      //                                    
+      var header = document.getElementById("intro-header");
+      var t = new Trianglify({
+        width: header.clientWidth,
+        height: header.clientHeight,
+        cell_size: 105,
+        x_colors: 'YlOrRd'
+      });
+      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
+    </script>
+</body>
+</html>
