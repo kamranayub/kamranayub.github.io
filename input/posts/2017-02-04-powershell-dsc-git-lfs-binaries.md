@@ -14,6 +14,10 @@ A common need when configuring servers using [Powershell DSC](https://msdn.micro
 
 <!-- More -->
 
+## Updates
+
+- **6/14/2017**: My good friend and colleague [Erik](https://erikonarheim.com) was going through this exercise at work and let me know the code doesn't *actually* work. Whoops! Apparently when I tested, the binaries weren't actually in Git LFS since I had already checked them in. However, I did manage to solve the issue but for now you may need to use a custom Script resource until I release a DSC module. [Check out this post](/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts) for an explanation and solution. I will update this post again with my new resource once available.
+
 ## Using a network share
 
 Depending on the software, there are multiple ways to do the installation--using the [Package](https://msdn.microsoft.com/en-us/powershell/dsc/packageresource) resource, copying files/manipulating the registry, etc. Common to all cases is the fact you need a *source* of the installation. Typically this is an exe, msi, zip, or some other large binary file.
@@ -93,7 +97,7 @@ The TFS Rest API is documented and you can see there's a way to [download a fold
 
 For TFS, the format of the URL is like this:
 
-    GET https://{instance}/DefaultCollection/_apis/git/repositories/{repository}/items?api-version={version}&scopePath={itemPath}
+    GET https://{instance}/DefaultCollection/{project}/_apis/git/repositories/{repository}/items?api-version={version}&scopePath={itemPath}
 
 To get a specific *branch* (in cases where different branches are for different environments), you can pass `&versionType=branch&version={branch}`.
 
@@ -109,7 +113,7 @@ Configuration WebServer {
 
   xRemoteFile EnsureSysinternalsIsPresentInInstallationSource {
     DestinationPath = "C:\DSC\Sources\SysInternalsSuite-2016-11-18.zip"
-    Uri = "https://tfs.contoso.com/tfs/DefaultCollection/_apis/git/repositories/DSC/items?api-version=1.0&scopePath=installers/sysinternals/SysInternalsSuite-2016-11-18.zip"
+    Uri = "https://tfs.contoso.com/tfs/DefaultCollection/TeamProject/_apis/git/repositories/DSC/items?api-version=1.0&scopePath=installers/sysinternals/SysInternalsSuite-2016-11-18.zip"
     Credential = $Credential
     MatchSource = $True
   }
@@ -124,6 +128,8 @@ Configuration WebServer {
 ```
 
 To use `xRemoteFile` we need to import the xPSDesiredStateConfiguration DSC module [which has to be stored](https://msdn.microsoft.com/en-us/powershell/dsc/pullserver#placing-configurations-and-resources) on the pull server. Then we can use the appropriate URL to download an individual installer, or we could have downloaded the zip of the **installers** folder and unzipped it locally. The `MatchSource` parameter should prevent re-downloading the file if it already exists (and we added the version to the zip file). We are still passing a `Credential` because your source control repository is probably still authenticated.
+
+> **Attention Reader:** This actually doesn't work when using Git LFS. You have to [shave some yaks](/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts) before you can get it to work.
 
 If you needed something more sophisticated, you could wrap downloading into a custom resource or Script resource--e.g. [use the SHA1 hash](https://www.visualstudio.com/en-us/docs/integrate/api/git/items#get-item-metadata-for) to compare whether it needed to be downloaded again, etc. Where you go from here is your own choice!
 
