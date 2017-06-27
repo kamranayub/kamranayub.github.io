@@ -4,8 +4,15 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2017</rights>
-	<updated>2017-06-27T12:32:21Z</updated>
+	<updated>2017-06-27T12:43:15Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2017-06-27-lets-code-basic-css" />
+		<id>https://kamranicus.com/posts/2017-06-27-lets-code-basic-css</id>
+		<title>New Video Let's CODE! Basic CSS</title>
+		<updated>2017-06-27T12:02:00Z</updated>
+		<summary>Kamran Ayub</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts" />
 		<id>https://kamranicus.com/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts</id>
@@ -137,13 +144,6 @@
 		<id>https://kamranicus.com/posts/2016-04-11-tccc20-typescript-in-action</id>
 		<title>TypeScript in Action at Twin Cities Code Camp 20 (TCCC20)</title>
 		<updated>2016-04-11T18:38:00Z</updated>
-		<summary>Kamran Ayub</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2016-04-04-wmf5-powershell-dsc-generating-encryption-certificate" />
-		<id>https://kamranicus.com/posts/2016-04-04-wmf5-powershell-dsc-generating-encryption-certificate</id>
-		<title>Generating an Encryption Certificate for PowerShell DSC in WMF5</title>
-		<updated>2016-04-05T03:43:00Z</updated>
 		<summary>Kamran Ayub</summary>
 	</entry>
 </feed>
