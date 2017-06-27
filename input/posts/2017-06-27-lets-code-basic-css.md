@@ -1,5 +1,5 @@
 Title: New Video Let's CODE! Basic CSS
-Published: 2017-06-27 07:02 -06:00
+Published: 2017-06-27 07:02 -05:00
 Lead: Me and my dastardly partner in crime, Erik Onarheim have created a new video series called Let's CODE!
 Tags:
 - Let's Code
