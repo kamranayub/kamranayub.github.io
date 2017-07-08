@@ -6,7 +6,7 @@
     <div class="ten wide column">      
         @{
             bool first = true;
-            foreach(IDocument doc in Documents[BlogKeys.Posts].Take(3))
+            foreach(IDocument doc in Documents[BlogKeys.Posts].Take(6))
             {                
                 if (!first)
                 {
@@ -15,9 +15,9 @@
                 first = false;
                 string lead = doc.String(BlogKeys.Lead);
                 <div class="post-preview">
-                  <p class="ui grey sub header">
-                    Posted on @(doc.Get<DateTime>(BlogKeys.Published).ToLongDateString())
-                  </p>
+                  <h4 class="ui grey header">
+                    @(doc.Get<DateTime>(BlogKeys.Published).ToLongDateString())
+                  </h4>
                   <a href="@Context.GetLink(doc)">
                     <h2 class="ui post title header">
                       @doc.String(BlogKeys.Title)
@@ -28,21 +28,27 @@
                       }
                     </h2>
                       
-                  </a>                    
-
-                  <div class="ui vertical post content segment">
-                    @Html.Raw(doc.String(BlogKeys.Excerpt))       
-                  </div>      
+                  </a>   
                 </div>       
             }
         }
     </div>
     <div class="six wide column">
                
-      <a href="@Context.String("FeedUrl")" class="ui orange right labeled icon button">
-        Subscribe to posts
-        <i class="right rss icon"></i>
-      </a>
+      <div class="ui list">
+        <div class="item">
+          <a href="@Context.String("FeedUrl")" class="ui orange right labeled icon button">
+            Subscribe to posts
+            <i class="right rss icon"></i>
+          </a>
+        </div>
+        <div class="item">
+          <a href="https://feedburner.google.com/fb/a/mailverify?uri=Kamranicus" class="ui item right labeled icon button">
+            Get posts by email
+            <i class="right mail icon"></i>
+          </a>
+        </div>
+      </div>
 
       <h3 class="ui header">Tags</h3>
 
@@ -67,7 +73,7 @@
       <h3 class="ui header">Older Posts</h3>
 
       <div class="ui spaced list">
-        @foreach(IDocument doc in Documents[BlogKeys.Posts].Skip(3).Take(4))
+        @foreach(IDocument doc in Documents[BlogKeys.Posts].Skip(6).Take(6))
         {        
           <a class="item" href="@Context.GetLink(doc)">@doc.String(BlogKeys.Title)</a>
         }

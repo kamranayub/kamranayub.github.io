@@ -22,8 +22,8 @@ Install Wyam so it's available on PATH.
     # Build Semantic UI
     npm run semantic
 
-    # Build Wyam
-    npm run wyam
+    # Watch
+    npm start
 
     # Preview
     wyam preview

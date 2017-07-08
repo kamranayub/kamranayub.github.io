@@ -5,7 +5,7 @@
 }
 
 <div class="ui basic vertical segment">
-    <h1 class="ui inverted huge header">
+    <h1 class="ui huge header">
       @Model.String(BlogKeys.Title)
       @if(!string.IsNullOrWhiteSpace(Lead))
       {
@@ -13,7 +13,7 @@
       }
     </h1>
                 
-    <div class="ui inverted sub header">        
+    <div class="ui sub header">        
         @if (Published != default(DateTime))
         {
             <text>Published on @Published.ToLongDateString()<br></text>
@@ -27,7 +27,7 @@
                 IDocument tagDocument = Documents[BlogKeys.Tags].FirstOrDefault(x => x.String(BlogKeys.Tag) == tag);
                 if(tagDocument != null)
                 {                
-                    <a role="button" href="@Context.GetLink(tagDocument)" class="ui inverted small compact button">@tag</a>
+                    <a role="button" href="@Context.GetLink(tagDocument)" class="ui small compact button">@tag</a>
                 }
             }
         </div>     

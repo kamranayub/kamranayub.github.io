@@ -1,5 +1,5 @@
 Title: Refactoring Conditional Injection
-Published: 2017-07-07 08:17 -05:00
+Published: 2099-01-01
 Lead: How do you choose between multiple implementations when injecting?
 Tags:
 - C#

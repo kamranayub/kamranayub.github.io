@@ -2,12 +2,22 @@
          Site Overrides
 *******************************/
 
+.ui.text {
+  &.mini { font-size: @mini; }
+  &.tiny { font-size: @tiny; }
+  &.small { font-size: @small; }
+  &.large { font-size: @large; }
+  &.big { font-size: @big; }
+  &.huge { font-size: @huge; }
+  &.massive { font-size: @massive; }
+}
+
 #intro-header {
   margin-bottom: 1.5em;
 }
 
 nav.ui.site.menu {
-  font-size: @medium;
+  font-size: @small;
 
   .header.item {
     font-size: 1.5em;
@@ -15,7 +25,7 @@ nav.ui.site.menu {
     letter-spacing: 1.75;
   }
 
-  @media only screen and (max-width: 560px) {
+  @media only screen and (max-width: 735px) {
     display: block;
     flex-direction: column;
     font-size: @mini;
@@ -31,6 +41,10 @@ nav.ui.site.menu {
 
   @media only screen and (min-width: (@tabletBreakpoint + 1px)) {
     min-height: 350px;
+  }
+
+  .image.masthead {
+    margin-bottom: 2em;
   }
 
   h1.ui.header {
@@ -76,22 +90,31 @@ nav.ui.site.menu {
 .post.content.segment {
 
   &.huge {
-    font-size: @medium;
+    font-size: @tiny;
 
     @media only screen and (min-width: (@mobileBreakpoint + 1)) {
-      font-size: @large;
+      font-size: @small;
     }
 
     @media only screen and (min-width: (@tabletBreakpoint + 1)) {
-      font-size: @huge;
+      font-size: @large;
     }
   }
 
+  // Blockquote styles
+  .blockquote {
+    border-left: 0.25em solid #ddd;
+    padding-left: 0.5em;
+  }
+
   // List styles
-  ul {
+  ul, ol {
     line-height: @lineHeight;
     li { margin-bottom: 0.5em; }
   }
 
-  code { color: #A3323A; }
+  // Code paragraph styles
+  pre {
+    line-height: @lineHeight;
+  }
 }

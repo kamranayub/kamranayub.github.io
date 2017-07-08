@@ -7,6 +7,7 @@
     "blog"
   ],
   "scripts": {
+    "start": "Wyam -w -r Blog -t CleanBlog",
     "wyam": "Wyam -r Blog -t CleanBlog",
     "semantic": "gulp build --gulpfile semantic/gulpfile.js",
     "build": "npm run semantic && npm run wyam"

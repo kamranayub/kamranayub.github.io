@@ -1,13 +1,26 @@
-@if(Context.String(BlogKeys.Description) != null)
-{
-    <h1 class="ui inverted header">@Context.String(BlogKeys.Description)</h1>
-}
+</div>
 
+<img class="ui masthead responsive image"
+  srcset="/assets/images/masthead@0.25x.jpg 648w,
+          /assets/images/masthead@0.5x.jpg 1295w,
+          /assets/images/masthead@0.75x.jpg 1943w,
+          /assets/images/masthead.jpg 2590w"
+  sizes="100vw">
+
+<div class="ui container">
 @if(Context.String(BlogKeys.Intro) != null)
-{            
-    <img class="ui centered small circular image" src="/assets/images/me.jpg" title="Kamran Ayub">
-    
-    <h3>@Context.String(BlogKeys.Intro)</h3>
+{                  
+    <p class="ui text massive">
+      Hi, I'm Kamran Ayub aka Kamranicus. I'm a professional full-stack developer in Minneapolis.
+      I love C#, .NET, JavaScript, design, and UX.</p>
+    <p class="ui text massive">
+      I <a href="/posts">write</a>, 
+      I <a href="/speaking">speak</a>, 
+      I <a href="/projects">code</a>, 
+      I <a href="/projects">teach</a>,
+      I <a href="/travel">travel</a> and 
+      I <a href="https://keeptrackofmygames.com/user/kamranicus">play</a>.
+    </p>
 }
 
 <div class="social links">
