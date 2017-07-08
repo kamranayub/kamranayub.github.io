@@ -1,6 +1,6 @@
-Title: Refactoring Conditional Injection
+Title: Refactoring Conditional Dependency Injection
 Published: 2099-01-01
-Lead: How do you choose between multiple implementations when injecting?
+Lead: How do you choose between multiple implementations when injecting dependencies? Should you even need to? Someone asked me and this is what I proposed.
 Tags:
 - C#
 - .NET
