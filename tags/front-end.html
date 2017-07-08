@@ -46,6 +46,7 @@
     <script src="/assets/js/html5shiv.js"></script>
     <script src="/assets/js/respond.min.js"></script>
   <![endif]-->
+  <script src="/assets/js/picturefill.min.js" async></script>
 
 
   <script type="text/javascript">
@@ -59,6 +60,7 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
+  
 
   
 
@@ -70,6 +72,7 @@
   <!-- Navigation -->
   <div class="ui container">
     <nav class="ui huge text site menu">
+      
       <a class="header item" href="/">Kamranicus</a>
       
       <div class="ui right item">
@@ -97,9 +100,9 @@
   </div>
   <!-- Page Header -->
 
-  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
-    <div class="ui text container">
-<h1 class="ui inverted header">Front-End</h1>       </div>
+  <header class="ui vertical masthead segment" id="intro-header">
+    <div class="ui container">
+<h1 class="ui header">Front-End</h1>       </div>
   </header>
 
   <!-- Main Content -->
@@ -281,7 +284,7 @@
 
   <p class="ui basic vertical segment">      
     <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
-      Subscribe to posts
+      Subscribe via RSS or email
       <i class="right rss icon"></i>
     </a>
   </p>  
@@ -296,24 +299,9 @@
     crossorigin="anonymous"></script>
   <script src="/assets/ui/semantic.min.js"></script>
   <script src="/assets/js/highlight.pack.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
 
   
 
   <script>hljs.initHighlightingOnLoad();</script>
-
-    <script type="text/javascript">                
-      //
-      // Header background
-      //                                    
-      var header = document.getElementById("intro-header");
-      var t = new Trianglify({
-        width: header.clientWidth,
-        height: header.clientHeight,
-        cell_size: 105,
-        x_colors: 'YlOrRd'
-      });
-      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
-    </script>
 </body>
 </html>

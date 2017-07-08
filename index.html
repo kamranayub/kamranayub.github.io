@@ -46,6 +46,7 @@
     <script src="/assets/js/html5shiv.js"></script>
     <script src="/assets/js/respond.min.js"></script>
   <![endif]-->
+  <script src="/assets/js/picturefill.min.js" async></script>
 
 
   <script type="text/javascript">
@@ -59,6 +60,7 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
+  
 
   
 
@@ -70,6 +72,7 @@
   <!-- Navigation -->
   <div class="ui container">
     <nav class="ui huge text site menu">
+      
       <a class="header item" href="/">Kamranicus</a>
       
       <div class="ui right item">
@@ -97,13 +100,30 @@
   </div>
   <!-- Page Header -->
 
-  <header class="ui inverted vertical masthead center aligned segment" id="intro-header">
-    <div class="ui text container">
+  <header class="ui vertical masthead segment" id="intro-header">
+    <div class="ui container">
 
-        <h1 class="ui inverted header">Kamran Ayub</h1>
+    </div>
 
-    <img class="ui centered small circular image" src="/assets/images/me.jpg" title="Kamran Ayub">
-    <h3>Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.</h3>
+<img class="ui masthead responsive image"
+  srcset="/assets/images/masthead@0.25x.jpg 648w,
+          /assets/images/masthead@0.5x.jpg 1295w,
+          /assets/images/masthead@0.75x.jpg 1943w,
+          /assets/images/masthead.jpg 2590w"
+  sizes="100vw">
+
+<div class="ui container">
+    <p class="ui text massive">
+      Hi, I'm Kamran Ayub aka Kamranicus. I'm a professional full-stack developer in Minneapolis.
+      I love programming, front-end design, and UX.</p>
+    <p class="ui text massive">
+      I <a href="/posts">write</a>, 
+      I <a href="/speaking">speak</a>, 
+      I <a href="/projects">code</a>, 
+      I <a href="/projects">teach</a>,
+      I <a href="/travel">travel</a> and 
+      I <a href="https://keeptrackofmygames.com/user/kamranicus">play</a>.
+    </p>
 
 <div class="social links">
   <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
@@ -132,9 +152,9 @@
 <div class="ui stackable grid container">
     <div class="ten wide column">      
                 <div class="post-preview">
-                  <p class="ui grey sub header">
-                    Posted on Tuesday, June 27, 2017
-                  </p>
+                  <h4 class="ui grey header">
+                    Tuesday, June 27, 2017
+                  </h4>
                   <a href="/posts/2017-06-27-lets-code-basic-css">
                     <h2 class="ui post title header">
                       New Video Let&#x27;s CODE! Basic CSS
@@ -142,20 +162,13 @@
                         <div class="sub header">Me and my dastardly partner in crime, Erik Onarheim have created a new video series called Let&#x27;s CODE!</div>
                     </h2>
                       
-                  </a>                    
-
-                  <div class="ui vertical post content segment">
-                    <p>I work a ton with my friend and colleague, <a href="https://erikonarheim.com">Erik Onarheim</a>. Sometimes I think my wife is jealous (love you, honey!). Anyway, we are always learning from and bouncing ideas off each other. We thought it might be fun to sit down and record some videos on things we wanted help with so I'm happy to introduce our new channel, <a href="https://www.youtube.com/channel/UCEQpXOMvO6QSukmFmqqxq7w">Let's CODE! with Erik and Kamran</a>.</p>
-<p>Erik isn't very good at CSS as he professes himself at the beginning of the video. I have more experience doing design so I said I'd help him out. In a mere hour and a half, we go from knowing only basic CSS to styling a whole React.js calculator sample app from the ground up. Take a look!</p>
-
-<p>We cover a wide range of topics like media queries, color, typography, box model, flexbox layouts, and more. Rather than just explaining topics, we learn them as we need to (aka "just-in-time" learning). Since making the video, he's expressed how much it helped him on a recent project so I'd call it a job well done.</p>       
-                  </div>      
+                  </a>   
                 </div>       
                     <div class="ui hidden divider"></div>
                 <div class="post-preview">
-                  <p class="ui grey sub header">
-                    Posted on Thursday, June 15, 2017
-                  </p>
+                  <h4 class="ui grey header">
+                    Thursday, June 15, 2017
+                  </h4>
                   <a href="/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts">
                     <h2 class="ui post title header">
                       Downloading Git LFS Files from TFS or VSTS
@@ -163,36 +176,80 @@
                         <div class="sub header">Downloading files stored in TFS/VSTS using Git LFS is not as a simple as it sounds</div>
                     </h2>
                       
-                  </a>                    
-
-                  <div class="ui vertical post content segment">
-                    <p>Remember that post I wrote about <a href="/posts/2017-02-04-powershell-dsc-git-lfs-binaries">using Git LFS to store installers and binaries</a> when using Powershell DSC? Well, it turns out my sample code was wrong! I <em>thought</em> it was working because my files were previously committed and not actually being hosted via Git LFS.</p>       
-                  </div>      
+                  </a>   
                 </div>       
                     <div class="ui hidden divider"></div>
                 <div class="post-preview">
-                  <p class="ui grey sub header">
-                    Posted on Thursday, February 23, 2017
-                  </p>
+                  <h4 class="ui grey header">
+                    Thursday, February 23, 2017
+                  </h4>
                   <a href="/posts/2017-02-23-samesite-cookies-in-asp-net">
                     <h2 class="ui post title header">
                       Adding SameSite Cookie Support In ASP.NET
 
                     </h2>
                       
-                  </a>                    
+                  </a>   
+                </div>       
+                    <div class="ui hidden divider"></div>
+                <div class="post-preview">
+                  <h4 class="ui grey header">
+                    Tuesday, February 21, 2017
+                  </h4>
+                  <a href="/posts/2017-02-21-building-a-raspberry-pi-3-baby-monitor-livestream-audio-video">
+                    <h2 class="ui post title header">
+                      Building a Raspberry Pi 3 Baby Monitor
 
-                  <div class="ui vertical post content segment">
-                    <p>I was reading Scott Helme's post on how <a href="https://scotthelme.co.uk/csrf-is-dead/">CSRF is Dead</a> because of the new Same Site cookie spec (which is supported in <a href="http://caniuse.com/#feat=same-site-cookie-attribute">Chrome and soon FF</a>).</p>       
-                  </div>      
+                        <div class="sub header">I put together a guide on building a baby monitor using a Raspberry Pi 3</div>
+                    </h2>
+                      
+                  </a>   
+                </div>       
+                    <div class="ui hidden divider"></div>
+                <div class="post-preview">
+                  <h4 class="ui grey header">
+                    Saturday, February 4, 2017
+                  </h4>
+                  <a href="/posts/2017-02-04-powershell-dsc-git-lfs-binaries">
+                    <h2 class="ui post title header">
+                      Store Binaries Next to Powershell DSC Using Git LFS
+
+                        <div class="sub header">Keep your Powershell DSC scripts and dependent binaries together using Git Large File Storage (LFS)</div>
+                    </h2>
+                      
+                  </a>   
+                </div>       
+                    <div class="ui hidden divider"></div>
+                <div class="post-preview">
+                  <h4 class="ui grey header">
+                    Thursday, February 2, 2017
+                  </h4>
+                  <a href="/posts/2017-02-01-build-2017">
+                    <h2 class="ui post title header">
+                      See You at Build 2017
+
+                        <div class="sub header">I&#x27;ll be heading to MS Build in May</div>
+                    </h2>
+                      
+                  </a>   
                 </div>       
     </div>
     <div class="six wide column">
                
-      <a href="http://feeds.feedburner.com/Kamranicus" class="ui orange right labeled icon button">
-        Subscribe to posts
-        <i class="right rss icon"></i>
-      </a>
+      <div class="ui list">
+        <div class="item">
+          <a href="http://feeds.feedburner.com/Kamranicus" class="ui orange right labeled icon button">
+            Subscribe to posts
+            <i class="right rss icon"></i>
+          </a>
+        </div>
+        <div class="item">
+          <a href="https://feedburner.google.com/fb/a/mailverify?uri=Kamranicus" class="ui item right labeled icon button">
+            Get posts by email
+            <i class="right mail icon"></i>
+          </a>
+        </div>
+      </div>
 
       <h3 class="ui header">Tags</h3>
 
@@ -212,20 +269,20 @@
               <a role="button" href="/tags/conferences" class="ui small compact basic button">
                 Conferences (13)
               </a>
-              <a role="button" href="/tags/mvc" class="ui small compact basic button">
-                MVC (10)
-              </a>
               <a role="button" href="/tags/keep-track-of-my-games" class="ui small compact basic button">
                 Keep Track of My Games (10)
+              </a>
+              <a role="button" href="/tags/mvc" class="ui small compact basic button">
+                MVC (10)
               </a>
               <a role="button" href="/tags/oss" class="ui small compact basic button">
                 OSS (9)
               </a>
+              <a role="button" href="/tags/security" class="ui small compact basic button">
+                Security (8)
+              </a>
               <a role="button" href="/tags/knockout.js" class="ui small compact basic button">
                 Knockout.js (8)
-              </a>
-              <a role="button" href="/tags/open-source" class="ui small compact basic button">
-                Open Source (8)
               </a>
       </div>
 
@@ -239,10 +296,12 @@
       <h3 class="ui header">Older Posts</h3>
 
       <div class="ui spaced list">
-          <a class="item" href="/posts/2017-02-21-building-a-raspberry-pi-3-baby-monitor-livestream-audio-video">Building a Raspberry Pi 3 Baby Monitor</a>
-          <a class="item" href="/posts/2017-02-04-powershell-dsc-git-lfs-binaries">Store Binaries Next to Powershell DSC Using Git LFS</a>
-          <a class="item" href="/posts/2017-02-01-build-2017">See You at Build 2017</a>
           <a class="item" href="/posts/2017-01-31-introduction-to-typescript-course-packt-publishing">Introduction to TypeScript Course Now Available</a>
+          <a class="item" href="/posts/2017-01-23-subtle-bugs-exposed-with-slow-ci-servers">Exposing Subtle Timing Bugs With a Slow CI Server</a>
+          <a class="item" href="/posts/2017-01-21-new-design-wyam-generator">New Year, New Site Design Using Wyam Static Site Generator</a>
+          <a class="item" href="/posts/2017-01-10-azure-alerts-zapier-sms">Site Down Alerts using Azure App Insights and Zapier</a>
+          <a class="item" href="/posts/2017-01-02-year-in-review">2016: A Year in Review</a>
+          <a class="item" href="/posts/2016-10-30-new-packt-publishing-typescript-course">Working with Packt Publishing to Create a TypeScript Video Course</a>
       </div>
 
       <a class="ui right labeled icon button" href="/posts">
@@ -285,7 +344,7 @@
 
   <p class="ui basic vertical segment">      
     <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
-      Subscribe to posts
+      Subscribe via RSS or email
       <i class="right rss icon"></i>
     </a>
   </p>  
@@ -300,24 +359,9 @@
     crossorigin="anonymous"></script>
   <script src="/assets/ui/semantic.min.js"></script>
   <script src="/assets/js/highlight.pack.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
 
   
 
   <script>hljs.initHighlightingOnLoad();</script>
-
-    <script type="text/javascript">                
-      //
-      // Header background
-      //                                    
-      var header = document.getElementById("intro-header");
-      var t = new Trianglify({
-        width: header.clientWidth,
-        height: header.clientHeight,
-        cell_size: 105,
-        x_colors: 'YlOrRd'
-      });
-      header.setAttribute('style', 'background-image: url(' + t.png() + ');');                        
-    </script>
 </body>
 </html>
