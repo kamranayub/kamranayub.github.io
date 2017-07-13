@@ -474,6 +474,12 @@ This leaves us with a pretty robust implementation with minimal code.
 
 ## That's All, Folks
 
+I waited to publish this post until my coworker reviewed it and tried my suggestions, I sent them my sample code below. Their response was, verbatim:
+
+> Thanks, and thanks again for all of the time you put into this.  This is the most thorough response I think I’ve ever gotten to almost anything.
+
+Aw, thanks! I'm glad it helped and maybe writing up this thinking process will help others who are considering refactoring their code too.
+
 You can find the code for this example [on my GitHub](https://github.com/kamranayub/kamranayub.github.io/tree/source/code/2017-07-12-conditional-injection).
 
 There's probably a few things I should mention:
