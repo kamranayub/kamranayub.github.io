@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Refactoring Conditional Dependency Injection</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Refactoring Conditional Dependency Injection" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2017-07-12-conditional-dependency-injection" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="/assets/js/picturefill.min.js" async></script>
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text site menu">
+      
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+              <div class="item">
+        <a href="/about">About</a>
+      </div>
+      <div class="item">
+        <a href="/posts">Archive</a>
+      </div>
+      <div class="item">
+        <a href="/guides">Guides</a>
+      </div>
+      <div class="item">
+        <a href="/projects">Projects</a>
+      </div>
+      <div class="item">
+        <a href="/speaking">Speaking</a>
+      </div>
+      <div class="item">
+        <a href="/travel">Travel</a>
+      </div>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui vertical masthead segment inverted" id="intro-header" style="background-image: url(&quot;images/2017-07-12-masthead.png&quot;)">
+    <div class="ui container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui inverted huge header">
+      Refactoring Conditional Dependency Injection
+        <div class="ui sub header">How do you inject multiple implementations of a single interface and distinguish between them?</div>
+    </h1>
+                
+    <div class="ui inverted sub header">        
+Published on Thursday, July 13, 2017<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/net" class="ui small compact button">.NET</a>
+                    <a role="button" href="/tags/c%23" class="ui small compact button">C#</a>
+                    <a role="button" href="/tags/refactoring" class="ui small compact button">Refactoring</a>
+                    <a role="button" href="/tags/software-design" class="ui small compact button">Software Design</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui stackable grid container">
+    <div class="content column">
+      
+
+<div class="ui huge basic post content segment">
+  <p>Recently a colleague sent me a question about some advice using <a href="http://www.ninject.org/">Ninject</a>, a popular .NET dependency injection framework. It went something like this:</p>
+<blockquote class="blockquote">
+<p>I have a console app that does some tasks. Two of the tasks are very similar, they each process a downloaded file. But the process is different depending on the requested download types passed in.</p>
+<p>The way I'm modeling it right now is like this:</p>
+<ol>
+<li><code>DownloadProcessor : IDownloadProcessor</code></li>
+<li><code>SalesDownloader : IDownloader</code></li>
+<li><code>TrafficDownloader : IDownloader</code></li>
+</ol>
+<p>What I'd like to do is have the correct <code>IDownloader</code> used by the <code>DownloadProcessor</code> depending on incoming arguments.</p>
+</blockquote>
+<!-- More -->
+<p>Here's what they showed me:</p>
+<pre><code class="language-cs">public class ProgramImplementation
+{
+  private readonly IDownloadProcessor _processor;
+  private readonly IDownloader _salesDownloader;
+  private readonly IDownloader _trafficDownloader;
+
+  public ProgramImplementation(
+    [Named(&quot;salesDownloader&quot;)]   IDownloader salesDownloader, 
+    [Named(&quot;trafficDownloader&quot;)] IDownloader trafficDownloader, 
+    IDownloadProcessor processor)
+  {
+    _processor = processor;
+    _salesDownloader = salesDownloader;
+    _trafficDownloader = trafficDownloader;
+  }
+  
+  public void Run(string[] args)
+  {
+    if (args.Contain(&quot;sales&quot;))
+    {
+        _processor.Process(_salesDownloader);
+    }
+    
+    if (args.Contain(&quot;traffic&quot;))
+    {
+        _processor.Process(_trafficDownloader);
+    }
+  }
+}
+</code></pre>
+<p>The <code>IDownloadProcessor</code> implementation looks like this:</p>
+<pre><code class="language-cs">public class DownloadProcessor : IDownloadProcessor {
+    public void Process(IDownloader downloader) {
+
+      // business logic
+
+      downloader.Process();
+    }
+}
+</code></pre>
+<p>The <code>ProgramImplementation</code> is constructed via Ninject so the constructor parameters are populated automatically.</p>
+<h2 id="gimme-some-context">Gimme Some Context</h2>
+<p>First, what's going on with this?</p>
+<pre><code class="language-cs">[Named(&quot;salesDownloader&quot;)] IDownloader salesDownloader
+</code></pre>
+<p>This is what Ninject refers to as <a href="https://github.com/ninject/ninject/wiki/Contextual-Binding">Contextual Binding</a>.</p>
+<p>You can bind the same interface to different concrete classes and attach &quot;metadata&quot; that can be used at injection time:</p>
+<pre><code class="language-cs">_kernel.Bind&lt;IDownloader&gt;().To&lt;SalesDownloader&gt;().Named(&quot;salesDownloader&quot;);
+_kernel.Bind&lt;IDownloader&gt;().To&lt;TrafficDownloader&gt;().Named(&quot;trafficDownloader&quot;);
+</code></pre>
+<p>In the above docs, they say you should avoid this pattern because now the caller has to reference Ninject directly to get what it wants.</p>
+<p>Does this work? Sure but my coworker reached out to me &quot;because it felt weird&quot; so let's break it down.</p>
+<h2 id="a-hammer-looking-for-a-nail">A Hammer Looking for a Nail</h2>
+<p>If you wanted to still use Ninject to achieve this, there's an alternative way to bind the same interface to specific concrete classes <em>without</em> having the calling class take a direct dependency on Ninject.</p>
+<p>You have to create two implementations of <code>IDownloadProcessor</code>:</p>
+<pre><code class="language-cs">public interface IDownloadProcessor {
+  void Process();
+}
+
+public abstract class BaseDownloadProcessor : IDownloadProcessor {
+  
+  private IFileDownloader _downloader;
+  public BaseDownloadProcessor(IFileDownloader downloader) {
+    _downloader = downloader;
+  }
+
+  public void Process() {
+    // common logic
+    // ...
+
+    // specific downloader logic
+    _downloader.Process();
+  }
+}
+
+// empty implementation classes
+
+public class SalesDownloadProcessor : BaseDownloadProcessor {
+
+  public SalesDownloadProcessor(IFileDownloader downloader)
+    : base(downloader) {
+
+  }
+}
+
+public class TrafficDownloadProcessor : IDownloadProcessor {
+  public TrafficDownloadProcessor(IFileDownloader downloader)
+    : base(downloader) {
+    
+  }
+}
+</code></pre>
+<p>This adds an two extra classes (one holding common base implementation logic) to what we had before but at least we can inject the right downloader that we need <em>and</em> we've simplified the interface.</p>
+<p>We can now bind the specific implementation to the specific processor:</p>
+<pre><code class="language-cs">_kernel.Bind&lt;IDownloader&gt;().To&lt;SalesDownloader&gt;()
+  .WhenInjectedInto(typeof(SalesDownloadProcessor));
+
+_kernel.Bind&lt;IDownloader&gt;().To&lt;TrafficDownloader&gt;()
+  .WhenInjectedInto(typeof(TrafficDownloadProcessor));
+</code></pre>
+<p>Great! We removed a direct reference to Ninject in our <code>ProgramImplementation</code>:</p>
+<pre><code class="language-cs">public class ProgramImplementation
+{
+  private readonly SalesDownloadProcessor _salesProcessor;
+  private readonly TrafficDownloadProcessor _trafficProcessor;
+
+  public ProgramImplementation(
+    SalesDownloadProcessor salesProcessor,
+    TrafficDownloadProcessor trafficProcessor)
+  {
+    _salesProcessor = salesProcessor;
+    _trafficProcessor = trafficProcessor;
+  }
+  
+  public void Run(string[] args)
+  {
+    if (args.Contain(&quot;sales&quot;))
+    {
+        _salesProcessor.Process();
+    }
+    
+    if (args.Contain(&quot;traffic&quot;))
+    {
+        _trafficProcessor.Process();
+    }
+  }
+}
+</code></pre>
+<p>This is still a little smelly, wouldn't you agree?</p>
+<iframe src="https://giphy.com/embed/PsvD1p3IthN96" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+<p>I thought so. Here's what smells:</p>
+<ul>
+<li>The <code>ProgramImplementation</code> has to be aware of <strong>both</strong> concrete implementations of <code>IDownloadProcessor</code> in TWO places, one in the constructor and one when deciding what to call</li>
+<li>We still have duplicate code in two similar conditional branches and if we add more, it'll keep growing</li>
+<li>Lastly and most importantly, <strong>we are deciding</strong> what downloader is paired with what processor and I think this is the most egregious problem here</li>
+</ul>
+<p>Overall this will work but both download processors are identical and we've introduced an abstract class. There's no value in having two empty classes lying around--its solely due to Ninject. In other words, we're just a hammer looking for a nail... maybe we can solve this by rethinking the problem.</p>
+<h2 id="colocate-behavior-and-data">Colocate Behavior and Data</h2>
+<p>The solution I proposed to my coworker was to <em>fuhgeddabout</em> Ninject because I don't think this should be Ninject's concern or involve black box binding incantation at all.</p>
+<p>Ask yourself this question: who should decide what an <code>IDownloader</code> can handle? Right now, it's the <code>ProgramImplementation</code> but I'd argue that it's the <em>downloader</em> who knows if it can process a download type--is it <em>really</em> the top-level program's concern who handles what? I don't think so.</p>
+<p>Encapsulation is about keeping behavior and data close together. In this instance, data are the arguments being passed to the application and the behavior is the processing of the download inside the <code>IDownloader</code>.</p>
+<p>With that in mind, let's move the decision making farther down, closer to where it needs to be used.</p>
+<p>First, let's start at the top and pass the args into the processor:</p>
+<pre><code class="language-cs">public class ProgramImplementation
+{
+  private readonly IDownloadProcessor _processor;
+
+  public ProgramImplementation(
+    IDownloadProcessor processor)
+  {
+    _processor = processor;
+  }
+  
+  public void Run(string[] args)
+  {
+    if (args.Contain(&quot;sales&quot;))
+    {
+        _processor.Process(&quot;sales&quot;);
+    }
+    
+    if (args.Contain(&quot;traffic&quot;))
+    {
+        _processor.Process(&quot;traffic&quot;);
+    }
+  }
+}
+</code></pre>
+<p>Right away we can see an issue. The usage of <code>_processor.Process</code> multiple times indicates we should allow passing in multiple values.</p>
+<p>Let's modify the <code>ProgramImplementation</code> and the <code>DownloadProcessor</code> to work with an array of download types:</p>
+<pre><code class="language-cs">public class ProgramImplementation
+{
+  private readonly IDownloadProcessor _processor;
+
+  public ProgramImplementation(
+    IDownloadProcessor processor)
+  {
+    _processor = processor;
+  }
+  
+  public void Run(string[] args)
+  {
+    _processor.Process(args);
+  }
+}
+
+public class DownloadProcessor : IDownloadProcessor {
+
+  private readonly IEnumerable&lt;IDownloader&gt; _downloaders;
+
+  public DownloadProcessor(IEnumerable&lt;IDownloader&gt; downloaders) {
+    _downloaders = downloaders;
+  }
+
+  public void Process(string[] types) {
+    // ???
+  }
+}
+</code></pre>
+<p>It's certainly getting simpler. We're still using Ninject to inject the available downloaders into the processor but we aren't relying on contextual binding.</p>
+<p>At this point, you might ask, &quot;Does the processor decide which downloader handles the types? Will I need a switch statement here or something?&quot; Nope, remember we want to push the behavior and data closer together.</p>
+<p>Let's make the change that will colocate the logic inside the <code>IDownloader</code> implementations:</p>
+<pre><code class="language-cs">public class DownloadProcessor : IDownloadProcessor {
+
+  private readonly IEnumerable&lt;IDownloader&gt; _downloaders;
+
+  public DownloadProcessor(IEnumerable&lt;IDownloader&gt; downloaders) {
+    _downloaders = downloaders;
+  }
+
+  public void Process(string[] types) {
+    foreach(var downloader in _downloaders) {
+      if (downloader.CanProcess(types)) {
+        downloader.Process();
+      }
+    }
+  }
+}
+
+public interface IDownloader {
+  bool CanProcess(string[] types);
+  void Process();
+}
+
+public class SalesDownloader : IDownloader {
+  public bool CanProcess(string[] types) {
+    return types.IndexOf(&quot;sales&quot;) &gt; -1;
+  }
+
+  public void Process() {
+    // etc.
+  }
+}
+
+public class TrafficDownloader : IDownloader {
+  public bool CanProcess(string[] types) {
+    return types.IndexOf(&quot;traffic&quot;) &gt; -1;
+  }
+
+  public void Process() {
+    // etc.
+  }
+}
+</code></pre>
+<p>That's more like it.</p>
+<p>We're iterating through each downloader in the processor and processing the download if and only if the handler can handle it (i.e. the decision is left to the downloader).</p>
+<p><code>IDownloader.CanProcess</code> provides a contract that says we have to specify what a downloader can handle. Could we just as easily have done <code>Process(string[] types)</code>? Yes, we could but this way we are <em>guaranteeing</em> that a downloader <em>must</em> tell us whether it could handle any of the types we provide. Without this, there'd be no way to enforce this contract. Furthermore, having a check method allows us to ask, &quot;How would I know if a downloader <em>didn't</em> handle my download type?&quot;.</p>
+<p>This is looking good. At this point, you could call it a refactoring job well done. Now it's time for the bonus round to snag those extra maintainability points.</p>
+<h2 id="tostring-or-not-tostring">ToString or Not ToString?</h2>
+<p>My philosophy is to consolidate multiple &quot;sources of truth&quot; to a single source. Right now for me to figure out what download types are acceptable to pass to this application I have to look at each <code>IDownloader</code> implementation, inside the <code>CanProcess</code> functions. Yuck!</p>
+<p>We could use constants and have them on the <code>ProgramImplementation</code> to make acceptable download types more discoverable. But if we switch to an enumeration instead of passing raw strings we'll have a strongly typed and enforceable contract. <strong>BONUS:</strong> Enums support flags so we can represent multiple values without an array!</p>
+<pre><code class="language-cs">// Source of truth for all download types
+enum DownloadType {
+  Sales,
+  Traffic
+}
+
+class ProgramImplementation {
+  private readonly IDownloadProcessor _processor;
+
+  public ProgramImplementation(
+    IDownloadProcessor processor) {
+    _processor = processor;
+  }
+
+  public void Run(string[] args) {
+
+    foreach (var arg in args) {
+
+      // Parse the argument directly as an enum,
+      // ensuring we always pass valid values
+      DownloadType type;
+      if (!Enum.TryParse(arg, out type)) {
+        throw new ArgumentException($&quot;Type '{arg}' is not a valid download type&quot;);
+      }
+
+      _processor.Process(type);
+    }
+  }
+}
+</code></pre>
+<p>Instead of comparing strings, we're now enforcing consistency--we work with the enums and translate strings to <code>DownloadType</code> so that we can validate values.</p>
+<p>Pretty good! But there's a problem. We went back to passing a single download type. Not cool! It would be great if we could translate that string list into a flagged enum value...</p>
+<h2 id="beam-me-opts-scotty">Beam Me Opts, Scotty!</h2>
+<p>Not sure if that quote works but I digress. Let's leverage a nice open source package to do some options parsing for us so our CLI application can be more flexible and robust.</p>
+<p><a href="https://github.com/gsscoder/commandline">Commandline</a> is a fantastic Nuget package for the job.</p>
+<p>We can use Commandline to take in a list of the enum values and convert them into a flag. Here's how we use it to simplify our logic further:</p>
+<pre><code class="language-cs">[Flags]
+enum DownloadType {
+  Sales,
+  Traffic
+}
+
+class Options {
+  [Option('t', &quot;types&quot;, Required = true,
+    HelpText = &quot;Download file type(s) to process&quot;)]
+  public IEnumerable&lt;DownloadType&gt; Types { get; set; }
+}
+
+class ProgramImplementation {
+  private readonly IDownloadProcessor _processor;
+
+  public ProgramImplementation(IDownloadProcessor processor) {
+    _processor = processor;
+  }
+
+  public void Run(string[] args)
+  {
+    var parser = new Parser(settings =&gt; settings.CaseInsensitiveEnumValues = true);
+    var result = parser.ParseArguments&lt;Options&gt;(args);
+    
+    result.WithParsed(options =&gt;
+    {
+      // convert to flags
+      var types = options.Types.Aggregate((i, t) =&gt; i | t);
+
+      _processor.Process(types);
+    });            
+  }
+}
+</code></pre>
+<p>Much better! We are now accepting multiple download types from the CLI, like this:</p>
+<pre><code>MyApp -t Sales Traffic
+</code></pre>
+<p>This line:</p>
+<pre><code class="language-cs">var parser = new Parser(settings =&gt; settings.CaseInsensitiveEnumValues = true);
+</code></pre>
+<p>Allows us to pass in case-insensitive enum values like:</p>
+<pre><code>MyApp -t sales traffic
+</code></pre>
+<p>The other magic line:</p>
+<pre><code class="language-cs">var types = options.Types.Aggregate((i, t) =&gt; i | t);
+</code></pre>
+<p>Converts the array of enum values into a flag. <a href="https://stackoverflow.com/questions/21880081/cast-int-array-to-enum-flags">Thanks StackOverflow</a>!</p>
+<blockquote class="blockquote">
+<p><em>Note:</em> The library currently doesn't handle mapping multiple values to a single Enum flags type, so we'll have to make do. No library I could find supports that <em>and</em> .NET Core, which I was using to test this code. Time for a PR, maybe?</p>
+</blockquote>
+<p>The <code>DownloadProcessor</code> will need to change to accept the new flag enum:</p>
+<pre><code class="language-cs">public void Process(DownloadType types) {
+  foreach(var downloader in _downloaders) {
+    if (downloader.CanProcess(types)) {
+      downloader.Process();
+    }
+  }
+}
+</code></pre>
+<p>Finally, that will allow us to simplify our downloaders:</p>
+<pre><code class="language-cs">// SalesDownloader
+public bool CanProcess(DownloadType type) {
+  return type.HasFlag(DownloadType.Sales);
+}
+
+// TrafficDownloader
+public bool CanProcess(DownloadType type) {
+  return type.HasFlag(DownloadType.Traffic);
+}
+</code></pre>
+<iframe src="https://giphy.com/embed/tw3tbRjOTqj4s" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+<p><strong>Do you smell that?</strong> Unlike before, it's the wonderful smell of cleaner code!</p>
+<p>This leaves us with a pretty robust implementation with minimal code.</p>
+<ul>
+<li><strong>It's extensible.</strong> It's easy to add more handlers by adding a new class and enum. The person implementing the new handler will immediately know they require a new enum value when they implement the <code>IDownloader</code> interface.</li>
+<li><strong>It's flexible.</strong> A single handler could handle multiple kinds of downloads.</li>
+<li><strong>It's easy to reason about.</strong> There's no DI magic that requires additional understanding. We could go so far as to add the <a href="https://github.com/ninject/Ninject.Extensions.Conventions">Ninject conventions binding</a> extension to eliminate manual registration of downloaders.</li>
+<li><strong>It's easy to test.</strong> By not relying on Ninject, we now can focus on testing the implementation logic.</li>
+</ul>
+<h2 id="thats-all-folks">That's All, Folks</h2>
+<p>You can find the code for this example <a href="https://github.com/kamranayub/kamranayub.github.io/tree/source/code/2017-07-12-conditional-injection">on my GitHub</a>.</p>
+<p>There's probably a few things I should mention:</p>
+<ul>
+<li><strong>IDownloadProcessor interface</strong>: I don't think we need it. There's only a single implementation and it has no complex dependencies, we can easily test it. We could simply remove the interface and bind the concrete implementation or we could axe the class in its entirety and switch to a single function on <code>ProgramImplementation</code> if we felt a full object was too much.</li>
+<li><strong>Is the CLI parser too much?</strong> It could be argued it is. We could just as easily have converted the individual enum values into a flag ourselves. Admittedly, I was hoping the CLI package would do it directly for me but it didn't, I still ended up manually converting it. Still--we get some great benefits: help documentation, validation, and extensibility.</li>
+<li><strong>You can do all this with Ninject</strong>: But should you? It's always a question you should ask. If you need to <em>dynamically</em> find download handlers at runtime from external assemblies or anything more complex than what I showed above, it might be worth the mental overhead. For this case, it's not worth it in my opinion--introduce abstractions when it gets hard to reason about stuff.</li>
+</ul>
+<p>I'm positive there are multiple great solutions to this issue. If you had specific ideas, share them in the comments!</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '2017-07-12-conditional-dependency-injection';
+    var disqus_title = 'Refactoring Conditional Dependency Injection';
+    var disqus_url = 'https://kamranicus.com/posts/2017-07-12-conditional-dependency-injection';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+      <!-- Disqus -->
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+  
+  <!-- Footer -->
+  <footer>   
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe via RSS or email
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

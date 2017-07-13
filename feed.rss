@@ -5,8 +5,16 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2017</copyright>
-		<pubDate>Tue, 11 Jul 2017 17:54:27 GMT</pubDate>
-		<lastBuildDate>Tue, 11 Jul 2017 17:54:27 GMT</lastBuildDate>
+		<pubDate>Thu, 13 Jul 2017 02:38:27 GMT</pubDate>
+		<lastBuildDate>Thu, 13 Jul 2017 02:38:27 GMT</lastBuildDate>
+		<item>
+			<title>Refactoring Conditional Dependency Injection</title>
+			<link>https://kamranicus.com/posts/2017-07-12-conditional-dependency-injection</link>
+			<description>Kamran Ayub</description>
+			<enclosure url="https://kamranicus.com/images/2017-07-12-masthead.png" length="0" type="image" />
+			<guid>https://kamranicus.com/posts/2017-07-12-conditional-dependency-injection</guid>
+			<pubDate>Thu, 13 Jul 2017 02:32:00 GMT</pubDate>
+		</item>
 		<item>
 			<title>New Video Let's CODE! Basic CSS</title>
 			<link>https://kamranicus.com/posts/2017-06-27-lets-code-basic-css</link>
@@ -139,13 +147,6 @@
 			<description>Kamran Ayub</description>
 			<guid>https://kamranicus.com/posts/2016-04-21-ludum-dare-35-game-jam</guid>
 			<pubDate>Sun, 08 May 2016 02:10:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>TypeScript in Action at Twin Cities Code Camp 20 (TCCC20)</title>
-			<link>https://kamranicus.com/posts/2016-04-11-tccc20-typescript-in-action</link>
-			<description>Kamran Ayub</description>
-			<guid>https://kamranicus.com/posts/2016-04-11-tccc20-typescript-in-action</guid>
-			<pubDate>Mon, 11 Apr 2016 18:38:00 GMT</pubDate>
 		</item>
 	</channel>
 </rss>
