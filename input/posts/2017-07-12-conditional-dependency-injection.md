@@ -1,6 +1,8 @@
 Title: Refactoring Conditional Dependency Injection
-Published: 2099-01-01
-Lead: How do you choose between multiple implementations when injecting dependencies? Should you even need to? Someone asked me and this is what I proposed.
+Published: 2017-07-12 21:32:00 -0500
+Image: images/2017-07-12-masthead.png
+HeaderInverted: true
+Lead: How do you inject multiple implementations of a single interface and distinguish between them?
 Tags:
 - C#
 - .NET
@@ -10,7 +12,7 @@ Tags:
 
 Recently a colleague sent me a question about some advice using [Ninject](http://www.ninject.org/), a popular .NET dependency injection framework. It went something like this:
 
-> I have a console app that does some tasks. Two of the tasks are very similar, they each process a downloaded file. But each has a different file downloader.
+> I have a console app that does some tasks. Two of the tasks are very similar, they each process a downloaded file. But the process is different depending on the requested download types passed in.
 > 
 > The way I'm modeling it right now is like this:
 > 
@@ -18,7 +20,7 @@ Recently a colleague sent me a question about some advice using [Ninject](http:/
 > 2. `SalesDownloader : IDownloader`
 > 3. `TrafficDownloader : IDownloader`
 > 
-> What I'd like to do is have the correct `IDownloader` injected into the `DownloadProcessor` constructor.
+> What I'd like to do is have the correct `IDownloader` used by the `DownloadProcessor` depending on incoming arguments.
 
 <!-- More -->
 
@@ -79,42 +81,65 @@ First, what's going on with this?
 [Named("salesDownloader")] IDownloader salesDownloader
 ```
 
-This is what Ninject calls [Contextual Binding](https://github.com/ninject/ninject/wiki/Contextual-Binding).
+This is what Ninject refers to as [Contextual Binding](https://github.com/ninject/ninject/wiki/Contextual-Binding).
 
-You can bind to the same service type and attach "metadata" that can be used at injection time:
+You can bind the same interface to different concrete classes and attach "metadata" that can be used at injection time:
 
 ```cs
 _kernel.Bind<IDownloader>().To<SalesDownloader>().Named("salesDownloader");
 _kernel.Bind<IDownloader>().To<TrafficDownloader>().Named("trafficDownloader");
 ```
 
-In the above docs, they say you should avoid this pattern and for good reason--now the caller has to reference Ninject directly to get what it wants.
+In the above docs, they say you should avoid this pattern because now the caller has to reference Ninject directly to get what it wants.
 
-Does this work? Sure. Let's make it better.
+Does this work? Sure but my coworker reached out to me "because it felt weird" so let's break it down.
 
-## The Tale of Two Processors
+## A Hammer Looking for a Nail
 
-If you wanted to still use Ninject to achieve this, there's a better way to bind a specific service 1:1 to concrete classes. You create two implementations of `IDownloadProcessor`:
+If you wanted to still use Ninject to achieve this, there's an alternative way to bind the same interface to specific concrete classes *without* having the calling class take a direct dependency on Ninject. 
+
+You have to create two implementations of `IDownloadProcessor`:
 
 ```cs
 public interface IDownloadProcessor {
   void Process();
 }
 
-public class SalesDownloadProcessor : IDownloadProcessor {
-  public SalesDownloadProcessor(IFileDownloader downloader) {
+public abstract class BaseDownloadProcessor : IDownloadProcessor {
+  
+  private IFileDownloader _downloader;
+  public BaseDownloadProcessor(IFileDownloader downloader) {
+    _downloader = downloader;
+  }
+
+  public void Process() {
+    // common logic
+    // ...
+
+    // specific downloader logic
+    _downloader.Process();
+  }
+}
+
+// empty implementation classes
+
+public class SalesDownloadProcessor : BaseDownloadProcessor {
+
+  public SalesDownloadProcessor(IFileDownloader downloader)
+    : base(downloader) {
 
   }
 }
 
 public class TrafficDownloadProcessor : IDownloadProcessor {
-  public TrafficDownloadProcessor(IFileDownloader downloader) {
+  public TrafficDownloadProcessor(IFileDownloader downloader)
+    : base(downloader) {
     
   }
 }
 ```
 
-This adds an extra class to what we had before but now we can inject the right downloader that we need *and* we've simplified the interface. 
+This adds an two extra classes (one holding common base implementation logic) to what we had before but at least we can inject the right downloader that we need *and* we've simplified the interface. 
 
 We can now bind the specific implementation to the specific processor:
 
@@ -126,7 +151,7 @@ _kernel.Bind<IDownloader>().To<TrafficDownloader>()
   .WhenInjectedInto(typeof(TrafficDownloadProcessor));
 ```
 
-Great! We solved the riddle and now our code looks like this in our `ProgramImplementation`:
+Great! We removed a direct reference to Ninject in our `ProgramImplementation`:
 
 ```cs
 public class ProgramImplementation
@@ -163,14 +188,15 @@ This is still a little smelly, wouldn't you agree?
 
 I thought so. Here's what smells:
 
-- The `ProgramImplementation` has to be aware of both concrete implementations of `IDownloadProcessor` in TWO places, one in the constructor and one when deciding what to call
+- The `ProgramImplementation` has to be aware of **both** concrete implementations of `IDownloadProcessor` in TWO places, one in the constructor and one when deciding what to call
 - We still have duplicate code in two similar conditional branches and if we add more, it'll keep growing
-- Both download processors are identical, there's no value in having two lying around
 - Lastly and most importantly, **we are deciding** what downloader is paired with what processor and I think this is the most egregious problem here
+
+Overall this will work but both download processors are identical and we've introduced an abstract class. There's no value in having two empty classes lying around--its solely due to Ninject. In other words, we're just a hammer looking for a nail... maybe we can solve this by rethinking the problem.
 
 ## Colocate Behavior and Data
 
-The solution I proposed to my coworker was to fuhgeddabout Ninject because I don't think this should be solved with Ninject or involve much magic binding incantation at all.
+The solution I proposed to my coworker was to *fuhgeddabout* Ninject because I don't think this should be Ninject's concern or involve black box binding incantation at all.
 
 Ask yourself this question: who should decide what an `IDownloader` can handle? Right now, it's the `ProgramImplementation` but I'd argue that it's the *downloader* who knows if it can process a download type--is it *really* the top-level program's concern who handles what? I don't think so.
 
@@ -258,7 +284,7 @@ public class DownloadProcessor : IDownloadProcessor {
 
   public void Process(string[] types) {
     foreach(var downloader in _downloaders) {
-      if (downloader.CanHandle(types)) {
+      if (downloader.CanProcess(types)) {
         downloader.Process();
       }
     }
@@ -266,12 +292,12 @@ public class DownloadProcessor : IDownloadProcessor {
 }
 
 public interface IDownloader {
-  bool CanHandle(string[] types);
+  bool CanProcess(string[] types);
   void Process();
 }
 
 public class SalesDownloader : IDownloader {
-  public bool CanHandle(string[] types) {
+  public bool CanProcess(string[] types) {
     return types.IndexOf("sales") > -1;
   }
 
@@ -281,7 +307,7 @@ public class SalesDownloader : IDownloader {
 }
 
 public class TrafficDownloader : IDownloader {
-  public bool CanHandle(string[] types) {
+  public bool CanProcess(string[] types) {
     return types.IndexOf("traffic") > -1;
   }
 
@@ -295,13 +321,13 @@ That's more like it.
 
 We're iterating through each downloader in the processor and processing the download if and only if the handler can handle it (i.e. the decision is left to the downloader).
 
-`IDownloader.CanHandle` provides a contract that says we have to specify what a downloader can handle. Could we just as easily have done `Process(string[] types)`? Yes, we could but this way we are *guaranteeing* that a downloader *must* tell us whether it could handle any of the types we provide. Without this, there'd be no way to enforce this contract. Furthermore, having a check method allows us to ask, "How would I know if a downloader *didn't* handle my download type?".
+`IDownloader.CanProcess` provides a contract that says we have to specify what a downloader can handle. Could we just as easily have done `Process(string[] types)`? Yes, we could but this way we are *guaranteeing* that a downloader *must* tell us whether it could handle any of the types we provide. Without this, there'd be no way to enforce this contract. Furthermore, having a check method allows us to ask, "How would I know if a downloader *didn't* handle my download type?".
 
 This is looking good. At this point, you could call it a refactoring job well done. Now it's time for the bonus round to snag those extra maintainability points.
 
 ## ToString or Not ToString?
 
-My philosophy is to consolidate multiple "sources of truth" to a single source. Right now for me to figure out what download types are acceptable to pass to this application I have to look at each `IDownloader` implementation, inside the `CanHandle` functions. Yuck!
+My philosophy is to consolidate multiple "sources of truth" to a single source. Right now for me to figure out what download types are acceptable to pass to this application I have to look at each `IDownloader` implementation, inside the `CanProcess` functions. Yuck!
 
 We could use constants and have them on the `ProgramImplementation` to make acceptable download types more discoverable. But if we switch to an enumeration instead of passing raw strings we'll have a strongly typed and enforceable contract. **BONUS:** Enums support flags so we can represent multiple values without an array!
 
@@ -414,7 +440,7 @@ The `DownloadProcessor` will need to change to accept the new flag enum:
 ```cs
 public void Process(DownloadType types) {
   foreach(var downloader in _downloaders) {
-    if (downloader.CanHandle(types)) {
+    if (downloader.CanProcess(types)) {
       downloader.Process();
     }
   }
@@ -425,12 +451,12 @@ Finally, that will allow us to simplify our downloaders:
 
 ```cs
 // SalesDownloader
-public bool CanHandle(DownloadType type) {
+public bool CanProcess(DownloadType type) {
   return type.HasFlag(DownloadType.Sales);
 }
 
 // TrafficDownloader
-public bool CanHandle(DownloadType type) {
+public bool CanProcess(DownloadType type) {
   return type.HasFlag(DownloadType.Traffic);
 }
 ```
@@ -448,11 +474,10 @@ This leaves us with a pretty robust implementation with minimal code.
 
 ## That's All, Folks
 
-You can find the code for this example on my GitHub.
+You can find the code for this example [on my GitHub](https://github.com/kamranayub/kamranayub.github.io/tree/source/code/2017-07-12-conditional-injection).
 
 There's probably a few things I should mention:
 
-- **O(n) Complexity**: The processor method is currently O(n) complexity meaning the time to iterate through the `IDownloaders` to handle the download is linear as we we add more handlers. Personally, I find this OK in this instance--it's going to be fast unless you start introducing thousands of complex handlers. In that case, you might explore options to transform it into an O(1) operation.
 - **IDownloadProcessor interface**: I don't think we need it. There's only a single implementation and it has no complex dependencies, we can easily test it. We could simply remove the interface and bind the concrete implementation or we could axe the class in its entirety and switch to a single function on `ProgramImplementation` if we felt a full object was too much.
 - **Is the CLI parser too much?** It could be argued it is. We could just as easily have converted the individual enum values into a flag ourselves. Admittedly, I was hoping the CLI package would do it directly for me but it didn't, I still ended up manually converting it. Still--we get some great benefits: help documentation, validation, and extensibility.
 - **You can do all this with Ninject**: But should you? It's always a question you should ask. If you need to *dynamically* find download handlers at runtime from external assemblies or anything more complex than what I showed above, it might be worth the mental overhead. For this case, it's not worth it in my opinion--introduce abstractions when it gets hard to reason about stuff.

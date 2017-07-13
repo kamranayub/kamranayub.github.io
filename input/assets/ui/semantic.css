@@ -742,6 +742,11 @@ nav.ui.site.menu .header.item {
   font-size: 2em;
 }
 
+.masthead.segment h1.ui.header .sub.header {
+  text-transform: none;
+  line-height: 1.4em;
+}
+
 @media only screen and (min-width: 321px) {
   .masthead.segment h1.ui.header {
     font-size: 2.5em;

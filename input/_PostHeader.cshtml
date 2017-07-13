@@ -2,10 +2,12 @@
     var Lead = Model.String(BlogKeys.Lead);
     var Published = Model.Get<DateTime>(BlogKeys.Published);   
     var Tags = Model.Get<string[]>(BlogKeys.Tags);
+    
+    string inverted = Model.Bool("HeaderInverted") ? "inverted" : "";    
 }
 
 <div class="ui basic vertical segment">
-    <h1 class="ui huge header">
+    <h1 class="ui @inverted huge header">
       @Model.String(BlogKeys.Title)
       @if(!string.IsNullOrWhiteSpace(Lead))
       {
@@ -13,7 +15,7 @@
       }
     </h1>
                 
-    <div class="ui sub header">        
+    <div class="ui @inverted sub header">        
         @if (Published != default(DateTime))
         {
             <text>Published on @Published.ToLongDateString()<br></text>

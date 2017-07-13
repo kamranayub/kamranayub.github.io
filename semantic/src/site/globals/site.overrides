@@ -51,6 +51,8 @@ nav.ui.site.menu {
     margin-top: 1.5em;
     font-size: 2em;
 
+    .sub.header { text-transform: none; line-height: 1.4em; }
+
     @media only screen and (min-width: (@mobileBreakpoint + 1px)) {
       font-size: 2.5em;
     }

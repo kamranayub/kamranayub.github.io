@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RefactoredFileProcessor": {
+      "commandName": "Project",
+      "commandLineArgs": "-t sales traffic"
+    }
+  }
+}
