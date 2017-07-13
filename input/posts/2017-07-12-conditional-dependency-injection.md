@@ -323,7 +323,9 @@ We're iterating through each downloader in the processor and processing the down
 
 `IDownloader.CanProcess` provides a contract that says we have to specify what a downloader can handle. Could we just as easily have done `Process(string[] types)`? Yes, we could but this way we are *guaranteeing* that a downloader *must* tell us whether it could handle any of the types we provide. Without this, there'd be no way to enforce this contract. Furthermore, having a check method allows us to ask, "How would I know if a downloader *didn't* handle my download type?".
 
-This is looking good. At this point, you could call it a refactoring job well done. Now it's time for the bonus round to snag those extra maintainability points.
+This is looking good. At this point, you could call it a refactoring job well done. Now it's time to level up and snag [over 9000] extra maintainability points.
+
+<iframe src="https://giphy.com/embed/B6SyssSlTgPXq" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 ## ToString or Not ToString?
 
