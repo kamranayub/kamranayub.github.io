@@ -4,8 +4,15 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2017</rights>
-	<updated>2017-07-13T03:12:07Z</updated>
+	<updated>2017-07-14T17:25:18Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2017-07-14-midwestjs-react-typescript" />
+		<id>https://kamranicus.com/posts/2017-07-14-midwestjs-react-typescript</id>
+		<title>Building Scalable, Maintainable Apps Using TypeScript and React at Midwest.js</title>
+		<updated>2017-07-14T17:21:00Z</updated>
+		<summary>Kamran Ayub</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2017-07-12-conditional-dependency-injection" />
 		<link rel="enclosure" type="image" href="https://kamranicus.com/images/2017-07-12-masthead.png" />
@@ -138,13 +145,6 @@
 		<id>https://kamranicus.com/posts/2016-05-07-cassette-subresource-integrity-sri</id>
 		<title>Adding Subresource Integrity support to Cassette .NET</title>
 		<updated>2016-05-08T05:13:00Z</updated>
-		<summary>Kamran Ayub</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2016-04-21-ludum-dare-35-game-jam" />
-		<id>https://kamranicus.com/posts/2016-04-21-ludum-dare-35-game-jam</id>
-		<title>Designing Hexshaper, a game for the Ludum Dare 35 Game Jam</title>
-		<updated>2016-05-08T02:10:00Z</updated>
 		<summary>Kamran Ayub</summary>
 	</entry>
 </feed>

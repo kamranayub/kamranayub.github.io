@@ -5,8 +5,15 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2017</copyright>
-		<pubDate>Thu, 13 Jul 2017 03:12:07 GMT</pubDate>
-		<lastBuildDate>Thu, 13 Jul 2017 03:12:07 GMT</lastBuildDate>
+		<pubDate>Fri, 14 Jul 2017 17:25:18 GMT</pubDate>
+		<lastBuildDate>Fri, 14 Jul 2017 17:25:18 GMT</lastBuildDate>
+		<item>
+			<title>Building Scalable, Maintainable Apps Using TypeScript and React at Midwest.js</title>
+			<link>https://kamranicus.com/posts/2017-07-14-midwestjs-react-typescript</link>
+			<description>Kamran Ayub</description>
+			<guid>https://kamranicus.com/posts/2017-07-14-midwestjs-react-typescript</guid>
+			<pubDate>Fri, 14 Jul 2017 17:21:00 GMT</pubDate>
+		</item>
 		<item>
 			<title>Refactoring Conditional Dependency Injection</title>
 			<link>https://kamranicus.com/posts/2017-07-12-conditional-dependency-injection</link>
@@ -140,13 +147,6 @@
 			<description>Kamran Ayub</description>
 			<guid>https://kamranicus.com/posts/2016-05-07-cassette-subresource-integrity-sri</guid>
 			<pubDate>Sun, 08 May 2016 05:13:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Designing Hexshaper, a game for the Ludum Dare 35 Game Jam</title>
-			<link>https://kamranicus.com/posts/2016-04-21-ludum-dare-35-game-jam</link>
-			<description>Kamran Ayub</description>
-			<guid>https://kamranicus.com/posts/2016-04-21-ludum-dare-35-game-jam</guid>
-			<pubDate>Sun, 08 May 2016 02:10:00 GMT</pubDate>
 		</item>
 	</channel>
 </rss>
