@@ -4,8 +4,15 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2017</rights>
-	<updated>2017-07-14T17:25:18Z</updated>
+	<updated>2017-08-29T01:03:49Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2017-08-28-mjs-thanks" />
+		<id>https://kamranicus.com/posts/2017-08-28-mjs-thanks</id>
+		<title>Thanks for attending Midwest.js</title>
+		<updated>2017-08-29T00:48:00Z</updated>
+		<summary>Kamran Ayub</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2017-07-14-midwestjs-react-typescript" />
 		<id>https://kamranicus.com/posts/2017-07-14-midwestjs-react-typescript</id>
@@ -138,13 +145,6 @@
 		<id>https://kamranicus.com/posts/2016-07-31-aspnet-core-demo-game</id>
 		<title>ASP.NET Core Sample Demo Game</title>
 		<updated>2016-07-31T18:05:00Z</updated>
-		<summary>Kamran Ayub</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2016-05-07-cassette-subresource-integrity-sri" />
-		<id>https://kamranicus.com/posts/2016-05-07-cassette-subresource-integrity-sri</id>
-		<title>Adding Subresource Integrity support to Cassette .NET</title>
-		<updated>2016-05-08T05:13:00Z</updated>
 		<summary>Kamran Ayub</summary>
 	</entry>
 </feed>
