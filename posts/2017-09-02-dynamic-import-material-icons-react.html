@@ -142,7 +142,7 @@ Published on Sunday, September 3, 2017<br>    </div>
 }
 </code></pre>
 <p>Somehow we need to import the appropriate icon from <code>material-ui-icons</code> and reference it based on the <code>icon</code> parameter:</p>
-<pre><code class="language-js">const icon = (icon) =&gt; {
+<pre><code class="language-js">const MaterialIcon = ({ icon }) =&gt; {
   
   // somehow resolve this icon
   let resolvedIcon = // ...
@@ -153,14 +153,17 @@ Published on Sunday, September 3, 2017<br>    </div>
 const Navigation = (props) =&gt;
   &lt;nav&gt;
     {props.children.map(item =&gt; 
-      &lt;li&gt;{item.icon} {item.name}&lt;/li&gt;
+      &lt;li&gt;
+        &lt;MaterialIcon icon={item.icon} /&gt;
+        {item.name}
+      &lt;/li&gt;
     )}
   &lt;/nav&gt;
 </code></pre>
 <p>The initial solution was to just hardcode the logic:</p>
 <pre><code class="language-js">import AccessAlarmIcon from 'material-ui-icons/AccessAlarm'
 
-const icon = (icon) =&gt; {
+const MaterialIcon = ({ icon }) =&gt; {
   switch (icon) {
     case 'AccessAlarmIcon': return &lt;AccessAlarmIcon /&gt;
     default: return null
@@ -172,7 +175,7 @@ const icon = (icon) =&gt; {
 <p>At first, we tried referencing <code>AccessAlarmIcon</code> imported variable directly since it should be in the scope of the module.</p>
 <pre><code class="language-js">import AccessAlarmIcon from 'material-ui-icons/AccessAlarm'
 
-const icon = (icon) =&gt; {
+const MaterialIcon = ({ icon }) =&gt; {
   return React.createElement(eval(icon))
 }
 </code></pre>
@@ -187,7 +190,7 @@ var _AccessAlarm2 = _interopRequireDefault(_AccessAlarm);
 <h2 id="using-the-webpack-api">Using the Webpack API</h2>
 <p>I decided to look into this over the weekend since it was an interesting problem. After playing around for a bit, I decided to look and see what webpack could offer us via <a href="https://webpack.js.org/api/module-methods/">its API</a>.</p>
 <p>It turns out we can leverage <code>require</code> to just use a convention-based method of dynamically importing the icons. Within a webpack context, it will handle resolving the dependency for us internally.</p>
-<pre><code class="language-js">const icon = (icon) =&gt; {
+<pre><code class="language-js">const MaterialIcon = ({ icon }) =&gt; {
     let iconName = icon.replace(/Icon$/, '')
     let resolved = require(`material-ui-icons/${iconName}`).default
     
@@ -205,7 +208,7 @@ var _AccessAlarm2 = _interopRequireDefault(_AccessAlarm);
 <p>You could also asynchronously load the icon using <code>import()</code> which returns a native <code>Promise</code> object. To make that work with React, we can use <a href="https://github.com/ctrlplusb/react-async-component">react-async-component</a> and create an async factory component:</p>
 <pre><code class="language-js">import { asyncComponent } from 'react-async-component'
 
-const icon = (icon) =&gt; {
+const MaterialIconAsync = ({ icon }) =&gt; {
     let iconName = icon.replace(/Icon$/, '')
     return React.createElement(asyncComponent({
         resolve: () =&gt; import(
