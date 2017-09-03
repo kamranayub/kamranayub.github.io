@@ -5,8 +5,15 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2017</copyright>
-		<pubDate>Tue, 29 Aug 2017 02:26:23 GMT</pubDate>
-		<lastBuildDate>Tue, 29 Aug 2017 02:26:23 GMT</lastBuildDate>
+		<pubDate>Sun, 03 Sep 2017 03:18:31 GMT</pubDate>
+		<lastBuildDate>Sun, 03 Sep 2017 03:18:31 GMT</lastBuildDate>
+		<item>
+			<title>Dynamically Importing React Material Icons Using Webpack</title>
+			<link>https://kamranicus.com/posts/2017-09-02-dynamic-import-material-icons-react</link>
+			<description>Kamran Ayub</description>
+			<guid>https://kamranicus.com/posts/2017-09-02-dynamic-import-material-icons-react</guid>
+			<pubDate>Sun, 03 Sep 2017 03:10:00 GMT</pubDate>
+		</item>
 		<item>
 			<title>Today I started at Target</title>
 			<link>https://kamranicus.com/posts/2017-08-28-joined-target</link>
@@ -140,13 +147,6 @@
 			<description>Kamran Ayub</description>
 			<guid>https://kamranicus.com/posts/2016-08-11-posh-openweathermap-powershell-module</guid>
 			<pubDate>Fri, 12 Aug 2016 00:15:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Demystifying TypeScript at Midwest.js</title>
-			<link>https://kamranicus.com/posts/2016-08-11-midwestjs-demystifying-typescript</link>
-			<description>Kamran Ayub</description>
-			<guid>https://kamranicus.com/posts/2016-08-11-midwestjs-demystifying-typescript</guid>
-			<pubDate>Fri, 12 Aug 2016 00:09:00 GMT</pubDate>
 		</item>
 	</channel>
 </rss>

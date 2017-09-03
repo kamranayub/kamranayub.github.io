@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Dynamically Importing React Material Icons Using Webpack</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Dynamically Importing React Material Icons Using Webpack" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2017-09-02-dynamic-import-material-icons-react" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="/assets/js/picturefill.min.js" async></script>
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text site menu">
+      
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+              <div class="item">
+        <a href="/about">About</a>
+      </div>
+      <div class="item">
+        <a href="/posts">Archive</a>
+      </div>
+      <div class="item">
+        <a href="/guides">Guides</a>
+      </div>
+      <div class="item">
+        <a href="/projects">Projects</a>
+      </div>
+      <div class="item">
+        <a href="/speaking">Speaking</a>
+      </div>
+      <div class="item">
+        <a href="/travel">Travel</a>
+      </div>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui vertical masthead segment " id="intro-header">
+    <div class="ui container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui  huge header">
+      Dynamically Importing React Material Icons Using Webpack
+        <div class="ui sub header">Quick tip on dynamically importing icons using Webpack</div>
+    </h1>
+                
+    <div class="ui  sub header">        
+Published on Sunday, September 3, 2017<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/javascript" class="ui small compact button">JavaScript</a>
+                    <a role="button" href="/tags/react" class="ui small compact button">React</a>
+                    <a role="button" href="/tags/webpack" class="ui small compact button">Webpack</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui stackable grid container">
+    <div class="content column">
+      
+
+<div class="ui huge basic post content segment">
+  <p>The sample code for this post is <a href="https://github.com/kamranayub/example-webpack-dynamic-import">available on my GitHub</a>.</p>
+<p>One of my team members was working on our app's navigation and for the icons we are using the <a href="https://www.npmjs.com/package/material-ui-icons">material-ui-icons</a> package. This is an npm package that provides the Material UI icons as React components. We're also using webpack for bundling and babel for transpiling.</p>
+<p>Their question was around how to dynamically reference these icon components within the navigation component. We dynamically build navigation from a JSON structure and need to load the appropriate icon for each item.</p>
+<p>Imagine something like this to represent some settings menu:</p>
+<pre><code class="language-js">{
+  &quot;name&quot;: &quot;Settings&quot;,
+  &quot;children&quot;: [
+    {
+      &quot;name&quot;: &quot;Manage Alarms&quot;,
+      &quot;icon&quot;: &quot;AccessAlarmIcon&quot;
+    }
+  ]
+}
+</code></pre>
+<p>Somehow we need to import the appropriate icon from <code>material-ui-icons</code> and reference it based on the <code>icon</code> parameter:</p>
+<pre><code class="language-js">const icon = (icon) =&gt; {
+  
+  // somehow resolve this icon
+  let resolvedIcon = // ...
+
+  return React.createElement(resolvedIcon)
+}
+
+const Navigation = (props) =&gt;
+  &lt;nav&gt;
+    {props.children.map(item =&gt; 
+      &lt;li&gt;{item.icon} {item.name}&lt;/li&gt;
+    )}
+  &lt;/nav&gt;
+</code></pre>
+<p>The initial solution was to just hardcode the logic:</p>
+<pre><code class="language-js">import AccessAlarmIcon from 'material-ui-icons/AccessAlarm'
+
+const icon = (icon) =&gt; {
+  switch (icon) {
+    case 'AccessAlarmIcon': return &lt;AccessAlarmIcon /&gt;
+    default: return null
+  }
+}
+</code></pre>
+<p>But we knew this was a sub-optimal solution, it requires updating this file each time we want to support a new icon. There must be a better way!</p>
+<h2 id="referencing-the-scope">Referencing the scope</h2>
+<p>At first, we tried referencing <code>AccessAlarmIcon</code> imported variable directly since it should be in the scope of the module.</p>
+<pre><code class="language-js">import AccessAlarmIcon from 'material-ui-icons/AccessAlarm'
+
+const icon = (icon) =&gt; {
+  return React.createElement(eval(icon))
+}
+</code></pre>
+<p>Yes, <code>eval</code> is <strong>evil</strong> but we wanted to see if it worked before trying a safer solution. It didn't work.</p>
+<pre><code>Uncaught ReferenceError: AccessAlarmIcon is not defined
+</code></pre>
+<p>Hmm, it should be, right? Wrong. Webpack is doing some bundling magic for us. The compiled code looks like this:</p>
+<pre><code class="language-js">var _AccessAlarm = __webpack_require__(70);
+var _AccessAlarm2 = _interopRequireDefault(_AccessAlarm);
+</code></pre>
+<p>So first, it's not even named <code>AccessAlarmIcon</code> at runtime and second, we have some webpack magic going on with variable naming and such.</p>
+<h2 id="using-the-webpack-api">Using the Webpack API</h2>
+<p>I decided to look into this over the weekend since it was an interesting problem. After playing around for a bit, I decided to look and see what webpack could offer us via <a href="https://webpack.js.org/api/module-methods/">its API</a>.</p>
+<p>It turns out we can leverage <code>require</code> to just use a convention-based method of dynamically importing the icons. Within a webpack context, it will handle resolving the dependency for us internally.</p>
+<pre><code class="language-js">const icon = (icon) =&gt; {
+    let iconName = icon.replace(/Icon$/, '')
+    let resolved = require(`material-ui-icons/${iconName}`).default
+    
+    if (!resolved) {
+        throw Error(`Could not find material-ui-icons/${iconName}`)
+    }
+
+    return React.createElement(resolved)
+}
+</code></pre>
+<p>Eyyy, look at that!</p>
+<p><img src="https://user-images.githubusercontent.com/563819/30000066-cacbb048-9024-11e7-9770-ae750984fb59.png" class="img-fluid" alt="Screenshot of icon" /></p>
+<p>Turned out to be a simple, straightforward solution but it wasn't immediately apparent.</p>
+<h3 id="making-it-async">Making it async</h3>
+<p>You could also asynchronously load the icon using <code>import()</code> which returns a native <code>Promise</code> object. To make that work with React, we can use <a href="https://github.com/ctrlplusb/react-async-component">react-async-component</a> and create an async factory component:</p>
+<pre><code class="language-js">import { asyncComponent } from 'react-async-component'
+
+const icon = (icon) =&gt; {
+    let iconName = icon.replace(/Icon$/, '')
+    return React.createElement(asyncComponent({
+        resolve: () =&gt; import(
+            /* webpackMode: &quot;eager&quot; */
+            `material-ui-icons/${iconName}`)
+    }))
+}
+</code></pre>
+<p>I am using the <a href="https://webpack.js.org/api/module-methods/#import-"><em>eager</em> fetch mode</a> to include all the Material icons vs. performing network requests to fetch them.</p>
+<p><strong>Note:</strong> When using Babel with the new dynamic <code>import</code> syntax, you'll need to install <a href="https://babeljs.io/docs/plugins/syntax-dynamic-import/">syntax-dynamic-import</a> preset and enable it.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '2017-09-02-dynamic-import-material-icons-react';
+    var disqus_title = 'Dynamically Importing React Material Icons Using Webpack';
+    var disqus_url = 'https://kamranicus.com/posts/2017-09-02-dynamic-import-material-icons-react';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+      <!-- Disqus -->
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+  
+  <!-- Footer -->
+  <footer>   
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe via RSS or email
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
