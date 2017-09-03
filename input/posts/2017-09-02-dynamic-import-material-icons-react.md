@@ -30,7 +30,7 @@ Imagine something like this to represent some settings menu:
 Somehow we need to import the appropriate icon from `material-ui-icons` and reference it based on the `icon` parameter:
 
 ```js
-const icon = (icon) => {
+const MaterialIcon = ({ icon }) => {
   
   // somehow resolve this icon
   let resolvedIcon = // ...
@@ -41,7 +41,10 @@ const icon = (icon) => {
 const Navigation = (props) =>
   <nav>
     {props.children.map(item => 
-      <li>{item.icon} {item.name}</li>
+      <li>
+        <MaterialIcon icon={item.icon} />
+        {item.name}
+      </li>
     )}
   </nav>
 ```
@@ -51,7 +54,7 @@ The initial solution was to just hardcode the logic:
 ```js
 import AccessAlarmIcon from 'material-ui-icons/AccessAlarm'
 
-const icon = (icon) => {
+const MaterialIcon = ({ icon }) => {
   switch (icon) {
     case 'AccessAlarmIcon': return <AccessAlarmIcon />
     default: return null
@@ -68,7 +71,7 @@ At first, we tried referencing `AccessAlarmIcon` imported variable directly sinc
 ```js
 import AccessAlarmIcon from 'material-ui-icons/AccessAlarm'
 
-const icon = (icon) => {
+const MaterialIcon = ({ icon }) => {
   return React.createElement(eval(icon))
 }
 ```
@@ -93,7 +96,7 @@ I decided to look into this over the weekend since it was an interesting problem
 It turns out we can leverage `require` to just use a convention-based method of dynamically importing the icons. Within a webpack context, it will handle resolving the dependency for us internally.
 
 ```js
-const icon = (icon) => {
+const MaterialIcon = ({ icon }) => {
     let iconName = icon.replace(/Icon$/, '')
     let resolved = require(`material-ui-icons/${iconName}`).default
     
@@ -118,7 +121,7 @@ You could also asynchronously load the icon using `import()` which returns a nat
 ```js
 import { asyncComponent } from 'react-async-component'
 
-const icon = (icon) => {
+const MaterialIconAsync = ({ icon }) => {
     let iconName = icon.replace(/Icon$/, '')
     return React.createElement(asyncComponent({
         resolve: () => import(
