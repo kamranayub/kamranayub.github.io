@@ -125,6 +125,7 @@
 <p>This guide will show you how to build your own DIY baby monitor using a Raspberry Pi 3. The image and sound will be way better than any low- to mid-level monitors (and cheaper!). Additionally, this will give you a lot of flexibility to add other functionality such as a speaker, etc. Since the Raspberry Pi is under your control, you can choose to expose it only within your home network or securely over the Internet--no weird Internet of Things or cloud &quot;phone home&quot; nonsense or possible vulnerabilities that allow people to view your baby. It will be as secure as your home network and if you choose to expose it publically, you can use encryption and strong passwords to secure it (this guide does not cover that).</p>
 <h2 id="in-this-guide">In This Guide</h2>
 <ul>
+<li><a href="#updates">Updates</a></li>
 <li><a href="#the-hardware">The Hardware</a></li>
 <li><a href="#who-this-guide-is-for">Who This Guide is For</a></li>
 <li><a href="#nightvision-support">Nightvision Support</a></li>
@@ -143,6 +144,13 @@
 <li><a href="#optionally-exposing-over-the-internet">(Optionally) Exposing over the Internet</a></li>
 </ul>
 </li>
+</ul>
+<h2 id="updates">Updates</h2>
+<h3 id="section">2017-10-02</h3>
+<ul>
+<li>I missed the fact that the <code>/run/shm</code> directories are blown away on Pi restarts. The startup script now makes sure they exist (should fix slow feeds).</li>
+<li>I updated my picam-viewer web player to use Video.js now which should support more devices.</li>
+<li>It's been reported in the comments that the Pi Zero works well for this!</li>
 </ul>
 <h2 id="the-hardware">The Hardware</h2>
 <p>Here's what you'll need, it's what I have and it works great:</p>
@@ -266,7 +274,7 @@ card 1: Device [USB Audio Device], device 0: USB Audio [USB Audio]
 </code></pre>
 <p>You see &quot;card 1&quot; and &quot;device 0&quot; so my microphone ID will be <code>hw:1,0</code>.</p>
 <p>Now, let's make a script we can run to start Picam. <strong>Replace &quot;hw:1,0&quot; with your device ID above if it's different.</strong>:</p>
-<pre><code>echo &quot;/home/pi/picam/picam -o /run/shm/hls --time --alsadev hw:1,0 &gt; /var/log/picam.log 2&amp;&gt;1&quot; &gt; run_picam.sh
+<pre><code>echo -e &quot;sudo bash /home/pi/make_dirs.sh\nsudo /home/pi/picam/picam -o /run/shm/hls --time --alsadev hw:1,0 &gt; /var/log/picam.log 2&amp;&gt;1&quot; &gt; run_picam.sh
 chmod +x run_picam.sh
 </code></pre>
 <p>This creates a <code>run_picam.sh</code> script in our root (<code>~</code>) directory and marks it as executable. The script starts Picam with a HLS stream output to the RAM drive (fast) and uses our microphone as the recording device. It also writes out the current timestamp in the bottom corner of the stream. There are a <a href="https://github.com/iizukanao/picam">ton of other options</a> too including subtitles, etc. The default video resolution is 720p which is fine enough for a babycam.</p>
@@ -287,6 +295,10 @@ configuring devices
 capturing started
 </code></pre>
 <p>Just press Ctrl-C to exit.</p>
+<p>For reference, this is my full <code>run_picam.sh</code> script for my Pi:</p>
+<pre><code class="language-bash">sudo bash /home/pi/make_dirs.sh
+sudo /home/pi/picam/picam -o /run/shm/hls --samplerate 32000 --channels 2 --audiobitrate 96000 --videobitrate 4000000 --fps 30 --minfps 30 --avcprofile high --avclevel 4.1 --autoex --time --alsadev hw:1,0  &gt;/var/log/picam.log 2&gt;&amp;1
+</code></pre>
 <h2 id="running-picam-at-startup">Running Picam at startup</h2>
 <p><a href="http://www.stuffaboutcode.com/2012/06/raspberry-pi-run-program-at-start-up.html">There's a great post</a> on how to run a script at startup. We want Picam to run right away when the Pi boots up, so let's do that!</p>
 <p>Create the script:</p>
