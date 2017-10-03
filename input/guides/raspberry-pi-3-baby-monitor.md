@@ -28,6 +28,7 @@ This guide will show you how to build your own DIY baby monitor using a Raspberr
 
 ## In This Guide
 
+- [Updates](#updates)
 - [The Hardware](#the-hardware)
 - [Who This Guide is For](#who-this-guide-is-for)
 - [Nightvision Support](#nightvision-support)
@@ -43,6 +44,14 @@ This guide will show you how to build your own DIY baby monitor using a Raspberr
     - [Viewing on a Device](#viewing-on-a-device)
     - [(Optionally) Adding a Web Player](#optionally-adding-a-web-player)
     - [(Optionally) Exposing over the Internet](#optionally-exposing-over-the-internet)
+
+## Updates
+
+### 2017-10-02
+
+- I missed the fact that the `/run/shm` directories are blown away on Pi restarts. The startup script now makes sure they exist (should fix slow feeds).
+- I updated my picam-viewer web player to use Video.js now which should support more devices.
+- It's been reported in the comments that the Pi Zero works well for this!
 
 ## The Hardware
 
@@ -213,7 +222,7 @@ You see "card 1" and "device 0" so my microphone ID will be `hw:1,0`.
 
 Now, let's make a script we can run to start Picam. **Replace "hw:1,0" with your device ID above if it's different.**:
 
-    echo "/home/pi/picam/picam -o /run/shm/hls --time --alsadev hw:1,0 > /var/log/picam.log 2&>1" > run_picam.sh
+    echo -e "sudo bash /home/pi/make_dirs.sh\nsudo /home/pi/picam/picam -o /run/shm/hls --time --alsadev hw:1,0 > /var/log/picam.log 2&>1" > run_picam.sh
     chmod +x run_picam.sh
 
 This creates a `run_picam.sh` script in our root (`~`) directory and marks it as executable. The script starts Picam with a HLS stream output to the RAM drive (fast) and uses our microphone as the recording device. It also writes out the current timestamp in the bottom corner of the stream. There are a [ton of other options](https://github.com/iizukanao/picam) too including subtitles, etc. The default video resolution is 720p which is fine enough for a babycam.
@@ -239,6 +248,13 @@ Test the script by typing `./run_picam.sh`, you should see:
     capturing started
 
 Just press Ctrl-C to exit.
+
+For reference, this is my full `run_picam.sh` script for my Pi:
+
+```bash
+sudo bash /home/pi/make_dirs.sh
+sudo /home/pi/picam/picam -o /run/shm/hls --samplerate 32000 --channels 2 --audiobitrate 96000 --videobitrate 4000000 --fps 30 --minfps 30 --avcprofile high --avclevel 4.1 --autoex --time --alsadev hw:1,0  >/var/log/picam.log 2>&1
+```
 
 ## Running Picam at startup
 
