@@ -201,9 +201,9 @@ Then the following, to execute the script we just made and create the required d
 
 Now we install Picam directly:
 
-    wget https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary.tar.xz
-    tar xvf picam-1.4.6-binary.tar.xz
-    cp picam-1.4.6-binary/picam ~/picam/
+    wget https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-jessie.tar.xz
+    tar xvf picam-1.4.6-binary-jessie.tar.xz
+    cp picam-1.4.6-binary-jessie/picam ~/picam/
 
 We now have Picam installed! It's time to get a stream working.
 
