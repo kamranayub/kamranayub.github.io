@@ -5,8 +5,15 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2017</copyright>
-		<pubDate>Wed, 04 Oct 2017 18:20:15 GMT</pubDate>
-		<lastBuildDate>Wed, 04 Oct 2017 18:20:15 GMT</lastBuildDate>
+		<pubDate>Fri, 06 Oct 2017 20:32:01 GMT</pubDate>
+		<lastBuildDate>Fri, 06 Oct 2017 20:32:01 GMT</lastBuildDate>
+		<item>
+			<title>Using AngularJS 1.5 with webpack, babel, and Karma/Jest</title>
+			<link>https://kamranicus.com/posts/2017-10-06-webpack-karma-jest-babel-angularjs</link>
+			<description>Kamran Ayub</description>
+			<guid>https://kamranicus.com/posts/2017-10-06-webpack-karma-jest-babel-angularjs</guid>
+			<pubDate>Fri, 06 Oct 2017 18:00:00 GMT</pubDate>
+		</item>
 		<item>
 			<title>Dynamically Importing React Material Icons Using Webpack</title>
 			<link>https://kamranicus.com/posts/2017-09-02-dynamic-import-material-icons-react</link>
@@ -140,13 +147,6 @@
 			<description>Kamran Ayub</description>
 			<guid>https://kamranicus.com/posts/2016-08-16-posh-pester-extend-custom-assertions</guid>
 			<pubDate>Wed, 17 Aug 2016 02:10:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>OpenWeatherMap PowerShell Module</title>
-			<link>https://kamranicus.com/posts/2016-08-11-posh-openweathermap-powershell-module</link>
-			<description>Kamran Ayub</description>
-			<guid>https://kamranicus.com/posts/2016-08-11-posh-openweathermap-powershell-module</guid>
-			<pubDate>Fri, 12 Aug 2016 00:15:00 GMT</pubDate>
 		</item>
 	</channel>
 </rss>

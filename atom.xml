@@ -4,8 +4,15 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2017</rights>
-	<updated>2017-10-04T18:20:15Z</updated>
+	<updated>2017-10-06T20:32:01Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2017-10-06-webpack-karma-jest-babel-angularjs" />
+		<id>https://kamranicus.com/posts/2017-10-06-webpack-karma-jest-babel-angularjs</id>
+		<title>Using AngularJS 1.5 with webpack, babel, and Karma/Jest</title>
+		<updated>2017-10-06T18:00:00Z</updated>
+		<summary>Kamran Ayub</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2017-09-02-dynamic-import-material-icons-react" />
 		<id>https://kamranicus.com/posts/2017-09-02-dynamic-import-material-icons-react</id>
@@ -138,13 +145,6 @@
 		<id>https://kamranicus.com/posts/2016-08-16-posh-pester-extend-custom-assertions</id>
 		<title>Extending PowerShell Pester with Custom Assertions</title>
 		<updated>2016-08-17T02:10:00Z</updated>
-		<summary>Kamran Ayub</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2016-08-11-posh-openweathermap-powershell-module" />
-		<id>https://kamranicus.com/posts/2016-08-11-posh-openweathermap-powershell-module</id>
-		<title>OpenWeatherMap PowerShell Module</title>
-		<updated>2016-08-12T00:15:00Z</updated>
 		<summary>Kamran Ayub</summary>
 	</entry>
 </feed>
