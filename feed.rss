@@ -5,8 +5,15 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2017</copyright>
-		<pubDate>Fri, 06 Oct 2017 20:32:01 GMT</pubDate>
-		<lastBuildDate>Fri, 06 Oct 2017 20:32:01 GMT</lastBuildDate>
+		<pubDate>Wed, 11 Oct 2017 05:17:43 GMT</pubDate>
+		<lastBuildDate>Wed, 11 Oct 2017 05:17:43 GMT</lastBuildDate>
+		<item>
+			<title>Becoming a Pluralsight Author</title>
+			<link>https://kamranicus.com/posts/2017-10-10-becoming-a-pluralsight-author</link>
+			<description>Kamran Ayub</description>
+			<guid>https://kamranicus.com/posts/2017-10-10-becoming-a-pluralsight-author</guid>
+			<pubDate>Wed, 11 Oct 2017 03:50:00 GMT</pubDate>
+		</item>
 		<item>
 			<title>Using AngularJS 1.5 with webpack, babel, and Karma/Jest</title>
 			<link>https://kamranicus.com/posts/2017-10-06-webpack-karma-jest-babel-angularjs</link>
@@ -140,13 +147,6 @@
 			<description>Kamran Ayub</description>
 			<guid>https://kamranicus.com/posts/2016-10-17-ravendb-standard-non-commercial-license</guid>
 			<pubDate>Tue, 18 Oct 2016 00:11:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Extending PowerShell Pester with Custom Assertions</title>
-			<link>https://kamranicus.com/posts/2016-08-16-posh-pester-extend-custom-assertions</link>
-			<description>Kamran Ayub</description>
-			<guid>https://kamranicus.com/posts/2016-08-16-posh-pester-extend-custom-assertions</guid>
-			<pubDate>Wed, 17 Aug 2016 02:10:00 GMT</pubDate>
 		</item>
 	</channel>
 </rss>

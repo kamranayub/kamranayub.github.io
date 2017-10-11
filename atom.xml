@@ -4,8 +4,15 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2017</rights>
-	<updated>2017-10-06T20:32:01Z</updated>
+	<updated>2017-10-11T05:17:43Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2017-10-10-becoming-a-pluralsight-author" />
+		<id>https://kamranicus.com/posts/2017-10-10-becoming-a-pluralsight-author</id>
+		<title>Becoming a Pluralsight Author</title>
+		<updated>2017-10-11T03:50:00Z</updated>
+		<summary>Kamran Ayub</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2017-10-06-webpack-karma-jest-babel-angularjs" />
 		<id>https://kamranicus.com/posts/2017-10-06-webpack-karma-jest-babel-angularjs</id>
@@ -138,13 +145,6 @@
 		<id>https://kamranicus.com/posts/2016-10-17-ravendb-standard-non-commercial-license</id>
 		<title>Thoughts on Upgrading to a Dedicated Raven Standard Instance</title>
 		<updated>2016-10-18T00:11:00Z</updated>
-		<summary>Kamran Ayub</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2016-08-16-posh-pester-extend-custom-assertions" />
-		<id>https://kamranicus.com/posts/2016-08-16-posh-pester-extend-custom-assertions</id>
-		<title>Extending PowerShell Pester with Custom Assertions</title>
-		<updated>2016-08-17T02:10:00Z</updated>
 		<summary>Kamran Ayub</summary>
 	</entry>
 </feed>
