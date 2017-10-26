@@ -297,7 +297,7 @@ capturing started
 <p>Just press Ctrl-C to exit.</p>
 <p>For reference, this is my full <code>run_picam.sh</code> script for my Pi:</p>
 <pre><code class="language-bash">sudo bash /home/pi/make_dirs.sh
-sudo /home/pi/picam/picam -o /run/shm/hls --samplerate 32000 --channels 2 --audiobitrate 96000 --videobitrate 4000000 --fps 30 --minfps 30 --avcprofile high --avclevel 4.1 --autoex --time --alsadev hw:1,0  &gt;/var/log/picam.log 2&gt;&amp;1
+sudo /home/pi/picam/picam -o /run/shm/hls --samplerate 32000 --channels 2 --audiobitrate 96000 --videobitrate 4000000 --vfr --avclevel 3.1 --autoex --time --alsadev hw:1,0  &gt;/var/log/picam.log 2&gt;&amp;1
 </code></pre>
 <h2 id="running-picam-at-startup">Running Picam at startup</h2>
 <p><a href="http://www.stuffaboutcode.com/2012/06/raspberry-pi-run-program-at-start-up.html">There's a great post</a> on how to run a script at startup. We want Picam to run right away when the Pi boots up, so let's do that!</p>
