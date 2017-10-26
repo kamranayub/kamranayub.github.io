@@ -146,7 +146,12 @@
 </li>
 </ul>
 <h2 id="updates">Updates</h2>
-<h3 id="section">2017-10-02</h3>
+<h3 id="section">2017-10-25</h3>
+<ul>
+<li>Thanks to <a href="#comment-3574356701">Andrew</a> for pointing out some differences between different Raspbian versions! I updated the Picam installation step.</li>
+<li>I updated my Picam arguments to be what I'm using now after some testing. The args I'm using seem pretty stable now.</li>
+</ul>
+<h3 id="section-1">2017-10-02</h3>
 <ul>
 <li>I missed the fact that the <code>/run/shm</code> directories are blown away on Pi restarts. The startup script now makes sure they exist (should fix slow feeds).</li>
 <li>I updated my picam-viewer web player to use Video.js now which should support more devices.</li>
@@ -155,7 +160,11 @@
 <h2 id="the-hardware">The Hardware</h2>
 <p>Here's what you'll need, it's what I have and it works great:</p>
 <ul>
-<li><a href="https://www.amazon.com/gp/product/B01C6EQNNK/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B01C6EQNNK&amp;linkCode=as2&amp;tag=kamranicus-20&amp;linkId=cefba209294d3cf51f3be3d51bd18990">Raspberry Pi 3 Canakit</a> - $50</li>
+<li><a href="https://www.amazon.com/gp/product/B01C6EQNNK/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B01C6EQNNK&amp;linkCode=as2&amp;tag=kamranicus-20&amp;linkId=cefba209294d3cf51f3be3d51bd18990">Raspberry Pi 3 Canakit</a> - $50
+<ul>
+<li>Pi Zero has also been reported to work!</li>
+</ul>
+</li>
 <li><a href="https://www.amazon.com/gp/product/B01ER2SKFS/ref=as_li_tl?ie=UTF8&amp;tag=kamranicus-20&amp;camp=1789&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=B01ER2SKFS&amp;linkId=c4b2ac954d25538e792e193ff088faac">Raspberry Pi Camera Module v2</a> - $30</li>
 <li><a href="https://www.amazon.com/gp/product/B010Q57T02/ref=as_li_tl?ie=UTF8&amp;tag=kamranicus-20&amp;camp=1789&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=B010Q57T02&amp;linkId=6ad18aebc7e3dd06daf87ef2f40910a4">MicroSD card</a> (8GB or higher) - $12</li>
 <li><a href="https://www.amazon.com/gp/product/B00NSOWWIS/ref=as_li_tl?ie=UTF8&amp;tag=kamranicus-20&amp;camp=1789&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=B00NSOWWIS&amp;linkId=b66c7df0a0cac98747907f0815de7727">Kinobo Mini Akiro USB condenser microphone</a> - $15
@@ -257,10 +266,15 @@ EOF
 <pre><code>chmod +x make_dirs.sh
 ./make_dirs.sh
 </code></pre>
-<p>Now we install Picam directly:</p>
-<pre><code>wget https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-jessie.tar.xz
-tar xvf picam-1.4.6-binary-jessie.tar.xz
-cp picam-1.4.6-binary-jessie/picam ~/picam/
+<p>Now here is important! <strong>Depending on the version of Raspbian/Debian on your Pi, you need the right binary file</strong>! Thanks to <a href="#comment-3574356701">Andrew</a> for pointing this out in the comments.</p>
+<ul>
+<li>For Jessie: <a href="https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-jessie.tar.xz">https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-jessie.tar.xz</a></li>
+<li>For Stretch: <a href="https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-stretch.tar.xz">https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-stretch.tar.xz</a></li>
+</ul>
+<p>Now we install Picam directly using the link above:</p>
+<pre><code>wget &lt;URL ABOVE&gt; -O picam-1.4.6.tar.xz
+tar xvf picam-1.4.6.tar.xz
+cp picam-1.4.6.tar.xz/picam ~/picam/
 </code></pre>
 <p>We now have Picam installed! It's time to get a stream working.</p>
 <p>To configure Picam to use our microphone, we need to know what its &quot;device ID&quot; is. Run the following to list any USB recording devices:</p>
