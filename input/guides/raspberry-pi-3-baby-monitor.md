@@ -253,7 +253,7 @@ For reference, this is my full `run_picam.sh` script for my Pi:
 
 ```bash
 sudo bash /home/pi/make_dirs.sh
-sudo /home/pi/picam/picam -o /run/shm/hls --samplerate 32000 --channels 2 --audiobitrate 96000 --videobitrate 4000000 --fps 30 --minfps 30 --avcprofile high --avclevel 4.1 --autoex --time --alsadev hw:1,0  >/var/log/picam.log 2>&1
+sudo /home/pi/picam/picam -o /run/shm/hls --samplerate 32000 --channels 2 --audiobitrate 96000 --videobitrate 4000000 --vfr --avclevel 3.1 --autoex --time --alsadev hw:1,0  >/var/log/picam.log 2>&1
 ```
 
 ## Running Picam at startup
