@@ -47,6 +47,11 @@ This guide will show you how to build your own DIY baby monitor using a Raspberr
 
 ## Updates
 
+### 2017-10-25
+
+- Thanks to [Andrew](#comment-3574356701) for pointing out some differences between different Raspbian versions! I updated the Picam installation step.
+- I updated my Picam arguments to be what I'm using now after some testing. The args I'm using seem pretty stable now.
+
 ### 2017-10-02
 
 - I missed the fact that the `/run/shm` directories are blown away on Pi restarts. The startup script now makes sure they exist (should fix slow feeds).
@@ -58,6 +63,7 @@ This guide will show you how to build your own DIY baby monitor using a Raspberr
 Here's what you'll need, it's what I have and it works great:
 
 - [Raspberry Pi 3 Canakit](https://www.amazon.com/gp/product/B01C6EQNNK/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01C6EQNNK&linkCode=as2&tag=kamranicus-20&linkId=cefba209294d3cf51f3be3d51bd18990) - $50
+  - Pi Zero has also been reported to work!
 - [Raspberry Pi Camera Module v2](https://www.amazon.com/gp/product/B01ER2SKFS/ref=as_li_tl?ie=UTF8&tag=kamranicus-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B01ER2SKFS&linkId=c4b2ac954d25538e792e193ff088faac) - $30
 - [MicroSD card](https://www.amazon.com/gp/product/B010Q57T02/ref=as_li_tl?ie=UTF8&tag=kamranicus-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B010Q57T02&linkId=6ad18aebc7e3dd06daf87ef2f40910a4) (8GB or higher) - $12
 - [Kinobo Mini Akiro USB condenser microphone](https://www.amazon.com/gp/product/B00NSOWWIS/ref=as_li_tl?ie=UTF8&tag=kamranicus-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00NSOWWIS&linkId=b66c7df0a0cac98747907f0815de7727) - $15
@@ -199,11 +205,16 @@ Then the following, to execute the script we just made and create the required d
     chmod +x make_dirs.sh
     ./make_dirs.sh
 
-Now we install Picam directly:
+Now here is important! **Depending on the version of Raspbian/Debian on your Pi, you need the right binary file**! Thanks to [Andrew](#comment-3574356701) for pointing this out in the comments.
 
-    wget https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-jessie.tar.xz
-    tar xvf picam-1.4.6-binary-jessie.tar.xz
-    cp picam-1.4.6-binary-jessie/picam ~/picam/
+- For Jessie: https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-jessie.tar.xz
+- For Stretch: https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-stretch.tar.xz
+
+Now we install Picam directly using the link above:
+
+    wget <URL ABOVE> -O picam-1.4.6.tar.xz
+    tar xvf picam-1.4.6.tar.xz
+    cp picam-1.4.6.tar.xz/picam ~/picam/
 
 We now have Picam installed! It's time to get a stream working.
 
