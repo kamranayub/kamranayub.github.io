@@ -1,4 +1,4 @@
-Title: Frontend Masters Workshop: Node API Design v2 with Scott Moss
+Title: "Frontend Masters Workshop: Node API Design v2 with Scott Moss"
 Published: 2017-10-27 14:02:00 -0500
 Lead: Scott taught us some Node.js API design approaches including using GraphQL
 Tags:
