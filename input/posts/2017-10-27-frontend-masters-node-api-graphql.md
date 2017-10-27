@@ -40,7 +40,11 @@ On my current project we use Node + Express stack heavily and I wanted to get a 
 
     After writing some GraphQL and getting hands-on, I'm a believer. I loved it. It feels really good to design an API using GraphQL types and way more natural than REST design did; I don't think I've ever seen a PURE RESTful API design--it's always been weird hybrid stuff, even my own APIs I design return view models, handle contextual responses, etc. As soon as I can make it work, I'm switching to [GraphQL.NET](https://github.com/graphql-dotnet/graphql-dotnet) for my own work. I'm pretty certain RavenDB will be a very good companion to a GraphQL backend. A **G**QL + **R**avenDB + **Rea**ct + .**N**ET Core stack sounds mighty fine to me (hmm, the GRREAN stack?).
 
-    For my job, we do a lot of chatty API calls to retrieve data from various endpoints. The thing is that our endpoints are usually single-purpose which is *good* but because of that we have to make multiple calls or hit multiple endpoints for our UIs/backend to the data they need which isn't good. There are ways to help solve that using API gateways, proxies, etc. but GraphQL provides an easy-to-consume abstraction layer that lets you choose how to handle it within your business domain. I love it.
+    For my job, we do a lot of chatty API calls to retrieve data from various endpoints. The thing is that our endpoints are usually single-purpose which is *good* but because of that we have to make multiple calls or hit multiple endpoints for our UIs/backend to the data they need which isn't good. There are ways to help solve that using API gateways, proxies, etc. but GraphQL provides an easy-to-consume abstraction layer that lets you choose how to handle it within your business domain with standard rules. I love it.
+
+    Part of me that likes the open web and HTTP standards wonders about the singular endpoint and lack of URL design but the other part of me that wants to get shit done is currently winning.
+    
+    Scott summed up GraphQL pretty succinctly, "I'm never making a REST API again."
 
 - I now use [HTTPie](https://github.com/jakubroztocil/httpie) instead of curl
 
