@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Frontend Masters Workshop: Node API Design v2 with Scott Moss</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Frontend Masters Workshop: Node API Design v2 with Scott Moss" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2017-10-27-frontend-masters-node-api-graphql" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="/assets/js/picturefill.min.js" async></script>
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text site menu">
+      
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+              <div class="item">
+        <a href="/about">About</a>
+      </div>
+      <div class="item">
+        <a href="/posts">Archive</a>
+      </div>
+      <div class="item">
+        <a href="/guides">Guides</a>
+      </div>
+      <div class="item">
+        <a href="/projects">Projects</a>
+      </div>
+      <div class="item">
+        <a href="/speaking">Speaking</a>
+      </div>
+      <div class="item">
+        <a href="/travel">Travel</a>
+      </div>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui vertical masthead segment " id="intro-header">
+    <div class="ui container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui  huge header">
+      Frontend Masters Workshop: Node API Design v2 with Scott Moss
+        <div class="ui sub header">Scott taught us some Node.js API design approaches including using GraphQL</div>
+    </h1>
+                
+    <div class="ui  sub header">        
+Published on Friday, October 27, 2017<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/frontend-masters" class="ui small compact button">Frontend Masters</a>
+                    <a role="button" href="/tags/personal-development" class="ui small compact button">Personal Development</a>
+                    <a role="button" href="/tags/workshop" class="ui small compact button">Workshop</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui stackable grid container">
+    <div class="content column">
+      
+
+<div class="ui huge basic post content segment">
+  <p>On Oct 16 &amp; 17 a fellow coworker and I attended a <a href="https://frontendmasters.com">Frontend Masters</a> workshop in person on <a href="https://frontendmasters.com/workshops/api-design-in-node-v2/">Node.js API Design by Scott Moss</a>.</p>
+<p>I love FEM workshops (this is my second time in-person) since they're pretty hands-on and you can interactively ask questions. It's awesome that they are FREE to attend in-person if you get chosen and I've been lucky enough to attend both times I applied. It's only a block away from my work and bus stop in downtown Minneapolis.</p>
+<h2 id="what-was-it-about">What was it about?</h2>
+<p>The workshop was on how to build native Node.js APIs using Express with both REST-style endpoints <em>and</em> a single <a href="https://graphql.org">GraphQL</a> endpoint.</p>
+<p>The code for the workshop is up on GitHub: <a href="https://github.com/FrontendMasters/api-design-node-v2">https://github.com/FrontendMasters/api-design-node-v2</a></p>
+<h2 id="why-was-it-valuable">Why was it valuable?</h2>
+<p>I've been doing Node for awhile but it's only been since I started my new job I've been doing it full-time so I definitely wanted to brush up on the latest practices. That's why I find FEM workshops valuable--they bring in experts that have <em>practical</em> experience in the technologies so they can share their own approaches to the topic.</p>
+<p>On my current project we use Node + Express stack heavily and I wanted to get a sense of how we were doing compared to the latest practices. It turns out there's some opportunities!</p>
+<h2 id="what-did-i-learn">What did I learn?</h2>
+<ul>
+<li><p>Using Hot Module Replacement (HMR) with a vanilla Node.js server. Most of the documentation and examples around Webpack HMR are in the context of React but it turns out you can set it up to be used in a vanilla Express app too. See <a href="https://github.com/FrontendMasters/api-design-node-v2/blob/master/src/index.js">server's index.js</a>.</p>
+</li>
+<li><p>I especially appreciated Scott's guidance on using multiple Express routers together. Right now our project configures a single router but the cool thing about Express is you can actually create specific Routers that handle a few things then <em>compose</em> them together through the middleware pipeline. <a href="https://github.com/FrontendMasters/api-design-node-v2/blob/lesson-5-solution/src/server.js">Example importing <code>restRouter</code></a>.</p>
+</li>
+<li><p>Seeing how to handle API errors via middleware was valuable. Right now we don't really have a catch all handler, so I've already proposed a solution using what I learned from the workshop. In our case, we're using <code>request-promise</code> package so our requests are async and we need to handle unhandled rejections from Bluebird. <a href="https://github.com/FrontendMasters/api-design-node-v2/blob/lesson-5-solution/src/api/modules/errorHandler.js">Example API error handler middleware</a>.</p>
+</li>
+<li><p>Seeing <code>async/await</code> in action. I come from C# so I've been using <code>async</code> and <code>await</code> with .NET for a long time but it's <em>finally</em> available in JS. The project is using Babel to transform the async/await into generators. I liked seeing examples of how to use it with promise-based APIs. <a href="https://github.com/FrontendMasters/api-design-node-v2/blob/master/webpack.config.js">See webpack config</a></p>
+</li>
+<li><p><strong><a href="https://graphql.org">GraphQL</a></strong>! I was most excited about learning some <em>actual</em> GraphQL. So there are a few things that started to make sense after going through the workshop:</p>
+<ul>
+<li>GraphQL itself is not a <em>thing</em>, it's a specification. There are various implementations for different frameworks/languages.</li>
+<li>GraphQL has a single endpoint. Versioning is done through the query. GraphQL makes you define a schema using Flow/Typescript-like &quot;types&quot; (see <a href="https://github.com/FrontendMasters/api-design-node-v2/blob/master/src/api/resources/playlist/playlist.graphql">example</a>) using a query language (hence GraphQL) for all inputs and outputs, and inputs are treated separately as &quot;mutations.&quot;</li>
+<li>GraphQL does <strong>not</strong> dictate how the server handles associations; you handle it through functions called <em>resolvers.</em> If you've used Redux, it's a bit like reducers--they manage a single slice of the schema. So you might resolve an association through an external API, database join/include, in-memory cache, etc. It's totally up to you. The beauty is the consumer doesn't care and just requests what they need.</li>
+</ul>
+<p>After writing some GraphQL and getting hands-on, I'm a believer. I loved it. It feels really good to design an API using GraphQL types and way more natural than REST design did; I don't think I've ever seen a PURE RESTful API design--it's always been weird hybrid stuff, even my own APIs I design return view models, handle contextual responses, etc. As soon as I can make it work, I'm switching to <a href="https://github.com/graphql-dotnet/graphql-dotnet">GraphQL.NET</a> for my own work. I'm pretty certain RavenDB will be a very good companion to a GraphQL backend. A <strong>G</strong>QL + <strong>R</strong>avenDB + <strong>Rea</strong>ct + .<strong>N</strong>ET Core stack sounds mighty fine to me (hmm, the GRREAN stack?).</p>
+<p>For my job, we do a lot of chatty API calls to retrieve data from various endpoints. The thing is that our endpoints are usually single-purpose which is <em>good</em> but because of that we have to make multiple calls or hit multiple endpoints for our UIs/backend to the data they need which isn't good. There are ways to help solve that using API gateways, proxies, etc. but GraphQL provides an easy-to-consume abstraction layer that lets you choose how to handle it within your business domain with standard rules. I love it.</p>
+<p>Part of me that likes the open web and HTTP standards wonders about the singular endpoint and lack of URL design but the other part of me that wants to get shit done is currently winning.</p>
+<p>Scott summed up GraphQL pretty succinctly, &quot;I'm never making a REST API again.&quot;</p>
+</li>
+<li><p>I now use <a href="https://github.com/jakubroztocil/httpie">HTTPie</a> instead of curl</p>
+</li>
+</ul>
+<p>So that's that! I probably can't enumerate every little thing I learned but that's what stuck out to me as I reflected on it for this post.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '2017-10-27-frontend-masters-node-api-graphql';
+    var disqus_title = 'Frontend Masters Workshop: Node API Design v2 with Scott Moss';
+    var disqus_url = 'https://kamranicus.com/posts/2017-10-27-frontend-masters-node-api-graphql';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+      <!-- Disqus -->
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+  
+  <!-- Footer -->
+  <footer>   
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe via RSS or email
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

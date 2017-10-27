@@ -5,8 +5,15 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2017</copyright>
-		<pubDate>Thu, 26 Oct 2017 01:15:24 GMT</pubDate>
-		<lastBuildDate>Thu, 26 Oct 2017 01:15:24 GMT</lastBuildDate>
+		<pubDate>Fri, 27 Oct 2017 19:17:06 GMT</pubDate>
+		<lastBuildDate>Fri, 27 Oct 2017 19:17:06 GMT</lastBuildDate>
+		<item>
+			<title>Frontend Masters Workshop: Node API Design v2 with Scott Moss</title>
+			<link>https://kamranicus.com/posts/2017-10-27-frontend-masters-node-api-graphql</link>
+			<description>Kamran Ayub</description>
+			<guid>https://kamranicus.com/posts/2017-10-27-frontend-masters-node-api-graphql</guid>
+			<pubDate>Fri, 27 Oct 2017 19:02:00 GMT</pubDate>
+		</item>
 		<item>
 			<title>Becoming a Pluralsight Author</title>
 			<link>https://kamranicus.com/posts/2017-10-10-becoming-a-pluralsight-author</link>
@@ -140,13 +147,6 @@
 			<description>Kamran Ayub</description>
 			<guid>https://kamranicus.com/posts/2016-10-30-new-packt-publishing-typescript-course</guid>
 			<pubDate>Sun, 30 Oct 2016 15:45:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Thoughts on Upgrading to a Dedicated Raven Standard Instance</title>
-			<link>https://kamranicus.com/posts/2016-10-17-ravendb-standard-non-commercial-license</link>
-			<description>Kamran Ayub</description>
-			<guid>https://kamranicus.com/posts/2016-10-17-ravendb-standard-non-commercial-license</guid>
-			<pubDate>Tue, 18 Oct 2016 00:11:00 GMT</pubDate>
 		</item>
 	</channel>
 </rss>
