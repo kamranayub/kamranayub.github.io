@@ -3,7 +3,7 @@ RedirectFrom: blog/archives
 ---
 
 @{
-    foreach(IGrouping<int, IDocument> year in Documents[BlogKeys.Posts]
+    foreach(IGrouping<int, IDocument> year in Documents[BlogPipelines.Posts]
         .Where(x => x.ContainsKey("Published"))
         .OrderByDescending(x => x.Get<DateTime>("Published"))
         .GroupBy(x => x.Get<DateTime>("Published").Year)

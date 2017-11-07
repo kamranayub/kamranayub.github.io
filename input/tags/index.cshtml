@@ -3,7 +3,7 @@ ShowInNavbar: false
 ---
 
 <div class="ui basic vertical spaced segment">          
-  @foreach (IDocument tagDocument in Documents[BlogKeys.Tags].OrderBy(x => x.String(BlogKeys.Tag)))
+  @foreach (IDocument tagDocument in Documents[BlogPipelines.Tags].OrderBy(x => x.String(BlogKeys.Tag)))
   {
     string tag = tagDocument.String(BlogKeys.Tag);
     string postCount = tagDocument.DocumentList(BlogKeys.Posts).Count().ToString();
