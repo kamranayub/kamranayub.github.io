@@ -1,10 +1,10 @@
-Settings.Host = "kamranicus.com";
-Settings.LinksUseHttps = true;
+Settings[Keys.Host] = "kamranicus.com";
+Settings[Keys.LinksUseHttps] = true;
 
-GlobalMetadata["Title"] = "Kamranicus";
-GlobalMetadata["Description"] = "Kamran Ayub";
-GlobalMetadata["Intro"] = "Hi, I'm a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.";
-GlobalMetadata["FeedUrl"] = "http://feeds.feedburner.com/Kamranicus";
-GlobalMetadata["CaseInsensitiveTags"] = true;
-GlobalMetadata["AtomPath"] = "atom.xml";
-GlobalMetadata["IndexPostCount"] = 6;
+Settings[BlogKeys.Title] = "Kamranicus";
+Settings[BlogKeys.Description] = "Kamran Ayub";
+Settings[BlogKeys.Intro] = "Hi, I'm a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.";
+Settings["FeedUrl"] = "http://feeds.feedburner.com/Kamranicus";
+Settings[BlogKeys.CaseInsensitiveTags] = true;
+Settings[BlogKeys.AtomPath] = "atom.xml";
+Settings[BlogKeys.IndexPageSize] = 6;

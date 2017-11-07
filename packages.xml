@@ -134,5 +134,5 @@
     <package id="Wyam.Yaml" version="0.18.6" targetFramework="net462" />
     <package id="Wyam.Web" version="0.18.6" targetFramework="net462" />
   </package>
-  <package id="Wyam.Blog.CleanBlog" version="0.18.6" targetFramework="net462" />
+  <package id="Wyam.Blog.CleanBlog" version="1.1.0" targetFramework="net462" />
 </packages>
