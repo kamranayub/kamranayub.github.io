@@ -1,152 +1,1217 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0">
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
 	<channel>
 		<title>Kamranicus</title>
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2017</copyright>
-		<pubDate>Fri, 27 Oct 2017 19:26:52 GMT</pubDate>
-		<lastBuildDate>Fri, 27 Oct 2017 19:26:52 GMT</lastBuildDate>
+		<pubDate>Tue, 07 Nov 2017 05:41:33 GMT</pubDate>
+		<lastBuildDate>Tue, 07 Nov 2017 05:41:33 GMT</lastBuildDate>
 		<item>
 			<title>Frontend Masters Workshop: Node API Design v2 with Scott Moss</title>
 			<link>https://kamranicus.com/posts/2017-10-27-frontend-masters-node-api-graphql</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;On Oct 16 &amp;amp; 17 a fellow coworker and I attended a &lt;a href="https://frontendmasters.com"&gt;Frontend Masters&lt;/a&gt; workshop in person on &lt;a href="https://frontendmasters.com/workshops/api-design-in-node-v2/"&gt;Node.js API Design by Scott Moss&lt;/a&gt;.&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2017-10-27-frontend-masters-node-api-graphql</guid>
 			<pubDate>Fri, 27 Oct 2017 19:02:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;On Oct 16 &amp;amp; 17 a fellow coworker and I attended a &lt;a href="https://frontendmasters.com"&gt;Frontend Masters&lt;/a&gt; workshop in person on &lt;a href="https://frontendmasters.com/workshops/api-design-in-node-v2/"&gt;Node.js API Design by Scott Moss&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I love FEM workshops (this is my second time in-person) since they're pretty hands-on and you can interactively ask questions. It's awesome that they are FREE to attend in-person if you get chosen and I've been lucky enough to attend both times I applied. It's only a block away from my work and bus stop in downtown Minneapolis.&lt;/p&gt;
+&lt;h2 id="what-was-it-about"&gt;What was it about?&lt;/h2&gt;
+&lt;p&gt;The workshop was on how to build native Node.js APIs using Express with both REST-style endpoints &lt;em&gt;and&lt;/em&gt; a single &lt;a href="https://graphql.org"&gt;GraphQL&lt;/a&gt; endpoint.&lt;/p&gt;
+&lt;p&gt;The code for the workshop is up on GitHub: &lt;a href="https://github.com/FrontendMasters/api-design-node-v2"&gt;https://github.com/FrontendMasters/api-design-node-v2&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="why-was-it-valuable"&gt;Why was it valuable?&lt;/h2&gt;
+&lt;p&gt;I've been doing Node for awhile but it's only been since I started my new job I've been doing it full-time so I definitely wanted to brush up on the latest practices. That's why I find FEM workshops valuable--they bring in experts that have &lt;em&gt;practical&lt;/em&gt; experience in the technologies so they can share their own approaches to the topic.&lt;/p&gt;
+&lt;p&gt;On my current project we use Node + Express stack heavily and I wanted to get a sense of how we were doing compared to the latest practices. It turns out there's some opportunities!&lt;/p&gt;
+&lt;h2 id="what-did-i-learn"&gt;What did I learn?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Using Hot Module Replacement (HMR) with a vanilla Node.js server. Most of the documentation and examples around Webpack HMR are in the context of React but it turns out you can set it up to be used in a vanilla Express app too. See &lt;a href="https://github.com/FrontendMasters/api-design-node-v2/blob/master/src/index.js"&gt;server's index.js&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I especially appreciated Scott's guidance on using multiple Express routers together. Right now our project configures a single router but the cool thing about Express is you can actually create specific Routers that handle a few things then &lt;em&gt;compose&lt;/em&gt; them together through the middleware pipeline. &lt;a href="https://github.com/FrontendMasters/api-design-node-v2/blob/lesson-5-solution/src/server.js"&gt;Example importing &lt;code&gt;restRouter&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Seeing how to handle API errors via middleware was valuable. Right now we don't really have a catch all handler, so I've already proposed a solution using what I learned from the workshop. In our case, we're using &lt;code&gt;request-promise&lt;/code&gt; package so our requests are async and we need to handle unhandled rejections from Bluebird. &lt;a href="https://github.com/FrontendMasters/api-design-node-v2/blob/lesson-5-solution/src/api/modules/errorHandler.js"&gt;Example API error handler middleware&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Seeing &lt;code&gt;async/await&lt;/code&gt; in action. I come from C# so I've been using &lt;code&gt;async&lt;/code&gt; and &lt;code&gt;await&lt;/code&gt; with .NET for a long time but it's &lt;em&gt;finally&lt;/em&gt; available in JS. The project is using Babel to transform the async/await into generators. I liked seeing examples of how to use it with promise-based APIs. &lt;a href="https://github.com/FrontendMasters/api-design-node-v2/blob/master/webpack.config.js"&gt;See webpack config&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;a href="https://graphql.org"&gt;GraphQL&lt;/a&gt;&lt;/strong&gt;! I was most excited about learning some &lt;em&gt;actual&lt;/em&gt; GraphQL. So there are a few things that started to make sense after going through the workshop:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GraphQL itself is not a &lt;em&gt;thing&lt;/em&gt;, it's a specification. There are various implementations for different frameworks/languages.&lt;/li&gt;
+&lt;li&gt;GraphQL has a single endpoint. Versioning is done through the query. GraphQL makes you define a schema using Flow/Typescript-like &amp;quot;types&amp;quot; (see &lt;a href="https://github.com/FrontendMasters/api-design-node-v2/blob/master/src/api/resources/playlist/playlist.graphql"&gt;example&lt;/a&gt;) using a query language (hence GraphQL) for all inputs and outputs, and writes/updates are treated separately as &amp;quot;mutations.&amp;quot;&lt;/li&gt;
+&lt;li&gt;GraphQL does &lt;strong&gt;not&lt;/strong&gt; dictate how the server handles associations; you handle it through functions called &lt;em&gt;resolvers.&lt;/em&gt; If you've used Redux, it's a bit like reducers--they manage a single slice of the schema. So you might resolve an association through an external API, database join/include, in-memory cache, etc. It's totally up to you. The beauty is the consumer doesn't care and just requests what they need.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;After writing some GraphQL and getting hands-on, I'm a believer. I loved it. It feels really good to design an API using GraphQL types and way more natural than REST design did; I don't think I've ever seen a PURE RESTful API design--it's always been weird hybrid stuff, even my own APIs I design return view models, handle contextual responses, etc. As soon as I can make it work, I'm switching to &lt;a href="https://github.com/graphql-dotnet/graphql-dotnet"&gt;GraphQL.NET&lt;/a&gt; for my own work. I'm pretty certain RavenDB will be a very good companion to a GraphQL backend. A &lt;strong&gt;G&lt;/strong&gt;QL + &lt;strong&gt;R&lt;/strong&gt;avenDB + &lt;strong&gt;Rea&lt;/strong&gt;ct + .&lt;strong&gt;N&lt;/strong&gt;ET Core stack sounds mighty fine to me (hmm, the GRREAN stack?).&lt;/p&gt;
+&lt;p&gt;For my job, we do a lot of chatty API calls to retrieve data from various endpoints. The thing is that our endpoints are usually single-purpose which is &lt;em&gt;good&lt;/em&gt; but because of that we have to make multiple calls or hit multiple endpoints for our UIs/backend to the data they need which isn't good. There are ways to help solve that using API gateways, proxies, etc. but GraphQL provides an easy-to-consume abstraction layer that lets you choose how to handle it within your business domain with standard rules. I love it.&lt;/p&gt;
+&lt;p&gt;Part of me that likes the open web and HTTP standards wonders about the singular endpoint and lack of URL design but the other part of me that wants to get shit done is currently winning.&lt;/p&gt;
+&lt;p&gt;Scott summed up GraphQL pretty succinctly, &amp;quot;I'm never making a REST API again.&amp;quot;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I now use &lt;a href="https://github.com/jakubroztocil/httpie"&gt;HTTPie&lt;/a&gt; instead of curl&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So that's that! I probably can't enumerate every little thing I learned but that's what stuck out to me as I reflected on it for this post.&lt;/p&gt;
+</content:encoded>
 		</item>
 		<item>
 			<title>Becoming a Pluralsight Author</title>
 			<link>https://kamranicus.com/posts/2017-10-10-becoming-a-pluralsight-author</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;&lt;img src="images/pluralsight.jpg" class="img-fluid" alt="Pluralsight"&gt;&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2017-10-10-becoming-a-pluralsight-author</guid>
 			<pubDate>Wed, 11 Oct 2017 03:50:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;&lt;img src="images/pluralsight.jpg" class="img-fluid" alt="Pluralsight" /&gt;&lt;/p&gt;
+&lt;p&gt;I have to admit it's tough for me to comprehend writing this post even though I passed the audition months ago. When I applied to become a &lt;a href="https://pluralsight.com"&gt;Pluralsight&lt;/a&gt; author, I wasn't sure what to expect. Now, here I am receiving the green light on my first course (it's on RavenDB 4, more on that later). Yes, &lt;a href="https://kamranicus.com/posts/2017-01-31-introduction-to-typescript-course-packt-publishing"&gt;I successfully published my TypeScript course&lt;/a&gt; last January through Packt but I didn't necessarily consider myself &amp;quot;Pluralsight author&amp;quot; material. What does that even mean exactly?&lt;/p&gt;
+&lt;h2 id="who-is-a-pluralsight-author"&gt;Who is a Pluralsight author?&lt;/h2&gt;
+&lt;p&gt;John Sonmez. John Papa. Scott Hanselman. Jon Skeet. K. Scott Allen. These are household names to me and my coworkers, especially in the Microsoft space. These are Pluralsight authors that are generally well-respected and well-known, they inspire me and [hundreds of?] thousands to be better developers in our careers. They have thousands of followers, speak at conferences around the world, and maintain celeb-to-quasi-celeb status within the community.&lt;/p&gt;
+&lt;p&gt;I can tell you it feels &lt;strong&gt;weird&lt;/strong&gt; to be able to say I am lumped in the same category as those folks. Some of them literally wrote the book(s) on what I built my career on. Like I said, I can barely comprehend it.&lt;/p&gt;
+&lt;h2 id="the-common-thread"&gt;The common thread&lt;/h2&gt;
+&lt;p&gt;That's only 5 people though. If you go ahead and peruse the &lt;a href="https://www.pluralsight.com/authors"&gt;Pluralsight authors&lt;/a&gt; list, you realize &lt;strong&gt;there are a lot of authors.&lt;/strong&gt; I recognize many but I also don't know most of them, I admit I probably won't ever follow and know them all (unless there's something that will automatically have me follow Pluralsight authors, then I'll use that).&lt;/p&gt;
+&lt;p&gt;I think the amazing thing is, everyone on that list became good at what they did by writing books, speaking around the world, or by knowing something enough to teach it effectively. The common thread is that &lt;strong&gt;they all are effective educators and inspire people.&lt;/strong&gt; It could easily be someone else on that list that I've never heard of that ends up making someone else's Top 5 Pluralsight inspiring author. I bet you have a Top 5 yourself.&lt;/p&gt;
+&lt;h2 id="the-audition"&gt;The audition&lt;/h2&gt;
+&lt;p&gt;I think what surprised me most about the audition process was how straightforward it was. I had some preconceived notions about what it took to be an author (see above). It turns out, it really is about effective teaching because none of my prior work was a consideration during the process. I did not have to submit a resume. I didn't need to &amp;quot;prove&amp;quot; my cred. Nobody ever asked me what I did to get where I am.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;It's all about the audition.&lt;/strong&gt; That is the gauntlet you are measured by. It's a 8-10 minute video that you edit and design yourself on a topic that'd be close to what you'd teach. I decided to do mine on modeling uniqueness in RavenDB. I know exactly how long I spent because I tracked it: 28 hours and 45 minutes. See for yourself.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/2017-10-10-23-33-38.png" class="img-fluid" alt="Time tracking" /&gt;&lt;/p&gt;
+&lt;p&gt;The &amp;quot;planning&amp;quot; column was more about dedicated planning time: laying out audition document plan, writing notes, etc. There was a lot of planning within the other columns that was just part of doing that thing.&lt;/p&gt;
+&lt;p&gt;I appreciated the fact the audition was low stress. There's a gap there from 4/21 to 5/19 due to conferences and travel. That was OK, it's at your own pace. Some folks will probably even decide to withdraw; recording, editing, and content development is not everyone's cup of tea.&lt;/p&gt;
+&lt;p&gt;You can clearly see I sent my audition at the end of May and I received a response June 7. Of course, they had to tease me in the subject:&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/2017-10-10-23-37-54.png" class="img-fluid" alt="Audition result" /&gt;&lt;/p&gt;
+&lt;p&gt;Needless to say, I was nervous. I think I had my wife read it out loud to me.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&amp;quot;Thank you for taking the time and effort to submit an audition video to Pluralsight. Our Curriculum Team has completed review and your audition is...&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That's it, I failed, it wasn't good enough, I knew I should have spent more time explaining--&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&amp;quot;APPROVED.&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;Oh shit. Oh shiiiit. Ohshitohshitohsit. WHAT. WHATTTTTTT.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I hugged my wife very hard and made sure to tell my 4mo that daddy was accepted as a &lt;strong&gt;freakin'&lt;/strong&gt; Pluralsight author.&lt;/p&gt;
+&lt;p&gt;One thing I really appreciate is real feedback from reviewers. I want constructive feedback and want to continuously improve the quality of what I put out. I'll share what I received:&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Kamran has a real knack for interleaving conceptual technical information with concrete behavior and experiences, all over a conversational narrative that is easy to follow. I really appreciate his arrangement of demos, code, and slides. Each phase of the demo is isolated with one specific goal, and each subsequent phase builds upon the knowledge gained in the last.&lt;/p&gt;
+&lt;p&gt;Demo code is small and pragmatic, discussion targets only the data access code and assumes a solid background in C# and async code which is appropriate.&lt;/p&gt;
+&lt;p&gt;A few areas where I see room for improvement:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;use of visuals is really good (eg the timeline at ~2:00 and the concurrency image at ~7:00), and I think Kamran should explore this skill more. Honestly his marriage of visuals and narrative is better than most new authors, and I really want to see how far he can stretch those muscles.&lt;/li&gt;
+&lt;li&gt;the title slide is lingers a bit, I think there are opportunities for visuals there to help explain some of the motivation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is how to give good feedback. Lead with the good, finish with opportunities--something I can take away for next time and learn from.&lt;/p&gt;
+&lt;p&gt;I may share my audition (with approval) with &amp;quot;director commentary&amp;quot; on &lt;a href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g"&gt;my YouTube channel&lt;/a&gt;, if that's something that would interest folks.&lt;/p&gt;
+&lt;p&gt;That's it! The next steps were to propose my course and chat with the curriculum director. I spent time researching and planning my proposal out, I even created a mockup demo with working code to send as an example.&lt;/p&gt;
+&lt;p&gt;Org-wide stuff kept my editor busy with work so it wasn't until pretty recently that the ball started rolling again. Finally this last Sunday my &amp;quot;statement of work&amp;quot; was signed. It was official!&lt;/p&gt;
+&lt;h2 id="go-ahead-and-audition"&gt;Go ahead and audition&lt;/h2&gt;
+&lt;p&gt;My advice to you or anyone reading this who also thinks they may have something to teach but still aren't sure whether you're &amp;quot;Pluralsight material&amp;quot; is to &lt;strong&gt;&lt;a href="https://www.pluralsight.com/teach"&gt;just submit an audition&lt;/a&gt; (and maybe give me a shoutout?).&lt;/strong&gt; If you pass and can teach something new and inspiring to someone else, &lt;strong&gt;you are Pluralsight material.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id="jurys-out"&gt;Jury's out&lt;/h2&gt;
+&lt;p&gt;My first course isn't published &lt;em&gt;yet&lt;/em&gt; which means the jury's out on whether I deserve to be in that author list. I keep myself grounded by understanding that the course could still be rejected for whatever reason. I've come this far though and I'm going to try my &lt;strong&gt;damnedest&lt;/strong&gt; to earn my place. This is an opportunity that I've literally only dreamed about and never thought would happen. Wish me luck!&lt;/p&gt;
+</content:encoded>
 		</item>
 		<item>
 			<title>Using AngularJS 1.5 with webpack, babel, and Karma/Jest</title>
 			<link>https://kamranicus.com/posts/2017-10-06-webpack-karma-jest-babel-angularjs</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;This took me awhile to get right so I'm sharing my experience trying to get webpack 3, babel 6, and Karma to work together for testing Angular 1.5 apps. I also have an example using Jest, which I actually prefer over Karma.&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2017-10-06-webpack-karma-jest-babel-angularjs</guid>
 			<pubDate>Fri, 06 Oct 2017 18:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;This took me awhile to get right so I'm sharing my experience trying to get webpack 3, babel 6, and Karma to work together for testing Angular 1.5 apps. I also have an example using Jest, which I actually prefer over Karma.&lt;/p&gt;
+&lt;h2 id="some-context"&gt;Some context&lt;/h2&gt;
+&lt;p&gt;Why bother with these modern build tools and Karma/Angular 1.5? Why not upgrade to ng 4 or migrate to React? For our team, there isn't yet a compelling reason to go and rewrite several apps when the product is stable and in production. Since code is spread out across several repositories and the team works in multiple codebases at a time, consistency is key.&lt;/p&gt;
+&lt;p&gt;That said, we still want to be happy writing JavaScript and Babel+Webpack+ES2015 is a great combination.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; I was actually using &lt;a href="https://facebook.github.io/jest/"&gt;Jest&lt;/a&gt; originally which worked great with Angular 1.5 &lt;em&gt;and&lt;/em&gt; our Node.js code! I'd highly recommend it &lt;em&gt;instead&lt;/em&gt; of Karma/Jasmine/Mocha/Chai because it's a single dependency with easy configuration. We switched back to Karma to maintain consistency with the rest of our codebases. Here's an &lt;a href="https://github.com/kamranayub/angularjs-sample-webpack-es6-jest"&gt;example repo&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="show-me-the-code"&gt;Show me the code&lt;/h2&gt;
+&lt;p&gt;You probably are reading this because you're struggling right now to get the puzzle pieces to fit.&lt;/p&gt;
+&lt;p&gt;With that in mind, here's a fully working repository with some specs to help you get off the ground.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Karma: &lt;a href="https://github.com/kamranayub/angularjs-sample-webpack-es6-karma"&gt;https://github.com/kamranayub/angularjs-sample-webpack-es6-karma&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Jest: &lt;a href="https://github.com/kamranayub/angularjs-sample-webpack-es6-jest"&gt;https://github.com/kamranayub/angularjs-sample-webpack-es6-jest&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;This is not meant to be a &amp;quot;starter&amp;quot; but you can use it however you want.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Read on if you need specifics on each part of the puzzle.&lt;/p&gt;
+&lt;h2 id="prior-art"&gt;Prior art&lt;/h2&gt;
+&lt;p&gt;When I was trying to get my setup working, I referenced the following posts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://mike-ward.net/2015/09/07/tips-on-setting-up-karma-testing-with-webpack/"&gt;Tips on setting up Karma testing with webpack&lt;/a&gt; - Mike Ward, Sep 2015&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/TheLarkInn/angular-starter-es6-webpack"&gt;angular-starter-es6-webpack&lt;/a&gt; - Sean Larkin, Aug 2016&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="configuring-webpack-babel"&gt;Configuring webpack &amp;amp; Babel&lt;/h2&gt;
+&lt;p&gt;There's nothing different with my webpack or babel configuration when using Karma. Follow the standard setup guide for &lt;a href="https://github.com/babel/babel-loader"&gt;Babel + Webpack&lt;/a&gt;. The one addition I have is the &lt;a href="https://www.npmjs.com/package/babel-plugin-angularjs-annotate"&gt;babel-plugin-angularjs-annotate&lt;/a&gt; which is handy for dependency injection.&lt;/p&gt;
+&lt;h2 id="configuring-karma"&gt;Configuring karma&lt;/h2&gt;
+&lt;p&gt;This was the time suck. No matter what, it seemed I couldn't get things to process/compile the way I wanted.&lt;/p&gt;
+&lt;p&gt;The root of my issue was that my webpack configuration was actually an &lt;em&gt;array&lt;/em&gt; of configuration objects and I was passing the array to the &lt;code&gt;webpack&lt;/code&gt; karma middleware and it expects a &lt;strong&gt;single&lt;/strong&gt; configuration. My bad.&lt;/p&gt;
+&lt;p&gt;Here's the relevant snippet:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;    // This will be the new entry to webpack
+    // so it should just be a single file
+    files: [&amp;quot;src/index.tests.js&amp;quot;],
+
+    // Preprocess test index and test files using
+    // webpack (will run babel)
+    preprocessors: {
+      &amp;quot;src/index.tests.js&amp;quot;: [&amp;quot;webpack&amp;quot;],
+      &amp;quot;src/**/*.test.js&amp;quot;: [&amp;quot;webpack&amp;quot;]
+    },
+
+    // Reference webpack config (single object)
+    // and configure some middleware settings
+    webpack: require(&amp;quot;./webpack.config&amp;quot;),
+    webpackMiddleware: {
+      noInfo: true,
+      stats: &amp;quot;errors-only&amp;quot;
+    },
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I seemed to run into some issues when I tried using a glob pattern for the &lt;code&gt;files&lt;/code&gt; array, like &lt;code&gt;**/*.test.js&lt;/code&gt; so I switched to using a single file and that seemed to calm webpack down.&lt;/p&gt;
+&lt;p&gt;That &lt;strong&gt;index.tests.js&lt;/strong&gt; file looks like:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;import &amp;quot;angular&amp;quot;;
+import &amp;quot;angular-mocks&amp;quot;;
+
+// require all test files using special Webpack feature
+// https://webpack.github.io/docs/context.html#require-context
+const testsContext = require.context(&amp;quot;.&amp;quot;, true, /\.test$/);
+testsContext.keys().forEach(testsContext);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Key here the initial imports to set up Angular and Angular mock globals. The rest uses Webpack's module API to require the test files.&lt;/p&gt;
+&lt;h2 id="writing-an-angular-test"&gt;Writing an Angular test&lt;/h2&gt;
+&lt;p&gt;With this in place, we can write a simple component controller test in ES6!&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/kamranayub/angularjs-sample-webpack-es6-karma/blob/master/src/dummy.component.test.js"&gt;https://github.com/kamranayub/angularjs-sample-webpack-es6-karma/blob/master/src/dummy.component.test.js&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;For more information on the pattern I'm using, check out &lt;a href="https://puigcerber.com/2016/02/07/how-to-test-angular-1-5-components/"&gt;Pablo's post on Angular 1.5 component testing&lt;/a&gt;.&lt;/p&gt;
+</content:encoded>
 		</item>
 		<item>
 			<title>Dynamically Importing React Material Icons Using Webpack</title>
 			<link>https://kamranicus.com/posts/2017-09-02-dynamic-import-material-icons-react</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;The sample code for this post is &lt;a href="https://github.com/kamranayub/example-webpack-dynamic-import"&gt;available on my GitHub&lt;/a&gt;.&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2017-09-02-dynamic-import-material-icons-react</guid>
 			<pubDate>Sun, 03 Sep 2017 03:10:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;The sample code for this post is &lt;a href="https://github.com/kamranayub/example-webpack-dynamic-import"&gt;available on my GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;One of my team members was working on our app's navigation and for the icons we are using the &lt;a href="https://www.npmjs.com/package/material-ui-icons"&gt;material-ui-icons&lt;/a&gt; package. This is an npm package that provides the Material UI icons as React components. We're also using webpack for bundling and babel for transpiling.&lt;/p&gt;
+&lt;p&gt;Their question was around how to dynamically reference these icon components within the navigation component. We dynamically build navigation from a JSON structure and need to load the appropriate icon for each item.&lt;/p&gt;
+&lt;p&gt;Imagine something like this to represent some settings menu:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;{
+  &amp;quot;name&amp;quot;: &amp;quot;Settings&amp;quot;,
+  &amp;quot;children&amp;quot;: [
+    {
+      &amp;quot;name&amp;quot;: &amp;quot;Manage Alarms&amp;quot;,
+      &amp;quot;icon&amp;quot;: &amp;quot;AccessAlarmIcon&amp;quot;
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Somehow we need to import the appropriate icon from &lt;code&gt;material-ui-icons&lt;/code&gt; and reference it based on the &lt;code&gt;icon&lt;/code&gt; parameter:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;const MaterialIcon = ({ icon }) =&amp;gt; {
+  
+  // somehow resolve this icon
+  let resolvedIcon = // ...
+
+  return React.createElement(resolvedIcon)
+}
+
+const Navigation = (props) =&amp;gt;
+  &amp;lt;nav&amp;gt;
+    {props.children.map(item =&amp;gt; 
+      &amp;lt;li&amp;gt;
+        &amp;lt;MaterialIcon icon={item.icon} /&amp;gt;
+        {item.name}
+      &amp;lt;/li&amp;gt;
+    )}
+  &amp;lt;/nav&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The initial solution was to just hardcode the logic:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;import AccessAlarmIcon from 'material-ui-icons/AccessAlarm'
+
+const MaterialIcon = ({ icon }) =&amp;gt; {
+  switch (icon) {
+    case 'AccessAlarmIcon': return &amp;lt;AccessAlarmIcon /&amp;gt;
+    default: return null
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But we knew this was a sub-optimal solution, it requires updating this file each time we want to support a new icon. There must be a better way!&lt;/p&gt;
+&lt;h2 id="referencing-the-scope"&gt;Referencing the scope&lt;/h2&gt;
+&lt;p&gt;At first, we tried referencing &lt;code&gt;AccessAlarmIcon&lt;/code&gt; imported variable directly since it should be in the scope of the module.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;import AccessAlarmIcon from 'material-ui-icons/AccessAlarm'
+
+const MaterialIcon = ({ icon }) =&amp;gt; {
+  return React.createElement(eval(icon))
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Yes, &lt;code&gt;eval&lt;/code&gt; is &lt;strong&gt;evil&lt;/strong&gt; but we wanted to see if it worked before trying a safer solution. It didn't work.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Uncaught ReferenceError: AccessAlarmIcon is not defined
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Hmm, it should be, right? Wrong. Webpack is doing some bundling magic for us. The compiled code looks like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;var _AccessAlarm = __webpack_require__(70);
+var _AccessAlarm2 = _interopRequireDefault(_AccessAlarm);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So first, it's not even named &lt;code&gt;AccessAlarmIcon&lt;/code&gt; at runtime and second, we have some webpack magic going on with variable naming and such.&lt;/p&gt;
+&lt;h2 id="using-the-webpack-api"&gt;Using the Webpack API&lt;/h2&gt;
+&lt;p&gt;I decided to look into this over the weekend since it was an interesting problem. After playing around for a bit, I decided to look and see what webpack could offer us via &lt;a href="https://webpack.js.org/api/module-methods/"&gt;its API&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It turns out we can leverage &lt;code&gt;require&lt;/code&gt; to just use a convention-based method of dynamically importing the icons. Within a webpack context, it will handle resolving the dependency for us internally.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;const MaterialIcon = ({ icon }) =&amp;gt; {
+    let iconName = icon.replace(/Icon$/, '')
+    let resolved = require(`material-ui-icons/${iconName}`).default
+    
+    if (!resolved) {
+        throw Error(`Could not find material-ui-icons/${iconName}`)
+    }
+
+    return React.createElement(resolved)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Eyyy, look at that!&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/30000066-cacbb048-9024-11e7-9770-ae750984fb59.png" class="img-fluid" alt="Screenshot of icon" /&gt;&lt;/p&gt;
+&lt;p&gt;Turned out to be a simple, straightforward solution but it wasn't immediately apparent.&lt;/p&gt;
+&lt;h3 id="making-it-async"&gt;Making it async&lt;/h3&gt;
+&lt;p&gt;You could also asynchronously load the icon using &lt;code&gt;import()&lt;/code&gt; which returns a native &lt;code&gt;Promise&lt;/code&gt; object. To make that work with React, we can use &lt;a href="https://github.com/ctrlplusb/react-async-component"&gt;react-async-component&lt;/a&gt; and create an async factory component:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;import { asyncComponent } from 'react-async-component'
+
+const MaterialIconAsync = ({ icon }) =&amp;gt; {
+    let iconName = icon.replace(/Icon$/, '')
+    return React.createElement(asyncComponent({
+        resolve: () =&amp;gt; import(
+            /* webpackMode: &amp;quot;eager&amp;quot; */
+            `material-ui-icons/${iconName}`)
+    }))
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I am using the &lt;a href="https://webpack.js.org/api/module-methods/#import-"&gt;&lt;em&gt;eager&lt;/em&gt; fetch mode&lt;/a&gt; to include all the Material icons vs. performing network requests to fetch them.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; When using Babel with the new dynamic &lt;code&gt;import&lt;/code&gt; syntax, you'll need to install &lt;a href="https://babeljs.io/docs/plugins/syntax-dynamic-import/"&gt;syntax-dynamic-import&lt;/a&gt; preset and enable it.&lt;/p&gt;
+</content:encoded>
 		</item>
 		<item>
 			<title>Today I started at Target</title>
 			<link>https://kamranicus.com/posts/2017-08-28-joined-target</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;Today marks a pretty big change in my career as I transition to a new software engineering role at &lt;a href="http://target.com"&gt;Target&lt;/a&gt;. That change comes after a 7 year stint at General Mills where I worked right out of college. I had an amazing time there and made lifelong friends. I'm hoping to continue the trend of working at great places! If you're looking for an awesome place to work, I encourage you to reach out to me for a referral or &lt;a href="http://careers.generalmills.com/job-search-results/?keyword=devops"&gt;apply online&lt;/a&gt; at General Mills if you want to work on DevOps stuff with a .NET stack.&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2017-08-28-joined-target</guid>
 			<pubDate>Tue, 29 Aug 2017 02:20:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;Today marks a pretty big change in my career as I transition to a new software engineering role at &lt;a href="http://target.com"&gt;Target&lt;/a&gt;. That change comes after a 7 year stint at General Mills where I worked right out of college. I had an amazing time there and made lifelong friends. I'm hoping to continue the trend of working at great places! If you're looking for an awesome place to work, I encourage you to reach out to me for a referral or &lt;a href="http://careers.generalmills.com/job-search-results/?keyword=devops"&gt;apply online&lt;/a&gt; at General Mills if you want to work on DevOps stuff with a .NET stack.&lt;/p&gt;
+&lt;p&gt;My new role is on an internal product team where I'll be working on Node.js apps with Angular and React front-ends. It'll be a pretty big shift from doing primarily Microsoft stack and ASP.NET/C# to full stack JavaScript. Of course, I'm no stranger to these technologies but rather than developing in those stacks on side projects I'll be doing it full-time which should help me learn it a lot more deeply.&lt;/p&gt;
+&lt;p&gt;I'm also excited because Target has a clear commitment towards open source and the greater community, being a major sponsor of almost every local conference and encouraging OSS contributions from its engineers. Expect to see more frequent blog posts and maybe even some open source project work as I take on my new role.&lt;/p&gt;
+&lt;p&gt;My love for .NET won't be lost though, I'll still be plugging away at KTOMG, migrating to .NET Core and working on .NET Core OSS projects. I'm also trying to learn F# this year. On that note, I hope to come up with a consistent schedule to stream &lt;a href="http://twitch.tv/kamranicus"&gt;on Twitch&lt;/a&gt; so you can follow me there for updates.&lt;/p&gt;
+</content:encoded>
 		</item>
 		<item>
 			<title>Thanks for attending Midwest.js</title>
 			<link>https://kamranicus.com/posts/2017-08-28-mjs-thanks</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;A couple weeks ago &lt;a href="https://kamranicus.com/posts/2017-07-14-midwestjs-react-typescript"&gt;I spoke at Midwest.js&lt;/a&gt; on &lt;strong&gt;Building Scalable, Maintainable Apps Using TypeScript and React&lt;/strong&gt;. The conference itself was great I thought and I plan to attend again! I learned some stuff about GraphQL that I didn't know and learned about V8 compiler optimizations from &lt;a href="http://twitter.com/captainsafia"&gt;@captainsafia&lt;/a&gt;.&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2017-08-28-mjs-thanks</guid>
 			<pubDate>Tue, 29 Aug 2017 00:48:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;A couple weeks ago &lt;a href="https://kamranicus.com/posts/2017-07-14-midwestjs-react-typescript"&gt;I spoke at Midwest.js&lt;/a&gt; on &lt;strong&gt;Building Scalable, Maintainable Apps Using TypeScript and React&lt;/strong&gt;. The conference itself was great I thought and I plan to attend again! I learned some stuff about GraphQL that I didn't know and learned about V8 compiler optimizations from &lt;a href="http://twitter.com/captainsafia"&gt;&amp;#64;captainsafia&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The slides are online at &lt;a href="http://bit.ly/mjs-react-ts."&gt;http://bit.ly/mjs-react-ts.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;It was sitting room only, so if you attended I thank you! I think it's clear there's a demand for more real-world wisdom talks around the latest tech. There are enough intro talks that where I can't offer much but I think many of us have a lot to offer if we've been working with a technology in production for awhile.&lt;/p&gt;
+&lt;p&gt;I have the presentation recorded but am waiting for MJS to upload their recordings &lt;a href="https://www.youtube.com/channel/UCg09l6pJcp2DdCcsSrJmQng"&gt;on YouTube&lt;/a&gt;. If it starts to take too long, I'll go ahead and upload my version (theirs will have better audio). I'm still waiting on the full feedback report but talking in person to many of you left me feeling pretty great!&lt;/p&gt;
+&lt;p&gt;Maybe next year I'll submit an updated version with any new wisdom I learn as I continue converting KTOMG over to React.&lt;/p&gt;
+</content:encoded>
 		</item>
 		<item>
 			<title>Building Scalable, Maintainable Apps Using TypeScript and React at Midwest.js</title>
 			<link>https://kamranicus.com/posts/2017-07-14-midwestjs-react-typescript</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;I'm excited to be speaking about &lt;strong&gt;Building Scalable, Maintainable Apps Using TypeScript and React&lt;/strong&gt; at &lt;a href="http://midwestjs.com/#/schedule"&gt;Midwest.js&lt;/a&gt; August 17, my scheduled time is 1:30pm.&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2017-07-14-midwestjs-react-typescript</guid>
 			<pubDate>Fri, 14 Jul 2017 17:21:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;I'm excited to be speaking about &lt;strong&gt;Building Scalable, Maintainable Apps Using TypeScript and React&lt;/strong&gt; at &lt;a href="http://midwestjs.com/#/schedule"&gt;Midwest.js&lt;/a&gt; August 17, my scheduled time is 1:30pm.&lt;/p&gt;
+&lt;p&gt;Here's what to expect:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How to design components with TypeScript and Redux&lt;/li&gt;
+&lt;li&gt;Examples of working with interfaces and ES6 componenets in TypeScript&lt;/li&gt;
+&lt;li&gt;Architecture patterns and organization for React apps&lt;/li&gt;
+&lt;li&gt;Performance tuning and advice with React/Redux&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The presentation will be based on my progress converting from Knockout.js to React.js for &lt;a href="http://ktomg.com"&gt;Keep Track of My Games&lt;/a&gt;. I've been doing a ton of performance tuning and have definitely learned a lot about using TypeScript with React and Redux so I'm excited to share my findings and advice. It's also a presentation based on my learning so far and where I want to go; I'm not even complete with the rewrite!&lt;/p&gt;
+&lt;p&gt;If you're attending, I hope to see you there! Don't be a stranger and say hi if you see me.&lt;/p&gt;
+</content:encoded>
 		</item>
 		<item>
 			<title>Refactoring Conditional Dependency Injection</title>
 			<link>https://kamranicus.com/posts/2017-07-12-conditional-dependency-injection</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;Recently a colleague sent me a question about some advice using &lt;a href="http://www.ninject.org/"&gt;Ninject&lt;/a&gt;, a popular .NET dependency injection framework. It went something like this:&lt;/p&gt;</description>
 			<enclosure url="https://kamranicus.com/images/2017-07-12-masthead.png" length="0" type="image" />
 			<guid>https://kamranicus.com/posts/2017-07-12-conditional-dependency-injection</guid>
 			<pubDate>Thu, 13 Jul 2017 02:32:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;Recently a colleague sent me a question about some advice using &lt;a href="http://www.ninject.org/"&gt;Ninject&lt;/a&gt;, a popular .NET dependency injection framework. It went something like this:&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I have a console app that does some tasks. Two of the tasks are very similar, they each process a downloaded file. But the process is different depending on the requested download types passed in.&lt;/p&gt;
+&lt;p&gt;The way I'm modeling it right now is like this:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;DownloadProcessor : IDownloadProcessor&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SalesDownloader : IDownloader&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;TrafficDownloader : IDownloader&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;What I'd like to do is have the correct &lt;code&gt;IDownloader&lt;/code&gt; used by the &lt;code&gt;DownloadProcessor&lt;/code&gt; depending on incoming arguments.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- More --&gt;
+&lt;p&gt;Here's what they showed me:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-cs"&gt;public class ProgramImplementation
+{
+  private readonly IDownloadProcessor _processor;
+  private readonly IDownloader _salesDownloader;
+  private readonly IDownloader _trafficDownloader;
+
+  public ProgramImplementation(
+    [Named(&amp;quot;salesDownloader&amp;quot;)]   IDownloader salesDownloader, 
+    [Named(&amp;quot;trafficDownloader&amp;quot;)] IDownloader trafficDownloader, 
+    IDownloadProcessor processor)
+  {
+    _processor = processor;
+    _salesDownloader = salesDownloader;
+    _trafficDownloader = trafficDownloader;
+  }
+  
+  public void Run(string[] args)
+  {
+    if (args.Contain(&amp;quot;sales&amp;quot;))
+    {
+        _processor.Process(_salesDownloader);
+    }
+    
+    if (args.Contain(&amp;quot;traffic&amp;quot;))
+    {
+        _processor.Process(_trafficDownloader);
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;IDownloadProcessor&lt;/code&gt; implementation looks like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-cs"&gt;public class DownloadProcessor : IDownloadProcessor {
+    public void Process(IDownloader downloader) {
+
+      // business logic
+
+      downloader.Process();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;ProgramImplementation&lt;/code&gt; is constructed via Ninject so the constructor parameters are populated automatically.&lt;/p&gt;
+&lt;h2 id="gimme-some-context"&gt;Gimme Some Context&lt;/h2&gt;
+&lt;p&gt;First, what's going on with this?&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-cs"&gt;[Named(&amp;quot;salesDownloader&amp;quot;)] IDownloader salesDownloader
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is what Ninject refers to as &lt;a href="https://github.com/ninject/ninject/wiki/Contextual-Binding"&gt;Contextual Binding&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can bind the same interface to different concrete classes and attach &amp;quot;metadata&amp;quot; that can be used at injection time:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-cs"&gt;_kernel.Bind&amp;lt;IDownloader&amp;gt;().To&amp;lt;SalesDownloader&amp;gt;().Named(&amp;quot;salesDownloader&amp;quot;);
+_kernel.Bind&amp;lt;IDownloader&amp;gt;().To&amp;lt;TrafficDownloader&amp;gt;().Named(&amp;quot;trafficDownloader&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the above docs, they say you should avoid this pattern because now the caller has to reference Ninject directly to get what it wants.&lt;/p&gt;
+&lt;p&gt;Does this work? Sure but my coworker reached out to me &amp;quot;because it felt weird&amp;quot; so let's break it down.&lt;/p&gt;
+&lt;h2 id="a-hammer-looking-for-a-nail"&gt;A Hammer Looking for a Nail&lt;/h2&gt;
+&lt;p&gt;If you wanted to still use Ninject to achieve this, there's an alternative way to bind the same interface to specific concrete classes &lt;em&gt;without&lt;/em&gt; having the calling class take a direct dependency on Ninject.&lt;/p&gt;
+&lt;p&gt;You have to create two implementations of &lt;code&gt;IDownloadProcessor&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-cs"&gt;public interface IDownloadProcessor {
+  void Process();
+}
+
+public abstract class BaseDownloadProcessor : IDownloadProcessor {
+  
+  private IFileDownloader _downloader;
+  public BaseDownloadProcessor(IFileDownloader downloader) {
+    _downloader = downloader;
+  }
+
+  public void Process() {
+    // common logic
+    // ...
+
+    // specific downloader logic
+    _downloader.Process();
+  }
+}
+
+// empty implementation classes
+
+public class SalesDownloadProcessor : BaseDownloadProcessor {
+
+  public SalesDownloadProcessor(IFileDownloader downloader)
+    : base(downloader) {
+
+  }
+}
+
+public class TrafficDownloadProcessor : IDownloadProcessor {
+  public TrafficDownloadProcessor(IFileDownloader downloader)
+    : base(downloader) {
+    
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This adds an two extra classes (one holding common base implementation logic) to what we had before but at least we can inject the right downloader that we need &lt;em&gt;and&lt;/em&gt; we've simplified the interface.&lt;/p&gt;
+&lt;p&gt;We can now bind the specific implementation to the specific processor:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-cs"&gt;_kernel.Bind&amp;lt;IDownloader&amp;gt;().To&amp;lt;SalesDownloader&amp;gt;()
+  .WhenInjectedInto(typeof(SalesDownloadProcessor));
+
+_kernel.Bind&amp;lt;IDownloader&amp;gt;().To&amp;lt;TrafficDownloader&amp;gt;()
+  .WhenInjectedInto(typeof(TrafficDownloadProcessor));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Great! We removed a direct reference to Ninject in our &lt;code&gt;ProgramImplementation&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-cs"&gt;public class ProgramImplementation
+{
+  private readonly SalesDownloadProcessor _salesProcessor;
+  private readonly TrafficDownloadProcessor _trafficProcessor;
+
+  public ProgramImplementation(
+    SalesDownloadProcessor salesProcessor,
+    TrafficDownloadProcessor trafficProcessor)
+  {
+    _salesProcessor = salesProcessor;
+    _trafficProcessor = trafficProcessor;
+  }
+  
+  public void Run(string[] args)
+  {
+    if (args.Contain(&amp;quot;sales&amp;quot;))
+    {
+        _salesProcessor.Process();
+    }
+    
+    if (args.Contain(&amp;quot;traffic&amp;quot;))
+    {
+        _trafficProcessor.Process();
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is still a little smelly, wouldn't you agree?&lt;/p&gt;
+&lt;iframe src="https://giphy.com/embed/PsvD1p3IthN96" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen&gt;&lt;/iframe&gt;
+&lt;p&gt;I thought so. Here's what smells:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;ProgramImplementation&lt;/code&gt; has to be aware of &lt;strong&gt;both&lt;/strong&gt; concrete implementations of &lt;code&gt;IDownloadProcessor&lt;/code&gt; in TWO places, one in the constructor and one when deciding what to call&lt;/li&gt;
+&lt;li&gt;We still have duplicate code in two similar conditional branches and if we add more, it'll keep growing&lt;/li&gt;
+&lt;li&gt;Lastly and most importantly, &lt;strong&gt;we are deciding&lt;/strong&gt; what downloader is paired with what processor and I think this is the most egregious problem here&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Overall this will work but both download processors are identical and we've introduced an abstract class. There's no value in having two empty classes lying around--its solely due to Ninject. In other words, we're just a hammer looking for a nail... maybe we can solve this by rethinking the problem.&lt;/p&gt;
+&lt;h2 id="colocate-behavior-and-data"&gt;Colocate Behavior and Data&lt;/h2&gt;
+&lt;p&gt;The solution I proposed to my coworker was to &lt;em&gt;fuhgeddabout&lt;/em&gt; Ninject because I don't think this should be Ninject's concern or involve black box binding incantation at all.&lt;/p&gt;
+&lt;p&gt;Ask yourself this question: who should decide what an &lt;code&gt;IDownloader&lt;/code&gt; can handle? Right now, it's the &lt;code&gt;ProgramImplementation&lt;/code&gt; but I'd argue that it's the &lt;em&gt;downloader&lt;/em&gt; who knows if it can process a download type--is it &lt;em&gt;really&lt;/em&gt; the top-level program's concern who handles what? I don't think so.&lt;/p&gt;
+&lt;p&gt;Encapsulation is about keeping behavior and data close together. In this instance, data are the arguments being passed to the application and the behavior is the processing of the download inside the &lt;code&gt;IDownloader&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;With that in mind, let's move the decision making farther down, closer to where it needs to be used.&lt;/p&gt;
+&lt;p&gt;First, let's start at the top and pass the args into the processor:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-cs"&gt;public class ProgramImplementation
+{
+  private readonly IDownloadProcessor _processor;
+
+  public ProgramImplementation(
+    IDownloadProcessor processor)
+  {
+    _processor = processor;
+  }
+  
+  public void Run(string[] args)
+  {
+    if (args.Contain(&amp;quot;sales&amp;quot;))
+    {
+        _processor.Process(&amp;quot;sales&amp;quot;);
+    }
+    
+    if (args.Contain(&amp;quot;traffic&amp;quot;))
+    {
+        _processor.Process(&amp;quot;traffic&amp;quot;);
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Right away we can see an issue. The usage of &lt;code&gt;_processor.Process&lt;/code&gt; multiple times indicates we should allow passing in multiple values.&lt;/p&gt;
+&lt;p&gt;Let's modify the &lt;code&gt;ProgramImplementation&lt;/code&gt; and the &lt;code&gt;DownloadProcessor&lt;/code&gt; to work with an array of download types:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-cs"&gt;public class ProgramImplementation
+{
+  private readonly IDownloadProcessor _processor;
+
+  public ProgramImplementation(
+    IDownloadProcessor processor)
+  {
+    _processor = processor;
+  }
+  
+  public void Run(string[] args)
+  {
+    _processor.Process(args);
+  }
+}
+
+public class DownloadProcessor : IDownloadProcessor {
+
+  private readonly IEnumerable&amp;lt;IDownloader&amp;gt; _downloaders;
+
+  public DownloadProcessor(IEnumerable&amp;lt;IDownloader&amp;gt; downloaders) {
+    _downloaders = downloaders;
+  }
+
+  public void Process(string[] types) {
+    // ???
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It's certainly getting simpler. We're still using Ninject to inject the available downloaders into the processor but we aren't relying on contextual binding.&lt;/p&gt;
+&lt;p&gt;At this point, you might ask, &amp;quot;Does the processor decide which downloader handles the types? Will I need a switch statement here or something?&amp;quot; Nope, remember we want to push the behavior and data closer together.&lt;/p&gt;
+&lt;p&gt;Let's make the change that will colocate the logic inside the &lt;code&gt;IDownloader&lt;/code&gt; implementations:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-cs"&gt;public class DownloadProcessor : IDownloadProcessor {
+
+  private readonly IEnumerable&amp;lt;IDownloader&amp;gt; _downloaders;
+
+  public DownloadProcessor(IEnumerable&amp;lt;IDownloader&amp;gt; downloaders) {
+    _downloaders = downloaders;
+  }
+
+  public void Process(string[] types) {
+    foreach(var downloader in _downloaders) {
+      if (downloader.CanProcess(types)) {
+        downloader.Process();
+      }
+    }
+  }
+}
+
+public interface IDownloader {
+  bool CanProcess(string[] types);
+  void Process();
+}
+
+public class SalesDownloader : IDownloader {
+  public bool CanProcess(string[] types) {
+    return types.IndexOf(&amp;quot;sales&amp;quot;) &amp;gt; -1;
+  }
+
+  public void Process() {
+    // etc.
+  }
+}
+
+public class TrafficDownloader : IDownloader {
+  public bool CanProcess(string[] types) {
+    return types.IndexOf(&amp;quot;traffic&amp;quot;) &amp;gt; -1;
+  }
+
+  public void Process() {
+    // etc.
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That's more like it.&lt;/p&gt;
+&lt;p&gt;We're iterating through each downloader in the processor and processing the download if and only if the handler can handle it (i.e. the decision is left to the downloader).&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;IDownloader.CanProcess&lt;/code&gt; provides a contract that says we have to specify what a downloader can handle. Could we just as easily have done &lt;code&gt;Process(string[] types)&lt;/code&gt;? Yes, we could but this way we are &lt;em&gt;guaranteeing&lt;/em&gt; that a downloader &lt;em&gt;must&lt;/em&gt; tell us whether it could handle any of the types we provide. Without this, there'd be no way to enforce this contract. Furthermore, having a check method allows us to ask, &amp;quot;How would I know if a downloader &lt;em&gt;didn't&lt;/em&gt; handle my download type?&amp;quot;.&lt;/p&gt;
+&lt;p&gt;This is looking good. At this point, you could call it a refactoring job well done. Now it's time to level up and snag [over 9000] extra maintainability points.&lt;/p&gt;
+&lt;iframe src="https://giphy.com/embed/B6SyssSlTgPXq" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen&gt;&lt;/iframe&gt;
+&lt;h2 id="tostring-or-not-tostring"&gt;ToString or Not ToString?&lt;/h2&gt;
+&lt;p&gt;My philosophy is to consolidate multiple &amp;quot;sources of truth&amp;quot; to a single source. Right now for me to figure out what download types are acceptable to pass to this application I have to look at each &lt;code&gt;IDownloader&lt;/code&gt; implementation, inside the &lt;code&gt;CanProcess&lt;/code&gt; functions. Yuck!&lt;/p&gt;
+&lt;p&gt;We could use constants and have them on the &lt;code&gt;ProgramImplementation&lt;/code&gt; to make acceptable download types more discoverable. But if we switch to an enumeration instead of passing raw strings we'll have a strongly typed and enforceable contract. &lt;strong&gt;BONUS:&lt;/strong&gt; Enums support flags so we can represent multiple values without an array!&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-cs"&gt;// Source of truth for all download types
+enum DownloadType {
+  Sales,
+  Traffic
+}
+
+class ProgramImplementation {
+  private readonly IDownloadProcessor _processor;
+
+  public ProgramImplementation(
+    IDownloadProcessor processor) {
+    _processor = processor;
+  }
+
+  public void Run(string[] args) {
+
+    foreach (var arg in args) {
+
+      // Parse the argument directly as an enum,
+      // ensuring we always pass valid values
+      DownloadType type;
+      if (!Enum.TryParse(arg, out type)) {
+        throw new ArgumentException($&amp;quot;Type '{arg}' is not a valid download type&amp;quot;);
+      }
+
+      _processor.Process(type);
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Instead of comparing strings, we're now enforcing consistency--we work with the enums and translate strings to &lt;code&gt;DownloadType&lt;/code&gt; so that we can validate values.&lt;/p&gt;
+&lt;p&gt;Pretty good! But there's a problem. We went back to passing a single download type. Not cool! It would be great if we could translate that string list into a flagged enum value...&lt;/p&gt;
+&lt;h2 id="beam-me-opts-scotty"&gt;Beam Me Opts, Scotty!&lt;/h2&gt;
+&lt;p&gt;Not sure if that quote works but I digress. Let's leverage a nice open source package to do some options parsing for us so our CLI application can be more flexible and robust.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/gsscoder/commandline"&gt;Commandline&lt;/a&gt; is a fantastic Nuget package for the job.&lt;/p&gt;
+&lt;p&gt;We can use Commandline to take in a list of the enum values and convert them into a flag. Here's how we use it to simplify our logic further:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-cs"&gt;[Flags]
+enum DownloadType {
+  Sales,
+  Traffic
+}
+
+class Options {
+  [Option('t', &amp;quot;types&amp;quot;, Required = true,
+    HelpText = &amp;quot;Download file type(s) to process&amp;quot;)]
+  public IEnumerable&amp;lt;DownloadType&amp;gt; Types { get; set; }
+}
+
+class ProgramImplementation {
+  private readonly IDownloadProcessor _processor;
+
+  public ProgramImplementation(IDownloadProcessor processor) {
+    _processor = processor;
+  }
+
+  public void Run(string[] args)
+  {
+    var parser = new Parser(settings =&amp;gt; settings.CaseInsensitiveEnumValues = true);
+    var result = parser.ParseArguments&amp;lt;Options&amp;gt;(args);
+    
+    result.WithParsed(options =&amp;gt;
+    {
+      // convert to flags
+      var types = options.Types.Aggregate((i, t) =&amp;gt; i | t);
+
+      _processor.Process(types);
+    });            
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Much better! We are now accepting multiple download types from the CLI, like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;MyApp -t Sales Traffic
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This line:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-cs"&gt;var parser = new Parser(settings =&amp;gt; settings.CaseInsensitiveEnumValues = true);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Allows us to pass in case-insensitive enum values like:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;MyApp -t sales traffic
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The other magic line:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-cs"&gt;var types = options.Types.Aggregate((i, t) =&amp;gt; i | t);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Converts the array of enum values into a flag. &lt;a href="https://stackoverflow.com/questions/21880081/cast-int-array-to-enum-flags"&gt;Thanks StackOverflow&lt;/a&gt;!&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;em&gt;Note:&lt;/em&gt; The library currently doesn't handle mapping multiple values to a single Enum flags type, so we'll have to make do. No library I could find supports that &lt;em&gt;and&lt;/em&gt; .NET Core, which I was using to test this code. Time for a PR, maybe?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The &lt;code&gt;DownloadProcessor&lt;/code&gt; will need to change to accept the new flag enum:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-cs"&gt;public void Process(DownloadType types) {
+  foreach(var downloader in _downloaders) {
+    if (downloader.CanProcess(types)) {
+      downloader.Process();
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Finally, that will allow us to simplify our downloaders:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-cs"&gt;// SalesDownloader
+public bool CanProcess(DownloadType type) {
+  return type.HasFlag(DownloadType.Sales);
+}
+
+// TrafficDownloader
+public bool CanProcess(DownloadType type) {
+  return type.HasFlag(DownloadType.Traffic);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;iframe src="https://giphy.com/embed/tw3tbRjOTqj4s" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;strong&gt;Do you smell that?&lt;/strong&gt; Unlike before, it's the wonderful smell of cleaner code!&lt;/p&gt;
+&lt;p&gt;This leaves us with a pretty robust implementation with minimal code.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;It's extensible.&lt;/strong&gt; It's easy to add more handlers by adding a new class and enum. The person implementing the new handler will immediately know they require a new enum value when they implement the &lt;code&gt;IDownloader&lt;/code&gt; interface.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;It's flexible.&lt;/strong&gt; A single handler could handle multiple kinds of downloads.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;It's easy to reason about.&lt;/strong&gt; There's no DI magic that requires additional understanding. We could go so far as to add the &lt;a href="https://github.com/ninject/Ninject.Extensions.Conventions"&gt;Ninject conventions binding&lt;/a&gt; extension to eliminate manual registration of downloaders.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;It's easy to test.&lt;/strong&gt; By not relying on Ninject, we now can focus on testing the implementation logic.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="thats-all-folks"&gt;That's All, Folks&lt;/h2&gt;
+&lt;p&gt;I waited to publish this post until my coworker reviewed it and tried my suggestions, I sent them my sample code below. Their response was, verbatim:&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Thanks, and thanks again for all of the time you put into this.  This is the most thorough response I think I’ve ever gotten to almost anything.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Aw, thanks! I'm glad it helped and maybe writing up this thinking process will help others who are considering refactoring their code too.&lt;/p&gt;
+&lt;p&gt;You can find the code for this example &lt;a href="https://github.com/kamranayub/kamranayub.github.io/tree/source/code/2017-07-12-conditional-injection"&gt;on my GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There's probably a few things I should mention:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;IDownloadProcessor interface&lt;/strong&gt;: I don't think we need it. There's only a single implementation and it has no complex dependencies, we can easily test it. We could simply remove the interface and bind the concrete implementation or we could axe the class in its entirety and switch to a single function on &lt;code&gt;ProgramImplementation&lt;/code&gt; if we felt a full object was too much.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Is the CLI parser too much?&lt;/strong&gt; It could be argued it is. We could just as easily have converted the individual enum values into a flag ourselves. Admittedly, I was hoping the CLI package would do it directly for me but it didn't, I still ended up manually converting it. Still--we get some great benefits: help documentation, validation, and extensibility.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;You can do all this with Ninject&lt;/strong&gt;: But should you? It's always a question you should ask. If you need to &lt;em&gt;dynamically&lt;/em&gt; find download handlers at runtime from external assemblies or anything more complex than what I showed above, it might be worth the mental overhead. For this case, it's not worth it in my opinion--introduce abstractions when it gets hard to reason about stuff.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I'm positive there are multiple great solutions to this issue. If you had specific ideas, share them in the comments!&lt;/p&gt;
+</content:encoded>
 		</item>
 		<item>
 			<title>New Video Let's CODE! Basic CSS</title>
 			<link>https://kamranicus.com/posts/2017-06-27-lets-code-basic-css</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;I work a ton with my friend and colleague, &lt;a href="https://erikonarheim.com"&gt;Erik Onarheim&lt;/a&gt;. Sometimes I think my wife is jealous (love you, honey!). Anyway, we are always learning from and bouncing ideas off each other. We thought it might be fun to sit down and record some videos on things we wanted help with so I'm happy to introduce our new channel, &lt;a href="https://www.youtube.com/channel/UCEQpXOMvO6QSukmFmqqxq7w"&gt;Let's CODE! with Erik and Kamran&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Erik isn't very good at CSS as he professes himself at the beginning of the video. I have more experience doing design so I said I'd help him out. In a mere hour and a half, we go from knowing only basic CSS to styling a whole React.js calculator sample app from the ground up. Take a look!&lt;/p&gt;
+
+&lt;p&gt;We cover a wide range of topics like media queries, color, typography, box model, flexbox layouts, and more. Rather than just explaining topics, we learn them as we need to (aka "just-in-time" learning). Since making the video, he's expressed how much it helped him on a recent project so I'd call it a job well done.&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2017-06-27-lets-code-basic-css</guid>
 			<pubDate>Tue, 27 Jun 2017 12:02:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;I work a ton with my friend and colleague, &lt;a href="https://erikonarheim.com"&gt;Erik Onarheim&lt;/a&gt;. Sometimes I think my wife is jealous (love you, honey!). Anyway, we are always learning from and bouncing ideas off each other. We thought it might be fun to sit down and record some videos on things we wanted help with so I'm happy to introduce our new channel, &lt;a href="https://www.youtube.com/channel/UCEQpXOMvO6QSukmFmqqxq7w"&gt;Let's CODE! with Erik and Kamran&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Erik isn't very good at CSS as he professes himself at the beginning of the video. I have more experience doing design so I said I'd help him out. In a mere hour and a half, we go from knowing only basic CSS to styling a whole React.js calculator sample app from the ground up. Take a look!&lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/B-fWM7aD0vg?ecver=1" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;We cover a wide range of topics like media queries, color, typography, box model, flexbox layouts, and more. Rather than just explaining topics, we learn them as we need to (aka &amp;quot;just-in-time&amp;quot; learning). Since making the video, he's expressed how much it helped him on a recent project so I'd call it a job well done.&lt;/p&gt;
+&lt;!-- More --&gt;
+&lt;h2 id="whats-a-lets-code"&gt;What's a Let's Code?&lt;/h2&gt;
+&lt;p&gt;Being avid gamers and fans of gaming culture, we both enjoy watching &lt;a href="https://en.wikipedia.org/wiki/Let%27s_Play"&gt;Let's Play&lt;/a&gt; videos and some of the more curated channels like &lt;a href="http://polygon.com"&gt;Polygon&lt;/a&gt; (MONSTER FACTORY!) or &lt;a href="https://www.youtube.com/user/GameGrumps"&gt;Game Grumps&lt;/a&gt;. We decided to be inspired from that style of video and to just call it a &amp;quot;Let's Code.&amp;quot; &lt;a href="https://www.youtube.com/results?search_query=lets+code"&gt;This isn't new&lt;/a&gt;. We're definitely not as funny.&lt;/p&gt;
+&lt;h2 id="whats-different-about-this"&gt;What's different about this?&lt;/h2&gt;
+&lt;p&gt;One thing I noticed scanning through most of the existing Let's Code videos is that they are by a single person. Don't get me wrong, I love watching people work on fun stuff but there's something about more than one person that makes things more interesting--if you are heads down trying to solve a problem or teach a topic, it can be hard to think about entertaining. If you know something really well it's always a challenge to remember to cover the basics. If you have a partner who is watching and not focused on typing code they can ask questions and make jokes (like the &amp;quot;Vitamin C&amp;quot; joke Erik made that I totally didn't get).&lt;/p&gt;
+&lt;p&gt;The flipside of &amp;quot;doing it live&amp;quot; is that you make mistakes. This is both awesome and something to be careful of. Working through debugging a problem? Fun. Saying some inaccurate and possibly spreading misinformation? Not fun. There's definitely a much longer post-production step on these videos after editing that involves combing through the footage and fact checking everything. I made mistakes in the video, I almost got some stuff mostly right, but if someone is watching this expecting to learn we want to make sure we make note of things that were inaccurately said.&lt;/p&gt;
+&lt;p&gt;One of the goals is to keep debugging in the videos, unless we &lt;em&gt;really&lt;/em&gt; churn on nothing for awhile. I think it's fascinating watching how smart people debug problems and it's important to showcase how &amp;quot;professionals&amp;quot; still run into problems.&lt;/p&gt;
+&lt;h2 id="whats-next"&gt;What's next?&lt;/h2&gt;
+&lt;p&gt;Like we say in the end of the video, we wanted to try to tackle some deterministic randomness problems. I'm working through writing a sample game for Excalibur and I'm generating 2D terrain. It works but I want to simplify the logic surrounding placing spawn points and goals so that I don't have to store them in a state bag. I just want the world seed and the current level and from that I should be able to generate what I want to display at any point during the game. That's what we hope to tackle next.&lt;/p&gt;
+&lt;p&gt;We have a lot of ideas in our Trello board and we are targeting (hopefully) semi-monthly releases if things go well. We might explore chunking the videos too in parts, even in the first video there are clear areas of separation where we could cut into slices.&lt;/p&gt;
+</content:encoded>
 		</item>
 		<item>
 			<title>Downloading Git LFS Files from TFS or VSTS</title>
 			<link>https://kamranicus.com/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;Remember that post I wrote about &lt;a href="/posts/2017-02-04-powershell-dsc-git-lfs-binaries"&gt;using Git LFS to store installers and binaries&lt;/a&gt; when using Powershell DSC? Well, it turns out my sample code was wrong! I &lt;em&gt;thought&lt;/em&gt; it was working because my files were previously committed and not actually being hosted via Git LFS.&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts</guid>
 			<pubDate>Thu, 15 Jun 2017 02:32:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;Remember that post I wrote about &lt;a href="/posts/2017-02-04-powershell-dsc-git-lfs-binaries"&gt;using Git LFS to store installers and binaries&lt;/a&gt; when using Powershell DSC? Well, it turns out my sample code was wrong! I &lt;em&gt;thought&lt;/em&gt; it was working because my files were previously committed and not actually being hosted via Git LFS.&lt;/p&gt;
+&lt;!-- More --&gt;
+&lt;h2 id="the-problem"&gt;The problem&lt;/h2&gt;
+&lt;p&gt;Turns out, if your files are backed using Git LFS then a &amp;quot;pointer&amp;quot; file is stored instead. It looks like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;version https://git-lfs.github.com/spec/v1
+oid sha256:4d7a214614ab2935c943f9e0ff69d22eadbb8f32b1258daaa5e2ca24d17e2393
+size 12345
+(ending \n)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When Git clones your repository, Git LFS intercepts the clone and downloads the file from a remote URL using info from this file.&lt;/p&gt;
+&lt;p&gt;That's just how Git LFS works--but surprisingly (to me), the &lt;a href="https://www.visualstudio.com/en-us/docs/integrate/api/overview"&gt;TFS REST API&lt;/a&gt; apparently doesn't have a mechanism to abstract this. The Items/Blobs API has no way to serve binaries straight from its Git LFS store and I wonder if this is just an oversight. Instead, it simply serves this pointer file and &lt;strong&gt;you&lt;/strong&gt; have to figure out what to do with it. We are left alone with our thoughts in a quiet despair weeping gently into a soft pillow asking ourselves why, why did we ever start learning Microsoft FrontPage in high school.&lt;/p&gt;
+&lt;p&gt;&lt;marquee title="Choo choo!"&gt;🚂🚃🚃🚃&lt;/marquee&gt;&lt;/p&gt;
+&lt;p&gt;The first thing I did was &lt;a href="https://www.google.com/#q=programmatically+download+vsts+file+api+using+git+lfs&amp;amp;start=0"&gt;call out to the heavens&lt;/a&gt; but my queries fell on deaf search ranking algorithms. It appeared no one else had a reason to perform the required black magicks to make this work... or if they did, they were too exhausted by the end of it to write about it. As these things often do, it fell to me to be the flag bearer and charge into the mist unto the oncoming hoard.&lt;/p&gt;
+&lt;p&gt;Can you tell I'm practicing some creative writing? I once got an A on a funny paper once.&lt;/p&gt;
+&lt;h2 id="figuring-out-git-lfs"&gt;Figuring out Git LFS&lt;/h2&gt;
+&lt;p&gt;Erik, in a hurry to meet Important Business Objectives just committed his binaries in plain old Git to workaround this problem. After he berated me I begged forgiveness. Before he walked away in scorn, I grabbed his hand and pricked both our forefingers; I pressed them both together as I made a blood vow to solve this for him. Something like that, anyway.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/2017-06-15-00-20-48.png" class="img-fluid" alt="A record of this exchange, it was exactly as I described" /&gt;&lt;/p&gt;
+&lt;p&gt;I hadn't really peeked under the covers of Git LFS until today to solve this issue. I figured that since Git is built on top of HTTP, LFS must be handling binaries the same way and there &lt;em&gt;must&lt;/em&gt; be a way to issue the right requests to fix the issue.&lt;/p&gt;
+&lt;p&gt;Luckily I wasn't wrong and the entire API specification for Git LFS servers &lt;a href="https://github.com/git-lfs/git-lfs/tree/master/docs/api"&gt;is available in the Git repository&lt;/a&gt;. The process goes like this:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Download the pointer file and grab the object ID and size&lt;/li&gt;
+&lt;li&gt;Issue a POST request to the LFS &amp;quot;Batch&amp;quot; endpoint to request a download
+&lt;ul&gt;
+&lt;li&gt;This is because for some backing providers there may be extra headers to send, an expiration time, etc. for the download&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Issue a GET request to the provided URL returned by the previous call&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;It's pretty straightforward. Still, there were some pointy rocks along the way. I'll enumerate the issues I ran into below even though you'll ignore them anyway.&lt;/p&gt;
+&lt;h2 id="show-me-the-code"&gt;Show me the code!&lt;/h2&gt;
+&lt;p&gt;You got it. Here's the Gist:&lt;/p&gt;
+&lt;script src="https://gist.github.com/kamranayub/1c6bcb09d3858a86b736ef39593fc575.js"&gt;&lt;/script&gt;
+&lt;p&gt;Read on for more details about how this came together.&lt;/p&gt;
+&lt;h2 id="gotcha-1-tfs-doesnt-tell-you-a-file-is-backed-by-lfs"&gt;Gotcha #1: TFS doesn't tell you a file is backed by LFS&lt;/h2&gt;
+&lt;p&gt;This was annoying. Ideally, I shouldn't have to download the file and inspect it to determine whether or not it's a Git LFS pointer file yet I didn't see any way &lt;a href="https://www.visualstudio.com/en-us/docs/integrate/api/git/items#get-item-metadata-for"&gt;in the REST API&lt;/a&gt; to get that determination back.&lt;/p&gt;
+&lt;p&gt;The first step is to download the file and pull out the object ID/size. &amp;quot;Wait,&amp;quot; you say, an uncontrollable twitch almost spills coffee over your keyboard, &amp;quot;Download the &lt;em&gt;entire&lt;/em&gt; file, even if it's, like, 12GB?!&amp;quot; Quiet down, an open floor plan carries your voice easily and John's looking at you with that face he makes sometimes. In a naïve implementation, yes. But you only need to grab enough bytes for 4 lines (including the ending newline which marks the EOF) and once I figure out how to formally wrap this in a DSC resource, I'll do that. The script above &lt;strong&gt;doesn't&lt;/strong&gt; do that so paster beware.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; The spec says the LFS server URL is determined by appending &lt;code&gt;.git/info/lfs&lt;/code&gt; to the end of the repo URL. You can confirm this by inspecting the output of &lt;code&gt;git lfs env&lt;/code&gt; in your repo. I mistakenly kept trying to make sure that URL was right by issuing HTTP requests to it--&lt;strong&gt;don't be a dingus like me&lt;/strong&gt;, it's not an endpoint it's just the base URL. Go figure.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="gotcha-2-tfs-returns-a-deprecated-lfs-response"&gt;Gotcha #2: TFS returns a deprecated LFS response&lt;/h2&gt;
+&lt;p&gt;When you issue the POST to the batch endpoint, it returns a response containing the objects you requested and the links to the download/upload URLs (whatever you asked for).&lt;/p&gt;
+&lt;p&gt;Turns out, prior to Git LFS 0.6.0 the schema for objects looked like:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;&amp;quot;objects&amp;quot;: [
+  {
+    &amp;quot;_links&amp;quot;: {
+      &amp;quot;download&amp;quot;: { ... }
+    }
+  }
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That's been &lt;a href="https://github.com/git-lfs/git-lfs/issues/2003#issuecomment-284432943"&gt;deprecated&lt;/a&gt; and the latest docs reflect the new specification, as they should... but guess who returns that response? Yep.&lt;/p&gt;
+&lt;h2 id="gotcha-3-tfs-requires-an-accepts-header-to-download"&gt;Gotcha #3: TFS requires an Accepts header to download&lt;/h2&gt;
+&lt;p&gt;In the official specs of the &lt;a href="https://github.com/git-lfs/git-lfs/blob/master/docs/api/basic-transfers.md#downloads"&gt;basic transfer&lt;/a&gt; method, the cURL example doesn't contain any Accepts headers. I intend to ask the team if that's an oversight but at the time of this writing it wasn't there--so I kept on getting Bad Request responses from TFS. Grr!&lt;/p&gt;
+&lt;p&gt;Well, it turns out you need an &lt;code&gt;Accepts&lt;/code&gt; header value of &lt;code&gt;application/vnd.git-lfs&lt;/code&gt;. Cool, that fixed it!&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; It's been &lt;a href="https://blog.jourdant.me/post/3-ways-to-download-files-with-powershell"&gt;documented&lt;/a&gt; that &lt;code&gt;Start-BitsTransfer&lt;/code&gt; is actually much more efficient than &lt;code&gt;Invoke-WebRequest&lt;/code&gt; but unfortunately Git LFS (or TFS?) doesn't yet support &lt;a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa362846(v=vs.85).aspx"&gt;the required HTTP headers&lt;/a&gt; to make it work. It's &lt;a href="https://github.com/git-lfs/git-lfs/blob/master/docs/proposals/transfer_adapters.md"&gt;been proposed&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="thats-it"&gt;That's it!&lt;/h2&gt;
+&lt;p&gt;Once I figured out all the gotchas the script I wrote worked like a charm and hey, it only took me an afternoon. I haven't yet converted it into a DSC module but an enterprising developer could easily use this in a &lt;code&gt;Script&lt;/code&gt; DSC resource for now. The script also works nicely as a standalone cmdlet for all your DevOps needs.&lt;/p&gt;
+&lt;p&gt;Hope this helps someone. Give me some time to wrap this up with a bow on it and I'll publish it to Posh gallery for use, we will certainly be using it for our DSC. I'll be reporting this to the VSTS team so let's hope a fix comes out to make this post obsolete and serve as an exemplary specimen of my incredible storytelling ability!&lt;/p&gt;
+</content:encoded>
 		</item>
 		<item>
 			<title>Adding SameSite Cookie Support In ASP.NET</title>
 			<link>https://kamranicus.com/posts/2017-02-23-samesite-cookies-in-asp-net</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;I was reading Scott Helme's post on how &lt;a href="https://scotthelme.co.uk/csrf-is-dead/"&gt;CSRF is Dead&lt;/a&gt; because of the new Same Site cookie spec (which is supported in &lt;a href="http://caniuse.com/#feat=same-site-cookie-attribute"&gt;Chrome and soon FF&lt;/a&gt;).&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2017-02-23-samesite-cookies-in-asp-net</guid>
 			<pubDate>Thu, 23 Feb 2017 23:18:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;I was reading Scott Helme's post on how &lt;a href="https://scotthelme.co.uk/csrf-is-dead/"&gt;CSRF is Dead&lt;/a&gt; because of the new Same Site cookie spec (which is supported in &lt;a href="http://caniuse.com/#feat=same-site-cookie-attribute"&gt;Chrome and soon FF&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;I wanted to add support into &lt;a href="http://ktomg.com"&gt;KTOMG&lt;/a&gt; so I was trying to figure out how to modify my authentication flow to add the attribute. However, &lt;a href="https://msdn.microsoft.com/en-us/library/system.web.httpcookie(v=vs.110).aspx"&gt;HttpCookie&lt;/a&gt; is sealed and can't be modified so what's a well meaning security citizen supposed to do?!&lt;/p&gt;
+&lt;p&gt;Well, thanks to &lt;a href="http://stackoverflow.com/a/38957177/109458"&gt;this StackOverflow answer&lt;/a&gt;, it's actually pretty simple and can be done on any IIS website using URL rewrite!&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;system.webServer&amp;gt;
+  &amp;lt;rewrite&amp;gt;
+    &amp;lt;outboundRules&amp;gt;
+        &amp;lt;clear /&amp;gt;
+        &amp;lt;rule name=&amp;quot;Add SameSite&amp;quot; preCondition=&amp;quot;No SameSite&amp;quot;&amp;gt;
+          &amp;lt;match serverVariable=&amp;quot;RESPONSE_Set_Cookie&amp;quot; pattern=&amp;quot;.*&amp;quot; negate=&amp;quot;false&amp;quot; /&amp;gt;
+          &amp;lt;action type=&amp;quot;Rewrite&amp;quot; value=&amp;quot;{R:0}; SameSite=lax&amp;quot; /&amp;gt;
+          &amp;lt;conditions&amp;gt;
+          &amp;lt;/conditions&amp;gt;
+        &amp;lt;/rule&amp;gt;
+        &amp;lt;preConditions&amp;gt;
+          &amp;lt;preCondition name=&amp;quot;No SameSite&amp;quot;&amp;gt;
+            &amp;lt;add input=&amp;quot;{RESPONSE_Set_Cookie}&amp;quot; pattern=&amp;quot;.&amp;quot; /&amp;gt;
+            &amp;lt;add input=&amp;quot;{RESPONSE_Set_Cookie}&amp;quot; pattern=&amp;quot;; SameSite=lax&amp;quot; negate=&amp;quot;true&amp;quot; /&amp;gt;
+          &amp;lt;/preCondition&amp;gt;
+        &amp;lt;/preConditions&amp;gt;
+      &amp;lt;/outboundRules&amp;gt;
+    &amp;lt;/rewrite&amp;gt;
+&amp;lt;/system.webServer&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;These outbound rules will add &lt;code&gt;SameSite=lax&lt;/code&gt; to any Set-Cookie header in responses from your site (that are not already marked SameSite), so all cookies effectively set by your site become SameSite cookies.&lt;/p&gt;
+&lt;p&gt;In this case, I'm using Lax security (see Scott's post above for a good explanation of Lax vs. Strict) because I don't quite have the dual cookie authentication suggested by Scott (e.g. one to make yourself &amp;quot;known&amp;quot; and logged-in, the other that MUST be present on any secure page such as your Account page). I do plan to implement dual cookie auth whenever I get around to migrating to .NET Core.&lt;/p&gt;
+</content:encoded>
 		</item>
 		<item>
 			<title>Building a Raspberry Pi 3 Baby Monitor</title>
 			<link>https://kamranicus.com/posts/2017-02-21-building-a-raspberry-pi-3-baby-monitor-livestream-audio-video</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;Our little baby boy came into the world February 6 and we couldn't be happier! During the course of preparing for the birth and buying items, a baby monitor had been high on the list--but I wasn't super happy with the choices available. So I &lt;a href="/guides/raspberry-pi-3-baby-monitor"&gt;built my own&lt;/a&gt;!&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2017-02-21-building-a-raspberry-pi-3-baby-monitor-livestream-audio-video</guid>
 			<pubDate>Tue, 21 Feb 2017 19:25:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;Our little baby boy came into the world February 6 and we couldn't be happier! During the course of preparing for the birth and buying items, a baby monitor had been high on the list--but I wasn't super happy with the choices available. So I &lt;a href="/guides/raspberry-pi-3-baby-monitor"&gt;built my own&lt;/a&gt;!&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;A friend had recommended the &lt;a href="https://www.amazon.com/gp/product/B01M34SOIM/ref=as_li_tl?ie=UTF8&amp;amp;tag=kamranicus-20&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;linkCode=as2&amp;amp;creativeASIN=B01M34SOIM&amp;amp;linkId=5e4ae35731346f971eb4deaa3d321160"&gt;Summer baby monitor&lt;/a&gt; series. Another friend just recommended the &lt;a href="https://www.amazon.com/gp/product/B00WBJGUA2/ref=as_li_tl?ie=UTF8&amp;amp;tag=kamranicus-20&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;linkCode=as2&amp;amp;creativeASIN=B00WBJGUA2&amp;amp;linkId=708b18eb1764f496eacac072f1d6e243"&gt;Nest Cam&lt;/a&gt; since it was easy to use and viewable on any device. Reading the reviews on the Summer monitor and looking at the example image resolution left a bit to be desired--certainly it would &lt;em&gt;work&lt;/em&gt; but I sort of wanted higher quality and the battery life and range (125 ft) on the viewing tablet was god awful. The Nest Cam seemed promising, able to hook up to Wi-Fi but it was definitely at a pretty high price point, being about $200. The other thing being a techie was the whole security aspect of the IoT space--I trusted myself to build a more secure system rather than &lt;a href="https://information.rapid7.com/iot-baby-monitor-research.html"&gt;chancing vulnerabilities/exploits in any monitor I bought&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I knew there had to be a more affordable option that would still give me a lot of flexibility and options. The &lt;a href="https://www.raspberrypi.org/"&gt;Raspberry Pi&lt;/a&gt; seemed like a perfect use case! If you haven't heard of a Pi, it's a small programmable computer with USB, Wi-Fi, Bluetooth, Ethernet, and SD card memory. It's cheap (a full kit is only $50), USB hardware is cheap, and it has a 1080p 30fps camera module for high-resolution streaming--I could configure it to simply start streaming at bootup and then view it on &lt;em&gt;any&lt;/em&gt; device including console web browsers, tablets, or our phones. I could also properly secure the stream (and Pi) to ensure it wasn't available outside my home network.&lt;/p&gt;
+&lt;p&gt;You can &lt;a href="/guides/raspberry-pi-3-baby-monitor"&gt;check out the full guide to building it&lt;/a&gt;, it doesn't take long and all the hardware can be acquired for sub-$100 depending on what options you want.&lt;/p&gt;
+&lt;p&gt;The quality speaks for itself!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;720p, low light&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/guides/images/raspberry-pi-3-baby-monitor/baby.png" class="img-fluid" alt="Image quality, low light" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;720p, high light&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/guides/images/raspberry-pi-3-baby-monitor/baby-day.png" class="img-fluid" alt="Image quality, high light" /&gt;&lt;/p&gt;
+&lt;p&gt;In addition you also have high quality audio via a USB condenser microphone! There seems to be a small issue with using 1080p resolution with the software package but hopefully I can sort that out soon and update the images to be 1080p.&lt;/p&gt;
+</content:encoded>
 		</item>
 		<item>
 			<title>Store Binaries Next to Powershell DSC Using Git LFS</title>
 			<link>https://kamranicus.com/posts/2017-02-04-powershell-dsc-git-lfs-binaries</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;A common need when configuring servers using &lt;a href="https://msdn.microsoft.com/en-us/powershell/dsc/overview"&gt;Powershell DSC&lt;/a&gt; is installing software or copying binary files, for example, installing the Java SDK, Sysinternals, MSI installers, or what have you.&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2017-02-04-powershell-dsc-git-lfs-binaries</guid>
 			<pubDate>Sat, 04 Feb 2017 15:11:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;A common need when configuring servers using &lt;a href="https://msdn.microsoft.com/en-us/powershell/dsc/overview"&gt;Powershell DSC&lt;/a&gt; is installing software or copying binary files, for example, installing the Java SDK, Sysinternals, MSI installers, or what have you.&lt;/p&gt;
+&lt;!-- More --&gt;
+&lt;h2 id="updates"&gt;Updates&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;6/14/2017&lt;/strong&gt;: My good friend and colleague &lt;a href="https://erikonarheim.com"&gt;Erik&lt;/a&gt; was going through this exercise at work and let me know the code doesn't &lt;em&gt;actually&lt;/em&gt; work. Whoops! Apparently when I tested, the binaries weren't actually in Git LFS since I had already checked them in. However, I did manage to solve the issue but for now you may need to use a custom Script resource until I release a DSC module. &lt;a href="/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts"&gt;Check out this post&lt;/a&gt; for an explanation and solution. I will update this post again with my new resource once available.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="using-a-network-share"&gt;Using a network share&lt;/h2&gt;
+&lt;p&gt;Depending on the software, there are multiple ways to do the installation--using the &lt;a href="https://msdn.microsoft.com/en-us/powershell/dsc/packageresource"&gt;Package&lt;/a&gt; resource, copying files/manipulating the registry, etc. Common to all cases is the fact you need a &lt;em&gt;source&lt;/em&gt; of the installation. Typically this is an exe, msi, zip, or some other large binary file.&lt;/p&gt;
+&lt;p&gt;If I asked you where to store common installation source files that need to be accessible by any arbitrary server for DSC, you might (rightly) say, &amp;quot;A network share!&amp;quot; This is where most articles on using DSC stop.&lt;/p&gt;
+&lt;p&gt;You would do something like this, such as copying a zip file from the share to a target node:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-powershell"&gt;Configuration WebServer {
+  Param($Credential)
+
+  File EnsureSysinternalsIsPresentInInstallationSource {
+    Ensure = &amp;quot;Present&amp;quot;
+    DestinationPath = &amp;quot;C:\DSC\Sources\SysInternalsSuite-2016-11-18.zip&amp;quot;
+    SourcePath = &amp;quot;\\contoso.com\DSC\Sources\SysInternalsSuite-2016-11-18.zip&amp;quot;
+    Credential = $Credential
+  }
+
+  Archive EnsureSysInternalsIsInstalled {
+    Ensure = &amp;quot;Present&amp;quot;
+    Destination = &amp;quot;C:\Utilities\Sysinternals&amp;quot;
+    Path = &amp;quot;C:\DSC\Sources\SysInternalsSuite-2016-11-18.zip&amp;quot;
+  }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here we are copying the Sysinternals source archive to the target node for extraction. The network share is secured to some credential we've passed in.&lt;/p&gt;
+&lt;p&gt;In some cases, some DSC resources allow using UNC paths as their source but I've found this to be inconsistently implemented, finicky and riddled with permission issues, especially when doing complex installations that may require manual scripting. Behind the scenes Powershell has to mount the remote share and you can run into strange issues because of this--hours and days have been spent diagnosing network issues only to come down to black magic AD configuration. I've been burned too often to recommend this approach.&lt;/p&gt;
+&lt;h2 id="binaries-are-configuration-too"&gt;Binaries are configuration too&lt;/h2&gt;
+&lt;p&gt;There's another issue. As a developer who moved into a more operational role (DevOps!), I've made it a point to store all our DSC in source control (Git, specifically). So now I'm in a situation where all my configuration is versioned and in source control but my installation sources or other binaries are stored separately in a file share.&lt;/p&gt;
+&lt;p&gt;I don't like it. You should &lt;em&gt;store things that relate together next to each other.&lt;/em&gt; If you don't, it introduces extra complexity:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I need to ensure the entire team can access the file share&lt;/li&gt;
+&lt;li&gt;Anyone could accidentally remove or change a file in the share and kill our DSC&lt;/li&gt;
+&lt;li&gt;I need to document the sources somewhere in the repository&lt;/li&gt;
+&lt;li&gt;The installation source files are not versioned or audited&lt;/li&gt;
+&lt;li&gt;As mentioned above, your mileage may vary with access to network resources&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The fact is installation binaries &lt;em&gt;are still configuration.&lt;/em&gt; Changes to the installation sources go hand-in-hand with changes to your DSC because they are married together. In your Git history, you want a record &lt;strong&gt;of all changes to any aspect of your configuration.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id="using-git-lfs-to-store-binaries"&gt;Using Git LFS to store binaries&lt;/h2&gt;
+&lt;p&gt;Normally storing binaries in Git isn't a recommended approach. Git wasn't designed for gigabye repositories. However, there's an extension available called &lt;a href="https://git-lfs.github.com/"&gt;Git Large File Storage (LFS)&lt;/a&gt;. It supports gigabye files and reduces repository size by storing the binaries on the remote server.&lt;/p&gt;
+&lt;p&gt;Since we're using TFS, &lt;a href="https://www.visualstudio.com/en-us/docs/git/manage-large-files"&gt;Git LFS is supported&lt;/a&gt;. It's also supported on pretty much every major Git hosting provider. The only dependency is that local development requires you to install the Git LFS extension--something easily put into the README of the repository.&lt;/p&gt;
+&lt;p&gt;Once you configure Git LFS for a repository:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git lfs track &amp;quot;*.zip&amp;quot;
+git lfs track &amp;quot;*.exe&amp;quot;
+git lfs track &amp;quot;*.msi&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can now add these binary files and they'll be tracked in Git LFS (track whatever you need).&lt;/p&gt;
+&lt;p&gt;Let's say for our purposes our repository now looks like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;configuration/WebServer.ps1
+installers/sysinternals/SysInternalsSuite-2016-11-18.zip
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now you can efficiently store binary files alongside your configuration files!&lt;/p&gt;
+&lt;h2 id="downloading-installers-during-dsc-pull"&gt;Downloading Installers During DSC Pull&lt;/h2&gt;
+&lt;p&gt;We're using DSC pull, which is the recommended approach for using DSC if you want to scale it out across your clusters. How does our DSC change now that we're storing the installers side-by-side?&lt;/p&gt;
+&lt;p&gt;Presumably, you've managed to get your configs over to the pull server (which is a series of articles I still intend to write), but your installers are still stored in Git. What to do?&lt;/p&gt;
+&lt;p&gt;Instead of copying files from a share, we can use some APIs available to use in TFS (or GitHub or what have you) to &lt;strong&gt;download the installers locally.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The TFS Rest API is documented and you can see there's a way to &lt;a href="https://www.visualstudio.com/en-us/docs/integrate/api/git/items#get-a-file"&gt;download a folder as a zip file or stream a file&lt;/a&gt;--which is perfect!&lt;/p&gt;
+&lt;p&gt;For TFS, the format of the URL is like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;GET https://{instance}/DefaultCollection/{project}/_apis/git/repositories/{repository}/items?api-version={version}&amp;amp;scopePath={itemPath}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To get a specific &lt;em&gt;branch&lt;/em&gt; (in cases where different branches are for different environments), you can pass &lt;code&gt;&amp;amp;versionType=branch&amp;amp;version={branch}&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This works for on-premise TFS and VSTS. There are &lt;a href="https://developer.github.com/v3/repos/contents/#get-archive-link"&gt;similar APIs&lt;/a&gt; for GitHub.&lt;/p&gt;
+&lt;p&gt;Using the &lt;a href="https://github.com/PowerShell/xPSDesiredStateConfiguration#xremotefile"&gt;xRemoteFile&lt;/a&gt; resource, we can bring down our dependencies to the local machine to use, so our configuration above would change:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-powershell"&gt;Configuration WebServer {
+  Param($Credential)
+
+  Import-DscResource -Name xPSDesiredStateConfiguration 
+
+  xRemoteFile EnsureSysinternalsIsPresentInInstallationSource {
+    DestinationPath = &amp;quot;C:\DSC\Sources\SysInternalsSuite-2016-11-18.zip&amp;quot;
+    Uri = &amp;quot;https://tfs.contoso.com/tfs/DefaultCollection/TeamProject/_apis/git/repositories/DSC/items?api-version=1.0&amp;amp;scopePath=installers/sysinternals/SysInternalsSuite-2016-11-18.zip&amp;quot;
+    Credential = $Credential
+    MatchSource = $True
+  }
+
+  Archive EnsureSysInternalsIsInstalled {
+    Ensure = &amp;quot;Present&amp;quot;
+    Destination = &amp;quot;C:\Utilities\Sysinternals&amp;quot;
+    Path = &amp;quot;C:\DSC\Sources\SysInternalsSuite-2016-11-18.zip&amp;quot;
+  }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To use &lt;code&gt;xRemoteFile&lt;/code&gt; we need to import the xPSDesiredStateConfiguration DSC module &lt;a href="https://msdn.microsoft.com/en-us/powershell/dsc/pullserver#placing-configurations-and-resources"&gt;which has to be stored&lt;/a&gt; on the pull server. Then we can use the appropriate URL to download an individual installer, or we could have downloaded the zip of the &lt;strong&gt;installers&lt;/strong&gt; folder and unzipped it locally. The &lt;code&gt;MatchSource&lt;/code&gt; parameter should prevent re-downloading the file if it already exists (and we added the version to the zip file). We are still passing a &lt;code&gt;Credential&lt;/code&gt; because your source control repository is probably still authenticated.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Attention Reader:&lt;/strong&gt; This actually doesn't work when using Git LFS. You have to &lt;a href="/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts"&gt;shave some yaks&lt;/a&gt; before you can get it to work.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If you needed something more sophisticated, you could wrap downloading into a custom resource or Script resource--e.g. &lt;a href="https://www.visualstudio.com/en-us/docs/integrate/api/git/items#get-item-metadata-for"&gt;use the SHA1 hash&lt;/a&gt; to compare whether it needed to be downloaded again, etc. Where you go from here is your own choice!&lt;/p&gt;
+&lt;p&gt;We've been using this pattern with great success--it keeps everything together, it's simple, and it lets us track the versions/history of our installation sources.&lt;/p&gt;
+</content:encoded>
 		</item>
 		<item>
 			<title>See You at Build 2017</title>
 			<link>https://kamranicus.com/posts/2017-02-01-build-2017</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;Come May 10, I'll be heading to Seattle for the &lt;a href="http://build.microsoft.com"&gt;Microsoft Build 2017&lt;/a&gt; conference with my good friend and co-worker, &lt;a href="http://twitter.com/erikonarheim"&gt;Erik Onarheim&lt;/a&gt;. We'll be looking forward to any talks around Windows Server containers, container orchestration, and other "DevOps" stuff related to what we do at work.&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2017-02-01-build-2017</guid>
 			<pubDate>Thu, 02 Feb 2017 01:45:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;Come May 10, I'll be heading to Seattle for the &lt;a href="http://build.microsoft.com"&gt;Microsoft Build 2017&lt;/a&gt; conference with my good friend and co-worker, &lt;a href="http://twitter.com/erikonarheim"&gt;Erik Onarheim&lt;/a&gt;. We'll be looking forward to any talks around Windows Server containers, container orchestration, and other &amp;quot;DevOps&amp;quot; stuff related to what we do at work.&lt;/p&gt;
+&lt;p&gt;I've always enjoyed my time at Build and my wife will be joining me, she's never been to Seattle so it'll be fun for her too!&lt;/p&gt;
+</content:encoded>
 		</item>
 		<item>
 			<title>Introduction to TypeScript Course Now Available</title>
 			<link>https://kamranicus.com/posts/2017-01-31-introduction-to-typescript-course-packt-publishing</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;I'm very excited to share that the course I've been working on the past few months, &lt;a href="https://www.packtpub.com/application-development/introduction-typescript-video"&gt;Introduction to TypeScript&lt;/a&gt; is now available to purchase through Packt Publishing! I should have some discount codes to share soon (will Tweet/update when available).&lt;/p&gt;
+&lt;p&gt;&lt;img src="/posts/images/2017-01-31-course-cover.jpg" class="img-fluid" alt="Course cover"&gt;&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2017-01-31-introduction-to-typescript-course-packt-publishing</guid>
 			<pubDate>Tue, 31 Jan 2017 13:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;I'm very excited to share that the course I've been working on the past few months, &lt;a href="https://www.packtpub.com/application-development/introduction-typescript-video"&gt;Introduction to TypeScript&lt;/a&gt; is now available to purchase through Packt Publishing! I should have some discount codes to share soon (will Tweet/update when available).&lt;/p&gt;
+&lt;p&gt;&lt;img src="/posts/images/2017-01-31-course-cover.jpg" class="img-fluid" alt="Course cover" /&gt;&lt;/p&gt;
+&lt;!-- More --&gt;
+&lt;p&gt;You can watch the &lt;a href="https://www.packtpub.com/mapt/video/Application%20Development/9781786465207/16234/16923/The+Course+Overview"&gt;course overview&lt;/a&gt; if you want to learn what's in store.&lt;/p&gt;
+&lt;h2 id="goals"&gt;Goals&lt;/h2&gt;
+&lt;p&gt;My goals while developing the course were pretty simple:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Provide background on TypeScript&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The first couple sections of the course focus on &lt;em&gt;why TypeScript.&lt;/em&gt; Not only trying to answer, &amp;quot;Why would I use TypeScript?&amp;quot; but also, &amp;quot;Why is TypeScript even a thing?&amp;quot; I think it's important to understand &lt;em&gt;why&lt;/em&gt; you're using a language and to understand the context in which to use it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Learn by doing&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Throughout the course the majority of content is presented inside of Visual Studio Code. Why? Because that's where &lt;em&gt;you'll&lt;/em&gt; be working (or in some other IDE). After the first few introductory sections, the amount of slides I use in the rest of the course are mainly explanatory/summary slides. The rest &lt;strong&gt;is all in the code.&lt;/strong&gt; Furthermore, I've built the course sample code to allow following along--each section has its own folder and it just starts at the final state, so you can begin where I leave off.&lt;/p&gt;
+&lt;p&gt;The other motivation to focus so much on actual coding is the fact that &lt;strong&gt;one of the primary reasons to use TypeScript is for productivity.&lt;/strong&gt; And you just can't &lt;em&gt;tell&lt;/em&gt; someone how much time they will save, you need to &lt;em&gt;prove&lt;/em&gt; it. I hope by the sheer amount of coding samples I walk through that it will be crystal clear how useful TypeScript can be.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Focus on real-world samples&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The middle of the course introduces language concepts and features by building a sample application from scratch. I purposefully designed an example that didn't assume prior knowledge of any other JavaScript framework or library--I want people to &amp;quot;go in fresh.&amp;quot; This is to allow the viewer to see TypeScript in a purely isolated context to learn the language and how to design their own applications from scratch. I cover environment setup, refactoring, and testing.&lt;/p&gt;
+&lt;p&gt;In the latter part of the course, I switch to migrating several &amp;quot;vanilla&amp;quot; JavaScript codebases. I intentionally chose &lt;em&gt;publically available projects.&lt;/em&gt; Why? Because I knew if I wrote contrived samples to migrate I would be biased towards designing it with TypeScript in mind. Instead, I chose libraries that &lt;strong&gt;other people wrote&lt;/strong&gt; so they could be more raw and real. The only thing I did was choose examples that would allow me to introduce more concepts and workflows that people might encounter in the real world &lt;em&gt;and&lt;/em&gt; that could support migration in a reasonable time for a course.&lt;/p&gt;
+&lt;h2 id="post-mortem"&gt;Post-mortem&lt;/h2&gt;
+&lt;p&gt;This was my first course I developed myself. I was happy with the folks I worked with at Packt and I think I did a good job planning out work. I did &lt;em&gt;not&lt;/em&gt; do a good job at estimating the amount of time up front--I think I had anticipated a 3 hour course and the final time is about 8 hours. I'm very happy with all the produced content but &lt;em&gt;man&lt;/em&gt; that was a terrible estimate. Now I know for the future what to expect so I'm hoping future courses will have better up-front time estimates.&lt;/p&gt;
+&lt;p&gt;The editors I worked with remarked that I was a very good author to work with and wondered what tips I could share to help other authors keep to their schedule (we finished early! The course was expected to be released in February). Each section was due about 6-7 days apart and this is how I split the work to make my evenings and weekends manageable:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Code first (1-2 days)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Each section comprises of about 3-4 videos. I would tackle one section at a time, where I'd begin by &lt;em&gt;writing all the code examples first&lt;/em&gt;. Why? Because even I didn't quite know what I'd learn when I started writing the code. As I wrote the code, I'd take down notes on what I wanted to highlight, what obstacles I ran into, and I'd mentally picture how I'd walk through the code to get to the end result.&lt;/p&gt;
+&lt;p&gt;This is by far the most time-consuming phase of making the course and I'd usually do this part on Sundays and Tuesdays (that worked best for my schedule, see Punchcard below). It's also where I learned the most and did the most research.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Content next (Evening)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Once the code was written, I had a clear picture of where to begin and where to end. Then I'd spend time on the slides--writing up any content that needed an introduction or explanation, the goals of the section, and a summary of everything the viewer should have learned.&lt;/p&gt;
+&lt;p&gt;In retrospect, this is the step I should have written all the required metadata for. The metadata is required for distribution of the course and I waited until the end to do it all, it would be have been more efficient to do it during this step.&lt;/p&gt;
+&lt;p&gt;Almost exclusively I worked on this during the evenings in the week. Some presentations took longer to make than others, depending on how much content I needed to cover.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Record last (Evening)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;After the code and slides were done, I recorded. Using the software provided, I recorded each video in a single session, usually after dinner. My wife would go downstairs with the dog and I'd let her know when I was done. There were only a couple sections where I had to split recording into two days, otherwise I could usually do it in one night. I'm a perfectionist, so any part of the session I messed up I just started that part over. Each minute of produced material was about 2.3 minutes of raw material, so for a 20 minute video I'd spend about 46 minutes recording. Mainly this was because I didn't write a script beforehand or anything, I just tried to &amp;quot;present&amp;quot; and when I stumbled or made a mistake, I'd just start that bit over again.&lt;/p&gt;
+&lt;p&gt;A few things I did to minimize headaches during editing:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Don't move the mouse while speaking in case of mistakes/cutting&lt;/li&gt;
+&lt;li&gt;Minimize or eliminate parts of the screen that change dynamically (file explorer, clocks, taskbar, notifications)&lt;/li&gt;
+&lt;li&gt;Clear the terminal before each step. It would look weird to have different command history being shown between cuts&lt;/li&gt;
+&lt;li&gt;Ensure the mic was positioned consistently between sessions (I have a boom arm)&lt;/li&gt;
+&lt;li&gt;Ensure the mixer was always the same settings each session (I never touched the settings after I started recording the first video)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I think the end result turned out really well because of the steps I took to minimize how much of the screen/sound changed during recording. All in all, I don't think any section took more than 2-4 hours to record.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Don't be afraid to change the outline&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The original outline of the course was a bit different than what ended up being final. As I worked through each section, sometimes topics that I had planned to cover later came up sooner than expected. Rather than trying to avoid it, I just modified the outline to compensate. Overall, there was only one case where I had to move/merge sections and the editors were able to work with me on it--it ended up being way better than the original plan I had.&lt;/p&gt;
+&lt;h2 id="stats"&gt;Stats&lt;/h2&gt;
+&lt;p&gt;I can use these basic stats to help estimate any other courses I work on:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Raw unedited video:&lt;/strong&gt; 19 hours, 5 minutes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Final produced video:&lt;/strong&gt; 8 hours, 17 minutes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Days to produce:&lt;/strong&gt; Nov 11 - Jan 18 (68 days or 10 weeks)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Course sample code commits:&lt;/strong&gt; 78&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Estimated time spent&lt;/strong&gt;: 60-80 hours (6-8 hours per week)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Git Commit Punchcard&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="images%5C2017-01-31-course-punchcard.jpg" class="img-fluid" alt="Git punchcard" /&gt;&lt;/p&gt;
+&lt;p&gt;You can see clearly that the majority of time was spent in the evenings but hardly after midnight--there was one instance I had to stay up a bit late to finish. You can also see I took advantage of my holiday break (Thanksgiving and Christmas) to work during the day. Sun-Tue were coding days whereas Wed-Fri were mainly recording or content creation. Thu-Sat nights were almost always free, perfect for spending time with friends and getting &lt;a href="https://kamranicus.com/posts/2017-01-02-year-in-review"&gt;other work done&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Data is useful, especially to understand how much time goes into an endeavor like this--time is money, after all. For subsequent courses I plan to store &lt;em&gt;all&lt;/em&gt; course material in Git (including slides/metadata) and also use something like &lt;a href="https://www.rescuetime.com/"&gt;RescueTime&lt;/a&gt; to track my time spent in the background. That will give me a much clearer picture of time spent on the course.&lt;/p&gt;
+&lt;h2 id="whats-next"&gt;What's next?&lt;/h2&gt;
+&lt;p&gt;While it would be ideal to do the follow-up course to this one immediately, I didn't know what my schedule would look like after my first kiddo arrives. The editors and I agreed that it didn't make sense for me to commit to doing another course so soon with such an unknown schedule. Once I have some idea of how much time I have, I'll be thinking about other courses. It's more important that I spend time with little Ayub first.&lt;/p&gt;
+</content:encoded>
 		</item>
 		<item>
 			<title>Exposing Subtle Timing Bugs With a Slow CI Server</title>
 			<link>https://kamranicus.com/posts/2017-01-23-subtle-bugs-exposed-with-slow-ci-servers</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;We ran into a subtle issue with &lt;a href="http://excaliburjs.com"&gt;Excalibur.js&lt;/a&gt; recently, as documented in &lt;a href="https://github.com/excaliburjs/Excalibur/pull/740"&gt;this pull request&lt;/a&gt;.&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2017-01-23-subtle-bugs-exposed-with-slow-ci-servers</guid>
 			<pubDate>Tue, 24 Jan 2017 02:44:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;We ran into a subtle issue with &lt;a href="http://excaliburjs.com"&gt;Excalibur.js&lt;/a&gt; recently, as documented in &lt;a href="https://github.com/excaliburjs/Excalibur/pull/740"&gt;this pull request&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Turns out one of the CI systems we use to test on Windows, &lt;a href="http://appveyor.com"&gt;Appveyor&lt;/a&gt;, exposed a long-standing bug in the draw code because it's &lt;strong&gt;slower&lt;/strong&gt; than the other Linux-based CI system we use, &lt;a href="http://travis-ci.org"&gt;Travis CI&lt;/a&gt;. I don't know whether that is something that Appveyor should be proud of--but it does showcase the fact that when testing asynchronous or animation-based libraries, testing on slower systems can reveal timing issues.&lt;/p&gt;
+&lt;p&gt;We are using &lt;a href="http://phantomjs.org/"&gt;PhantomJS&lt;/a&gt; and &lt;a href="https://github.com/HumbleSoftware/js-imagediff"&gt;js-imagediff&lt;/a&gt; to do visual integration testing. We discovered the bug when writing a test that attached to our &amp;quot;post draw&amp;quot; event handler and tried to ensure the HTML canvas matched an expected image--an awesome way to do visual integration tests. The problem was that we were seeing the image wasn't being &lt;em&gt;drawn&lt;/em&gt; on the first frame, even though the engine had &amp;quot;loaded&amp;quot; all the textures.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;log: uiactor postdraw, rgba:, 0, 0, 100, 255
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is logging the top-left pixel of the canvas and it's the default pixel color of our background--in other words, even after the engine &lt;strong&gt;said&lt;/strong&gt; it was loaded, the first frame had nothing drawn!&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/excaliburjs/Excalibur/issues/748"&gt;The issue&lt;/a&gt; turned out to be setting &lt;code&gt;Image.src&lt;/code&gt; and not handling the &lt;code&gt;load&lt;/code&gt; event to ensure we had loaded all the pixels before drawing (because setting &lt;code&gt;src&lt;/code&gt; is asynchronous--something we &lt;em&gt;knew&lt;/em&gt; yet forgot in this particular instance to account for). On fast systems, the pixels were loaded in-between calls to &lt;code&gt;requestAnimationFrame&lt;/code&gt; and we never noticed it. On slow systems, the pixels could take 1-2 frames before the pixels were available, something only a slow system would exhibit. To fix the issue, we ended up realizing we didn't need to rely on a backing &lt;code&gt;Image&lt;/code&gt; element and could simply use &lt;a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage"&gt;&lt;code&gt;CanvasRenderingContext2D.drawImage&lt;/code&gt;&lt;/a&gt; to draw the &lt;em&gt;backing Canvas&lt;/em&gt; context instead--more efficient and faster overall.&lt;/p&gt;
+&lt;p&gt;Thanks Appveyor!&lt;/p&gt;
+</content:encoded>
 		</item>
 		<item>
 			<title>New Year, New Site Design Using Wyam Static Site Generator</title>
 			<link>https://kamranicus.com/posts/2017-01-21-new-design-wyam-generator</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;In preparation for the upcoming release of my new course, &lt;a href="https://www.packtpub.com/application-development/introduction-typescript-video"&gt;Introduction to TypeScript&lt;/a&gt; and because it's 2017, I decided it would be best to update my personal site with a more complete picture of myself.&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2017-01-21-new-design-wyam-generator</guid>
 			<pubDate>Sun, 22 Jan 2017 00:25:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;In preparation for the upcoming release of my new course, &lt;a href="https://www.packtpub.com/application-development/introduction-typescript-video"&gt;Introduction to TypeScript&lt;/a&gt; and because it's 2017, I decided it would be best to update my personal site with a more complete picture of myself.&lt;/p&gt;
+&lt;!-- More --&gt;
+&lt;p&gt;When &lt;a href="https://kamranicus.com/posts/2011-04-05-welcome-to-kamranicus-yaps"&gt;Kamranicus began&lt;/a&gt;, I had created a custom MVC blog--complete with a control panel and web editor. This was overkill and I came to realize there was no real reason to have a &lt;em&gt;dynamic&lt;/em&gt; site.&lt;/p&gt;
+&lt;p&gt;Three years ago I moved &lt;a href="https://kamranicus.com/posts/2013-12-04-kamranicus-now-with-100-percent-more-octopress"&gt;onto Octopress&lt;/a&gt; since Jekyll was and is still a popular static site generator. However, there were still some downsides to Octopress/Jekyll, namely:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It requires a Ruby install and I'm on Windows, it's a pain&lt;/li&gt;
+&lt;li&gt;It uses Liquid templates which I don't want to deal with&lt;/li&gt;
+&lt;li&gt;Plugins are written in Ruby and I don't know Ruby (yet)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I have &lt;em&gt;no problem&lt;/em&gt; with Ruby, I'd like to learn someday in fact. But today is not that day and I would rather like to be able to extend and customize my site with a tech stack I'm familiar with.&lt;/p&gt;
+&lt;p&gt;Could there be something better three years later?&lt;/p&gt;
+&lt;h2 id="wyam-the.net-static-site-generator"&gt;Wyam the .NET static site generator&lt;/h2&gt;
+&lt;p&gt;I first heard about &lt;a href="https://wyam.io"&gt;Wyam&lt;/a&gt; from &lt;a href="http://www.hanselman.com/blog/ExploringWyamANETStaticSiteContentGenerator.aspx"&gt;Scott Hanselman's blog post&lt;/a&gt; and I was &lt;em&gt;very&lt;/em&gt; interested--a site generator written in .NET that I can extend and customize! It is not just for blogs, it can generate static sites based on &amp;quot;Recipes&amp;quot; that you can write yourself and it uses a simple plug and play pipeline system that is fully customizable.&lt;/p&gt;
+&lt;p&gt;So finding this week to be the perfect opportunity after sending in my last work for my new course, I decided to jump right in and get this bad boy working.&lt;/p&gt;
+&lt;p&gt;I have to give huge props to &lt;a href="https://daveaglick.com/"&gt;Dave Glick&lt;/a&gt;, the creator. He was friendly and helpful as I was learning my way around, I even &lt;a href="https://github.com/Wyamio/Wyam/pull/397"&gt;contributed some bug fixes&lt;/a&gt; to the themes.&lt;/p&gt;
+&lt;h2 id="migrating-to-wyam"&gt;Migrating to Wyam&lt;/h2&gt;
+&lt;p&gt;Migrating to Wyam from Octopress was not hard but it was a little tedious. The YAML front matter of the blog posts in Wyam are slightly different enough that I had to use some Powershell to do some file transformation (yay &lt;code&gt;Substring&lt;/code&gt; and &lt;code&gt;Regex&lt;/code&gt;!). For example, the Jekyll &lt;code&gt;date:&lt;/code&gt; property needs to be &lt;code&gt;Published:&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;I also had to take care of redirects. In Jekyll, my posts were organized under &lt;code&gt;/blog/yyyy/mm/dd/post/&lt;/code&gt; but in Wyam the default is simply &lt;code&gt;/posts/post&lt;/code&gt;. You can enable using dates in the URL but frankly I liked the simpler URLs. You can use the &lt;code&gt;RedirectFrom:&lt;/code&gt; front matter property to provide a path that Wyam will then generate a redirect for (using meta refresh). Sweet! Again, some simple Powershell allowed me to update all my old posts with the redirect URLs.&lt;/p&gt;
+&lt;p&gt;Finally, the old blog was using Disqus for commenting and it turns out the &amp;quot;identifier&amp;quot; Disqus was using was the &lt;em&gt;full URL to the post&lt;/em&gt;. Not great. Luckily, any front matter properties are immediately available in the Razor templates, so I added a &lt;code&gt;disqus_identifier&lt;/code&gt; property (hold over from Jekyll) and referenced it in my &lt;code&gt;_PostFooter.cshtml&lt;/code&gt; template:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '&amp;#64;(Model.String(&amp;quot;disqus_identifier&amp;quot;) ?? Model.FilePath(Keys.RelativeFilePath).FileNameWithoutExtension.FullPath)';
+    var disqus_title = '&amp;#64;Model.String(BlogKeys.Title)';
+    var disqus_url = '&amp;#64;Context.GetLink(Model, true)';
+
+    // ... etc
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Using the &lt;code&gt;Model.String&lt;/code&gt; accessor, you can get at any declared document metadata. In the same fashion, &lt;code&gt;Context.String&lt;/code&gt; accesses the global metadata declared in your &lt;code&gt;wyam.config&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="customizing-wyam"&gt;Customizing Wyam&lt;/h2&gt;
+&lt;p&gt;The default theme, CleanBlog, that is included with the &lt;a href="https://wyam.io/recipes/blog/overview"&gt;Wyam blog recipe&lt;/a&gt; is pretty awesome--much better than the default themes in Jekyll or Octopress.&lt;/p&gt;
+&lt;p&gt;With my Octopress blog, I had always felt that I was doing myself a disservice using a pre-canned theme. I liked its simplicity but as a self-proclaimed &amp;quot;web developer&amp;quot;, I felt I had to, you know, &lt;em&gt;design my own theme&lt;/em&gt; and that's what you see now before you.&lt;/p&gt;
+&lt;p&gt;To customize the Wyam theme, it was very easy--you just copy the existing theme files to your &lt;strong&gt;input&lt;/strong&gt; directory and customize them. The layouts are all Razor templates which was refreshingly familiar. Any non-underscore-prefixed &lt;code&gt;.cshtml&lt;/code&gt; or &lt;code&gt;.md&lt;/code&gt; files get made into pages. Everything was so simple!&lt;/p&gt;
+&lt;p&gt;I ended up really liking the &lt;a href="http://qrohlf.com/trianglify/"&gt;Trianglify&lt;/a&gt; JavaScript library so I kept that for the hero banners across the site. I removed some extra libraries I didn't need and upgraded the rest. I'm not 100% convinced I even need jQuery still since I'm not using any Semantic UI JavaScript plugins yet.&lt;/p&gt;
+&lt;p&gt;Having previously used &lt;a href="http://semantic-ui.com"&gt;Semantic UI&lt;/a&gt; on the &lt;a href="http://excaliburjs.com"&gt;Excalibur.js&lt;/a&gt; site redesign, I decided to use it again--I've been pretty happy with it over Bootstrap due to the extra flexibility and modular design. I ripped Bootstrap out of the default theme and replaced it with my own customized Semantic install.&lt;/p&gt;
+&lt;p&gt;I built the current design within two days and I'm pretty happy with how it turned out. I still intend to customize it further but for now it's &amp;quot;good enough&amp;quot; in time for the course release.&lt;/p&gt;
+&lt;p&gt;You can, of course, &lt;a href="https://github.com/kamranayub/kamranayub.github.io"&gt;see my entire site's source code&lt;/a&gt; if you're interested. Getting the site to deploy via &lt;a href="http://appveyor.com"&gt;AppVeyor&lt;/a&gt; was not too bad--just had some trial and error issues with the magic incantations to get my DOS commands to work.&lt;/p&gt;
+&lt;h2 id="cloudflare-ssl"&gt;CloudFlare SSL&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://cloudflare.com"&gt;CloudFlare&lt;/a&gt; is amazing. I'm using it to provide SSL support for the site, since the site is hosted on GitHub Pages and they don't yet support SSL for custom domains. That's fine by me though, since CloudFlare is free and easy to set up.&lt;/p&gt;
+&lt;p&gt;Working in a &amp;quot;dev ops&amp;quot; role right now I've seen examples of how not using SSL can screw over sites. I'm a huge fan of SSL everywhere, even on static sites. I've already enabled &lt;a href="https://blog.cloudflare.com/enforce-web-policy-with-hypertext-strict-transport-security-hsts/"&gt;HSTS&lt;/a&gt; via CloudFlare on &lt;a href="http://ktomg.com"&gt;Keep Track of My Games&lt;/a&gt; to ensure the entire site is served over SSL.&lt;/p&gt;
+&lt;h2 id="showcasing-more-of-me"&gt;Showcasing more of &amp;quot;me&amp;quot;&lt;/h2&gt;
+&lt;p&gt;As you may have noticed at the top, I now have some new pages for the &lt;a href="/projects"&gt;projects I work on&lt;/a&gt;, &lt;a href="/speaking"&gt;talks I've given&lt;/a&gt;, and &lt;a href="/travel"&gt;links to my travel blogs&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This may all be things you didn't know about me--and I wouldn't blame you. Sure, I tend to mention things on Twitter but I have been wanting to have a place on the site where I can talk about and show the things I've been doing. I'm a busy guy!&lt;/p&gt;
+&lt;p&gt;I also include my social profiles at the bottom of every post and in the footer of the site so people know where to find me.&lt;/p&gt;
+&lt;h2 id="heres-to-a-new-year"&gt;Here's to a new year!&lt;/h2&gt;
+&lt;p&gt;I'm excited for the next year. I'll be having my first child in a matter of weeks, the new course will be going live by the end of the month, and I'm exploring some fun new projects for summer and fall.&lt;/p&gt;
+&lt;p&gt;Cheers!&lt;/p&gt;
+</content:encoded>
 		</item>
 		<item>
 			<title>Site Down Alerts using Azure App Insights and Zapier</title>
 			<link>https://kamranicus.com/posts/2017-01-10-azure-alerts-zapier-sms</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;It's &lt;a href="https://twitter.com/jordan_belinsky/status/818967360132513792"&gt;happened again&lt;/a&gt;. Even though I &lt;em&gt;do&lt;/em&gt; get emailed whenever &lt;a href="http://ktomg.com"&gt;KTOMG&lt;/a&gt; goes down, I don't pay attention to my email 24/7 and the site can be down for a bit until I realize it. In this case, I was cooking and wasn't at my computer or on my phone. The Twitter notification by a friendly user actually got me to check!&lt;/p&gt;
+&lt;p&gt;I know this is one of the headaches &lt;a href="https://kamranicus.com/blog/2016/10/18/ravendb-standard-non-commercial-license/"&gt;I willingly signed up for&lt;/a&gt; by moving to my own VM--and even though I get emailed when the site's down I hate not knowing that &lt;strong&gt;immediately&lt;/strong&gt;.&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2017-01-10-azure-alerts-zapier-sms</guid>
 			<pubDate>Wed, 11 Jan 2017 02:01:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;It's &lt;a href="https://twitter.com/jordan_belinsky/status/818967360132513792"&gt;happened again&lt;/a&gt;. Even though I &lt;em&gt;do&lt;/em&gt; get emailed whenever &lt;a href="http://ktomg.com"&gt;KTOMG&lt;/a&gt; goes down, I don't pay attention to my email 24/7 and the site can be down for a bit until I realize it. In this case, I was cooking and wasn't at my computer or on my phone. The Twitter notification by a friendly user actually got me to check!&lt;/p&gt;
+&lt;p&gt;I know this is one of the headaches &lt;a href="https://kamranicus.com/blog/2016/10/18/ravendb-standard-non-commercial-license/"&gt;I willingly signed up for&lt;/a&gt; by moving to my own VM--and even though I get emailed when the site's down I hate not knowing that &lt;strong&gt;immediately&lt;/strong&gt;.&lt;/p&gt;
+&lt;!-- More --&gt;
+&lt;h2 id="app-insights"&gt;App Insights&lt;/h2&gt;
+&lt;p&gt;The first thing you should do is get an &lt;a href="https://docs.microsoft.com/en-us/azure/application-insights/app-insights-overview"&gt;Azure App Insights account&lt;/a&gt;. &lt;strong&gt;It's free.&lt;/strong&gt; And you can even use it to &lt;a href="https://docs.microsoft.com/en-us/azure/application-insights/app-insights-monitor-performance-live-website-now"&gt;monitor your own VMs&lt;/a&gt;! This is how I can still get this for KTOMG:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cloud.githubusercontent.com/assets/563819/21832425/afa2d62e-d770-11e6-864a-ef6dd5dc13c9.png" class="img-fluid" alt="Server Metrics" /&gt;&lt;/p&gt;
+&lt;p&gt;It's awesome.&lt;/p&gt;
+&lt;p&gt;The other thing it can do is handle availability (ping) tests. It's &lt;a href="https://docs.microsoft.com/en-us/azure/application-insights/app-insights-monitor-web-app-availability"&gt;very easy to set up&lt;/a&gt; and then you can set an alert for it. I've done this already, where I've set it to email me whenever KTOMG is down at more than 3 locations over 3 minutes--in other words, my site has blown up.&lt;/p&gt;
+&lt;h2 id="using-a-webhook-with-zapier"&gt;Using a Webhook with Zapier&lt;/h2&gt;
+&lt;p&gt;I also use &lt;a href="http://zapier.com"&gt;Zapier&lt;/a&gt;, which is just a (fancier?) &lt;a href="http://ifttt.com"&gt;IFTTT&lt;/a&gt; clone. When I had deployed via Azure, I had &lt;a href="https://zapier.com/zapbook/windows-azure-web-sites/"&gt;set up a Zap to notify me&lt;/a&gt; whenever my Azure sites were deployed. Since I'm on my own now, I disabled that but now I'll show you how to use it to notify you via SMS and webhooks.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="http://zapier.com"&gt;Sign up for an account&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Create a new Zap&lt;/li&gt;
+&lt;li&gt;Select &amp;quot;Webhook by Zapier&amp;quot; as the trigger&lt;/li&gt;
+&lt;li&gt;Go through the steps until you get a new webhook URL&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src="https://cloud.githubusercontent.com/assets/563819/21832880/e0233246-d773-11e6-8b83-f974fe706ccd.png" class="img-fluid" alt="Webhook url" /&gt;&lt;/p&gt;
+&lt;p&gt;Now you've got a webhook URL which is just an HTTP endpoint you can POST to.&lt;/p&gt;
+&lt;p&gt;In Azure App Insights, you'll want to paste this URL into your alert &amp;quot;Webhook&amp;quot; setting:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cloud.githubusercontent.com/assets/563819/21832621/fe82c604-d771-11e6-839c-df997b44b942.png" class="img-fluid" alt="Webhook settings" /&gt;&lt;/p&gt;
+&lt;p&gt;Zapier will be asking you to test your hook. It's a bit hard to trigger an Azure alert, but all you really need to do is POST a JSON payload at the endpoint, so &lt;a href="https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/insights-webhooks-alerts"&gt;going off this Azure guide&lt;/a&gt;, use something like &lt;code&gt;curl&lt;/code&gt; or Postman to POST to the endpoint:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cloud.githubusercontent.com/assets/563819/21832689/7baa2492-d772-11e6-9b9b-d6be7161fc01.png" class="img-fluid" alt="Testing the hook" /&gt;&lt;/p&gt;
+&lt;p&gt;Now that the hook is tested, Zapier has filled in a bunch of template fields for you, pretty cool! On the left side of the Zap, click the (+) icon and add a Filter:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cloud.githubusercontent.com/assets/563819/21832706/9f6736c2-d772-11e6-8437-bad812a60201.png" class="img-fluid" alt="Add Zapier filter" /&gt;&lt;/p&gt;
+&lt;p&gt;We want to only send the Zap if the alert has been &amp;quot;Activated&amp;quot; (not if it gets Resolved). Chances are, you only care that the alert occurred and after that you can check your email/fix the issue to resolve it.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cloud.githubusercontent.com/assets/563819/21832731/c9a53d94-d772-11e6-899a-a52a1efea106.png" class="img-fluid" alt="Filter for Activated" /&gt;&lt;/p&gt;
+&lt;p&gt;Now, add an Action to send an SMS (or really, do whatever you want--I just want a text message).&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cloud.githubusercontent.com/assets/563819/21832757/ffe84ea0-d772-11e6-8dc5-9fc4eadd2023.png" class="img-fluid" alt="SMS action" /&gt;&lt;/p&gt;
+&lt;p&gt;You can use the template fields if you want, but this webhook is customized for our alert so I don't really need any info from the alert. If you were sending &lt;em&gt;multiple&lt;/em&gt; alerts to this single hook, you could use the fields of the JSON payload to customize the message here.&lt;/p&gt;
+&lt;p&gt;I am setting a &amp;quot;From number&amp;quot; because I can use an app like &lt;a href="https://play.google.com/store/apps/details?id=de.hoernchen.android.firealert2&amp;amp;hl=en"&gt;FireAlarm2&lt;/a&gt; to read my SMS and page me loudly (even if my phone is on vibrate).&lt;/p&gt;
+&lt;p&gt;That's it! You can test the Zap and it'll send you an SMS to verify you can receive messages. Now you'll always know when your site's down so you don't need to rely on your users.&lt;/p&gt;
+</content:encoded>
 		</item>
 		<item>
 			<title>2016: A Year in Review</title>
 			<link>https://kamranicus.com/posts/2017-01-02-year-in-review</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;Another year has passed and it's time to take a look back and see what I accomplished!&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2017-01-02-year-in-review</guid>
 			<pubDate>Tue, 03 Jan 2017 00:32:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;Another year has passed and it's time to take a look back and see what I accomplished!&lt;/p&gt;
+&lt;h2 id="open-source"&gt;Open Source&lt;/h2&gt;
+&lt;p&gt;It's been a busy year in open source for me with over 1100+ contributions, let's see...&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cloud.githubusercontent.com/assets/563819/21598070/22a0d308-d11b-11e6-8c8a-2eeef49ae568.png" class="img-fluid" alt="2016 contributions" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/excaliburjs/Excalibur"&gt;&lt;strong&gt;excalibur.js&lt;/strong&gt;&lt;/a&gt;: Excalibur remains one of the largest OSS projects I help maintain. I redesigned the &lt;a href="http://excaliburjs.com"&gt;Excalibur.js website&lt;/a&gt;. I made
+about &lt;a href="https://github.com/excaliburjs/Excalibur/pulls?page=2&amp;amp;q=is%3Apr+is%3Aclosed+author%3Akamranayub"&gt;49 pull requests&lt;/a&gt;
+to the codebase. We made 4 releases, bringing us from 0.6 to 0.8 (over 177 issues closed!).&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/TypeStrong/typedoc"&gt;&lt;strong&gt;TypeDoc&lt;/strong&gt;&lt;/a&gt;: This was a close one, last month I &lt;a href="https://github.com/TypeStrong/typedoc/pull/365"&gt;submitted a PR&lt;/a&gt; to support TypeScript 2.1.4.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/DefinitelyTyped/DefinitelyTyped/"&gt;&lt;strong&gt;DefinitelyTyped&lt;/strong&gt;&lt;/a&gt;: Made &lt;a href="https://github.com/DefinitelyTyped/DefinitelyTyped/pull/13169"&gt;my first PR&lt;/a&gt; to DefinitelyTyped even though I've made tons of private declaration files for my projects.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/kamranayub/UnderscoreKO"&gt;&lt;strong&gt;UnderscoreKO&lt;/strong&gt;&lt;/a&gt;: Updated for Underscore 1.8&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/kamranayub/posh-openweathermap"&gt;&lt;strong&gt;PoshOpenWeatherMap&lt;/strong&gt;&lt;/a&gt;: I made a fun little weather Powershell module.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/kamranayub/cassette-sri"&gt;&lt;strong&gt;cassette-sri&lt;/strong&gt;&lt;/a&gt;: I needed &lt;a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity"&gt;Subresource Integrity&lt;/a&gt; support for KTOMG, so I published an extension to Cassette.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="new-tech"&gt;New Tech&lt;/h2&gt;
+&lt;p&gt;I definitely enjoy learning new things and playing with tech.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Played with &lt;a href="http://kamranicus.com/blog/2016/02/24/azure-key-vault-config-encryption-azure/"&gt;Azure Key Vault&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Dabbled in some &lt;a href="https://github.com/eonarheim/aspnet-core-demogame"&gt;ASP.NET Core&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;At work I dove deep into Powershell DSC and JFrog Artifactory&lt;/li&gt;
+&lt;li&gt;I set up equipment for my course recording: &lt;a href="https://www.amazon.com/gp/product/B008O517IC"&gt;Behringer XENYX Q802USB Mixer&lt;/a&gt;, &lt;a href="https://www.amazon.com/Audio-Technica-ATR2100-USB-Cardioid-Dynamic-Microphone/dp/B004QJOZS4"&gt;ATR2100 Microphone&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;I got a Raspberry Pi 3 for Christmas and made it into an emulation console using &lt;a href="http://lakka.tv"&gt;Lakka&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="gaming"&gt;Gaming&lt;/h2&gt;
+&lt;p&gt;Making and playing games remains one of my passions, that much is clear:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://ktomg.com"&gt;&lt;strong&gt;Keep Track of My Games&lt;/strong&gt;&lt;/a&gt;: I &lt;a href="http://blog.keeptrackofmygames.com/tagged/updates"&gt;released 10 updates&lt;/a&gt; to KTOMG last year, some of the biggest ones so far, adding tons of major new features.&lt;/li&gt;
+&lt;li&gt;I &lt;a href="http://kamranicus.com/blog/2016/05/08/ludum-dare-35-game-jam/"&gt;participated&lt;/a&gt; in the Ludum Dare 35 game jam with the game &lt;a href="http://excaliburjs.com/ludum-35/"&gt;Hex Shaper&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Me and &lt;a href="http://erikonarheim.com"&gt;Erik Onarheim&lt;/a&gt; made a &lt;a href="http://kamranicus.com/blog/2016/07/31/aspnet-core-demo-game/"&gt;ASP.NET Core demo game&lt;/a&gt; for a work code camp&lt;/li&gt;
+&lt;li&gt;We also made a &lt;a href="http://kamranicus.com/blog/2016/01/25/planet-wars-ai-competition-excaliburjs-csharp/"&gt;Planet Wars AI simulator&lt;/a&gt; in Excalibur for a work competition&lt;/li&gt;
+&lt;li&gt;I've been working on a (currently private) sample game for Excalibur, it will be used as a the primary learning sample for new users.&lt;/li&gt;
+&lt;li&gt;I &lt;a href="https://keeptrackofmygames.com/users/kamranicus/lists/Playing"&gt;played some games&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="speaking-conferences"&gt;Speaking &amp;amp; Conferences&lt;/h2&gt;
+&lt;p&gt;I gave some talks and went to conferences! I spread the TypeScript love.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://midwestjs.com/"&gt;&lt;strong&gt;Midwest.js&lt;/strong&gt;&lt;/a&gt;: I gave a presentation on &lt;a href="http://kamranicus.com/presentations/demystifying-typescript/#/"&gt;Demystifying TypeScript&lt;/a&gt; at Midwest.js in August this year. It was a lot of fun,
+but the recording still isn't up on YouTube yet.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://twincitiescodecamp.com"&gt;&lt;strong&gt;TCCC20&lt;/strong&gt;&lt;/a&gt;: I gave a presentation on &lt;a href="https://www.youtube.com/watch?v=eeh-FcC6Sew"&gt;TypeScript in Action&lt;/a&gt; at Twin Cities Code Camp 20 in April.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://build.microsoft.com"&gt;&lt;strong&gt;MS Build&lt;/strong&gt;&lt;/a&gt;: I &lt;a href="http://kamranicus.com/blog/2016/03/11/attending-build-2016/"&gt;attended&lt;/a&gt; Microsoft Build 2016 with my coworkers. It was a blast.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="publishing"&gt;Publishing&lt;/h2&gt;
+&lt;p&gt;I want to try and commit to beating 2016's blog post count:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I &lt;a href="http://kamranicus.com/blog/archives/"&gt;published 16 blog posts&lt;/a&gt; in 2016.&lt;/li&gt;
+&lt;li&gt;I &lt;a href="http://kamranicus.com/blog/2016/10/30/new-packt-publishing-typescript-course/"&gt;accepted a contract&lt;/a&gt; to make an Introduction to TypeScript video course with Packt Publishing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="life"&gt;Life&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;My wife and I are expecting our first child in February! I'm sure this will definitely affect how much time I get to spend on side projects so developing some kind of rhythm will be key.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I'm sure there's other stuff I'm forgetting--but I'm super proud of all the stuff I got done this year. Here's looking forward
+to 2017 as a new father!&lt;/p&gt;
+</content:encoded>
 		</item>
 		<item>
 			<title>Working with Packt Publishing to Create a TypeScript Video Course</title>
 			<link>https://kamranicus.com/posts/2016-10-30-new-packt-publishing-typescript-course</link>
-			<description>Kamran Ayub</description>
+			<description>&lt;p&gt;&lt;img src="https://cloud.githubusercontent.com/assets/563819/19837411/1ccc4910-9e87-11e6-8d0a-7d5b17711785.png" class="img-fluid" alt="Packt"&gt;&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2016-10-30-new-packt-publishing-typescript-course</guid>
 			<pubDate>Sun, 30 Oct 2016 15:45:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;&lt;img src="https://cloud.githubusercontent.com/assets/563819/19837411/1ccc4910-9e87-11e6-8d0a-7d5b17711785.png" class="img-fluid" alt="Packt" /&gt;&lt;/p&gt;
+&lt;p&gt;I have some great news to share! Last week I signed on the dotted line to publish a TypeScript course for &lt;a href="http://packtpub.com"&gt;Packt Publishing&lt;/a&gt;. I'm very excited for this opportunity--as you know, I'm a big fan of TypeScript and &lt;a href="http://kamranicus.com/presentations"&gt;I talk about it a lot&lt;/a&gt;. This is the first video course I'll have worked on though I'm no stranger to screencasts. I'm pretty pumped and I think I have some good material to share.&lt;/p&gt;
+&lt;p&gt;I hope to share more about the recording process as I dive into it--the first order of business is rigging up all the recording equipment that is sitting in my basement collecting dust and testing it. I already have a recording mic, shock mount, and preamp, for example. They are years old now so I may need to get some new equipment but I'm crossing my fingers that most of it will produce a good sound. My Sound Blaster X-Fi Elite Pro that I bought years ago is only half-working--it seems like it'll output sound for a bit and then crap out, but I'm hoping that is only limited to output and that it can still record input. The X-Fi external box supports some of the standard audio plugs I'd prefer using. It may end up I'll have to go entirely USB, we'll see.&lt;/p&gt;
+&lt;p&gt;The course should be ready by mid-February and will be geared towards introducing people to TypeScript. I plan to use practical code to introduce concepts and the final volume of the course should have 2-3 small projects we'll build from scratch.&lt;/p&gt;
+</content:encoded>
 		</item>
 	</channel>
 </rss>

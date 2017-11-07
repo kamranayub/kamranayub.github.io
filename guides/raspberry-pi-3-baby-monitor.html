@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -48,7 +48,6 @@
   <![endif]-->
   <script src="/assets/js/picturefill.min.js" async></script>
 
-
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-1203259-13']);
@@ -80,9 +79,6 @@
         <a href="/about">About</a>
       </div>
       <div class="item">
-        <a href="/posts">Archive</a>
-      </div>
-      <div class="item">
         <a href="/guides">Guides</a>
       </div>
       <div class="item">
@@ -102,13 +98,29 @@
 
   <header class="ui vertical masthead segment " id="intro-header">
     <div class="ui container">
-<h1 class="ui header">Building a Raspberry Pi 3 Baby Monitor</h1>       </div>
+
+  
+  <div class="ui basic vertical segment">
+      <h1 class="ui  huge header">
+        Building a Raspberry Pi 3 Baby Monitor
+          <div class="ui sub header">Use a Raspberry Pi and a couple cheap components to create an HD livestream that you can view on any device within your home.</div>
+      </h1>
+  </div>
+    </div>
   </header>
 
   <!-- Main Content -->
   <div class="ui stackable grid container">
     <div class="content column">
-      <p>After looking at reviews for baby monitors, a few things were clear:</p>
+      
+
+<div class="ui green padded segment">
+  <i class="ui code icon"></i>
+  This guide is <strong>open source!</strong> If you find any issues, feel free to <a href="https://github.com/kamranayub/kamranayub.github.io/blob/source/input/guides/raspberry-pi-3-baby-monitor.md">contribute back</a>!
+</div>
+
+<div class="ui huge basic post content segment">
+  <p>After looking at reviews for baby monitors, a few things were clear:</p>
 <ol>
 <li>Manufacturers aren't putting good cameras in these monitors</li>
 <li>Some have night vision, some don't and the quality usually sucks.</li>
@@ -162,7 +174,7 @@
 <ul>
 <li><a href="https://www.amazon.com/gp/product/B01C6EQNNK/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B01C6EQNNK&amp;linkCode=as2&amp;tag=kamranicus-20&amp;linkId=cefba209294d3cf51f3be3d51bd18990">Raspberry Pi 3 Canakit</a> - $50
 <ul>
-<li>Pi Zero has also been reported to work!</li>
+<li><strong>OR</strong> <a href="https://www.amazon.com/gp/product/B071L2ZQZX/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B071L2ZQZX&amp;linkCode=as2&amp;tag=kamranicus-20&amp;linkId=11a90708c6058c931d343f5a34243809">Raspberry Pi Zero W Canakit</a> - $25</li>
 </ul>
 </li>
 <li><a href="https://www.amazon.com/gp/product/B01ER2SKFS/ref=as_li_tl?ie=UTF8&amp;tag=kamranicus-20&amp;camp=1789&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=B01ER2SKFS&amp;linkId=c4b2ac954d25538e792e193ff088faac">Raspberry Pi Camera Module v2</a> - $30</li>
@@ -435,6 +447,75 @@ sudo git clone https://github.com/kamranayub/picam-viewer.git .
 </ol>
 <p>These steps are outside the scope of this guide but there are many tutorials online for Nginx, port forwarding, and SSL that you can follow to achieve this. If someone wants to write it up, I will happily add it to this guide! Just remember as soon as you allow your Pi to be exposed, you need to make sure it's the server is secure and encrypted.</p>
 
+</div>
+
+<div class="ui green padded segment">
+  <i class="ui code icon"></i>
+  This guide is <strong>open source!</strong> If you find any issues, feel free to <a href="https://github.com/kamranayub/kamranayub.github.io/blob/source/input/guides/raspberry-pi-3-baby-monitor.md">contribute back</a>! Otherwise you can leave a comment below with suggestions for others or things you did differently. I love hearing what people are doing!
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="http://www.youtube.com/c/Kamranicus " title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://twitch.tv/kamranicus " title="YouTube">
+  <i class="twitch icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = 'raspberry-pi-3-baby-monitor';
+    var disqus_title = 'Building a Raspberry Pi 3 Baby Monitor';
+    var disqus_url = 'https://kamranicus.com/guides/raspberry-pi-3-baby-monitor';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
       <!-- Disqus -->
 <div id="disqus_thread"></div>
@@ -480,8 +561,11 @@ sudo git clone https://github.com/kamranayub/picam-viewer.git .
 <a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
   <i class="instagram icon"></i>
 </a>
-<a class="ui circular icon button" href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g" title="YouTube">
+<a class="ui circular icon button" href="http://www.youtube.com/c/Kamranicus " title="YouTube">
   <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://twitch.tv/kamranicus " title="YouTube">
+  <i class="twitch icon"></i>
 </a>
 <a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
   <i class="linkedin icon"></i>
