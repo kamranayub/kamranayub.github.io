@@ -67,10 +67,10 @@
       <h3 class="ui header">Tags</h3>
 
       <div class="ui basic vertical spaced segment">
-          @foreach (IDocument tagDocument in Documents[BlogPipelines.Tags].OrderByDescending(x => x.Get<int>(Keys.TotalItems)).Take(10))
+          @foreach (IDocument tagDocument in Documents[Blog.Tags].OrderByDescending(x => x.Get<int>(Keys.TotalItems)).Take(10))
           { 
               string tag = tagDocument.String(BlogKeys.Tag);
-              string postCount = tagDocument.String(Keys.TotalItems).Count().ToString();
+              string postCount = tagDocument.String(Keys.TotalItems);
               <a role="button" href="@Context.GetLink(tagDocument)" class="ui small compact basic button">
                 @tag (@postCount)
               </a>

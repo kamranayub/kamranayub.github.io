@@ -3,15 +3,15 @@ Title: All Tags
 <div class="ui stackable sixteen column grid container">
 
   <div class="ten wide column">
-      @Html.Partial("_PostList", Model.DocumentList(BlogKeys.Posts).OrderByDescending(x => x.Get<DateTime>(BlogKeys.Published)))      
+      @Html.Partial("_PostList", Model.DocumentList(Keys.PageDocuments).OrderByDescending(x => x.Get<DateTime>(BlogKeys.Published)))      
   </div>
 
   <div class="six wide column">
     <div class="ui basic vertical spaced segment">
-      @foreach (IDocument tagDocument in Documents[BlogPipelines.Tags].OrderBy(x => x.String(BlogKeys.Tag)))
+      @foreach (IDocument tagDocument in Documents[Blog.Tags].OrderBy(x => x.String(BlogKeys.Tag)))
       {
           string tag = tagDocument.String(BlogKeys.Tag);
-          string postCount = tagDocument.DocumentList(BlogKeys.Posts).Count().ToString();
+          string postCount = tagDocument.String(Keys.TotalItems);
           string buttonStyle = tag == Model.String(BlogKeys.Tag) ? "primary" : "basic";
           <a role="button" href="@Context.GetLink(tagDocument)" class="ui @buttonStyle small compact button"> @tag (@postCount)</a>
       }
