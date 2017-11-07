@@ -7,3 +7,4 @@ GlobalMetadata["Intro"] = "Hi, I'm a professional full-stack developer who also 
 GlobalMetadata["FeedUrl"] = "http://feeds.feedburner.com/Kamranicus";
 GlobalMetadata["CaseInsensitiveTags"] = true;
 GlobalMetadata["AtomPath"] = "atom.xml";
+GlobalMetadata["IndexPostCount"] = 6;

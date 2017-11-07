@@ -6,7 +6,7 @@
     <div class="ten wide column">      
         @{
             bool first = true;
-            foreach(IDocument doc in Documents[BlogPipelines.Posts].Take(6))
+            foreach(IDocument doc in Model.DocumentList(Keys.PageDocuments))
             {                
                 if (!first)
                 {
@@ -20,7 +20,7 @@
                   </h4>
                   <a href="@Context.GetLink(doc)">
                     <h2 class="ui post title header">
-                      @doc.String(BlogKeys.Title)
+                      @doc.WithoutSettings.String(BlogKeys.Title)
 
                       @if(!string.IsNullOrWhiteSpace(lead))
                       {
@@ -32,6 +32,20 @@
                 </div>       
             }
         }
+
+        <h3 class="ui header">Older Posts</h3>
+
+        <div class="ui spaced list">
+          @foreach(IDocument doc in Documents[Blog.BlogPosts].Skip(Model.DocumentList(Keys.PageDocuments).Count).Take(6))
+          {        
+            <a class="item" href="@Context.GetLink(doc)">@doc.WithoutSettings.String(BlogKeys.Title)</a>
+          }
+        </div>
+
+        <a class="ui right labeled icon button" href="@Context.GetLink(Context.String(BlogKeys.PostsPath))">
+          Archive 
+          <i class="right arrow icon"></i>
+        </a>
     </div>
     <div class="six wide column">
                
@@ -53,10 +67,10 @@
       <h3 class="ui header">Tags</h3>
 
       <div class="ui basic vertical spaced segment">
-          @foreach (IDocument tagDocument in Documents[BlogPipelines.Tags].OrderByDescending(x => x.DocumentList(BlogKeys.Posts).Count()).Take(10))
+          @foreach (IDocument tagDocument in Documents[BlogPipelines.Tags].OrderByDescending(x => x.Get<int>(Keys.TotalItems)).Take(10))
           { 
               string tag = tagDocument.String(BlogKeys.Tag);
-              string postCount = tagDocument.DocumentList(BlogKeys.Posts).Count().ToString();
+              string postCount = tagDocument.String(Keys.TotalItems).Count().ToString();
               <a role="button" href="@Context.GetLink(tagDocument)" class="ui small compact basic button">
                 @tag (@postCount)
               </a>
@@ -68,21 +82,7 @@
         <i class="right arrow icon"></i>
       </a>
       
-      <div class="ui divider"></div>
-
-      <h3 class="ui header">Older Posts</h3>
-
-      <div class="ui spaced list">
-        @foreach(IDocument doc in Documents[BlogPipelines.Posts].Skip(6).Take(6))
-        {        
-          <a class="item" href="@Context.GetLink(doc)">@doc.String(BlogKeys.Title)</a>
-        }
-      </div>
-
-      <a class="ui right labeled icon button" href="@Context.GetLink("/posts")">
-        Archive 
-        <i class="right arrow icon"></i>
-      </a>
+      <div class="ui divider"></div>      
 
       @Html.Partial("_Sidebar")
     </div> 
