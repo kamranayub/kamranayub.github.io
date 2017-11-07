@@ -1,0 +1,34 @@
+@{
+    Layout = "_Layout.cshtml";
+
+    string inverted = Model.Bool("HeaderInverted") ? "inverted" : ""; 
+}
+
+@section Header {
+  
+  <div class="ui basic vertical segment">
+      <h1 class="ui @inverted huge header">
+        @Model.String(BlogKeys.Title)
+        @if(!string.IsNullOrWhiteSpace(Model.String(BlogKeys.Lead)))
+        {
+          <div class="ui sub header">@Model.String(BlogKeys.Lead)</div>
+        }     
+      </h1>
+  </div>
+}
+
+<div class="ui green padded segment">
+  <i class="ui code icon"></i>
+  This guide is <strong>open source!</strong> If you find any issues, feel free to <a href="@Model.String("GitHubSource")">contribute back</a>!
+</div>
+
+<div class="ui huge basic post content segment">
+  @RenderBody()
+</div>
+
+<div class="ui green padded segment">
+  <i class="ui code icon"></i>
+  This guide is <strong>open source!</strong> If you find any issues, feel free to <a href="@Model.String("GitHubSource")">contribute back</a>! Otherwise you can leave a comment below with suggestions for others or things you did differently. I love hearing what people are doing!
+</div>
+
+@Html.Partial("_PostFooter")

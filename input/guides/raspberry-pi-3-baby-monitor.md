@@ -1,6 +1,8 @@
 ﻿Title: Building a Raspberry Pi 3 Baby Monitor
+Lead: Use a Raspberry Pi and a couple cheap components to create an HD livestream that you can view on any device within your home.
 ShowInNavbar: false
 Comments: true
+GitHubSource: https://github.com/kamranayub/kamranayub.github.io/blob/source/input/guides/raspberry-pi-3-baby-monitor.md
 ---
 
 After looking at reviews for baby monitors, a few things were clear:
@@ -63,7 +65,7 @@ This guide will show you how to build your own DIY baby monitor using a Raspberr
 Here's what you'll need, it's what I have and it works great:
 
 - [Raspberry Pi 3 Canakit](https://www.amazon.com/gp/product/B01C6EQNNK/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01C6EQNNK&linkCode=as2&tag=kamranicus-20&linkId=cefba209294d3cf51f3be3d51bd18990) - $50
-  - Pi Zero has also been reported to work!
+  - **OR** [Raspberry Pi Zero W Canakit](https://www.amazon.com/gp/product/B071L2ZQZX/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B071L2ZQZX&linkCode=as2&tag=kamranicus-20&linkId=11a90708c6058c931d343f5a34243809) - $25
 - [Raspberry Pi Camera Module v2](https://www.amazon.com/gp/product/B01ER2SKFS/ref=as_li_tl?ie=UTF8&tag=kamranicus-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B01ER2SKFS&linkId=c4b2ac954d25538e792e193ff088faac) - $30
 - [MicroSD card](https://www.amazon.com/gp/product/B010Q57T02/ref=as_li_tl?ie=UTF8&tag=kamranicus-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B010Q57T02&linkId=6ad18aebc7e3dd06daf87ef2f40910a4) (8GB or higher) - $12
 - [Kinobo Mini Akiro USB condenser microphone](https://www.amazon.com/gp/product/B00NSOWWIS/ref=as_li_tl?ie=UTF8&tag=kamranicus-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00NSOWWIS&linkId=b66c7df0a0cac98747907f0815de7727) - $15

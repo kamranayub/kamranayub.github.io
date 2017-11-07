@@ -1,3 +1,5 @@
+using Wyam.Web.Pipelines;
+
 Settings[Keys.Host] = "kamranicus.com";
 Settings[Keys.LinksUseHttps] = true;
 
@@ -8,3 +10,28 @@ Settings["FeedUrl"] = "http://feeds.feedburner.com/Kamranicus";
 Settings[BlogKeys.CaseInsensitiveTags] = true;
 Settings[BlogKeys.AtomPath] = "atom.xml";
 Settings[BlogKeys.IndexPageSize] = 6;
+
+Settings[BlogKeys.IgnoreFolders] = new string[] {
+  "guides/*.md"
+};
+
+var Guides = new Pages(
+  "Guides",
+  new PagesSettings
+  {
+      PagesPattern = ctx => "guides",
+      MarkdownConfiguration = ctx => ctx.String(BlogKeys.MarkdownConfiguration),
+      MarkdownExtensionTypes = ctx => ctx.List<Type>(BlogKeys.MarkdownExtensionTypes),
+      ProcessIncludes = (doc, ctx) => doc.Bool(BlogKeys.ProcessIncludes)
+  });
+
+var RenderGuides = new RenderPages(
+  "RenderGuides",
+  new RenderPagesSettings
+  {
+      Pipelines = new string[] { Guides },
+      Layout = (doc, ctx) => "/_GuideLayout.cshtml"
+  });
+
+Pipelines.InsertAfter("Pages", "Guides", Guides);
+Pipelines.InsertAfter("RenderPages", "RenderGuides", RenderGuides);

@@ -1,0 +1,10 @@
+﻿Title: Guides
+---
+
+@foreach (var doc in Documents["Guides"]) {
+  <h2><a href="@Context.GetLink(doc)">@doc.WithoutSettings.String(BlogKeys.Title)</a></h2>
+
+  @if (@doc.String(BlogKeys.Lead) != null) {
+    <p>@doc.String(BlogKeys.Lead)</p>
+  }
+}
