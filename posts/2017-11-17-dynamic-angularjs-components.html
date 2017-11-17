@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Dynamic component rendering in AngularJS</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Dynamic component rendering in AngularJS" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2017-11-17-dynamic-angularjs-components" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="/assets/js/picturefill.min.js" async></script>
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text site menu">
+      
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+              <div class="item">
+        <a href="/about">About</a>
+      </div>
+      <div class="item">
+        <a href="/guides">Guides</a>
+      </div>
+      <div class="item">
+        <a href="/projects">Projects</a>
+      </div>
+      <div class="item">
+        <a href="/speaking">Speaking</a>
+      </div>
+      <div class="item">
+        <a href="/travel">Travel</a>
+      </div>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui vertical masthead segment " id="intro-header">
+    <div class="ui container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui  huge header">
+      Dynamic component rendering in AngularJS
+    </h1>
+                
+    <div class="ui  sub header">        
+Published on Friday, November 17, 2017<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/AngularJS" class="ui small compact button">AngularJS</a>
+                    <a role="button" href="/tags/JavaScript" class="ui small compact button">JavaScript</a>
+                    <a role="button" href="/tags/Tips-&amp;-Tricks" class="ui small compact button">Tips &amp; Tricks</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui stackable grid container">
+    <div class="content column">
+      
+
+<div class="ui huge basic post content segment">
+  <p>We had a feature we needed in our AngularJS 1.5 app recently that required us to show different Angular components based on some data we got back from an API--basically we ask some questions and those questions can have different &quot;types&quot; of answers: number, text, list of values, multi-list of values, external API list, etc.</p>
+<p>These answer types were a good candidate to keep encapsulated inside of Angular components: they manage their own state and just use component bindings to bind data or call the overall parent controller.</p>
+<h2 id="hacking-ng-include-for-fun-and-profit">Hacking ng-include for fun and profit</h2>
+<p>So the way we got this working was based on <a href="https://stackoverflow.com/a/40640326/109458">this StackOverflow post</a>.</p>
+<p>This works because <code>ng-include</code> directive takes a path to an HTML file. But <code>$templateCache</code> can be used to manipulate the HTML cache and insert cache entries. In this case, you just insert a key with the name of your component and then you can use it as an expression in <code>ng-include</code>. Now, the extra part is where that template cache item has to include your component directive:</p>
+<pre><code class="language-html">$templateCache.put('widgetPie', '&lt;widget-pie&gt;&lt;/widget-pie&gt;');
+</code></pre>
+<p>It's worth noting the template inherits the context of the <code>ng-include</code>, so you can pass bindings in like you would expect:</p>
+<pre><code class="language-html">$templateCache.put('widgetPie', '&lt;widget-pie data=&quot;$ctrl.someData&quot;&gt;&lt;/widget-pie&gt;');
+</code></pre>
+<p>In our case we had more templates than I wanted to write individual statements for, so the way we built up the <code>$templateCache</code> was just like this:</p>
+<pre><code class="language-js">import * as components from &quot;./components&quot;;
+
+angular
+ .module('app')
+ .run(function ($templateCache) {
+    _.values(components).forEach(({ type, include }) =&gt; {
+      const tag = `answer-${type}`
+      $templateCache.put(tag, `&lt;${tag} question=&quot;question&quot;&gt;&lt;/${tag}&gt;`);
+    });
+ });
+</code></pre>
+<p>The cache key and template are generated by convention from the types of answers in each component (e.g. <code>answer-text</code>). The <code>question</code> binding is using the name of a known variable within the <code>ng-repeat</code> in the parent template.</p>
+<p>The <code>index.js</code> file within the <code>components</code> directory just exports all supported components:</p>
+<pre><code class="language-js">export { component as text } from './answer-text.component'
+export { component as number } from './answer-number.component'
+export { component as lov } from './answer-lov.component'
+</code></pre>
+<p>Since we are using <code>import * as components</code> all these get plopped into a <code>components</code> object where each key is the exported name and the value is a slightly modified component object:</p>
+<pre><code class="language-js">// answer-text.component.js
+export var component = {
+  type: &quot;text&quot;,
+  controller: () =&gt; {},
+  template: `&lt;input ng-model=&quot;$ctrl.question&quot; /&gt;`,
+  bindings: {
+    question: &quot;&lt;&quot;
+  }
+}
+
+export var module = angular.module(`components.answers.${component.type}`, [])
+  .component(_.camelCase(`answer-${component.type}`), component)
+  .name;
+</code></pre>
+<p>Not shown here, but you need to make sure to add the component Angular module as a dependency somewhere in your app. That's what <code>module</code> is for.</p>
+<p>The <code>type</code> property is for the purposes of the template cache. I'm using Lodash's <code>_.camelCase</code> to create an Angular-compatible component name which is based on the <code>type</code>.</p>
+<p>Now we have a convention that uses the answer type to generate the HTML to inject via <code>ng-include</code> and pass in common bindings to the components:</p>
+<pre><code class="language-html">// parent.component.html
+&lt;div ng-repeat=&quot;question in $ctrl.questions&quot;&gt;
+  &lt;label&gt;{{ question.title }}&lt;/label&gt;
+  &lt;ng-include src=&quot;answer-{{ question.answer_type }}&quot;&gt;&lt;/ng-include&gt;
+&lt;/div&gt;
+</code></pre>
+<p>Now depending on the <code>answer_type</code> of the question, the appropriate answer component will be rendered.</p>
+<p>It's probably possible to create a Angular directive that could make this easier but it's not so bad once you have the pattern.</p>
+<p>PS. I'm using <a href="https://kamranicus.com/posts/2017-10-06-webpack-karma-jest-babel-angularjs">ES2015 and Webpack</a> in my examples.</p>
+<h2 id="trolling-with-react">Trolling with React</h2>
+<p>Figuring out how to achieve this in AngularJS was a bit time consuming (I found the post after searching for awhile, then had to rig up what you saw above).</p>
+<p>Even though I'm writing AngularJS more day to day, I can appreciate how much more productive I feel in React. What does it take to achieve the same pattern? I typed this up in a minute just now for the blog post:</p>
+<pre><code class="language-js">const Parent = ({ questions, onAnswerChange }) =&gt;
+  &lt;div&gt;
+    {questions.map(question =&gt; 
+      &lt;div&gt;
+        &lt;label&gt;{question.title}&lt;/label&gt;
+        {React.createElement(
+          &quot;Answer&quot; + _.startCase(question.answer_type), { question, onAnswerChange })}
+      &lt;/div&gt;
+    )}
+  &lt;/div&gt;
+
+const AnswerText = ({ question, onAnswerChange }) =&gt; 
+  &lt;input 
+    value={question.answer} 
+    onChange={(e) =&gt; onAnswerChange(question, e.target.value)} 
+  /&gt;
+</code></pre>
+<p>I love React. It's just JavaScript (and JSX). No module loading, no dependency injection, just... components. Yes, state change is different (this isn't modifying <code>question.answer</code>) but I like the separation of concerns.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="http://www.youtube.com/c/Kamranicus " title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://twitch.tv/kamranicus " title="YouTube">
+  <i class="twitch icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '2017-11-17-dynamic-angularjs-components';
+    var disqus_title = 'Dynamic component rendering in AngularJS';
+    var disqus_url = 'https://kamranicus.com/posts/2017-11-17-dynamic-angularjs-components';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+      <!-- Disqus -->
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+  
+  <!-- Footer -->
+  <footer>   
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2017</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="http://www.youtube.com/c/Kamranicus " title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://twitch.tv/kamranicus " title="YouTube">
+  <i class="twitch icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe via RSS or email
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
