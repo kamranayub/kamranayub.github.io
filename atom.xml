@@ -4,8 +4,24 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2017</rights>
-	<updated>2017-11-17T21:06:52Z</updated>
+	<updated>2017-11-20T22:02:09Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2017-11-20-node-chrome-headless-drone-image" />
+		<id>https://kamranicus.com/posts/2017-11-20-node-chrome-headless-drone-image</id>
+		<title>Here's a Drone Docker image with Node.js and Chrome headless</title>
+		<updated>2017-11-20T20:52:00Z</updated>
+		<content>&lt;p&gt;I worked on a fun little aside this last week at work. We are using &lt;a href="https://github.com/drone/drone"&gt;Drone&lt;/a&gt; to perform our CI builds (it's just like &lt;a href="http://travis-ci.org"&gt;Travis CI&lt;/a&gt;). Well, the default Docker &lt;code&gt;node&lt;/code&gt; image is built on Debian and when run on Drone 5 it does not contain all the packages needed to use Chrome Headless (as &lt;a href="https://github.com/Googlechrome/puppeteer/issues/290"&gt;documented in this GH issue&lt;/a&gt;). We're using Puppeteer to run Chrome headless with Karma to run our Angular tests.&lt;/p&gt;
+&lt;p&gt;We were running a bash script to install them when the build started but I went ahead and just packaged it all as a Docker container. This is a general purpose container image but using it with Drone sped up our builds by an order of magnitude.&lt;/p&gt;
+&lt;p&gt;You can find it in &lt;a href="https://github.com/kamranayub/drone-images"&gt;my Drone image repository&lt;/a&gt;. I'll be sure to add anymore useful Drone images I end up making there too!&lt;/p&gt;
+&lt;p&gt;With Puppeteer, I also had to use these args:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;--no-sandbox --disable-setuid-sandbox
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It's possible you don't need them but once I got it working I didn't revisit it in depth.&lt;/p&gt;
+&lt;p&gt;I could also publish this to the public registry, just let me know in the comments if you'd like me to--otherwise, feel free to do so.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;I worked on a fun little aside this last week at work. We are using &lt;a href="https://github.com/drone/drone"&gt;Drone&lt;/a&gt; to perform our CI builds (it's just like &lt;a href="http://travis-ci.org"&gt;Travis CI&lt;/a&gt;). Well, the default Docker &lt;code&gt;node&lt;/code&gt; image is built on Debian and when run on Drone 5 it does not contain all the packages needed to use Chrome Headless (as &lt;a href="https://github.com/Googlechrome/puppeteer/issues/290"&gt;documented in this GH issue&lt;/a&gt;). We're using Puppeteer to run Chrome headless with Karma to run our Angular tests.&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2017-11-17-dynamic-angularjs-components" />
 		<id>https://kamranicus.com/posts/2017-11-17-dynamic-angularjs-components</id>
@@ -1222,66 +1238,5 @@ installers/sysinternals/SysInternalsSuite-2016-11-18.zip
 </content>
 		<summary>&lt;p&gt;It's &lt;a href="https://twitter.com/jordan_belinsky/status/818967360132513792"&gt;happened again&lt;/a&gt;. Even though I &lt;em&gt;do&lt;/em&gt; get emailed whenever &lt;a href="http://ktomg.com"&gt;KTOMG&lt;/a&gt; goes down, I don't pay attention to my email 24/7 and the site can be down for a bit until I realize it. In this case, I was cooking and wasn't at my computer or on my phone. The Twitter notification by a friendly user actually got me to check!&lt;/p&gt;
 &lt;p&gt;I know this is one of the headaches &lt;a href="https://kamranicus.com/blog/2016/10/18/ravendb-standard-non-commercial-license/"&gt;I willingly signed up for&lt;/a&gt; by moving to my own VM--and even though I get emailed when the site's down I hate not knowing that &lt;strong&gt;immediately&lt;/strong&gt;.&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2017-01-02-year-in-review" />
-		<id>https://kamranicus.com/posts/2017-01-02-year-in-review</id>
-		<title>2016: A Year in Review</title>
-		<updated>2017-01-03T00:32:00Z</updated>
-		<content>&lt;p&gt;Another year has passed and it's time to take a look back and see what I accomplished!&lt;/p&gt;
-&lt;h2 id="open-source"&gt;Open Source&lt;/h2&gt;
-&lt;p&gt;It's been a busy year in open source for me with over 1100+ contributions, let's see...&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://cloud.githubusercontent.com/assets/563819/21598070/22a0d308-d11b-11e6-8c8a-2eeef49ae568.png" class="img-fluid" alt="2016 contributions" /&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/excaliburjs/Excalibur"&gt;&lt;strong&gt;excalibur.js&lt;/strong&gt;&lt;/a&gt;: Excalibur remains one of the largest OSS projects I help maintain. I redesigned the &lt;a href="http://excaliburjs.com"&gt;Excalibur.js website&lt;/a&gt;. I made
-about &lt;a href="https://github.com/excaliburjs/Excalibur/pulls?page=2&amp;amp;q=is%3Apr+is%3Aclosed+author%3Akamranayub"&gt;49 pull requests&lt;/a&gt;
-to the codebase. We made 4 releases, bringing us from 0.6 to 0.8 (over 177 issues closed!).&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/TypeStrong/typedoc"&gt;&lt;strong&gt;TypeDoc&lt;/strong&gt;&lt;/a&gt;: This was a close one, last month I &lt;a href="https://github.com/TypeStrong/typedoc/pull/365"&gt;submitted a PR&lt;/a&gt; to support TypeScript 2.1.4.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/DefinitelyTyped/DefinitelyTyped/"&gt;&lt;strong&gt;DefinitelyTyped&lt;/strong&gt;&lt;/a&gt;: Made &lt;a href="https://github.com/DefinitelyTyped/DefinitelyTyped/pull/13169"&gt;my first PR&lt;/a&gt; to DefinitelyTyped even though I've made tons of private declaration files for my projects.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/kamranayub/UnderscoreKO"&gt;&lt;strong&gt;UnderscoreKO&lt;/strong&gt;&lt;/a&gt;: Updated for Underscore 1.8&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/kamranayub/posh-openweathermap"&gt;&lt;strong&gt;PoshOpenWeatherMap&lt;/strong&gt;&lt;/a&gt;: I made a fun little weather Powershell module.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/kamranayub/cassette-sri"&gt;&lt;strong&gt;cassette-sri&lt;/strong&gt;&lt;/a&gt;: I needed &lt;a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity"&gt;Subresource Integrity&lt;/a&gt; support for KTOMG, so I published an extension to Cassette.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="new-tech"&gt;New Tech&lt;/h2&gt;
-&lt;p&gt;I definitely enjoy learning new things and playing with tech.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Played with &lt;a href="http://kamranicus.com/blog/2016/02/24/azure-key-vault-config-encryption-azure/"&gt;Azure Key Vault&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Dabbled in some &lt;a href="https://github.com/eonarheim/aspnet-core-demogame"&gt;ASP.NET Core&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;At work I dove deep into Powershell DSC and JFrog Artifactory&lt;/li&gt;
-&lt;li&gt;I set up equipment for my course recording: &lt;a href="https://www.amazon.com/gp/product/B008O517IC"&gt;Behringer XENYX Q802USB Mixer&lt;/a&gt;, &lt;a href="https://www.amazon.com/Audio-Technica-ATR2100-USB-Cardioid-Dynamic-Microphone/dp/B004QJOZS4"&gt;ATR2100 Microphone&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;I got a Raspberry Pi 3 for Christmas and made it into an emulation console using &lt;a href="http://lakka.tv"&gt;Lakka&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="gaming"&gt;Gaming&lt;/h2&gt;
-&lt;p&gt;Making and playing games remains one of my passions, that much is clear:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://ktomg.com"&gt;&lt;strong&gt;Keep Track of My Games&lt;/strong&gt;&lt;/a&gt;: I &lt;a href="http://blog.keeptrackofmygames.com/tagged/updates"&gt;released 10 updates&lt;/a&gt; to KTOMG last year, some of the biggest ones so far, adding tons of major new features.&lt;/li&gt;
-&lt;li&gt;I &lt;a href="http://kamranicus.com/blog/2016/05/08/ludum-dare-35-game-jam/"&gt;participated&lt;/a&gt; in the Ludum Dare 35 game jam with the game &lt;a href="http://excaliburjs.com/ludum-35/"&gt;Hex Shaper&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Me and &lt;a href="http://erikonarheim.com"&gt;Erik Onarheim&lt;/a&gt; made a &lt;a href="http://kamranicus.com/blog/2016/07/31/aspnet-core-demo-game/"&gt;ASP.NET Core demo game&lt;/a&gt; for a work code camp&lt;/li&gt;
-&lt;li&gt;We also made a &lt;a href="http://kamranicus.com/blog/2016/01/25/planet-wars-ai-competition-excaliburjs-csharp/"&gt;Planet Wars AI simulator&lt;/a&gt; in Excalibur for a work competition&lt;/li&gt;
-&lt;li&gt;I've been working on a (currently private) sample game for Excalibur, it will be used as a the primary learning sample for new users.&lt;/li&gt;
-&lt;li&gt;I &lt;a href="https://keeptrackofmygames.com/users/kamranicus/lists/Playing"&gt;played some games&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="speaking-conferences"&gt;Speaking &amp;amp; Conferences&lt;/h2&gt;
-&lt;p&gt;I gave some talks and went to conferences! I spread the TypeScript love.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://midwestjs.com/"&gt;&lt;strong&gt;Midwest.js&lt;/strong&gt;&lt;/a&gt;: I gave a presentation on &lt;a href="http://kamranicus.com/presentations/demystifying-typescript/#/"&gt;Demystifying TypeScript&lt;/a&gt; at Midwest.js in August this year. It was a lot of fun,
-but the recording still isn't up on YouTube yet.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://twincitiescodecamp.com"&gt;&lt;strong&gt;TCCC20&lt;/strong&gt;&lt;/a&gt;: I gave a presentation on &lt;a href="https://www.youtube.com/watch?v=eeh-FcC6Sew"&gt;TypeScript in Action&lt;/a&gt; at Twin Cities Code Camp 20 in April.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://build.microsoft.com"&gt;&lt;strong&gt;MS Build&lt;/strong&gt;&lt;/a&gt;: I &lt;a href="http://kamranicus.com/blog/2016/03/11/attending-build-2016/"&gt;attended&lt;/a&gt; Microsoft Build 2016 with my coworkers. It was a blast.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="publishing"&gt;Publishing&lt;/h2&gt;
-&lt;p&gt;I want to try and commit to beating 2016's blog post count:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I &lt;a href="http://kamranicus.com/blog/archives/"&gt;published 16 blog posts&lt;/a&gt; in 2016.&lt;/li&gt;
-&lt;li&gt;I &lt;a href="http://kamranicus.com/blog/2016/10/30/new-packt-publishing-typescript-course/"&gt;accepted a contract&lt;/a&gt; to make an Introduction to TypeScript video course with Packt Publishing.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="life"&gt;Life&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;My wife and I are expecting our first child in February! I'm sure this will definitely affect how much time I get to spend on side projects so developing some kind of rhythm will be key.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I'm sure there's other stuff I'm forgetting--but I'm super proud of all the stuff I got done this year. Here's looking forward
-to 2017 as a new father!&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;Another year has passed and it's time to take a look back and see what I accomplished!&lt;/p&gt;</summary>
 	</entry>
 </feed>
