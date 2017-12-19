@@ -5,8 +5,31 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2017</copyright>
-		<pubDate>Mon, 20 Nov 2017 22:02:09 GMT</pubDate>
-		<lastBuildDate>Mon, 20 Nov 2017 22:02:09 GMT</lastBuildDate>
+		<pubDate>Tue, 19 Dec 2017 03:49:02 GMT</pubDate>
+		<lastBuildDate>Tue, 19 Dec 2017 03:49:02 GMT</lastBuildDate>
+		<item>
+			<title>Workshop for Node.js Bots in Azure at MinneWebCon 2018</title>
+			<link>https://kamranicus.com/posts/2017-12-18-workshop-bots-javascript-node-minnewebcon</link>
+			<description>&lt;p&gt;You know when you accidentally reach a goal sooner than you expect? That's exactly what happened when I originally submitted a session to &lt;a href="http://minnewebcon.org/attend"&gt;MinneWebCon 2018&lt;/a&gt; on building bots with Azure and Node.js. Instead of &lt;em&gt;just&lt;/em&gt; giving a talk, I'll be teaching a half-day workshop! That was one of my 2018 goals!&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2017-12-18-workshop-bots-javascript-node-minnewebcon</guid>
+			<pubDate>Tue, 19 Dec 2017 02:33:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;You know when you accidentally reach a goal sooner than you expect? That's exactly what happened when I originally submitted a session to &lt;a href="http://minnewebcon.org/attend"&gt;MinneWebCon 2018&lt;/a&gt; on building bots with Azure and Node.js. Instead of &lt;em&gt;just&lt;/em&gt; giving a talk, I'll be teaching a half-day workshop! That was one of my 2018 goals!&lt;/p&gt;
+&lt;h2 id="about-the-workshop"&gt;About the workshop&lt;/h2&gt;
+&lt;p&gt;This'll be a fun one. I've &lt;a href="http://blog.keeptrackofmygames.com/post/154048281826/updates-for-november-2016"&gt;developed bots&lt;/a&gt; before on Azure using &lt;a href="https://dev.botframework.com/"&gt;Microsoft Bot Framework&lt;/a&gt; and I've used Azure Functions but I haven't yet married the two.&lt;/p&gt;
+&lt;p&gt;In this workshop, we'll build a chat bot on Azure Functions that will respond to input and hold state. I don't know the details of what we'll build but I'll be scoping it to a 3 hour exercise.&lt;/p&gt;
+&lt;p&gt;My plan so far is for people to learn:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How to use the Azure Functions portal&lt;/li&gt;
+&lt;li&gt;How to use the Microsoft Bot Framework&lt;/li&gt;
+&lt;li&gt;How to publish a bot to a provider (e.g. Twilio)&lt;/li&gt;
+&lt;li&gt;How to make the bot in JavaScript&lt;/li&gt;
+&lt;li&gt;How to make the bot remember information about the conversation&lt;/li&gt;
+&lt;li&gt;(Maybe) How to connect Azure Functions to GitHub&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I'm pretty sure we can build that in 3 hours even for folks who have little to no experience with Azure. It's really simple!&lt;/p&gt;
+&lt;p&gt;So what are you waiting for? &lt;a href="http://minnewebcon.org/attend"&gt;Register now!&lt;/a&gt;&lt;/p&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>Here's a Drone Docker image with Node.js and Chrome headless</title>
 			<link>https://kamranicus.com/posts/2017-11-20-node-chrome-headless-drone-image</link>
@@ -1198,46 +1221,6 @@ installers/sysinternals/SysInternalsSuite-2016-11-18.zip
 &lt;h2 id="heres-to-a-new-year"&gt;Here's to a new year!&lt;/h2&gt;
 &lt;p&gt;I'm excited for the next year. I'll be having my first child in a matter of weeks, the new course will be going live by the end of the month, and I'm exploring some fun new projects for summer and fall.&lt;/p&gt;
 &lt;p&gt;Cheers!&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Site Down Alerts using Azure App Insights and Zapier</title>
-			<link>https://kamranicus.com/posts/2017-01-10-azure-alerts-zapier-sms</link>
-			<description>&lt;p&gt;It's &lt;a href="https://twitter.com/jordan_belinsky/status/818967360132513792"&gt;happened again&lt;/a&gt;. Even though I &lt;em&gt;do&lt;/em&gt; get emailed whenever &lt;a href="http://ktomg.com"&gt;KTOMG&lt;/a&gt; goes down, I don't pay attention to my email 24/7 and the site can be down for a bit until I realize it. In this case, I was cooking and wasn't at my computer or on my phone. The Twitter notification by a friendly user actually got me to check!&lt;/p&gt;
-&lt;p&gt;I know this is one of the headaches &lt;a href="https://kamranicus.com/blog/2016/10/18/ravendb-standard-non-commercial-license/"&gt;I willingly signed up for&lt;/a&gt; by moving to my own VM--and even though I get emailed when the site's down I hate not knowing that &lt;strong&gt;immediately&lt;/strong&gt;.&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2017-01-10-azure-alerts-zapier-sms</guid>
-			<pubDate>Wed, 11 Jan 2017 02:01:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;It's &lt;a href="https://twitter.com/jordan_belinsky/status/818967360132513792"&gt;happened again&lt;/a&gt;. Even though I &lt;em&gt;do&lt;/em&gt; get emailed whenever &lt;a href="http://ktomg.com"&gt;KTOMG&lt;/a&gt; goes down, I don't pay attention to my email 24/7 and the site can be down for a bit until I realize it. In this case, I was cooking and wasn't at my computer or on my phone. The Twitter notification by a friendly user actually got me to check!&lt;/p&gt;
-&lt;p&gt;I know this is one of the headaches &lt;a href="https://kamranicus.com/blog/2016/10/18/ravendb-standard-non-commercial-license/"&gt;I willingly signed up for&lt;/a&gt; by moving to my own VM--and even though I get emailed when the site's down I hate not knowing that &lt;strong&gt;immediately&lt;/strong&gt;.&lt;/p&gt;
-&lt;!-- More --&gt;
-&lt;h2 id="app-insights"&gt;App Insights&lt;/h2&gt;
-&lt;p&gt;The first thing you should do is get an &lt;a href="https://docs.microsoft.com/en-us/azure/application-insights/app-insights-overview"&gt;Azure App Insights account&lt;/a&gt;. &lt;strong&gt;It's free.&lt;/strong&gt; And you can even use it to &lt;a href="https://docs.microsoft.com/en-us/azure/application-insights/app-insights-monitor-performance-live-website-now"&gt;monitor your own VMs&lt;/a&gt;! This is how I can still get this for KTOMG:&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://cloud.githubusercontent.com/assets/563819/21832425/afa2d62e-d770-11e6-864a-ef6dd5dc13c9.png" class="img-fluid" alt="Server Metrics" /&gt;&lt;/p&gt;
-&lt;p&gt;It's awesome.&lt;/p&gt;
-&lt;p&gt;The other thing it can do is handle availability (ping) tests. It's &lt;a href="https://docs.microsoft.com/en-us/azure/application-insights/app-insights-monitor-web-app-availability"&gt;very easy to set up&lt;/a&gt; and then you can set an alert for it. I've done this already, where I've set it to email me whenever KTOMG is down at more than 3 locations over 3 minutes--in other words, my site has blown up.&lt;/p&gt;
-&lt;h2 id="using-a-webhook-with-zapier"&gt;Using a Webhook with Zapier&lt;/h2&gt;
-&lt;p&gt;I also use &lt;a href="http://zapier.com"&gt;Zapier&lt;/a&gt;, which is just a (fancier?) &lt;a href="http://ifttt.com"&gt;IFTTT&lt;/a&gt; clone. When I had deployed via Azure, I had &lt;a href="https://zapier.com/zapbook/windows-azure-web-sites/"&gt;set up a Zap to notify me&lt;/a&gt; whenever my Azure sites were deployed. Since I'm on my own now, I disabled that but now I'll show you how to use it to notify you via SMS and webhooks.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href="http://zapier.com"&gt;Sign up for an account&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Create a new Zap&lt;/li&gt;
-&lt;li&gt;Select &amp;quot;Webhook by Zapier&amp;quot; as the trigger&lt;/li&gt;
-&lt;li&gt;Go through the steps until you get a new webhook URL&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src="https://cloud.githubusercontent.com/assets/563819/21832880/e0233246-d773-11e6-8b83-f974fe706ccd.png" class="img-fluid" alt="Webhook url" /&gt;&lt;/p&gt;
-&lt;p&gt;Now you've got a webhook URL which is just an HTTP endpoint you can POST to.&lt;/p&gt;
-&lt;p&gt;In Azure App Insights, you'll want to paste this URL into your alert &amp;quot;Webhook&amp;quot; setting:&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://cloud.githubusercontent.com/assets/563819/21832621/fe82c604-d771-11e6-839c-df997b44b942.png" class="img-fluid" alt="Webhook settings" /&gt;&lt;/p&gt;
-&lt;p&gt;Zapier will be asking you to test your hook. It's a bit hard to trigger an Azure alert, but all you really need to do is POST a JSON payload at the endpoint, so &lt;a href="https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/insights-webhooks-alerts"&gt;going off this Azure guide&lt;/a&gt;, use something like &lt;code&gt;curl&lt;/code&gt; or Postman to POST to the endpoint:&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://cloud.githubusercontent.com/assets/563819/21832689/7baa2492-d772-11e6-9b9b-d6be7161fc01.png" class="img-fluid" alt="Testing the hook" /&gt;&lt;/p&gt;
-&lt;p&gt;Now that the hook is tested, Zapier has filled in a bunch of template fields for you, pretty cool! On the left side of the Zap, click the (+) icon and add a Filter:&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://cloud.githubusercontent.com/assets/563819/21832706/9f6736c2-d772-11e6-8437-bad812a60201.png" class="img-fluid" alt="Add Zapier filter" /&gt;&lt;/p&gt;
-&lt;p&gt;We want to only send the Zap if the alert has been &amp;quot;Activated&amp;quot; (not if it gets Resolved). Chances are, you only care that the alert occurred and after that you can check your email/fix the issue to resolve it.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://cloud.githubusercontent.com/assets/563819/21832731/c9a53d94-d772-11e6-899a-a52a1efea106.png" class="img-fluid" alt="Filter for Activated" /&gt;&lt;/p&gt;
-&lt;p&gt;Now, add an Action to send an SMS (or really, do whatever you want--I just want a text message).&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://cloud.githubusercontent.com/assets/563819/21832757/ffe84ea0-d772-11e6-8dc5-9fc4eadd2023.png" class="img-fluid" alt="SMS action" /&gt;&lt;/p&gt;
-&lt;p&gt;You can use the template fields if you want, but this webhook is customized for our alert so I don't really need any info from the alert. If you were sending &lt;em&gt;multiple&lt;/em&gt; alerts to this single hook, you could use the fields of the JSON payload to customize the message here.&lt;/p&gt;
-&lt;p&gt;I am setting a &amp;quot;From number&amp;quot; because I can use an app like &lt;a href="https://play.google.com/store/apps/details?id=de.hoernchen.android.firealert2&amp;amp;hl=en"&gt;FireAlarm2&lt;/a&gt; to read my SMS and page me loudly (even if my phone is on vibrate).&lt;/p&gt;
-&lt;p&gt;That's it! You can test the Zap and it'll send you an SMS to verify you can receive messages. Now you'll always know when your site's down so you don't need to rely on your users.&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>
