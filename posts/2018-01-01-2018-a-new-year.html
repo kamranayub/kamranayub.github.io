@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 
-  <title>Kamranicus - 2 Computers, 1 Desk</title>
+  <title>Kamranicus - 2017 Year in Review and 2018 Goals</title>
   <meta name="description" content="Kamran Ayub" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Kamran Ayub">
@@ -21,9 +21,9 @@
   <meta name="msapplication-tooltip" content="Kamranicus" />
   <meta name="msapplication-starturl" content="/" />
 
-  <meta property="og:title" content="Kamranicus - 2 Computers, 1 Desk" /> 
+  <meta property="og:title" content="Kamranicus - 2017 Year in Review and 2018 Goals" /> 
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://kamranicus.com/posts/2012-08-17-2-computers-1-desk" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2018-01-01-2018-a-new-year" />
   <meta property="og:site_name" content="Kamranicus" />
 
   <!-- TODO: More social graph meta tags -->
@@ -102,14 +102,17 @@
     
 <div class="ui basic vertical segment">
     <h1 class="ui  huge header">
-      2 Computers, 1 Desk
+      2017 Year in Review and 2018 Goals
+        <div class="ui sub header">I accomplished a lot in 2017 and hope to continue working towards my 2018 goals</div>
     </h1>
                 
     <div class="ui  sub header">        
-Published on Saturday, August 18, 2012<br>    </div>
+Published on Monday, January 1, 2018<br>    </div>
         <div class="ui basic vertical spaced segment">
-                    <a role="button" href="/tags/Hardware" class="ui small compact button">Hardware</a>
+                    <a role="button" href="/tags/Accomplishments" class="ui small compact button">Accomplishments</a>
+                    <a role="button" href="/tags/Goals" class="ui small compact button">Goals</a>
                     <a role="button" href="/tags/Life" class="ui small compact button">Life</a>
+                    <a role="button" href="/tags/Year-in-Review" class="ui small compact button">Year in Review</a>
         </div>     
 </div>
     </div>
@@ -121,40 +124,71 @@ Published on Saturday, August 18, 2012<br>    </div>
       
 
 <div class="ui huge basic post content segment">
-  <p>At home, I have two main computers and one desk. I use one for my main everyday tasks and for gaming, and I use the other one as a server/development machine.</p>
-<p>As you might guess, this is logistically difficult to manage on a small desk that is meant for only a single PC. You need to have two keyboards/mice and, if you like sound, two sets of speakers. Furthermore, if you're like me, you want to see both computers at once if you have two screens. Personally, I like dual-monitors for my main machine and am fine with only using a single monitor for development.</p>
-<h2 id="two-pcs-one-mouse-and-keyboard">Two PC's, One Mouse and Keyboard</h2>
-<p>The first logistical item to eliminate is how to control both computers with one keyboard and one mouse. There are a couple options:</p>
-<ol>
-<li>Use a hardware KVM switch</li>
-<li>Use a software KVM switch</li>
-</ol>
-<p>Going with option 1 requires some more cables, but is handy in that you purposefully switch to the device you want to use, plus it is using actual hardware, rather than software emulation (which may have issues on Windows 8, see below).</p>
-<p>I went with option 2, using the open source software <a href="http://synergy-foss.org/">Synergy</a>. I have a Windows 7 host (gaming PC) and my server as the client (Windows 8 RTM). If you make sure Synergy starts as a service and is elevated, you won't have issues with starting up and logging in on the client PC.</p>
-<p><em>Notice for Windows 8 users</em>: You may run into an issue with any KVM software out right now, which is being unable to see your mouse cursor. If you do not have any mouse plugged in to the computer, I believe Windows 8 hides the cursor because it assumes a touch interface by default. There are two workarounds: 1) Enable &quot;<a href="http://windows.microsoft.com/is-IS/windows7/Use-Mouse-Keys-to-move-the-mouse-pointer">MouseKeys</a>&quot; but I had to enable this almost every time I restarted or, 2) Plug in a mouse. I opted for #2, with a wireless mouse/kb. This gives me some flexibility where I can use a physical mouse/kb if I really want.</p>
-<h2 id="two-pcs-one-set-of-speakers">Two PC's One Set of Speakers</h2>
-<p>This is the more interesting problem. Is it possible to play both computers through one set of speakers? I am happy to report: yes! However, there is a caveat...</p>
-<p>In order to pull this off, your &quot;main&quot; PC needs to have the ability to accept an input device (like a Digital/SPDIF/Optical-In). My gaming PC has a Sound Blaster X-Fi Elite Pro, so I have a big external console that accepts all kinds of inputs.</p>
-<p>My server has a modern motherboard which can output either SPDIF or Optical. I had an extra SPDIF cable lying around, so I wired it from the server to my X-Fi's console.</p>
-<p>There are a couple things to do in Windows to get this to work:</p>
-<ol>
-<li><p>Right-click your sound icon and go to Playback Devices.</p>
-</li>
-<li><p>Make sure SPDIF is the default playback device:</p>
-<p><img src="/posts/images/66.png" class="img-fluid" alt="SPDIF" /></p>
-</li>
-<li><p>On the main PC, you can &quot;listen&quot; to any recording device, which plays whatever's being sent to the main playback device. Listen to whatever input you're using to send the output of the client PC:</p>
-<p><img src="/posts/images/68.png" class="img-fluid" alt="Listen" /></p>
-</li>
-</ol>
-<p>Voila! As soon as you hit &quot;Apply&quot;, you'll start hearing Iron Maiden blasting through your single set of speakers as you code!</p>
-<p><strong>Note:</strong> This problem can also be solved if the monitor you use has speakers. If you use HDMI to connect your monitor to your client, audio and video will pass through (or you can use one of those speaker-jack cables). It'll sound like crap, though!</p>
-<h2 id="two-pcs-two-monitors">Two PCs, Two Monitors</h2>
-<p>This is straightforward enough. As long as your main monitor accepts multiple inputs (DVI, VGA, HDMI, DisplayPort), you just need to find the right cable from your client to the monitor.</p>
-<p>For example, my gaming PC has a DVI cable to my monitor. My server uses an HDMI cable. You're going to have a tougher time if your display doesn't accept multiple digital inputs (for example, only DVI and VGA...). It'll work, but analog signals look like crap on your nice 1080p display.</p>
-<p>When I am developing, I set my secondary monitor (which is to the right of my main monitor) as the primary monitor for my gaming PC. That way, I can still use my other PC as I'm using my development machine.</p>
-<h2 id="the-end-result">The End Result</h2>
-<p>... is awesome! My desk isn't cluttered with multiple sets of things, and the only manual thing I really have to do is switch my monitor input when I need to switch to using one PC more than the other.</p>
+  <p>It's good to have goals. Without goals, you're aimlessly wandering around on this space rock with nothing to do and no one to answer to. Some folks like that but I'm not one of them--I like having goals, for near and long-term. I have career goals that I work on with my manager, these are overall professional and community goals to help me personally grow.</p>
+<p>I <a href="https://kamranicus.com/posts/2017-01-02-year-in-review">got a lot done in 2016</a> and continued the trend in 2017, let's break it down and end with my 2018 goals.</p>
+<h1 id="year-in-review">2017 Year in Review</h1>
+<h2 id="life">Life</h2>
+<ul>
+<li>Achievement Unlocked: Father. My son was born in February!</li>
+<li>I <a href="https://kamranicus.com/posts/2017-08-28-joined-target">started a new job</a> at Target in August</li>
+</ul>
+<h2 id="publishing">Publishing</h2>
+<p>Some very exciting milestones were reached in 2017: my first course was published and I became a Pluralsight author!</p>
+<ul>
+<li>I <a href="https://kamranicus.com/posts/2017-01-31-introduction-to-typescript-course-packt-publishing">published my Introduction to TypeScript course</a> on January 31</li>
+<li>In October, I <a href="https://kamranicus.com/posts/2017-10-10-becoming-a-pluralsight-author">accepted a contract</a> to author my first Pluralsight course on RavenDB 4! It's almost done so I will be an &quot;official&quot; author in 2018. This was a huge accomplishment!</li>
+</ul>
+<h2 id="open-source">Open Source</h2>
+<p>Overall, I'm still finding time to contribute to open source. My number of contributions was lower than 2016 but this year I had a new baby so I figure that's pretty good!</p>
+<ul>
+<li><a href="https://github.com/excaliburjs/Excalibur/pulls?page=1&amp;q=is%3Apr+is%3Aclosed+author%3Akamranayub">34 PRs closed for Excalibur.js</a></li>
+<li><a href="https://github.com/kamranayub?tab=overview&amp;from=2017-12-01&amp;to=2017-12-31">840 contributions in 2017</a></li>
+<li>In April, worked on &quot;<a href="https://github.com/excaliburjs/ludum-38">I Just Wanted Groceries</a>&quot; for the Ludum Dare 38 game jam</li>
+<li>In October I <a href="https://www.youtube.com/playlist?list=PL3ac-9HYUzQjbIWk7BczVfPqVD2_BNWhE">started streaming</a> every other Thursday on Twitch, working on OSS projects. I did 4 sessions with 3 recorded videos.</li>
+</ul>
+<h2 id="new-tech">New Tech</h2>
+<ul>
+<li>I got my first Raspberry Pi and <a href="https://kamranicus.com/posts/2017-02-21-building-a-raspberry-pi-3-baby-monitor-livestream-audio-video">built a baby monitor</a>. My guide continues to be my most popular article on my site!</li>
+<li><a href="https://kamranicus.com/posts/2017-10-27-frontend-masters-node-api-graphql">Played with GraphQL</a> and continue working with GQL full-time at work (it's awesome)</li>
+<li>I'm using &quot;older&quot; AngularJS at work but <a href="https://kamranicus.com/posts/2017-10-06-webpack-karma-jest-babel-angularjs">integrating it with modern tools</a></li>
+<li><a href="https://kamranicus.com/posts/2017-11-20-node-chrome-headless-drone-image">Messing with Drone CI</a> at work</li>
+<li>Did some <a href="https://github.com/ansible/ansible/pulls/kamranayub">Ansible</a> earlier in the year</li>
+<li>Did <a href="https://github.com/rschiefer/MSDeployAllTheThings/pull/6">some VSTS extension</a> stuff</li>
+<li>Did <a href="https://kamranicus.com/posts/2017-02-04-powershell-dsc-git-lfs-binaries">some</a> Git LFS <a href="https://kamranicus.com/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts">stuff</a> with Powershell and DSC</li>
+</ul>
+<h2 id="speaking-and-conferences">Speaking and Conferences</h2>
+<p>I already reached one of my goals for 2018 &quot;on accident,&quot; which was doing a workshop.</p>
+<ul>
+<li>In December, I revealed I'll be <a href="https://kamranicus.com/posts/2017-12-18-workshop-bots-javascript-node-minnewebcon">doing a half-day workshop</a> at MinneWebCon 2018 on Azure bots</li>
+<li>I <a href="https://kamranicus.com/posts/2017-07-14-midwestjs-react-typescript">spoke at Midwest.js 2017</a> on React and TypeScript</li>
+<li>I attended <a href="https://kamranicus.com/posts/2017-02-01-build-2017">MS Build 2017</a> which was a lot of fun</li>
+<li>I gave the same talk from Midwest.js at Target's internal &quot;InnerConf&quot; conference</li>
+</ul>
+<h2 id="games">Games</h2>
+<ul>
+<li><a href="https://github.com/excaliburjs/ludum-38">Made a game</a> for Ludum Dare 38</li>
+<li><a href="https://keeptrackofmygames.com/users/kamranicus/lists/played/?sortBy=DateAdded">Finished</a> Horizon: Zero Dawn, Dishonored 2, Life is Strange, and Super Mario: Odyssey. Haven't beaten Zelda yet.</li>
+</ul>
+<h1 id="goals">2018 Goals</h1>
+<p>In 2016 I didn't lay out my goals in a post, I had them in my head. I'd like to write them down here so I can compare how I did at the year end. Let's do it!</p>
+<h2 id="primary-goals">Primary Goals</h2>
+<ul>
+<li>Publish 1 more Pluralsight course (excludes one in progress)</li>
+<li>Host a half-day workshop (scheduled for April)</li>
+<li>Participate in a LD game jam</li>
+<li>Attend and present at 2 conferences</li>
+<li>Attend and present at a local user group</li>
+<li>Continue doing code livestreams</li>
+</ul>
+<h2 id="stretch-goals">Stretch Goals</h2>
+<p>My primary goals are based on previous milestones that I think I can continue. I also want to have some stretch goals to work towards:</p>
+<ul>
+<li><strong>Become a Microsoft MVP:</strong> I spread the love around TypeScript and Azure a lot in my talks and work, I'd like to work towards becoming an MVP.</li>
+<li><strong>Publish 2 more Pluralsight courses:</strong> I'm confident I can do at least 1 course in 2018, I'd love to do two!</li>
+<li><strong>Host a full-day workshop</strong>: This one will be a tough one but with a half-day workshop goal already in progress, I should try for a full-day--even if it's at work and not publicly. Target hosts internal workshops and I've already signaled my intent to do one for 2018.</li>
+<li><strong>Stream 10 sessions</strong>: I streamed 3 sessions in 2017 and took a holiday break. In January I want to start back up and continue it for the rest of the year, if I can make it work.</li>
+</ul>
+<p>Phew, that's a lot! We're going to see if I can achieve some of these in 2018 and what ends up carrying over to 2019. Good luck working towards your own goals for this new year!</p>
 
 </div>
 
@@ -200,9 +234,9 @@ Published on Saturday, August 18, 2012<br>    </div>
 
 <script type="text/javascript">
     var disqus_shortname = 'kamranicus';
-    var disqus_identifier = '54';
-    var disqus_title = '2 Computers, 1 Desk';
-    var disqus_url = 'https://kamranicus.com/posts/2012-08-17-2-computers-1-desk';
+    var disqus_identifier = '2018-01-01-2018-a-new-year';
+    var disqus_title = '2017 Year in Review and 2018 Goals';
+    var disqus_url = 'https://kamranicus.com/posts/2018-01-01-2018-a-new-year';
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
@@ -222,30 +256,7 @@ Published on Saturday, August 18, 2012<br>    </div>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
       <!-- Disqus -->
-<div id="disqus_thread"></div>
-
-<script type="text/javascript">
-    var disqus_shortname = 'kamranicus';
-    var disqus_identifier = '54';
-    var disqus_title = '2 Computers, 1 Desk';
-    var disqus_url = 'https://kamranicus.com/posts/2012-08-17-2-computers-1-desk';
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-    
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>    </div>
+    </div>
   </div>
 
   <div class="ui divider"></div>

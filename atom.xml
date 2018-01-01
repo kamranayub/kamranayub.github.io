@@ -3,9 +3,82 @@
 	<link rel="self" href="https://kamranicus.com/" />
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
-	<rights>2017</rights>
-	<updated>2017-12-19T03:49:02Z</updated>
+	<rights>2018</rights>
+	<updated>2018-01-01T16:45:19Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2018-01-01-2018-a-new-year" />
+		<id>https://kamranicus.com/posts/2018-01-01-2018-a-new-year</id>
+		<title>2017 Year in Review and 2018 Goals</title>
+		<updated>2018-01-01T14:50:00Z</updated>
+		<content>&lt;p&gt;It's good to have goals. Without goals, you're aimlessly wandering around on this space rock with nothing to do and no one to answer to. Some folks like that but I'm not one of them--I like having goals, for near and long-term. I have career goals that I work on with my manager, these are overall professional and community goals to help me personally grow.&lt;/p&gt;
+&lt;p&gt;I &lt;a href="https://kamranicus.com/posts/2017-01-02-year-in-review"&gt;got a lot done in 2016&lt;/a&gt; and continued the trend in 2017, let's break it down and end with my 2018 goals.&lt;/p&gt;
+&lt;h1 id="year-in-review"&gt;2017 Year in Review&lt;/h1&gt;
+&lt;h2 id="life"&gt;Life&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Achievement Unlocked: Father. My son was born in February!&lt;/li&gt;
+&lt;li&gt;I &lt;a href="https://kamranicus.com/posts/2017-08-28-joined-target"&gt;started a new job&lt;/a&gt; at Target in August&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="publishing"&gt;Publishing&lt;/h2&gt;
+&lt;p&gt;Some very exciting milestones were reached in 2017: my first course was published and I became a Pluralsight author!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I &lt;a href="https://kamranicus.com/posts/2017-01-31-introduction-to-typescript-course-packt-publishing"&gt;published my Introduction to TypeScript course&lt;/a&gt; on January 31&lt;/li&gt;
+&lt;li&gt;In October, I &lt;a href="https://kamranicus.com/posts/2017-10-10-becoming-a-pluralsight-author"&gt;accepted a contract&lt;/a&gt; to author my first Pluralsight course on RavenDB 4! It's almost done so I will be an &amp;quot;official&amp;quot; author in 2018. This was a huge accomplishment!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="open-source"&gt;Open Source&lt;/h2&gt;
+&lt;p&gt;Overall, I'm still finding time to contribute to open source. My number of contributions was lower than 2016 but this year I had a new baby so I figure that's pretty good!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/excaliburjs/Excalibur/pulls?page=1&amp;amp;q=is%3Apr+is%3Aclosed+author%3Akamranayub"&gt;34 PRs closed for Excalibur.js&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/kamranayub?tab=overview&amp;amp;from=2017-12-01&amp;amp;to=2017-12-31"&gt;840 contributions in 2017&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;In April, worked on &amp;quot;&lt;a href="https://github.com/excaliburjs/ludum-38"&gt;I Just Wanted Groceries&lt;/a&gt;&amp;quot; for the Ludum Dare 38 game jam&lt;/li&gt;
+&lt;li&gt;In October I &lt;a href="https://www.youtube.com/playlist?list=PL3ac-9HYUzQjbIWk7BczVfPqVD2_BNWhE"&gt;started streaming&lt;/a&gt; every other Thursday on Twitch, working on OSS projects. I did 4 sessions with 3 recorded videos.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="new-tech"&gt;New Tech&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;I got my first Raspberry Pi and &lt;a href="https://kamranicus.com/posts/2017-02-21-building-a-raspberry-pi-3-baby-monitor-livestream-audio-video"&gt;built a baby monitor&lt;/a&gt;. My guide continues to be my most popular article on my site!&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://kamranicus.com/posts/2017-10-27-frontend-masters-node-api-graphql"&gt;Played with GraphQL&lt;/a&gt; and continue working with GQL full-time at work (it's awesome)&lt;/li&gt;
+&lt;li&gt;I'm using &amp;quot;older&amp;quot; AngularJS at work but &lt;a href="https://kamranicus.com/posts/2017-10-06-webpack-karma-jest-babel-angularjs"&gt;integrating it with modern tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://kamranicus.com/posts/2017-11-20-node-chrome-headless-drone-image"&gt;Messing with Drone CI&lt;/a&gt; at work&lt;/li&gt;
+&lt;li&gt;Did some &lt;a href="https://github.com/ansible/ansible/pulls/kamranayub"&gt;Ansible&lt;/a&gt; earlier in the year&lt;/li&gt;
+&lt;li&gt;Did &lt;a href="https://github.com/rschiefer/MSDeployAllTheThings/pull/6"&gt;some VSTS extension&lt;/a&gt; stuff&lt;/li&gt;
+&lt;li&gt;Did &lt;a href="https://kamranicus.com/posts/2017-02-04-powershell-dsc-git-lfs-binaries"&gt;some&lt;/a&gt; Git LFS &lt;a href="https://kamranicus.com/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts"&gt;stuff&lt;/a&gt; with Powershell and DSC&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="speaking-and-conferences"&gt;Speaking and Conferences&lt;/h2&gt;
+&lt;p&gt;I already reached one of my goals for 2018 &amp;quot;on accident,&amp;quot; which was doing a workshop.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In December, I revealed I'll be &lt;a href="https://kamranicus.com/posts/2017-12-18-workshop-bots-javascript-node-minnewebcon"&gt;doing a half-day workshop&lt;/a&gt; at MinneWebCon 2018 on Azure bots&lt;/li&gt;
+&lt;li&gt;I &lt;a href="https://kamranicus.com/posts/2017-07-14-midwestjs-react-typescript"&gt;spoke at Midwest.js 2017&lt;/a&gt; on React and TypeScript&lt;/li&gt;
+&lt;li&gt;I attended &lt;a href="https://kamranicus.com/posts/2017-02-01-build-2017"&gt;MS Build 2017&lt;/a&gt; which was a lot of fun&lt;/li&gt;
+&lt;li&gt;I gave the same talk from Midwest.js at Target's internal &amp;quot;InnerConf&amp;quot; conference&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="games"&gt;Games&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/excaliburjs/ludum-38"&gt;Made a game&lt;/a&gt; for Ludum Dare 38&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://keeptrackofmygames.com/users/kamranicus/lists/played/?sortBy=DateAdded"&gt;Finished&lt;/a&gt; Horizon: Zero Dawn, Dishonored 2, Life is Strange, and Super Mario: Odyssey. Haven't beaten Zelda yet.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="goals"&gt;2018 Goals&lt;/h1&gt;
+&lt;p&gt;In 2016 I didn't lay out my goals in a post, I had them in my head. I'd like to write them down here so I can compare how I did at the year end. Let's do it!&lt;/p&gt;
+&lt;h2 id="primary-goals"&gt;Primary Goals&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Publish 1 more Pluralsight course (excludes one in progress)&lt;/li&gt;
+&lt;li&gt;Host a half-day workshop (scheduled for April)&lt;/li&gt;
+&lt;li&gt;Participate in a LD game jam&lt;/li&gt;
+&lt;li&gt;Attend and present at 2 conferences&lt;/li&gt;
+&lt;li&gt;Attend and present at a local user group&lt;/li&gt;
+&lt;li&gt;Continue doing code livestreams&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="stretch-goals"&gt;Stretch Goals&lt;/h2&gt;
+&lt;p&gt;My primary goals are based on previous milestones that I think I can continue. I also want to have some stretch goals to work towards:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Become a Microsoft MVP:&lt;/strong&gt; I spread the love around TypeScript and Azure a lot in my talks and work, I'd like to work towards becoming an MVP.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Publish 2 more Pluralsight courses:&lt;/strong&gt; I'm confident I can do at least 1 course in 2018, I'd love to do two!&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Host a full-day workshop&lt;/strong&gt;: This one will be a tough one but with a half-day workshop goal already in progress, I should try for a full-day--even if it's at work and not publicly. Target hosts internal workshops and I've already signaled my intent to do one for 2018.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stream 10 sessions&lt;/strong&gt;: I streamed 3 sessions in 2017 and took a holiday break. In January I want to start back up and continue it for the rest of the year, if I can make it work.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Phew, that's a lot! We're going to see if I can achieve some of these in 2018 and what ends up carrying over to 2019. Good luck working towards your own goals for this new year!&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;It's good to have goals. Without goals, you're aimlessly wandering around on this space rock with nothing to do and no one to answer to. Some folks like that but I'm not one of them--I like having goals, for near and long-term. I have career goals that I work on with my manager, these are overall professional and community goals to help me personally grow.&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2017-12-18-workshop-bots-javascript-node-minnewebcon" />
 		<id>https://kamranicus.com/posts/2017-12-18-workshop-bots-javascript-node-minnewebcon</id>
@@ -1166,60 +1239,5 @@ installers/sysinternals/SysInternalsSuite-2016-11-18.zip
 &lt;p&gt;Thanks Appveyor!&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;We ran into a subtle issue with &lt;a href="http://excaliburjs.com"&gt;Excalibur.js&lt;/a&gt; recently, as documented in &lt;a href="https://github.com/excaliburjs/Excalibur/pull/740"&gt;this pull request&lt;/a&gt;.&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2017-01-21-new-design-wyam-generator" />
-		<id>https://kamranicus.com/posts/2017-01-21-new-design-wyam-generator</id>
-		<title>New Year, New Site Design Using Wyam Static Site Generator</title>
-		<updated>2017-01-22T00:25:00Z</updated>
-		<content>&lt;p&gt;In preparation for the upcoming release of my new course, &lt;a href="https://www.packtpub.com/application-development/introduction-typescript-video"&gt;Introduction to TypeScript&lt;/a&gt; and because it's 2017, I decided it would be best to update my personal site with a more complete picture of myself.&lt;/p&gt;
-&lt;!-- More --&gt;
-&lt;p&gt;When &lt;a href="https://kamranicus.com/posts/2011-04-05-welcome-to-kamranicus-yaps"&gt;Kamranicus began&lt;/a&gt;, I had created a custom MVC blog--complete with a control panel and web editor. This was overkill and I came to realize there was no real reason to have a &lt;em&gt;dynamic&lt;/em&gt; site.&lt;/p&gt;
-&lt;p&gt;Three years ago I moved &lt;a href="https://kamranicus.com/posts/2013-12-04-kamranicus-now-with-100-percent-more-octopress"&gt;onto Octopress&lt;/a&gt; since Jekyll was and is still a popular static site generator. However, there were still some downsides to Octopress/Jekyll, namely:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;It requires a Ruby install and I'm on Windows, it's a pain&lt;/li&gt;
-&lt;li&gt;It uses Liquid templates which I don't want to deal with&lt;/li&gt;
-&lt;li&gt;Plugins are written in Ruby and I don't know Ruby (yet)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I have &lt;em&gt;no problem&lt;/em&gt; with Ruby, I'd like to learn someday in fact. But today is not that day and I would rather like to be able to extend and customize my site with a tech stack I'm familiar with.&lt;/p&gt;
-&lt;p&gt;Could there be something better three years later?&lt;/p&gt;
-&lt;h2 id="wyam-the.net-static-site-generator"&gt;Wyam the .NET static site generator&lt;/h2&gt;
-&lt;p&gt;I first heard about &lt;a href="https://wyam.io"&gt;Wyam&lt;/a&gt; from &lt;a href="http://www.hanselman.com/blog/ExploringWyamANETStaticSiteContentGenerator.aspx"&gt;Scott Hanselman's blog post&lt;/a&gt; and I was &lt;em&gt;very&lt;/em&gt; interested--a site generator written in .NET that I can extend and customize! It is not just for blogs, it can generate static sites based on &amp;quot;Recipes&amp;quot; that you can write yourself and it uses a simple plug and play pipeline system that is fully customizable.&lt;/p&gt;
-&lt;p&gt;So finding this week to be the perfect opportunity after sending in my last work for my new course, I decided to jump right in and get this bad boy working.&lt;/p&gt;
-&lt;p&gt;I have to give huge props to &lt;a href="https://daveaglick.com/"&gt;Dave Glick&lt;/a&gt;, the creator. He was friendly and helpful as I was learning my way around, I even &lt;a href="https://github.com/Wyamio/Wyam/pull/397"&gt;contributed some bug fixes&lt;/a&gt; to the themes.&lt;/p&gt;
-&lt;h2 id="migrating-to-wyam"&gt;Migrating to Wyam&lt;/h2&gt;
-&lt;p&gt;Migrating to Wyam from Octopress was not hard but it was a little tedious. The YAML front matter of the blog posts in Wyam are slightly different enough that I had to use some Powershell to do some file transformation (yay &lt;code&gt;Substring&lt;/code&gt; and &lt;code&gt;Regex&lt;/code&gt;!). For example, the Jekyll &lt;code&gt;date:&lt;/code&gt; property needs to be &lt;code&gt;Published:&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;I also had to take care of redirects. In Jekyll, my posts were organized under &lt;code&gt;/blog/yyyy/mm/dd/post/&lt;/code&gt; but in Wyam the default is simply &lt;code&gt;/posts/post&lt;/code&gt;. You can enable using dates in the URL but frankly I liked the simpler URLs. You can use the &lt;code&gt;RedirectFrom:&lt;/code&gt; front matter property to provide a path that Wyam will then generate a redirect for (using meta refresh). Sweet! Again, some simple Powershell allowed me to update all my old posts with the redirect URLs.&lt;/p&gt;
-&lt;p&gt;Finally, the old blog was using Disqus for commenting and it turns out the &amp;quot;identifier&amp;quot; Disqus was using was the &lt;em&gt;full URL to the post&lt;/em&gt;. Not great. Luckily, any front matter properties are immediately available in the Razor templates, so I added a &lt;code&gt;disqus_identifier&lt;/code&gt; property (hold over from Jekyll) and referenced it in my &lt;code&gt;_PostFooter.cshtml&lt;/code&gt; template:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-html"&gt;&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
-    var disqus_shortname = 'kamranicus';
-    var disqus_identifier = '&amp;#64;(Model.String(&amp;quot;disqus_identifier&amp;quot;) ?? Model.FilePath(Keys.RelativeFilePath).FileNameWithoutExtension.FullPath)';
-    var disqus_title = '&amp;#64;Model.String(BlogKeys.Title)';
-    var disqus_url = '&amp;#64;Context.GetLink(Model, true)';
-
-    // ... etc
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Using the &lt;code&gt;Model.String&lt;/code&gt; accessor, you can get at any declared document metadata. In the same fashion, &lt;code&gt;Context.String&lt;/code&gt; accesses the global metadata declared in your &lt;code&gt;wyam.config&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id="customizing-wyam"&gt;Customizing Wyam&lt;/h2&gt;
-&lt;p&gt;The default theme, CleanBlog, that is included with the &lt;a href="https://wyam.io/recipes/blog/overview"&gt;Wyam blog recipe&lt;/a&gt; is pretty awesome--much better than the default themes in Jekyll or Octopress.&lt;/p&gt;
-&lt;p&gt;With my Octopress blog, I had always felt that I was doing myself a disservice using a pre-canned theme. I liked its simplicity but as a self-proclaimed &amp;quot;web developer&amp;quot;, I felt I had to, you know, &lt;em&gt;design my own theme&lt;/em&gt; and that's what you see now before you.&lt;/p&gt;
-&lt;p&gt;To customize the Wyam theme, it was very easy--you just copy the existing theme files to your &lt;strong&gt;input&lt;/strong&gt; directory and customize them. The layouts are all Razor templates which was refreshingly familiar. Any non-underscore-prefixed &lt;code&gt;.cshtml&lt;/code&gt; or &lt;code&gt;.md&lt;/code&gt; files get made into pages. Everything was so simple!&lt;/p&gt;
-&lt;p&gt;I ended up really liking the &lt;a href="http://qrohlf.com/trianglify/"&gt;Trianglify&lt;/a&gt; JavaScript library so I kept that for the hero banners across the site. I removed some extra libraries I didn't need and upgraded the rest. I'm not 100% convinced I even need jQuery still since I'm not using any Semantic UI JavaScript plugins yet.&lt;/p&gt;
-&lt;p&gt;Having previously used &lt;a href="http://semantic-ui.com"&gt;Semantic UI&lt;/a&gt; on the &lt;a href="http://excaliburjs.com"&gt;Excalibur.js&lt;/a&gt; site redesign, I decided to use it again--I've been pretty happy with it over Bootstrap due to the extra flexibility and modular design. I ripped Bootstrap out of the default theme and replaced it with my own customized Semantic install.&lt;/p&gt;
-&lt;p&gt;I built the current design within two days and I'm pretty happy with how it turned out. I still intend to customize it further but for now it's &amp;quot;good enough&amp;quot; in time for the course release.&lt;/p&gt;
-&lt;p&gt;You can, of course, &lt;a href="https://github.com/kamranayub/kamranayub.github.io"&gt;see my entire site's source code&lt;/a&gt; if you're interested. Getting the site to deploy via &lt;a href="http://appveyor.com"&gt;AppVeyor&lt;/a&gt; was not too bad--just had some trial and error issues with the magic incantations to get my DOS commands to work.&lt;/p&gt;
-&lt;h2 id="cloudflare-ssl"&gt;CloudFlare SSL&lt;/h2&gt;
-&lt;p&gt;&lt;a href="http://cloudflare.com"&gt;CloudFlare&lt;/a&gt; is amazing. I'm using it to provide SSL support for the site, since the site is hosted on GitHub Pages and they don't yet support SSL for custom domains. That's fine by me though, since CloudFlare is free and easy to set up.&lt;/p&gt;
-&lt;p&gt;Working in a &amp;quot;dev ops&amp;quot; role right now I've seen examples of how not using SSL can screw over sites. I'm a huge fan of SSL everywhere, even on static sites. I've already enabled &lt;a href="https://blog.cloudflare.com/enforce-web-policy-with-hypertext-strict-transport-security-hsts/"&gt;HSTS&lt;/a&gt; via CloudFlare on &lt;a href="http://ktomg.com"&gt;Keep Track of My Games&lt;/a&gt; to ensure the entire site is served over SSL.&lt;/p&gt;
-&lt;h2 id="showcasing-more-of-me"&gt;Showcasing more of &amp;quot;me&amp;quot;&lt;/h2&gt;
-&lt;p&gt;As you may have noticed at the top, I now have some new pages for the &lt;a href="/projects"&gt;projects I work on&lt;/a&gt;, &lt;a href="/speaking"&gt;talks I've given&lt;/a&gt;, and &lt;a href="/travel"&gt;links to my travel blogs&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This may all be things you didn't know about me--and I wouldn't blame you. Sure, I tend to mention things on Twitter but I have been wanting to have a place on the site where I can talk about and show the things I've been doing. I'm a busy guy!&lt;/p&gt;
-&lt;p&gt;I also include my social profiles at the bottom of every post and in the footer of the site so people know where to find me.&lt;/p&gt;
-&lt;h2 id="heres-to-a-new-year"&gt;Here's to a new year!&lt;/h2&gt;
-&lt;p&gt;I'm excited for the next year. I'll be having my first child in a matter of weeks, the new course will be going live by the end of the month, and I'm exploring some fun new projects for summer and fall.&lt;/p&gt;
-&lt;p&gt;Cheers!&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;In preparation for the upcoming release of my new course, &lt;a href="https://www.packtpub.com/application-development/introduction-typescript-video"&gt;Introduction to TypeScript&lt;/a&gt; and because it's 2017, I decided it would be best to update my personal site with a more complete picture of myself.&lt;/p&gt;</summary>
 	</entry>
 </feed>
