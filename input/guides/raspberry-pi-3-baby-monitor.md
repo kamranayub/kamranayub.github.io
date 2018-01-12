@@ -49,6 +49,10 @@ This guide will show you how to build your own DIY baby monitor using a Raspberr
 
 ## Updates
 
+### 2018-01-11
+
+- Fixed picam extraction command typo because the archive contains the original filename as the top-level folder
+
 ### 2017-10-25
 
 - Thanks to [Andrew](#comment-3574356701) for pointing out some differences between different Raspbian versions! I updated the Picam installation step.
@@ -216,7 +220,7 @@ Now we install Picam directly using the link above:
 
     wget <URL ABOVE> -O picam-1.4.6.tar.xz
     tar xvf picam-1.4.6.tar.xz
-    cp picam-1.4.6.tar.xz/picam ~/picam/
+    cp picam-1.4.6-binary-<DIST ABOVE (jessie/stretch)>.tar.xz/picam ~/picam/
 
 We now have Picam installed! It's time to get a stream working.
 
