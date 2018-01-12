@@ -4,7 +4,7 @@ init:
 environment:
   global:
     GH_REF: github.com/kamranayub/kamranayub.github.io.git
-    WYAM_VERSION: v1.1.0
+    WYAM_VERSION: v1.2.0
   matrix:
     - nodejs_version: "6"
 
