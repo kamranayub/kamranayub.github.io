@@ -158,12 +158,16 @@
 </li>
 </ul>
 <h2 id="updates">Updates</h2>
-<h3 id="section">2017-10-25</h3>
+<h3 id="section">2018-01-11</h3>
+<ul>
+<li>Fixed picam extraction command typo because the archive contains the original filename as the top-level folder</li>
+</ul>
+<h3 id="section-1">2017-10-25</h3>
 <ul>
 <li>Thanks to <a href="#comment-3574356701">Andrew</a> for pointing out some differences between different Raspbian versions! I updated the Picam installation step.</li>
 <li>I updated my Picam arguments to be what I'm using now after some testing. The args I'm using seem pretty stable now.</li>
 </ul>
-<h3 id="section-1">2017-10-02</h3>
+<h3 id="section-2">2017-10-02</h3>
 <ul>
 <li>I missed the fact that the <code>/run/shm</code> directories are blown away on Pi restarts. The startup script now makes sure they exist (should fix slow feeds).</li>
 <li>I updated my picam-viewer web player to use Video.js now which should support more devices.</li>
@@ -286,7 +290,7 @@ EOF
 <p>Now we install Picam directly using the link above:</p>
 <pre><code>wget &lt;URL ABOVE&gt; -O picam-1.4.6.tar.xz
 tar xvf picam-1.4.6.tar.xz
-cp picam-1.4.6.tar.xz/picam ~/picam/
+cp picam-1.4.6-binary-&lt;DIST ABOVE (jessie/stretch)&gt;.tar.xz/picam ~/picam/
 </code></pre>
 <p>We now have Picam installed! It's time to get a stream working.</p>
 <p>To configure Picam to use our microphone, we need to know what its &quot;device ID&quot; is. Run the following to list any USB recording devices:</p>
