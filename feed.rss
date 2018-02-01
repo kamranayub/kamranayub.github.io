@@ -5,8 +5,25 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2018</copyright>
-		<pubDate>Thu, 01 Feb 2018 05:55:40 GMT</pubDate>
-		<lastBuildDate>Thu, 01 Feb 2018 05:55:40 GMT</lastBuildDate>
+		<pubDate>Thu, 01 Feb 2018 06:32:57 GMT</pubDate>
+		<lastBuildDate>Thu, 01 Feb 2018 06:32:57 GMT</lastBuildDate>
+		<item>
+			<title>Scalable React &amp; TypeScript at NDC Minnesota</title>
+			<link>https://kamranicus.com/posts/2018-01-31-ndc-minnesota-react-typescript-talk</link>
+			<description>&lt;p&gt;&lt;img src="/assets/images/talks/ndc.jpg" class="img-fluid" alt="NDC Conferences"&gt;&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2018-01-31-ndc-minnesota-react-typescript-talk</guid>
+			<pubDate>Thu, 01 Feb 2018 04:50:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;&lt;img src="/assets/images/talks/ndc.jpg" class="img-fluid" alt="NDC Conferences" /&gt;&lt;/p&gt;
+&lt;p&gt;I'm having a tough time coming to terms with what I'm about to write--but I'm honored that my scalable React and TypeScript talk has been accepted for &lt;a href="http://ndcminnesota.com"&gt;NDC Minnesota&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ndcminnesota.com/page/about-ndc"&gt;NDC is a big deal&lt;/a&gt; and I will be sharing the spotlight with such ubiquitous experts like K. Scott Allen &amp;amp; Michelle Bustamante, both of whom are giving workshops I can't decide between, Steve Sanderson, Brock Allen, and &lt;em&gt;more&lt;/em&gt;. OK OK sure, it's not NDC London or NDC Sydney--but it's &lt;strong&gt;still&lt;/strong&gt; NDC and I &lt;strong&gt;still&lt;/strong&gt; can't believe I was accepted. This is also a huge personal milestone as this will be my first conference that isn't just local.&lt;/p&gt;
+&lt;h2 id="about-the-talk"&gt;About the talk&lt;/h2&gt;
+&lt;p&gt;If you don't really follow me and are wondering what the talk will be about, well, &lt;a href="https://youtu.be/owcuEwn-pSM"&gt;you can watch it online&lt;/a&gt; (spoiler alert!). But I promise it's going to be different and better, somehow. In fact, my React rewrite might &lt;em&gt;actually&lt;/em&gt; be done by then!&lt;/p&gt;
+&lt;h2 id="i.am.terrified"&gt;I. am. terrified.&lt;/h2&gt;
+&lt;p&gt;Followed closely behind my excitement is a looming wave of terror--as I will need to refine, revamp, and level up my talk for a bigger audience. I've done it twice (once at Midwest.js and once within Target) and now I pray the third time will be a homerun.&lt;/p&gt;
+&lt;h2 id="is-starting-strong"&gt;2018 is starting strong&lt;/h2&gt;
+&lt;p&gt;As far as &lt;a href="https://kamranicus.com/posts/2018-01-01-2018-a-new-year"&gt;my goals&lt;/a&gt; for the year go, I think I have a good start. I've &lt;a href="https://kamranicus.com/posts/2017-12-18-workshop-bots-javascript-node-minnewebcon"&gt;got a workshop&lt;/a&gt; lined up for May as well, &lt;a href="https://kamranicus.com/posts/2017-10-10-becoming-a-pluralsight-author"&gt;my Pluralsight course&lt;/a&gt; is almost ready, and now I'm speaking at NDC. I've also been nominated for a Microsoft MVP (oops, did I not mention that... shh, the two of you who read this keep it down). We also just bought a house. And it's only January.&lt;/p&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>2017 Year in Review and 2018 Goals</title>
 			<link>https://kamranicus.com/posts/2018-01-01-2018-a-new-year</link>
@@ -1225,22 +1242,6 @@ installers/sysinternals/SysInternalsSuite-2016-11-18.zip
 &lt;p&gt;Data is useful, especially to understand how much time goes into an endeavor like this--time is money, after all. For subsequent courses I plan to store &lt;em&gt;all&lt;/em&gt; course material in Git (including slides/metadata) and also use something like &lt;a href="https://www.rescuetime.com/"&gt;RescueTime&lt;/a&gt; to track my time spent in the background. That will give me a much clearer picture of time spent on the course.&lt;/p&gt;
 &lt;h2 id="whats-next"&gt;What's next?&lt;/h2&gt;
 &lt;p&gt;While it would be ideal to do the follow-up course to this one immediately, I didn't know what my schedule would look like after my first kiddo arrives. The editors and I agreed that it didn't make sense for me to commit to doing another course so soon with such an unknown schedule. Once I have some idea of how much time I have, I'll be thinking about other courses. It's more important that I spend time with little Ayub first.&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Exposing Subtle Timing Bugs With a Slow CI Server</title>
-			<link>https://kamranicus.com/posts/2017-01-23-subtle-bugs-exposed-with-slow-ci-servers</link>
-			<description>&lt;p&gt;We ran into a subtle issue with &lt;a href="http://excaliburjs.com"&gt;Excalibur.js&lt;/a&gt; recently, as documented in &lt;a href="https://github.com/excaliburjs/Excalibur/pull/740"&gt;this pull request&lt;/a&gt;.&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2017-01-23-subtle-bugs-exposed-with-slow-ci-servers</guid>
-			<pubDate>Tue, 24 Jan 2017 02:44:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;We ran into a subtle issue with &lt;a href="http://excaliburjs.com"&gt;Excalibur.js&lt;/a&gt; recently, as documented in &lt;a href="https://github.com/excaliburjs/Excalibur/pull/740"&gt;this pull request&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Turns out one of the CI systems we use to test on Windows, &lt;a href="http://appveyor.com"&gt;Appveyor&lt;/a&gt;, exposed a long-standing bug in the draw code because it's &lt;strong&gt;slower&lt;/strong&gt; than the other Linux-based CI system we use, &lt;a href="http://travis-ci.org"&gt;Travis CI&lt;/a&gt;. I don't know whether that is something that Appveyor should be proud of--but it does showcase the fact that when testing asynchronous or animation-based libraries, testing on slower systems can reveal timing issues.&lt;/p&gt;
-&lt;p&gt;We are using &lt;a href="http://phantomjs.org/"&gt;PhantomJS&lt;/a&gt; and &lt;a href="https://github.com/HumbleSoftware/js-imagediff"&gt;js-imagediff&lt;/a&gt; to do visual integration testing. We discovered the bug when writing a test that attached to our &amp;quot;post draw&amp;quot; event handler and tried to ensure the HTML canvas matched an expected image--an awesome way to do visual integration tests. The problem was that we were seeing the image wasn't being &lt;em&gt;drawn&lt;/em&gt; on the first frame, even though the engine had &amp;quot;loaded&amp;quot; all the textures.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;log: uiactor postdraw, rgba:, 0, 0, 100, 255
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This is logging the top-left pixel of the canvas and it's the default pixel color of our background--in other words, even after the engine &lt;strong&gt;said&lt;/strong&gt; it was loaded, the first frame had nothing drawn!&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/excaliburjs/Excalibur/issues/748"&gt;The issue&lt;/a&gt; turned out to be setting &lt;code&gt;Image.src&lt;/code&gt; and not handling the &lt;code&gt;load&lt;/code&gt; event to ensure we had loaded all the pixels before drawing (because setting &lt;code&gt;src&lt;/code&gt; is asynchronous--something we &lt;em&gt;knew&lt;/em&gt; yet forgot in this particular instance to account for). On fast systems, the pixels were loaded in-between calls to &lt;code&gt;requestAnimationFrame&lt;/code&gt; and we never noticed it. On slow systems, the pixels could take 1-2 frames before the pixels were available, something only a slow system would exhibit. To fix the issue, we ended up realizing we didn't need to rely on a backing &lt;code&gt;Image&lt;/code&gt; element and could simply use &lt;a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage"&gt;&lt;code&gt;CanvasRenderingContext2D.drawImage&lt;/code&gt;&lt;/a&gt; to draw the &lt;em&gt;backing Canvas&lt;/em&gt; context instead--more efficient and faster overall.&lt;/p&gt;
-&lt;p&gt;Thanks Appveyor!&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>
