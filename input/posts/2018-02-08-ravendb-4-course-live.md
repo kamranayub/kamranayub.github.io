@@ -10,7 +10,7 @@ Tags:
 - C#
 ---
 
-It's here! [Go and watch my new Pluralsight course](http://bit.ly/psravendb4) now to learn about working with RavenDB 4! RavenDB is available for free, [even for production use](https://ravendb.net/download).
+It's here! [Go and watch my new Pluralsight course](http://bit.ly/learnravendb4) now to learn about working with RavenDB 4! RavenDB is available for free, [even for production use](https://ravendb.net/download).
 
 ## What you'll learn
 
