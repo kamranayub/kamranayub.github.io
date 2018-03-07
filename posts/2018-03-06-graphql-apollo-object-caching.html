@@ -1,0 +1,495 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - GraphQL Object Caching in Apollo Client</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - GraphQL Object Caching in Apollo Client" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2018-03-06-graphql-apollo-object-caching" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="/assets/js/picturefill.min.js" async></script>
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text site menu">
+      
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+              <div class="item">
+        <a href="/about">About</a>
+      </div>
+      <div class="item">
+        <a href="/events">Events</a>
+      </div>
+      <div class="item">
+        <a href="/guides">Guides</a>
+      </div>
+      <div class="item">
+        <a href="/projects">Projects</a>
+      </div>
+      <div class="item">
+        <a href="/travel">Travel</a>
+      </div>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui vertical masthead segment " id="intro-header">
+    <div class="ui container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui  huge header">
+      GraphQL Object Caching in Apollo Client
+        <div class="ui sub header">In GraphQL it&#x27;s important to design your schema so objects can be cached effectively</div>
+    </h1>
+                
+    <div class="ui  sub header">        
+Published on Wednesday, March 7, 2018<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/Apollo" class="ui small compact button">Apollo</a>
+                    <a role="button" href="/tags/GraphQL" class="ui small compact button">GraphQL</a>
+                    <a role="button" href="/tags/JavaScript" class="ui small compact button">JavaScript</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui stackable grid container">
+    <div class="content column">
+      
+
+<div class="ui huge basic post content segment">
+  <p>We are deploying a major update to our internal application soon that uses the <a href="https://www.apollographql.com/docs/react/index.html">Apollo client</a> for GraphQL. It's pretty awesome even though there were <a href="https://github.com/apollographql/apollo-client/pull/3102">a couple bugs</a> I had to fix.</p>
+<p>During regression testing we ran into an issue involving the Apollo client that was subtle and caused &quot;interesting&quot; bugs. First, let's take a look at exactly how object caching works.</p>
+<h2 id="caching-in-apollo-client">Caching in Apollo client</h2>
+<p>By default, caching in Apollo uses the <a href="https://www.apollographql.com/docs/react/basics/caching.html">in-memory cache</a>. The way Apollo determines if it should cache a GraphQL object is if the response contains an <code>id</code> or <code>_id</code> property <em>and</em> a <code>__typename</code> property (which is added automatically by Apollo by default).</p>
+<p>So, for example, let's say we declared a <code>Product</code> type in our GraphQL schema:</p>
+<pre><code>type Product {
+  sku: ID!
+  title: String!
+  quantity: Int!
+}
+</code></pre>
+<p>The product has an identifier and it's stored in the SKU field.</p>
+<p>Then you issued a query like this:</p>
+<pre><code>{
+  product(sku: &quot;abc123&quot;) {
+    sku
+    title
+    quantity
+  }
+}
+</code></pre>
+<p>Pretty straightforward--we want to grab the <code>sku</code>, <code>title</code>, and <code>quantity</code> for a product by SKU. The response when run through Apollo client will look like:</p>
+<pre><code class="language-js">{
+  data: {
+    product: {
+      sku: &quot;abc123&quot;,
+      title: &quot;My cool product&quot;,
+      quantity: 4,
+      __typename: &quot;Product&quot;
+    }
+  }
+}
+</code></pre>
+<p>Now, based on the rules above, do you think Apollo will cache the Product object by it's SKU? <strong>No.</strong> Because there is no <code>id</code> or <code>_id</code> property, only a <code>__typename</code> property which isn't enough.</p>
+<p>We can fix this in a few ways:</p>
+<ol>
+<li>Change the schema</li>
+<li>Use <code>dataIdFromObject</code> option in the <a href="https://www.apollographql.com/docs/react/basics/caching.html#configuration">caching configuration</a></li>
+<li>Alias the SKU to be <code>id</code></li>
+<li>Alias SKU as <code>_id</code> but still keep <code>sku</code></li>
+</ol>
+<p>I don't like the first option because if <code>sku</code> is the natural key in your domain, why change it?</p>
+<p>Using <code>dataIdFromObject</code> is a great approach if you control the client configuration:</p>
+<pre><code class="language-js">import { InMemoryCache, defaultDataIdFromObject } from 'apollo-cache-inmemory';
+
+const cache = new InMemoryCache({
+  dataIdFromObject: object =&gt; {
+    switch (object.__typename) {
+      case 'Product': return object.sku; // use `sku` as the primary key
+      default: return defaultDataIdFromObject(object); // fall back to default handling
+    }
+  }
+});
+</code></pre>
+<p>I'd advise splitting this up into separate functions for each type and genericizing it but I leave that up to you.</p>
+<p>If you don't control the configuration, adding an alias still allow you to express what the natural ID is of your domain objects and pushes the concern of ID caching to the client.</p>
+<p>I prefer adding an additional <code>_id</code> field because it allows our caller to still treat the response as it would be expected from the GraphQL documentation. It also helps more if you're statically typing responses. With that in mind, let's update our query:</p>
+<pre><code>{
+  product(sku: &quot;abc123&quot;) {
+    sku
+    title
+    quantity
+    _id: sku
+  }
+}
+</code></pre>
+<p>Great! We've added an alias for <code>_id</code> so now GraphQL will respond with:</p>
+<pre><code class="language-js">{
+  data: {
+    product: {
+      sku: &quot;abc123&quot;,
+      title: &quot;My cool product&quot;,
+      quantity: 4,
+      _id: &quot;abc123&quot;,
+      __typename: &quot;Product&quot;
+    }
+  }
+}
+</code></pre>
+<p>Now the condition is satisfied and Apollo will cache the <code>Product</code> by this ID.</p>
+<h2 id="non-idempotent-object-caching">Non-idempotent object caching</h2>
+<p>Using IDs is pretty standard when working with APIs and data. Real scenarios have more complex data and thus your GraphQL schema will probably start to get more involved. Since many entities in an application domain might have <code>id</code> properties this feature of Apollo can also turn against you if you aren't careful.</p>
+<p>For example, let's say a product can come in multiple colors. On a per-product basis, you can mark a color as the primary color--meaning for example by default when shown on your website, you present that color first. But the names of colors are static and are on a per-color basis.</p>
+<p>The schema looks like:</p>
+<pre><code>type Color {
+  id: Int!
+  name: String!
+  is_primary: Boolean!
+}
+</code></pre>
+<p>The GraphQL query will look something like this if you're working with a standard <code>id</code> convention:</p>
+<pre><code>{
+  product(sku: &quot;abc123&quot;) {
+    _id: sku
+    sku
+    title
+    quantity
+    colors {
+      id
+      is_primary
+      name
+    }    
+  }
+}
+</code></pre>
+<p>Again this is pretty straightforward and nothing looks wrong on the surface. But it hides a subtle and nasty issue. When Apollo sends this query and the server will respond like this:</p>
+<pre><code class="language-js">{
+  data: {
+    product: {
+      sku: &quot;abc123&quot;,
+      title: &quot;My cool product&quot;,
+      quantity: 4,
+      colors: [
+        { id: 1, name: &quot;Red&quot;, is_primary: true, __typename: &quot;Color&quot; },
+        { id: 2, name: &quot;Blue&quot;, is_primary: false, __typename: &quot;Color&quot; }
+      ],
+      _id: &quot;abc123&quot;,
+      __typename: &quot;Product&quot;
+    }
+  }
+}
+</code></pre>
+<p>Now think about the conditions in which Apollo will cache a <code>Color</code> object. Do you see the problem? Let me showcase the problem by issuing multiple product queries that select primary colors:</p>
+<pre><code>{
+  products(skus: [&quot;abc123&quot;, &quot;xyz890&quot;]) {
+    _id: sku
+    sku
+    title
+    quantity
+    colors {
+      id
+      is_primary
+      name
+    }    
+  }
+}
+</code></pre>
+<p>Now the raw GraphQL response looks like this for multiple products:</p>
+<pre><code class="language-js">{
+  data: {
+    products: [
+      {
+        sku: &quot;abc123&quot;,
+        title: &quot;My cool product&quot;,
+        quantity: 4,
+        colors: [
+          { id: 1, name: &quot;Red&quot;, is_primary: true, __typename: &quot;Color&quot; },
+          { id: 2, name: &quot;Blue&quot;, is_primary: false, __typename: &quot;Color&quot; }
+        ],
+        _id: &quot;abc123&quot;,
+        __typename: &quot;Product&quot;
+      },
+      {
+        sku: &quot;xyz890&quot;,
+        title: &quot;Another cool product&quot;,
+        quantity: 0,
+        colors: [
+          { id: 1, name: &quot;Red&quot;, is_primary: false, __typename: &quot;Color&quot; },
+          { id: 3, name: &quot;Yellow&quot;, is_primary: true, __typename: &quot;Color&quot; }
+        ],
+        _id: &quot;xyz890&quot;,
+        __typename: &quot;Product&quot;
+      }
+    ]
+  }
+}
+</code></pre>
+<p>But when Apollo processes these query results, it tries to be smart and efficient by attempting to read objects from the cache. Guess what will happen as it processes this?</p>
+<ol>
+<li>Process <code>products[0]</code></li>
+<li>Cache product by ID <code>abc123</code> for type <code>Product</code></li>
+<li>Process <code>products[0].colors[0]</code></li>
+<li>Cache color Red by ID <code>1</code> for type <code>Color</code></li>
+</ol>
+<p>At step 4, we've cached the Red color by its ID, which means when Apollo moves to the next product...</p>
+<ol>
+<li>Process <code>products[1].colors[0]</code></li>
+<li>Does color Red <code>1</code> already exist in the cache? <strong>YES.</strong> Reuse that object.</li>
+</ol>
+<p>Let's look at the <strong>actual</strong> response Apollo gives us for this same query:</p>
+<p><img src="https://user-images.githubusercontent.com/563819/37100190-f26e8792-21e7-11e8-9d8b-35c14db7eeca.png" class="img-fluid" alt="object-caching" /></p>
+<p>See <a href="https://codesandbox.io/s/24zx7k6z10">for yourself!</a></p>
+<p>Apollo &quot;smartly&quot; reuses the same object response for Red as before--which means when we read the Apollo query result, <strong>the second product ends up having no primary color.</strong> OOPS.</p>
+<h2 id="the-root-cause">The root cause</h2>
+<p>While this may seem like a bug, it's not really--it's just showcasing an issue with the way we are expressing our GraphQL types incorrectly. Apollo is making the assumption that an entity is idempotent across queries with the same ID. In our case, that's not true because different products may have different <code>is_primary</code> values for the same color. Ideally, what we should be doing is putting all <em>product-specific</em> information on the <code>Product</code> type, not a nested type.</p>
+<h2 id="workaround-or-fix-it">Workaround or fix it?</h2>
+<p>The right way to fix this is by changing our schema to add a new <code>primary_color</code> field to the <code>Product</code> type:</p>
+<pre><code>type Product {
+  sku: ID!
+  title: String!
+  quantity: Int!
+  colors: [Color]!
+  primary_color: Color
+}
+
+type Color {
+  id: Int!
+  name: String!
+}
+</code></pre>
+<p>Now for any number of products, <code>Color</code> can be safely cached no matter where it appears in a response.</p>
+<p>In some cases, like ours, doing the right thing is a large enough change that we can't do it right away without modifying a lot of client code (we could migrate slowly, by adding the new field and deprecating the old field). It's also just possible in a big company, you may not control the schema and have to wait for a fix from another team. There are some other workarounds you as a client can do.</p>
+<h3 id="alias-the-id-as-something-else">Alias the ID as something else</h3>
+<p>The first workaround is to simply just use a different field name instead of <code>id</code>:</p>
+<pre><code>{
+  products(skus: [&quot;abc123&quot;, &quot;xyz890&quot;) {
+    _id: sku
+    sku
+    title
+    quantity
+    colors {
+      color_id: id
+      is_primary
+      name
+    }    
+  }
+}
+</code></pre>
+<p>Apollo's caching condition won't trigger for the <code>Color</code> objects now (no <code>id</code> or <code>_id</code> fields) and we're safe.</p>
+<p>This might seem like a good approach but the downside is that it would be easy for a future developer to mistakenly use <code>id</code> in another query and not realize the mistake they're making.</p>
+<h3 id="exclude-the_typename-field">Exclude the <code>__typename</code> field</h3>
+<p>It might be better to just <em>explicitly</em> exclude the <code>__typename</code> field that Apollo adds by default. It turns out this is pretty easy and makes it very apparent we are doing something &quot;weird&quot; that should cause future developers to stop and ask why:</p>
+<pre><code>{
+  products(skus: [&quot;abc123&quot;, &quot;xyz890&quot;]) {
+    _id: sku
+    sku
+    title
+    quantity
+    colors {
+      color_id: id
+      is_primary
+      name
+      # Disable Apollo caching for this Color
+      __typename &#64;skip(if: true)
+    }    
+  }
+}
+</code></pre>
+<p>Using the <code>&#64;skip</code> GraphQL directive, we can explictly denote we don't want to cache the response for this particular query result for <code>Color</code>. We can even call it out with a comment to make it extra apparent.</p>
+<h3 id="dont-add_typename-wholesale">Don't add <code>__typename</code> wholesale</h3>
+<p>If you control your Apollo client caching, there is an option to <a href="https://www.apollographql.com/docs/react/basics/caching.html#configuration">disable automatic addition</a> of <code>__typename</code> to queries for the in-memory caching using the <code>addTypename: false</code> option.</p>
+<p>If you wanted to disable caching wholesale, it's probably better to just use the <code>no-cache</code> fetch policy which bypasses any calls to the underlying data store (which can be expensive for very large query batches/responses).</p>
+<h2 id="caching-is-awesome-except-when-its-not">Caching is awesome except when its not</h2>
+<p>This &quot;bug&quot; took us awhile to figure out--but I remember reading the docs for Apollo caching and after I tested aliasing the fields, everything was suddenly working as expected, that's when it clicked more and I understood what was happening. I love GraphQL and the Apollo client is pretty awesome but issues like these can be frustrating! I hope this breakdown helps other GQL developers model their schema appropriately.</p>
+<p>The reference code is available on:</p>
+<ul>
+<li>Apollo Launchpad: <a href="https://launchpad.graphql.com/kqx178pn57">https://launchpad.graphql.com/kqx178pn57</a></li>
+<li>Codesandbox: <a href="https://codesandbox.io/s/24zx7k6z10">https://codesandbox.io/s/24zx7k6z10</a></li>
+</ul>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="http://www.youtube.com/c/Kamranicus " title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://twitch.tv/kamranicus " title="YouTube">
+  <i class="twitch icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '2018-03-06-graphql-apollo-object-caching';
+    var disqus_title = 'GraphQL Object Caching in Apollo Client';
+    var disqus_url = 'https://kamranicus.com/posts/2018-03-06-graphql-apollo-object-caching';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+      <!-- Disqus -->
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+  
+  <!-- Footer -->
+  <footer>   
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2018</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="http://www.youtube.com/c/Kamranicus " title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://twitch.tv/kamranicus " title="YouTube">
+  <i class="twitch icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe via RSS or email
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

@@ -5,8 +5,265 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2018</copyright>
-		<pubDate>Fri, 09 Feb 2018 03:09:34 GMT</pubDate>
-		<lastBuildDate>Fri, 09 Feb 2018 03:09:34 GMT</lastBuildDate>
+		<pubDate>Wed, 07 Mar 2018 15:26:01 GMT</pubDate>
+		<lastBuildDate>Wed, 07 Mar 2018 15:26:01 GMT</lastBuildDate>
+		<item>
+			<title>GraphQL Object Caching in Apollo Client</title>
+			<link>https://kamranicus.com/posts/2018-03-06-graphql-apollo-object-caching</link>
+			<description>&lt;p&gt;We are deploying a major update to our internal application soon that uses the &lt;a href="https://www.apollographql.com/docs/react/index.html"&gt;Apollo client&lt;/a&gt; for GraphQL. It's pretty awesome even though there were &lt;a href="https://github.com/apollographql/apollo-client/pull/3102"&gt;a couple bugs&lt;/a&gt; I had to fix.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2018-03-06-graphql-apollo-object-caching</guid>
+			<pubDate>Wed, 07 Mar 2018 14:21:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;We are deploying a major update to our internal application soon that uses the &lt;a href="https://www.apollographql.com/docs/react/index.html"&gt;Apollo client&lt;/a&gt; for GraphQL. It's pretty awesome even though there were &lt;a href="https://github.com/apollographql/apollo-client/pull/3102"&gt;a couple bugs&lt;/a&gt; I had to fix.&lt;/p&gt;
+&lt;p&gt;During regression testing we ran into an issue involving the Apollo client that was subtle and caused &amp;quot;interesting&amp;quot; bugs. First, let's take a look at exactly how object caching works.&lt;/p&gt;
+&lt;h2 id="caching-in-apollo-client"&gt;Caching in Apollo client&lt;/h2&gt;
+&lt;p&gt;By default, caching in Apollo uses the &lt;a href="https://www.apollographql.com/docs/react/basics/caching.html"&gt;in-memory cache&lt;/a&gt;. The way Apollo determines if it should cache a GraphQL object is if the response contains an &lt;code&gt;id&lt;/code&gt; or &lt;code&gt;_id&lt;/code&gt; property &lt;em&gt;and&lt;/em&gt; a &lt;code&gt;__typename&lt;/code&gt; property (which is added automatically by Apollo by default).&lt;/p&gt;
+&lt;p&gt;So, for example, let's say we declared a &lt;code&gt;Product&lt;/code&gt; type in our GraphQL schema:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;type Product {
+  sku: ID!
+  title: String!
+  quantity: Int!
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The product has an identifier and it's stored in the SKU field.&lt;/p&gt;
+&lt;p&gt;Then you issued a query like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{
+  product(sku: &amp;quot;abc123&amp;quot;) {
+    sku
+    title
+    quantity
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Pretty straightforward--we want to grab the &lt;code&gt;sku&lt;/code&gt;, &lt;code&gt;title&lt;/code&gt;, and &lt;code&gt;quantity&lt;/code&gt; for a product by SKU. The response when run through Apollo client will look like:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;{
+  data: {
+    product: {
+      sku: &amp;quot;abc123&amp;quot;,
+      title: &amp;quot;My cool product&amp;quot;,
+      quantity: 4,
+      __typename: &amp;quot;Product&amp;quot;
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now, based on the rules above, do you think Apollo will cache the Product object by it's SKU? &lt;strong&gt;No.&lt;/strong&gt; Because there is no &lt;code&gt;id&lt;/code&gt; or &lt;code&gt;_id&lt;/code&gt; property, only a &lt;code&gt;__typename&lt;/code&gt; property which isn't enough.&lt;/p&gt;
+&lt;p&gt;We can fix this in a few ways:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Change the schema&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;dataIdFromObject&lt;/code&gt; option in the &lt;a href="https://www.apollographql.com/docs/react/basics/caching.html#configuration"&gt;caching configuration&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Alias the SKU to be &lt;code&gt;id&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Alias SKU as &lt;code&gt;_id&lt;/code&gt; but still keep &lt;code&gt;sku&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I don't like the first option because if &lt;code&gt;sku&lt;/code&gt; is the natural key in your domain, why change it?&lt;/p&gt;
+&lt;p&gt;Using &lt;code&gt;dataIdFromObject&lt;/code&gt; is a great approach if you control the client configuration:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;import { InMemoryCache, defaultDataIdFromObject } from 'apollo-cache-inmemory';
+
+const cache = new InMemoryCache({
+  dataIdFromObject: object =&amp;gt; {
+    switch (object.__typename) {
+      case 'Product': return object.sku; // use `sku` as the primary key
+      default: return defaultDataIdFromObject(object); // fall back to default handling
+    }
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I'd advise splitting this up into separate functions for each type and genericizing it but I leave that up to you.&lt;/p&gt;
+&lt;p&gt;If you don't control the configuration, adding an alias still allow you to express what the natural ID is of your domain objects and pushes the concern of ID caching to the client.&lt;/p&gt;
+&lt;p&gt;I prefer adding an additional &lt;code&gt;_id&lt;/code&gt; field because it allows our caller to still treat the response as it would be expected from the GraphQL documentation. It also helps more if you're statically typing responses. With that in mind, let's update our query:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{
+  product(sku: &amp;quot;abc123&amp;quot;) {
+    sku
+    title
+    quantity
+    _id: sku
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Great! We've added an alias for &lt;code&gt;_id&lt;/code&gt; so now GraphQL will respond with:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;{
+  data: {
+    product: {
+      sku: &amp;quot;abc123&amp;quot;,
+      title: &amp;quot;My cool product&amp;quot;,
+      quantity: 4,
+      _id: &amp;quot;abc123&amp;quot;,
+      __typename: &amp;quot;Product&amp;quot;
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now the condition is satisfied and Apollo will cache the &lt;code&gt;Product&lt;/code&gt; by this ID.&lt;/p&gt;
+&lt;h2 id="non-idempotent-object-caching"&gt;Non-idempotent object caching&lt;/h2&gt;
+&lt;p&gt;Using IDs is pretty standard when working with APIs and data. Real scenarios have more complex data and thus your GraphQL schema will probably start to get more involved. Since many entities in an application domain might have &lt;code&gt;id&lt;/code&gt; properties this feature of Apollo can also turn against you if you aren't careful.&lt;/p&gt;
+&lt;p&gt;For example, let's say a product can come in multiple colors. On a per-product basis, you can mark a color as the primary color--meaning for example by default when shown on your website, you present that color first. But the names of colors are static and are on a per-color basis.&lt;/p&gt;
+&lt;p&gt;The schema looks like:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;type Color {
+  id: Int!
+  name: String!
+  is_primary: Boolean!
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The GraphQL query will look something like this if you're working with a standard &lt;code&gt;id&lt;/code&gt; convention:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{
+  product(sku: &amp;quot;abc123&amp;quot;) {
+    _id: sku
+    sku
+    title
+    quantity
+    colors {
+      id
+      is_primary
+      name
+    }    
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Again this is pretty straightforward and nothing looks wrong on the surface. But it hides a subtle and nasty issue. When Apollo sends this query and the server will respond like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;{
+  data: {
+    product: {
+      sku: &amp;quot;abc123&amp;quot;,
+      title: &amp;quot;My cool product&amp;quot;,
+      quantity: 4,
+      colors: [
+        { id: 1, name: &amp;quot;Red&amp;quot;, is_primary: true, __typename: &amp;quot;Color&amp;quot; },
+        { id: 2, name: &amp;quot;Blue&amp;quot;, is_primary: false, __typename: &amp;quot;Color&amp;quot; }
+      ],
+      _id: &amp;quot;abc123&amp;quot;,
+      __typename: &amp;quot;Product&amp;quot;
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now think about the conditions in which Apollo will cache a &lt;code&gt;Color&lt;/code&gt; object. Do you see the problem? Let me showcase the problem by issuing multiple product queries that select primary colors:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{
+  products(skus: [&amp;quot;abc123&amp;quot;, &amp;quot;xyz890&amp;quot;]) {
+    _id: sku
+    sku
+    title
+    quantity
+    colors {
+      id
+      is_primary
+      name
+    }    
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now the raw GraphQL response looks like this for multiple products:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;{
+  data: {
+    products: [
+      {
+        sku: &amp;quot;abc123&amp;quot;,
+        title: &amp;quot;My cool product&amp;quot;,
+        quantity: 4,
+        colors: [
+          { id: 1, name: &amp;quot;Red&amp;quot;, is_primary: true, __typename: &amp;quot;Color&amp;quot; },
+          { id: 2, name: &amp;quot;Blue&amp;quot;, is_primary: false, __typename: &amp;quot;Color&amp;quot; }
+        ],
+        _id: &amp;quot;abc123&amp;quot;,
+        __typename: &amp;quot;Product&amp;quot;
+      },
+      {
+        sku: &amp;quot;xyz890&amp;quot;,
+        title: &amp;quot;Another cool product&amp;quot;,
+        quantity: 0,
+        colors: [
+          { id: 1, name: &amp;quot;Red&amp;quot;, is_primary: false, __typename: &amp;quot;Color&amp;quot; },
+          { id: 3, name: &amp;quot;Yellow&amp;quot;, is_primary: true, __typename: &amp;quot;Color&amp;quot; }
+        ],
+        _id: &amp;quot;xyz890&amp;quot;,
+        __typename: &amp;quot;Product&amp;quot;
+      }
+    ]
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But when Apollo processes these query results, it tries to be smart and efficient by attempting to read objects from the cache. Guess what will happen as it processes this?&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Process &lt;code&gt;products[0]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Cache product by ID &lt;code&gt;abc123&lt;/code&gt; for type &lt;code&gt;Product&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Process &lt;code&gt;products[0].colors[0]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Cache color Red by ID &lt;code&gt;1&lt;/code&gt; for type &lt;code&gt;Color&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;At step 4, we've cached the Red color by its ID, which means when Apollo moves to the next product...&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Process &lt;code&gt;products[1].colors[0]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Does color Red &lt;code&gt;1&lt;/code&gt; already exist in the cache? &lt;strong&gt;YES.&lt;/strong&gt; Reuse that object.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Let's look at the &lt;strong&gt;actual&lt;/strong&gt; response Apollo gives us for this same query:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/37100190-f26e8792-21e7-11e8-9d8b-35c14db7eeca.png" class="img-fluid" alt="object-caching" /&gt;&lt;/p&gt;
+&lt;p&gt;See &lt;a href="https://codesandbox.io/s/24zx7k6z10"&gt;for yourself!&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Apollo &amp;quot;smartly&amp;quot; reuses the same object response for Red as before--which means when we read the Apollo query result, &lt;strong&gt;the second product ends up having no primary color.&lt;/strong&gt; OOPS.&lt;/p&gt;
+&lt;h2 id="the-root-cause"&gt;The root cause&lt;/h2&gt;
+&lt;p&gt;While this may seem like a bug, it's not really--it's just showcasing an issue with the way we are expressing our GraphQL types incorrectly. Apollo is making the assumption that an entity is idempotent across queries with the same ID. In our case, that's not true because different products may have different &lt;code&gt;is_primary&lt;/code&gt; values for the same color. Ideally, what we should be doing is putting all &lt;em&gt;product-specific&lt;/em&gt; information on the &lt;code&gt;Product&lt;/code&gt; type, not a nested type.&lt;/p&gt;
+&lt;h2 id="workaround-or-fix-it"&gt;Workaround or fix it?&lt;/h2&gt;
+&lt;p&gt;The right way to fix this is by changing our schema to add a new &lt;code&gt;primary_color&lt;/code&gt; field to the &lt;code&gt;Product&lt;/code&gt; type:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;type Product {
+  sku: ID!
+  title: String!
+  quantity: Int!
+  colors: [Color]!
+  primary_color: Color
+}
+
+type Color {
+  id: Int!
+  name: String!
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now for any number of products, &lt;code&gt;Color&lt;/code&gt; can be safely cached no matter where it appears in a response.&lt;/p&gt;
+&lt;p&gt;In some cases, like ours, doing the right thing is a large enough change that we can't do it right away without modifying a lot of client code (we could migrate slowly, by adding the new field and deprecating the old field). It's also just possible in a big company, you may not control the schema and have to wait for a fix from another team. There are some other workarounds you as a client can do.&lt;/p&gt;
+&lt;h3 id="alias-the-id-as-something-else"&gt;Alias the ID as something else&lt;/h3&gt;
+&lt;p&gt;The first workaround is to simply just use a different field name instead of &lt;code&gt;id&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{
+  products(skus: [&amp;quot;abc123&amp;quot;, &amp;quot;xyz890&amp;quot;) {
+    _id: sku
+    sku
+    title
+    quantity
+    colors {
+      color_id: id
+      is_primary
+      name
+    }    
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Apollo's caching condition won't trigger for the &lt;code&gt;Color&lt;/code&gt; objects now (no &lt;code&gt;id&lt;/code&gt; or &lt;code&gt;_id&lt;/code&gt; fields) and we're safe.&lt;/p&gt;
+&lt;p&gt;This might seem like a good approach but the downside is that it would be easy for a future developer to mistakenly use &lt;code&gt;id&lt;/code&gt; in another query and not realize the mistake they're making.&lt;/p&gt;
+&lt;h3 id="exclude-the_typename-field"&gt;Exclude the &lt;code&gt;__typename&lt;/code&gt; field&lt;/h3&gt;
+&lt;p&gt;It might be better to just &lt;em&gt;explicitly&lt;/em&gt; exclude the &lt;code&gt;__typename&lt;/code&gt; field that Apollo adds by default. It turns out this is pretty easy and makes it very apparent we are doing something &amp;quot;weird&amp;quot; that should cause future developers to stop and ask why:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{
+  products(skus: [&amp;quot;abc123&amp;quot;, &amp;quot;xyz890&amp;quot;]) {
+    _id: sku
+    sku
+    title
+    quantity
+    colors {
+      color_id: id
+      is_primary
+      name
+      # Disable Apollo caching for this Color
+      __typename &amp;#64;skip(if: true)
+    }    
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Using the &lt;code&gt;&amp;#64;skip&lt;/code&gt; GraphQL directive, we can explictly denote we don't want to cache the response for this particular query result for &lt;code&gt;Color&lt;/code&gt;. We can even call it out with a comment to make it extra apparent.&lt;/p&gt;
+&lt;h3 id="dont-add_typename-wholesale"&gt;Don't add &lt;code&gt;__typename&lt;/code&gt; wholesale&lt;/h3&gt;
+&lt;p&gt;If you control your Apollo client caching, there is an option to &lt;a href="https://www.apollographql.com/docs/react/basics/caching.html#configuration"&gt;disable automatic addition&lt;/a&gt; of &lt;code&gt;__typename&lt;/code&gt; to queries for the in-memory caching using the &lt;code&gt;addTypename: false&lt;/code&gt; option.&lt;/p&gt;
+&lt;p&gt;If you wanted to disable caching wholesale, it's probably better to just use the &lt;code&gt;no-cache&lt;/code&gt; fetch policy which bypasses any calls to the underlying data store (which can be expensive for very large query batches/responses).&lt;/p&gt;
+&lt;h2 id="caching-is-awesome-except-when-its-not"&gt;Caching is awesome except when its not&lt;/h2&gt;
+&lt;p&gt;This &amp;quot;bug&amp;quot; took us awhile to figure out--but I remember reading the docs for Apollo caching and after I tested aliasing the fields, everything was suddenly working as expected, that's when it clicked more and I understood what was happening. I love GraphQL and the Apollo client is pretty awesome but issues like these can be frustrating! I hope this breakdown helps other GQL developers model their schema appropriately.&lt;/p&gt;
+&lt;p&gt;The reference code is available on:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Apollo Launchpad: &lt;a href="https://launchpad.graphql.com/kqx178pn57"&gt;https://launchpad.graphql.com/kqx178pn57&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Codesandbox: &lt;a href="https://codesandbox.io/s/24zx7k6z10"&gt;https://codesandbox.io/s/24zx7k6z10&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>RavenDB 4: Getting Started course is live!</title>
 			<link>https://kamranicus.com/posts/2018-02-08-ravendb-4-course-live</link>
@@ -1201,16 +1458,6 @@ installers/sysinternals/SysInternalsSuite-2016-11-18.zip
 &lt;/blockquote&gt;
 &lt;p&gt;If you needed something more sophisticated, you could wrap downloading into a custom resource or Script resource--e.g. &lt;a href="https://www.visualstudio.com/en-us/docs/integrate/api/git/items#get-item-metadata-for"&gt;use the SHA1 hash&lt;/a&gt; to compare whether it needed to be downloaded again, etc. Where you go from here is your own choice!&lt;/p&gt;
 &lt;p&gt;We've been using this pattern with great success--it keeps everything together, it's simple, and it lets us track the versions/history of our installation sources.&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>See You at Build 2017</title>
-			<link>https://kamranicus.com/posts/2017-02-01-build-2017</link>
-			<description>&lt;p&gt;Come May 10, I'll be heading to Seattle for the &lt;a href="http://build.microsoft.com"&gt;Microsoft Build 2017&lt;/a&gt; conference with my good friend and co-worker, &lt;a href="http://twitter.com/erikonarheim"&gt;Erik Onarheim&lt;/a&gt;. We'll be looking forward to any talks around Windows Server containers, container orchestration, and other "DevOps" stuff related to what we do at work.&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2017-02-01-build-2017</guid>
-			<pubDate>Thu, 02 Feb 2017 01:45:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;Come May 10, I'll be heading to Seattle for the &lt;a href="http://build.microsoft.com"&gt;Microsoft Build 2017&lt;/a&gt; conference with my good friend and co-worker, &lt;a href="http://twitter.com/erikonarheim"&gt;Erik Onarheim&lt;/a&gt;. We'll be looking forward to any talks around Windows Server containers, container orchestration, and other &amp;quot;DevOps&amp;quot; stuff related to what we do at work.&lt;/p&gt;
-&lt;p&gt;I've always enjoyed my time at Build and my wife will be joining me, she's never been to Seattle so it'll be fun for her too!&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>
