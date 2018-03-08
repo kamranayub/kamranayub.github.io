@@ -4,12 +4,12 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2018</rights>
-	<updated>2018-03-07T15:26:01Z</updated>
+	<updated>2018-03-08T02:57:34Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
 	<entry>
 		<link href="https://kamranicus.com/posts/2018-03-06-graphql-apollo-object-caching" />
 		<id>https://kamranicus.com/posts/2018-03-06-graphql-apollo-object-caching</id>
-		<title>GraphQL Object Caching in Apollo Client</title>
+		<title>Elusive Bugs with GraphQL Object Caching in Apollo Client</title>
 		<updated>2018-03-07T14:21:00Z</updated>
 		<content>&lt;p&gt;We are deploying a major update to our internal application soon that uses the &lt;a href="https://www.apollographql.com/docs/react/index.html"&gt;Apollo client&lt;/a&gt; for GraphQL. It's pretty awesome even though there were &lt;a href="https://github.com/apollographql/apollo-client/pull/3102"&gt;a couple bugs&lt;/a&gt; I had to fix.&lt;/p&gt;
 &lt;p&gt;During regression testing we ran into an issue involving the Apollo client that was subtle and caused &amp;quot;interesting&amp;quot; bugs. First, let's take a look at exactly how object caching works.&lt;/p&gt;

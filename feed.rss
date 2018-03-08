@@ -5,10 +5,10 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2018</copyright>
-		<pubDate>Wed, 07 Mar 2018 15:26:01 GMT</pubDate>
-		<lastBuildDate>Wed, 07 Mar 2018 15:26:01 GMT</lastBuildDate>
+		<pubDate>Thu, 08 Mar 2018 02:57:34 GMT</pubDate>
+		<lastBuildDate>Thu, 08 Mar 2018 02:57:34 GMT</lastBuildDate>
 		<item>
-			<title>GraphQL Object Caching in Apollo Client</title>
+			<title>Elusive Bugs with GraphQL Object Caching in Apollo Client</title>
 			<link>https://kamranicus.com/posts/2018-03-06-graphql-apollo-object-caching</link>
 			<description>&lt;p&gt;We are deploying a major update to our internal application soon that uses the &lt;a href="https://www.apollographql.com/docs/react/index.html"&gt;Apollo client&lt;/a&gt; for GraphQL. It's pretty awesome even though there were &lt;a href="https://github.com/apollographql/apollo-client/pull/3102"&gt;a couple bugs&lt;/a&gt; I had to fix.&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2018-03-06-graphql-apollo-object-caching</guid>
