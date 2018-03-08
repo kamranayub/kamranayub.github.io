@@ -1,6 +1,6 @@
-Title: "GraphQL Object Caching in Apollo Client"
+Title: "Elusive Bugs with GraphQL Object Caching in Apollo Client"
 Published: 2018-03-07 09:21:00 -0500
-Lead: In GraphQL it's important to design your schema so objects can be cached effectively
+Lead: In GraphQL it's important to design your schema so objects can be cached effectively otherwise you may run into hard-to-trackdown bugs
 Tags:
 - GraphQL
 - JavaScript
