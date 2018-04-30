@@ -4,7 +4,7 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2018</rights>
-	<updated>2018-04-30T12:32:38Z</updated>
+	<updated>2018-04-30T17:54:44Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
 	<entry>
 		<link href="https://kamranicus.com/posts/2018-04-29-advanced-react-patterns-workshop" />
@@ -31,9 +31,9 @@
 &lt;p&gt;This is a more advanced pattern Kent showed. The goal of this is to enable a consuming component to manipulate the internal state of a component by basically intercepting state changes.&lt;/p&gt;
 &lt;p&gt;It's a more flexible version of control props basically allowing your entire state to be controlled by a consumer.&lt;/p&gt;
 &lt;p&gt;There's an &lt;a href="https://github.com/kentcdodds/advanced-react-patterns-v2/blob/master/src/why/state-reducer.js"&gt;example in the workshop repo&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Rendux&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;I missed the last couple exercises going over Higher Order Components (HOCs) and this last pattern called &lt;a href="https://github.com/kentcdodds/advanced-react-patterns-v2/blob/master/src/exercises-final/13.js"&gt;Rendux&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The Rendux pattern uses the render props pattern to hook into a Redux store as a reusable component. Any time you need to access the store, you can use the &lt;code&gt;Rendux.Consumer&lt;/code&gt; component or &lt;code&gt;withRendux&lt;/code&gt; enhancer function. This is a different way to accomplish the similar Redux experience of using &lt;code&gt;Provider&lt;/code&gt; and the &lt;code&gt;connect&lt;/code&gt; enhancer.&lt;/p&gt;
+&lt;h2 id="rendux-exercise"&gt;Rendux Exercise&lt;/h2&gt;
+&lt;p&gt;I missed the last couple exercises going over Higher Order Components (HOCs) and this last exercise called &lt;a href="https://github.com/kentcdodds/advanced-react-patterns-v2/blob/master/src/exercises-final/13.js"&gt;Rendux&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The Rendux exercise uses the render props pattern to hook into a Redux store as a reusable component. Any time you need to access the store, you can use the &lt;code&gt;Rendux.Consumer&lt;/code&gt; component or &lt;code&gt;withRendux&lt;/code&gt; enhancer function. This is a different way to accomplish the similar Redux experience of using &lt;code&gt;Provider&lt;/code&gt; and the &lt;code&gt;connect&lt;/code&gt; enhancer.&lt;/p&gt;
 &lt;h2 id="putting-into-practice"&gt;Putting into practice&lt;/h2&gt;
 &lt;p&gt;The goal of the workshop was to learn each of these patterns on a small scale so we can apply them to our larger projects. There is certainly already opportunities on my project at work to leverage what I learned--I'm hoping to spend some more time building out our project and then writing about some useful patterns.&lt;/p&gt;
 </content>
