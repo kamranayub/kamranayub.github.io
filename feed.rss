@@ -5,8 +5,8 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2018</copyright>
-		<pubDate>Mon, 30 Apr 2018 02:29:55 GMT</pubDate>
-		<lastBuildDate>Mon, 30 Apr 2018 02:29:55 GMT</lastBuildDate>
+		<pubDate>Mon, 30 Apr 2018 12:32:38 GMT</pubDate>
+		<lastBuildDate>Mon, 30 Apr 2018 12:32:38 GMT</lastBuildDate>
 		<item>
 			<title>Frontend Masters: Advanced React Patterns Workshop</title>
 			<link>https://kamranicus.com/posts/2018-04-29-advanced-react-patterns-workshop</link>
@@ -79,7 +79,7 @@
 			<pubDate>Sun, 29 Apr 2018 13:00:00 GMT</pubDate>
 			<content:encoded>&lt;p&gt;Whoo! Another year, another opportunity to participate in Ludum Dare with the &lt;a href="http://excaliburjs.com"&gt;Excalibur.js&lt;/a&gt; team. Last jam we made &lt;a href="https://blog.excaliburjs.com/post/161334104662/ludum-dare-38-postmortem"&gt;I Just Wanted Groceries&lt;/a&gt; (which I totally spaced on writing about). You can play our LD41 game &lt;a href="http://excaliburjs.com/ludum-41"&gt;Office Daydream&lt;/a&gt; right now.&lt;/p&gt;
 &lt;h2 id="the-jam"&gt;The jam&lt;/h2&gt;
-&lt;p&gt;&lt;a href="http://ldjam.com"&gt;Ludum Dare&lt;/a&gt; is a global game jam that has two modes: the Compo and the Jam. The Compo is for individuals and strict rules on content creation, limited to 24 hours. The Jam is for teams and is a bit looser on content rules (you can use premade assets) and lasts 72 hours. Since we are a team, we always do the jam but it's always interested me to try doing a Compo by myself at some point.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://ldjam.com"&gt;Ludum Dare&lt;/a&gt; is a global game jam that has two modes: the Compo and the Jam. The Compo is for individuals and strict rules on content creation, limited to 48 hours. The Jam is for teams and is a bit looser on content rules (you can use premade assets) and lasts 72 hours. Since we are a team, we always do the jam but it's always interested me to try doing a Compo by myself at some point.&lt;/p&gt;
 &lt;h2 id="the-theme"&gt;The theme&lt;/h2&gt;
 &lt;p&gt;The theme this jam was not as great as we hoped--there were certainly some better ones in the running but it was a challenge and we made the most of it. The theme was &amp;quot;Combine 2 incompatible genres.&amp;quot;&lt;/p&gt;
 &lt;p&gt;First, we didn't like the term &amp;quot;incompatible&amp;quot; because that already presupposes the two genres you choose can't have been considered compatible today and that they would never be compatible in the future. But that's nonsense because I'd DEFINITELY play &lt;a href="https://ldjam.com/events/ludum-dare/41/jeff-from-accounting"&gt;this typing FPS&lt;/a&gt; for realsies if it ever made it into a production game.&lt;/p&gt;
