@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Ludum Dare 41 Post-Mortem</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Ludum Dare 41 Post-Mortem" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2018-04-29-ludum-dare-41-post-mortem" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="/assets/js/picturefill.min.js" async></script>
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text site menu">
+      
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+              <div class="item">
+        <a href="/about">About</a>
+      </div>
+      <div class="item">
+        <a href="/events">Events</a>
+      </div>
+      <div class="item">
+        <a href="/guides">Guides</a>
+      </div>
+      <div class="item">
+        <a href="/projects">Projects</a>
+      </div>
+      <div class="item">
+        <a href="/travel">Travel</a>
+      </div>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui vertical masthead segment " id="intro-header">
+    <div class="ui container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui  huge header">
+      Ludum Dare 41 Post-Mortem
+        <div class="ui sub header">The Excalibur.js team made another game for Ludum Dare</div>
+    </h1>
+                
+    <div class="ui  sub header">        
+Published on Sunday, April 29, 2018<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/Excaliburjs" class="ui small compact button">Excalibur.js</a>
+                    <a role="button" href="/tags/Game-Jam" class="ui small compact button">Game Jam</a>
+                    <a role="button" href="/tags/Games" class="ui small compact button">Games</a>
+                    <a role="button" href="/tags/Ludum-Dare" class="ui small compact button">Ludum Dare</a>
+                    <a role="button" href="/tags/Post-Mortem" class="ui small compact button">Post-Mortem</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui stackable grid container">
+    <div class="content column">
+      
+
+<div class="ui huge basic post content segment">
+  <p>Whoo! Another year, another opportunity to participate in Ludum Dare with the <a href="http://excaliburjs.com">Excalibur.js</a> team. Last jam we made <a href="https://blog.excaliburjs.com/post/161334104662/ludum-dare-38-postmortem">I Just Wanted Groceries</a> (which I totally spaced on writing about). You can play our LD41 game <a href="http://excaliburjs.com/ludum-41">Office Daydream</a> right now.</p>
+<h2 id="the-jam">The jam</h2>
+<p><a href="http://ldjam.com">Ludum Dare</a> is a global game jam that has two modes: the Compo and the Jam. The Compo is for individuals and strict rules on content creation, limited to 24 hours. The Jam is for teams and is a bit looser on content rules (you can use premade assets) and lasts 72 hours. Since we are a team, we always do the jam but it's always interested me to try doing a Compo by myself at some point.</p>
+<h2 id="the-theme">The theme</h2>
+<p>The theme this jam was not as great as we hoped--there were certainly some better ones in the running but it was a challenge and we made the most of it. The theme was &quot;Combine 2 incompatible genres.&quot;</p>
+<p>First, we didn't like the term &quot;incompatible&quot; because that already presupposes the two genres you choose can't have been considered compatible today and that they would never be compatible in the future. But that's nonsense because I'd DEFINITELY play <a href="https://ldjam.com/events/ludum-dare/41/jeff-from-accounting">this typing FPS</a> for realsies if it ever made it into a production game.</p>
+<p>Second, we like open-ended themes more than specifically scoped themes. For example, previous ones we participated in included &quot;Under the Sea&quot;, &quot;A Small World&quot;, and &quot;Shapeshift.&quot; These all leave much more open interpretations.</p>
+<p>Still. The theme forced people to come up with some interesting combinations like this basketball + Connect 4 game. Constraints breed creativity, even if there were some really effing weird ones.</p>
+<h2 id="brainstorming">Brainstorming</h2>
+<p>We played with a lot of combinations. We started by listing game genres, then movie genres, then music genres. Some we combos we liked but knew we didn't have time for, mainly RPG-based or turn-based.</p>
+<p>It kept coming back to a runner + idle game theme. The dichotomies of a fast-paced runner with a casual idle game was attractive. They were incompatible in terms of mechanics and style. We didn't want to &quot;mix&quot; two genres, we really wanted to have a distinct separation between the genres.</p>
+<p>We landed on either a librarian dreaming of things she read in the books she was putting away or a bored office worker. The office theme was strong and we didn't have enough time to build out a full themed set of art for different book genres.</p>
+<p>And so, Office Daydream was born. You were just a person doing menial office tasks dreaming of being a motorcycle stunt action hero.</p>
+<h2 id="coding">Coding</h2>
+<p>This jam was different from previous jams because we were at our teammate's cabin and were essentially on vacation. My wife and son were there, other spouses were present. We knew we'd only be working 8 hour days to spend evenings with family.</p>
+<p>This turned out to work super well--and even when I had to leave halfway through on Sunday, the team managed to get everything done that we had scoped for. We ended up starting around 8-9am, taking an hour lunch break, and finishing around 5pm.</p>
+<p>Some things we did ahead of time that ensured we met this schedule:</p>
+<ul>
+<li>Spend Friday after theme announcement <em>just</em> focusing on design and mechanics and idea generation to have a solid goal by the end of the night</li>
+<li>Scoped all mechanics/design to a minimal goal (MVP) with stretch goals</li>
+<li>Had all our tooling/setup in place beforehand so we could sit down and work immediately</li>
+<li>Used Trello like we have in the past to manage work</li>
+</ul>
+<h2 id="design">Design</h2>
+<p>We initially had thought you'd control the runner via keyboard and the office minigames with your mouse. But then we decided to use the mouse for all interaction because it forced you to focus on one thing at a time, making it harder.</p>
+<p>We also didn't really know what we'd do for an &quot;endgame&quot; until we realized the theme decided for us. You're in an office. You typically work an 8 hour day. So, each minigame will last essentially a portion of that time and when you finish them, you end your work day successfully daydreaming.</p>
+<h2 id="assets">Assets</h2>
+<p>I spent a little time and made the background for the runner portion. I went with a cyberpunk-ish/Bladerunner cityscape theme. It worked pretty well! Just simple fixed width skyscrapers that could be randomly tiled horizontally to make the background more dynamic.</p>
+<p>I also found the motorcycle asset and designed the art for the paper collation minigame (the mug I did was replaced by Erik's better mug). I'm no artist and I'm very glad Erik took care of the rest of the art. If we need anyone else on the team, it's a dedicated artist.</p>
+<h2 id="the-end">The end</h2>
+<p>Every game jam is a ton of fun and I always learn something new about game dev. It was nice not feeling the &quot;crunch&quot; of 12 hour days, I feel we might adopt the 8 hour cycle in future jams more often now that we know we can accomplish what we set out to build.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="http://www.youtube.com/c/Kamranicus " title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://twitch.tv/kamranicus " title="YouTube">
+  <i class="twitch icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '2018-04-29-ludum-dare-41-post-mortem';
+    var disqus_title = 'Ludum Dare 41 Post-Mortem';
+    var disqus_url = 'https://kamranicus.com/posts/2018-04-29-ludum-dare-41-post-mortem';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+      <!-- Disqus -->
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+  
+  <!-- Footer -->
+  <footer>   
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2018</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="http://www.youtube.com/c/Kamranicus " title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://twitch.tv/kamranicus " title="YouTube">
+  <i class="twitch icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe via RSS or email
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

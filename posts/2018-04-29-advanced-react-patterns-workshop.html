@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Frontend Masters: Advanced React Patterns Workshop</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Frontend Masters: Advanced React Patterns Workshop" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2018-04-29-advanced-react-patterns-workshop" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="/assets/js/picturefill.min.js" async></script>
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text site menu">
+      
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+              <div class="item">
+        <a href="/about">About</a>
+      </div>
+      <div class="item">
+        <a href="/events">Events</a>
+      </div>
+      <div class="item">
+        <a href="/guides">Guides</a>
+      </div>
+      <div class="item">
+        <a href="/projects">Projects</a>
+      </div>
+      <div class="item">
+        <a href="/travel">Travel</a>
+      </div>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui vertical masthead segment " id="intro-header">
+    <div class="ui container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui  huge header">
+      Frontend Masters: Advanced React Patterns Workshop
+        <div class="ui sub header">I attended the in-person workshop for Advanced React Patterns at Frontend Masters</div>
+    </h1>
+                
+    <div class="ui  sub header">        
+Published on Monday, April 30, 2018<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/Frontend-Masters" class="ui small compact button">Frontend Masters</a>
+                    <a role="button" href="/tags/JavaScript" class="ui small compact button">JavaScript</a>
+                    <a role="button" href="/tags/React" class="ui small compact button">React</a>
+                    <a role="button" href="/tags/Workshop" class="ui small compact button">Workshop</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui stackable grid container">
+    <div class="content column">
+      
+
+<div class="ui huge basic post content segment">
+  <p>A couple weeks ago I went to the in-person Frontend Masters workshop with Kent C. Dodds on Advanced React Patterns.</p>
+<p>I was looking forward to it, I've followed Kent for awhile and knew his workshops were well-received. I'm doing React at work and it was perfect timing for our project.</p>
+<h2 id="takeaways">Takeaways</h2>
+<p>The gist of the workshop was state management and props passing patterns in React, to be able to build smarter, flexible components.</p>
+<p>We centered around a toggle component that showcased each of the patterns, some isolated and some working in tandem.</p>
+<p><strong>Context API</strong></p>
+<p>I hadn't really been exposed to the context API before React 16.3 so this was brand new to me. They really have made it much easier to use now.</p>
+<p>The Context API makes it straightforward to pass data around throughout your app without forcing you to pass props down through the component tree (called &quot;props drilling&quot;).</p>
+<p><strong>Render Props</strong></p>
+<p>This pattern has come into fashion pretty recently I'd say. When I started learning React over a year ago I hadn't seen this pattern used much. Before attending the workshop I had used this pattern in practice in KTOMG to build analytics/social sharing providers that encapsulated some behavior like respecting Do Not Track across the site.</p>
+<p>The pattern is useful for building flexible UI components where you can encapsulate behavior and state but delegate rendering (or parts of rendering) to the consumer.</p>
+<p>Render props is powerful and in a lot of cases provides most of what you'd need in a flexible component.</p>
+<p><strong>Control Props</strong></p>
+<p>This is a pattern to delegate the setting of state to &quot;control props.&quot; This provides flexibility to a component to delegate control of its state to a consuming component vs. setting internal state only.</p>
+<p>Whenever the component is intending to use <code>setState</code>, it checks whether that state is <em>controlled</em> (meaning, it's being passed in as a prop). If it is, it just calls a callback with what <em>would</em> be the new state value. If it's not controlled, it goes ahead and sets state normally.</p>
+<p>This is useful in situations where you as the caller want to control the state yourself--it means though that you basically have to know how the internal state works of the component you're controlling.</p>
+<p><strong>State Reducer</strong></p>
+<p>This is a more advanced pattern Kent showed. The goal of this is to enable a consuming component to manipulate the internal state of a component by basically intercepting state changes.</p>
+<p>It's a more flexible version of control props basically allowing your entire state to be controlled by a consumer.</p>
+<p>There's an <a href="https://github.com/kentcdodds/advanced-react-patterns-v2/blob/master/src/why/state-reducer.js">example in the workshop repo</a>.</p>
+<p><strong>Rendux</strong></p>
+<p>I missed the last couple exercises going over Higher Order Components (HOCs) and this last pattern called <a href="https://github.com/kentcdodds/advanced-react-patterns-v2/blob/master/src/exercises-final/13.js">Rendux</a>.</p>
+<p>The Rendux pattern uses the render props pattern to hook into a Redux store as a reusable component. Any time you need to access the store, you can use the <code>Rendux.Consumer</code> component or <code>withRendux</code> enhancer function. This is a different way to accomplish the similar Redux experience of using <code>Provider</code> and the <code>connect</code> enhancer.</p>
+<h2 id="putting-into-practice">Putting into practice</h2>
+<p>The goal of the workshop was to learn each of these patterns on a small scale so we can apply them to our larger projects. There is certainly already opportunities on my project at work to leverage what I learned--I'm hoping to spend some more time building out our project and then writing about some useful patterns.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="http://www.youtube.com/c/Kamranicus " title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://twitch.tv/kamranicus " title="YouTube">
+  <i class="twitch icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '2018-04-29-advanced-react-patterns-workshop';
+    var disqus_title = 'Frontend Masters: Advanced React Patterns Workshop';
+    var disqus_url = 'https://kamranicus.com/posts/2018-04-29-advanced-react-patterns-workshop';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+      <!-- Disqus -->
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+  
+  <!-- Footer -->
+  <footer>   
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2018</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="http://www.youtube.com/c/Kamranicus " title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://twitch.tv/kamranicus " title="YouTube">
+  <i class="twitch icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe via RSS or email
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

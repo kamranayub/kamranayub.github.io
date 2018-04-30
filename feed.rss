@@ -5,8 +5,111 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2018</copyright>
-		<pubDate>Wed, 21 Mar 2018 01:40:10 GMT</pubDate>
-		<lastBuildDate>Wed, 21 Mar 2018 01:40:10 GMT</lastBuildDate>
+		<pubDate>Mon, 30 Apr 2018 02:29:55 GMT</pubDate>
+		<lastBuildDate>Mon, 30 Apr 2018 02:29:55 GMT</lastBuildDate>
+		<item>
+			<title>Frontend Masters: Advanced React Patterns Workshop</title>
+			<link>https://kamranicus.com/posts/2018-04-29-advanced-react-patterns-workshop</link>
+			<description>&lt;p&gt;A couple weeks ago I went to the in-person Frontend Masters workshop with Kent C. Dodds on Advanced React Patterns.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2018-04-29-advanced-react-patterns-workshop</guid>
+			<pubDate>Mon, 30 Apr 2018 01:18:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;A couple weeks ago I went to the in-person Frontend Masters workshop with Kent C. Dodds on Advanced React Patterns.&lt;/p&gt;
+&lt;p&gt;I was looking forward to it, I've followed Kent for awhile and knew his workshops were well-received. I'm doing React at work and it was perfect timing for our project.&lt;/p&gt;
+&lt;h2 id="takeaways"&gt;Takeaways&lt;/h2&gt;
+&lt;p&gt;The gist of the workshop was state management and props passing patterns in React, to be able to build smarter, flexible components.&lt;/p&gt;
+&lt;p&gt;We centered around a toggle component that showcased each of the patterns, some isolated and some working in tandem.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Context API&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I hadn't really been exposed to the context API before React 16.3 so this was brand new to me. They really have made it much easier to use now.&lt;/p&gt;
+&lt;p&gt;The Context API makes it straightforward to pass data around throughout your app without forcing you to pass props down through the component tree (called &amp;quot;props drilling&amp;quot;).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Render Props&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This pattern has come into fashion pretty recently I'd say. When I started learning React over a year ago I hadn't seen this pattern used much. Before attending the workshop I had used this pattern in practice in KTOMG to build analytics/social sharing providers that encapsulated some behavior like respecting Do Not Track across the site.&lt;/p&gt;
+&lt;p&gt;The pattern is useful for building flexible UI components where you can encapsulate behavior and state but delegate rendering (or parts of rendering) to the consumer.&lt;/p&gt;
+&lt;p&gt;Render props is powerful and in a lot of cases provides most of what you'd need in a flexible component.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Control Props&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is a pattern to delegate the setting of state to &amp;quot;control props.&amp;quot; This provides flexibility to a component to delegate control of its state to a consuming component vs. setting internal state only.&lt;/p&gt;
+&lt;p&gt;Whenever the component is intending to use &lt;code&gt;setState&lt;/code&gt;, it checks whether that state is &lt;em&gt;controlled&lt;/em&gt; (meaning, it's being passed in as a prop). If it is, it just calls a callback with what &lt;em&gt;would&lt;/em&gt; be the new state value. If it's not controlled, it goes ahead and sets state normally.&lt;/p&gt;
+&lt;p&gt;This is useful in situations where you as the caller want to control the state yourself--it means though that you basically have to know how the internal state works of the component you're controlling.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;State Reducer&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is a more advanced pattern Kent showed. The goal of this is to enable a consuming component to manipulate the internal state of a component by basically intercepting state changes.&lt;/p&gt;
+&lt;p&gt;It's a more flexible version of control props basically allowing your entire state to be controlled by a consumer.&lt;/p&gt;
+&lt;p&gt;There's an &lt;a href="https://github.com/kentcdodds/advanced-react-patterns-v2/blob/master/src/why/state-reducer.js"&gt;example in the workshop repo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Rendux&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I missed the last couple exercises going over Higher Order Components (HOCs) and this last pattern called &lt;a href="https://github.com/kentcdodds/advanced-react-patterns-v2/blob/master/src/exercises-final/13.js"&gt;Rendux&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The Rendux pattern uses the render props pattern to hook into a Redux store as a reusable component. Any time you need to access the store, you can use the &lt;code&gt;Rendux.Consumer&lt;/code&gt; component or &lt;code&gt;withRendux&lt;/code&gt; enhancer function. This is a different way to accomplish the similar Redux experience of using &lt;code&gt;Provider&lt;/code&gt; and the &lt;code&gt;connect&lt;/code&gt; enhancer.&lt;/p&gt;
+&lt;h2 id="putting-into-practice"&gt;Putting into practice&lt;/h2&gt;
+&lt;p&gt;The goal of the workshop was to learn each of these patterns on a small scale so we can apply them to our larger projects. There is certainly already opportunities on my project at work to leverage what I learned--I'm hoping to spend some more time building out our project and then writing about some useful patterns.&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Finished My First Workshop at MinneWebCon</title>
+			<link>https://kamranicus.com/posts/2018-04-29-azure-nodejs-workshop-minnewebcon</link>
+			<description>&lt;p&gt;Last week I had the opportunity to &lt;a href="https://kamranicus.com/posts/2017-12-18-workshop-bots-javascript-node-minnewebcon"&gt;give a half-day workshop&lt;/a&gt; at MinneWebCon. I had initially submitted the session as a 50 minute talk but the committee thought it would be better as a workshop.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2018-04-29-azure-nodejs-workshop-minnewebcon</guid>
+			<pubDate>Mon, 30 Apr 2018 00:56:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;Last week I had the opportunity to &lt;a href="https://kamranicus.com/posts/2017-12-18-workshop-bots-javascript-node-minnewebcon"&gt;give a half-day workshop&lt;/a&gt; at MinneWebCon. I had initially submitted the session as a 50 minute talk but the committee thought it would be better as a workshop.&lt;/p&gt;
+&lt;p&gt;The workshop outline and code is &lt;a href="https://github.com/kamranayub/workshop-nodejs-azure-bots"&gt;available on GitHub&lt;/a&gt;. I thought I'd write up a brief retrospective since it was my first workshop!&lt;/p&gt;
+&lt;h2 id="what-went-well"&gt;What went well&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Everyone was able to deploy a live bot and finished the workshop (huzzah!)&lt;/li&gt;
+&lt;li&gt;I was able to help answer some questions I hadn't anticipated&lt;/li&gt;
+&lt;li&gt;People paired up if they didn't have everything they needed on their computers&lt;/li&gt;
+&lt;li&gt;Azure Bot Service works pretty well and even when a couple people accidentally chose the wrong code template, they were able to redo the bot in a few minutes&lt;/li&gt;
+&lt;li&gt;People said they liked it, which always feels good!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="what-could-change"&gt;What could change&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;If it was a longer workshop, I'd rather build a custom sample bot rather than building off the pre-built Notes domain&lt;/li&gt;
+&lt;li&gt;I walked through some of the LUIS grammar via whiteboard but it would have been better to visualize the relationships better in slide form I think&lt;/li&gt;
+&lt;li&gt;At the end some folks wanted to see what a &amp;quot;real&amp;quot; bot looks like hooked up to real data. I showed what I did for &lt;a href="http://ktomg.com"&gt;KTOMG&lt;/a&gt; but ideally in a full workshop we'd use a live data source as you would in the real world.&lt;/li&gt;
+&lt;li&gt;The Azure Bot Service &amp;quot;web chat&amp;quot; blade was super finicky--it usually required people to sign out fully and sign back in to boot up the interface&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="what-i-learned"&gt;What I learned&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;I learned I enjoy giving workshops. Helping people accomplish something in a hands-on way is pretty cool.&lt;/li&gt;
+&lt;li&gt;Different people are on different levels and want different things out of the workshop. It was good I had some stretch goals.&lt;/li&gt;
+&lt;li&gt;Professionals want a way to see how what they learned will apply to their day-to-day work. I'd flesh this out more if I gave the workshop again. Showing how I wrote my bot in C# for &lt;a href="http://ktomg.com"&gt;KTOMG&lt;/a&gt; was helpful I think.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Ludum Dare 41 Post-Mortem</title>
+			<link>https://kamranicus.com/posts/2018-04-29-ludum-dare-41-post-mortem</link>
+			<description>&lt;p&gt;Whoo! Another year, another opportunity to participate in Ludum Dare with the &lt;a href="http://excaliburjs.com"&gt;Excalibur.js&lt;/a&gt; team. Last jam we made &lt;a href="https://blog.excaliburjs.com/post/161334104662/ludum-dare-38-postmortem"&gt;I Just Wanted Groceries&lt;/a&gt; (which I totally spaced on writing about). You can play our LD41 game &lt;a href="http://excaliburjs.com/ludum-41"&gt;Office Daydream&lt;/a&gt; right now.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2018-04-29-ludum-dare-41-post-mortem</guid>
+			<pubDate>Sun, 29 Apr 2018 13:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;Whoo! Another year, another opportunity to participate in Ludum Dare with the &lt;a href="http://excaliburjs.com"&gt;Excalibur.js&lt;/a&gt; team. Last jam we made &lt;a href="https://blog.excaliburjs.com/post/161334104662/ludum-dare-38-postmortem"&gt;I Just Wanted Groceries&lt;/a&gt; (which I totally spaced on writing about). You can play our LD41 game &lt;a href="http://excaliburjs.com/ludum-41"&gt;Office Daydream&lt;/a&gt; right now.&lt;/p&gt;
+&lt;h2 id="the-jam"&gt;The jam&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://ldjam.com"&gt;Ludum Dare&lt;/a&gt; is a global game jam that has two modes: the Compo and the Jam. The Compo is for individuals and strict rules on content creation, limited to 24 hours. The Jam is for teams and is a bit looser on content rules (you can use premade assets) and lasts 72 hours. Since we are a team, we always do the jam but it's always interested me to try doing a Compo by myself at some point.&lt;/p&gt;
+&lt;h2 id="the-theme"&gt;The theme&lt;/h2&gt;
+&lt;p&gt;The theme this jam was not as great as we hoped--there were certainly some better ones in the running but it was a challenge and we made the most of it. The theme was &amp;quot;Combine 2 incompatible genres.&amp;quot;&lt;/p&gt;
+&lt;p&gt;First, we didn't like the term &amp;quot;incompatible&amp;quot; because that already presupposes the two genres you choose can't have been considered compatible today and that they would never be compatible in the future. But that's nonsense because I'd DEFINITELY play &lt;a href="https://ldjam.com/events/ludum-dare/41/jeff-from-accounting"&gt;this typing FPS&lt;/a&gt; for realsies if it ever made it into a production game.&lt;/p&gt;
+&lt;p&gt;Second, we like open-ended themes more than specifically scoped themes. For example, previous ones we participated in included &amp;quot;Under the Sea&amp;quot;, &amp;quot;A Small World&amp;quot;, and &amp;quot;Shapeshift.&amp;quot; These all leave much more open interpretations.&lt;/p&gt;
+&lt;p&gt;Still. The theme forced people to come up with some interesting combinations like this basketball + Connect 4 game. Constraints breed creativity, even if there were some really effing weird ones.&lt;/p&gt;
+&lt;h2 id="brainstorming"&gt;Brainstorming&lt;/h2&gt;
+&lt;p&gt;We played with a lot of combinations. We started by listing game genres, then movie genres, then music genres. Some we combos we liked but knew we didn't have time for, mainly RPG-based or turn-based.&lt;/p&gt;
+&lt;p&gt;It kept coming back to a runner + idle game theme. The dichotomies of a fast-paced runner with a casual idle game was attractive. They were incompatible in terms of mechanics and style. We didn't want to &amp;quot;mix&amp;quot; two genres, we really wanted to have a distinct separation between the genres.&lt;/p&gt;
+&lt;p&gt;We landed on either a librarian dreaming of things she read in the books she was putting away or a bored office worker. The office theme was strong and we didn't have enough time to build out a full themed set of art for different book genres.&lt;/p&gt;
+&lt;p&gt;And so, Office Daydream was born. You were just a person doing menial office tasks dreaming of being a motorcycle stunt action hero.&lt;/p&gt;
+&lt;h2 id="coding"&gt;Coding&lt;/h2&gt;
+&lt;p&gt;This jam was different from previous jams because we were at our teammate's cabin and were essentially on vacation. My wife and son were there, other spouses were present. We knew we'd only be working 8 hour days to spend evenings with family.&lt;/p&gt;
+&lt;p&gt;This turned out to work super well--and even when I had to leave halfway through on Sunday, the team managed to get everything done that we had scoped for. We ended up starting around 8-9am, taking an hour lunch break, and finishing around 5pm.&lt;/p&gt;
+&lt;p&gt;Some things we did ahead of time that ensured we met this schedule:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Spend Friday after theme announcement &lt;em&gt;just&lt;/em&gt; focusing on design and mechanics and idea generation to have a solid goal by the end of the night&lt;/li&gt;
+&lt;li&gt;Scoped all mechanics/design to a minimal goal (MVP) with stretch goals&lt;/li&gt;
+&lt;li&gt;Had all our tooling/setup in place beforehand so we could sit down and work immediately&lt;/li&gt;
+&lt;li&gt;Used Trello like we have in the past to manage work&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="design"&gt;Design&lt;/h2&gt;
+&lt;p&gt;We initially had thought you'd control the runner via keyboard and the office minigames with your mouse. But then we decided to use the mouse for all interaction because it forced you to focus on one thing at a time, making it harder.&lt;/p&gt;
+&lt;p&gt;We also didn't really know what we'd do for an &amp;quot;endgame&amp;quot; until we realized the theme decided for us. You're in an office. You typically work an 8 hour day. So, each minigame will last essentially a portion of that time and when you finish them, you end your work day successfully daydreaming.&lt;/p&gt;
+&lt;h2 id="assets"&gt;Assets&lt;/h2&gt;
+&lt;p&gt;I spent a little time and made the background for the runner portion. I went with a cyberpunk-ish/Bladerunner cityscape theme. It worked pretty well! Just simple fixed width skyscrapers that could be randomly tiled horizontally to make the background more dynamic.&lt;/p&gt;
+&lt;p&gt;I also found the motorcycle asset and designed the art for the paper collation minigame (the mug I did was replaced by Erik's better mug). I'm no artist and I'm very glad Erik took care of the rest of the art. If we need anyone else on the team, it's a dedicated artist.&lt;/p&gt;
+&lt;h2 id="the-end"&gt;The end&lt;/h2&gt;
+&lt;p&gt;Every game jam is a ton of fun and I always learn something new about game dev. It was nice not feeling the &amp;quot;crunch&amp;quot; of 12 hour days, I feel we might adopt the 8 hour cycle in future jams more often now that we know we can accomplish what we set out to build.&lt;/p&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>Elusive Bugs with GraphQL Object Caching in Apollo Client</title>
 			<link>https://kamranicus.com/posts/2018-03-06-graphql-apollo-object-caching</link>
@@ -1306,158 +1409,6 @@ size 12345
 &lt;h2 id="thats-it"&gt;That's it!&lt;/h2&gt;
 &lt;p&gt;Once I figured out all the gotchas the script I wrote worked like a charm and hey, it only took me an afternoon. I haven't yet converted it into a DSC module but an enterprising developer could easily use this in a &lt;code&gt;Script&lt;/code&gt; DSC resource for now. The script also works nicely as a standalone cmdlet for all your DevOps needs.&lt;/p&gt;
 &lt;p&gt;Hope this helps someone. Give me some time to wrap this up with a bow on it and I'll publish it to Posh gallery for use, we will certainly be using it for our DSC. I'll be reporting this to the VSTS team so let's hope a fix comes out to make this post obsolete and serve as an exemplary specimen of my incredible storytelling ability!&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Adding SameSite Cookie Support In ASP.NET</title>
-			<link>https://kamranicus.com/posts/2017-02-23-samesite-cookies-in-asp-net</link>
-			<description>&lt;p&gt;I was reading Scott Helme's post on how &lt;a href="https://scotthelme.co.uk/csrf-is-dead/"&gt;CSRF is Dead&lt;/a&gt; because of the new Same Site cookie spec (which is supported in &lt;a href="http://caniuse.com/#feat=same-site-cookie-attribute"&gt;Chrome and soon FF&lt;/a&gt;).&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2017-02-23-samesite-cookies-in-asp-net</guid>
-			<pubDate>Thu, 23 Feb 2017 23:18:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;I was reading Scott Helme's post on how &lt;a href="https://scotthelme.co.uk/csrf-is-dead/"&gt;CSRF is Dead&lt;/a&gt; because of the new Same Site cookie spec (which is supported in &lt;a href="http://caniuse.com/#feat=same-site-cookie-attribute"&gt;Chrome and soon FF&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;I wanted to add support into &lt;a href="http://ktomg.com"&gt;KTOMG&lt;/a&gt; so I was trying to figure out how to modify my authentication flow to add the attribute. However, &lt;a href="https://msdn.microsoft.com/en-us/library/system.web.httpcookie(v=vs.110).aspx"&gt;HttpCookie&lt;/a&gt; is sealed and can't be modified so what's a well meaning security citizen supposed to do?!&lt;/p&gt;
-&lt;p&gt;Well, thanks to &lt;a href="http://stackoverflow.com/a/38957177/109458"&gt;this StackOverflow answer&lt;/a&gt;, it's actually pretty simple and can be done on any IIS website using URL rewrite!&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;system.webServer&amp;gt;
-  &amp;lt;rewrite&amp;gt;
-    &amp;lt;outboundRules&amp;gt;
-        &amp;lt;clear /&amp;gt;
-        &amp;lt;rule name=&amp;quot;Add SameSite&amp;quot; preCondition=&amp;quot;No SameSite&amp;quot;&amp;gt;
-          &amp;lt;match serverVariable=&amp;quot;RESPONSE_Set_Cookie&amp;quot; pattern=&amp;quot;.*&amp;quot; negate=&amp;quot;false&amp;quot; /&amp;gt;
-          &amp;lt;action type=&amp;quot;Rewrite&amp;quot; value=&amp;quot;{R:0}; SameSite=lax&amp;quot; /&amp;gt;
-          &amp;lt;conditions&amp;gt;
-          &amp;lt;/conditions&amp;gt;
-        &amp;lt;/rule&amp;gt;
-        &amp;lt;preConditions&amp;gt;
-          &amp;lt;preCondition name=&amp;quot;No SameSite&amp;quot;&amp;gt;
-            &amp;lt;add input=&amp;quot;{RESPONSE_Set_Cookie}&amp;quot; pattern=&amp;quot;.&amp;quot; /&amp;gt;
-            &amp;lt;add input=&amp;quot;{RESPONSE_Set_Cookie}&amp;quot; pattern=&amp;quot;; SameSite=lax&amp;quot; negate=&amp;quot;true&amp;quot; /&amp;gt;
-          &amp;lt;/preCondition&amp;gt;
-        &amp;lt;/preConditions&amp;gt;
-      &amp;lt;/outboundRules&amp;gt;
-    &amp;lt;/rewrite&amp;gt;
-&amp;lt;/system.webServer&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;These outbound rules will add &lt;code&gt;SameSite=lax&lt;/code&gt; to any Set-Cookie header in responses from your site (that are not already marked SameSite), so all cookies effectively set by your site become SameSite cookies.&lt;/p&gt;
-&lt;p&gt;In this case, I'm using Lax security (see Scott's post above for a good explanation of Lax vs. Strict) because I don't quite have the dual cookie authentication suggested by Scott (e.g. one to make yourself &amp;quot;known&amp;quot; and logged-in, the other that MUST be present on any secure page such as your Account page). I do plan to implement dual cookie auth whenever I get around to migrating to .NET Core.&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Building a Raspberry Pi 3 Baby Monitor</title>
-			<link>https://kamranicus.com/posts/2017-02-21-building-a-raspberry-pi-3-baby-monitor-livestream-audio-video</link>
-			<description>&lt;p&gt;Our little baby boy came into the world February 6 and we couldn't be happier! During the course of preparing for the birth and buying items, a baby monitor had been high on the list--but I wasn't super happy with the choices available. So I &lt;a href="/guides/raspberry-pi-3-baby-monitor"&gt;built my own&lt;/a&gt;!&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2017-02-21-building-a-raspberry-pi-3-baby-monitor-livestream-audio-video</guid>
-			<pubDate>Tue, 21 Feb 2017 19:25:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;Our little baby boy came into the world February 6 and we couldn't be happier! During the course of preparing for the birth and buying items, a baby monitor had been high on the list--but I wasn't super happy with the choices available. So I &lt;a href="/guides/raspberry-pi-3-baby-monitor"&gt;built my own&lt;/a&gt;!&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;p&gt;A friend had recommended the &lt;a href="https://www.amazon.com/gp/product/B01M34SOIM/ref=as_li_tl?ie=UTF8&amp;amp;tag=kamranicus-20&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;linkCode=as2&amp;amp;creativeASIN=B01M34SOIM&amp;amp;linkId=5e4ae35731346f971eb4deaa3d321160"&gt;Summer baby monitor&lt;/a&gt; series. Another friend just recommended the &lt;a href="https://www.amazon.com/gp/product/B00WBJGUA2/ref=as_li_tl?ie=UTF8&amp;amp;tag=kamranicus-20&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;linkCode=as2&amp;amp;creativeASIN=B00WBJGUA2&amp;amp;linkId=708b18eb1764f496eacac072f1d6e243"&gt;Nest Cam&lt;/a&gt; since it was easy to use and viewable on any device. Reading the reviews on the Summer monitor and looking at the example image resolution left a bit to be desired--certainly it would &lt;em&gt;work&lt;/em&gt; but I sort of wanted higher quality and the battery life and range (125 ft) on the viewing tablet was god awful. The Nest Cam seemed promising, able to hook up to Wi-Fi but it was definitely at a pretty high price point, being about $200. The other thing being a techie was the whole security aspect of the IoT space--I trusted myself to build a more secure system rather than &lt;a href="https://information.rapid7.com/iot-baby-monitor-research.html"&gt;chancing vulnerabilities/exploits in any monitor I bought&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I knew there had to be a more affordable option that would still give me a lot of flexibility and options. The &lt;a href="https://www.raspberrypi.org/"&gt;Raspberry Pi&lt;/a&gt; seemed like a perfect use case! If you haven't heard of a Pi, it's a small programmable computer with USB, Wi-Fi, Bluetooth, Ethernet, and SD card memory. It's cheap (a full kit is only $50), USB hardware is cheap, and it has a 1080p 30fps camera module for high-resolution streaming--I could configure it to simply start streaming at bootup and then view it on &lt;em&gt;any&lt;/em&gt; device including console web browsers, tablets, or our phones. I could also properly secure the stream (and Pi) to ensure it wasn't available outside my home network.&lt;/p&gt;
-&lt;p&gt;You can &lt;a href="/guides/raspberry-pi-3-baby-monitor"&gt;check out the full guide to building it&lt;/a&gt;, it doesn't take long and all the hardware can be acquired for sub-$100 depending on what options you want.&lt;/p&gt;
-&lt;p&gt;The quality speaks for itself!&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;720p, low light&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="/guides/images/raspberry-pi-3-baby-monitor/baby.png" class="img-fluid" alt="Image quality, low light" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;720p, high light&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="/guides/images/raspberry-pi-3-baby-monitor/baby-day.png" class="img-fluid" alt="Image quality, high light" /&gt;&lt;/p&gt;
-&lt;p&gt;In addition you also have high quality audio via a USB condenser microphone! There seems to be a small issue with using 1080p resolution with the software package but hopefully I can sort that out soon and update the images to be 1080p.&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Store Binaries Next to Powershell DSC Using Git LFS</title>
-			<link>https://kamranicus.com/posts/2017-02-04-powershell-dsc-git-lfs-binaries</link>
-			<description>&lt;p&gt;A common need when configuring servers using &lt;a href="https://msdn.microsoft.com/en-us/powershell/dsc/overview"&gt;Powershell DSC&lt;/a&gt; is installing software or copying binary files, for example, installing the Java SDK, Sysinternals, MSI installers, or what have you.&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2017-02-04-powershell-dsc-git-lfs-binaries</guid>
-			<pubDate>Sat, 04 Feb 2017 15:11:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;A common need when configuring servers using &lt;a href="https://msdn.microsoft.com/en-us/powershell/dsc/overview"&gt;Powershell DSC&lt;/a&gt; is installing software or copying binary files, for example, installing the Java SDK, Sysinternals, MSI installers, or what have you.&lt;/p&gt;
-&lt;!-- More --&gt;
-&lt;h2 id="updates"&gt;Updates&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;6/14/2017&lt;/strong&gt;: My good friend and colleague &lt;a href="https://erikonarheim.com"&gt;Erik&lt;/a&gt; was going through this exercise at work and let me know the code doesn't &lt;em&gt;actually&lt;/em&gt; work. Whoops! Apparently when I tested, the binaries weren't actually in Git LFS since I had already checked them in. However, I did manage to solve the issue but for now you may need to use a custom Script resource until I release a DSC module. &lt;a href="/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts"&gt;Check out this post&lt;/a&gt; for an explanation and solution. I will update this post again with my new resource once available.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="using-a-network-share"&gt;Using a network share&lt;/h2&gt;
-&lt;p&gt;Depending on the software, there are multiple ways to do the installation--using the &lt;a href="https://msdn.microsoft.com/en-us/powershell/dsc/packageresource"&gt;Package&lt;/a&gt; resource, copying files/manipulating the registry, etc. Common to all cases is the fact you need a &lt;em&gt;source&lt;/em&gt; of the installation. Typically this is an exe, msi, zip, or some other large binary file.&lt;/p&gt;
-&lt;p&gt;If I asked you where to store common installation source files that need to be accessible by any arbitrary server for DSC, you might (rightly) say, &amp;quot;A network share!&amp;quot; This is where most articles on using DSC stop.&lt;/p&gt;
-&lt;p&gt;You would do something like this, such as copying a zip file from the share to a target node:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-powershell"&gt;Configuration WebServer {
-  Param($Credential)
-
-  File EnsureSysinternalsIsPresentInInstallationSource {
-    Ensure = &amp;quot;Present&amp;quot;
-    DestinationPath = &amp;quot;C:\DSC\Sources\SysInternalsSuite-2016-11-18.zip&amp;quot;
-    SourcePath = &amp;quot;\\contoso.com\DSC\Sources\SysInternalsSuite-2016-11-18.zip&amp;quot;
-    Credential = $Credential
-  }
-
-  Archive EnsureSysInternalsIsInstalled {
-    Ensure = &amp;quot;Present&amp;quot;
-    Destination = &amp;quot;C:\Utilities\Sysinternals&amp;quot;
-    Path = &amp;quot;C:\DSC\Sources\SysInternalsSuite-2016-11-18.zip&amp;quot;
-  }
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Here we are copying the Sysinternals source archive to the target node for extraction. The network share is secured to some credential we've passed in.&lt;/p&gt;
-&lt;p&gt;In some cases, some DSC resources allow using UNC paths as their source but I've found this to be inconsistently implemented, finicky and riddled with permission issues, especially when doing complex installations that may require manual scripting. Behind the scenes Powershell has to mount the remote share and you can run into strange issues because of this--hours and days have been spent diagnosing network issues only to come down to black magic AD configuration. I've been burned too often to recommend this approach.&lt;/p&gt;
-&lt;h2 id="binaries-are-configuration-too"&gt;Binaries are configuration too&lt;/h2&gt;
-&lt;p&gt;There's another issue. As a developer who moved into a more operational role (DevOps!), I've made it a point to store all our DSC in source control (Git, specifically). So now I'm in a situation where all my configuration is versioned and in source control but my installation sources or other binaries are stored separately in a file share.&lt;/p&gt;
-&lt;p&gt;I don't like it. You should &lt;em&gt;store things that relate together next to each other.&lt;/em&gt; If you don't, it introduces extra complexity:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I need to ensure the entire team can access the file share&lt;/li&gt;
-&lt;li&gt;Anyone could accidentally remove or change a file in the share and kill our DSC&lt;/li&gt;
-&lt;li&gt;I need to document the sources somewhere in the repository&lt;/li&gt;
-&lt;li&gt;The installation source files are not versioned or audited&lt;/li&gt;
-&lt;li&gt;As mentioned above, your mileage may vary with access to network resources&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The fact is installation binaries &lt;em&gt;are still configuration.&lt;/em&gt; Changes to the installation sources go hand-in-hand with changes to your DSC because they are married together. In your Git history, you want a record &lt;strong&gt;of all changes to any aspect of your configuration.&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id="using-git-lfs-to-store-binaries"&gt;Using Git LFS to store binaries&lt;/h2&gt;
-&lt;p&gt;Normally storing binaries in Git isn't a recommended approach. Git wasn't designed for gigabye repositories. However, there's an extension available called &lt;a href="https://git-lfs.github.com/"&gt;Git Large File Storage (LFS)&lt;/a&gt;. It supports gigabye files and reduces repository size by storing the binaries on the remote server.&lt;/p&gt;
-&lt;p&gt;Since we're using TFS, &lt;a href="https://www.visualstudio.com/en-us/docs/git/manage-large-files"&gt;Git LFS is supported&lt;/a&gt;. It's also supported on pretty much every major Git hosting provider. The only dependency is that local development requires you to install the Git LFS extension--something easily put into the README of the repository.&lt;/p&gt;
-&lt;p&gt;Once you configure Git LFS for a repository:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;git lfs track &amp;quot;*.zip&amp;quot;
-git lfs track &amp;quot;*.exe&amp;quot;
-git lfs track &amp;quot;*.msi&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;You can now add these binary files and they'll be tracked in Git LFS (track whatever you need).&lt;/p&gt;
-&lt;p&gt;Let's say for our purposes our repository now looks like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;configuration/WebServer.ps1
-installers/sysinternals/SysInternalsSuite-2016-11-18.zip
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now you can efficiently store binary files alongside your configuration files!&lt;/p&gt;
-&lt;h2 id="downloading-installers-during-dsc-pull"&gt;Downloading Installers During DSC Pull&lt;/h2&gt;
-&lt;p&gt;We're using DSC pull, which is the recommended approach for using DSC if you want to scale it out across your clusters. How does our DSC change now that we're storing the installers side-by-side?&lt;/p&gt;
-&lt;p&gt;Presumably, you've managed to get your configs over to the pull server (which is a series of articles I still intend to write), but your installers are still stored in Git. What to do?&lt;/p&gt;
-&lt;p&gt;Instead of copying files from a share, we can use some APIs available to use in TFS (or GitHub or what have you) to &lt;strong&gt;download the installers locally.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The TFS Rest API is documented and you can see there's a way to &lt;a href="https://www.visualstudio.com/en-us/docs/integrate/api/git/items#get-a-file"&gt;download a folder as a zip file or stream a file&lt;/a&gt;--which is perfect!&lt;/p&gt;
-&lt;p&gt;For TFS, the format of the URL is like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;GET https://{instance}/DefaultCollection/{project}/_apis/git/repositories/{repository}/items?api-version={version}&amp;amp;scopePath={itemPath}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;To get a specific &lt;em&gt;branch&lt;/em&gt; (in cases where different branches are for different environments), you can pass &lt;code&gt;&amp;amp;versionType=branch&amp;amp;version={branch}&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;This works for on-premise TFS and VSTS. There are &lt;a href="https://developer.github.com/v3/repos/contents/#get-archive-link"&gt;similar APIs&lt;/a&gt; for GitHub.&lt;/p&gt;
-&lt;p&gt;Using the &lt;a href="https://github.com/PowerShell/xPSDesiredStateConfiguration#xremotefile"&gt;xRemoteFile&lt;/a&gt; resource, we can bring down our dependencies to the local machine to use, so our configuration above would change:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-powershell"&gt;Configuration WebServer {
-  Param($Credential)
-
-  Import-DscResource -Name xPSDesiredStateConfiguration 
-
-  xRemoteFile EnsureSysinternalsIsPresentInInstallationSource {
-    DestinationPath = &amp;quot;C:\DSC\Sources\SysInternalsSuite-2016-11-18.zip&amp;quot;
-    Uri = &amp;quot;https://tfs.contoso.com/tfs/DefaultCollection/TeamProject/_apis/git/repositories/DSC/items?api-version=1.0&amp;amp;scopePath=installers/sysinternals/SysInternalsSuite-2016-11-18.zip&amp;quot;
-    Credential = $Credential
-    MatchSource = $True
-  }
-
-  Archive EnsureSysInternalsIsInstalled {
-    Ensure = &amp;quot;Present&amp;quot;
-    Destination = &amp;quot;C:\Utilities\Sysinternals&amp;quot;
-    Path = &amp;quot;C:\DSC\Sources\SysInternalsSuite-2016-11-18.zip&amp;quot;
-  }
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;To use &lt;code&gt;xRemoteFile&lt;/code&gt; we need to import the xPSDesiredStateConfiguration DSC module &lt;a href="https://msdn.microsoft.com/en-us/powershell/dsc/pullserver#placing-configurations-and-resources"&gt;which has to be stored&lt;/a&gt; on the pull server. Then we can use the appropriate URL to download an individual installer, or we could have downloaded the zip of the &lt;strong&gt;installers&lt;/strong&gt; folder and unzipped it locally. The &lt;code&gt;MatchSource&lt;/code&gt; parameter should prevent re-downloading the file if it already exists (and we added the version to the zip file). We are still passing a &lt;code&gt;Credential&lt;/code&gt; because your source control repository is probably still authenticated.&lt;/p&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;strong&gt;Attention Reader:&lt;/strong&gt; This actually doesn't work when using Git LFS. You have to &lt;a href="/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts"&gt;shave some yaks&lt;/a&gt; before you can get it to work.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;If you needed something more sophisticated, you could wrap downloading into a custom resource or Script resource--e.g. &lt;a href="https://www.visualstudio.com/en-us/docs/integrate/api/git/items#get-item-metadata-for"&gt;use the SHA1 hash&lt;/a&gt; to compare whether it needed to be downloaded again, etc. Where you go from here is your own choice!&lt;/p&gt;
-&lt;p&gt;We've been using this pattern with great success--it keeps everything together, it's simple, and it lets us track the versions/history of our installation sources.&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>
