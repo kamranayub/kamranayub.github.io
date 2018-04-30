@@ -1,5 +1,5 @@
 Title: "Follow-Up to .NET Rocks episode on RavenDB"
-Published: 2018-05-01 08:00:00 -0500
+Published: 2018-05-01 06:00:00 -0500
 Lead: This last week I was honored to have the opportunity to be on one of my favorite podcasts, .NET Rocks
 Tags:
 - Podcast
