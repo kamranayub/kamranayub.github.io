@@ -112,5 +112,5 @@ I'm hoping to address more of these patterns/practices in a follow-up course.
 Like I said in that tweet, it was completely surreal to be on the show. I'm still in shock I think and I'm not sure what to expect for response. If you listened, hopefully you learned something new. By next winter, I'll get that snowblower.
 
 [dotnetrocks]: http://dotnetrocks.com
-[episode]: http://dotnetrocks.com/show/id
+[episode]: https://dotnetrocks.com/?show=1541
 [ravendb4-course]: https://kamranicus.com/posts/2018-02-08-ravendb-4-course-live

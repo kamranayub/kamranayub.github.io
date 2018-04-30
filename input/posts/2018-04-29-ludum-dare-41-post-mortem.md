@@ -13,7 +13,7 @@ Whoo! Another year, another opportunity to participate in Ludum Dare with the [E
 
 ## The jam
 
-[Ludum Dare][ludum] is a global game jam that has two modes: the Compo and the Jam. The Compo is for individuals and strict rules on content creation, limited to 24 hours. The Jam is for teams and is a bit looser on content rules (you can use premade assets) and lasts 72 hours. Since we are a team, we always do the jam but it's always interested me to try doing a Compo by myself at some point.
+[Ludum Dare][ludum] is a global game jam that has two modes: the Compo and the Jam. The Compo is for individuals and strict rules on content creation, limited to 48 hours. The Jam is for teams and is a bit looser on content rules (you can use premade assets) and lasts 72 hours. Since we are a team, we always do the jam but it's always interested me to try doing a Compo by myself at some point.
 
 ## The theme
 
