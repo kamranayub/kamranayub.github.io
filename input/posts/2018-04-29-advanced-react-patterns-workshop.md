@@ -48,11 +48,11 @@ It's a more flexible version of control props basically allowing your entire sta
 
 There's an [example in the workshop repo](https://github.com/kentcdodds/advanced-react-patterns-v2/blob/master/src/why/state-reducer.js).
 
-**Rendux**
+## Rendux Exercise
 
-I missed the last couple exercises going over Higher Order Components (HOCs) and this last pattern called [Rendux](https://github.com/kentcdodds/advanced-react-patterns-v2/blob/master/src/exercises-final/13.js).
+I missed the last couple exercises going over Higher Order Components (HOCs) and this last exercise called [Rendux](https://github.com/kentcdodds/advanced-react-patterns-v2/blob/master/src/exercises-final/13.js).
 
-The Rendux pattern uses the render props pattern to hook into a Redux store as a reusable component. Any time you need to access the store, you can use the `Rendux.Consumer` component or `withRendux` enhancer function. This is a different way to accomplish the similar Redux experience of using `Provider` and the `connect` enhancer.
+The Rendux exercise uses the render props pattern to hook into a Redux store as a reusable component. Any time you need to access the store, you can use the `Rendux.Consumer` component or `withRendux` enhancer function. This is a different way to accomplish the similar Redux experience of using `Provider` and the `connect` enhancer.
 
 ## Putting into practice
 
