@@ -70,7 +70,7 @@ The guys asked me a good question: what is the memory performance of Raven 4 com
 
 After the show I just did some simple checks. Turns out, Raven 4 **is** better. 
 
-The following numbers are sitting idle after having done several queries and tests mentioned above. Both have just have a dev version of my KTOMG database running:
+The following numbers are sitting idle after having done several queries and tests mentioned above. Both have just have a dev version of my [Keep Track of My Games][http://ktomg.com] database running:
 
     Raven Version      Commit       Working Set
     3.5.4              1.035GB      90MB
@@ -109,7 +109,7 @@ I'm hoping to address more of these patterns/practices in a follow-up course.
 
 ## Enjoy the show
 
-Like I said in that tweet, it was completely surreal to be on the show. I'm still in shock I think and I'm not sure what to expect for response. If you listened, hopefully you learned something new. By next winter, I'll get that snowblower.
+Like I said in that tweet, it was completely surreal to be on the show. I'm still in shock I think and I'm not sure what to expect for response. If you listened, hopefully you learned something new. By next winter, I'll get that snow blower.
 
 [dotnetrocks]: http://dotnetrocks.com
 [episode]: https://dotnetrocks.com/?show=1541
