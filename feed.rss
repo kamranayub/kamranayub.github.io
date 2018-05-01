@@ -5,8 +5,83 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2018</copyright>
-		<pubDate>Mon, 30 Apr 2018 17:54:44 GMT</pubDate>
-		<lastBuildDate>Mon, 30 Apr 2018 17:54:44 GMT</lastBuildDate>
+		<pubDate>Tue, 01 May 2018 11:57:48 GMT</pubDate>
+		<lastBuildDate>Tue, 01 May 2018 11:57:48 GMT</lastBuildDate>
+		<item>
+			<title>Follow-Up to .NET Rocks episode on RavenDB</title>
+			<link>https://kamranicus.com/posts/2018-05-01-dotnetrocks-ravendb-podcast</link>
+			<description>&lt;p&gt;At the end of April I got the opportunity to record a show with .NET celebs Carl Franklin and Richard Campbell, hosts of the &lt;a href="http://dotnetrocks.com"&gt;.NET Rocks&lt;/a&gt; podcast. It's &lt;a href="https://dotnetrocks.com/?show=1541"&gt;live now&lt;/a&gt;.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2018-05-01-dotnetrocks-ravendb-podcast</guid>
+			<pubDate>Tue, 01 May 2018 11:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;At the end of April I got the opportunity to record a show with .NET celebs Carl Franklin and Richard Campbell, hosts of the &lt;a href="http://dotnetrocks.com"&gt;.NET Rocks&lt;/a&gt; podcast. It's &lt;a href="https://dotnetrocks.com/?show=1541"&gt;live now&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I tweeted about it afterwards:&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" data-lang="en"&gt;&lt;p lang="en" dir="ltr"&gt;There really isn&amp;#39;t anything more surreal than being on a podcast you&amp;#39;ve listened to almost your entire career and then having to try to make sense and articulate your thoughts on said podcast. MAN, what a ride. 😆&lt;/p&gt;&amp;mdash; Kamran Ayub (&amp;#64;kamranayub) &lt;a href="https://twitter.com/kamranayub/status/989605608541376513?ref_src=twsrc%5Etfw"&gt;April 26, 2018&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+&lt;p&gt;It was fun and surreal for sure but also nerve-wracking--it was my first podcast appearance!&lt;/p&gt;
+&lt;h2 id="how-it-came-about"&gt;How it came about&lt;/h2&gt;
+&lt;p&gt;A few months ago I emailed Carl and Richard about interest in doing an episode on RavenDB 4, this was right after I &lt;a href="https://kamranicus.com/posts/2018-02-08-ravendb-4-course-live"&gt;published my course&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I asked them if they'd have any appetite for a Raven 4 episode, that I just finished a course on it, and I've been a user since the 2.5 days. I suggested they could get Ayende or someone from the team on but that I'd be open to it, too. I didn't &lt;em&gt;really&lt;/em&gt; expect to be invited, after all...&lt;/p&gt;
+&lt;p&gt;After I sent it, I didn't think about it much. Then, a week ago, Richard emails back and says they'd like to do an episode with someone who's been a user, which means they invited me!&lt;/p&gt;
+&lt;p&gt;At this point, I'm honestly freaking out a little. Me? On .NET Rocks? Oh yes! Oh no. Oh man.&lt;/p&gt;
+&lt;p&gt;We recorded the episode a few days later and you &lt;a href="https://dotnetrocks.com/?show=1541"&gt;can listen now&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="hindsight-is-2020"&gt;Hindsight is 20/20&lt;/h2&gt;
+&lt;p&gt;By far my least favorite thing about speaking in public, or really speaking in general, is the analyzing that happens inevitably afterwards. Even when you know a subject, in the moment it can be tough to bring forward everything you've learned. I'm sure it gets better with practice.&lt;/p&gt;
+&lt;p&gt;But you &lt;em&gt;can&lt;/em&gt; follow-up with those things you missed. So I wanted to provide some thoughts and append to my answers on the show.&lt;/p&gt;
+&lt;h2 id="raven-4-performance"&gt;Raven 4 Performance&lt;/h2&gt;
+&lt;p&gt;On the show I was asked about performance and I offered that in some testing I did, I saw time to rebuild a full index go from 60 seconds in 3.5 to just only 3 seconds in Raven 4. That blew my mind.&lt;/p&gt;
+&lt;p&gt;I mentioned that I was seeing similar query times but that the &amp;quot;warm up&amp;quot; time on 3.5 was much larger. Here's some query performance tests I ran:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Query                             Raven 3.5.4     Raven 4.0.3
+---                               ---             ---
+Get game by name (skyrim)         0ms (126ms)     1ms (20ms)
+Get game by name (mario)          2ms (716ms)     1ms    
+Get game by search (search)       32ms (470ms)    1ms
+Get game by genre (Array)         1ms (635ms)     1ms
+Indexing 45,000 entries           60 seconds      3 seconds
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;All times are for query duration (i.e. no network latency).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The times in parenthesis are &amp;quot;warm up&amp;quot; (first query) times. You can see for the Raven 4 tests, there was little to zero measurable warm up time.&lt;/li&gt;
+&lt;li&gt;The first test showcases response time when there's only one game.&lt;/li&gt;
+&lt;li&gt;The second has multiple results&lt;/li&gt;
+&lt;li&gt;The third is a &amp;quot;search&amp;quot; operation which is a Lucene search&lt;/li&gt;
+&lt;li&gt;The fourth test is searching an array property for an exact match&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Other observations I saw:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Network latency locally was about 7ms in 4.0. Measured in Chrome dev tools within the Studio.&lt;/li&gt;
+&lt;li&gt;Querying while another index was rebuilding in 3.5 added significant overhead to all queries above (400-700ms). It had no visible impact on Raven 4.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So from what I can gather on a limited set of tests is that Raven 4 is indeed &lt;em&gt;very fast&lt;/em&gt;.&lt;/p&gt;
+&lt;h2 id="memory-usage"&gt;Memory usage&lt;/h2&gt;
+&lt;p&gt;The guys asked me a good question: what is the memory performance of Raven 4 compared to its predecessors? I didn't have any hard data but I offered the anecdote that my current VM host only has 4GB of RAM and runs the website alongside the DB. This is a poor model for redundancy but I'm penny pinching until I move to .NET Core on Linux. Anyway, Raven 3.5 runs okay on low-end hardware and I expected Raven 4 to be even better.&lt;/p&gt;
+&lt;p&gt;After the show I just did some simple checks. Turns out, Raven 4 &lt;strong&gt;is&lt;/strong&gt; better.&lt;/p&gt;
+&lt;p&gt;The following numbers are sitting idle after having done several queries and tests mentioned above. Both have just have a dev version of my [Keep Track of My Games][http://ktomg.com] database running:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Raven Version      Commit       Working Set
+3.5.4              1.035GB      90MB
+4.0.3              607MB        260MB
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So at a glance it looks like Raven 4 is better at managing physical memory (Commit) than 3.5.4 is. To do that it looks like it has a higher working set. Even totaled, 4.0 still allocates 22% less. For someone like me who wants to make the most out of a small cloud VM, this is good.&lt;/p&gt;
+&lt;h2 id="on-raven-vs.mongo"&gt;On Raven vs. Mongo&lt;/h2&gt;
+&lt;p&gt;I prepped for the show and in doing so I tried to study up on Mongo a bit. Like I said in the show, I'm definitely not an expert in it nor do I use it extensively. I've written some queries against it, modified documents, and that's about it!&lt;/p&gt;
+&lt;p&gt;It's easy for this question to turn into a war, people have strong opinions. I haven't had an opportunity to use Mongo much in practice. We use it for our app at work; it's used for some configuration, user sessions, and preferences. It works really well. I don't even think we have any indexes, it was designed before I joined the team.&lt;/p&gt;
+&lt;p&gt;Since I came from a .NET background, I tried Raven first and it met my needs. Raven 4 really has been impressing me as I use it more. When choosing between technologies I find it's best to just try each technology to see if it fits your use case. Ask yourself what you value most and measure that when testing.&lt;/p&gt;
+&lt;h2 id="challenges-moving-to-a-document-database"&gt;Challenges moving to a document database&lt;/h2&gt;
+&lt;p&gt;On the show I talked about a couple challenges people might have when moving from a relational to document-based database--document modeling and indexes. Those are both real challenges but I was wracking my brain to think of more.&lt;/p&gt;
+&lt;p&gt;After the recording I immediately realized there was a lot more to this I should have mentioned (dumb brain!). I think one thing I struggled with a lot when starting out with Raven was just patterns and practices. How do I do this one thing I used to do with EF?&lt;/p&gt;
+&lt;p&gt;One example I go over in &lt;a href="https://kamranicus.com/posts/2018-02-08-ravendb-4-course-live"&gt;my course&lt;/a&gt; is unique constraints. In EF, you'd just issue a query asking if an entity with a property equal to some value exists:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;context.DbSet&amp;lt;User&amp;gt;().Any(u =&amp;gt; u.Username == &amp;quot;kamranicus&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Great, all set. When I moved to Raven, I didn't understand the total implications at first about indexing and eventual consistency. This type of query in Raven &lt;strong&gt;is&lt;/strong&gt; possible, like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;session.Query&amp;lt;User&amp;gt;(x =&amp;gt; x.WaitForNonStaleResults())
+  .Any(u =&amp;gt; u.Username == &amp;quot;kamranicus&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The problem is that from the beginning the guidance is to avoid &lt;code&gt;WaitForNonStaleResults()&lt;/code&gt; at all costs since it has performance implications (see my course, I explain it). Well, if you &lt;em&gt;don't&lt;/em&gt; do it, then your query isn't guaranteed to bring back up-to-date results (i.e. eventually consistent) and you will not get the result you expect.&lt;/p&gt;
+&lt;p&gt;Instead, you have to lean on the fact that document operations are ACID-compliant and hack your brain to think of unique constraints as &lt;em&gt;actual documents.&lt;/em&gt; This is what the &lt;a href="https://ravendb.net/docs/article-page/3.5/Csharp/server/bundles/unique-constraints"&gt;unique constraints bundle&lt;/a&gt; was for in Raven 3.5 and below. Now in Raven 4, you'd use an &lt;a href="https://ayende.com/blog/180067/ravendb-4-0-interlocked-distributed-operations"&gt;interlocked distributed operation&lt;/a&gt;, which I've yet to try in practice.&lt;/p&gt;
+&lt;p&gt;I'm hoping to address more of these patterns/practices in a follow-up course.&lt;/p&gt;
+&lt;h2 id="enjoy-the-show"&gt;Enjoy the show&lt;/h2&gt;
+&lt;p&gt;Like I said in that tweet, it was completely surreal to be on the show. I'm still in shock I think and I'm not sure what to expect for response. If you listened, hopefully you learned something new. By next winter, I'll get that snow blower.&lt;/p&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>Frontend Masters: Advanced React Patterns Workshop</title>
 			<link>https://kamranicus.com/posts/2018-04-29-advanced-react-patterns-workshop</link>
@@ -1341,74 +1416,6 @@ public bool CanProcess(DownloadType type) {
 &lt;h2 id="whats-next"&gt;What's next?&lt;/h2&gt;
 &lt;p&gt;Like we say in the end of the video, we wanted to try to tackle some deterministic randomness problems. I'm working through writing a sample game for Excalibur and I'm generating 2D terrain. It works but I want to simplify the logic surrounding placing spawn points and goals so that I don't have to store them in a state bag. I just want the world seed and the current level and from that I should be able to generate what I want to display at any point during the game. That's what we hope to tackle next.&lt;/p&gt;
 &lt;p&gt;We have a lot of ideas in our Trello board and we are targeting (hopefully) semi-monthly releases if things go well. We might explore chunking the videos too in parts, even in the first video there are clear areas of separation where we could cut into slices.&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Downloading Git LFS Files from TFS or VSTS</title>
-			<link>https://kamranicus.com/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts</link>
-			<description>&lt;p&gt;Remember that post I wrote about &lt;a href="/posts/2017-02-04-powershell-dsc-git-lfs-binaries"&gt;using Git LFS to store installers and binaries&lt;/a&gt; when using Powershell DSC? Well, it turns out my sample code was wrong! I &lt;em&gt;thought&lt;/em&gt; it was working because my files were previously committed and not actually being hosted via Git LFS.&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts</guid>
-			<pubDate>Thu, 15 Jun 2017 02:32:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;Remember that post I wrote about &lt;a href="/posts/2017-02-04-powershell-dsc-git-lfs-binaries"&gt;using Git LFS to store installers and binaries&lt;/a&gt; when using Powershell DSC? Well, it turns out my sample code was wrong! I &lt;em&gt;thought&lt;/em&gt; it was working because my files were previously committed and not actually being hosted via Git LFS.&lt;/p&gt;
-&lt;!-- More --&gt;
-&lt;h2 id="the-problem"&gt;The problem&lt;/h2&gt;
-&lt;p&gt;Turns out, if your files are backed using Git LFS then a &amp;quot;pointer&amp;quot; file is stored instead. It looks like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;version https://git-lfs.github.com/spec/v1
-oid sha256:4d7a214614ab2935c943f9e0ff69d22eadbb8f32b1258daaa5e2ca24d17e2393
-size 12345
-(ending \n)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;When Git clones your repository, Git LFS intercepts the clone and downloads the file from a remote URL using info from this file.&lt;/p&gt;
-&lt;p&gt;That's just how Git LFS works--but surprisingly (to me), the &lt;a href="https://www.visualstudio.com/en-us/docs/integrate/api/overview"&gt;TFS REST API&lt;/a&gt; apparently doesn't have a mechanism to abstract this. The Items/Blobs API has no way to serve binaries straight from its Git LFS store and I wonder if this is just an oversight. Instead, it simply serves this pointer file and &lt;strong&gt;you&lt;/strong&gt; have to figure out what to do with it. We are left alone with our thoughts in a quiet despair weeping gently into a soft pillow asking ourselves why, why did we ever start learning Microsoft FrontPage in high school.&lt;/p&gt;
-&lt;p&gt;&lt;marquee title="Choo choo!"&gt;🚂🚃🚃🚃&lt;/marquee&gt;&lt;/p&gt;
-&lt;p&gt;The first thing I did was &lt;a href="https://www.google.com/#q=programmatically+download+vsts+file+api+using+git+lfs&amp;amp;start=0"&gt;call out to the heavens&lt;/a&gt; but my queries fell on deaf search ranking algorithms. It appeared no one else had a reason to perform the required black magicks to make this work... or if they did, they were too exhausted by the end of it to write about it. As these things often do, it fell to me to be the flag bearer and charge into the mist unto the oncoming hoard.&lt;/p&gt;
-&lt;p&gt;Can you tell I'm practicing some creative writing? I once got an A on a funny paper once.&lt;/p&gt;
-&lt;h2 id="figuring-out-git-lfs"&gt;Figuring out Git LFS&lt;/h2&gt;
-&lt;p&gt;Erik, in a hurry to meet Important Business Objectives just committed his binaries in plain old Git to workaround this problem. After he berated me I begged forgiveness. Before he walked away in scorn, I grabbed his hand and pricked both our forefingers; I pressed them both together as I made a blood vow to solve this for him. Something like that, anyway.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/2017-06-15-00-20-48.png" class="img-fluid" alt="A record of this exchange, it was exactly as I described" /&gt;&lt;/p&gt;
-&lt;p&gt;I hadn't really peeked under the covers of Git LFS until today to solve this issue. I figured that since Git is built on top of HTTP, LFS must be handling binaries the same way and there &lt;em&gt;must&lt;/em&gt; be a way to issue the right requests to fix the issue.&lt;/p&gt;
-&lt;p&gt;Luckily I wasn't wrong and the entire API specification for Git LFS servers &lt;a href="https://github.com/git-lfs/git-lfs/tree/master/docs/api"&gt;is available in the Git repository&lt;/a&gt;. The process goes like this:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Download the pointer file and grab the object ID and size&lt;/li&gt;
-&lt;li&gt;Issue a POST request to the LFS &amp;quot;Batch&amp;quot; endpoint to request a download
-&lt;ul&gt;
-&lt;li&gt;This is because for some backing providers there may be extra headers to send, an expiration time, etc. for the download&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Issue a GET request to the provided URL returned by the previous call&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;It's pretty straightforward. Still, there were some pointy rocks along the way. I'll enumerate the issues I ran into below even though you'll ignore them anyway.&lt;/p&gt;
-&lt;h2 id="show-me-the-code"&gt;Show me the code!&lt;/h2&gt;
-&lt;p&gt;You got it. Here's the Gist:&lt;/p&gt;
-&lt;script src="https://gist.github.com/kamranayub/1c6bcb09d3858a86b736ef39593fc575.js"&gt;&lt;/script&gt;
-&lt;p&gt;Read on for more details about how this came together.&lt;/p&gt;
-&lt;h2 id="gotcha-1-tfs-doesnt-tell-you-a-file-is-backed-by-lfs"&gt;Gotcha #1: TFS doesn't tell you a file is backed by LFS&lt;/h2&gt;
-&lt;p&gt;This was annoying. Ideally, I shouldn't have to download the file and inspect it to determine whether or not it's a Git LFS pointer file yet I didn't see any way &lt;a href="https://www.visualstudio.com/en-us/docs/integrate/api/git/items#get-item-metadata-for"&gt;in the REST API&lt;/a&gt; to get that determination back.&lt;/p&gt;
-&lt;p&gt;The first step is to download the file and pull out the object ID/size. &amp;quot;Wait,&amp;quot; you say, an uncontrollable twitch almost spills coffee over your keyboard, &amp;quot;Download the &lt;em&gt;entire&lt;/em&gt; file, even if it's, like, 12GB?!&amp;quot; Quiet down, an open floor plan carries your voice easily and John's looking at you with that face he makes sometimes. In a naïve implementation, yes. But you only need to grab enough bytes for 4 lines (including the ending newline which marks the EOF) and once I figure out how to formally wrap this in a DSC resource, I'll do that. The script above &lt;strong&gt;doesn't&lt;/strong&gt; do that so paster beware.&lt;/p&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; The spec says the LFS server URL is determined by appending &lt;code&gt;.git/info/lfs&lt;/code&gt; to the end of the repo URL. You can confirm this by inspecting the output of &lt;code&gt;git lfs env&lt;/code&gt; in your repo. I mistakenly kept trying to make sure that URL was right by issuing HTTP requests to it--&lt;strong&gt;don't be a dingus like me&lt;/strong&gt;, it's not an endpoint it's just the base URL. Go figure.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="gotcha-2-tfs-returns-a-deprecated-lfs-response"&gt;Gotcha #2: TFS returns a deprecated LFS response&lt;/h2&gt;
-&lt;p&gt;When you issue the POST to the batch endpoint, it returns a response containing the objects you requested and the links to the download/upload URLs (whatever you asked for).&lt;/p&gt;
-&lt;p&gt;Turns out, prior to Git LFS 0.6.0 the schema for objects looked like:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;&amp;quot;objects&amp;quot;: [
-  {
-    &amp;quot;_links&amp;quot;: {
-      &amp;quot;download&amp;quot;: { ... }
-    }
-  }
-]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;That's been &lt;a href="https://github.com/git-lfs/git-lfs/issues/2003#issuecomment-284432943"&gt;deprecated&lt;/a&gt; and the latest docs reflect the new specification, as they should... but guess who returns that response? Yep.&lt;/p&gt;
-&lt;h2 id="gotcha-3-tfs-requires-an-accepts-header-to-download"&gt;Gotcha #3: TFS requires an Accepts header to download&lt;/h2&gt;
-&lt;p&gt;In the official specs of the &lt;a href="https://github.com/git-lfs/git-lfs/blob/master/docs/api/basic-transfers.md#downloads"&gt;basic transfer&lt;/a&gt; method, the cURL example doesn't contain any Accepts headers. I intend to ask the team if that's an oversight but at the time of this writing it wasn't there--so I kept on getting Bad Request responses from TFS. Grr!&lt;/p&gt;
-&lt;p&gt;Well, it turns out you need an &lt;code&gt;Accepts&lt;/code&gt; header value of &lt;code&gt;application/vnd.git-lfs&lt;/code&gt;. Cool, that fixed it!&lt;/p&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; It's been &lt;a href="https://blog.jourdant.me/post/3-ways-to-download-files-with-powershell"&gt;documented&lt;/a&gt; that &lt;code&gt;Start-BitsTransfer&lt;/code&gt; is actually much more efficient than &lt;code&gt;Invoke-WebRequest&lt;/code&gt; but unfortunately Git LFS (or TFS?) doesn't yet support &lt;a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa362846(v=vs.85).aspx"&gt;the required HTTP headers&lt;/a&gt; to make it work. It's &lt;a href="https://github.com/git-lfs/git-lfs/blob/master/docs/proposals/transfer_adapters.md"&gt;been proposed&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="thats-it"&gt;That's it!&lt;/h2&gt;
-&lt;p&gt;Once I figured out all the gotchas the script I wrote worked like a charm and hey, it only took me an afternoon. I haven't yet converted it into a DSC module but an enterprising developer could easily use this in a &lt;code&gt;Script&lt;/code&gt; DSC resource for now. The script also works nicely as a standalone cmdlet for all your DevOps needs.&lt;/p&gt;
-&lt;p&gt;Hope this helps someone. Give me some time to wrap this up with a bow on it and I'll publish it to Posh gallery for use, we will certainly be using it for our DSC. I'll be reporting this to the VSTS team so let's hope a fix comes out to make this post obsolete and serve as an exemplary specimen of my incredible storytelling ability!&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>
