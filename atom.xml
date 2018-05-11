@@ -4,8 +4,25 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2018</rights>
-	<updated>2018-05-11T12:56:35Z</updated>
+	<updated>2018-05-11T13:52:20Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2018-05-11-ndc-minnesota-typescript-react" />
+		<id>https://kamranicus.com/posts/2018-05-11-ndc-minnesota-typescript-react</id>
+		<title>That's a Wrap for NDC Minnesota</title>
+		<updated>2018-05-11T12:45:00Z</updated>
+		<content>&lt;p&gt;I gave my &lt;a href="https://ndcminnesota.com/talk/building-scalable-maintainable-apps-using-typescript-and-react/"&gt;Building Scalable, Maintainable Apps with TypeScript &amp;amp; React&lt;/a&gt; talk (video soon) at NDC this last week and it was a blast. Had some really great conversations afterwards and feedback was positive, which is what any speaker can hope for.&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" data-conversation="none" data-lang="en"&gt;&lt;p lang="en" dir="ltr"&gt;Wish I could have stayed and come! Loved your talk about react/typescript.&lt;/p&gt;&amp;mdash; Phill Stewart (&amp;#64;HeWhoFreeks) &lt;a href="https://twitter.com/HeWhoFreeks/status/994710519364931584?ref_src=twsrc%5Etfw"&gt;May 10, 2018&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+&lt;p&gt;Thanks Phill! This kind of feedback makes all the stress, planning, and nerve-wracking-ness about giving talks totally worth it. I guarantee every small bit of praise you give to a speaker, online or in-person, is very much appreciated.&lt;/p&gt;
+&lt;p&gt;I'm always a little cautious before this talk since it assumes some prior knowledge of TypeScript or React but I had folks come up to me and even though they hadn't had as much experience, it sparked them to learn more--which is &lt;em&gt;also&lt;/em&gt; what any speaker can hope for. Value can be provided to any skill level I think, whether it's from &amp;quot;Should I even learn this? Will it help me?&amp;quot; to &amp;quot;I've done this for a year but I haven't seen that pattern before,&amp;quot; which was my goal.&lt;/p&gt;
+&lt;p&gt;Back when I proposed my first course for Pluralsight I had pitched a TypeScript and React course but it was turned down since the curriculum has a lot of React and TypeScript courses &lt;em&gt;separately&lt;/em&gt;. I may still pitch it again because &lt;a href="https://app.pluralsight.com/library/search?q=react+typescript"&gt;there's still no one course that ties them together&lt;/a&gt; (or with Flow, for that matter). I had a good conversation with a gentleman about how there's not &lt;em&gt;that&lt;/em&gt; many resources out there on specifically patterns around TS and React, a primary motivation for this talk. There's certainly enough content for a 2-3 hour course and there's a specific course pattern called a &lt;a href="https://app.pluralsight.com/library/courses/electron-playbook/table-of-contents"&gt;playbook&lt;/a&gt; that this may fit.&lt;/p&gt;
+&lt;p&gt;Another person I spoke to suggested I pitch the talk to JSMN and speaking at meetups is &lt;a href="https://kamranicus.com/posts/2018-01-01-2018-a-new-year"&gt;on my 2018 goals list&lt;/a&gt; so &lt;strong&gt;of course&lt;/strong&gt; I will do that. They also let me know about the &lt;a href="https://www.midwestgamingclassic.com/"&gt;Midwest Gaming Classic&lt;/a&gt; which would be cool to bring some [Excalibur][http://excaliburjs.com] talks to or just attend in general.&lt;/p&gt;
+&lt;p&gt;By the way, a friendly reminder I'll be talking about Node.js bots &lt;a href="https://www.meetup.com/Minneapolis-Azure-Cloud-Computing-Meetup/events/kdbbdpyxmbjb/"&gt;at the Minneapolis Azure meetup&lt;/a&gt; in September!&lt;/p&gt;
+&lt;p&gt;There were so many other great talks I went to, I will post a follow-up soon hopefully with links to the recordings if they're out by then.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;I gave my &lt;a href="https://ndcminnesota.com/talk/building-scalable-maintainable-apps-using-typescript-and-react/"&gt;Building Scalable, Maintainable Apps with TypeScript &amp;amp; React&lt;/a&gt; talk (video soon) at NDC this last week and it was a blast. Had some really great conversations afterwards and feedback was positive, which is what any speaker can hope for.&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2018-05-01-dotnetrocks-ravendb-podcast" />
 		<id>https://kamranicus.com/posts/2018-05-01-dotnetrocks-ravendb-podcast</id>
@@ -543,10 +560,10 @@ type Color {
 &lt;h2 id="primary-goals"&gt;Primary Goals&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Publish 1 more Pluralsight course (excludes one in progress)&lt;/li&gt;
-&lt;li&gt;Host a half-day workshop (scheduled for April)&lt;/li&gt;
-&lt;li&gt;Participate in a LD game jam&lt;/li&gt;
-&lt;li&gt;Attend and present at 2 conferences&lt;/li&gt;
-&lt;li&gt;Attend and present at a local user group&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;Host a half-day workshop (scheduled for April)&lt;/del&gt; (&lt;a href="https://kamranicus.com/posts/2018-04-29-azure-nodejs-workshop-minnewebcon"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;Participate in a LD game jam&lt;/del&gt; (&lt;a href="https://kamranicus.com/posts/2018-04-29-ludum-dare-41-post-mortem"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;Attend and present at 2 conferences&lt;/del&gt; (&lt;a href="https://kamranicus.com/posts/2018-04-29-azure-nodejs-workshop-minnewebcon"&gt;DONE&lt;/a&gt; and &lt;a href="https://kamranicus.com/posts/2018-05-11-ndc-minnesota-typescript-react"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Attend and present at a local user group (scheduled for Sept)&lt;/li&gt;
 &lt;li&gt;Continue doing code livestreams&lt;/li&gt;
 &lt;li&gt;Finish KTOMG UI revamp with React&lt;/li&gt;
 &lt;li&gt;Publish another Pi guide for a project I have in mind&lt;/li&gt;
@@ -776,6 +793,8 @@ const AnswerText = ({ question, onAnswerChange }) =&amp;gt;
 &lt;p&gt;My advice to you or anyone reading this who also thinks they may have something to teach but still aren't sure whether you're &amp;quot;Pluralsight material&amp;quot; is to &lt;strong&gt;&lt;a href="https://www.pluralsight.com/teach"&gt;just submit an audition&lt;/a&gt; (and maybe give me a shoutout?).&lt;/strong&gt; If you pass and can teach something new and inspiring to someone else, &lt;strong&gt;you are Pluralsight material.&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id="jurys-out"&gt;Jury's out&lt;/h2&gt;
 &lt;p&gt;My first course isn't published &lt;em&gt;yet&lt;/em&gt; which means the jury's out on whether I deserve to be in that author list. I keep myself grounded by understanding that the course could still be rejected for whatever reason. I've come this far though and I'm going to try my &lt;strong&gt;damnedest&lt;/strong&gt; to earn my place. This is an opportunity that I've literally only dreamed about and never thought would happen. Wish me luck!&lt;/p&gt;
+&lt;h2 id="jurys-in"&gt;Jury's in&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;May 2018:&lt;/strong&gt; The course has been live for several months now with a great reception! I'm counting 12 5-star reviews so far which I'm super happy about (I could calculate the ratio of views/reviews but it's similar to any media--a very small percentage of people rate things). Here's to (hopefully) more courses in the future! 🍻&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;&lt;img src="images/pluralsight.jpg" class="img-fluid" alt="Pluralsight"&gt;&lt;/p&gt;</summary>
 	</entry>
@@ -1391,30 +1410,5 @@ public bool CanProcess(DownloadType type) {
 &lt;p&gt;I'm positive there are multiple great solutions to this issue. If you had specific ideas, share them in the comments!&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;Recently a colleague sent me a question about some advice using &lt;a href="http://www.ninject.org/"&gt;Ninject&lt;/a&gt;, a popular .NET dependency injection framework. It went something like this:&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2017-06-27-lets-code-basic-css" />
-		<id>https://kamranicus.com/posts/2017-06-27-lets-code-basic-css</id>
-		<title>New Video Let's CODE! Basic CSS</title>
-		<updated>2017-06-27T12:02:00Z</updated>
-		<content>&lt;p&gt;I work a ton with my friend and colleague, &lt;a href="https://erikonarheim.com"&gt;Erik Onarheim&lt;/a&gt;. Sometimes I think my wife is jealous (love you, honey!). Anyway, we are always learning from and bouncing ideas off each other. We thought it might be fun to sit down and record some videos on things we wanted help with so I'm happy to introduce our new channel, &lt;a href="https://www.youtube.com/channel/UCEQpXOMvO6QSukmFmqqxq7w"&gt;Let's CODE! with Erik and Kamran&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Erik isn't very good at CSS as he professes himself at the beginning of the video. I have more experience doing design so I said I'd help him out. In a mere hour and a half, we go from knowing only basic CSS to styling a whole React.js calculator sample app from the ground up. Take a look!&lt;/p&gt;
-&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/B-fWM7aD0vg?ecver=1" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
-&lt;p&gt;We cover a wide range of topics like media queries, color, typography, box model, flexbox layouts, and more. Rather than just explaining topics, we learn them as we need to (aka &amp;quot;just-in-time&amp;quot; learning). Since making the video, he's expressed how much it helped him on a recent project so I'd call it a job well done.&lt;/p&gt;
-&lt;!-- More --&gt;
-&lt;h2 id="whats-a-lets-code"&gt;What's a Let's Code?&lt;/h2&gt;
-&lt;p&gt;Being avid gamers and fans of gaming culture, we both enjoy watching &lt;a href="https://en.wikipedia.org/wiki/Let%27s_Play"&gt;Let's Play&lt;/a&gt; videos and some of the more curated channels like &lt;a href="http://polygon.com"&gt;Polygon&lt;/a&gt; (MONSTER FACTORY!) or &lt;a href="https://www.youtube.com/user/GameGrumps"&gt;Game Grumps&lt;/a&gt;. We decided to be inspired from that style of video and to just call it a &amp;quot;Let's Code.&amp;quot; &lt;a href="https://www.youtube.com/results?search_query=lets+code"&gt;This isn't new&lt;/a&gt;. We're definitely not as funny.&lt;/p&gt;
-&lt;h2 id="whats-different-about-this"&gt;What's different about this?&lt;/h2&gt;
-&lt;p&gt;One thing I noticed scanning through most of the existing Let's Code videos is that they are by a single person. Don't get me wrong, I love watching people work on fun stuff but there's something about more than one person that makes things more interesting--if you are heads down trying to solve a problem or teach a topic, it can be hard to think about entertaining. If you know something really well it's always a challenge to remember to cover the basics. If you have a partner who is watching and not focused on typing code they can ask questions and make jokes (like the &amp;quot;Vitamin C&amp;quot; joke Erik made that I totally didn't get).&lt;/p&gt;
-&lt;p&gt;The flipside of &amp;quot;doing it live&amp;quot; is that you make mistakes. This is both awesome and something to be careful of. Working through debugging a problem? Fun. Saying some inaccurate and possibly spreading misinformation? Not fun. There's definitely a much longer post-production step on these videos after editing that involves combing through the footage and fact checking everything. I made mistakes in the video, I almost got some stuff mostly right, but if someone is watching this expecting to learn we want to make sure we make note of things that were inaccurately said.&lt;/p&gt;
-&lt;p&gt;One of the goals is to keep debugging in the videos, unless we &lt;em&gt;really&lt;/em&gt; churn on nothing for awhile. I think it's fascinating watching how smart people debug problems and it's important to showcase how &amp;quot;professionals&amp;quot; still run into problems.&lt;/p&gt;
-&lt;h2 id="whats-next"&gt;What's next?&lt;/h2&gt;
-&lt;p&gt;Like we say in the end of the video, we wanted to try to tackle some deterministic randomness problems. I'm working through writing a sample game for Excalibur and I'm generating 2D terrain. It works but I want to simplify the logic surrounding placing spawn points and goals so that I don't have to store them in a state bag. I just want the world seed and the current level and from that I should be able to generate what I want to display at any point during the game. That's what we hope to tackle next.&lt;/p&gt;
-&lt;p&gt;We have a lot of ideas in our Trello board and we are targeting (hopefully) semi-monthly releases if things go well. We might explore chunking the videos too in parts, even in the first video there are clear areas of separation where we could cut into slices.&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;I work a ton with my friend and colleague, &lt;a href="https://erikonarheim.com"&gt;Erik Onarheim&lt;/a&gt;. Sometimes I think my wife is jealous (love you, honey!). Anyway, we are always learning from and bouncing ideas off each other. We thought it might be fun to sit down and record some videos on things we wanted help with so I'm happy to introduce our new channel, &lt;a href="https://www.youtube.com/channel/UCEQpXOMvO6QSukmFmqqxq7w"&gt;Let's CODE! with Erik and Kamran&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Erik isn't very good at CSS as he professes himself at the beginning of the video. I have more experience doing design so I said I'd help him out. In a mere hour and a half, we go from knowing only basic CSS to styling a whole React.js calculator sample app from the ground up. Take a look!&lt;/p&gt;
-
-&lt;p&gt;We cover a wide range of topics like media queries, color, typography, box model, flexbox layouts, and more. Rather than just explaining topics, we learn them as we need to (aka "just-in-time" learning). Since making the video, he's expressed how much it helped him on a recent project so I'd call it a job well done.&lt;/p&gt;</summary>
 	</entry>
 </feed>
