@@ -4,7 +4,7 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2018</rights>
-	<updated>2018-05-11T13:52:20Z</updated>
+	<updated>2018-05-11T16:51:16Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
 	<entry>
 		<link href="https://kamranicus.com/posts/2018-05-11-ndc-minnesota-typescript-react" />
@@ -17,7 +17,7 @@
 &lt;p&gt;Thanks Phill! This kind of feedback makes all the stress, planning, and nerve-wracking-ness about giving talks totally worth it. I guarantee every small bit of praise you give to a speaker, online or in-person, is very much appreciated.&lt;/p&gt;
 &lt;p&gt;I'm always a little cautious before this talk since it assumes some prior knowledge of TypeScript or React but I had folks come up to me and even though they hadn't had as much experience, it sparked them to learn more--which is &lt;em&gt;also&lt;/em&gt; what any speaker can hope for. Value can be provided to any skill level I think, whether it's from &amp;quot;Should I even learn this? Will it help me?&amp;quot; to &amp;quot;I've done this for a year but I haven't seen that pattern before,&amp;quot; which was my goal.&lt;/p&gt;
 &lt;p&gt;Back when I proposed my first course for Pluralsight I had pitched a TypeScript and React course but it was turned down since the curriculum has a lot of React and TypeScript courses &lt;em&gt;separately&lt;/em&gt;. I may still pitch it again because &lt;a href="https://app.pluralsight.com/library/search?q=react+typescript"&gt;there's still no one course that ties them together&lt;/a&gt; (or with Flow, for that matter). I had a good conversation with a gentleman about how there's not &lt;em&gt;that&lt;/em&gt; many resources out there on specifically patterns around TS and React, a primary motivation for this talk. There's certainly enough content for a 2-3 hour course and there's a specific course pattern called a &lt;a href="https://app.pluralsight.com/library/courses/electron-playbook/table-of-contents"&gt;playbook&lt;/a&gt; that this may fit.&lt;/p&gt;
-&lt;p&gt;Another person I spoke to suggested I pitch the talk to JSMN and speaking at meetups is &lt;a href="https://kamranicus.com/posts/2018-01-01-2018-a-new-year"&gt;on my 2018 goals list&lt;/a&gt; so &lt;strong&gt;of course&lt;/strong&gt; I will do that. They also let me know about the &lt;a href="https://www.midwestgamingclassic.com/"&gt;Midwest Gaming Classic&lt;/a&gt; which would be cool to bring some [Excalibur][http://excaliburjs.com] talks to or just attend in general.&lt;/p&gt;
+&lt;p&gt;Another person I spoke to suggested I pitch the talk to JSMN and speaking at meetups is &lt;a href="https://kamranicus.com/posts/2018-01-01-2018-a-new-year"&gt;on my 2018 goals list&lt;/a&gt; so &lt;strong&gt;of course&lt;/strong&gt; I will do that. They also let me know about the &lt;a href="https://www.midwestgamingclassic.com/"&gt;Midwest Gaming Classic&lt;/a&gt; which would be cool to bring some &lt;a href="http://excaliburjs.com"&gt;Excalibur&lt;/a&gt; talks to or just attend in general.&lt;/p&gt;
 &lt;p&gt;By the way, a friendly reminder I'll be talking about Node.js bots &lt;a href="https://www.meetup.com/Minneapolis-Azure-Cloud-Computing-Meetup/events/kdbbdpyxmbjb/"&gt;at the Minneapolis Azure meetup&lt;/a&gt; in September!&lt;/p&gt;
 &lt;p&gt;There were so many other great talks I went to, I will post a follow-up soon hopefully with links to the recordings if they're out by then.&lt;/p&gt;
 </content>
