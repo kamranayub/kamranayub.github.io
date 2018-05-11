@@ -20,7 +20,7 @@ I'm always a little cautious before this talk since it assumes some prior knowle
 
 Back when I proposed my first course for Pluralsight I had pitched a TypeScript and React course but it was turned down since the curriculum has a lot of React and TypeScript courses *separately*. I may still pitch it again because [there's still no one course that ties them together][search] (or with Flow, for that matter). I had a good conversation with a gentleman about how there's not *that* many resources out there on specifically patterns around TS and React, a primary motivation for this talk. There's certainly enough content for a 2-3 hour course and there's a specific course pattern called a [playbook][playbook] that this may fit.
 
-Another person I spoke to suggested I pitch the talk to JSMN and speaking at meetups is [on my 2018 goals list][goals] so **of course** I will do that. They also let me know about the [Midwest Gaming Classic][classic] which would be cool to bring some [Excalibur][http://excaliburjs.com] talks to or just attend in general.
+Another person I spoke to suggested I pitch the talk to JSMN and speaking at meetups is [on my 2018 goals list][goals] so **of course** I will do that. They also let me know about the [Midwest Gaming Classic][classic] which would be cool to bring some [Excalibur](http://excaliburjs.com) talks to or just attend in general.
 
 By the way, a friendly reminder I'll be talking about Node.js bots [at the Minneapolis Azure meetup][meetup] in September!
 
