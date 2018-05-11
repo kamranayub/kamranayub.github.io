@@ -77,3 +77,7 @@ My advice to you or anyone reading this who also thinks they may have something 
 ## Jury's out
 
 My first course isn't published *yet* which means the jury's out on whether I deserve to be in that author list. I keep myself grounded by understanding that the course could still be rejected for whatever reason. I've come this far though and I'm going to try my **damnedest** to earn my place. This is an opportunity that I've literally only dreamed about and never thought would happen. Wish me luck!
+
+## Jury's in
+
+**May 2018:** The course has been live for several months now with a great reception! I'm counting 12 5-star reviews so far which I'm super happy about (I could calculate the ratio of views/reviews but it's similar to any media--a very small percentage of people rate things). Here's to (hopefully) more courses in the future! 🍻
