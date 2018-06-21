@@ -9,7 +9,10 @@ Tags:
 - React
 ---
 
-I gave my [Building Scalable, Maintainable Apps with TypeScript & React][talk] talk (video soon) at NDC this last week and it was a blast. Had some really great conversations afterwards and feedback was positive, which is what any speaker can hope for. 
+I gave my [Building Scalable, Maintainable Apps with TypeScript & React][talk] talk at NDC this last week and it was a blast. Had some really great conversations afterwards and feedback was positive, which is what any speaker can hope for.
+
+<iframe src="https://player.vimeo.com/video/271363697" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<p><a href="https://vimeo.com/271363697">Building Scalable, Maintainable Apps Using TypeScript and React - Kamran Ayub</a> from <a href="https://vimeo.com/ndcconferences">NDC Conferences</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 
 <blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr">Wish I could have stayed and come! Loved your talk about react/typescript.</p>&mdash; Phill Stewart (@HeWhoFreeks) <a href="https://twitter.com/HeWhoFreeks/status/994710519364931584?ref_src=twsrc%5Etfw">May 10, 2018</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
