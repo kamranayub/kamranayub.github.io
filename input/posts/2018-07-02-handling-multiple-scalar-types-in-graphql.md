@@ -1,5 +1,5 @@
 Title: "Handling Multiple Scalar Types in GraphQL"
-Published: 2018-06-02 11:55:00 -0500
+Published: 2018-07-02 11:55:00 -0500
 Lead: How to handle values that can be one of multiple scalar types in GraphQL
 Tags:
 - GraphQL
