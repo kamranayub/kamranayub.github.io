@@ -5,14 +5,14 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2018</copyright>
-		<pubDate>Mon, 02 Jul 2018 16:59:37 GMT</pubDate>
-		<lastBuildDate>Mon, 02 Jul 2018 16:59:37 GMT</lastBuildDate>
+		<pubDate>Mon, 02 Jul 2018 17:01:57 GMT</pubDate>
+		<lastBuildDate>Mon, 02 Jul 2018 17:01:57 GMT</lastBuildDate>
 		<item>
 			<title>Handling Multiple Scalar Types in GraphQL</title>
-			<link>https://kamranicus.com/posts/2018-06-02-handling-multiple-scalar-types-in-graphql</link>
+			<link>https://kamranicus.com/posts/2018-07-02-handling-multiple-scalar-types-in-graphql</link>
 			<description>&lt;p&gt;I've been using &lt;a href="https://graphql.org/"&gt;GraphQL&lt;/a&gt; for awhile now at work and I think it's pretty wonderful. I like how it has a consistent way to describe API contracts and has mechanisms to handle lots of different data fetching scenarios. Similar to other static type systems like TypeScript or Flow, in GraphQL you add type annotations to schemas for the server to enforce. If you need to describe a type as "this or that" like "string or integer", this is what's called a &lt;strong&gt;type union.&lt;/strong&gt; The GraphQL spec supports type unions for objects but &lt;a href="https://github.com/facebook/graphql/issues/215"&gt;it doesn't yet support scalar type unions&lt;/a&gt; (since 2016).&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2018-06-02-handling-multiple-scalar-types-in-graphql</guid>
-			<pubDate>Sat, 02 Jun 2018 16:55:00 GMT</pubDate>
+			<guid>https://kamranicus.com/posts/2018-07-02-handling-multiple-scalar-types-in-graphql</guid>
+			<pubDate>Mon, 02 Jul 2018 16:55:00 GMT</pubDate>
 			<content:encoded>&lt;p&gt;I've been using &lt;a href="https://graphql.org/"&gt;GraphQL&lt;/a&gt; for awhile now at work and I think it's pretty wonderful. I like how it has a consistent way to describe API contracts and has mechanisms to handle lots of different data fetching scenarios. Similar to other static type systems like TypeScript or Flow, in GraphQL you add type annotations to schemas for the server to enforce. If you need to describe a type as &amp;quot;this or that&amp;quot; like &amp;quot;string or integer&amp;quot;, this is what's called a &lt;strong&gt;type union.&lt;/strong&gt; The GraphQL spec supports type unions for objects but &lt;a href="https://github.com/facebook/graphql/issues/215"&gt;it doesn't yet support scalar type unions&lt;/a&gt; (since 2016).&lt;/p&gt;
 &lt;p&gt;This is unfortunate and since scalar type unions are not yet supported, here's an approach that works well with my preferred GraphQL server, &lt;a href="https://www.apollographql.com/"&gt;Apollo&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="describing-generic-values"&gt;Describing Generic Values&lt;/h2&gt;
