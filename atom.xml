@@ -4,8 +4,158 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2018</rights>
-	<updated>2018-06-21T16:22:12Z</updated>
+	<updated>2018-07-02T16:59:37Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2018-06-02-handling-multiple-scalar-types-in-graphql" />
+		<id>https://kamranicus.com/posts/2018-06-02-handling-multiple-scalar-types-in-graphql</id>
+		<title>Handling Multiple Scalar Types in GraphQL</title>
+		<updated>2018-06-02T16:55:00Z</updated>
+		<content>&lt;p&gt;I've been using &lt;a href="https://graphql.org/"&gt;GraphQL&lt;/a&gt; for awhile now at work and I think it's pretty wonderful. I like how it has a consistent way to describe API contracts and has mechanisms to handle lots of different data fetching scenarios. Similar to other static type systems like TypeScript or Flow, in GraphQL you add type annotations to schemas for the server to enforce. If you need to describe a type as &amp;quot;this or that&amp;quot; like &amp;quot;string or integer&amp;quot;, this is what's called a &lt;strong&gt;type union.&lt;/strong&gt; The GraphQL spec supports type unions for objects but &lt;a href="https://github.com/facebook/graphql/issues/215"&gt;it doesn't yet support scalar type unions&lt;/a&gt; (since 2016).&lt;/p&gt;
+&lt;p&gt;This is unfortunate and since scalar type unions are not yet supported, here's an approach that works well with my preferred GraphQL server, &lt;a href="https://www.apollographql.com/"&gt;Apollo&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="describing-generic-values"&gt;Describing Generic Values&lt;/h2&gt;
+&lt;p&gt;In my scenario, we have multiple typeahead search fields that fetch values and pass them through our application untouched. There are half a dozen backend APIs that handle different kinds of data to search from and we use GraphQL to provide a consistent querying experience for the UI. Specifically, the raw &lt;code&gt;value&lt;/code&gt; represented by these APIs can be literally anything--we have no idea what it could be and also, &lt;strong&gt;we don't care.&lt;/strong&gt; This is key: the UI just passes this value through and eventually it gets saved back to these APIs, so we don't touch it.&lt;/p&gt;
+&lt;p&gt;The schema of this scenario looks something like:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;query search($text: String!, $start: Int!, $resourceId: String!): Options
+
+type Options {
+  total: Int!
+  start: Int!
+  page_size: Int!
+  options: [Option]!
+}
+
+type Option {
+  display_value: String!
+  value: ???
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Imagine a dropdown where the &lt;code&gt;display_value&lt;/code&gt; is what's shown to the user and &lt;code&gt;value&lt;/code&gt; is the backing data of the option. The user never sees it, it gets stored in state somewhere, and eventually when the user saves it gets passed back up.&lt;/p&gt;
+&lt;p&gt;Now, since we use TypeScript in the UI, I can easily describe the &lt;code&gt;value&lt;/code&gt; property like this on the client:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-typescript"&gt;interface Option {
+  display_value: string;
+  value: any;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To tie this back to unions, if I had more concrete information about what values get returned by these APIs, I could be more specific using a &lt;strong&gt;type union&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-typescript"&gt;interface Option {
+  display_value: string;
+  value: string | number | boolean;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;On the GraphQL side to describe the &lt;code&gt;Option.value&lt;/code&gt; property, what would be &lt;strong&gt;ideal&lt;/strong&gt; is to do this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;type Option {
+  display_value: String!
+  value: String | Int | Boolean
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;or even:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;type Option {
+  display_value: String!
+  value: Any
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Unfortunately, neither of these type annotations are possible with the default GraphQL language specification. Many folks give up and just use &lt;code&gt;String&lt;/code&gt; but that actually causes bugs with our scenario (numbers get converted to strings and so on) so we need to blaze our own trail.&lt;/p&gt;
+&lt;h2 id="custom-scalar-types"&gt;Custom Scalar Types&lt;/h2&gt;
+&lt;p&gt;In Apollo and I assume most GraphQL implementations, &lt;a href="https://www.apollographql.com/docs/apollo-server/v2/features/scalars-enums.html"&gt;you can define your own custom scalar types&lt;/a&gt;. A scalar type is just a primitive type meaning it has no additional properties like a regular &amp;quot;object&amp;quot; would in GraphQL. One custom scalar we use often is the &lt;a href="https://github.com/taion/graphql-type-json"&gt;JSON scalar type&lt;/a&gt; for generic payloads but this doesn't work with primitive types like we need here.&lt;/p&gt;
+&lt;p&gt;What we need to do is define our own custom type that can resolve our value. In my case, I need an &lt;code&gt;Any&lt;/code&gt; type that really just passes the value through. This is &lt;em&gt;frowned upon&lt;/em&gt; in the GraphQL world because everything &lt;em&gt;should&lt;/em&gt; be able to be described statically. I agree with the philosophy but I'm also pragmatic and the real world always has exceptions to these guidelines. So let's make it work.&lt;/p&gt;
+&lt;p&gt;In your GraphQL schema, define your new scalar type:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;type Any
+
+type Option {
+  display_value: String!
+  value: Any
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we've declared a new type, so we need to implement it using what's called a &lt;a href="https://www.apollographql.com/docs/apollo-server/v2/features/scalars-enums.html#graphqlscalartype"&gt;type resolver&lt;/a&gt;. The implementation for our &lt;code&gt;Any&lt;/code&gt; type is dead simple:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;// resolvers.js
+import { GraphQLScalarType } from &amp;quot;graphql&amp;quot;;
+
+export default {
+  Query: {
+    search() {
+      return ...
+    }
+  },
+  Any: new GraphQLScalarType({
+    name: &amp;quot;Any&amp;quot;,
+    description: &amp;quot;Literally anything&amp;quot;,
+    serialize(value) {
+      return value;
+    },
+    parseValue(value) {
+      return value;
+    },
+    parseLiteral(ast) {
+      return ast.value;
+    }
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;code&gt;ast.value&lt;/code&gt; is always a string but I haven't seen a case in consuming a GQL API where &lt;code&gt;parseLiteral&lt;/code&gt; comes into play--it may with the Introspection API. For our purposes, &lt;code&gt;serialize&lt;/code&gt; and &lt;code&gt;parseValue&lt;/code&gt; are the most important.&lt;/p&gt;
+&lt;p&gt;That's it! You can now pass any value for &lt;code&gt;value&lt;/code&gt; and Apollo will happily consume or return it. For context I'm showing it next to the query resolver.&lt;/p&gt;
+&lt;h2 id="custom-type-union-resolver"&gt;Custom Type Union Resolver&lt;/h2&gt;
+&lt;p&gt;Great! Now, can you imagine what this would look like if we needed to support a type union? We need to implement the three methods appropriately for the union. Let's make a &lt;code&gt;StringOrInt&lt;/code&gt; type and resolver:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;type StringOrInt
+
+type Option {
+  display_value: String!
+  value: StringOrInt
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;// resolvers.js
+import { GraphQLScalarType, Kind } from &amp;quot;graphql&amp;quot;;
+
+export default {
+  Query: {
+    search() {
+      return ...
+    }
+  },
+  StringOrInt: new GraphQLScalarType({
+    name: &amp;quot;StringOrInt&amp;quot;,
+    description: &amp;quot;A String or an Int union type&amp;quot;,
+    serialize(value) {
+      if (typeof value !== &amp;quot;string&amp;quot; &amp;amp;&amp;amp; typeof value !== &amp;quot;number&amp;quot;) {
+        throw new Error(&amp;quot;Value must be either a String or an Int&amp;quot;);
+      }
+
+      if (typeof value === &amp;quot;number&amp;quot; &amp;amp;&amp;amp; !Number.isInteger(value)) {
+        throw new Error(&amp;quot;Number value must be an Int&amp;quot;);
+      }
+
+      return value;
+    },
+    parseValue(value) {
+      if (typeof value !== &amp;quot;string&amp;quot; &amp;amp;&amp;amp; typeof value !== &amp;quot;number&amp;quot;) {
+        throw new Error(&amp;quot;Value must be either a String or an Int&amp;quot;);
+      }
+      
+      if (typeof value === &amp;quot;number&amp;quot; &amp;amp;&amp;amp; !Number.isInteger(value)) {
+        throw new Error(&amp;quot;Number value must be an Int&amp;quot;);
+      }
+
+      return value;
+    },
+    parseLiteral(ast) {
+
+      // Kinds: http://facebook.github.io/graphql/June2018/#sec-Type-Kinds
+      // ast.value is always a string
+      switch (ast.kind) {
+        case Kind.INT: return parseInt(ast.value, 10);
+        case Kind.STRING: return ast.value;
+        default:
+          throw new Error(&amp;quot;Value must be either a String or an Int&amp;quot;);
+      }
+    }
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This supports either a &lt;code&gt;String&lt;/code&gt; or an &lt;code&gt;Int&lt;/code&gt; scalar type union. There could be more validation cases you need to handle, I'll let you explore that. You can reference the &lt;a href="http://facebook.github.io/graphql/June2018/#sec-Type-Kinds"&gt;spec&lt;/a&gt; on what kinds of tokens there are to parse.&lt;/p&gt;
+&lt;p&gt;The downside with this approach is that you'll need to define a resolver for each kind of type union but that's better than having no option at all.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;I've been using &lt;a href="https://graphql.org/"&gt;GraphQL&lt;/a&gt; for awhile now at work and I think it's pretty wonderful. I like how it has a consistent way to describe API contracts and has mechanisms to handle lots of different data fetching scenarios. Similar to other static type systems like TypeScript or Flow, in GraphQL you add type annotations to schemas for the server to enforce. If you need to describe a type as "this or that" like "string or integer", this is what's called a &lt;strong&gt;type union.&lt;/strong&gt; The GraphQL spec supports type unions for objects but &lt;a href="https://github.com/facebook/graphql/issues/215"&gt;it doesn't yet support scalar type unions&lt;/a&gt; (since 2016).&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2018-05-11-ndc-minnesota-typescript-react" />
 		<id>https://kamranicus.com/posts/2018-05-11-ndc-minnesota-typescript-react</id>
@@ -1010,407 +1160,5 @@ const MaterialIconAsync = ({ icon }) =&amp;gt; {
 &lt;p&gt;If you're attending, I hope to see you there! Don't be a stranger and say hi if you see me.&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;I'm excited to be speaking about &lt;strong&gt;Building Scalable, Maintainable Apps Using TypeScript and React&lt;/strong&gt; at &lt;a href="http://midwestjs.com/#/schedule"&gt;Midwest.js&lt;/a&gt; August 17, my scheduled time is 1:30pm.&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2017-07-12-conditional-dependency-injection" />
-		<link rel="enclosure" type="image" href="https://kamranicus.com/images/2017-07-12-masthead.png" />
-		<id>https://kamranicus.com/posts/2017-07-12-conditional-dependency-injection</id>
-		<title>Refactoring Conditional Dependency Injection</title>
-		<updated>2017-07-13T02:32:00Z</updated>
-		<content>&lt;p&gt;Recently a colleague sent me a question about some advice using &lt;a href="http://www.ninject.org/"&gt;Ninject&lt;/a&gt;, a popular .NET dependency injection framework. It went something like this:&lt;/p&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;I have a console app that does some tasks. Two of the tasks are very similar, they each process a downloaded file. But the process is different depending on the requested download types passed in.&lt;/p&gt;
-&lt;p&gt;The way I'm modeling it right now is like this:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;DownloadProcessor : IDownloadProcessor&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;SalesDownloader : IDownloader&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;TrafficDownloader : IDownloader&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;What I'd like to do is have the correct &lt;code&gt;IDownloader&lt;/code&gt; used by the &lt;code&gt;DownloadProcessor&lt;/code&gt; depending on incoming arguments.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;!-- More --&gt;
-&lt;p&gt;Here's what they showed me:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-cs"&gt;public class ProgramImplementation
-{
-  private readonly IDownloadProcessor _processor;
-  private readonly IDownloader _salesDownloader;
-  private readonly IDownloader _trafficDownloader;
-
-  public ProgramImplementation(
-    [Named(&amp;quot;salesDownloader&amp;quot;)]   IDownloader salesDownloader, 
-    [Named(&amp;quot;trafficDownloader&amp;quot;)] IDownloader trafficDownloader, 
-    IDownloadProcessor processor)
-  {
-    _processor = processor;
-    _salesDownloader = salesDownloader;
-    _trafficDownloader = trafficDownloader;
-  }
-  
-  public void Run(string[] args)
-  {
-    if (args.Contain(&amp;quot;sales&amp;quot;))
-    {
-        _processor.Process(_salesDownloader);
-    }
-    
-    if (args.Contain(&amp;quot;traffic&amp;quot;))
-    {
-        _processor.Process(_trafficDownloader);
-    }
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;IDownloadProcessor&lt;/code&gt; implementation looks like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-cs"&gt;public class DownloadProcessor : IDownloadProcessor {
-    public void Process(IDownloader downloader) {
-
-      // business logic
-
-      downloader.Process();
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;ProgramImplementation&lt;/code&gt; is constructed via Ninject so the constructor parameters are populated automatically.&lt;/p&gt;
-&lt;h2 id="gimme-some-context"&gt;Gimme Some Context&lt;/h2&gt;
-&lt;p&gt;First, what's going on with this?&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-cs"&gt;[Named(&amp;quot;salesDownloader&amp;quot;)] IDownloader salesDownloader
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This is what Ninject refers to as &lt;a href="https://github.com/ninject/ninject/wiki/Contextual-Binding"&gt;Contextual Binding&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;You can bind the same interface to different concrete classes and attach &amp;quot;metadata&amp;quot; that can be used at injection time:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-cs"&gt;_kernel.Bind&amp;lt;IDownloader&amp;gt;().To&amp;lt;SalesDownloader&amp;gt;().Named(&amp;quot;salesDownloader&amp;quot;);
-_kernel.Bind&amp;lt;IDownloader&amp;gt;().To&amp;lt;TrafficDownloader&amp;gt;().Named(&amp;quot;trafficDownloader&amp;quot;);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In the above docs, they say you should avoid this pattern because now the caller has to reference Ninject directly to get what it wants.&lt;/p&gt;
-&lt;p&gt;Does this work? Sure but my coworker reached out to me &amp;quot;because it felt weird&amp;quot; so let's break it down.&lt;/p&gt;
-&lt;h2 id="a-hammer-looking-for-a-nail"&gt;A Hammer Looking for a Nail&lt;/h2&gt;
-&lt;p&gt;If you wanted to still use Ninject to achieve this, there's an alternative way to bind the same interface to specific concrete classes &lt;em&gt;without&lt;/em&gt; having the calling class take a direct dependency on Ninject.&lt;/p&gt;
-&lt;p&gt;You have to create two implementations of &lt;code&gt;IDownloadProcessor&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-cs"&gt;public interface IDownloadProcessor {
-  void Process();
-}
-
-public abstract class BaseDownloadProcessor : IDownloadProcessor {
-  
-  private IFileDownloader _downloader;
-  public BaseDownloadProcessor(IFileDownloader downloader) {
-    _downloader = downloader;
-  }
-
-  public void Process() {
-    // common logic
-    // ...
-
-    // specific downloader logic
-    _downloader.Process();
-  }
-}
-
-// empty implementation classes
-
-public class SalesDownloadProcessor : BaseDownloadProcessor {
-
-  public SalesDownloadProcessor(IFileDownloader downloader)
-    : base(downloader) {
-
-  }
-}
-
-public class TrafficDownloadProcessor : IDownloadProcessor {
-  public TrafficDownloadProcessor(IFileDownloader downloader)
-    : base(downloader) {
-    
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This adds an two extra classes (one holding common base implementation logic) to what we had before but at least we can inject the right downloader that we need &lt;em&gt;and&lt;/em&gt; we've simplified the interface.&lt;/p&gt;
-&lt;p&gt;We can now bind the specific implementation to the specific processor:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-cs"&gt;_kernel.Bind&amp;lt;IDownloader&amp;gt;().To&amp;lt;SalesDownloader&amp;gt;()
-  .WhenInjectedInto(typeof(SalesDownloadProcessor));
-
-_kernel.Bind&amp;lt;IDownloader&amp;gt;().To&amp;lt;TrafficDownloader&amp;gt;()
-  .WhenInjectedInto(typeof(TrafficDownloadProcessor));
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Great! We removed a direct reference to Ninject in our &lt;code&gt;ProgramImplementation&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-cs"&gt;public class ProgramImplementation
-{
-  private readonly SalesDownloadProcessor _salesProcessor;
-  private readonly TrafficDownloadProcessor _trafficProcessor;
-
-  public ProgramImplementation(
-    SalesDownloadProcessor salesProcessor,
-    TrafficDownloadProcessor trafficProcessor)
-  {
-    _salesProcessor = salesProcessor;
-    _trafficProcessor = trafficProcessor;
-  }
-  
-  public void Run(string[] args)
-  {
-    if (args.Contain(&amp;quot;sales&amp;quot;))
-    {
-        _salesProcessor.Process();
-    }
-    
-    if (args.Contain(&amp;quot;traffic&amp;quot;))
-    {
-        _trafficProcessor.Process();
-    }
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This is still a little smelly, wouldn't you agree?&lt;/p&gt;
-&lt;iframe src="https://giphy.com/embed/PsvD1p3IthN96" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen&gt;&lt;/iframe&gt;
-&lt;p&gt;I thought so. Here's what smells:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The &lt;code&gt;ProgramImplementation&lt;/code&gt; has to be aware of &lt;strong&gt;both&lt;/strong&gt; concrete implementations of &lt;code&gt;IDownloadProcessor&lt;/code&gt; in TWO places, one in the constructor and one when deciding what to call&lt;/li&gt;
-&lt;li&gt;We still have duplicate code in two similar conditional branches and if we add more, it'll keep growing&lt;/li&gt;
-&lt;li&gt;Lastly and most importantly, &lt;strong&gt;we are deciding&lt;/strong&gt; what downloader is paired with what processor and I think this is the most egregious problem here&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Overall this will work but both download processors are identical and we've introduced an abstract class. There's no value in having two empty classes lying around--its solely due to Ninject. In other words, we're just a hammer looking for a nail... maybe we can solve this by rethinking the problem.&lt;/p&gt;
-&lt;h2 id="colocate-behavior-and-data"&gt;Colocate Behavior and Data&lt;/h2&gt;
-&lt;p&gt;The solution I proposed to my coworker was to &lt;em&gt;fuhgeddabout&lt;/em&gt; Ninject because I don't think this should be Ninject's concern or involve black box binding incantation at all.&lt;/p&gt;
-&lt;p&gt;Ask yourself this question: who should decide what an &lt;code&gt;IDownloader&lt;/code&gt; can handle? Right now, it's the &lt;code&gt;ProgramImplementation&lt;/code&gt; but I'd argue that it's the &lt;em&gt;downloader&lt;/em&gt; who knows if it can process a download type--is it &lt;em&gt;really&lt;/em&gt; the top-level program's concern who handles what? I don't think so.&lt;/p&gt;
-&lt;p&gt;Encapsulation is about keeping behavior and data close together. In this instance, data are the arguments being passed to the application and the behavior is the processing of the download inside the &lt;code&gt;IDownloader&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;With that in mind, let's move the decision making farther down, closer to where it needs to be used.&lt;/p&gt;
-&lt;p&gt;First, let's start at the top and pass the args into the processor:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-cs"&gt;public class ProgramImplementation
-{
-  private readonly IDownloadProcessor _processor;
-
-  public ProgramImplementation(
-    IDownloadProcessor processor)
-  {
-    _processor = processor;
-  }
-  
-  public void Run(string[] args)
-  {
-    if (args.Contain(&amp;quot;sales&amp;quot;))
-    {
-        _processor.Process(&amp;quot;sales&amp;quot;);
-    }
-    
-    if (args.Contain(&amp;quot;traffic&amp;quot;))
-    {
-        _processor.Process(&amp;quot;traffic&amp;quot;);
-    }
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Right away we can see an issue. The usage of &lt;code&gt;_processor.Process&lt;/code&gt; multiple times indicates we should allow passing in multiple values.&lt;/p&gt;
-&lt;p&gt;Let's modify the &lt;code&gt;ProgramImplementation&lt;/code&gt; and the &lt;code&gt;DownloadProcessor&lt;/code&gt; to work with an array of download types:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-cs"&gt;public class ProgramImplementation
-{
-  private readonly IDownloadProcessor _processor;
-
-  public ProgramImplementation(
-    IDownloadProcessor processor)
-  {
-    _processor = processor;
-  }
-  
-  public void Run(string[] args)
-  {
-    _processor.Process(args);
-  }
-}
-
-public class DownloadProcessor : IDownloadProcessor {
-
-  private readonly IEnumerable&amp;lt;IDownloader&amp;gt; _downloaders;
-
-  public DownloadProcessor(IEnumerable&amp;lt;IDownloader&amp;gt; downloaders) {
-    _downloaders = downloaders;
-  }
-
-  public void Process(string[] types) {
-    // ???
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;It's certainly getting simpler. We're still using Ninject to inject the available downloaders into the processor but we aren't relying on contextual binding.&lt;/p&gt;
-&lt;p&gt;At this point, you might ask, &amp;quot;Does the processor decide which downloader handles the types? Will I need a switch statement here or something?&amp;quot; Nope, remember we want to push the behavior and data closer together.&lt;/p&gt;
-&lt;p&gt;Let's make the change that will colocate the logic inside the &lt;code&gt;IDownloader&lt;/code&gt; implementations:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-cs"&gt;public class DownloadProcessor : IDownloadProcessor {
-
-  private readonly IEnumerable&amp;lt;IDownloader&amp;gt; _downloaders;
-
-  public DownloadProcessor(IEnumerable&amp;lt;IDownloader&amp;gt; downloaders) {
-    _downloaders = downloaders;
-  }
-
-  public void Process(string[] types) {
-    foreach(var downloader in _downloaders) {
-      if (downloader.CanProcess(types)) {
-        downloader.Process();
-      }
-    }
-  }
-}
-
-public interface IDownloader {
-  bool CanProcess(string[] types);
-  void Process();
-}
-
-public class SalesDownloader : IDownloader {
-  public bool CanProcess(string[] types) {
-    return types.IndexOf(&amp;quot;sales&amp;quot;) &amp;gt; -1;
-  }
-
-  public void Process() {
-    // etc.
-  }
-}
-
-public class TrafficDownloader : IDownloader {
-  public bool CanProcess(string[] types) {
-    return types.IndexOf(&amp;quot;traffic&amp;quot;) &amp;gt; -1;
-  }
-
-  public void Process() {
-    // etc.
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;That's more like it.&lt;/p&gt;
-&lt;p&gt;We're iterating through each downloader in the processor and processing the download if and only if the handler can handle it (i.e. the decision is left to the downloader).&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;IDownloader.CanProcess&lt;/code&gt; provides a contract that says we have to specify what a downloader can handle. Could we just as easily have done &lt;code&gt;Process(string[] types)&lt;/code&gt;? Yes, we could but this way we are &lt;em&gt;guaranteeing&lt;/em&gt; that a downloader &lt;em&gt;must&lt;/em&gt; tell us whether it could handle any of the types we provide. Without this, there'd be no way to enforce this contract. Furthermore, having a check method allows us to ask, &amp;quot;How would I know if a downloader &lt;em&gt;didn't&lt;/em&gt; handle my download type?&amp;quot;.&lt;/p&gt;
-&lt;p&gt;This is looking good. At this point, you could call it a refactoring job well done. Now it's time to level up and snag [over 9000] extra maintainability points.&lt;/p&gt;
-&lt;iframe src="https://giphy.com/embed/B6SyssSlTgPXq" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen&gt;&lt;/iframe&gt;
-&lt;h2 id="tostring-or-not-tostring"&gt;ToString or Not ToString?&lt;/h2&gt;
-&lt;p&gt;My philosophy is to consolidate multiple &amp;quot;sources of truth&amp;quot; to a single source. Right now for me to figure out what download types are acceptable to pass to this application I have to look at each &lt;code&gt;IDownloader&lt;/code&gt; implementation, inside the &lt;code&gt;CanProcess&lt;/code&gt; functions. Yuck!&lt;/p&gt;
-&lt;p&gt;We could use constants and have them on the &lt;code&gt;ProgramImplementation&lt;/code&gt; to make acceptable download types more discoverable. But if we switch to an enumeration instead of passing raw strings we'll have a strongly typed and enforceable contract. &lt;strong&gt;BONUS:&lt;/strong&gt; Enums support flags so we can represent multiple values without an array!&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-cs"&gt;// Source of truth for all download types
-enum DownloadType {
-  Sales,
-  Traffic
-}
-
-class ProgramImplementation {
-  private readonly IDownloadProcessor _processor;
-
-  public ProgramImplementation(
-    IDownloadProcessor processor) {
-    _processor = processor;
-  }
-
-  public void Run(string[] args) {
-
-    foreach (var arg in args) {
-
-      // Parse the argument directly as an enum,
-      // ensuring we always pass valid values
-      DownloadType type;
-      if (!Enum.TryParse(arg, out type)) {
-        throw new ArgumentException($&amp;quot;Type '{arg}' is not a valid download type&amp;quot;);
-      }
-
-      _processor.Process(type);
-    }
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Instead of comparing strings, we're now enforcing consistency--we work with the enums and translate strings to &lt;code&gt;DownloadType&lt;/code&gt; so that we can validate values.&lt;/p&gt;
-&lt;p&gt;Pretty good! But there's a problem. We went back to passing a single download type. Not cool! It would be great if we could translate that string list into a flagged enum value...&lt;/p&gt;
-&lt;h2 id="beam-me-opts-scotty"&gt;Beam Me Opts, Scotty!&lt;/h2&gt;
-&lt;p&gt;Not sure if that quote works but I digress. Let's leverage a nice open source package to do some options parsing for us so our CLI application can be more flexible and robust.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/gsscoder/commandline"&gt;Commandline&lt;/a&gt; is a fantastic Nuget package for the job.&lt;/p&gt;
-&lt;p&gt;We can use Commandline to take in a list of the enum values and convert them into a flag. Here's how we use it to simplify our logic further:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-cs"&gt;[Flags]
-enum DownloadType {
-  Sales,
-  Traffic
-}
-
-class Options {
-  [Option('t', &amp;quot;types&amp;quot;, Required = true,
-    HelpText = &amp;quot;Download file type(s) to process&amp;quot;)]
-  public IEnumerable&amp;lt;DownloadType&amp;gt; Types { get; set; }
-}
-
-class ProgramImplementation {
-  private readonly IDownloadProcessor _processor;
-
-  public ProgramImplementation(IDownloadProcessor processor) {
-    _processor = processor;
-  }
-
-  public void Run(string[] args)
-  {
-    var parser = new Parser(settings =&amp;gt; settings.CaseInsensitiveEnumValues = true);
-    var result = parser.ParseArguments&amp;lt;Options&amp;gt;(args);
-    
-    result.WithParsed(options =&amp;gt;
-    {
-      // convert to flags
-      var types = options.Types.Aggregate((i, t) =&amp;gt; i | t);
-
-      _processor.Process(types);
-    });            
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Much better! We are now accepting multiple download types from the CLI, like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;MyApp -t Sales Traffic
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This line:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-cs"&gt;var parser = new Parser(settings =&amp;gt; settings.CaseInsensitiveEnumValues = true);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Allows us to pass in case-insensitive enum values like:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;MyApp -t sales traffic
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The other magic line:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-cs"&gt;var types = options.Types.Aggregate((i, t) =&amp;gt; i | t);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Converts the array of enum values into a flag. &lt;a href="https://stackoverflow.com/questions/21880081/cast-int-array-to-enum-flags"&gt;Thanks StackOverflow&lt;/a&gt;!&lt;/p&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;em&gt;Note:&lt;/em&gt; The library currently doesn't handle mapping multiple values to a single Enum flags type, so we'll have to make do. No library I could find supports that &lt;em&gt;and&lt;/em&gt; .NET Core, which I was using to test this code. Time for a PR, maybe?&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The &lt;code&gt;DownloadProcessor&lt;/code&gt; will need to change to accept the new flag enum:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-cs"&gt;public void Process(DownloadType types) {
-  foreach(var downloader in _downloaders) {
-    if (downloader.CanProcess(types)) {
-      downloader.Process();
-    }
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Finally, that will allow us to simplify our downloaders:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-cs"&gt;// SalesDownloader
-public bool CanProcess(DownloadType type) {
-  return type.HasFlag(DownloadType.Sales);
-}
-
-// TrafficDownloader
-public bool CanProcess(DownloadType type) {
-  return type.HasFlag(DownloadType.Traffic);
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;iframe src="https://giphy.com/embed/tw3tbRjOTqj4s" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen&gt;&lt;/iframe&gt;
-&lt;p&gt;&lt;strong&gt;Do you smell that?&lt;/strong&gt; Unlike before, it's the wonderful smell of cleaner code!&lt;/p&gt;
-&lt;p&gt;This leaves us with a pretty robust implementation with minimal code.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;It's extensible.&lt;/strong&gt; It's easy to add more handlers by adding a new class and enum. The person implementing the new handler will immediately know they require a new enum value when they implement the &lt;code&gt;IDownloader&lt;/code&gt; interface.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;It's flexible.&lt;/strong&gt; A single handler could handle multiple kinds of downloads.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;It's easy to reason about.&lt;/strong&gt; There's no DI magic that requires additional understanding. We could go so far as to add the &lt;a href="https://github.com/ninject/Ninject.Extensions.Conventions"&gt;Ninject conventions binding&lt;/a&gt; extension to eliminate manual registration of downloaders.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;It's easy to test.&lt;/strong&gt; By not relying on Ninject, we now can focus on testing the implementation logic.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="thats-all-folks"&gt;That's All, Folks&lt;/h2&gt;
-&lt;p&gt;I waited to publish this post until my coworker reviewed it and tried my suggestions, I sent them my sample code below. Their response was, verbatim:&lt;/p&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Thanks, and thanks again for all of the time you put into this.  This is the most thorough response I think I’ve ever gotten to almost anything.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Aw, thanks! I'm glad it helped and maybe writing up this thinking process will help others who are considering refactoring their code too.&lt;/p&gt;
-&lt;p&gt;You can find the code for this example &lt;a href="https://github.com/kamranayub/kamranayub.github.io/tree/source/code/2017-07-12-conditional-injection"&gt;on my GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;There's probably a few things I should mention:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;IDownloadProcessor interface&lt;/strong&gt;: I don't think we need it. There's only a single implementation and it has no complex dependencies, we can easily test it. We could simply remove the interface and bind the concrete implementation or we could axe the class in its entirety and switch to a single function on &lt;code&gt;ProgramImplementation&lt;/code&gt; if we felt a full object was too much.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Is the CLI parser too much?&lt;/strong&gt; It could be argued it is. We could just as easily have converted the individual enum values into a flag ourselves. Admittedly, I was hoping the CLI package would do it directly for me but it didn't, I still ended up manually converting it. Still--we get some great benefits: help documentation, validation, and extensibility.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;You can do all this with Ninject&lt;/strong&gt;: But should you? It's always a question you should ask. If you need to &lt;em&gt;dynamically&lt;/em&gt; find download handlers at runtime from external assemblies or anything more complex than what I showed above, it might be worth the mental overhead. For this case, it's not worth it in my opinion--introduce abstractions when it gets hard to reason about stuff.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I'm positive there are multiple great solutions to this issue. If you had specific ideas, share them in the comments!&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;Recently a colleague sent me a question about some advice using &lt;a href="http://www.ninject.org/"&gt;Ninject&lt;/a&gt;, a popular .NET dependency injection framework. It went something like this:&lt;/p&gt;</summary>
 	</entry>
 </feed>

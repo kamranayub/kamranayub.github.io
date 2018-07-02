@@ -1,0 +1,389 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Handling Multiple Scalar Types in GraphQL</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Handling Multiple Scalar Types in GraphQL" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2018-06-02-handling-multiple-scalar-types-in-graphql" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="/assets/js/picturefill.min.js" async></script>
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text site menu">
+      
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+              <div class="item">
+        <a href="/about">Get in Touch</a>
+      </div>
+      <div class="item">
+        <a href="/events">Events</a>
+      </div>
+      <div class="item">
+        <a href="/guides">Guides</a>
+      </div>
+      <div class="item">
+        <a href="/projects">Projects</a>
+      </div>
+      <div class="item">
+        <a href="/travel">Travel</a>
+      </div>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui vertical masthead segment " id="intro-header">
+    <div class="ui container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui  huge header">
+      Handling Multiple Scalar Types in GraphQL
+        <div class="ui sub header">How to handle values that can be one of multiple scalar types in GraphQL</div>
+    </h1>
+                
+    <div class="ui  sub header">        
+Published on Saturday, June 2, 2018<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/Apollo" class="ui small compact button">Apollo</a>
+                    <a role="button" href="/tags/GraphQL" class="ui small compact button">GraphQL</a>
+                    <a role="button" href="/tags/JavaScript" class="ui small compact button">JavaScript</a>
+                    <a role="button" href="/tags/TypeScript" class="ui small compact button">TypeScript</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui stackable grid container">
+    <div class="content column">
+      
+
+<div class="ui huge basic post content segment">
+  <p>I've been using <a href="https://graphql.org/">GraphQL</a> for awhile now at work and I think it's pretty wonderful. I like how it has a consistent way to describe API contracts and has mechanisms to handle lots of different data fetching scenarios. Similar to other static type systems like TypeScript or Flow, in GraphQL you add type annotations to schemas for the server to enforce. If you need to describe a type as &quot;this or that&quot; like &quot;string or integer&quot;, this is what's called a <strong>type union.</strong> The GraphQL spec supports type unions for objects but <a href="https://github.com/facebook/graphql/issues/215">it doesn't yet support scalar type unions</a> (since 2016).</p>
+<p>This is unfortunate and since scalar type unions are not yet supported, here's an approach that works well with my preferred GraphQL server, <a href="https://www.apollographql.com/">Apollo</a>.</p>
+<h2 id="describing-generic-values">Describing Generic Values</h2>
+<p>In my scenario, we have multiple typeahead search fields that fetch values and pass them through our application untouched. There are half a dozen backend APIs that handle different kinds of data to search from and we use GraphQL to provide a consistent querying experience for the UI. Specifically, the raw <code>value</code> represented by these APIs can be literally anything--we have no idea what it could be and also, <strong>we don't care.</strong> This is key: the UI just passes this value through and eventually it gets saved back to these APIs, so we don't touch it.</p>
+<p>The schema of this scenario looks something like:</p>
+<pre><code>query search($text: String!, $start: Int!, $resourceId: String!): Options
+
+type Options {
+  total: Int!
+  start: Int!
+  page_size: Int!
+  options: [Option]!
+}
+
+type Option {
+  display_value: String!
+  value: ???
+}
+</code></pre>
+<p>Imagine a dropdown where the <code>display_value</code> is what's shown to the user and <code>value</code> is the backing data of the option. The user never sees it, it gets stored in state somewhere, and eventually when the user saves it gets passed back up.</p>
+<p>Now, since we use TypeScript in the UI, I can easily describe the <code>value</code> property like this on the client:</p>
+<pre><code class="language-typescript">interface Option {
+  display_value: string;
+  value: any;
+}
+</code></pre>
+<p>To tie this back to unions, if I had more concrete information about what values get returned by these APIs, I could be more specific using a <strong>type union</strong>:</p>
+<pre><code class="language-typescript">interface Option {
+  display_value: string;
+  value: string | number | boolean;
+}
+</code></pre>
+<p>On the GraphQL side to describe the <code>Option.value</code> property, what would be <strong>ideal</strong> is to do this:</p>
+<pre><code>type Option {
+  display_value: String!
+  value: String | Int | Boolean
+}
+</code></pre>
+<p>or even:</p>
+<pre><code>type Option {
+  display_value: String!
+  value: Any
+}
+</code></pre>
+<p>Unfortunately, neither of these type annotations are possible with the default GraphQL language specification. Many folks give up and just use <code>String</code> but that actually causes bugs with our scenario (numbers get converted to strings and so on) so we need to blaze our own trail.</p>
+<h2 id="custom-scalar-types">Custom Scalar Types</h2>
+<p>In Apollo and I assume most GraphQL implementations, <a href="https://www.apollographql.com/docs/apollo-server/v2/features/scalars-enums.html">you can define your own custom scalar types</a>. A scalar type is just a primitive type meaning it has no additional properties like a regular &quot;object&quot; would in GraphQL. One custom scalar we use often is the <a href="https://github.com/taion/graphql-type-json">JSON scalar type</a> for generic payloads but this doesn't work with primitive types like we need here.</p>
+<p>What we need to do is define our own custom type that can resolve our value. In my case, I need an <code>Any</code> type that really just passes the value through. This is <em>frowned upon</em> in the GraphQL world because everything <em>should</em> be able to be described statically. I agree with the philosophy but I'm also pragmatic and the real world always has exceptions to these guidelines. So let's make it work.</p>
+<p>In your GraphQL schema, define your new scalar type:</p>
+<pre><code>type Any
+
+type Option {
+  display_value: String!
+  value: Any
+}
+</code></pre>
+<p>Now we've declared a new type, so we need to implement it using what's called a <a href="https://www.apollographql.com/docs/apollo-server/v2/features/scalars-enums.html#graphqlscalartype">type resolver</a>. The implementation for our <code>Any</code> type is dead simple:</p>
+<pre><code class="language-js">// resolvers.js
+import { GraphQLScalarType } from &quot;graphql&quot;;
+
+export default {
+  Query: {
+    search() {
+      return ...
+    }
+  },
+  Any: new GraphQLScalarType({
+    name: &quot;Any&quot;,
+    description: &quot;Literally anything&quot;,
+    serialize(value) {
+      return value;
+    },
+    parseValue(value) {
+      return value;
+    },
+    parseLiteral(ast) {
+      return ast.value;
+    }
+  })
+}
+</code></pre>
+<p><strong>Note:</strong> <code>ast.value</code> is always a string but I haven't seen a case in consuming a GQL API where <code>parseLiteral</code> comes into play--it may with the Introspection API. For our purposes, <code>serialize</code> and <code>parseValue</code> are the most important.</p>
+<p>That's it! You can now pass any value for <code>value</code> and Apollo will happily consume or return it. For context I'm showing it next to the query resolver.</p>
+<h2 id="custom-type-union-resolver">Custom Type Union Resolver</h2>
+<p>Great! Now, can you imagine what this would look like if we needed to support a type union? We need to implement the three methods appropriately for the union. Let's make a <code>StringOrInt</code> type and resolver:</p>
+<pre><code>type StringOrInt
+
+type Option {
+  display_value: String!
+  value: StringOrInt
+}
+</code></pre>
+<pre><code class="language-js">// resolvers.js
+import { GraphQLScalarType, Kind } from &quot;graphql&quot;;
+
+export default {
+  Query: {
+    search() {
+      return ...
+    }
+  },
+  StringOrInt: new GraphQLScalarType({
+    name: &quot;StringOrInt&quot;,
+    description: &quot;A String or an Int union type&quot;,
+    serialize(value) {
+      if (typeof value !== &quot;string&quot; &amp;&amp; typeof value !== &quot;number&quot;) {
+        throw new Error(&quot;Value must be either a String or an Int&quot;);
+      }
+
+      if (typeof value === &quot;number&quot; &amp;&amp; !Number.isInteger(value)) {
+        throw new Error(&quot;Number value must be an Int&quot;);
+      }
+
+      return value;
+    },
+    parseValue(value) {
+      if (typeof value !== &quot;string&quot; &amp;&amp; typeof value !== &quot;number&quot;) {
+        throw new Error(&quot;Value must be either a String or an Int&quot;);
+      }
+      
+      if (typeof value === &quot;number&quot; &amp;&amp; !Number.isInteger(value)) {
+        throw new Error(&quot;Number value must be an Int&quot;);
+      }
+
+      return value;
+    },
+    parseLiteral(ast) {
+
+      // Kinds: http://facebook.github.io/graphql/June2018/#sec-Type-Kinds
+      // ast.value is always a string
+      switch (ast.kind) {
+        case Kind.INT: return parseInt(ast.value, 10);
+        case Kind.STRING: return ast.value;
+        default:
+          throw new Error(&quot;Value must be either a String or an Int&quot;);
+      }
+    }
+  })
+}
+</code></pre>
+<p>This supports either a <code>String</code> or an <code>Int</code> scalar type union. There could be more validation cases you need to handle, I'll let you explore that. You can reference the <a href="http://facebook.github.io/graphql/June2018/#sec-Type-Kinds">spec</a> on what kinds of tokens there are to parse.</p>
+<p>The downside with this approach is that you'll need to define a resolver for each kind of type union but that's better than having no option at all.</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="http://www.youtube.com/c/Kamranicus " title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://twitch.tv/kamranicus " title="YouTube">
+  <i class="twitch icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '2018-06-02-handling-multiple-scalar-types-in-graphql';
+    var disqus_title = 'Handling Multiple Scalar Types in GraphQL';
+    var disqus_url = 'https://kamranicus.com/posts/2018-06-02-handling-multiple-scalar-types-in-graphql';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+      <!-- Disqus -->
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+  
+  <!-- Footer -->
+  <footer>   
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2018</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="http://www.youtube.com/c/Kamranicus " title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://twitch.tv/kamranicus " title="YouTube">
+  <i class="twitch icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe via RSS or email
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
