@@ -4,8 +4,131 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2018</rights>
-	<updated>2018-07-02T18:29:02Z</updated>
+	<updated>2018-07-07T15:36:18Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2018-07-07-react-nesting-components-flat" />
+		<id>https://kamranicus.com/posts/2018-07-07-react-nesting-components-flat</id>
+		<title>Flattening Deeply Nested Components in React</title>
+		<updated>2018-07-07T15:33:00Z</updated>
+		<content>&lt;p&gt;Here's a quick tip. Often in entry points of React applications, you have to do some bootstrapping with various providers from dependent modules like Material UI, Redux, JSS, and React Router. That's exactly the stack I'm using so that's what my example is based on.&lt;/p&gt;
+&lt;p&gt;Normally, you would do this to bootstrap your &lt;code&gt;App&lt;/code&gt; component:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;React.render(
+  &amp;lt;Provider store={store}&amp;gt;
+    &amp;lt;ConnectedRouter history={history}&amp;gt;
+      &amp;lt;JssProvider jss={jss} generateClassName={generateClassName}&amp;gt;
+        &amp;lt;MuiThemeProvider theme={theme}&amp;gt;
+          &amp;lt;MuiPickersUtilsProvider utils={MomentUtils}&amp;gt;
+            &amp;lt;App /&amp;gt; {/* FINALLY */}
+          &amp;lt;/MuiPickersUtilsProvider&amp;gt;
+        &amp;lt;/MuiThemeProvider&amp;gt;
+      &amp;lt;/JssProvider&amp;gt;
+    &amp;lt;/ConnectedRouter&amp;gt;
+  &amp;lt;/Provider&amp;gt;
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It feels like I'm in Dante's Inferno creating the 9 circles of hell. I'm being dramatic of course--this is readable and probably fine. But there are situations with nesting even worse than this. If you're interested in how to flatten this out, read on.&lt;/p&gt;
+&lt;h2 id="recompose"&gt;Recompose&lt;/h2&gt;
+&lt;p&gt;I like the &lt;a href="#recompose"&gt;recompose&lt;/a&gt; utility library, it adds some functional helpers to React apps. One helper that we'll leverage here is called &lt;code&gt;nest&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;import { nest } from &amp;quot;recompose&amp;quot;;
+
+const AppProviders = nest(
+  Provider,
+  ConnectedRouter,
+  JssProvider,
+  MuiThemeProvider,
+  MuiPickersUtilsProvider
+);
+
+ReactDOM.render(
+  &amp;lt;AppProviders 
+    store={store} 
+    history={history} 
+    jss={jss} 
+    generateClassName={generateClassName} 
+    theme={theme} 
+    utils={MomentUtils}
+  &amp;gt;    
+    &amp;lt;App /&amp;gt; {/* That's a bit better */}
+  &amp;lt;/AppProviders&amp;gt;,
+  document.getElementById('root')
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This actually works. What's happening here is that &lt;code&gt;nest&lt;/code&gt; will take each component you give it and nest one after the other, in order of top to bottom. What you can do then is pass props that &lt;strong&gt;get passed to each nested component&lt;/strong&gt;. This is the important bit and as it turns out will cause warnings in the console because some components have prop validation that will get angry at you if you pass them props they don't expect.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;index.js:2178 Warning: Failed prop type: The following properties are not supported: `store`, `history`, `jss`, `generateClassName`, `utils`. Please remove them.
+    in MuiThemeProvider (created by nest(Provider, ConnectedRouter, JssProvider, MuiThemeProvider, MuiPickersUtilsProvider))
+    in nest(Provider, ConnectedRouter, JssProvider, MuiThemeProvider, MuiPickersUtilsProvider)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Oopsie. &lt;code&gt;nest&lt;/code&gt; does accept stateless components as arguments, though. Let's do that!&lt;/p&gt;
+&lt;h2 id="nest-with-stateless-components"&gt;Nest with Stateless Components&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;import { nest } from &amp;quot;recompose&amp;quot;;
+
+// Nest providers in this order (top to bottom)
+const withProviders = wrap(
+  ({ children }) =&amp;gt; &amp;lt;Provider store={store}&amp;gt;{children}&amp;lt;/Provider&amp;gt;,
+  ({ children }) =&amp;gt; &amp;lt;ConnectedRouter history={history}&amp;gt;{children}&amp;lt;/ConnectedRouter&amp;gt;,
+  ({ children }) =&amp;gt; (
+    &amp;lt;JssProvider jss={jss} generateClassName={generateClassName}&amp;gt;
+      {children}
+    &amp;lt;/JssProvider&amp;gt;
+  ),
+  ({ children }) =&amp;gt; &amp;lt;MuiThemeProvider theme={theme}&amp;gt;{children}&amp;lt;/MuiThemeProvider&amp;gt;,
+  ({ children }) =&amp;gt; (
+    &amp;lt;MuiPickersUtilsProvider utils={MomentUtils}&amp;gt;{children}&amp;lt;/MuiPickersUtilsProvider&amp;gt;
+  )
+);
+
+ReactDOM.render(
+  React.createElement(withProviders(App)), 
+  document.getElementById('root')
+);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Alright. This also works. Buuuuut, I mean, c'mon, this somehow seems &lt;em&gt;worse&lt;/em&gt;, right?&lt;/p&gt;
+&lt;p&gt;Is there a middle-ground of readability and less duplicated code? Of course! Let's just write a little helper to take pairs of components and their props and pass that to &lt;code&gt;nest&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="nesting-with-componentprop-pairs"&gt;Nesting with Component/Prop Pairs&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;// Nest components in this order (top to bottom)
+const AppProviders = nestPairs(
+  [Provider, { store }],
+  [ConnectedRouter, { history }],
+  [JssProvider, { jss, generateClassName }],
+  [MuiThemeProvider, { theme }],
+  [MuiPickersUtilsProvider, { utils: MomentUtils }]
+);
+
+ReactDOM.render(
+  &amp;lt;AppProviders&amp;gt;
+    &amp;lt;App /&amp;gt;
+  &amp;lt;/AppProviders&amp;gt;, 
+  document.getElementById('root'));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Hey! That looks more readable &lt;em&gt;and&lt;/em&gt; solves the prop passing issue. This is what &lt;code&gt;nestPairs&lt;/code&gt; looks like:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;function nestPairs(...componentPropPairs) {
+  return nest.apply(
+    this,
+    componentPropPairs.map(([ComponentClass, props]) =&amp;gt; 
+      ({ children }) =&amp;gt; 
+        React.createElement(ComponentClass, { ...props, children })
+    )
+  );
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And in TypeScript (what I'm using):&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-typescript"&gt;function nestPairs(this: any, ...componentPropPairs: Array&amp;lt;[React.ComponentType, any]&amp;gt;) {
+  return nest.apply(
+    this,
+    componentPropPairs.map(([ComponentClass, props]): React.StatelessComponent&amp;lt;
+      any
+    &amp;gt; =&amp;gt; ({ children }) =&amp;gt; React.createElement&amp;lt;any&amp;gt;(ComponentClass, { ...props, children }))
+  );
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We are taking the array pairs and mapping them to stateless components with all the blanks filled in. This keeps the input
+relatively simple while still allowing custom props per component. In TypeScript, the downside is that you lose the strong
+typing compared to the previous version but I'm willing to do that since in my case, this is only used in the entrypoint of
+our app so it'll be real apparent if things don't work.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;Here's a quick tip. Often in entry points of React applications, you have to do some bootstrapping with various providers from dependent modules like Material UI, Redux, JSS, and React Router. That's exactly the stack I'm using so that's what my example is based on.&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2018-07-02-handling-multiple-scalar-types-in-graphql" />
 		<id>https://kamranicus.com/posts/2018-07-02-handling-multiple-scalar-types-in-graphql</id>
@@ -1142,23 +1265,5 @@ const MaterialIconAsync = ({ icon }) =&amp;gt; {
 &lt;p&gt;Maybe next year I'll submit an updated version with any new wisdom I learn as I continue converting KTOMG over to React.&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;A couple weeks ago &lt;a href="https://kamranicus.com/posts/2017-07-14-midwestjs-react-typescript"&gt;I spoke at Midwest.js&lt;/a&gt; on &lt;strong&gt;Building Scalable, Maintainable Apps Using TypeScript and React&lt;/strong&gt;. The conference itself was great I thought and I plan to attend again! I learned some stuff about GraphQL that I didn't know and learned about V8 compiler optimizations from &lt;a href="http://twitter.com/captainsafia"&gt;@captainsafia&lt;/a&gt;.&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2017-07-14-midwestjs-react-typescript" />
-		<id>https://kamranicus.com/posts/2017-07-14-midwestjs-react-typescript</id>
-		<title>Building Scalable, Maintainable Apps Using TypeScript and React at Midwest.js</title>
-		<updated>2017-07-14T17:21:00Z</updated>
-		<content>&lt;p&gt;I'm excited to be speaking about &lt;strong&gt;Building Scalable, Maintainable Apps Using TypeScript and React&lt;/strong&gt; at &lt;a href="http://midwestjs.com/#/schedule"&gt;Midwest.js&lt;/a&gt; August 17, my scheduled time is 1:30pm.&lt;/p&gt;
-&lt;p&gt;Here's what to expect:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;How to design components with TypeScript and Redux&lt;/li&gt;
-&lt;li&gt;Examples of working with interfaces and ES6 componenets in TypeScript&lt;/li&gt;
-&lt;li&gt;Architecture patterns and organization for React apps&lt;/li&gt;
-&lt;li&gt;Performance tuning and advice with React/Redux&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The presentation will be based on my progress converting from Knockout.js to React.js for &lt;a href="http://ktomg.com"&gt;Keep Track of My Games&lt;/a&gt;. I've been doing a ton of performance tuning and have definitely learned a lot about using TypeScript with React and Redux so I'm excited to share my findings and advice. It's also a presentation based on my learning so far and where I want to go; I'm not even complete with the rewrite!&lt;/p&gt;
-&lt;p&gt;If you're attending, I hope to see you there! Don't be a stranger and say hi if you see me.&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;I'm excited to be speaking about &lt;strong&gt;Building Scalable, Maintainable Apps Using TypeScript and React&lt;/strong&gt; at &lt;a href="http://midwestjs.com/#/schedule"&gt;Midwest.js&lt;/a&gt; August 17, my scheduled time is 1:30pm.&lt;/p&gt;</summary>
 	</entry>
 </feed>
