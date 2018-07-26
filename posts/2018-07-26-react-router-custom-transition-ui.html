@@ -1,0 +1,397 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Showing Custom UI on React Router Transitions</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Showing Custom UI on React Router Transitions" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2018-07-26-react-router-custom-transition-ui" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="/assets/js/picturefill.min.js" async></script>
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text site menu">
+      
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+              <div class="item">
+        <a href="/about">Get in Touch</a>
+      </div>
+      <div class="item">
+        <a href="/events">Events</a>
+      </div>
+      <div class="item">
+        <a href="/guides">Guides</a>
+      </div>
+      <div class="item">
+        <a href="/projects">Projects</a>
+      </div>
+      <div class="item">
+        <a href="/travel">Travel</a>
+      </div>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui vertical masthead segment " id="intro-header">
+    <div class="ui container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui  huge header">
+      Showing Custom UI on React Router Transitions
+        <div class="ui sub header">Using the React Router `&lt;Prompt /&gt;` component you can trigger custom UI to prevent navigation</div>
+    </h1>
+                
+    <div class="ui  sub header">        
+Published on Thursday, July 26, 2018<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/JavaScript" class="ui small compact button">JavaScript</a>
+                    <a role="button" href="/tags/React" class="ui small compact button">React</a>
+                    <a role="button" href="/tags/React-Router" class="ui small compact button">React Router</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui stackable grid container">
+    <div class="content column">
+      
+
+<div class="ui huge basic post content segment">
+  <p>We had a recent requirement on our project to prompt the user with a custom modal when they have some pending changes to save in our application. The intention was to ensure they saved their changes as it affected other parts of the data they're working on and we need to recompute business rules (fun, huh?).</p>
+<p>Since we're leveraging <a href="https://reacttraining.com/react-router/web/guides/philosophy">React Router v4</a>, I looked into what was provided out of the box to see how customizable it was.</p>
+<h2 id="the-prompt-component">The Prompt Component</h2>
+<p>React Router core has a component called <a href="https://reacttraining.com/react-router/core/api/Prompt"><code>Prompt</code></a>. The purpose of this component is to <a href="https://reacttraining.com/react-router/web/example/preventing-transitions">show a dialog to the user during a router transition</a>. The <code>when</code> prop can be set to enable/disable this functionality dynamically which is great. You can also pass a <code>message</code> that will get displayed or a function that takes a <code>location</code> and returns <code>true</code> to allow navigation or a message to prevent.</p>
+<pre><code class="language-js">&lt;Prompt when={true} message=&quot;Please save your changes before proceeding&quot; /&gt;
+&lt;Prompt when={true} message={location =&gt; location.pathname === &quot;/foo&quot; ? true : &quot;Denied&quot;} /&gt;
+</code></pre>
+<p><img src="https://user-images.githubusercontent.com/563819/43242206-4b62f540-9065-11e8-80bb-d4ca944cc9ea.png" class="img-fluid" alt="The default prompt" /></p>
+<p>However, I noticed a few caveats with this component. First, the default prompt is the browser prompt and when you click 'Okay' it <em>allows navigation</em> which is exactly the opposite of what I want. Second, you can't render custom UI directly through <code>Prompt</code>--it just takes a <code>message</code>. Why? If you <a href="https://github.com/ReactTraining/react-router/blob/e6f9017c947b3ae49affa24cc320d0a86f765b55/packages/react-router/modules/Prompt.js#L30">dive down</a> into the code, it leverages the <a href="https://www.npmjs.com/package/history">history</a> npm package which just delegates to that browser prompt. The good news is, the <code>history</code> package allows you to override the UI generation via <a href="https://www.npmjs.com/package/history#customizing-the-confirm-dialog"><code>getUserConfirmation</code></a>.</p>
+<pre><code class="language-js">import createHistory from &quot;history/browserHistory&quot;;
+
+const history = createHistory({
+  getUserConfirmation(message, callback) {
+    // Show some custom dialog to the user and call
+    // callback(true) to continue the transiton, or
+    // callback(false) to abort it.
+  }
+});
+</code></pre>
+<p>This is helpful, using this we can always prevent the transition if needed. So, given that we can't use <code>Prompt</code> directly to render custom React UI but we <em>can</em> override the core handler for showing the prompt, is there a way to connect the two? Of course.</p>
+<h2 id="overriding-getuserconfirmation">Overriding getUserConfirmation</h2>
+<p>First, let's test our assumption out and see if we can log the message we get from <code>Prompt</code>.</p>
+<p>Using the regular <code>BrowserRouter</code> component from <code>react-router-dom</code>, pass the <code>getUserConfirmation</code> prop:</p>
+<pre><code class="language-js">const getUserConfirmation = (message, callback) =&gt; {
+  console.log(message);
+  callback(false);
+}
+
+&lt;BrowserRouter getUserConfirmation={getUserConfirmation}&gt;
+...
+&lt;/BrowserRouter&gt;
+</code></pre>
+<p>If like me you are using <code>connected-react-router</code>, we can still customize the <code>createHistory</code> call as shown above:</p>
+<pre><code class="language-js">...
+import { createBrowserHistory } from 'history'
+import { applyMiddleware, compose, createStore } from 'redux'
+import { connectRouter, routerMiddleware } from 'connected-react-router'
+...
+const history = createBrowserHistory({
+  getUserConfirmation(message, callback) {
+    console.log(message);
+    callback(false);
+  }
+})
+
+const store = createStore(
+  connectRouter(history)(rootReducer), // new root reducer with router state
+  initialState,
+  compose(
+    applyMiddleware(
+      routerMiddleware(history), // for dispatching history actions
+      // ... other middlewares ...
+    ),
+  ),
+)
+</code></pre>
+<p>Then our Prompt:</p>
+<pre><code class="language-js">// MyComponent.js
+&lt;Prompt when={true} message=&quot;Please save your changes before proceeding&quot; /&gt;
+</code></pre>
+<p>If you set this up, when you try to navigate away from the page, you will not be able to and the message will be logged to the console.</p>
+<p>Great! Now you may be thinking, &quot;We can just pass anything and it'll get passed through!&quot; But you'd be wrong because that's what I thought too.</p>
+<pre><code class="language-js">const MyCustomDialogComponent = () =&gt; &lt;div /&gt;
+
+&lt;Prompt
+  when={true}
+  message={MyCustomDialogComponent}
+/&gt;
+</code></pre>
+<p>If you try this, nothing will be logged to the console and navigation will not be blocked. React Router uses prop-types to validate <code>message</code> is a string (phooey!).</p>
+<p>So, we have to stick with strings. Is there another way besides doing a bunch of work to add support for this in <code>react-router</code> directly (which'd be neat!)?</p>
+<h2 id="using-a-hoc-with-a-global-symbol-based-trigger">Using a HOC with a Global Symbol-based Trigger</h2>
+<p>I landed on this approach as it seemed to be the less hacky way to achieve this. Essentially, since we can pass a string only to the <code>getUserConfirmation</code>, I pass in the key for a global <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">Symbol</a> and store a global trigger to signal to the React dialog component to show.</p>
+<p>If you haven't used <code>Symbol</code> before, it is a primitive type in JavaScript introduced in ES6. What's neat about them is you can &quot;register&quot; them globally and they will be able to be looked up from other modules loaded within the same &quot;code realm&quot; (roughly the execution context of the engine). Well-known global symbols are built-in like <code>Symbol.iterator</code>.</p>
+<p>Why a <code>Symbol</code> vs. just a regular string? A <code>Symbol</code>-based property won't be <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol#Symbols_and_for...in_iteration">enumerable</a> (like using <code>Object.keys</code>) so it's kind of a way to do basic &quot;private&quot; properties. They can still be enumerated with other methods like <code>Object.getOwnPropertySymbols</code>. It creates a nice barrier between things your app might care about and walls it off unless someone explictly asks for that property.</p>
+<p>So what does this end up looking like? We create a HOC that has basic state and a method that will show the dialog when triggered (user attempts to navigate away). The <code>getUserConfirmation</code> handler will receive the Symbol key and invoke the callback on the global object (<code>window</code>) with that Symbol property.</p>
+<pre><code class="language-js">// PreventNavigationDialog.js
+class PreventNavigationDialog extends React.Component {
+
+  state = { open: false };
+
+  constructor() {
+    super();
+
+    // NOTE: Don't actually use Date.now. In the example
+    // repo, I use the `cuid` package
+    this.__trigger = Symbol.for(`__PreventNavigationDialog_${Date.now()}`);
+  }
+
+  componentDidMount() {
+    window[this.__trigger] = this.show;
+  }
+
+  componentWillUnmount() {
+    delete window[this.__trigger];
+  }
+
+  render() {
+    const { when } = this.props;
+    const { open } = this.state;
+
+    return (
+      &lt;React.Fragment&gt;
+        &lt;Prompt when={when} message={Symbol.keyFor(this.__trigger)} /&gt;
+        {open &amp;&amp; &lt;div onClick={this.close}&gt;Test dialog&lt;/div&gt;}
+      &lt;/React.Fragment&gt;
+    );
+  }
+
+  show = allowTransitionCallback =&gt; {
+    this.setState({ open: true }, () =&gt; allowTransitionCallback(false));
+  };
+
+  close = () =&gt; {
+    this.setState({ open: false });
+  };
+}
+</code></pre>
+<pre><code class="language-js">// index.js
+
+const getUserConfirmation = (dialogKey, callback) =&gt; {
+
+  // use &quot;message&quot; as Symbol-based key
+  const dialogTrigger = window[Symbol.for(dialogKey)];
+
+  if (dialogTrigger) {
+    // delegate to dialog and pass callback through
+    return dialogTrigger(callback);
+  }
+
+  // Fallback to allowing navigation
+  callback(true);
+}
+
+&lt;BrowserRouter getUserConfirmation={getUserConfirmation}&gt;
+...
+&lt;/BrowserRouter&gt;
+</code></pre>
+<p>Okay, a bit going on here!</p>
+<ol>
+<li>First, define our shared Symbol. Using <code>Symbol.for</code> will register the Symbol globally so it can be accessed across the page. We assign it a unique key for lookup (I recommend <a href="https://www.npmjs.com/package/cuid"><code>cuid</code></a> for real world usage).</li>
+<li>Next, define our HOC with some basic state. It takes in a <code>when</code> prop just like <code>Prompt</code> (and passes it down). It also has a simple <code>open</code> flag.</li>
+<li>When our HOC mounts, it registers our <code>show</code> trigger globally. It cleans up in case it is unmounted.</li>
+<li>Modify <code>getUserConfirmation</code> to check and see if a dialog trigger callback exists and call it if so. Since we assign it when the HOC mounts, it will set the state of the dialog.</li>
+</ol>
+<p>The nice thing about this design is that we're allowing for multiple potential dialog prompts across the app. We can even have multiple instances of this component without conflict using the uniqueness nature of Symbols. I'm not a huge fan of using <code>window</code> but it has its uses--it's tough to avoid <em>something</em> due to how we need to access it in <code>getUserConfirmation</code> and we can't pass anything but a string.</p>
+<h2 id="demo-and-code">Demo and Code</h2>
+<p><img src="https://user-images.githubusercontent.com/563819/43242522-2e47c664-9067-11e8-8799-0e2c9723bf9f.png" class="img-fluid" alt="End result" /></p>
+<p>You can play with the <a href="https://codesandbox.io/s/myw173jyq8">fully working CRA-based demo</a> with Material UI on CodeSandbox or the <a href="https://github.com/kamranayub/example-react-router-transition-ui/tree/master/">corresponding GitHub repo</a>. The demo has a few more features like passing <code>title</code> and <code>message</code> content as well as using the <code>(location: Location) =&gt; boolean | string</code> overload that <code>Prompt</code> <code>message</code> prop supports to decide whether to allow transitions based on target location (we use this for our app).</p>
+<p>It wouldn't take much to change this HOC to leverage the render props pattern, for example, to show <em>whatever you want</em> by passing down <code>show</code>. Reuse it across your app!</p>
+<p>This was an interesting issue to solve and it wasn't as easy as I hoped initially. I hope this helps other people! This could probably be packaged up as a customizable HOC with a little work. Maybe when I have a spare moment I'll stream making a package out of this. Remember to follow me on <a href="https://twitch.tv/kamranicus">Twitch</a>!</p>
+
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        Hi, I&#x27;m a professional full-stack developer who also loves to write, speak at conferences, work on side projects, contribute to open source, make games, and play them.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="http://www.youtube.com/c/Kamranicus " title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://twitch.tv/kamranicus " title="YouTube">
+  <i class="twitch icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '2018-07-26-react-router-custom-transition-ui';
+    var disqus_title = 'Showing Custom UI on React Router Transitions';
+    var disqus_url = 'https://kamranicus.com/posts/2018-07-26-react-router-custom-transition-ui';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+      <!-- Disqus -->
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+  
+  <!-- Footer -->
+  <footer>   
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2018</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="http://www.youtube.com/c/Kamranicus " title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://twitch.tv/kamranicus " title="YouTube">
+  <i class="twitch icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe via RSS or email
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+
+  
+
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

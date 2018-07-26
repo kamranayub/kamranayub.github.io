@@ -5,8 +5,167 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2018</copyright>
-		<pubDate>Thu, 26 Jul 2018 05:18:02 GMT</pubDate>
-		<lastBuildDate>Thu, 26 Jul 2018 05:18:02 GMT</lastBuildDate>
+		<pubDate>Thu, 26 Jul 2018 13:32:30 GMT</pubDate>
+		<lastBuildDate>Thu, 26 Jul 2018 13:32:30 GMT</lastBuildDate>
+		<item>
+			<title>Showing Custom UI on React Router Transitions</title>
+			<link>https://kamranicus.com/posts/2018-07-26-react-router-custom-transition-ui</link>
+			<description>&lt;p&gt;We had a recent requirement on our project to prompt the user with a custom modal when they have some pending changes to save in our application. The intention was to ensure they saved their changes as it affected other parts of the data they're working on and we need to recompute business rules (fun, huh?).&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2018-07-26-react-router-custom-transition-ui</guid>
+			<pubDate>Thu, 26 Jul 2018 13:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;We had a recent requirement on our project to prompt the user with a custom modal when they have some pending changes to save in our application. The intention was to ensure they saved their changes as it affected other parts of the data they're working on and we need to recompute business rules (fun, huh?).&lt;/p&gt;
+&lt;p&gt;Since we're leveraging &lt;a href="https://reacttraining.com/react-router/web/guides/philosophy"&gt;React Router v4&lt;/a&gt;, I looked into what was provided out of the box to see how customizable it was.&lt;/p&gt;
+&lt;h2 id="the-prompt-component"&gt;The Prompt Component&lt;/h2&gt;
+&lt;p&gt;React Router core has a component called &lt;a href="https://reacttraining.com/react-router/core/api/Prompt"&gt;&lt;code&gt;Prompt&lt;/code&gt;&lt;/a&gt;. The purpose of this component is to &lt;a href="https://reacttraining.com/react-router/web/example/preventing-transitions"&gt;show a dialog to the user during a router transition&lt;/a&gt;. The &lt;code&gt;when&lt;/code&gt; prop can be set to enable/disable this functionality dynamically which is great. You can also pass a &lt;code&gt;message&lt;/code&gt; that will get displayed or a function that takes a &lt;code&gt;location&lt;/code&gt; and returns &lt;code&gt;true&lt;/code&gt; to allow navigation or a message to prevent.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;&amp;lt;Prompt when={true} message=&amp;quot;Please save your changes before proceeding&amp;quot; /&amp;gt;
+&amp;lt;Prompt when={true} message={location =&amp;gt; location.pathname === &amp;quot;/foo&amp;quot; ? true : &amp;quot;Denied&amp;quot;} /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/43242206-4b62f540-9065-11e8-80bb-d4ca944cc9ea.png" class="img-fluid" alt="The default prompt" /&gt;&lt;/p&gt;
+&lt;p&gt;However, I noticed a few caveats with this component. First, the default prompt is the browser prompt and when you click 'Okay' it &lt;em&gt;allows navigation&lt;/em&gt; which is exactly the opposite of what I want. Second, you can't render custom UI directly through &lt;code&gt;Prompt&lt;/code&gt;--it just takes a &lt;code&gt;message&lt;/code&gt;. Why? If you &lt;a href="https://github.com/ReactTraining/react-router/blob/e6f9017c947b3ae49affa24cc320d0a86f765b55/packages/react-router/modules/Prompt.js#L30"&gt;dive down&lt;/a&gt; into the code, it leverages the &lt;a href="https://www.npmjs.com/package/history"&gt;history&lt;/a&gt; npm package which just delegates to that browser prompt. The good news is, the &lt;code&gt;history&lt;/code&gt; package allows you to override the UI generation via &lt;a href="https://www.npmjs.com/package/history#customizing-the-confirm-dialog"&gt;&lt;code&gt;getUserConfirmation&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;import createHistory from &amp;quot;history/browserHistory&amp;quot;;
+
+const history = createHistory({
+  getUserConfirmation(message, callback) {
+    // Show some custom dialog to the user and call
+    // callback(true) to continue the transiton, or
+    // callback(false) to abort it.
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is helpful, using this we can always prevent the transition if needed. So, given that we can't use &lt;code&gt;Prompt&lt;/code&gt; directly to render custom React UI but we &lt;em&gt;can&lt;/em&gt; override the core handler for showing the prompt, is there a way to connect the two? Of course.&lt;/p&gt;
+&lt;h2 id="overriding-getuserconfirmation"&gt;Overriding getUserConfirmation&lt;/h2&gt;
+&lt;p&gt;First, let's test our assumption out and see if we can log the message we get from &lt;code&gt;Prompt&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Using the regular &lt;code&gt;BrowserRouter&lt;/code&gt; component from &lt;code&gt;react-router-dom&lt;/code&gt;, pass the &lt;code&gt;getUserConfirmation&lt;/code&gt; prop:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;const getUserConfirmation = (message, callback) =&amp;gt; {
+  console.log(message);
+  callback(false);
+}
+
+&amp;lt;BrowserRouter getUserConfirmation={getUserConfirmation}&amp;gt;
+...
+&amp;lt;/BrowserRouter&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If like me you are using &lt;code&gt;connected-react-router&lt;/code&gt;, we can still customize the &lt;code&gt;createHistory&lt;/code&gt; call as shown above:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;...
+import { createBrowserHistory } from 'history'
+import { applyMiddleware, compose, createStore } from 'redux'
+import { connectRouter, routerMiddleware } from 'connected-react-router'
+...
+const history = createBrowserHistory({
+  getUserConfirmation(message, callback) {
+    console.log(message);
+    callback(false);
+  }
+})
+
+const store = createStore(
+  connectRouter(history)(rootReducer), // new root reducer with router state
+  initialState,
+  compose(
+    applyMiddleware(
+      routerMiddleware(history), // for dispatching history actions
+      // ... other middlewares ...
+    ),
+  ),
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then our Prompt:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;// MyComponent.js
+&amp;lt;Prompt when={true} message=&amp;quot;Please save your changes before proceeding&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you set this up, when you try to navigate away from the page, you will not be able to and the message will be logged to the console.&lt;/p&gt;
+&lt;p&gt;Great! Now you may be thinking, &amp;quot;We can just pass anything and it'll get passed through!&amp;quot; But you'd be wrong because that's what I thought too.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;const MyCustomDialogComponent = () =&amp;gt; &amp;lt;div /&amp;gt;
+
+&amp;lt;Prompt
+  when={true}
+  message={MyCustomDialogComponent}
+/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you try this, nothing will be logged to the console and navigation will not be blocked. React Router uses prop-types to validate &lt;code&gt;message&lt;/code&gt; is a string (phooey!).&lt;/p&gt;
+&lt;p&gt;So, we have to stick with strings. Is there another way besides doing a bunch of work to add support for this in &lt;code&gt;react-router&lt;/code&gt; directly (which'd be neat!)?&lt;/p&gt;
+&lt;h2 id="using-a-hoc-with-a-global-symbol-based-trigger"&gt;Using a HOC with a Global Symbol-based Trigger&lt;/h2&gt;
+&lt;p&gt;I landed on this approach as it seemed to be the less hacky way to achieve this. Essentially, since we can pass a string only to the &lt;code&gt;getUserConfirmation&lt;/code&gt;, I pass in the key for a global &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol"&gt;Symbol&lt;/a&gt; and store a global trigger to signal to the React dialog component to show.&lt;/p&gt;
+&lt;p&gt;If you haven't used &lt;code&gt;Symbol&lt;/code&gt; before, it is a primitive type in JavaScript introduced in ES6. What's neat about them is you can &amp;quot;register&amp;quot; them globally and they will be able to be looked up from other modules loaded within the same &amp;quot;code realm&amp;quot; (roughly the execution context of the engine). Well-known global symbols are built-in like &lt;code&gt;Symbol.iterator&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Why a &lt;code&gt;Symbol&lt;/code&gt; vs. just a regular string? A &lt;code&gt;Symbol&lt;/code&gt;-based property won't be &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol#Symbols_and_for...in_iteration"&gt;enumerable&lt;/a&gt; (like using &lt;code&gt;Object.keys&lt;/code&gt;) so it's kind of a way to do basic &amp;quot;private&amp;quot; properties. They can still be enumerated with other methods like &lt;code&gt;Object.getOwnPropertySymbols&lt;/code&gt;. It creates a nice barrier between things your app might care about and walls it off unless someone explictly asks for that property.&lt;/p&gt;
+&lt;p&gt;So what does this end up looking like? We create a HOC that has basic state and a method that will show the dialog when triggered (user attempts to navigate away). The &lt;code&gt;getUserConfirmation&lt;/code&gt; handler will receive the Symbol key and invoke the callback on the global object (&lt;code&gt;window&lt;/code&gt;) with that Symbol property.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;// PreventNavigationDialog.js
+class PreventNavigationDialog extends React.Component {
+
+  state = { open: false };
+
+  constructor() {
+    super();
+
+    // NOTE: Don't actually use Date.now. In the example
+    // repo, I use the `cuid` package
+    this.__trigger = Symbol.for(`__PreventNavigationDialog_${Date.now()}`);
+  }
+
+  componentDidMount() {
+    window[this.__trigger] = this.show;
+  }
+
+  componentWillUnmount() {
+    delete window[this.__trigger];
+  }
+
+  render() {
+    const { when } = this.props;
+    const { open } = this.state;
+
+    return (
+      &amp;lt;React.Fragment&amp;gt;
+        &amp;lt;Prompt when={when} message={Symbol.keyFor(this.__trigger)} /&amp;gt;
+        {open &amp;amp;&amp;amp; &amp;lt;div onClick={this.close}&amp;gt;Test dialog&amp;lt;/div&amp;gt;}
+      &amp;lt;/React.Fragment&amp;gt;
+    );
+  }
+
+  show = allowTransitionCallback =&amp;gt; {
+    this.setState({ open: true }, () =&amp;gt; allowTransitionCallback(false));
+  };
+
+  close = () =&amp;gt; {
+    this.setState({ open: false });
+  };
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;// index.js
+
+const getUserConfirmation = (dialogKey, callback) =&amp;gt; {
+
+  // use &amp;quot;message&amp;quot; as Symbol-based key
+  const dialogTrigger = window[Symbol.for(dialogKey)];
+
+  if (dialogTrigger) {
+    // delegate to dialog and pass callback through
+    return dialogTrigger(callback);
+  }
+
+  // Fallback to allowing navigation
+  callback(true);
+}
+
+&amp;lt;BrowserRouter getUserConfirmation={getUserConfirmation}&amp;gt;
+...
+&amp;lt;/BrowserRouter&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Okay, a bit going on here!&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;First, define our shared Symbol. Using &lt;code&gt;Symbol.for&lt;/code&gt; will register the Symbol globally so it can be accessed across the page. We assign it a unique key for lookup (I recommend &lt;a href="https://www.npmjs.com/package/cuid"&gt;&lt;code&gt;cuid&lt;/code&gt;&lt;/a&gt; for real world usage).&lt;/li&gt;
+&lt;li&gt;Next, define our HOC with some basic state. It takes in a &lt;code&gt;when&lt;/code&gt; prop just like &lt;code&gt;Prompt&lt;/code&gt; (and passes it down). It also has a simple &lt;code&gt;open&lt;/code&gt; flag.&lt;/li&gt;
+&lt;li&gt;When our HOC mounts, it registers our &lt;code&gt;show&lt;/code&gt; trigger globally. It cleans up in case it is unmounted.&lt;/li&gt;
+&lt;li&gt;Modify &lt;code&gt;getUserConfirmation&lt;/code&gt; to check and see if a dialog trigger callback exists and call it if so. Since we assign it when the HOC mounts, it will set the state of the dialog.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The nice thing about this design is that we're allowing for multiple potential dialog prompts across the app. We can even have multiple instances of this component without conflict using the uniqueness nature of Symbols. I'm not a huge fan of using &lt;code&gt;window&lt;/code&gt; but it has its uses--it's tough to avoid &lt;em&gt;something&lt;/em&gt; due to how we need to access it in &lt;code&gt;getUserConfirmation&lt;/code&gt; and we can't pass anything but a string.&lt;/p&gt;
+&lt;h2 id="demo-and-code"&gt;Demo and Code&lt;/h2&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/43242522-2e47c664-9067-11e8-8799-0e2c9723bf9f.png" class="img-fluid" alt="End result" /&gt;&lt;/p&gt;
+&lt;p&gt;You can play with the &lt;a href="https://codesandbox.io/s/myw173jyq8"&gt;fully working CRA-based demo&lt;/a&gt; with Material UI on CodeSandbox or the &lt;a href="https://github.com/kamranayub/example-react-router-transition-ui/tree/master/"&gt;corresponding GitHub repo&lt;/a&gt;. The demo has a few more features like passing &lt;code&gt;title&lt;/code&gt; and &lt;code&gt;message&lt;/code&gt; content as well as using the &lt;code&gt;(location: Location) =&amp;gt; boolean | string&lt;/code&gt; overload that &lt;code&gt;Prompt&lt;/code&gt; &lt;code&gt;message&lt;/code&gt; prop supports to decide whether to allow transitions based on target location (we use this for our app).&lt;/p&gt;
+&lt;p&gt;It wouldn't take much to change this HOC to leverage the render props pattern, for example, to show &lt;em&gt;whatever you want&lt;/em&gt; by passing down &lt;code&gt;show&lt;/code&gt;. Reuse it across your app!&lt;/p&gt;
+&lt;p&gt;This was an interesting issue to solve and it wasn't as easy as I hoped initially. I hope this helps other people! This could probably be packaged up as a customizable HOC with a little work. Maybe when I have a spare moment I'll stream making a package out of this. Remember to follow me on &lt;a href="https://twitch.tv/kamranicus"&gt;Twitch&lt;/a&gt;!&lt;/p&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>Flattening Deeply Nested Components in React</title>
 			<link>https://kamranicus.com/posts/2018-07-07-react-nesting-components-flat</link>
@@ -1252,19 +1411,6 @@ const MaterialIconAsync = ({ icon }) =&amp;gt; {
 &lt;p&gt;My new role is on an internal product team where I'll be working on Node.js apps with Angular and React front-ends. It'll be a pretty big shift from doing primarily Microsoft stack and ASP.NET/C# to full stack JavaScript. Of course, I'm no stranger to these technologies but rather than developing in those stacks on side projects I'll be doing it full-time which should help me learn it a lot more deeply.&lt;/p&gt;
 &lt;p&gt;I'm also excited because Target has a clear commitment towards open source and the greater community, being a major sponsor of almost every local conference and encouraging OSS contributions from its engineers. Expect to see more frequent blog posts and maybe even some open source project work as I take on my new role.&lt;/p&gt;
 &lt;p&gt;My love for .NET won't be lost though, I'll still be plugging away at KTOMG, migrating to .NET Core and working on .NET Core OSS projects. I'm also trying to learn F# this year. On that note, I hope to come up with a consistent schedule to stream &lt;a href="http://twitch.tv/kamranicus"&gt;on Twitch&lt;/a&gt; so you can follow me there for updates.&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Thanks for attending Midwest.js</title>
-			<link>https://kamranicus.com/posts/2017-08-28-mjs-thanks</link>
-			<description>&lt;p&gt;A couple weeks ago &lt;a href="https://kamranicus.com/posts/2017-07-14-midwestjs-react-typescript"&gt;I spoke at Midwest.js&lt;/a&gt; on &lt;strong&gt;Building Scalable, Maintainable Apps Using TypeScript and React&lt;/strong&gt;. The conference itself was great I thought and I plan to attend again! I learned some stuff about GraphQL that I didn't know and learned about V8 compiler optimizations from &lt;a href="http://twitter.com/captainsafia"&gt;@captainsafia&lt;/a&gt;.&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2017-08-28-mjs-thanks</guid>
-			<pubDate>Tue, 29 Aug 2017 00:48:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;A couple weeks ago &lt;a href="https://kamranicus.com/posts/2017-07-14-midwestjs-react-typescript"&gt;I spoke at Midwest.js&lt;/a&gt; on &lt;strong&gt;Building Scalable, Maintainable Apps Using TypeScript and React&lt;/strong&gt;. The conference itself was great I thought and I plan to attend again! I learned some stuff about GraphQL that I didn't know and learned about V8 compiler optimizations from &lt;a href="http://twitter.com/captainsafia"&gt;&amp;#64;captainsafia&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The slides are online at &lt;a href="http://bit.ly/mjs-react-ts."&gt;http://bit.ly/mjs-react-ts.&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;It was sitting room only, so if you attended I thank you! I think it's clear there's a demand for more real-world wisdom talks around the latest tech. There are enough intro talks that where I can't offer much but I think many of us have a lot to offer if we've been working with a technology in production for awhile.&lt;/p&gt;
-&lt;p&gt;I have the presentation recorded but am waiting for MJS to upload their recordings &lt;a href="https://www.youtube.com/channel/UCg09l6pJcp2DdCcsSrJmQng"&gt;on YouTube&lt;/a&gt;. If it starts to take too long, I'll go ahead and upload my version (theirs will have better audio). I'm still waiting on the full feedback report but talking in person to many of you left me feeling pretty great!&lt;/p&gt;
-&lt;p&gt;Maybe next year I'll submit an updated version with any new wisdom I learn as I continue converting KTOMG over to React.&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>
