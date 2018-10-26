@@ -5,8 +5,8 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2018</copyright>
-		<pubDate>Fri, 26 Oct 2018 03:31:32 GMT</pubDate>
-		<lastBuildDate>Fri, 26 Oct 2018 03:31:32 GMT</lastBuildDate>
+		<pubDate>Fri, 26 Oct 2018 03:48:31 GMT</pubDate>
+		<lastBuildDate>Fri, 26 Oct 2018 03:48:31 GMT</lastBuildDate>
 		<item>
 			<title>Two New Pluralsight Courses on Azure Storage Published</title>
 			<link>https://kamranicus.com/posts/2018-10-18-new-azure-pluralsight-courses</link>
@@ -68,6 +68,9 @@
 &lt;h3 id="recording-demos"&gt;Recording demos&lt;/h3&gt;
 &lt;p&gt;The way I recorded demos also changed a bit. This time, I divided demos into sections (with slide-based script and screenshots which doubled as a transcript) and narrated first then ran through the visual steps (or vice versa). This made it much easier to cut together and keep me focused. If I didn't do this, it would be hard to maintain the position of the mouse or if I encountered an issue, backtracking and editing together two disparate parts. I had to let go a bit of some of my perfectionist nature--sometimes I wished I could just redo entire clips but I knew I didn't have much time. The peer reviews came back very positive so I feel pretty good about the end product regardless!&lt;/p&gt;
 &lt;p&gt;One thing I'd definitely do again is to &lt;a href="https://github.com/kamranayub/pluralsight-azure-cdn-with-storage/blob/master/.vscode/settings.json"&gt;set up a custom VS Code settings file&lt;/a&gt; for the materials folder. It allowed me to always keep a consistent VS Code experience and turned off a bunch of stuff that would make it tougher to edit. I've found for all three of my courses, VS Code works for any code demos--it has the terminal, files, everything, it's super clean and super fast.&lt;/p&gt;
+&lt;p&gt;I just saw this tip today, too! Heck yeah!&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" data-lang="en"&gt;&lt;p lang="en" dir="ltr"&gt;One thing &lt;a href="https://twitter.com/code?ref_src=twsrc%5Etfw"&gt;&amp;#64;code&lt;/a&gt; has going for it is the ability to create &amp;quot;profiles&amp;quot; by supplying CLI args when you open it. Combine it with an alias and 💥 I can open VSCode with my screencast settings in an instant. Thanks for the tip &lt;a href="https://twitter.com/avanslaars?ref_src=twsrc%5Etfw"&gt;&amp;#64;avanslaars&lt;/a&gt; and &lt;a href="https://twitter.com/jlengstorf?ref_src=twsrc%5Etfw"&gt;&amp;#64;jlengstorf&lt;/a&gt; &lt;a href="https://t.co/3RfdeSvHHO"&gt;pic.twitter.com/3RfdeSvHHO&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kyle Shevlin (&amp;#64;kyleshevlin) &lt;a href="https://twitter.com/kyleshevlin/status/1055666040401670145?ref_src=twsrc%5Etfw"&gt;October 26, 2018&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
 &lt;h3 id="working-with-a-big-monitor"&gt;Working with a big monitor&lt;/h3&gt;
 &lt;p&gt;There &lt;em&gt;was&lt;/em&gt; an issue I needed to work through right away which was how I record on an Ultrawide screen. &lt;a href="https://www.amazon.com/gp/product/B01N6S1P2D?&amp;amp;_encoding=UTF8&amp;amp;tag=kamranicus-20&amp;amp;linkCode=ur2&amp;amp;linkId=5427a9094117f6bab8eaccbcc18af141&amp;amp;camp=1789&amp;amp;creative=9325"&gt;I love my monitor&lt;/a&gt; (affiliate link). But it makes it a huge pain to record applications and presentations because they need to be recorded at 1280x720.&lt;/p&gt;
 &lt;p&gt;What I ended up doing was two things:&lt;/p&gt;
