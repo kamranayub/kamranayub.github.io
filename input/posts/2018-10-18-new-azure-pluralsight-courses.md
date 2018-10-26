@@ -97,6 +97,12 @@ The way I recorded demos also changed a bit. This time, I divided demos into sec
 
 One thing I'd definitely do again is to [set up a custom VS Code settings file][settings] for the materials folder. It allowed me to always keep a consistent VS Code experience and turned off a bunch of stuff that would make it tougher to edit. I've found for all three of my courses, VS Code works for any code demos--it has the terminal, files, everything, it's super clean and super fast.
 
+I just saw this tip today, too! Heck yeah!
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">One thing <a href="https://twitter.com/code?ref_src=twsrc%5Etfw">@code</a> has going for it is the ability to create &quot;profiles&quot; by supplying CLI args when you open it. Combine it with an alias and 💥 I can open VSCode with my screencast settings in an instant. Thanks for the tip <a href="https://twitter.com/avanslaars?ref_src=twsrc%5Etfw">@avanslaars</a> and <a href="https://twitter.com/jlengstorf?ref_src=twsrc%5Etfw">@jlengstorf</a> <a href="https://t.co/3RfdeSvHHO">pic.twitter.com/3RfdeSvHHO</a></p>&mdash; Kyle Shevlin (@kyleshevlin) <a href="https://twitter.com/kyleshevlin/status/1055666040401670145?ref_src=twsrc%5Etfw">October 26, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
 ### Working with a big monitor
 
 There *was* an issue I needed to work through right away which was how I record on an Ultrawide screen. [I love my monitor][monitor] (affiliate link). But it makes it a huge pain to record applications and presentations because they need to be recorded at 1280x720.
