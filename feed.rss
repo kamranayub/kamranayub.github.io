@@ -5,8 +5,163 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2018</copyright>
-		<pubDate>Fri, 21 Dec 2018 04:41:29 GMT</pubDate>
-		<lastBuildDate>Fri, 21 Dec 2018 04:41:29 GMT</lastBuildDate>
+		<pubDate>Fri, 21 Dec 2018 06:03:32 GMT</pubDate>
+		<lastBuildDate>Fri, 21 Dec 2018 06:03:32 GMT</lastBuildDate>
+		<item>
+			<title>2018 Year in Review and 2019 Goals</title>
+			<link>https://kamranicus.com/posts/2018-12-20-year-in-review-2019-goals</link>
+			<description>&lt;p&gt;Wow, what a year! &lt;a href="https://kamranicus.com/posts/2018-01-01-2018-a-new-year"&gt;At the start of 2018 I laid out my goals&lt;/a&gt; and I ended up crushing them! I hadn't heard of &lt;a href="https://syntax.fm/show/067/hasty-treat-goal-setting"&gt;&lt;em&gt;SMART&lt;/em&gt; goal setting yet&lt;/a&gt; but they ended up fitting the acronym: &lt;strong&gt;S&lt;/strong&gt;pecific, &lt;strong&gt;M&lt;/strong&gt;easurable, &lt;strong&gt;A&lt;/strong&gt;chievable, &lt;strong&gt;R&lt;/strong&gt;ealistic, and &lt;strong&gt;T&lt;/strong&gt;ime-bound.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2018-12-20-year-in-review-2019-goals</guid>
+			<pubDate>Fri, 21 Dec 2018 05:01:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;Wow, what a year! &lt;a href="https://kamranicus.com/posts/2018-01-01-2018-a-new-year"&gt;At the start of 2018 I laid out my goals&lt;/a&gt; and I ended up crushing them! I hadn't heard of &lt;a href="https://syntax.fm/show/067/hasty-treat-goal-setting"&gt;&lt;em&gt;SMART&lt;/em&gt; goal setting yet&lt;/a&gt; but they ended up fitting the acronym: &lt;strong&gt;S&lt;/strong&gt;pecific, &lt;strong&gt;M&lt;/strong&gt;easurable, &lt;strong&gt;A&lt;/strong&gt;chievable, &lt;strong&gt;R&lt;/strong&gt;ealistic, and &lt;strong&gt;T&lt;/strong&gt;ime-bound.&lt;/p&gt;
+&lt;h2 id="goals-in-review"&gt;Goals in Review&lt;/h2&gt;
+&lt;p&gt;Let's review my 2018 and goals and see how I stacked up.&lt;/p&gt;
+&lt;h2 id="primary-goals"&gt;Primary Goals&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;✅ &lt;del&gt;Publish 1 more Pluralsight course&lt;/del&gt; (&lt;a href="https://kamranicus.com/posts/2018-10-18-new-azure-pluralsight-courses"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;✅ &lt;del&gt;Host a half-day workshop (scheduled for April)&lt;/del&gt; (&lt;a href="https://kamranicus.com/posts/2018-04-29-azure-nodejs-workshop-minnewebcon"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;✅ &lt;del&gt;Participate in a LD game jam&lt;/del&gt; (&lt;a href="https://kamranicus.com/posts/2018-04-29-ludum-dare-41-post-mortem"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;✅ &lt;del&gt;Attend and present at 2 conferences&lt;/del&gt; (&lt;a href="https://kamranicus.com/posts/2018-04-29-azure-nodejs-workshop-minnewebcon"&gt;DONE&lt;/a&gt; and &lt;a href="https://kamranicus.com/posts/2018-05-11-ndc-minnesota-typescript-react"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;✅ &lt;del&gt;Attend and present at a local user group&lt;/del&gt; (&lt;a href="https://twitter.com/kamranayub/status/1037840790414864384"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;✅ &lt;del&gt;Finish KTOMG UI revamp with React&lt;/del&gt; (&lt;a href="https://twitter.com/kamranayub/status/1055344465991344128"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;⛔ Continue doing code livestreams&lt;/li&gt;
+&lt;li&gt;⛔ Publish another Pi guide for a project I have in mind&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="stretch-goals"&gt;Stretch Goals&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;⛔ Become a Microsoft MVP
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Nominated, but nope.&lt;/strong&gt; Unfortunately, somehow my MVP nomination fell through the cracks and I didn't hear back until September this year. They advised me to re-submit. 😞&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;☑️ Publish 2 more Pluralsight courses
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://kamranicus.com/posts/2018-10-18-new-azure-pluralsight-courses"&gt;Yes! Almost.&lt;/a&gt; I ended up doing two courses at once this year.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;⛔ Host a full-day workshop
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Nope.&lt;/strong&gt; Work's been busy with a new release so while I want to start this soon, it won't be in 2018.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;⛔ Stream 10 sessions
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Nope.&lt;/strong&gt; Ended up not having the time/energy to do this.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="retro"&gt;Retro&lt;/h2&gt;
+&lt;p&gt;I'm definitely proud of what I accomplished in 2018--especially the dual-wielding courses. That was a risky proposition but with proper tracking and progress checkpoints, I managed to do it in almost as many hours as it took for me to do my first course.&lt;/p&gt;
+&lt;p&gt;It's clear my stretch goals were definite stretches! For my evenings, I have a few choices of what to do: laze about, contract work, &lt;a href="https://keeptrackofmygames.com"&gt;Keep Track of My Games&lt;/a&gt;, open source, house work. You may be surprised to know a lot of the time I do end up lazing about--but it's with my wife or friends, watching shows, playing board games, or generally enjoying people's company. So I don't think it's &lt;em&gt;necessarily&lt;/em&gt; unproductive! Still, those choices don't leave a ton of room for Twitch streaming. I'm just not positive it'll be a value-add activity for me, so I'm leaving it off my 2019 goals.&lt;/p&gt;
+&lt;p&gt;The MVP goal was very disappointing. Eventually after 10 months, the program manager responded to my email and said to just try again as the window was lost. It's supposed to be a 90-day window but for some reason I just got lost in the process. &lt;strong&gt;It will&lt;/strong&gt; be on my 2019 goals again. New for 2019 is the requirement that you be nominated--luckily I have some MVP colleagues that are willing to put in a word for me! &lt;a href="https://twitter.com/kamranayub"&gt;Get in touch&lt;/a&gt; if you want to throw your weight in, too.&lt;/p&gt;
+&lt;p&gt;Workshop? Just didn't have a chance. The half-day workshop was awesome and I'd do it again. In 2019 I may work on a React/TypeScript workshop and pitch it to Frontend Masters or to conferences. It may turn into a 2020 goal.&lt;/p&gt;
+&lt;h2 id="other-year-end-accomplishments"&gt;Other Year-End Accomplishments&lt;/h2&gt;
+&lt;p&gt;It's always the case you end up doing things you never planned. Here's what else I ended up accomplishing:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Hustle and passive income accounted for over 10% of my yearly earnings.&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;This was a goal I had in mind but didn't write down for 2018. I wanted to try and see if I could make my gig/passive income account for at least 10% of my earnings and &lt;strong&gt;it did!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/2018-12-20-23-15-14.png" class="img-fluid" alt="Hustlin and bustlin" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;a href="https://kamranicus.com/posts/2018-12-20-typescript-react-components-pluralsight-guide"&gt;Published first Pluralsight guide&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;My first guide around TypeScript/React came out this last week!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;a href="https://kamranicus.com/posts/2018-05-01-dotnetrocks-ravendb-podcast"&gt;Appeared on .NET Rocks to talk about RavenDB 4&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How awesome is that?! Have been a fan for years and it was surreal to be on there.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;a href="https://www.youtube.com/watch?v=bqP2O3VHjQ8"&gt;Appeared on Script &amp;amp; Style webcast to talk about Excalibur.js and web games&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://twitter.com/toddhgardner"&gt;Todd Gardner&lt;/a&gt; invited me on with my friend &lt;a href="https://twitter.com/erikonarheim"&gt;Erik&lt;/a&gt; to discuss building web games and our open source experience with &lt;a href="https://github.com/excaliburjs/Excalibur"&gt;Excalibur.js&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Bought a house&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Found a good house for a good deal in a great neighborhood next to a school. The first project was done in May, which was to &lt;a href="https://twitter.com/kamranayub/status/999037691382632449"&gt;build an office wall&lt;/a&gt;! I'm super enthusiastic about learning to DIY and I can't recommend the &lt;a href="https://www.youtube.com/channel/UCnorhjQR4zJkT7AVNhu395Q"&gt;Home RenoVision&lt;/a&gt; YT channel enough as a learning resource.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Had another kid&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Baby girl in November, she's awesome!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Released React rewrite of &lt;a href="https://keeptrackofmygames.com"&gt;KTOMG&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This was huge! At least a 8-10 month endeavor. I still have plenty of work to do with KTOMG but at least that's out of the way.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Finished some games:&lt;/strong&gt; Far Cry 5, Destiny 2 (story), Telltale's Game of Thrones.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Still working through Red Dead 2, AC: Syndicate, LoZ: BoW, and Witcher 3. They're all long, gimme some slack!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Published 13 blog posts&lt;/strong&gt;. Whoo!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Traveled to New England and Montreal with family&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Using &lt;a href="https://www.choosefi.com/009-travel-rewards-travel-world-free-ultimate-guide/"&gt;travel rewards&lt;/a&gt;, the flights were free and hotels were split with a family friend. We rented a car and drove from Boston around New England up to Montreal and back. It was awesome.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Went through our finances with a fine-toothed comb&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This probably deserves its own post but I had a wake-up call of sorts and determined to eliminate a bunch of needless expenses we had been accumulating over the years. My wife and I are already fairly frugal people but didn't have a framework or the tools around it we needed. &lt;a href="https://www.choosefi.com/"&gt;Now we do&lt;/a&gt; and I'm super excited about it. I hope to do a post on it sometime in 2019. This aligns with me and my wife's 5- and 10-year plans for our family so I'm glad we started now.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="im-coming-for-you-2019"&gt;I'm Coming for You, 2019&lt;/h2&gt;
+&lt;p&gt;With the SMART framework in mind, let's see if I can establish some goals to accomplish in 2019. Keeping in check that I have a new baby daughter, I'll need to focus on the &lt;strong&gt;Attainable&lt;/strong&gt; and &lt;strong&gt;Realistic&lt;/strong&gt; portions of the acronym.&lt;/p&gt;
+&lt;h3 id="primary-goals-1"&gt;Primary Goals&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Professional&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Publish 1 Pluralsight course on Azure or TypeScript or React by September&lt;/li&gt;
+&lt;li&gt;Publish 4 Pluralsight guides on React &amp;amp; TypeScript by May&lt;/li&gt;
+&lt;li&gt;Speak at NDC MN on a TypeScript topic&lt;/li&gt;
+&lt;li&gt;Publish 5 technical articles on the blog about Azure, TypeScript, or React&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Personal&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pay off all non-mortage debt&lt;/li&gt;
+&lt;li&gt;Passive income should account for 2% of earnings, 1099 income for 5%&lt;/li&gt;
+&lt;li&gt;Replace my PCs at home with single good Ultrabook/Notebook and a NAS&lt;/li&gt;
+&lt;li&gt;Push 3 substantive updates to KTOMG throughout the year: Steam review revamp, Raven 4 upgrade, and Linux hosting&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;DIY&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Learn how to cut trim/baseboard and finish the nursery&lt;/li&gt;
+&lt;li&gt;Finish my office decor/storage, maybe paint it too&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="stretch-goals-1"&gt;Stretch Goals&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Professional&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Set up a quarterly newsletter&lt;/li&gt;
+&lt;li&gt;Publish 1 more Pluralsight course on Azure or TypeScript or React&lt;/li&gt;
+&lt;li&gt;Publish 4 additional Pluralsight guides throughout the year&lt;/li&gt;
+&lt;li&gt;Participate in 1 Pluralsight Mentoring session&lt;/li&gt;
+&lt;li&gt;Become a Microsoft MVP with a focus on Azure/TypeScript content&lt;/li&gt;
+&lt;li&gt;Speak at a JSConf or ReactConf event&lt;/li&gt;
+&lt;li&gt;Speak at the React MN meetup about TypeScript or GraphQL&lt;/li&gt;
+&lt;li&gt;Record a YouTube video walkthrough of my &lt;a href="https://kamranicus.com/guides/raspberry-pi-3-baby-monitor"&gt;Raspberry Pi baby monitor&lt;/a&gt; written guide&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Personal&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1099 income should account for 12% or more (+2% over 2018)&lt;/li&gt;
+&lt;li&gt;Travel completely free somewhere in the US with wife and 2 kids using miles/points&lt;/li&gt;
+&lt;li&gt;Participate in Ludum Dare during the spring&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;DIY&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Install &lt;a href="https://www.youtube.com/watch?v=OJqk2iS_jyQ"&gt;luxury vinyl plank&lt;/a&gt; in my office&lt;/li&gt;
+&lt;li&gt;Replace baseboard/trim in my son's bedroom&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There you have it! These &lt;em&gt;seem&lt;/em&gt; pretty doable to me as I am well-positioned to accomplish most of them this next year. For 2019 I split the goals into sub-groups to organize them better. Focusing on professional growth, personal goals, and DIY skills!&lt;/p&gt;
+&lt;p&gt;It's &lt;strong&gt;still a lot&lt;/strong&gt; but what's life without a little ambition? I can top 2018 if I work at it. As for the baby, I accomplished everything last year without compromising time with my family. I am confident I can do the same in 2019 if I focus on it!&lt;/p&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>New Pluralsight Guide: How to Statically Type React Components with TypeScript</title>
 			<link>https://kamranicus.com/posts/2018-12-20-typescript-react-components-pluralsight-guide</link>
@@ -1344,74 +1499,6 @@ const AnswerText = ({ question, onAnswerChange }) =&amp;gt;
 &lt;p&gt;My first course isn't published &lt;em&gt;yet&lt;/em&gt; which means the jury's out on whether I deserve to be in that author list. I keep myself grounded by understanding that the course could still be rejected for whatever reason. I've come this far though and I'm going to try my &lt;strong&gt;damnedest&lt;/strong&gt; to earn my place. This is an opportunity that I've literally only dreamed about and never thought would happen. Wish me luck!&lt;/p&gt;
 &lt;h2 id="jurys-in"&gt;Jury's in&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;May 2018:&lt;/strong&gt; The course has been live for several months now with a great reception! I'm counting 12 5-star reviews so far which I'm super happy about (I could calculate the ratio of views/reviews but it's similar to any media--a very small percentage of people rate things). Here's to (hopefully) more courses in the future! 🍻&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Using AngularJS 1.5 with webpack, babel, and Karma/Jest</title>
-			<link>https://kamranicus.com/posts/2017-10-06-webpack-karma-jest-babel-angularjs</link>
-			<description>&lt;p&gt;This took me awhile to get right so I'm sharing my experience trying to get webpack 3, babel 6, and Karma to work together for testing Angular 1.5 apps. I also have an example using Jest, which I actually prefer over Karma.&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2017-10-06-webpack-karma-jest-babel-angularjs</guid>
-			<pubDate>Fri, 06 Oct 2017 18:00:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;This took me awhile to get right so I'm sharing my experience trying to get webpack 3, babel 6, and Karma to work together for testing Angular 1.5 apps. I also have an example using Jest, which I actually prefer over Karma.&lt;/p&gt;
-&lt;h2 id="some-context"&gt;Some context&lt;/h2&gt;
-&lt;p&gt;Why bother with these modern build tools and Karma/Angular 1.5? Why not upgrade to ng 4 or migrate to React? For our team, there isn't yet a compelling reason to go and rewrite several apps when the product is stable and in production. Since code is spread out across several repositories and the team works in multiple codebases at a time, consistency is key.&lt;/p&gt;
-&lt;p&gt;That said, we still want to be happy writing JavaScript and Babel+Webpack+ES2015 is a great combination.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; I was actually using &lt;a href="https://facebook.github.io/jest/"&gt;Jest&lt;/a&gt; originally which worked great with Angular 1.5 &lt;em&gt;and&lt;/em&gt; our Node.js code! I'd highly recommend it &lt;em&gt;instead&lt;/em&gt; of Karma/Jasmine/Mocha/Chai because it's a single dependency with easy configuration. We switched back to Karma to maintain consistency with the rest of our codebases. Here's an &lt;a href="https://github.com/kamranayub/angularjs-sample-webpack-es6-jest"&gt;example repo&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="show-me-the-code"&gt;Show me the code&lt;/h2&gt;
-&lt;p&gt;You probably are reading this because you're struggling right now to get the puzzle pieces to fit.&lt;/p&gt;
-&lt;p&gt;With that in mind, here's a fully working repository with some specs to help you get off the ground.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Karma: &lt;a href="https://github.com/kamranayub/angularjs-sample-webpack-es6-karma"&gt;https://github.com/kamranayub/angularjs-sample-webpack-es6-karma&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Jest: &lt;a href="https://github.com/kamranayub/angularjs-sample-webpack-es6-jest"&gt;https://github.com/kamranayub/angularjs-sample-webpack-es6-jest&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;This is not meant to be a &amp;quot;starter&amp;quot; but you can use it however you want.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Read on if you need specifics on each part of the puzzle.&lt;/p&gt;
-&lt;h2 id="prior-art"&gt;Prior art&lt;/h2&gt;
-&lt;p&gt;When I was trying to get my setup working, I referenced the following posts:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://mike-ward.net/2015/09/07/tips-on-setting-up-karma-testing-with-webpack/"&gt;Tips on setting up Karma testing with webpack&lt;/a&gt; - Mike Ward, Sep 2015&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/TheLarkInn/angular-starter-es6-webpack"&gt;angular-starter-es6-webpack&lt;/a&gt; - Sean Larkin, Aug 2016&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="configuring-webpack-babel"&gt;Configuring webpack &amp;amp; Babel&lt;/h2&gt;
-&lt;p&gt;There's nothing different with my webpack or babel configuration when using Karma. Follow the standard setup guide for &lt;a href="https://github.com/babel/babel-loader"&gt;Babel + Webpack&lt;/a&gt;. The one addition I have is the &lt;a href="https://www.npmjs.com/package/babel-plugin-angularjs-annotate"&gt;babel-plugin-angularjs-annotate&lt;/a&gt; which is handy for dependency injection.&lt;/p&gt;
-&lt;h2 id="configuring-karma"&gt;Configuring karma&lt;/h2&gt;
-&lt;p&gt;This was the time suck. No matter what, it seemed I couldn't get things to process/compile the way I wanted.&lt;/p&gt;
-&lt;p&gt;The root of my issue was that my webpack configuration was actually an &lt;em&gt;array&lt;/em&gt; of configuration objects and I was passing the array to the &lt;code&gt;webpack&lt;/code&gt; karma middleware and it expects a &lt;strong&gt;single&lt;/strong&gt; configuration. My bad.&lt;/p&gt;
-&lt;p&gt;Here's the relevant snippet:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;    // This will be the new entry to webpack
-    // so it should just be a single file
-    files: [&amp;quot;src/index.tests.js&amp;quot;],
-
-    // Preprocess test index and test files using
-    // webpack (will run babel)
-    preprocessors: {
-      &amp;quot;src/index.tests.js&amp;quot;: [&amp;quot;webpack&amp;quot;],
-      &amp;quot;src/**/*.test.js&amp;quot;: [&amp;quot;webpack&amp;quot;]
-    },
-
-    // Reference webpack config (single object)
-    // and configure some middleware settings
-    webpack: require(&amp;quot;./webpack.config&amp;quot;),
-    webpackMiddleware: {
-      noInfo: true,
-      stats: &amp;quot;errors-only&amp;quot;
-    },
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;I seemed to run into some issues when I tried using a glob pattern for the &lt;code&gt;files&lt;/code&gt; array, like &lt;code&gt;**/*.test.js&lt;/code&gt; so I switched to using a single file and that seemed to calm webpack down.&lt;/p&gt;
-&lt;p&gt;That &lt;strong&gt;index.tests.js&lt;/strong&gt; file looks like:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;import &amp;quot;angular&amp;quot;;
-import &amp;quot;angular-mocks&amp;quot;;
-
-// require all test files using special Webpack feature
-// https://webpack.github.io/docs/context.html#require-context
-const testsContext = require.context(&amp;quot;.&amp;quot;, true, /\.test$/);
-testsContext.keys().forEach(testsContext);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Key here the initial imports to set up Angular and Angular mock globals. The rest uses Webpack's module API to require the test files.&lt;/p&gt;
-&lt;h2 id="writing-an-angular-test"&gt;Writing an Angular test&lt;/h2&gt;
-&lt;p&gt;With this in place, we can write a simple component controller test in ES6!&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/kamranayub/angularjs-sample-webpack-es6-karma/blob/master/src/dummy.component.test.js"&gt;https://github.com/kamranayub/angularjs-sample-webpack-es6-karma/blob/master/src/dummy.component.test.js&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;For more information on the pattern I'm using, check out &lt;a href="https://puigcerber.com/2016/02/07/how-to-test-angular-1-5-components/"&gt;Pablo's post on Angular 1.5 component testing&lt;/a&gt;.&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>
