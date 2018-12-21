@@ -5,8 +5,25 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2018</copyright>
-		<pubDate>Thu, 20 Dec 2018 05:42:03 GMT</pubDate>
-		<lastBuildDate>Thu, 20 Dec 2018 05:42:03 GMT</lastBuildDate>
+		<pubDate>Fri, 21 Dec 2018 04:41:29 GMT</pubDate>
+		<lastBuildDate>Fri, 21 Dec 2018 04:41:29 GMT</lastBuildDate>
+		<item>
+			<title>New Pluralsight Guide: How to Statically Type React Components with TypeScript</title>
+			<link>https://kamranicus.com/posts/2018-12-20-typescript-react-components-pluralsight-guide</link>
+			<description>&lt;p&gt;I just published my first Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/b7An9"&gt;How to Statically Type React Components with TypeScript&lt;/a&gt;. I cover the basics of how to annotate React components, props, state, and events with TypeScript. Go ahead and check it out!&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2018-12-20-typescript-react-components-pluralsight-guide</guid>
+			<pubDate>Fri, 21 Dec 2018 03:22:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;I just published my first Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/b7An9"&gt;How to Statically Type React Components with TypeScript&lt;/a&gt;. I cover the basics of how to annotate React components, props, state, and events with TypeScript. Go ahead and check it out!&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;As you may know if you &lt;a href="https://twitter.com/kamranayub"&gt;follow me on social media&lt;/a&gt;, baby #2 dropped in November so I'm taking a good amount of time before I commit to a big contract like &lt;a href="https://kamranicus.com/posts/2018-10-18-new-azure-pluralsight-courses"&gt;doing two Pluralsight courses at once&lt;/a&gt;. That was well worth it but quite a feat.&lt;/p&gt;
+&lt;p&gt;Still--I'm not one to sit around long and evenings are still protected time. One thing I love about doing Pluralsight work is that they have a myriad of opportunities besides just doing video courses. One of them is assessments, which I did a few months back, by writing questions for the JavaScript ES6 assessment (I worked with 2 other authors on that). Another recent opportunity has been &lt;a href="https://pluralsight.pxf.io/9e5XW"&gt;Guides&lt;/a&gt; which are in their infancy. I imagine the team has big plans for that section of the site.&lt;/p&gt;
+&lt;p&gt;I reached out to my ASM last week and said I'd be interested in some low-key work and guides came up as a good activity, so I took a look and &lt;em&gt;lo and behold&lt;/em&gt; I had struck some gold. It turns out, they need some guides around using React with TypeScript.&lt;/p&gt;
+&lt;p&gt;And you know what I think about that. &lt;a href="/events"&gt;I like it a lot&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So I offered to start with the first objective I thought I could tackle. It took me about 4 hours and that included planning and rewriting it once to adhere to the standards/guidelines. I think next time I'll be able to get it down to 2-3 hours. I'm always willing to try these opportunities 2-3 times before deciding if they're worth the investment. The time tracking I started doing for the last courses helps immensely!&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/2018-12-20-22-31-34.png" class="img-fluid" alt="Didn't take long at all" /&gt;&lt;/p&gt;
+&lt;p&gt;Looking forward to the next guide, which I'll pick up next week hopefully!&lt;/p&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>Two New Pluralsight Courses on Azure Storage Published</title>
 			<link>https://kamranicus.com/posts/2018-10-18-new-azure-pluralsight-courses</link>
@@ -1395,106 +1412,6 @@ testsContext.keys().forEach(testsContext);
 &lt;p&gt;With this in place, we can write a simple component controller test in ES6!&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/kamranayub/angularjs-sample-webpack-es6-karma/blob/master/src/dummy.component.test.js"&gt;https://github.com/kamranayub/angularjs-sample-webpack-es6-karma/blob/master/src/dummy.component.test.js&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;For more information on the pattern I'm using, check out &lt;a href="https://puigcerber.com/2016/02/07/how-to-test-angular-1-5-components/"&gt;Pablo's post on Angular 1.5 component testing&lt;/a&gt;.&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Dynamically Importing React Material Icons Using Webpack</title>
-			<link>https://kamranicus.com/posts/2017-09-02-dynamic-import-material-icons-react</link>
-			<description>&lt;p&gt;The sample code for this post is &lt;a href="https://github.com/kamranayub/example-webpack-dynamic-import"&gt;available on my GitHub&lt;/a&gt;.&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2017-09-02-dynamic-import-material-icons-react</guid>
-			<pubDate>Sun, 03 Sep 2017 03:10:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;The sample code for this post is &lt;a href="https://github.com/kamranayub/example-webpack-dynamic-import"&gt;available on my GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;One of my team members was working on our app's navigation and for the icons we are using the &lt;a href="https://www.npmjs.com/package/material-ui-icons"&gt;material-ui-icons&lt;/a&gt; package. This is an npm package that provides the Material UI icons as React components. We're also using webpack for bundling and babel for transpiling.&lt;/p&gt;
-&lt;p&gt;Their question was around how to dynamically reference these icon components within the navigation component. We dynamically build navigation from a JSON structure and need to load the appropriate icon for each item.&lt;/p&gt;
-&lt;p&gt;Imagine something like this to represent some settings menu:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;{
-  &amp;quot;name&amp;quot;: &amp;quot;Settings&amp;quot;,
-  &amp;quot;children&amp;quot;: [
-    {
-      &amp;quot;name&amp;quot;: &amp;quot;Manage Alarms&amp;quot;,
-      &amp;quot;icon&amp;quot;: &amp;quot;AccessAlarmIcon&amp;quot;
-    }
-  ]
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Somehow we need to import the appropriate icon from &lt;code&gt;material-ui-icons&lt;/code&gt; and reference it based on the &lt;code&gt;icon&lt;/code&gt; parameter:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;const MaterialIcon = ({ icon }) =&amp;gt; {
-  
-  // somehow resolve this icon
-  let resolvedIcon = // ...
-
-  return React.createElement(resolvedIcon)
-}
-
-const Navigation = (props) =&amp;gt;
-  &amp;lt;nav&amp;gt;
-    {props.children.map(item =&amp;gt; 
-      &amp;lt;li&amp;gt;
-        &amp;lt;MaterialIcon icon={item.icon} /&amp;gt;
-        {item.name}
-      &amp;lt;/li&amp;gt;
-    )}
-  &amp;lt;/nav&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The initial solution was to just hardcode the logic:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;import AccessAlarmIcon from 'material-ui-icons/AccessAlarm'
-
-const MaterialIcon = ({ icon }) =&amp;gt; {
-  switch (icon) {
-    case 'AccessAlarmIcon': return &amp;lt;AccessAlarmIcon /&amp;gt;
-    default: return null
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;But we knew this was a sub-optimal solution, it requires updating this file each time we want to support a new icon. There must be a better way!&lt;/p&gt;
-&lt;h2 id="referencing-the-scope"&gt;Referencing the scope&lt;/h2&gt;
-&lt;p&gt;At first, we tried referencing &lt;code&gt;AccessAlarmIcon&lt;/code&gt; imported variable directly since it should be in the scope of the module.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;import AccessAlarmIcon from 'material-ui-icons/AccessAlarm'
-
-const MaterialIcon = ({ icon }) =&amp;gt; {
-  return React.createElement(eval(icon))
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Yes, &lt;code&gt;eval&lt;/code&gt; is &lt;strong&gt;evil&lt;/strong&gt; but we wanted to see if it worked before trying a safer solution. It didn't work.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Uncaught ReferenceError: AccessAlarmIcon is not defined
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Hmm, it should be, right? Wrong. Webpack is doing some bundling magic for us. The compiled code looks like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;var _AccessAlarm = __webpack_require__(70);
-var _AccessAlarm2 = _interopRequireDefault(_AccessAlarm);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;So first, it's not even named &lt;code&gt;AccessAlarmIcon&lt;/code&gt; at runtime and second, we have some webpack magic going on with variable naming and such.&lt;/p&gt;
-&lt;h2 id="using-the-webpack-api"&gt;Using the Webpack API&lt;/h2&gt;
-&lt;p&gt;I decided to look into this over the weekend since it was an interesting problem. After playing around for a bit, I decided to look and see what webpack could offer us via &lt;a href="https://webpack.js.org/api/module-methods/"&gt;its API&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;It turns out we can leverage &lt;code&gt;require&lt;/code&gt; to just use a convention-based method of dynamically importing the icons. Within a webpack context, it will handle resolving the dependency for us internally.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;const MaterialIcon = ({ icon }) =&amp;gt; {
-    let iconName = icon.replace(/Icon$/, '')
-    let resolved = require(`material-ui-icons/${iconName}`).default
-    
-    if (!resolved) {
-        throw Error(`Could not find material-ui-icons/${iconName}`)
-    }
-
-    return React.createElement(resolved)
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Eyyy, look at that!&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/30000066-cacbb048-9024-11e7-9770-ae750984fb59.png" class="img-fluid" alt="Screenshot of icon" /&gt;&lt;/p&gt;
-&lt;p&gt;Turned out to be a simple, straightforward solution but it wasn't immediately apparent.&lt;/p&gt;
-&lt;h3 id="making-it-async"&gt;Making it async&lt;/h3&gt;
-&lt;p&gt;You could also asynchronously load the icon using &lt;code&gt;import()&lt;/code&gt; which returns a native &lt;code&gt;Promise&lt;/code&gt; object. To make that work with React, we can use &lt;a href="https://github.com/ctrlplusb/react-async-component"&gt;react-async-component&lt;/a&gt; and create an async factory component:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;import { asyncComponent } from 'react-async-component'
-
-const MaterialIconAsync = ({ icon }) =&amp;gt; {
-    let iconName = icon.replace(/Icon$/, '')
-    return React.createElement(asyncComponent({
-        resolve: () =&amp;gt; import(
-            /* webpackMode: &amp;quot;eager&amp;quot; */
-            `material-ui-icons/${iconName}`)
-    }))
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;I am using the &lt;a href="https://webpack.js.org/api/module-methods/#import-"&gt;&lt;em&gt;eager&lt;/em&gt; fetch mode&lt;/a&gt; to include all the Material icons vs. performing network requests to fetch them.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; When using Babel with the new dynamic &lt;code&gt;import&lt;/code&gt; syntax, you'll need to install &lt;a href="https://babeljs.io/docs/plugins/syntax-dynamic-import/"&gt;syntax-dynamic-import&lt;/a&gt; preset and enable it.&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>
