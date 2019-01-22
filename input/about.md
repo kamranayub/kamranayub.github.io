@@ -1,4 +1,4 @@
-Title: Get in Touch
+Title: Contact
 Order: -999
 
 ---
