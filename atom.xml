@@ -3,9 +3,18 @@
 	<link rel="self" href="https://kamranicus.com/" />
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
-	<rights>2018</rights>
-	<updated>2018-12-21T06:03:32Z</updated>
+	<rights>2019</rights>
+	<updated>2019-01-22T02:35:11Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2019-01-21-typescript-composing-react-components-pluralsight-guide" />
+		<id>https://kamranicus.com/posts/2019-01-21-typescript-composing-react-components-pluralsight-guide</id>
+		<title>New Pluralsight Guide: Composing React Components with TypeScript</title>
+		<updated>2019-01-22T01:31:00Z</updated>
+		<content>&lt;p&gt;I just published my second Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/x5PN5"&gt;Composing React Components with TypeScript&lt;/a&gt;. I cover the basics of how to compose React components using common patterns like specialization, higher-order components (HOCs), and render props with TypeScript. Go ahead and check it out!&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;I just published my second Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/x5PN5"&gt;Composing React Components with TypeScript&lt;/a&gt;. I cover the basics of how to compose React components using common patterns like specialization, higher-order components (HOCs), and render props with TypeScript. Go ahead and check it out!&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2018-12-20-year-in-review-2019-goals" />
 		<id>https://kamranicus.com/posts/2018-12-20-year-in-review-2019-goals</id>
@@ -1445,59 +1454,5 @@ const AnswerText = ({ question, onAnswerChange }) =&amp;gt;
 &lt;p&gt;So that's that! I probably can't enumerate every little thing I learned but that's what stuck out to me as I reflected on it for this post.&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;On Oct 16 &amp;amp; 17 a fellow coworker and I attended a &lt;a href="https://frontendmasters.com"&gt;Frontend Masters&lt;/a&gt; workshop in person on &lt;a href="https://frontendmasters.com/workshops/api-design-in-node-v2/"&gt;Node.js API Design by Scott Moss&lt;/a&gt;.&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2017-10-10-becoming-a-pluralsight-author" />
-		<id>https://kamranicus.com/posts/2017-10-10-becoming-a-pluralsight-author</id>
-		<title>Becoming a Pluralsight Author</title>
-		<updated>2017-10-11T03:50:00Z</updated>
-		<content>&lt;p&gt;&lt;img src="images/pluralsight.jpg" class="img-fluid" alt="Pluralsight" /&gt;&lt;/p&gt;
-&lt;p&gt;I have to admit it's tough for me to comprehend writing this post even though I passed the audition months ago. When I applied to become a &lt;a href="https://pluralsight.com"&gt;Pluralsight&lt;/a&gt; author, I wasn't sure what to expect. Now, here I am receiving the green light on my first course (it's on RavenDB 4, more on that later). Yes, &lt;a href="https://kamranicus.com/posts/2017-01-31-introduction-to-typescript-course-packt-publishing"&gt;I successfully published my TypeScript course&lt;/a&gt; last January through Packt but I didn't necessarily consider myself &amp;quot;Pluralsight author&amp;quot; material. What does that even mean exactly?&lt;/p&gt;
-&lt;h2 id="who-is-a-pluralsight-author"&gt;Who is a Pluralsight author?&lt;/h2&gt;
-&lt;p&gt;John Sonmez. John Papa. Scott Hanselman. Jon Skeet. K. Scott Allen. These are household names to me and my coworkers, especially in the Microsoft space. These are Pluralsight authors that are generally well-respected and well-known, they inspire me and [hundreds of?] thousands to be better developers in our careers. They have thousands of followers, speak at conferences around the world, and maintain celeb-to-quasi-celeb status within the community.&lt;/p&gt;
-&lt;p&gt;I can tell you it feels &lt;strong&gt;weird&lt;/strong&gt; to be able to say I am lumped in the same category as those folks. Some of them literally wrote the book(s) on what I built my career on. Like I said, I can barely comprehend it.&lt;/p&gt;
-&lt;h2 id="the-common-thread"&gt;The common thread&lt;/h2&gt;
-&lt;p&gt;That's only 5 people though. If you go ahead and peruse the &lt;a href="https://www.pluralsight.com/authors"&gt;Pluralsight authors&lt;/a&gt; list, you realize &lt;strong&gt;there are a lot of authors.&lt;/strong&gt; I recognize many but I also don't know most of them, I admit I probably won't ever follow and know them all (unless there's something that will automatically have me follow Pluralsight authors, then I'll use that).&lt;/p&gt;
-&lt;p&gt;I think the amazing thing is, everyone on that list became good at what they did by writing books, speaking around the world, or by knowing something enough to teach it effectively. The common thread is that &lt;strong&gt;they all are effective educators and inspire people.&lt;/strong&gt; It could easily be someone else on that list that I've never heard of that ends up making someone else's Top 5 Pluralsight inspiring author. I bet you have a Top 5 yourself.&lt;/p&gt;
-&lt;h2 id="the-audition"&gt;The audition&lt;/h2&gt;
-&lt;p&gt;I think what surprised me most about the audition process was how straightforward it was. I had some preconceived notions about what it took to be an author (see above). It turns out, it really is about effective teaching because none of my prior work was a consideration during the process. I did not have to submit a resume. I didn't need to &amp;quot;prove&amp;quot; my cred. Nobody ever asked me what I did to get where I am.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;It's all about the audition.&lt;/strong&gt; That is the gauntlet you are measured by. It's a 8-10 minute video that you edit and design yourself on a topic that'd be close to what you'd teach. I decided to do mine on modeling uniqueness in RavenDB. I know exactly how long I spent because I tracked it: 28 hours and 45 minutes. See for yourself.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/2017-10-10-23-33-38.png" class="img-fluid" alt="Time tracking" /&gt;&lt;/p&gt;
-&lt;p&gt;The &amp;quot;planning&amp;quot; column was more about dedicated planning time: laying out audition document plan, writing notes, etc. There was a lot of planning within the other columns that was just part of doing that thing.&lt;/p&gt;
-&lt;p&gt;I appreciated the fact the audition was low stress. There's a gap there from 4/21 to 5/19 due to conferences and travel. That was OK, it's at your own pace. Some folks will probably even decide to withdraw; recording, editing, and content development is not everyone's cup of tea.&lt;/p&gt;
-&lt;p&gt;You can clearly see I sent my audition at the end of May and I received a response June 7. Of course, they had to tease me in the subject:&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/2017-10-10-23-37-54.png" class="img-fluid" alt="Audition result" /&gt;&lt;/p&gt;
-&lt;p&gt;Needless to say, I was nervous. I think I had my wife read it out loud to me.&lt;/p&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&amp;quot;Thank you for taking the time and effort to submit an audition video to Pluralsight. Our Curriculum Team has completed review and your audition is...&amp;quot;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;That's it, I failed, it wasn't good enough, I knew I should have spent more time explaining--&lt;/p&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&amp;quot;APPROVED.&amp;quot;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;em&gt;Oh shit. Oh shiiiit. Ohshitohshitohsit. WHAT. WHATTTTTTT.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;I hugged my wife very hard and made sure to tell my 4mo that daddy was accepted as a &lt;strong&gt;freakin'&lt;/strong&gt; Pluralsight author.&lt;/p&gt;
-&lt;p&gt;One thing I really appreciate is real feedback from reviewers. I want constructive feedback and want to continuously improve the quality of what I put out. I'll share what I received:&lt;/p&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Kamran has a real knack for interleaving conceptual technical information with concrete behavior and experiences, all over a conversational narrative that is easy to follow. I really appreciate his arrangement of demos, code, and slides. Each phase of the demo is isolated with one specific goal, and each subsequent phase builds upon the knowledge gained in the last.&lt;/p&gt;
-&lt;p&gt;Demo code is small and pragmatic, discussion targets only the data access code and assumes a solid background in C# and async code which is appropriate.&lt;/p&gt;
-&lt;p&gt;A few areas where I see room for improvement:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;use of visuals is really good (eg the timeline at ~2:00 and the concurrency image at ~7:00), and I think Kamran should explore this skill more. Honestly his marriage of visuals and narrative is better than most new authors, and I really want to see how far he can stretch those muscles.&lt;/li&gt;
-&lt;li&gt;the title slide is lingers a bit, I think there are opportunities for visuals there to help explain some of the motivation.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;This is how to give good feedback. Lead with the good, finish with opportunities--something I can take away for next time and learn from.&lt;/p&gt;
-&lt;p&gt;I may share my audition (with approval) with &amp;quot;director commentary&amp;quot; on &lt;a href="https://www.youtube.com/channel/UCq6oaAI3ZH2rGlmC9VqJm1g"&gt;my YouTube channel&lt;/a&gt;, if that's something that would interest folks.&lt;/p&gt;
-&lt;p&gt;That's it! The next steps were to propose my course and chat with the curriculum director. I spent time researching and planning my proposal out, I even created a mockup demo with working code to send as an example.&lt;/p&gt;
-&lt;p&gt;Org-wide stuff kept my editor busy with work so it wasn't until pretty recently that the ball started rolling again. Finally this last Sunday my &amp;quot;statement of work&amp;quot; was signed. It was official!&lt;/p&gt;
-&lt;h2 id="go-ahead-and-audition"&gt;Go ahead and audition&lt;/h2&gt;
-&lt;p&gt;My advice to you or anyone reading this who also thinks they may have something to teach but still aren't sure whether you're &amp;quot;Pluralsight material&amp;quot; is to &lt;strong&gt;&lt;a href="https://www.pluralsight.com/teach"&gt;just submit an audition&lt;/a&gt; (and maybe give me a shoutout?).&lt;/strong&gt; If you pass and can teach something new and inspiring to someone else, &lt;strong&gt;you are Pluralsight material.&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id="jurys-out"&gt;Jury's out&lt;/h2&gt;
-&lt;p&gt;My first course isn't published &lt;em&gt;yet&lt;/em&gt; which means the jury's out on whether I deserve to be in that author list. I keep myself grounded by understanding that the course could still be rejected for whatever reason. I've come this far though and I'm going to try my &lt;strong&gt;damnedest&lt;/strong&gt; to earn my place. This is an opportunity that I've literally only dreamed about and never thought would happen. Wish me luck!&lt;/p&gt;
-&lt;h2 id="jurys-in"&gt;Jury's in&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;May 2018:&lt;/strong&gt; The course has been live for several months now with a great reception! I'm counting 12 5-star reviews so far which I'm super happy about (I could calculate the ratio of views/reviews but it's similar to any media--a very small percentage of people rate things). Here's to (hopefully) more courses in the future! 🍻&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;&lt;img src="images/pluralsight.jpg" class="img-fluid" alt="Pluralsight"&gt;&lt;/p&gt;</summary>
 	</entry>
 </feed>
