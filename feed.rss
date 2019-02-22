@@ -5,8 +5,17 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2019</copyright>
-		<pubDate>Sat, 02 Feb 2019 03:42:49 GMT</pubDate>
-		<lastBuildDate>Sat, 02 Feb 2019 03:42:49 GMT</lastBuildDate>
+		<pubDate>Fri, 22 Feb 2019 04:21:55 GMT</pubDate>
+		<lastBuildDate>Fri, 22 Feb 2019 04:21:55 GMT</lastBuildDate>
+		<item>
+			<title>New Pluralsight Guide: Getting Started With React and TypeScript </title>
+			<link>https://kamranicus.com/posts/2019-02-21-typescript-react-getting-started-pluralsight-guide</link>
+			<description>&lt;p&gt;I just published my third Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/3Y65d"&gt;Getting Started with React and TypeScript&lt;/a&gt;. I cover a few different ways to start up a new React project with TypeScript including create-react-app, from scratch, and bundling with Webpack/Parcel.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2019-02-21-typescript-react-getting-started-pluralsight-guide</guid>
+			<pubDate>Fri, 22 Feb 2019 03:16:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;I just published my third Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/3Y65d"&gt;Getting Started with React and TypeScript&lt;/a&gt;. I cover a few different ways to start up a new React project with TypeScript including create-react-app, from scratch, and bundling with Webpack/Parcel.&lt;/p&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>NDC MN 2019: Designing a Flexible UI Architecture with React and GraphQL</title>
 			<link>https://kamranicus.com/posts/2019-02-01-ndc-minnesota-flexible-ui-with-react-graphql-typescript</link>
@@ -1348,90 +1357,6 @@ type Color {
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;It's possible you don't need them but once I got it working I didn't revisit it in depth.&lt;/p&gt;
 &lt;p&gt;I could also publish this to the public registry, just let me know in the comments if you'd like me to--otherwise, feel free to do so.&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Dynamic component rendering in AngularJS</title>
-			<link>https://kamranicus.com/posts/2017-11-17-dynamic-angularjs-components</link>
-			<description>&lt;p&gt;We had a feature we needed in our AngularJS 1.5 app recently that required us to show different Angular components based on some data we got back from an API--basically we ask some questions and those questions can have different "types" of answers: number, text, list of values, multi-list of values, external API list, etc.&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2017-11-17-dynamic-angularjs-components</guid>
-			<pubDate>Fri, 17 Nov 2017 18:45:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;We had a feature we needed in our AngularJS 1.5 app recently that required us to show different Angular components based on some data we got back from an API--basically we ask some questions and those questions can have different &amp;quot;types&amp;quot; of answers: number, text, list of values, multi-list of values, external API list, etc.&lt;/p&gt;
-&lt;p&gt;These answer types were a good candidate to keep encapsulated inside of Angular components: they manage their own state and just use component bindings to bind data or call the overall parent controller.&lt;/p&gt;
-&lt;h2 id="hacking-ng-include-for-fun-and-profit"&gt;Hacking ng-include for fun and profit&lt;/h2&gt;
-&lt;p&gt;So the way we got this working was based on &lt;a href="https://stackoverflow.com/a/40640326/109458"&gt;this StackOverflow post&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This works because &lt;code&gt;ng-include&lt;/code&gt; directive takes a path to an HTML file. But &lt;code&gt;$templateCache&lt;/code&gt; can be used to manipulate the HTML cache and insert cache entries. In this case, you just insert a key with the name of your component and then you can use it as an expression in &lt;code&gt;ng-include&lt;/code&gt;. Now, the extra part is where that template cache item has to include your component directive:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-html"&gt;$templateCache.put('widgetPie', '&amp;lt;widget-pie&amp;gt;&amp;lt;/widget-pie&amp;gt;');
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;It's worth noting the template inherits the context of the &lt;code&gt;ng-include&lt;/code&gt;, so you can pass bindings in like you would expect:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-html"&gt;$templateCache.put('widgetPie', '&amp;lt;widget-pie data=&amp;quot;$ctrl.someData&amp;quot;&amp;gt;&amp;lt;/widget-pie&amp;gt;');
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In our case we had more templates than I wanted to write individual statements for, so the way we built up the &lt;code&gt;$templateCache&lt;/code&gt; was just like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;import * as components from &amp;quot;./components&amp;quot;;
-
-angular
- .module('app')
- .run(function ($templateCache) {
-    _.values(components).forEach(({ type, include }) =&amp;gt; {
-      const tag = `answer-${type}`
-      $templateCache.put(tag, `&amp;lt;${tag} question=&amp;quot;question&amp;quot;&amp;gt;&amp;lt;/${tag}&amp;gt;`);
-    });
- });
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The cache key and template are generated by convention from the types of answers in each component (e.g. &lt;code&gt;answer-text&lt;/code&gt;). The &lt;code&gt;question&lt;/code&gt; binding is using the name of a known variable within the &lt;code&gt;ng-repeat&lt;/code&gt; in the parent template.&lt;/p&gt;
-&lt;p&gt;The &lt;code&gt;index.js&lt;/code&gt; file within the &lt;code&gt;components&lt;/code&gt; directory just exports all supported components:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;export { component as text } from './answer-text.component'
-export { component as number } from './answer-number.component'
-export { component as lov } from './answer-lov.component'
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Since we are using &lt;code&gt;import * as components&lt;/code&gt; all these get plopped into a &lt;code&gt;components&lt;/code&gt; object where each key is the exported name and the value is a slightly modified component object:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;// answer-text.component.js
-export var component = {
-  type: &amp;quot;text&amp;quot;,
-  controller: () =&amp;gt; {},
-  template: `&amp;lt;input ng-model=&amp;quot;$ctrl.question&amp;quot; /&amp;gt;`,
-  bindings: {
-    question: &amp;quot;&amp;lt;&amp;quot;
-  }
-}
-
-export var module = angular.module(`components.answers.${component.type}`, [])
-  .component(_.camelCase(`answer-${component.type}`), component)
-  .name;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Not shown here, but you need to make sure to add the component Angular module as a dependency somewhere in your app. That's what &lt;code&gt;module&lt;/code&gt; is for.&lt;/p&gt;
-&lt;p&gt;The &lt;code&gt;type&lt;/code&gt; property is for the purposes of the template cache. I'm using Lodash's &lt;code&gt;_.camelCase&lt;/code&gt; to create an Angular-compatible component name which is based on the &lt;code&gt;type&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Now we have a convention that uses the answer type to generate the HTML to inject via &lt;code&gt;ng-include&lt;/code&gt; and pass in common bindings to the components:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-html"&gt;// parent.component.html
-&amp;lt;div ng-repeat=&amp;quot;question in $ctrl.questions&amp;quot;&amp;gt;
-  &amp;lt;label&amp;gt;{{ question.title }}&amp;lt;/label&amp;gt;
-  &amp;lt;ng-include src=&amp;quot;answer-{{ question.answer_type }}&amp;quot;&amp;gt;&amp;lt;/ng-include&amp;gt;
-&amp;lt;/div&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now depending on the &lt;code&gt;answer_type&lt;/code&gt; of the question, the appropriate answer component will be rendered.&lt;/p&gt;
-&lt;p&gt;It's probably possible to create a Angular directive that could make this easier but it's not so bad once you have the pattern.&lt;/p&gt;
-&lt;p&gt;PS. I'm using &lt;a href="https://kamranicus.com/posts/2017-10-06-webpack-karma-jest-babel-angularjs"&gt;ES2015 and Webpack&lt;/a&gt; in my examples.&lt;/p&gt;
-&lt;h2 id="trolling-with-react"&gt;Trolling with React&lt;/h2&gt;
-&lt;p&gt;Figuring out how to achieve this in AngularJS was a bit time consuming (I found the post after searching for awhile, then had to rig up what you saw above).&lt;/p&gt;
-&lt;p&gt;Even though I'm writing AngularJS more day to day, I can appreciate how much more productive I feel in React. What does it take to achieve the same pattern? I typed this up in a minute just now for the blog post:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;const Parent = ({ questions, onAnswerChange }) =&amp;gt;
-  &amp;lt;div&amp;gt;
-    {questions.map(question =&amp;gt; 
-      &amp;lt;div&amp;gt;
-        &amp;lt;label&amp;gt;{question.title}&amp;lt;/label&amp;gt;
-        {React.createElement(
-          &amp;quot;Answer&amp;quot; + _.startCase(question.answer_type), { question, onAnswerChange })}
-      &amp;lt;/div&amp;gt;
-    )}
-  &amp;lt;/div&amp;gt;
-
-const AnswerText = ({ question, onAnswerChange }) =&amp;gt; 
-  &amp;lt;input 
-    value={question.answer} 
-    onChange={(e) =&amp;gt; onAnswerChange(question, e.target.value)} 
-  /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;I love React. It's just JavaScript (and JSX). No module loading, no dependency injection, just... components. Yes, state change is different (this isn't modifying &lt;code&gt;question.answer&lt;/code&gt;) but I like the separation of concerns.&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>
