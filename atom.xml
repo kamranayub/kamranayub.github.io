@@ -4,8 +4,21 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2019</rights>
-	<updated>2019-02-23T16:28:24Z</updated>
+	<updated>2019-04-04T13:44:01Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes" />
+		<id>https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes</id>
+		<title>Data Modeling with Indexes in RavenDB</title>
+		<updated>2019-04-04T13:30:00Z</updated>
+		<content>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.codeproject.com/Articles/1348454/Data-Modeling-with-Indexes-in-RavenDB"&gt;Data Modeling with Indexes in RavenDB&lt;/a&gt;
+went live today on CodeProject and covers how indexes work in Raven and some simple to advanced use cases to show off
+their power. Be sure to check it out!&lt;/p&gt;
+&lt;p&gt;I'm excited to be working with HN to bring some more articles to a wider audience so I'll be sure to share when any other articles go live.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2019-02-21-typescript-react-getting-started-pluralsight-guide" />
 		<id>https://kamranicus.com/posts/2019-02-21-typescript-react-getting-started-pluralsight-guide</id>
@@ -1341,21 +1354,5 @@ type Color {
 &lt;p&gt;So what are you waiting for? &lt;a href="http://minnewebcon.org/attend"&gt;Register now!&lt;/a&gt;&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;You know when you accidentally reach a goal sooner than you expect? That's exactly what happened when I originally submitted a session to &lt;a href="http://minnewebcon.org/attend"&gt;MinneWebCon 2018&lt;/a&gt; on building bots with Azure and Node.js. Instead of &lt;em&gt;just&lt;/em&gt; giving a talk, I'll be teaching a half-day workshop! That was one of my 2018 goals!&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2017-11-20-node-chrome-headless-drone-image" />
-		<id>https://kamranicus.com/posts/2017-11-20-node-chrome-headless-drone-image</id>
-		<title>Here's a Drone Docker image with Node.js and Chrome headless</title>
-		<updated>2017-11-20T20:52:00Z</updated>
-		<content>&lt;p&gt;I worked on a fun little aside this last week at work. We are using &lt;a href="https://github.com/drone/drone"&gt;Drone&lt;/a&gt; to perform our CI builds (it's just like &lt;a href="http://travis-ci.org"&gt;Travis CI&lt;/a&gt;). Well, the default Docker &lt;code&gt;node&lt;/code&gt; image is built on Debian and when run on Drone 5 it does not contain all the packages needed to use Chrome Headless (as &lt;a href="https://github.com/Googlechrome/puppeteer/issues/290"&gt;documented in this GH issue&lt;/a&gt;). We're using Puppeteer to run Chrome headless with Karma to run our Angular tests.&lt;/p&gt;
-&lt;p&gt;We were running a bash script to install them when the build started but I went ahead and just packaged it all as a Docker container. This is a general purpose container image but using it with Drone sped up our builds by an order of magnitude.&lt;/p&gt;
-&lt;p&gt;You can find it in &lt;a href="https://github.com/kamranayub/drone-images"&gt;my Drone image repository&lt;/a&gt;. I'll be sure to add anymore useful Drone images I end up making there too!&lt;/p&gt;
-&lt;p&gt;With Puppeteer, I also had to use these args:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;--no-sandbox --disable-setuid-sandbox
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;It's possible you don't need them but once I got it working I didn't revisit it in depth.&lt;/p&gt;
-&lt;p&gt;I could also publish this to the public registry, just let me know in the comments if you'd like me to--otherwise, feel free to do so.&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;I worked on a fun little aside this last week at work. We are using &lt;a href="https://github.com/drone/drone"&gt;Drone&lt;/a&gt; to perform our CI builds (it's just like &lt;a href="http://travis-ci.org"&gt;Travis CI&lt;/a&gt;). Well, the default Docker &lt;code&gt;node&lt;/code&gt; image is built on Debian and when run on Drone 5 it does not contain all the packages needed to use Chrome Headless (as &lt;a href="https://github.com/Googlechrome/puppeteer/issues/290"&gt;documented in this GH issue&lt;/a&gt;). We're using Puppeteer to run Chrome headless with Karma to run our Angular tests.&lt;/p&gt;</summary>
 	</entry>
 </feed>
