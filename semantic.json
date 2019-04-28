@@ -27,6 +27,8 @@
     "header",
     "icon",
     "image",
+    "input",
+    "label",
     "list",
     "segment",
     "grid",

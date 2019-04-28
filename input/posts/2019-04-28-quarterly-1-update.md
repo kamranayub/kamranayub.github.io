@@ -53,7 +53,7 @@ Here are the goals I originally laid out and progress notes for each! At the end
 **Professional**
 
 - ⌛ Set up a quarterly newsletter
-  - I am working on this!
+  - I am working on this! Look, I now have a mailing list sign up under each post!
 - Publish 1 more Pluralsight course on Azure or TypeScript or React
 - Publish 4 additional Pluralsight guides throughout the year
 - Participate in 1 Pluralsight Mentoring session
