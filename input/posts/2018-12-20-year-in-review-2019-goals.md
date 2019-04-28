@@ -107,7 +107,7 @@ With the SMART framework in mind, let's see if I can establish some goals to acc
 
 **Personal**
 
-- Pay off all non-mortage debt
+- Pay off all non-mortgage debt
 - Passive income should account for 2% of earnings, 1099 income for 5%
 - Replace my PCs at home with single good Ultrabook/Notebook and a NAS
 - Push 3 substantive updates to KTOMG throughout the year: Steam review revamp, Raven 4 upgrade, and Linux hosting
