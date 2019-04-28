@@ -30,6 +30,7 @@ install:
   - npm install
 
 build_script:
+  - npm run semantic
   - .\wyam\Wyam.exe -r Blog -t CleanBlog
 
 test: off
