@@ -4,8 +4,140 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2019</rights>
-	<updated>2019-04-24T03:39:33Z</updated>
+	<updated>2019-04-28T04:45:46Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2019-04-28-quarterly-1-update" />
+		<id>https://kamranicus.com/posts/2019-04-28-quarterly-1-update</id>
+		<title>2019 Goals Quarterly Update (Q1)</title>
+		<updated>2019-04-28T04:00:00Z</updated>
+		<content>&lt;p&gt;This is my first time trying a quarterly update on &lt;a href="https://kamranicus.com/posts/2018-12-20-year-in-review-2019-goals"&gt;my yearly goal setting&lt;/a&gt; but I was updating that old post with progress notes and decided I should just formally document progress every quarter instead of retrofitting an older post. That way if any goals &lt;em&gt;evolve&lt;/em&gt; (which some have!) then I can look back and see that change happening. Also this &lt;em&gt;forces&lt;/em&gt; me to post at least once every 4 months which may get me into the groove of writing more generally.&lt;/p&gt;
+&lt;h2 id="progress-on-yearly-goals"&gt;Progress on yearly goals&lt;/h2&gt;
+&lt;p&gt;Here are the goals I originally laid out and progress notes for each! At the end I also listed some unplanned accomplishments so I can track those too.&lt;/p&gt;
+&lt;h3 id="primary-goals"&gt;Primary Goals&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Professional&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;⌛ Publish 1 Pluralsight course on Azure or TypeScript or React (&lt;del&gt;September&lt;/del&gt; Q4)
+&lt;ul&gt;
+&lt;li&gt;I have maintenance updates coming in before July but no plans for a course; targeting after summer. Adjusted the target date.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;☑️ Publish 4 Pluralsight guides on React &amp;amp; TypeScript by May
+&lt;ul&gt;
+&lt;li&gt;I was able to publish &lt;a href="https://kamranicus.com/guides"&gt;3 PS guides&lt;/a&gt; but didn't do a 4th because I actually got an unforeseen opportunity to &lt;a href="https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes"&gt;write a freelance article for RavenDB&lt;/a&gt;! I am marking this goal as completed with a bonus objective!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;✅ Speak at NDC MN on a TypeScript topic
+&lt;ul&gt;
+&lt;li&gt;I was &lt;a href="https://kamranicus.com/posts/2019-02-01-ndc-minnesota-flexible-ui-with-react-graphql-typescript"&gt;accepted to speak&lt;/a&gt; at NDC MN in May.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;⌛ Publish 5 technical articles on the blog about Azure, TypeScript, or React
+&lt;ul&gt;
+&lt;li&gt;I need to plan this out more specifically, though I have a couple ideas! I did post about &lt;a href="https://dev.to/kamranayub/copying-to-the-clipboard-using-react-typescript-material-ui-4fdb"&gt;Copying to clipboard using React and TypeScript&lt;/a&gt; on dev.to.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Personal&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;☑️ Pay off all non-mortgage debt
+&lt;ul&gt;
+&lt;li&gt;I've paid off all loans under my name! 🎉 Cassie is up next. Neither of us have any credit card debt or car loans, it's just the student loans left.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;☑️ Passive income should account for 2% of earnings, 1099 income for 5%
+&lt;ul&gt;
+&lt;li&gt;As a percentage of household W-2 income, passive income is at 1% and contracting income is at 1%, making a total of 2%. Not bad and I project passive income will be just at or higher than 2%. I am not quite as sure if contracting will end up being above 5% but I'll try!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;☑️ Replace my PCs at home with a single good Ultrabook/Notebook and a NAS
+&lt;ul&gt;
+&lt;li&gt;I sold my secondary PC, decided to keep my main PC but instead got a quieter case for recording. I also picked up a used Lenovo Yoga 720 laptop as my personal on-the-go machine. No NAS quite yet, though. I also discovered I have enough parts for yet another entry-level PC but something is up with the motherboard/parts and it won't turn on correctly 🤷‍♂️.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;⌛ Push 3 substantive updates to KTOMG throughout the year: Steam review revamp, Raven 4 upgrade, and Linux hosting
+&lt;ul&gt;
+&lt;li&gt;This is my focus for the summer, after NDC. I am nearly done migrating to RavenDB 4!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;DIY&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;☑️ Learn how to cut trim/baseboard and finish the nursery
+&lt;ul&gt;
+&lt;li&gt;I finished the nursery but decided to &lt;em&gt;paint&lt;/em&gt; the trim/baseboard instead of replacing it outright, for now.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;⌛ Finish my office decor/storage, maybe paint it too
+&lt;ul&gt;
+&lt;li&gt;I am in the process of selling my old furniture so I can create a &amp;quot;maker&amp;quot; space for me and my kids. I still would like to paint it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="stretch-goals"&gt;Stretch Goals&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Professional&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;⌛ Set up a quarterly newsletter
+&lt;ul&gt;
+&lt;li&gt;I am working on this!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Publish 1 more Pluralsight course on Azure or TypeScript or React&lt;/li&gt;
+&lt;li&gt;Publish 4 additional Pluralsight guides throughout the year&lt;/li&gt;
+&lt;li&gt;Participate in 1 Pluralsight Mentoring session&lt;/li&gt;
+&lt;li&gt;Become a Microsoft MVP with a focus on Azure/TypeScript content&lt;/li&gt;
+&lt;li&gt;⌛ Speak at a JSConf or ReactConf event
+&lt;ul&gt;
+&lt;li&gt;So far have not been accepted to any that I've applied to but 🤞&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Speak at the React MN meetup about TypeScript or GraphQL&lt;/li&gt;
+&lt;li&gt;Record a YouTube video walkthrough of my &lt;a href="https://kamranicus.com/guides/raspberry-pi-3-baby-monitor"&gt;Raspberry Pi baby monitor&lt;/a&gt; written guide&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Personal&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1099 income should account for 12% or more (+2% over 2018)&lt;/li&gt;
+&lt;li&gt;⌛ Travel completely free somewhere in the US with wife and 2 kids using miles/points
+&lt;ul&gt;
+&lt;li&gt;We earned our 50K bonus miles from our Chase Sapphire Preferred card (&lt;a href="https://www.choosefi.com/all-articles/travel-rewards/"&gt;you should too!&lt;/a&gt;) but not sure if we will go anywhere using them yet or wait. I was proud of this one because we used the card to pay off my daughter's birth bills, earn the 50K bonus miles, &lt;em&gt;and&lt;/em&gt; are saving the receipts for &lt;a href="https://www.choosefi.com/use-your-hsa-to-provide-income-in-retirement/"&gt;a future tax-free HSA reimbursement&lt;/a&gt;. That was a nice hack!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;⛔ Participate in Ludum Dare during the spring
+&lt;ul&gt;
+&lt;li&gt;This is a no-go, just didn't have the time. Perhaps in fall/winter!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;DIY&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Install &lt;a href="https://www.youtube.com/watch?v=OJqk2iS_jyQ"&gt;luxury vinyl plank&lt;/a&gt; in my office&lt;/li&gt;
+&lt;li&gt;Replace baseboard/trim in my son's bedroom&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="unplanned-accomplishments"&gt;Unplanned Accomplishments&lt;/h2&gt;
+&lt;h3 id="professional"&gt;Professional&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Freelance writing for RavenDB.&lt;/strong&gt; I was excited to have the opportunity to work with Hibernating Rhinos, creators of RavenDB, to write two articles on RavenDB. &lt;a href="(https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes)"&gt;One was published in April&lt;/a&gt;, the other will be published in May.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;I made a little app.&lt;/strong&gt; Without much fanfare, &lt;a href="https://reachfi.app/update/2019-02-19-initial-release/"&gt;I released an app&lt;/a&gt; that helps track your savings rate. I'd love to spend more time building it out but it's not a heavy focus right now.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Released an OSS project.&lt;/strong&gt; I released a small &lt;a href="https://www.gatsbyjs.org/packages/gatsby-source-typedoc/?=gatsby-source-type"&gt;gatsby source plugin&lt;/a&gt; for generating TypeDoc to source in a Gatsby app for Excalibur's new docs site.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="personal"&gt;Personal&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Finished 3 books.&lt;/strong&gt; Through Audible and the library, I finished some books: &lt;a href="https://www.goodreads.com/book/show/30835567-hit-refresh"&gt;Hit Refresh&lt;/a&gt;, &lt;a href="https://www.goodreads.com/book/show/35068719-meet-the-frugalwoods"&gt;Meet the Frugalwoods&lt;/a&gt;, and &lt;a href="https://www.goodreads.com/book/show/19288043-gone-girl"&gt;Gone Girl&lt;/a&gt;. I am currently listening to &lt;a href="https://www.goodreads.com/book/show/40187317-mission-critical"&gt;Mission Critical, a Gray Man book&lt;/a&gt; and reading &lt;a href="https://www.goodreads.com/book/show/110312.Conceptual_Blockbusting"&gt;Conceptual Blockbusting&lt;/a&gt; along with &lt;a href="https://www.goodreads.com/book/show/4845.Code_Complete"&gt;Code Complete&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Finished over 60 episodes of ChooseFI&lt;/strong&gt;. It's &lt;a href="https://twitter.com/kamranayub/status/1082390375560593408"&gt;no secret&lt;/a&gt; I love the ChooseFI podcast (and &lt;a href="https://podcasts.apple.com/us/podcast/choosefi/id1187770032"&gt;I'm not alone&lt;/a&gt;). As of this week I'm on episode 67R which means I'm about halfway through the back catalog. &lt;strong&gt;That's about 70 hours of content!&lt;/strong&gt; It's just a fantastic source of information on all aspects of &amp;quot;life optimization&amp;quot; like finance, mindfulness, happiness, and growth. I recommend it whenever I can and if it impacts others the same way it impacted me, then I'll continue singing its praises.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="final-thoughts"&gt;Final thoughts&lt;/h2&gt;
+&lt;p&gt;It's been a busy Q1! I owe thanks to &lt;a href="https://todoist.com"&gt;Todoist&lt;/a&gt;, that has transformed how we do things around our household between my wife and I. I've actually enjoyed writing quite a bit though now I feel the itch to come up with content for the blog.&lt;/p&gt;
+&lt;p&gt;I have been thinking of what I want Kamranicus.com to be and how it should change to host my content and showcase different things but haven't landed on anything final yet. As you perhaps might notice, in the posts and guides I've enabled Adsense since there are some popular pieces of content on here and I actually earn a little from my Amazon affiliate links already.&lt;/p&gt;
+&lt;p&gt;I was also very excited and thankful for the opportunity to do some freelancing as it lit a fire under me to get me working with some business products like &lt;a href="http://fbuy.me/mou3m"&gt;Quickbooks&lt;/a&gt; (use my 50% off referral link) and &lt;a href="http://dochub.com"&gt;Dochub&lt;/a&gt; to better manage my side hustling. It &lt;em&gt;also&lt;/em&gt; derailed my focus on KTOMG for the spring since March-May has just been doing writing leaving much less time to get things done for KTOMG in a timely manner. Oh well!&lt;/p&gt;
+&lt;p&gt;Looking towards the summer (Q2), I'm also pretty excited for NDC MN, some course maintenance, and then re-focusing on KTOMG during the summer. This will also be our first summer that Cassie and the kids will have off together! So they will be visiting me at work more often and I'll be trying to spend time with them when I can. The grill is already out 🔥🍔&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;This is my first time trying a quarterly update on &lt;a href="https://kamranicus.com/posts/2018-12-20-year-in-review-2019-goals"&gt;my yearly goal setting&lt;/a&gt; but I was updating that old post with progress notes and decided I should just formally document progress every quarter instead of retrofitting an older post. That way if any goals &lt;em&gt;evolve&lt;/em&gt; (which some have!) then I can look back and see that change happening. Also this &lt;em&gt;forces&lt;/em&gt; me to post at least once every 4 months which may get me into the groove of writing more generally.&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes" />
 		<id>https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes</id>
@@ -173,7 +305,7 @@ their power. Be sure to check it out!&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Personal&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Pay off all non-mortage debt&lt;/li&gt;
+&lt;li&gt;Pay off all non-mortgage debt&lt;/li&gt;
 &lt;li&gt;Passive income should account for 2% of earnings, 1099 income for 5%&lt;/li&gt;
 &lt;li&gt;Replace my PCs at home with single good Ultrabook/Notebook and a NAS&lt;/li&gt;
 &lt;li&gt;Push 3 substantive updates to KTOMG throughout the year: Steam review revamp, Raven 4 upgrade, and Linux hosting&lt;/li&gt;
@@ -1331,28 +1463,5 @@ type Color {
 &lt;p&gt;Throughout the year I've come back and updated this post and am pretty happy about my progress! 🎉 I'll do another year in review in December to share more reflections.&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;It's good to have goals. Without goals, you're aimlessly wandering around on this space rock with nothing to do and no one to answer to. Some folks like that but I'm not one of them--I like having goals, for near and long-term. I have career goals that I work on with my manager, these are overall professional and community goals to help me personally grow.&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2017-12-18-workshop-bots-javascript-node-minnewebcon" />
-		<id>https://kamranicus.com/posts/2017-12-18-workshop-bots-javascript-node-minnewebcon</id>
-		<title>Workshop for Node.js Bots in Azure at MinneWebCon 2018</title>
-		<updated>2017-12-19T02:33:00Z</updated>
-		<content>&lt;p&gt;You know when you accidentally reach a goal sooner than you expect? That's exactly what happened when I originally submitted a session to &lt;a href="http://minnewebcon.org/attend"&gt;MinneWebCon 2018&lt;/a&gt; on building bots with Azure and Node.js. Instead of &lt;em&gt;just&lt;/em&gt; giving a talk, I'll be teaching a half-day workshop! That was one of my 2018 goals!&lt;/p&gt;
-&lt;h2 id="about-the-workshop"&gt;About the workshop&lt;/h2&gt;
-&lt;p&gt;This'll be a fun one. I've &lt;a href="http://blog.keeptrackofmygames.com/post/154048281826/updates-for-november-2016"&gt;developed bots&lt;/a&gt; before on Azure using &lt;a href="https://dev.botframework.com/"&gt;Microsoft Bot Framework&lt;/a&gt; and I've used Azure Functions but I haven't yet married the two.&lt;/p&gt;
-&lt;p&gt;In this workshop, we'll build a chat bot on Azure Functions that will respond to input and hold state. I don't know the details of what we'll build but I'll be scoping it to a 3 hour exercise.&lt;/p&gt;
-&lt;p&gt;My plan so far is for people to learn:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;How to use the Azure Functions portal&lt;/li&gt;
-&lt;li&gt;How to use the Microsoft Bot Framework&lt;/li&gt;
-&lt;li&gt;How to publish a bot to a provider (e.g. Twilio)&lt;/li&gt;
-&lt;li&gt;How to make the bot in JavaScript&lt;/li&gt;
-&lt;li&gt;How to make the bot remember information about the conversation&lt;/li&gt;
-&lt;li&gt;(Maybe) How to connect Azure Functions to GitHub&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I'm pretty sure we can build that in 3 hours even for folks who have little to no experience with Azure. It's really simple!&lt;/p&gt;
-&lt;p&gt;So what are you waiting for? &lt;a href="http://minnewebcon.org/attend"&gt;Register now!&lt;/a&gt;&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;You know when you accidentally reach a goal sooner than you expect? That's exactly what happened when I originally submitted a session to &lt;a href="http://minnewebcon.org/attend"&gt;MinneWebCon 2018&lt;/a&gt; on building bots with Azure and Node.js. Instead of &lt;em&gt;just&lt;/em&gt; giving a talk, I'll be teaching a half-day workshop! That was one of my 2018 goals!&lt;/p&gt;</summary>
 	</entry>
 </feed>
