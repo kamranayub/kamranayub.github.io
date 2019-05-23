@@ -5,12 +5,13 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2019</copyright>
-		<pubDate>Thu, 23 May 2019 01:36:30 GMT</pubDate>
-		<lastBuildDate>Thu, 23 May 2019 01:36:30 GMT</lastBuildDate>
+		<pubDate>Thu, 23 May 2019 01:41:19 GMT</pubDate>
+		<lastBuildDate>Thu, 23 May 2019 01:41:19 GMT</lastBuildDate>
 		<item>
 			<title>Automating RavenDB 4 with Ansible</title>
 			<link>https://kamranicus.com/posts/2019-05-22-ravendb-devops-automation-with-ansible</link>
 			<description>&lt;p&gt;I've finished migrating my database infrastructure for &lt;a href="https://ktomg.com"&gt;Keep Track of My Games&lt;/a&gt; from &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; 3.5 to 4.1 (&lt;a href="https://ravendb.net/features/ravendb-42-features"&gt;and soon, 4.2&lt;/a&gt;!).&lt;/p&gt;</description>
+			<enclosure url="https://kamranicus.com/images/2019-05-22-masthead.png" length="0" type="image" />
 			<guid>https://kamranicus.com/posts/2019-05-22-ravendb-devops-automation-with-ansible</guid>
 			<pubDate>Thu, 23 May 2019 01:31:00 GMT</pubDate>
 			<content:encoded>&lt;p&gt;I've finished migrating my database infrastructure for &lt;a href="https://ktomg.com"&gt;Keep Track of My Games&lt;/a&gt; from &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; 3.5 to 4.1 (&lt;a href="https://ravendb.net/features/ravendb-42-features"&gt;and soon, 4.2&lt;/a&gt;!).&lt;/p&gt;
