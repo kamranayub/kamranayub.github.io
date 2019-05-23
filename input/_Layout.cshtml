@@ -91,9 +91,10 @@
       backgroundImage = $"background-image: url(\"{Model.String(BlogKeys.Image)}\")";
     } 
     string headerInverted = Model.Bool("HeaderInverted") ? "inverted" : "";
+    string imageMarker = backgroundImage == null ? "" : "image";
   }
 
-  <header class="ui vertical masthead segment @headerInverted" id="intro-header" style="@backgroundImage">
+  <header class="ui vertical masthead segment @headerInverted @imageMarker" id="intro-header" style="@backgroundImage">
     <div class="ui container">
         @if(IsSectionDefined("Header")) { 
           @RenderSection("Header") 
