@@ -823,8 +823,7 @@ nav.ui.site.menu .header.item {
   }
 }
 
-.ui.masthead.segment .image.masthead {
-  margin-bottom: 2em;
+.ui.masthead.segment .with-image {
   background-size: cover;
 }
 
