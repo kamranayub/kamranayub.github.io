@@ -7,7 +7,7 @@ Tags:
 - Personal Development
 ---
 
-![Pluralsight](images/pluralsight.jpg)
+![Pluralsight](images/pluralsight.png)
 
 I have to admit it's tough for me to comprehend writing this post even though I passed the audition months ago. When I applied to become a [Pluralsight](https://pluralsight.com) author, I wasn't sure what to expect. Now, here I am receiving the green light on my first course (it's on RavenDB 4, more on that later). Yes, [I successfully published my TypeScript course](https://kamranicus.com/posts/2017-01-31-introduction-to-typescript-course-packt-publishing) last January through Packt but I didn't necessarily consider myself "Pluralsight author" material. What does that even mean exactly?
 

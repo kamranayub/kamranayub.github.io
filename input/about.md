@@ -45,7 +45,7 @@ and not a platform to contact me through effectively.
 
 ## Teaching, Speaking and Workshops
 
-![Pluralsight](/assets/images/pluralsight.jpg)
+![Pluralsight](/assets/images/pluralsight.png)
 
 I am a Pluralsight and Packt course author, you can view my current courses on the [projects](/projects) page or follow my [Pluralsight author profile](https://pluralsight.pxf.io/c/1210289/424552/7490?u=https%3A%2F%2Fapp.pluralsight.com%2Fprofile%2Fauthor%2Fkamran-ayub). I really enjoy teaching and sharing what I know and authoring courses is definitely something I intend to pursue.
 

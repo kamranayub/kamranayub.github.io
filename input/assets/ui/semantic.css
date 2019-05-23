@@ -786,6 +786,10 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
   margin-bottom: 1.5em;
 }
 
+#intro-header.with-image {
+  background-size: cover;
+}
+
 nav.ui.site.menu {
   font-size: 0.95rem;
 }
@@ -807,59 +811,59 @@ nav.ui.site.menu .header.item {
   }
 }
 
-.masthead.segment {
+.ui.masthead.segment {
   min-height: 150px;
 }
 
 @media only screen and (min-width: 321px) {
-  .masthead.segment {
+  .ui.masthead.segment {
     min-height: 250px;
   }
 }
 
 @media only screen and (min-width: 769px) {
-  .masthead.segment {
+  .ui.masthead.segment {
     min-height: 350px;
   }
 }
 
-.masthead.segment .image.masthead {
+.ui.masthead.segment .image.masthead {
   margin-bottom: 2em;
 }
 
-.masthead.segment h1.ui.header {
+.ui.masthead.segment h1.ui.header {
   margin-top: 1.5em;
   font-size: 2em;
 }
 
-.masthead.segment h1.ui.header .sub.header {
+.ui.masthead.segment h1.ui.header .sub.header {
   text-transform: none;
   line-height: 1.4em;
 }
 
 @media only screen and (min-width: 321px) {
-  .masthead.segment h1.ui.header {
+  .ui.masthead.segment h1.ui.header {
     font-size: 2.5em;
   }
 }
 
 @media only screen and (min-width: 769px) {
-  .masthead.segment h1.ui.header {
+  .ui.masthead.segment h1.ui.header {
     font-size: 4em;
   }
 }
 
-.masthead.segment h3 {
+.ui.masthead.segment h3 {
   font-size: 1.07142857rem;
 }
 
 @media only screen and (min-width: 321px) {
-  .masthead.segment h3 {
+  .ui.masthead.segment h3 {
     font-size: 1.28571429rem;
   }
 }
 
-.masthead.segment .social.links {
+.ui.masthead.segment .social.links {
   margin-bottom: 3em;
 }
 
@@ -24181,9 +24185,8 @@ a.ui.card:hover,
   margin: 0em;
   padding: 0em;
   max-height: '';
-  -ms-flex-item-align: top;
-  -ms-grid-row-align: top;
-  align-self: top;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
 }
 
 .ui.items > .item > .image > img {
@@ -24230,9 +24233,8 @@ a.ui.card:hover,
   width: auto;
   display: block;
   margin-left: 0em;
-  -ms-flex-item-align: top;
-  -ms-grid-row-align: top;
-  align-self: top;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
   padding-left: 1.5em;
 }
 
