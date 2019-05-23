@@ -807,60 +807,60 @@ nav.ui.site.menu .header.item {
   }
 }
 
-.masthead.segment {
+.ui.masthead.segment {
   min-height: 150px;
-  background-size: cover;
 }
 
 @media only screen and (min-width: 321px) {
-  .masthead.segment {
+  .ui.masthead.segment {
     min-height: 250px;
   }
 }
 
 @media only screen and (min-width: 769px) {
-  .masthead.segment {
+  .ui.masthead.segment {
     min-height: 350px;
   }
 }
 
-.masthead.segment .image.masthead {
+.ui.masthead.segment .image.masthead {
   margin-bottom: 2em;
+  background-size: cover;
 }
 
-.masthead.segment h1.ui.header {
+.ui.masthead.segment h1.ui.header {
   margin-top: 1.5em;
   font-size: 2em;
 }
 
-.masthead.segment h1.ui.header .sub.header {
+.ui.masthead.segment h1.ui.header .sub.header {
   text-transform: none;
   line-height: 1.4em;
 }
 
 @media only screen and (min-width: 321px) {
-  .masthead.segment h1.ui.header {
+  .ui.masthead.segment h1.ui.header {
     font-size: 2.5em;
   }
 }
 
 @media only screen and (min-width: 769px) {
-  .masthead.segment h1.ui.header {
+  .ui.masthead.segment h1.ui.header {
     font-size: 4em;
   }
 }
 
-.masthead.segment h3 {
+.ui.masthead.segment h3 {
   font-size: 1.07142857rem;
 }
 
 @media only screen and (min-width: 321px) {
-  .masthead.segment h3 {
+  .ui.masthead.segment h3 {
     font-size: 1.28571429rem;
   }
 }
 
-.masthead.segment .social.links {
+.ui.masthead.segment .social.links {
   margin-bottom: 3em;
 }
 
