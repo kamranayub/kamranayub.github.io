@@ -32,9 +32,8 @@ nav.ui.site.menu {
   }
 }
 
-.masthead.segment {
+.ui.masthead.segment {
   min-height: 150px;
-  background-size: cover;
 
   @media only screen and (min-width: (@mobileBreakpoint + 1px)) {
     min-height: 250px;
@@ -46,6 +45,7 @@ nav.ui.site.menu {
 
   .image.masthead {
     margin-bottom: 2em;
+    background-size: cover;
   }
 
   h1.ui.header {
