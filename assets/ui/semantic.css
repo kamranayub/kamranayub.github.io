@@ -786,6 +786,10 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
   margin-bottom: 1.5em;
 }
 
+#intro-header.with-image {
+  background-size: cover;
+}
+
 nav.ui.site.menu {
   font-size: 0.95rem;
 }
@@ -809,10 +813,6 @@ nav.ui.site.menu .header.item {
 
 .ui.masthead.segment {
   min-height: 150px;
-}
-
-.ui.masthead.segment.with-image {
-  background-size: cover;
 }
 
 @media only screen and (min-width: 321px) {
