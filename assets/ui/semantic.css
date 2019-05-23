@@ -24185,9 +24185,8 @@ a.ui.card:hover,
   margin: 0em;
   padding: 0em;
   max-height: '';
-  -ms-flex-item-align: top;
-  -ms-grid-row-align: top;
-  align-self: top;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
 }
 
 .ui.items > .item > .image > img {
@@ -24234,9 +24233,8 @@ a.ui.card:hover,
   width: auto;
   display: block;
   margin-left: 0em;
-  -ms-flex-item-align: top;
-  -ms-grid-row-align: top;
-  align-self: top;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
   padding-left: 1.5em;
 }
 
