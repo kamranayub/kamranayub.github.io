@@ -5,8 +5,89 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2019</copyright>
-		<pubDate>Wed, 22 May 2019 01:50:53 GMT</pubDate>
-		<lastBuildDate>Wed, 22 May 2019 01:50:53 GMT</lastBuildDate>
+		<pubDate>Thu, 23 May 2019 01:36:30 GMT</pubDate>
+		<lastBuildDate>Thu, 23 May 2019 01:36:30 GMT</lastBuildDate>
+		<item>
+			<title>Automating RavenDB 4 with Ansible</title>
+			<link>https://kamranicus.com/posts/2019-05-22-ravendb-devops-automation-with-ansible</link>
+			<description>&lt;p&gt;I've finished migrating my database infrastructure for &lt;a href="https://ktomg.com"&gt;Keep Track of My Games&lt;/a&gt; from &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; 3.5 to 4.1 (&lt;a href="https://ravendb.net/features/ravendb-42-features"&gt;and soon, 4.2&lt;/a&gt;!).&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2019-05-22-ravendb-devops-automation-with-ansible</guid>
+			<pubDate>Thu, 23 May 2019 01:31:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;I've finished migrating my database infrastructure for &lt;a href="https://ktomg.com"&gt;Keep Track of My Games&lt;/a&gt; from &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; 3.5 to 4.1 (&lt;a href="https://ravendb.net/features/ravendb-42-features"&gt;and soon, 4.2&lt;/a&gt;!).&lt;/p&gt;
+&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
+&lt;p&gt;I thought I'd take a moment to lay out how I used &lt;a href="http://ansible.com"&gt;Ansible&lt;/a&gt;, a popular configuration automation tool, to stand up my RavenDB servers with a bit less manual work and to maintain easy upgrades.&lt;/p&gt;
+&lt;p&gt;Since I &lt;a href="https://www.vultr.com/?ref=7006849"&gt;use Vultr for hosting as it's fast and cheap&lt;/a&gt; I decided to &amp;quot;do it right&amp;quot; and plan for the future architecture of KTOMG which I hope to work towards this year, namely hosting on Linux only and cutting a ton of cost from my monthly hosting bill.&lt;/p&gt;
+&lt;p&gt;I believe it's important to treat your servers &lt;a href="https://medium.com/&amp;#64;Joachim8675309/devops-concepts-pets-vs-cattle-2380b5aab313"&gt;like cattle, not pets&lt;/a&gt;. Unfortunately, when I originally set up KTOMG on my Vultr VMs I didn't follow my own advice (remember dear reader: Do as I &lt;em&gt;say&lt;/em&gt; not as I &lt;em&gt;do&lt;/em&gt;). I had no automation scripts or configuration management, it was entirely bespoke (with documented steps, granted). I have used &lt;a href="http://ansible.com"&gt;Ansible&lt;/a&gt; in the past and knew it would be a good fit for configuring my new RavenDB VMs.&lt;/p&gt;
+&lt;h2 id="preparing-the-vm"&gt;Preparing the VM&lt;/h2&gt;
+&lt;p&gt;In order to execute Ansible in the first place, I needed to set up a fresh Ubuntu VM on Vultr. Typically, you don't want to just run as &lt;code&gt;root&lt;/code&gt; for everything in Linux. Instead, you set up dedicated users with permissions to do the things you need. This is the &lt;a href="https://en.wikipedia.org/wiki/Principle_of_least_privilege"&gt;principle of least privilege&lt;/a&gt;. I followed the steps outlined in this &lt;a href="https://www.vultr.com/docs/initial-secure-server-configuration-of-ubuntu-18-04"&gt;basic guide to securing Ubuntu 18.04&lt;/a&gt; to set up a deployment user (&lt;code&gt;deploy&lt;/code&gt;) with appropriate permissions and lock down SSH.&lt;/p&gt;
+&lt;p&gt;In Vultr as well I created &lt;a href="https://www.vultr.com/docs/vultr-firewall"&gt;a Firewall group&lt;/a&gt; for the databases that allows my custom SSH port through (from specific IPs) which provides another layer of security.&lt;/p&gt;
+&lt;p&gt;The last thing I did was &lt;a href="https://www.ubuntu.com/livepatch"&gt;enable Canonical Live Patch&lt;/a&gt; to hotpatch the servers without rebooting, which is free for 3 servers. I did try to set up unattended upgrades with Ansible but was running into strange apt locking issues.&lt;/p&gt;
+&lt;p&gt;Much of this VM setup could be automated at least partially with VM Startup Scripts, a feature Vultr offers. Since it only takes a couple minutes and I only have a few VMs, I didn't bother with that step.&lt;/p&gt;
+&lt;p&gt;Once you test logging in via SSH with your new &lt;code&gt;deploy&lt;/code&gt; user, you can configure Ansible to do the same.&lt;/p&gt;
+&lt;h2 id="setting-up-your-inventory"&gt;Setting Up Your Inventory&lt;/h2&gt;
+&lt;p&gt;Ansible has the idea of an &lt;a href="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html"&gt;inventory&lt;/a&gt; which is the sets of servers to configure. You can group them and provide ansible variables to each one as-needed.&lt;/p&gt;
+&lt;p&gt;Ansible also supports &lt;a href="https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html"&gt;dynamic inventory&lt;/a&gt; and &lt;a href="https://docs.ansible.com/ansible/latest/scenario_guides/guide_vultr.html"&gt;even supports Vultr&lt;/a&gt; as a source! I opted to not do this, again due to the limited number of VMs I needed to configure.&lt;/p&gt;
+&lt;p&gt;The inventory file looks something like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[dbservers]
+10.0.0.1 
+10.0.0.2
+
+[dbservers:vars]
+ansible_port=12345
+ansible_user=deploy
+ansible_become_user=ravensu
+ansible_become_method=su
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Each node is listed that you wish to configure followed by some shared &amp;quot;group&amp;quot; variables that you want to provide to Ansible (they are shared for each node, see &lt;a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#ansible-variable-precedence"&gt;variable precedence&lt;/a&gt;). In this case, we are connecting as the user &lt;code&gt;deploy&lt;/code&gt; on a custom SSH port.&lt;/p&gt;
+&lt;p&gt;What is &lt;code&gt;ansible_become_user&lt;/code&gt;? For the playbook we'll use, most if not all the tasks requires sudo permissions to configure. The way I accomplish this is by ensuring I &lt;em&gt;connect&lt;/em&gt; via SSH with my approved user (&lt;code&gt;deploy&lt;/code&gt;) who has low permissions, then at playbook runtime specify Ansible to &lt;a href="https://docs.ansible.com/ansible/latest/user_guide/become.html"&gt;become&lt;/a&gt; a sudo user (&lt;code&gt;ravensu&lt;/code&gt;) to execute any privileged tasks.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;code&gt;ansible_become_method=su&lt;/code&gt; was the only option that worked for me against my Vultr VMs and I'm unsure why. The default is &lt;code&gt;sudo&lt;/code&gt; but that wasn't working!&lt;/p&gt;
+&lt;h2 id="creating-the-playbook"&gt;Creating the Playbook&lt;/h2&gt;
+&lt;p&gt;In my example playbook, I only do a handful of tasks to set up a server. Possibly in the future, it'd be nice to even automate some of the cluster setup tasks you need to perform for Raven, scripted using the HTTP API. &lt;strong&gt;Bonus points:&lt;/strong&gt; Make a formal Ansible role!&lt;/p&gt;
+&lt;p&gt;At a high-level, the playbook does the following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Install Docker on Linux&lt;/li&gt;
+&lt;li&gt;Copy RavenDB settings and certificates to the remote machine&lt;/li&gt;
+&lt;li&gt;Start a RavenDB 4 container with the appropriate volume mounts, networking configuration and environment variables set&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;View the playbook in my &lt;a href="https://github.com/kamranayub/ravendb-devops/blob/master/ansible/ravendb.yml"&gt;ravendb-devops&lt;/a&gt; repository.&lt;/p&gt;
+&lt;p&gt;I want to touch on a few key configuration settings:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Port Mapping:&lt;/strong&gt; The &lt;code&gt;published_ports&lt;/code&gt; maps the VM host ports (8081, 38889) to the container ports Raven will bind to (8080, 38888). I don't &lt;em&gt;think&lt;/em&gt; they need to be different but in experimenting with setting up Raven I ended up using different ports.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Settings:&lt;/strong&gt; I am providing a custom &lt;code&gt;settings.json&lt;/code&gt; file from the host machine. This contains pre-set config with IP addresses or DNS for what URLs to bind to and other server settings I wanted to customize.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Certificates:&lt;/strong&gt; Raven uses two different kinds of certificates for server administration: a Cluster certificate and an Admin Client certificate. The cluster certificate is for communicating between nodes securely. The Admin Client cert is for you to connect to Studio securely via your browser. Raven needs the private key so it can authenticate you to the Studio interface using Client Certificate Authentication. Both certs need to be copied to the remote host and we map the host &lt;code&gt;/var/db_cert&lt;/code&gt; to the container path &lt;code&gt;/opt/RavenDB/cert&lt;/code&gt; where Raven looks for certificates.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Raven Args:&lt;/strong&gt; The &lt;code&gt;RAVEN_ARGS&lt;/code&gt; env variable sets up some config needed such as the path to the custom &lt;code&gt;settings.json&lt;/code&gt; file we copy over, specifying no setup wizard experience, and what server URL to bind Raven to, in this case the private container address &lt;code&gt;172.17.0.2:8080&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Volumes:&lt;/strong&gt; Containers stop and start, they are ephemeral. We don't want to lose our data if a container is deleted either (during an upgrade to a new image, say). Raven stores data within the container at &lt;code&gt;/opt/RavenDB/Server/RavenData&lt;/code&gt; and we map that to our host path &lt;code&gt;/var/db&lt;/code&gt; so we can take backups, persist to SSD or block storage, etc.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Remember:&lt;/strong&gt; Raven is running within a container, so we bind to a private IP. We then &lt;em&gt;map&lt;/em&gt; the container port (8080) to a host port (8081) to expose it. Why don't we bind to &lt;code&gt;10.0.0.1&lt;/code&gt;, the host IP? Because Raven can't see that from within a container and it'll fail to boot up. Instead, the DNS &lt;code&gt;*.ravendb.community&lt;/code&gt; can be used to set up a name that points to the private VM network IP and so you'll never need to expose Raven publicly outside your VM, besides the Studio interface to manage it (which you can lockdown to a limited IP range using Vultr).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note about DNS:&lt;/strong&gt; Notice I am copying certificates over. Where did I get them? I actually generated them all through Setup Wizard in a &lt;strong&gt;fresh local RavenDB installation&lt;/strong&gt; so I could more easily set up a new cluster with certs and DNS already created. You can walk through the same steps with a local Docker container of RavenDB.&lt;/p&gt;
+&lt;p&gt;I found the following guides helpful when setting up RavenDB in a container:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://ravendb.net/docs/article-page/4.2/csharp/start/installation/setup-wizard"&gt;RavenDB Installation: Setup Wizard&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ravendb.net/docs/article-page/4.2/csharp/start/installation/setup-examples/aws-docker-linux-vm"&gt;RavenDB: Docker on AWS Linux VM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ravendb.net/docs/article-page/4.2/csharp/start/installation/running-in-docker-container"&gt;RavenDB: Running in a Docker Container&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hub.docker.com/r/ravendb/ravendb/"&gt;DockerHub for ravendb/ravendb&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="running-the-ansible-playbook"&gt;Running the Ansible Playbook&lt;/h2&gt;
+&lt;p&gt;Now that we have our &lt;code&gt;ravendb.yml&lt;/code&gt; playbook and &lt;code&gt;inventory&lt;/code&gt; file, we can run &lt;code&gt;ansible-playbook&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ansible-playbook -i inventory -K ravendb.yml
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;-K&lt;/code&gt; flag will prompt for the &lt;code&gt;ansible_become_user&lt;/code&gt; password. This &lt;strong&gt;should not&lt;/strong&gt; be anywhere in plaintext in source control or your host machine. It either needs to be provided when running the command interactively or via &lt;a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html"&gt;Ansible Vault&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You'll be promoted first for the &lt;code&gt;become_user&lt;/code&gt; password, then the SSH key phrase if necessary, and finally it will run through the playbook.&lt;/p&gt;
+&lt;h2 id="finishing-the-installation"&gt;Finishing the Installation&lt;/h2&gt;
+&lt;p&gt;If it was successful, everything will be &lt;code&gt;ok&lt;/code&gt; and you can then browse to the Studio in your local browser against your VM's public IP address (and hopefully, only allowing your IP via a firewall rule).&lt;/p&gt;
+&lt;p&gt;If the Studio prompts for your certificate, choose it, and now you can finish setting up the cluster:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Enter your license to activate the cluster&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ravendb.net/docs/article-page/4.2/csharp/server/ongoing-tasks/backup-overview"&gt;Set up backups&lt;/a&gt;, which took all of 5 minutes to hook up to Azure Storage.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ravendb.net/docs/article-page/4.2/csharp/server/security/authentication/certificate-management"&gt;Create client certs&lt;/a&gt; for your applications to &lt;a href="https://ravendb.net/docs/article-page/4.2/csharp/server/security/authentication/client-certificate-usage"&gt;connect to Raven programmatically&lt;/a&gt;. When creating a client certificate in the Studio, a zip file will be downloaded automatically after generating containing your &lt;code&gt;pfx&lt;/code&gt; file you can use in your app.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;While I've laid out what works for me if you deviate chances are you'll need to do a continuous trial-and-error process to successfully configure your Raven installation. But I hope this provides a nice starting point for configuring a production cluster! If you run into any issues, feel free to leave a comment so others can learn too.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;If you are still learning RavenDB 4, &lt;a href="https://bit.ly/PSRavenDB4"&gt;check out my Getting Started with RavenDB 4&lt;/a&gt; Pluralsight course! It covers the basics like how to get around the Studio, connect with .NET, and more. Using my link won't cost you anything extra but I will get credit for your subscription which helps me out!&lt;/p&gt;
+&lt;/blockquote&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>2019 Goals Quarterly Update (Q1)</title>
 			<link>https://kamranicus.com/posts/2019-04-28-quarterly-1-update</link>
@@ -1370,99 +1451,6 @@ type Color {
 &lt;p&gt;Followed closely behind my excitement is a looming wave of terror--as I will need to refine, revamp, and level up my talk for a bigger audience. I've done it twice (once at Midwest.js and once within Target) and now I pray the third time will be a homerun.&lt;/p&gt;
 &lt;h2 id="is-starting-strong"&gt;2018 is starting strong&lt;/h2&gt;
 &lt;p&gt;As far as &lt;a href="https://kamranicus.com/posts/2018-01-01-2018-a-new-year"&gt;my goals&lt;/a&gt; for the year go, I think I have a good start. I've &lt;a href="https://kamranicus.com/posts/2017-12-18-workshop-bots-javascript-node-minnewebcon"&gt;got a workshop&lt;/a&gt; lined up for May as well, &lt;a href="https://kamranicus.com/posts/2017-10-10-becoming-a-pluralsight-author"&gt;my Pluralsight course&lt;/a&gt; is almost ready, and now I'm speaking at NDC. I've also been nominated for a Microsoft MVP (oops, did I not mention that... shh, the two of you who read this keep it down). We also just bought a house. And it's only January.&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>2017 Year in Review and 2018 Goals</title>
-			<link>https://kamranicus.com/posts/2018-01-01-2018-a-new-year</link>
-			<description>&lt;p&gt;It's good to have goals. Without goals, you're aimlessly wandering around on this space rock with nothing to do and no one to answer to. Some folks like that but I'm not one of them--I like having goals, for near and long-term. I have career goals that I work on with my manager, these are overall professional and community goals to help me personally grow.&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2018-01-01-2018-a-new-year</guid>
-			<pubDate>Mon, 01 Jan 2018 14:50:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;It's good to have goals. Without goals, you're aimlessly wandering around on this space rock with nothing to do and no one to answer to. Some folks like that but I'm not one of them--I like having goals, for near and long-term. I have career goals that I work on with my manager, these are overall professional and community goals to help me personally grow.&lt;/p&gt;
-&lt;p&gt;I &lt;a href="https://kamranicus.com/posts/2017-01-02-year-in-review"&gt;got a lot done in 2016&lt;/a&gt; and continued the trend in 2017, let's break it down and end with my 2018 goals.&lt;/p&gt;
-&lt;h1 id="year-in-review"&gt;2017 Year in Review&lt;/h1&gt;
-&lt;h2 id="life"&gt;Life&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Achievement Unlocked: Father. My son was born in February!&lt;/li&gt;
-&lt;li&gt;I &lt;a href="https://kamranicus.com/posts/2017-08-28-joined-target"&gt;started a new job&lt;/a&gt; at Target in August&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="publishing"&gt;Publishing&lt;/h2&gt;
-&lt;p&gt;Some very exciting milestones were reached in 2017: my first course was published and I became a Pluralsight author!&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I &lt;a href="https://kamranicus.com/posts/2017-01-31-introduction-to-typescript-course-packt-publishing"&gt;published my Introduction to TypeScript course&lt;/a&gt; on January 31&lt;/li&gt;
-&lt;li&gt;In October, I &lt;a href="https://kamranicus.com/posts/2017-10-10-becoming-a-pluralsight-author"&gt;accepted a contract&lt;/a&gt; to author my first Pluralsight course on RavenDB 4! It's almost done so I will be an &amp;quot;official&amp;quot; author in 2018. This was a huge accomplishment!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="open-source"&gt;Open Source&lt;/h2&gt;
-&lt;p&gt;Overall, I'm still finding time to contribute to open source. My number of contributions was lower than 2016 but this year I had a new baby so I figure that's pretty good!&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/excaliburjs/Excalibur/pulls?page=1&amp;amp;q=is%3Apr+is%3Aclosed+author%3Akamranayub"&gt;34 PRs closed for Excalibur.js&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/kamranayub?tab=overview&amp;amp;from=2017-12-01&amp;amp;to=2017-12-31"&gt;840 contributions in 2017&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;In April, worked on &amp;quot;&lt;a href="https://github.com/excaliburjs/ludum-38"&gt;I Just Wanted Groceries&lt;/a&gt;&amp;quot; for the Ludum Dare 38 game jam&lt;/li&gt;
-&lt;li&gt;In October I &lt;a href="https://www.youtube.com/playlist?list=PL3ac-9HYUzQjbIWk7BczVfPqVD2_BNWhE"&gt;started streaming&lt;/a&gt; every other Thursday on Twitch, working on OSS projects. I did 4 sessions with 3 recorded videos.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="new-tech"&gt;New Tech&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;I got my first Raspberry Pi and &lt;a href="https://kamranicus.com/posts/2017-02-21-building-a-raspberry-pi-3-baby-monitor-livestream-audio-video"&gt;built a baby monitor&lt;/a&gt;. My guide continues to be my most popular article on my site!&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://kamranicus.com/posts/2017-10-27-frontend-masters-node-api-graphql"&gt;Played with GraphQL&lt;/a&gt; and continue working with GQL full-time at work (it's awesome)&lt;/li&gt;
-&lt;li&gt;I'm using &amp;quot;older&amp;quot; AngularJS at work but &lt;a href="https://kamranicus.com/posts/2017-10-06-webpack-karma-jest-babel-angularjs"&gt;integrating it with modern tools&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://kamranicus.com/posts/2017-11-20-node-chrome-headless-drone-image"&gt;Messing with Drone CI&lt;/a&gt; at work&lt;/li&gt;
-&lt;li&gt;Did some &lt;a href="https://github.com/ansible/ansible/pulls/kamranayub"&gt;Ansible&lt;/a&gt; earlier in the year&lt;/li&gt;
-&lt;li&gt;Did &lt;a href="https://github.com/rschiefer/MSDeployAllTheThings/pull/6"&gt;some VSTS extension&lt;/a&gt; stuff&lt;/li&gt;
-&lt;li&gt;Did &lt;a href="https://kamranicus.com/posts/2017-02-04-powershell-dsc-git-lfs-binaries"&gt;some&lt;/a&gt; Git LFS &lt;a href="https://kamranicus.com/posts/2017-06-14-downloading-git-lfs-files-from-tfs-vsts"&gt;stuff&lt;/a&gt; with Powershell and DSC&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="speaking-and-conferences"&gt;Speaking and Conferences&lt;/h2&gt;
-&lt;p&gt;I already reached one of my goals for 2018 &amp;quot;on accident,&amp;quot; which was doing a workshop.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;In December, I revealed I'll be &lt;a href="https://kamranicus.com/posts/2017-12-18-workshop-bots-javascript-node-minnewebcon"&gt;doing a half-day workshop&lt;/a&gt; at MinneWebCon 2018 on Azure bots&lt;/li&gt;
-&lt;li&gt;I &lt;a href="https://kamranicus.com/posts/2017-07-14-midwestjs-react-typescript"&gt;spoke at Midwest.js 2017&lt;/a&gt; on React and TypeScript&lt;/li&gt;
-&lt;li&gt;I attended &lt;a href="https://kamranicus.com/posts/2017-02-01-build-2017"&gt;MS Build 2017&lt;/a&gt; which was a lot of fun&lt;/li&gt;
-&lt;li&gt;I gave the same talk from Midwest.js at Target's internal &amp;quot;InnerConf&amp;quot; conference&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="games"&gt;Games&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/excaliburjs/ludum-38"&gt;Made a game&lt;/a&gt; for Ludum Dare 38&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://keeptrackofmygames.com/users/kamranicus/lists/played/?sortBy=DateAdded"&gt;Finished&lt;/a&gt; Horizon: Zero Dawn, Dishonored 2, Life is Strange, and Super Mario: Odyssey. Haven't beaten Zelda yet.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id="goals"&gt;2018 Goals&lt;/h1&gt;
-&lt;p&gt;In 2016 I didn't lay out my goals in a post, I had them in my head. I'd like to write them down here so I can compare how I did at the year end. Let's do it!&lt;/p&gt;
-&lt;h2 id="primary-goals"&gt;Primary Goals&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;del&gt;Publish 1 more Pluralsight course&lt;/del&gt; (&lt;a href="https://kamranicus.com/posts/2018-10-18-new-azure-pluralsight-courses"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;del&gt;Host a half-day workshop (scheduled for April)&lt;/del&gt; (&lt;a href="https://kamranicus.com/posts/2018-04-29-azure-nodejs-workshop-minnewebcon"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;del&gt;Participate in a LD game jam&lt;/del&gt; (&lt;a href="https://kamranicus.com/posts/2018-04-29-ludum-dare-41-post-mortem"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;del&gt;Attend and present at 2 conferences&lt;/del&gt; (&lt;a href="https://kamranicus.com/posts/2018-04-29-azure-nodejs-workshop-minnewebcon"&gt;DONE&lt;/a&gt; and &lt;a href="https://kamranicus.com/posts/2018-05-11-ndc-minnesota-typescript-react"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;del&gt;Attend and present at a local user group&lt;/del&gt; (&lt;a href="https://twitter.com/kamranayub/status/1037840790414864384"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;del&gt;Finish KTOMG UI revamp with React&lt;/del&gt; (&lt;a href="https://twitter.com/kamranayub/status/1055344465991344128"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;Continue doing code livestreams&lt;/li&gt;
-&lt;li&gt;Publish another Pi guide for a project I have in mind&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="stretch-goals"&gt;Stretch Goals&lt;/h2&gt;
-&lt;p&gt;My primary goals are based on previous milestones that I think I can continue. I also want to have some stretch goals to work towards:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Become a Microsoft MVP:&lt;/strong&gt; I spread the love around TypeScript and Azure a lot in my talks and work, I'd like to work towards becoming an MVP.
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Nominated, but nope.&lt;/strong&gt; Unfortunately, somehow my MVP nomination fell through the cracks and I didn't hear back until September this year. They advised me to re-submit. 😞&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Publish 2 more Pluralsight courses:&lt;/strong&gt; I'm confident I can do at least 1 course in 2018, I'd love to do two!
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://kamranicus.com/posts/2018-10-18-new-azure-pluralsight-courses"&gt;Yes! Almost.&lt;/a&gt; I ended up doing two courses at once this year.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Host a full-day workshop&lt;/strong&gt;: This one will be a tough one but with a half-day workshop goal already in progress, I should try for a full-day--even if it's at work and not publicly. Target hosts internal workshops and I've already signaled my intent to do one for 2018.
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Nope.&lt;/strong&gt; Work's been busy with a new release so while I want to start this soon, it won't be in 2018.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Stream 10 sessions&lt;/strong&gt;: I streamed 3 sessions in 2017 and took a holiday break. In January I want to start back up and continue it for the rest of the year, if I can make it work.
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Nope.&lt;/strong&gt; Ended up not having the time/energy to do this.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Phew, that's a lot! We're going to see if I can achieve some of these in 2018 and what ends up carrying over to 2019. Good luck working towards your own goals for this new year!&lt;/p&gt;
-&lt;h2 id="updates"&gt;Updates&lt;/h2&gt;
-&lt;p&gt;Throughout the year I've come back and updated this post and am pretty happy about my progress! 🎉 I'll do another year in review in December to share more reflections.&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>

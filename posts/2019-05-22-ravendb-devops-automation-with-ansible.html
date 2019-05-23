@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Automating RavenDB 4 with Ansible</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Automating RavenDB 4 with Ansible" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2019-05-22-ravendb-devops-automation-with-ansible" />
+  <meta property="og:site_name" content="Kamranicus" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="/assets/js/picturefill.min.js" async></script>
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text site menu">
+      
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+              <div class="item">
+        <a href="/about">Contact</a>
+      </div>
+      <div class="item">
+        <a href="/guides">Guides</a>
+      </div>
+      <div class="item">
+        <a href="/projects">Projects</a>
+      </div>
+      <div class="item">
+        <a href="/events">Talks &amp; Events</a>
+      </div>
+      <div class="item">
+        <a href="/travel">Travel</a>
+      </div>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui vertical masthead segment " id="intro-header">
+    <div class="ui container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui  huge header">
+      Automating RavenDB 4 with Ansible
+        <div class="ui sub header">Useful tips for setting up RavenDB 4 on Docker using Ansible</div>
+    </h1>
+                
+    <div class="ui  sub header">        
+Published on Thursday, May 23, 2019<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/Ansible" class="ui small compact button">Ansible</a>
+                    <a role="button" href="/tags/DevOps" class="ui small compact button">DevOps</a>
+                    <a role="button" href="/tags/RavenDB" class="ui small compact button">RavenDB</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui stackable grid container">
+    <div class="content column">
+      
+
+<div class="ui huge basic post content segment">
+  <p>I've finished migrating my database infrastructure for <a href="https://ktomg.com">Keep Track of My Games</a> from <a href="https://ravendb.net">RavenDB</a> 3.5 to 4.1 (<a href="https://ravendb.net/features/ravendb-42-features">and soon, 4.2</a>!).</p>
+<h2 id="summary">Summary</h2>
+<p>I thought I'd take a moment to lay out how I used <a href="http://ansible.com">Ansible</a>, a popular configuration automation tool, to stand up my RavenDB servers with a bit less manual work and to maintain easy upgrades.</p>
+<p>Since I <a href="https://www.vultr.com/?ref=7006849">use Vultr for hosting as it's fast and cheap</a> I decided to &quot;do it right&quot; and plan for the future architecture of KTOMG which I hope to work towards this year, namely hosting on Linux only and cutting a ton of cost from my monthly hosting bill.</p>
+<p>I believe it's important to treat your servers <a href="https://medium.com/&#64;Joachim8675309/devops-concepts-pets-vs-cattle-2380b5aab313">like cattle, not pets</a>. Unfortunately, when I originally set up KTOMG on my Vultr VMs I didn't follow my own advice (remember dear reader: Do as I <em>say</em> not as I <em>do</em>). I had no automation scripts or configuration management, it was entirely bespoke (with documented steps, granted). I have used <a href="http://ansible.com">Ansible</a> in the past and knew it would be a good fit for configuring my new RavenDB VMs.</p>
+<h2 id="preparing-the-vm">Preparing the VM</h2>
+<p>In order to execute Ansible in the first place, I needed to set up a fresh Ubuntu VM on Vultr. Typically, you don't want to just run as <code>root</code> for everything in Linux. Instead, you set up dedicated users with permissions to do the things you need. This is the <a href="https://en.wikipedia.org/wiki/Principle_of_least_privilege">principle of least privilege</a>. I followed the steps outlined in this <a href="https://www.vultr.com/docs/initial-secure-server-configuration-of-ubuntu-18-04">basic guide to securing Ubuntu 18.04</a> to set up a deployment user (<code>deploy</code>) with appropriate permissions and lock down SSH.</p>
+<p>In Vultr as well I created <a href="https://www.vultr.com/docs/vultr-firewall">a Firewall group</a> for the databases that allows my custom SSH port through (from specific IPs) which provides another layer of security.</p>
+<p>The last thing I did was <a href="https://www.ubuntu.com/livepatch">enable Canonical Live Patch</a> to hotpatch the servers without rebooting, which is free for 3 servers. I did try to set up unattended upgrades with Ansible but was running into strange apt locking issues.</p>
+<p>Much of this VM setup could be automated at least partially with VM Startup Scripts, a feature Vultr offers. Since it only takes a couple minutes and I only have a few VMs, I didn't bother with that step.</p>
+<p>Once you test logging in via SSH with your new <code>deploy</code> user, you can configure Ansible to do the same.</p>
+<h2 id="setting-up-your-inventory">Setting Up Your Inventory</h2>
+<p>Ansible has the idea of an <a href="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html">inventory</a> which is the sets of servers to configure. You can group them and provide ansible variables to each one as-needed.</p>
+<p>Ansible also supports <a href="https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html">dynamic inventory</a> and <a href="https://docs.ansible.com/ansible/latest/scenario_guides/guide_vultr.html">even supports Vultr</a> as a source! I opted to not do this, again due to the limited number of VMs I needed to configure.</p>
+<p>The inventory file looks something like this:</p>
+<pre><code>[dbservers]
+10.0.0.1 
+10.0.0.2
+
+[dbservers:vars]
+ansible_port=12345
+ansible_user=deploy
+ansible_become_user=ravensu
+ansible_become_method=su
+</code></pre>
+<p>Each node is listed that you wish to configure followed by some shared &quot;group&quot; variables that you want to provide to Ansible (they are shared for each node, see <a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#ansible-variable-precedence">variable precedence</a>). In this case, we are connecting as the user <code>deploy</code> on a custom SSH port.</p>
+<p>What is <code>ansible_become_user</code>? For the playbook we'll use, most if not all the tasks requires sudo permissions to configure. The way I accomplish this is by ensuring I <em>connect</em> via SSH with my approved user (<code>deploy</code>) who has low permissions, then at playbook runtime specify Ansible to <a href="https://docs.ansible.com/ansible/latest/user_guide/become.html">become</a> a sudo user (<code>ravensu</code>) to execute any privileged tasks.</p>
+<p><strong>Note:</strong> The <code>ansible_become_method=su</code> was the only option that worked for me against my Vultr VMs and I'm unsure why. The default is <code>sudo</code> but that wasn't working!</p>
+<h2 id="creating-the-playbook">Creating the Playbook</h2>
+<p>In my example playbook, I only do a handful of tasks to set up a server. Possibly in the future, it'd be nice to even automate some of the cluster setup tasks you need to perform for Raven, scripted using the HTTP API. <strong>Bonus points:</strong> Make a formal Ansible role!</p>
+<p>At a high-level, the playbook does the following:</p>
+<ol>
+<li>Install Docker on Linux</li>
+<li>Copy RavenDB settings and certificates to the remote machine</li>
+<li>Start a RavenDB 4 container with the appropriate volume mounts, networking configuration and environment variables set</li>
+</ol>
+<p>View the playbook in my <a href="https://github.com/kamranayub/ravendb-devops/blob/master/ansible/ravendb.yml">ravendb-devops</a> repository.</p>
+<p>I want to touch on a few key configuration settings:</p>
+<ol>
+<li><strong>Port Mapping:</strong> The <code>published_ports</code> maps the VM host ports (8081, 38889) to the container ports Raven will bind to (8080, 38888). I don't <em>think</em> they need to be different but in experimenting with setting up Raven I ended up using different ports.</li>
+<li><strong>Settings:</strong> I am providing a custom <code>settings.json</code> file from the host machine. This contains pre-set config with IP addresses or DNS for what URLs to bind to and other server settings I wanted to customize.</li>
+<li><strong>Certificates:</strong> Raven uses two different kinds of certificates for server administration: a Cluster certificate and an Admin Client certificate. The cluster certificate is for communicating between nodes securely. The Admin Client cert is for you to connect to Studio securely via your browser. Raven needs the private key so it can authenticate you to the Studio interface using Client Certificate Authentication. Both certs need to be copied to the remote host and we map the host <code>/var/db_cert</code> to the container path <code>/opt/RavenDB/cert</code> where Raven looks for certificates.</li>
+<li><strong>Raven Args:</strong> The <code>RAVEN_ARGS</code> env variable sets up some config needed such as the path to the custom <code>settings.json</code> file we copy over, specifying no setup wizard experience, and what server URL to bind Raven to, in this case the private container address <code>172.17.0.2:8080</code>.</li>
+<li><strong>Volumes:</strong> Containers stop and start, they are ephemeral. We don't want to lose our data if a container is deleted either (during an upgrade to a new image, say). Raven stores data within the container at <code>/opt/RavenDB/Server/RavenData</code> and we map that to our host path <code>/var/db</code> so we can take backups, persist to SSD or block storage, etc.</li>
+</ol>
+<p><strong>Remember:</strong> Raven is running within a container, so we bind to a private IP. We then <em>map</em> the container port (8080) to a host port (8081) to expose it. Why don't we bind to <code>10.0.0.1</code>, the host IP? Because Raven can't see that from within a container and it'll fail to boot up. Instead, the DNS <code>*.ravendb.community</code> can be used to set up a name that points to the private VM network IP and so you'll never need to expose Raven publicly outside your VM, besides the Studio interface to manage it (which you can lockdown to a limited IP range using Vultr).</p>
+<p><strong>Note about DNS:</strong> Notice I am copying certificates over. Where did I get them? I actually generated them all through Setup Wizard in a <strong>fresh local RavenDB installation</strong> so I could more easily set up a new cluster with certs and DNS already created. You can walk through the same steps with a local Docker container of RavenDB.</p>
+<p>I found the following guides helpful when setting up RavenDB in a container:</p>
+<ul>
+<li><a href="https://ravendb.net/docs/article-page/4.2/csharp/start/installation/setup-wizard">RavenDB Installation: Setup Wizard</a></li>
+<li><a href="https://ravendb.net/docs/article-page/4.2/csharp/start/installation/setup-examples/aws-docker-linux-vm">RavenDB: Docker on AWS Linux VM</a></li>
+<li><a href="https://ravendb.net/docs/article-page/4.2/csharp/start/installation/running-in-docker-container">RavenDB: Running in a Docker Container</a></li>
+<li><a href="https://hub.docker.com/r/ravendb/ravendb/">DockerHub for ravendb/ravendb</a></li>
+</ul>
+<h2 id="running-the-ansible-playbook">Running the Ansible Playbook</h2>
+<p>Now that we have our <code>ravendb.yml</code> playbook and <code>inventory</code> file, we can run <code>ansible-playbook</code>:</p>
+<pre><code>ansible-playbook -i inventory -K ravendb.yml
+</code></pre>
+<p>The <code>-K</code> flag will prompt for the <code>ansible_become_user</code> password. This <strong>should not</strong> be anywhere in plaintext in source control or your host machine. It either needs to be provided when running the command interactively or via <a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html">Ansible Vault</a>.</p>
+<p>You'll be promoted first for the <code>become_user</code> password, then the SSH key phrase if necessary, and finally it will run through the playbook.</p>
+<h2 id="finishing-the-installation">Finishing the Installation</h2>
+<p>If it was successful, everything will be <code>ok</code> and you can then browse to the Studio in your local browser against your VM's public IP address (and hopefully, only allowing your IP via a firewall rule).</p>
+<p>If the Studio prompts for your certificate, choose it, and now you can finish setting up the cluster:</p>
+<ol>
+<li>Enter your license to activate the cluster</li>
+<li><a href="https://ravendb.net/docs/article-page/4.2/csharp/server/ongoing-tasks/backup-overview">Set up backups</a>, which took all of 5 minutes to hook up to Azure Storage.</li>
+<li><a href="https://ravendb.net/docs/article-page/4.2/csharp/server/security/authentication/certificate-management">Create client certs</a> for your applications to <a href="https://ravendb.net/docs/article-page/4.2/csharp/server/security/authentication/client-certificate-usage">connect to Raven programmatically</a>. When creating a client certificate in the Studio, a zip file will be downloaded automatically after generating containing your <code>pfx</code> file you can use in your app.</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>While I've laid out what works for me if you deviate chances are you'll need to do a continuous trial-and-error process to successfully configure your Raven installation. But I hope this provides a nice starting point for configuring a production cluster! If you run into any issues, feel free to leave a comment so others can learn too.</p>
+<blockquote class="blockquote">
+<p>If you are still learning RavenDB 4, <a href="https://bit.ly/PSRavenDB4">check out my Getting Started with RavenDB 4</a> Pluralsight course! It covers the basics like how to get around the Studio, connect with .NET, and more. Using my link won't cost you anything extra but I will get credit for your subscription which helps me out!</p>
+</blockquote>
+
+</div>
+
+<h3 class="ui horizontal divider">
+  Don't miss any updates!
+</h3>
+
+<div class="ui two column mobile tablet computer reversed divided grid">
+  <div class="row">
+    <div class="column">
+      <p class="ui text tiny"><em>No spam and I usually send a newsletter once a quarter with content you won't see on the blog.</em></p>
+    </div>
+    <div class="column">
+      <div class="ui items" id="mc_embed_signup">
+        <form action="https://kamranicus.us18.list-manage.com/subscribe/post?u=45a27b0b6fc6f929b90e35338&amp;id=89bb6697c0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+          <div class="item" id="mc_embed_signup_scroll">
+            <div class="content">
+              <div class="ui input">
+                <input type="email" value="" name="EMAIL" placeholder="Your Email" class="required email" id="mce-EMAIL">
+              </div>
+              <div id="mce-responses" class="clear" style="margin-top: 1em;">
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+              </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_45a27b0b6fc6f929b90e35338_89bb6697c0" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="ui primary button"></div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        I&#x27;m a technologist, speaker, and Pluralsight author and I specialize in building full-stack solutions with a focus on modern web technology and cloud native architecture.
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="http://www.youtube.com/c/Kamranicus " title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://twitch.tv/kamranicus " title="YouTube">
+  <i class="twitch icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '2019-05-22-ravendb-devops-automation-with-ansible';
+    var disqus_title = 'Automating RavenDB 4 with Ansible';
+    var disqus_url = 'https://kamranicus.com/posts/2019-05-22-ravendb-devops-automation-with-ansible';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+      <!-- Disqus -->
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+  
+  <!-- Footer -->
+  <footer>   
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2019</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="http://www.youtube.com/c/Kamranicus " title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://twitch.tv/kamranicus " title="YouTube">
+  <i class="twitch icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe via RSS or email
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6930375300621668",
+          enable_page_level_ads: true
+     });
+</script>
+
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
