@@ -4,11 +4,11 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2019</rights>
-	<updated>2019-05-23T01:43:45Z</updated>
+	<updated>2019-05-23T01:46:00Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
 	<entry>
 		<link href="https://kamranicus.com/posts/2019-05-22-ravendb-devops-automation-with-ansible" />
-		<link rel="enclosure" type="image" href="https://kamranicus.com/images/2019-05-22-masthead.png" />
+		<link rel="enclosure" type="image" href="https://kamranicus.com/images/2019-05-22-masthead.jpg" />
 		<id>https://kamranicus.com/posts/2019-05-22-ravendb-devops-automation-with-ansible</id>
 		<title>Automating RavenDB 4 with Ansible</title>
 		<updated>2019-05-23T01:31:00Z</updated>
