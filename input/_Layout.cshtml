@@ -93,7 +93,7 @@
       backgroundImage = $"background-image: url(\"{Model.String(BlogKeys.Image)}\")";
     } 
     string headerInverted = Model.Bool("HeaderInverted") ? "inverted" : "";
-    string imageMarker = backgroundImage == null ? "" : "image";
+    string imageMarker = backgroundImage == null ? "" : "with-image";
   }
 
   <header class="ui vertical masthead segment @headerInverted @imageMarker" id="intro-header" style="@backgroundImage">

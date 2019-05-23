@@ -43,8 +43,7 @@ nav.ui.site.menu {
     min-height: 350px;
   }
 
-  .image.masthead {
-    margin-bottom: 2em;
+  .with-image {
     background-size: cover;
   }
 
