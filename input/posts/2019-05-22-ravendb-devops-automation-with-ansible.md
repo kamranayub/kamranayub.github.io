@@ -1,7 +1,7 @@
 Title: "Automating RavenDB 4 with Ansible"
 Published: 2019-05-22 20:31:00 -0500
 Lead: Useful tips for setting up RavenDB 4 on Docker using Ansible
-Image: images/2019-05-22-masthead.png
+Image: images/2019-05-22-masthead.jpg
 Tags:
 - RavenDB
 - DevOps
