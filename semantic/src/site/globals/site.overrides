@@ -14,6 +14,10 @@
 
 #intro-header {
   margin-bottom: 1.5em;
+  
+  &.with-image {
+    background-size: cover;
+  }
 }
 
 nav.ui.site.menu {
@@ -34,10 +38,6 @@ nav.ui.site.menu {
 
 .ui.masthead.segment {
   min-height: 150px;
-
-  &.with-image {
-    background-size: cover;
-  }
 
   @media only screen and (min-width: (@mobileBreakpoint + 1px)) {
     min-height: 250px;
