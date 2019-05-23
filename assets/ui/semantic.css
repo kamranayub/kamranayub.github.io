@@ -811,6 +811,10 @@ nav.ui.site.menu .header.item {
   min-height: 150px;
 }
 
+.ui.masthead.segment.with-image {
+  background-size: cover;
+}
+
 @media only screen and (min-width: 321px) {
   .ui.masthead.segment {
     min-height: 250px;
@@ -823,8 +827,8 @@ nav.ui.site.menu .header.item {
   }
 }
 
-.ui.masthead.segment .with-image {
-  background-size: cover;
+.ui.masthead.segment .image.masthead {
+  margin-bottom: 2em;
 }
 
 .ui.masthead.segment h1.ui.header {
