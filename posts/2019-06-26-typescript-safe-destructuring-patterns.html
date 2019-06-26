@@ -1,0 +1,593 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <title>Kamranicus - Handling Safe Destructuring in TypeScript</title>
+  <meta name="description" content="Kamran Ayub" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kamran Ayub">
+
+  <link href="http://feeds.feedburner.com/Kamranicus" rel="alternate" title="Kamranicus (RSS)" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
+
+  <link href="/assets/ui/semantic.min.css" rel="stylesheet" />
+  <link href="/assets/css/highlight.css" rel="stylesheet">
+
+  <meta name="application-name" content="Kamranicus" />
+  <meta name="msapplication-tooltip" content="Kamranicus" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="Kamranicus - Handling Safe Destructuring in TypeScript" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2019-06-26-typescript-safe-destructuring-patterns" />
+  <meta property="og:site_name" content="Kamranicus" />
+  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:creator" content="@kamranayub" />
+
+  <!-- TODO: More social graph meta tags -->
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Kamranicus",
+      "url": "https://kamranicus.com/",
+      "sameAs": [
+        "http://www.twitter.com/kamranayub"
+      ]
+  }
+  </script>
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+  <![endif]-->
+  <script src="/assets/js/picturefill.min.js" async></script>
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1203259-13']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  
+
+  
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="ui container">
+    <nav class="ui huge text site menu">
+      
+      <a class="header item" href="/">Kamranicus</a>
+      
+      <div class="ui right item">
+              <div class="item">
+        <a href="/about">Contact</a>
+      </div>
+      <div class="item">
+        <a href="/events">Events</a>
+      </div>
+      <div class="item">
+        <a href="/guides">Guides</a>
+      </div>
+      <div class="item">
+        <a href="/projects">Projects</a>
+      </div>
+      <div class="item">
+        <a href="/training">Training</a>
+      </div>
+      <div class="item">
+        <a href="/travel">Travel</a>
+      </div>
+
+      </div>
+    </nav>
+  </div>
+  <!-- Page Header -->
+
+  <header class="ui vertical masthead segment  " id="intro-header">
+    <div class="ui container">
+
+    
+<div class="ui basic vertical segment">
+    <h1 class="ui  huge header">
+      Handling Safe Destructuring in TypeScript
+        <div class="ui sub header">It&#x27;s common in JavaScript code to accept objects as parameters in functions and setting them to an empty object by default to allow safe destructuring. In this post I&#x27;ll cover how to handle this pattern in TypeScript.</div>
+    </h1>
+                
+    <div class="ui  sub header">        
+Published on Wednesday, June 26, 2019<br>    </div>
+        <div class="ui basic vertical spaced segment">
+                    <a role="button" href="/tags/JavaScript" class="ui small compact button">JavaScript</a>
+                    <a role="button" href="/tags/Refactoring" class="ui small compact button">Refactoring</a>
+                    <a role="button" href="/tags/Software-Quality" class="ui small compact button">Software Quality</a>
+                    <a role="button" href="/tags/TypeScript" class="ui small compact button">TypeScript</a>
+        </div>     
+</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="ui stackable grid container">
+    <div class="content column">
+      
+
+<div class="ui huge basic post content segment">
+  <p>When migrating from JavaScript to TypeScript, you will often run into scenarios that seem difficult to statically type related to destructuring objects.</p>
+<h2 id="destructuring-an-empty-object">Destructuring an empty object</h2>
+<p>This pattern is showcased using the following code snippet, which is not actual code but <em>does</em> reflect the semantics of the actual code we reviewed:</p>
+<pre><code class="language-js">function transformSearchResults(payload = {}, queryParams = {}) {
+  const { results } = payload;
+  const { searchTerm } = queryParams;
+
+  if (!results) {
+    return payload;
+  }
+
+  if (searchTerm &amp;&amp; isSearchPayload(payload)) {
+    payload.transformedResults = results.map(r =&gt; ({
+      ...r,
+      anotherProp: true
+    }));
+  }
+
+  return payload;
+}
+</code></pre>
+<p>This function essentially takes a payload, transforms it, and returns the modified payload object.</p>
+<p>Specifically, notice in the function arguments the expressions <code>= {}</code> which in JavaScript will set a default value of <code>{}</code> for the parameter if it is <code>undefined</code>. This is done because on the next 2 lines, we attempt to destructure and pull out some key props of the objects. If <code>payload</code> or <code>queryParams</code> is <code>undefined</code> then the destructuring would blow up and <em>we don't want this code to blow up.</em> That is pretty reasonable!</p>
+<h2 id="converting-to-typescript">Converting to TypeScript</h2>
+<p>If we want to migrate this function to TypeScript, it would make sense to add a type annotation for each parameter like this:</p>
+<pre><code class="language-typescript">export interface ResponsePayload {
+  results: SearchResult[] | OtherResult[];
+}
+
+function transformSearchResults(
+  payload: ResponsePayload = {},
+  queryParams: QueryStringParams = {}
+)
+</code></pre>
+<p>We are trying to annotate our types properly by telling TypeScript what types we expect these parameters to be. We've declared our API type <code>ResponsePayload</code> with a <code>results</code> property.</p>
+<p>But alas, TypeScript will throw an error immediately:</p>
+<pre><code>Property 'results' is missing in type '{}' but required in type 'ResponsePayload'. ts(2741)
+</code></pre>
+<p>While this might seem wrong at first on the surface, TypeScript is actually pointing out a <em>code smell</em> in this function.</p>
+<p>The reason that TypeScript doesn't allow this is because the <code>ResponsePayload</code> type has a <code>results</code> property that is <em>required</em> (cannot be undefined). We know this because we typed it that way, presumably because the API doesn't return undefined. If it did, we could change <code>results</code> to be optional.</p>
+<p>When converting destructuring code to TypeScript, you will be encouraged to consider the code more critically than before, otherwise you will run into type errors.</p>
+<p>Here's what I ask in this situation:</p>
+<ol>
+<li><p>Can the function be simplified to pass a specific primitive value for the parameter?</p>
+</li>
+<li><p>If I need to pass an object, can I refactor the function to avoid it?</p>
+</li>
+</ol>
+<p>These questions are dependent on the specific case but in the <em>majority</em> of cases, you can usually remove the need to destructure by asking these questions.</p>
+<p>For example, let's take it step-by-step.</p>
+<h2 id="simplifying-function-parameters">Simplifying Function Parameters</h2>
+<blockquote class="blockquote">
+<p>Can the function be simplified to pass a specific primitive value for the parameter?</p>
+</blockquote>
+<p>Here's the code again:</p>
+<pre><code class="language-typescript">function transformSearchResults(
+  payload: ResponsePayload = {}, 
+  queryParams: QueryStringParams = {}) 
+{
+  const { results } = payload;
+  const { searchTerm } = queryParams;
+
+  if (!results) {
+    return payload;
+  }
+
+  if (searchTerm &amp;&amp; isSearchPayload(payload)) {
+    payload.transformedResults = results.map(r =&gt; ({
+      ...r,
+      anotherProp: true
+    }));
+  }
+
+  return payload;
+}
+</code></pre>
+<p>A quick look will tell us that the answer is <strong>No</strong> for <code>payload</code> but <strong>Yes</strong> for <code>queryParams</code>.</p>
+<p>Only <code>results</code> in <code>payload</code> is used but <code>payload</code> is also being mutated, so the function needs the object passed, let's set that aside.</p>
+<p>For <code>queryParams</code>, only <code>searchTerm</code> is actually referenced, so let's simplify this function to pass only that:</p>
+<pre><code class="language-typescript">function transformSearchResults(
+  payload: ResponsePayload = {}, 
+  searchTerm?: string) 
+{
+  const { results } = payload;
+
+  if (!results) {
+    return payload;
+  }
+
+  if (searchTerm &amp;&amp; isSearchPayload(payload)) {
+    payload.transformedResults = results.map(r =&gt; ({
+      ...r,
+      anotherProp: true
+    }));
+  }
+
+  return payload;
+}
+</code></pre>
+<p>Great! The rest of the code remains the same and we eliminated one unnecessary destructuring.</p>
+<h2 id="approaches-to-refactoring-for-destructuring">Approaches to Refactoring for Destructuring</h2>
+<blockquote class="blockquote">
+<p>If I need to pass an object, can I refactor the function to avoid it?</p>
+</blockquote>
+<p>Right now the function requires <code>payload</code> to be provided directly. There are two approaches we could now take:</p>
+<ol>
+<li>Specifying a default value for required properties</li>
+<li>Removing the need to mutate an object so we can just pass <code>results</code></li>
+</ol>
+<h3 id="providing-default-values-for-properties">Providing default values for properties</h3>
+<p>If we intend to keep the logic in the function intact, we need to provide a value for all required properties of <code>ResponsePayload</code>.</p>
+<p>We can do this inline within the function which works well for a small list of parameters:.</p>
+<pre><code class="language-typescript">function transformSearchResults(
+  payload: ResponsePayload = { results: [] }, 
+  searchTerm?: string)
+</code></pre>
+<p>All fixed; since we provide a default value for <code>results</code> which isn't <code>undefined</code> TypeScript is happy.</p>
+<p>We could also choose to provide a default object for more complex situations:</p>
+<pre><code class="language-typescript">const defaultPayload: ResponsePayload = {
+  results: []
+};
+
+function transformSearchResults(
+  payload: ResponsePayload = defaultPayload, 
+  searchTerm?: string)
+</code></pre>
+<p>This works just as well but introduces a dangling object that might not add a ton of value. Can we remove the need for providing <code>payload</code> in the first place?</p>
+<h3 id="removing-the-object-altogether">Removing the object altogether</h3>
+<p>The fact that the function mutates the original incoming object is a smell itself. There are cases where that makes sense but in this case, we are transforming results--we should just return the newly mapped results and <em>push the concern of mutating <code>payload</code></em> to a higher-level.</p>
+<pre><code class="language-typescript">function transformSearchResults(
+  results: SearchResults[] | OtherResults[], 
+  searchTerm?: string) 
+{
+  if (searchTerm &amp;&amp; isSearchPayload(payload)) {
+    return results.map(r =&gt; ({
+      ...r,
+      anotherProp: true
+    }));
+  }
+
+  return results;
+}
+</code></pre>
+<p><em>Nearly there.</em> We will now receive an error because <code>isSearchPayload</code> was testing the payload itself. We have two options:</p>
+<ol>
+<li>Modify <code>isSearchPayload</code> to inspect results</li>
+<li>Push the concern of checking payload higher</li>
+</ol>
+<p>We could certainly do option 1 but I like option 2 better. It will end up simplifying the <code>results</code> typing even more because we can <em>know</em> the results are <em>search results</em>! This also makes the function name much more accurate:</p>
+<pre><code class="language-typescript">function transformSearchResults(
+  results: SearchResults[], 
+  searchTerm?: string) 
+{
+  if (searchTerm) {
+    return results.map(r =&gt; ({
+      ...r,
+      anotherProp: true
+    }));
+  }
+
+  return results;
+}
+</code></pre>
+<p>There we go; we've totally removed the need for destructuring with this function by simplifying the requirements and avoiding mutation of objects.</p>
+<h3 id="where-did-the-complexity-go">Where did the complexity go?</h3>
+<p>By refactoring the function we pushed two concerns higher in the call stack:</p>
+<ol>
+<li>Is this a search payload (<code>isSearchPayload</code>)?</li>
+<li>Handling <code>transformedResults</code> for <code>payload</code></li>
+</ol>
+<p>That logic still has to exist somewhere but now it can be lifted higher. There is a principle at work here called the <a href="https://en.wikipedia.org/wiki/Command%E2%80%93query_separation">Command-Query Separation</a> principle, which says:</p>
+<blockquote class="blockquote">
+<p>&quot;every method should either be a command that performs an action, or a query that returns data to the caller, but not both. In other words, <strong>Asking a question should not change the answer.</strong>&quot;</p>
+</blockquote>
+<p>Before we refactored this function, it violated this principle because it both <em>returned new results</em> (a query) <strong>and</strong> had a side effect by mutating the object (a command). Now we've refactored it into a &quot;query&quot; function only.</p>
+<p>If we had inspected the previous way this function was called, you would have seen this:</p>
+<pre><code class="language-js">function (payload?: ResponsePayload) {
+  if (!payload) {
+    throw new Error(&quot;Missing response payload!&quot;);
+  }
+
+  payload = transformSearchResults(payload, queryParams);
+
+  return payload;
+}
+</code></pre>
+<p>This should raise a yellow flag since it is returning the object again which implies it may be mutating it (in other words, &quot;it smells&quot;).</p>
+<p>Now that we've refactored the function above, some responsibilities have been pushed higher, which may result in a change like this:</p>
+<pre><code class="language-typescript">function (payload?: ResponsePayload) {
+  if (!payload) {
+    throw new Error(&quot;Missing response payload!&quot;);
+  }
+
+  if (isSearchPayload(payload)) {
+    return {
+      ...payload,
+      transformedResults: transformSearchResults(payload.results)
+    }
+  }
+}
+</code></pre>
+<p>We avoid mutating the payload directly instead opting to merge the new property in. We now have options to extract this logic, refactor it, etc. which you can decide!</p>
+<h2 id="handling-nested-destructuring">Handling Nested Destructuring</h2>
+<p>If we're able to remove the need to destructure by simplifying functions that is a win but what if we really need to safely destructure and more specifically, in a nested way?</p>
+<pre><code class="language-javascript">function handleData(data = {}) {
+  const { meta: { field1, field2, field3 } = {} } = data;
+}
+</code></pre>
+<p>This is slightly more complicated and subsequently harder to type <em>and it should be</em>. One thing I have come to appreciate about TypeScript is that it makes you feel the pain a little more which in turn encourages you to take a step back and question why the code is structured the way it is.</p>
+<p>In this example, we can ask the same question we originally asked: <em>Do we really need <code>data</code> or can we be more specific?</em></p>
+<h3 id="keeping-data">Keeping <code>data</code></h3>
+<p>Let's say we must keep <code>data</code> as a parameter. If <code>meta</code> and all the <code>field*</code> properties <em>can truly be <code>undefined</code></em> and are marked as so, this code will work.</p>
+<p>As soon as one of them is non-optional, TypeScript will throw an error since we haven't provided defaults.</p>
+<p>For example, let's say <code>data</code> is typed as:</p>
+<pre><code class="language-typescript">interface Data {
+  meta: Metadata
+}
+
+interface Metadata {
+  field1: string;
+  field2: boolean;
+  field3: object;
+}
+</code></pre>
+<p><code>meta</code> is not optional, it must be provided so the code above will throw an error as no default <code>meta</code> value is provided and neither are the <code>field*</code> defaults. Yikes!</p>
+<p>The best approach is to do a refactoring like we did above to simplify the parameters, if possible.</p>
+<p>The next best thing is to <em>remove the default</em>:</p>
+<pre><code class="language-typescript">function handleData(data: Data) {
+  const { meta: { field1, field2, field3 } } = data;
+}
+</code></pre>
+<p>This matches how we've described the types -- that no property can be <code>undefined</code> so there's no <em>reason</em> to use a default parameter anymore. If this matches what you expect, there's nothing additional to do.</p>
+<p>What if in practice, things could potentially be <code>undefined</code> but we still want to ensure the types remain &quot;pure&quot;?</p>
+<p>Then we should push the &quot;guarding&quot; of potentially <code>undefined</code> values higher up the stack:</p>
+<pre><code class="language-typescript">function checkData(data: Data | undefined) {
+  if (!data) {
+    throw new Error(&quot;Data shouldn't be undefined&quot;);
+  }
+
+  return handleData(data); // No longer can be undefined
+}
+
+function handleData(data: Data) {
+
+  // This is safe to do now
+  const { meta: { field1, field2, field3 } } = data;
+}
+</code></pre>
+<p>In general, you should guard as close to the source as possible. This keeps downstream functions simpler and with TypeScript, you can ensure they get passed values that don't <em>need</em> defaults to be provided.</p>
+<h3 id="supporting-partial-objects">Supporting partial objects</h3>
+<p>Let's assume that <code>meta</code> fields <em>can</em> be partially available, we can simplify and statically type the function like this:</p>
+<pre><code class="language-typescript">interface Data {
+  meta: Partial&lt;Metadata&gt;
+}
+
+interface Metadata {
+  field1: string;
+  field2: boolean;
+  field3: object;
+}
+
+function (data: Data) {
+
+  // This is safe now as `meta` can be partially undefined
+  const { meta: { field1, field2, field3 } = {} } = data;
+}
+</code></pre>
+<p>Now we've <em>explicitly</em> declared that <code>meta</code> can be partially defined. This does two things:</p>
+<ol>
+<li>it allows the safe destructuring without compiler errors and,</li>
+<li>it tells the reader to <em>expect</em> to guard against partially defined fields.</li>
+</ol>
+<p>Static types are documentation and now we've called out to expect that <code>meta</code> can have partial fields. It also allows us to safely set the default object to <code>{}</code> to avoid errors while destructuring.</p>
+<h2 id="the-last-resort-type-assertions">The last resort: type assertions</h2>
+<p>There is a hammer we can use as a last resort. If we can't effectively refactor out destructuring or if we really need to force this pattern to avoid changing code, we can use type assertions:</p>
+<pre><code class="language-typescript">function transformSearchResults(
+  payload = {} as ResponsePayload,
+  queryParams = {} as QueryStringParams
+)
+</code></pre>
+<p>This will force TS to treat the empty object <em>as</em> the types we want--but this introduces potential for bugs as now we are opting out of the type safety. We are putting the responsibility of checking for <code>undefined</code> on the developer writing the function vs. the TypeScript compiler.</p>
+<p>If you do this with ESLint rules enabled, you'll be greeted with an error:</p>
+<pre><code>Type assertion on object literals is forbidden, 
+use a type annotation instead. 
+eslint(&#64;typescript-eslint/no-object-literal-type-assertion)
+</code></pre>
+<p>Again this is because it's best to <em>avoid this</em> in the first place. In order to get this to compile, you'll need to disable the error:</p>
+<pre><code class="language-typescript">/*  eslint-disable-next-line &#64;typescript-eslint/no-object-literal-type-assertion */
+function transformSearchResults(
+  payload = {} as ResponsePayload,
+  queryParams = {} as QueryStringParams
+)
+</code></pre>
+<p>At least now, you can later search for these disabled errors as an indication to revisit and refactor later.</p>
+<h2 id="summary">Summary</h2>
+<p>When migrating to TypeScript, you will run into a lot of issues like this that on the surface feel like you're battling the type system but what I hoped to get across is that <em>TypeScript is forcing you to think more explicitly about how your code is structured and what your intent is.</em> It will force you to look <em>beyond</em> the scope of a single function and think more holistically about usage and context.</p>
+<p>When you find yourself trying to disable rules or workaround TypeScript errors through type assertions, you need to take a step back and ask:</p>
+<blockquote class="blockquote">
+<p>Is this the best way to structure this code or is TypeScript hinting that I may need to refactor it?</p>
+</blockquote>
+<p>This type of mindset is a <em>shift in thinking</em> when working with TypeScript, especially when you've come from JavaScript. It may be painful at first but ultimately it will lead to better, hopefully simpler code.</p>
+<p>If you're interested in furthering your understanding of principles like Command-Query Separation and refactoring code, I highly recommend the <a href="https://app.pluralsight.com/library/courses/encapsulation-solid/table-of-contents">Encapsulation and SOLID course</a> by Mark Seeman from Pluralsight.</p>
+<p>You can also check out my <a href="https://dev.to/kamranayub/how-to-get-started-using-react-with-typescript-21c">collection of React and TypeScript content</a>!</p>
+
+</div>
+
+<h3 class="ui horizontal divider">
+  Don't miss any updates!
+</h3>
+
+<div class="ui two column mobile tablet computer reversed divided grid">
+  <div class="row">
+    <div class="column">
+      <p class="ui text tiny"><em>No spam and I usually send a newsletter once a quarter with content you won't see on the blog.</em></p>
+    </div>
+    <div class="column">
+      <div class="ui items" id="mc_embed_signup">
+        <form action="https://kamranicus.us18.list-manage.com/subscribe/post?u=45a27b0b6fc6f929b90e35338&amp;id=89bb6697c0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+          <div class="item" id="mc_embed_signup_scroll">
+            <div class="content">
+              <div class="ui input">
+                <input type="email" value="" name="EMAIL" placeholder="Your Email" class="required email" id="mce-EMAIL">
+              </div>
+              <div id="mce-responses" class="clear" style="margin-top: 1em;">
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+              </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_45a27b0b6fc6f929b90e35338_89bb6697c0" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="ui primary button"></div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui horizontal divider">
+  About Kamran
+</div>
+
+<div class="ui items">
+  <div class="item">
+    <div class="ui small circular image">
+      <img src="/assets/images/me.jpg" title="Kamran Ayub">
+    </div>
+
+    <div class="content">
+      <div class="description">
+        <p>I&#x27;m a technologist, speaker, and Pluralsight author and I specialize in building full-stack solutions with a focus on modern web technology and cloud native architecture.</p>
+        <p><a href="https://pluralsight.pxf.io/c/1210289/424552/7490?u=https%3A%2F%2Fapp.pluralsight.com%2Fprofile%2Fauthor%2Fkamran-ayub"><img src="/assets/images/pluralsight.png" alt="Kamran's Pluralsight courses" title="Check out my Pluralsight courses!" style="max-width:80%;margin:1em 0;"></a></p>
+      </div>
+      <div class="extra">
+        <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="http://www.youtube.com/c/Kamranicus " title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://twitch.tv/kamranicus " title="YouTube">
+  <i class="twitch icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_shortname = 'kamranicus';
+    var disqus_identifier = '2019-06-26-typescript-safe-destructuring-patterns';
+    var disqus_title = 'Handling Safe Destructuring in TypeScript';
+    var disqus_url = 'https://kamranicus.com/posts/2019-06-26-typescript-safe-destructuring-patterns';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+      <!-- Disqus -->
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+  
+  <!-- Footer -->
+  <footer>   
+    <div class="ui center aligned container">
+  <p class="ui grey sub header">Copyright © Kamran Ayub 2019</p>
+  
+  <div class="ui basic vertical segment">
+    <a class="ui circular icon button" href="https://twitter.com/kamranayub" title="Twitter">
+  <i class="twitter icon"></i>
+</a>
+<a class="ui circular icon button" href="https://github.com/kamranayub" title="GitHub">
+  <i class="github icon"></i>
+</a>
+<a class="ui circular icon button" href="https://instagram.com/subkamran" title="Instagram">
+  <i class="instagram icon"></i>
+</a>
+<a class="ui circular icon button" href="http://www.youtube.com/c/Kamranicus " title="YouTube">
+  <i class="youtube icon"></i>
+</a>
+<a class="ui circular icon button" href="https://twitch.tv/kamranicus " title="YouTube">
+  <i class="twitch icon"></i>
+</a>
+<a class="ui circular icon button" href="https://www.linkedin.com/in/subkamran" title="LinkedIn">
+  <i class="linkedin icon"></i>
+</a>
+  </div>
+
+  <p class="ui basic vertical segment">      
+    <a href="http://feeds.feedburner.com/Kamranicus" class="ui right labeled icon button">
+      Subscribe via RSS or email
+      <i class="right rss icon"></i>
+    </a>
+  </p>  
+  <p class="ui tiny basic vertical segment">
+    <a href="https://wyam.io">Statically generated by Wyam</a>
+  </p>
+</div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/ui/semantic.min.js"></script>
+  <script src="/assets/js/highlight.pack.js"></script>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6930375300621668",
+          enable_page_level_ads: true
+     });
+</script>
+
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

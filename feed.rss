@@ -5,8 +5,319 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2019</copyright>
-		<pubDate>Wed, 26 Jun 2019 12:54:49 GMT</pubDate>
-		<lastBuildDate>Wed, 26 Jun 2019 12:54:49 GMT</lastBuildDate>
+		<pubDate>Wed, 26 Jun 2019 13:37:46 GMT</pubDate>
+		<lastBuildDate>Wed, 26 Jun 2019 13:37:46 GMT</lastBuildDate>
+		<item>
+			<title>Handling Safe Destructuring in TypeScript</title>
+			<link>https://kamranicus.com/posts/2019-06-26-typescript-safe-destructuring-patterns</link>
+			<description>&lt;p&gt;When migrating from JavaScript to TypeScript, you will often run into scenarios that seem difficult to statically type related to destructuring objects.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2019-06-26-typescript-safe-destructuring-patterns</guid>
+			<pubDate>Wed, 26 Jun 2019 13:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;When migrating from JavaScript to TypeScript, you will often run into scenarios that seem difficult to statically type related to destructuring objects.&lt;/p&gt;
+&lt;h2 id="destructuring-an-empty-object"&gt;Destructuring an empty object&lt;/h2&gt;
+&lt;p&gt;This pattern is showcased using the following code snippet, which is not actual code but &lt;em&gt;does&lt;/em&gt; reflect the semantics of the actual code we reviewed:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;function transformSearchResults(payload = {}, queryParams = {}) {
+  const { results } = payload;
+  const { searchTerm } = queryParams;
+
+  if (!results) {
+    return payload;
+  }
+
+  if (searchTerm &amp;amp;&amp;amp; isSearchPayload(payload)) {
+    payload.transformedResults = results.map(r =&amp;gt; ({
+      ...r,
+      anotherProp: true
+    }));
+  }
+
+  return payload;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This function essentially takes a payload, transforms it, and returns the modified payload object.&lt;/p&gt;
+&lt;p&gt;Specifically, notice in the function arguments the expressions &lt;code&gt;= {}&lt;/code&gt; which in JavaScript will set a default value of &lt;code&gt;{}&lt;/code&gt; for the parameter if it is &lt;code&gt;undefined&lt;/code&gt;. This is done because on the next 2 lines, we attempt to destructure and pull out some key props of the objects. If &lt;code&gt;payload&lt;/code&gt; or &lt;code&gt;queryParams&lt;/code&gt; is &lt;code&gt;undefined&lt;/code&gt; then the destructuring would blow up and &lt;em&gt;we don't want this code to blow up.&lt;/em&gt; That is pretty reasonable!&lt;/p&gt;
+&lt;h2 id="converting-to-typescript"&gt;Converting to TypeScript&lt;/h2&gt;
+&lt;p&gt;If we want to migrate this function to TypeScript, it would make sense to add a type annotation for each parameter like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-typescript"&gt;export interface ResponsePayload {
+  results: SearchResult[] | OtherResult[];
+}
+
+function transformSearchResults(
+  payload: ResponsePayload = {},
+  queryParams: QueryStringParams = {}
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We are trying to annotate our types properly by telling TypeScript what types we expect these parameters to be. We've declared our API type &lt;code&gt;ResponsePayload&lt;/code&gt; with a &lt;code&gt;results&lt;/code&gt; property.&lt;/p&gt;
+&lt;p&gt;But alas, TypeScript will throw an error immediately:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Property 'results' is missing in type '{}' but required in type 'ResponsePayload'. ts(2741)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;While this might seem wrong at first on the surface, TypeScript is actually pointing out a &lt;em&gt;code smell&lt;/em&gt; in this function.&lt;/p&gt;
+&lt;p&gt;The reason that TypeScript doesn't allow this is because the &lt;code&gt;ResponsePayload&lt;/code&gt; type has a &lt;code&gt;results&lt;/code&gt; property that is &lt;em&gt;required&lt;/em&gt; (cannot be undefined). We know this because we typed it that way, presumably because the API doesn't return undefined. If it did, we could change &lt;code&gt;results&lt;/code&gt; to be optional.&lt;/p&gt;
+&lt;p&gt;When converting destructuring code to TypeScript, you will be encouraged to consider the code more critically than before, otherwise you will run into type errors.&lt;/p&gt;
+&lt;p&gt;Here's what I ask in this situation:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Can the function be simplified to pass a specific primitive value for the parameter?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If I need to pass an object, can I refactor the function to avoid it?&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;These questions are dependent on the specific case but in the &lt;em&gt;majority&lt;/em&gt; of cases, you can usually remove the need to destructure by asking these questions.&lt;/p&gt;
+&lt;p&gt;For example, let's take it step-by-step.&lt;/p&gt;
+&lt;h2 id="simplifying-function-parameters"&gt;Simplifying Function Parameters&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Can the function be simplified to pass a specific primitive value for the parameter?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Here's the code again:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-typescript"&gt;function transformSearchResults(
+  payload: ResponsePayload = {}, 
+  queryParams: QueryStringParams = {}) 
+{
+  const { results } = payload;
+  const { searchTerm } = queryParams;
+
+  if (!results) {
+    return payload;
+  }
+
+  if (searchTerm &amp;amp;&amp;amp; isSearchPayload(payload)) {
+    payload.transformedResults = results.map(r =&amp;gt; ({
+      ...r,
+      anotherProp: true
+    }));
+  }
+
+  return payload;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;A quick look will tell us that the answer is &lt;strong&gt;No&lt;/strong&gt; for &lt;code&gt;payload&lt;/code&gt; but &lt;strong&gt;Yes&lt;/strong&gt; for &lt;code&gt;queryParams&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Only &lt;code&gt;results&lt;/code&gt; in &lt;code&gt;payload&lt;/code&gt; is used but &lt;code&gt;payload&lt;/code&gt; is also being mutated, so the function needs the object passed, let's set that aside.&lt;/p&gt;
+&lt;p&gt;For &lt;code&gt;queryParams&lt;/code&gt;, only &lt;code&gt;searchTerm&lt;/code&gt; is actually referenced, so let's simplify this function to pass only that:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-typescript"&gt;function transformSearchResults(
+  payload: ResponsePayload = {}, 
+  searchTerm?: string) 
+{
+  const { results } = payload;
+
+  if (!results) {
+    return payload;
+  }
+
+  if (searchTerm &amp;amp;&amp;amp; isSearchPayload(payload)) {
+    payload.transformedResults = results.map(r =&amp;gt; ({
+      ...r,
+      anotherProp: true
+    }));
+  }
+
+  return payload;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Great! The rest of the code remains the same and we eliminated one unnecessary destructuring.&lt;/p&gt;
+&lt;h2 id="approaches-to-refactoring-for-destructuring"&gt;Approaches to Refactoring for Destructuring&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;If I need to pass an object, can I refactor the function to avoid it?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Right now the function requires &lt;code&gt;payload&lt;/code&gt; to be provided directly. There are two approaches we could now take:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Specifying a default value for required properties&lt;/li&gt;
+&lt;li&gt;Removing the need to mutate an object so we can just pass &lt;code&gt;results&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="providing-default-values-for-properties"&gt;Providing default values for properties&lt;/h3&gt;
+&lt;p&gt;If we intend to keep the logic in the function intact, we need to provide a value for all required properties of &lt;code&gt;ResponsePayload&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We can do this inline within the function which works well for a small list of parameters:.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-typescript"&gt;function transformSearchResults(
+  payload: ResponsePayload = { results: [] }, 
+  searchTerm?: string)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;All fixed; since we provide a default value for &lt;code&gt;results&lt;/code&gt; which isn't &lt;code&gt;undefined&lt;/code&gt; TypeScript is happy.&lt;/p&gt;
+&lt;p&gt;We could also choose to provide a default object for more complex situations:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-typescript"&gt;const defaultPayload: ResponsePayload = {
+  results: []
+};
+
+function transformSearchResults(
+  payload: ResponsePayload = defaultPayload, 
+  searchTerm?: string)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This works just as well but introduces a dangling object that might not add a ton of value. Can we remove the need for providing &lt;code&gt;payload&lt;/code&gt; in the first place?&lt;/p&gt;
+&lt;h3 id="removing-the-object-altogether"&gt;Removing the object altogether&lt;/h3&gt;
+&lt;p&gt;The fact that the function mutates the original incoming object is a smell itself. There are cases where that makes sense but in this case, we are transforming results--we should just return the newly mapped results and &lt;em&gt;push the concern of mutating &lt;code&gt;payload&lt;/code&gt;&lt;/em&gt; to a higher-level.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-typescript"&gt;function transformSearchResults(
+  results: SearchResults[] | OtherResults[], 
+  searchTerm?: string) 
+{
+  if (searchTerm &amp;amp;&amp;amp; isSearchPayload(payload)) {
+    return results.map(r =&amp;gt; ({
+      ...r,
+      anotherProp: true
+    }));
+  }
+
+  return results;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Nearly there.&lt;/em&gt; We will now receive an error because &lt;code&gt;isSearchPayload&lt;/code&gt; was testing the payload itself. We have two options:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Modify &lt;code&gt;isSearchPayload&lt;/code&gt; to inspect results&lt;/li&gt;
+&lt;li&gt;Push the concern of checking payload higher&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We could certainly do option 1 but I like option 2 better. It will end up simplifying the &lt;code&gt;results&lt;/code&gt; typing even more because we can &lt;em&gt;know&lt;/em&gt; the results are &lt;em&gt;search results&lt;/em&gt;! This also makes the function name much more accurate:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-typescript"&gt;function transformSearchResults(
+  results: SearchResults[], 
+  searchTerm?: string) 
+{
+  if (searchTerm) {
+    return results.map(r =&amp;gt; ({
+      ...r,
+      anotherProp: true
+    }));
+  }
+
+  return results;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There we go; we've totally removed the need for destructuring with this function by simplifying the requirements and avoiding mutation of objects.&lt;/p&gt;
+&lt;h3 id="where-did-the-complexity-go"&gt;Where did the complexity go?&lt;/h3&gt;
+&lt;p&gt;By refactoring the function we pushed two concerns higher in the call stack:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Is this a search payload (&lt;code&gt;isSearchPayload&lt;/code&gt;)?&lt;/li&gt;
+&lt;li&gt;Handling &lt;code&gt;transformedResults&lt;/code&gt; for &lt;code&gt;payload&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;That logic still has to exist somewhere but now it can be lifted higher. There is a principle at work here called the &lt;a href="https://en.wikipedia.org/wiki/Command%E2%80%93query_separation"&gt;Command-Query Separation&lt;/a&gt; principle, which says:&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&amp;quot;every method should either be a command that performs an action, or a query that returns data to the caller, but not both. In other words, &lt;strong&gt;Asking a question should not change the answer.&lt;/strong&gt;&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Before we refactored this function, it violated this principle because it both &lt;em&gt;returned new results&lt;/em&gt; (a query) &lt;strong&gt;and&lt;/strong&gt; had a side effect by mutating the object (a command). Now we've refactored it into a &amp;quot;query&amp;quot; function only.&lt;/p&gt;
+&lt;p&gt;If we had inspected the previous way this function was called, you would have seen this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;function (payload?: ResponsePayload) {
+  if (!payload) {
+    throw new Error(&amp;quot;Missing response payload!&amp;quot;);
+  }
+
+  payload = transformSearchResults(payload, queryParams);
+
+  return payload;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This should raise a yellow flag since it is returning the object again which implies it may be mutating it (in other words, &amp;quot;it smells&amp;quot;).&lt;/p&gt;
+&lt;p&gt;Now that we've refactored the function above, some responsibilities have been pushed higher, which may result in a change like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-typescript"&gt;function (payload?: ResponsePayload) {
+  if (!payload) {
+    throw new Error(&amp;quot;Missing response payload!&amp;quot;);
+  }
+
+  if (isSearchPayload(payload)) {
+    return {
+      ...payload,
+      transformedResults: transformSearchResults(payload.results)
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We avoid mutating the payload directly instead opting to merge the new property in. We now have options to extract this logic, refactor it, etc. which you can decide!&lt;/p&gt;
+&lt;h2 id="handling-nested-destructuring"&gt;Handling Nested Destructuring&lt;/h2&gt;
+&lt;p&gt;If we're able to remove the need to destructure by simplifying functions that is a win but what if we really need to safely destructure and more specifically, in a nested way?&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-javascript"&gt;function handleData(data = {}) {
+  const { meta: { field1, field2, field3 } = {} } = data;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is slightly more complicated and subsequently harder to type &lt;em&gt;and it should be&lt;/em&gt;. One thing I have come to appreciate about TypeScript is that it makes you feel the pain a little more which in turn encourages you to take a step back and question why the code is structured the way it is.&lt;/p&gt;
+&lt;p&gt;In this example, we can ask the same question we originally asked: &lt;em&gt;Do we really need &lt;code&gt;data&lt;/code&gt; or can we be more specific?&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id="keeping-data"&gt;Keeping &lt;code&gt;data&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Let's say we must keep &lt;code&gt;data&lt;/code&gt; as a parameter. If &lt;code&gt;meta&lt;/code&gt; and all the &lt;code&gt;field*&lt;/code&gt; properties &lt;em&gt;can truly be &lt;code&gt;undefined&lt;/code&gt;&lt;/em&gt; and are marked as so, this code will work.&lt;/p&gt;
+&lt;p&gt;As soon as one of them is non-optional, TypeScript will throw an error since we haven't provided defaults.&lt;/p&gt;
+&lt;p&gt;For example, let's say &lt;code&gt;data&lt;/code&gt; is typed as:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-typescript"&gt;interface Data {
+  meta: Metadata
+}
+
+interface Metadata {
+  field1: string;
+  field2: boolean;
+  field3: object;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;meta&lt;/code&gt; is not optional, it must be provided so the code above will throw an error as no default &lt;code&gt;meta&lt;/code&gt; value is provided and neither are the &lt;code&gt;field*&lt;/code&gt; defaults. Yikes!&lt;/p&gt;
+&lt;p&gt;The best approach is to do a refactoring like we did above to simplify the parameters, if possible.&lt;/p&gt;
+&lt;p&gt;The next best thing is to &lt;em&gt;remove the default&lt;/em&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-typescript"&gt;function handleData(data: Data) {
+  const { meta: { field1, field2, field3 } } = data;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This matches how we've described the types -- that no property can be &lt;code&gt;undefined&lt;/code&gt; so there's no &lt;em&gt;reason&lt;/em&gt; to use a default parameter anymore. If this matches what you expect, there's nothing additional to do.&lt;/p&gt;
+&lt;p&gt;What if in practice, things could potentially be &lt;code&gt;undefined&lt;/code&gt; but we still want to ensure the types remain &amp;quot;pure&amp;quot;?&lt;/p&gt;
+&lt;p&gt;Then we should push the &amp;quot;guarding&amp;quot; of potentially &lt;code&gt;undefined&lt;/code&gt; values higher up the stack:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-typescript"&gt;function checkData(data: Data | undefined) {
+  if (!data) {
+    throw new Error(&amp;quot;Data shouldn't be undefined&amp;quot;);
+  }
+
+  return handleData(data); // No longer can be undefined
+}
+
+function handleData(data: Data) {
+
+  // This is safe to do now
+  const { meta: { field1, field2, field3 } } = data;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In general, you should guard as close to the source as possible. This keeps downstream functions simpler and with TypeScript, you can ensure they get passed values that don't &lt;em&gt;need&lt;/em&gt; defaults to be provided.&lt;/p&gt;
+&lt;h3 id="supporting-partial-objects"&gt;Supporting partial objects&lt;/h3&gt;
+&lt;p&gt;Let's assume that &lt;code&gt;meta&lt;/code&gt; fields &lt;em&gt;can&lt;/em&gt; be partially available, we can simplify and statically type the function like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-typescript"&gt;interface Data {
+  meta: Partial&amp;lt;Metadata&amp;gt;
+}
+
+interface Metadata {
+  field1: string;
+  field2: boolean;
+  field3: object;
+}
+
+function (data: Data) {
+
+  // This is safe now as `meta` can be partially undefined
+  const { meta: { field1, field2, field3 } = {} } = data;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we've &lt;em&gt;explicitly&lt;/em&gt; declared that &lt;code&gt;meta&lt;/code&gt; can be partially defined. This does two things:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;it allows the safe destructuring without compiler errors and,&lt;/li&gt;
+&lt;li&gt;it tells the reader to &lt;em&gt;expect&lt;/em&gt; to guard against partially defined fields.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Static types are documentation and now we've called out to expect that &lt;code&gt;meta&lt;/code&gt; can have partial fields. It also allows us to safely set the default object to &lt;code&gt;{}&lt;/code&gt; to avoid errors while destructuring.&lt;/p&gt;
+&lt;h2 id="the-last-resort-type-assertions"&gt;The last resort: type assertions&lt;/h2&gt;
+&lt;p&gt;There is a hammer we can use as a last resort. If we can't effectively refactor out destructuring or if we really need to force this pattern to avoid changing code, we can use type assertions:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-typescript"&gt;function transformSearchResults(
+  payload = {} as ResponsePayload,
+  queryParams = {} as QueryStringParams
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This will force TS to treat the empty object &lt;em&gt;as&lt;/em&gt; the types we want--but this introduces potential for bugs as now we are opting out of the type safety. We are putting the responsibility of checking for &lt;code&gt;undefined&lt;/code&gt; on the developer writing the function vs. the TypeScript compiler.&lt;/p&gt;
+&lt;p&gt;If you do this with ESLint rules enabled, you'll be greeted with an error:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Type assertion on object literals is forbidden, 
+use a type annotation instead. 
+eslint(&amp;#64;typescript-eslint/no-object-literal-type-assertion)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Again this is because it's best to &lt;em&gt;avoid this&lt;/em&gt; in the first place. In order to get this to compile, you'll need to disable the error:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-typescript"&gt;/*  eslint-disable-next-line &amp;#64;typescript-eslint/no-object-literal-type-assertion */
+function transformSearchResults(
+  payload = {} as ResponsePayload,
+  queryParams = {} as QueryStringParams
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;At least now, you can later search for these disabled errors as an indication to revisit and refactor later.&lt;/p&gt;
+&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
+&lt;p&gt;When migrating to TypeScript, you will run into a lot of issues like this that on the surface feel like you're battling the type system but what I hoped to get across is that &lt;em&gt;TypeScript is forcing you to think more explicitly about how your code is structured and what your intent is.&lt;/em&gt; It will force you to look &lt;em&gt;beyond&lt;/em&gt; the scope of a single function and think more holistically about usage and context.&lt;/p&gt;
+&lt;p&gt;When you find yourself trying to disable rules or workaround TypeScript errors through type assertions, you need to take a step back and ask:&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Is this the best way to structure this code or is TypeScript hinting that I may need to refactor it?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This type of mindset is a &lt;em&gt;shift in thinking&lt;/em&gt; when working with TypeScript, especially when you've come from JavaScript. It may be painful at first but ultimately it will lead to better, hopefully simpler code.&lt;/p&gt;
+&lt;p&gt;If you're interested in furthering your understanding of principles like Command-Query Separation and refactoring code, I highly recommend the &lt;a href="https://app.pluralsight.com/library/courses/encapsulation-solid/table-of-contents"&gt;Encapsulation and SOLID course&lt;/a&gt; by Mark Seeman from Pluralsight.&lt;/p&gt;
+&lt;p&gt;You can also check out my &lt;a href="https://dev.to/kamranayub/how-to-get-started-using-react-with-typescript-21c"&gt;collection of React and TypeScript content&lt;/a&gt;!&lt;/p&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>Automating RavenDB 4 with Ansible</title>
 			<link>https://kamranicus.com/posts/2019-05-22-ravendb-devops-automation-with-ansible</link>
@@ -1435,23 +1746,6 @@ type Color {
 &lt;h2 id="whats-next"&gt;What's next?&lt;/h2&gt;
 &lt;p&gt;I plan to write a series of posts on Raven, maybe even do a few livestreams. Since I focused on the .NET SDK in the course I'd love to write a sample in Node, Go, and Python as well (these could be the subject of the livestreams). The course will be added to the official RavenDB site as a resource.&lt;/p&gt;
 &lt;p&gt;As far as Pluralsight goes--I won't be starting a course immediately since I need to get the new house (and office!) in order and get ready for my &lt;a href="https://kamranicus.com/posts/2017-12-18-workshop-bots-javascript-node-minnewebcon"&gt;April workshop on Node.js Bots in Azure&lt;/a&gt; and May session on &lt;a href="https://kamranicus.com/posts/2018-01-31-ndc-minnesota-react-typescript-talk"&gt;TypeScript/React at NDC&lt;/a&gt;. I also need to propose the course and get it accepted! I would love a follow-up course to dive deeper into building with Raven as this course really only scratches the surface.&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Scalable React &amp; TypeScript at NDC Minnesota</title>
-			<link>https://kamranicus.com/posts/2018-01-31-ndc-minnesota-react-typescript-talk</link>
-			<description>&lt;p&gt;&lt;img src="/assets/images/talks/ndc.jpg" class="img-fluid" alt="NDC Conferences"&gt;&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2018-01-31-ndc-minnesota-react-typescript-talk</guid>
-			<pubDate>Thu, 01 Feb 2018 04:50:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;&lt;img src="/assets/images/talks/ndc.jpg" class="img-fluid" alt="NDC Conferences" /&gt;&lt;/p&gt;
-&lt;p&gt;I'm having a tough time coming to terms with what I'm about to write--but I'm honored that my scalable React and TypeScript talk has been accepted for &lt;a href="http://ndcminnesota.com"&gt;NDC Minnesota&lt;/a&gt;!&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://ndcminnesota.com/page/about-ndc"&gt;NDC is a big deal&lt;/a&gt; and I will be sharing the spotlight with such ubiquitous experts like K. Scott Allen &amp;amp; Michelle Bustamante, both of whom are giving workshops I can't decide between, Steve Sanderson, Brock Allen, and &lt;em&gt;more&lt;/em&gt;. OK OK sure, it's not NDC London or NDC Sydney--but it's &lt;strong&gt;still&lt;/strong&gt; NDC and I &lt;strong&gt;still&lt;/strong&gt; can't believe I was accepted. This is also a huge personal milestone as this will be my first conference that isn't just local.&lt;/p&gt;
-&lt;h2 id="about-the-talk"&gt;About the talk&lt;/h2&gt;
-&lt;p&gt;If you don't really follow me and are wondering what the talk will be about, well, &lt;a href="https://youtu.be/owcuEwn-pSM"&gt;you can watch it online&lt;/a&gt; (spoiler alert!). But I promise it's going to be different and better, somehow. In fact, my React rewrite might &lt;em&gt;actually&lt;/em&gt; be done by then!&lt;/p&gt;
-&lt;h2 id="i.am.terrified"&gt;I. am. terrified.&lt;/h2&gt;
-&lt;p&gt;Followed closely behind my excitement is a looming wave of terror--as I will need to refine, revamp, and level up my talk for a bigger audience. I've done it twice (once at Midwest.js and once within Target) and now I pray the third time will be a homerun.&lt;/p&gt;
-&lt;h2 id="is-starting-strong"&gt;2018 is starting strong&lt;/h2&gt;
-&lt;p&gt;As far as &lt;a href="https://kamranicus.com/posts/2018-01-01-2018-a-new-year"&gt;my goals&lt;/a&gt; for the year go, I think I have a good start. I've &lt;a href="https://kamranicus.com/posts/2017-12-18-workshop-bots-javascript-node-minnewebcon"&gt;got a workshop&lt;/a&gt; lined up for May as well, &lt;a href="https://kamranicus.com/posts/2017-10-10-becoming-a-pluralsight-author"&gt;my Pluralsight course&lt;/a&gt; is almost ready, and now I'm speaking at NDC. I've also been nominated for a Microsoft MVP (oops, did I not mention that... shh, the two of you who read this keep it down). We also just bought a house. And it's only January.&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>
