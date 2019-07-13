@@ -32,9 +32,9 @@ Here are the goals I originally laid out and progress notes for each! At the end
 
 **Personal**
 
-- ☑️ Pay off all non-mortgage debt
+- ⌛ Pay off all non-mortgage debt
   - I've paid off all loans under my name! 🎉 Cassie is up next. Neither of us have any credit card debt or car loans, it's just the student loans left.
-- ☑️ Passive income should account for 2% of earnings, 1099 income for 5%
+- ⌛ Passive income should account for 2% of earnings, 1099 income for 5%
   - As a percentage of household W-2 income, passive income is at 1% and contracting income is at 1%, making a total of 2%. Not bad and I project passive income will be just at or higher than 2%. I am not quite as sure if contracting will end up being above 5% but I'll try!
 - ☑️ Replace my PCs at home with a single good Ultrabook/Notebook and a NAS
   - I sold my secondary PC, decided to keep my main PC but instead got a quieter case for recording. I also picked up a used Lenovo Yoga 720 laptop as my personal on-the-go machine. No NAS quite yet, though. I also discovered I have enough parts for yet another entry-level PC but something is up with the motherboard/parts and it won't turn on correctly 🤷‍♂️.
