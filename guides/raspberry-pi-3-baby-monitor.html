@@ -163,16 +163,20 @@
 </li>
 </ul>
 <h2 id="updates">Updates</h2>
-<h3 id="section">2018-01-11</h3>
+<h3 id="section">2019-06-08</h3>
+<ul>
+<li>Updated binary section to reflect instructions for Rasbian Buster</li>
+</ul>
+<h3 id="section-1">2018-01-11</h3>
 <ul>
 <li>Fixed picam extraction command typo because the archive contains the original filename as the top-level folder</li>
 </ul>
-<h3 id="section-1">2017-10-25</h3>
+<h3 id="section-2">2017-10-25</h3>
 <ul>
 <li>Thanks to <a href="#comment-3574356701">Andrew</a> for pointing out some differences between different Raspbian versions! I updated the Picam installation step.</li>
 <li>I updated my Picam arguments to be what I'm using now after some testing. The args I'm using seem pretty stable now.</li>
 </ul>
-<h3 id="section-2">2017-10-02</h3>
+<h3 id="section-3">2017-10-02</h3>
 <ul>
 <li>I missed the fact that the <code>/run/shm</code> directories are blown away on Pi restarts. The startup script now makes sure they exist (should fix slow feeds).</li>
 <li>I updated my picam-viewer web player to use Video.js now which should support more devices.</li>
@@ -287,11 +291,12 @@ EOF
 <pre><code>chmod +x make_dirs.sh
 ./make_dirs.sh
 </code></pre>
-<p>Now here is important! <strong>Depending on the version of Raspbian/Debian on your Pi, you need the right binary file</strong>! Thanks to <a href="#comment-3574356701">Andrew</a> for pointing this out in the comments.</p>
+<p>Now here is important! <strong>If you are using Jessie or Stetch on your Pi, you need the right binary file</strong>! Thanks to <a href="#comment-3574356701">Andrew</a> for pointing this out in the comments.</p>
 <ul>
 <li>For Jessie: <a href="https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-jessie.tar.xz">https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-jessie.tar.xz</a></li>
 <li>For Stretch: <a href="https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-stretch.tar.xz">https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-stretch.tar.xz</a></li>
 </ul>
+<p>If you are using Buster, you can follow the instructions verbatim from the <a href="https://github.com/iizukanao/picam/#installation">install guide for picam</a> and use the latest binary (1.4.7 as of 8 July 2019).</p>
 <p>Now we install Picam directly using the link above:</p>
 <pre><code>wget &lt;URL ABOVE&gt; -O picam-1.4.6.tar.xz
 tar xvf picam-1.4.6.tar.xz
