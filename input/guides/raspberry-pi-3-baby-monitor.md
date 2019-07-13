@@ -66,12 +66,6 @@ This guide will show you how to build your own DIY baby monitor using a Raspberr
 
 ## The Hardware
 
-> Buying through these links gives me a little kickback! It's much appreciated 😍
-
-[![Raspberry Pi Baby Monitor Idea List](images/raspberry-pi-3-baby-monitor/idea-list.jpg)](https://www.amazon.com/ideas/amzn1.account.AEW4J22YWO2YO43UVXVY2S2IWF6Q/1HPD9AY811GYF?&_encoding=UTF8&tag=kamranicus-20&linkCode=ur2&linkId=cc3a8f3133f0c666d28d357b0462fa6e&camp=1789&creative=9325)
-
-Click the image above to view all the below-listed parts on Amazon.
-
 Here's what you'll need, it's what I have and it works great:
 
 - [Raspberry Pi 3 Canakit](https://www.amazon.com/gp/product/B01C6EQNNK/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01C6EQNNK&linkCode=as2&tag=kamranicus-20&linkId=cefba209294d3cf51f3be3d51bd18990) - $50
