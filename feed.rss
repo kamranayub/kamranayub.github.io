@@ -5,8 +5,8 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2019</copyright>
-		<pubDate>Sat, 13 Jul 2019 01:12:29 GMT</pubDate>
-		<lastBuildDate>Sat, 13 Jul 2019 01:12:29 GMT</lastBuildDate>
+		<pubDate>Sat, 13 Jul 2019 02:41:41 GMT</pubDate>
+		<lastBuildDate>Sat, 13 Jul 2019 02:41:41 GMT</lastBuildDate>
 		<item>
 			<title>Handling Safe Destructuring in TypeScript</title>
 			<link>https://kamranicus.com/posts/2019-06-26-typescript-safe-destructuring-patterns</link>
@@ -319,6 +319,110 @@ function transformSearchResults(
 </content:encoded>
 		</item>
 		<item>
+			<title>2019 Goals Quarterly Update (Q2)</title>
+			<link>https://kamranicus.com/posts/2019-07-12-quarterly-2-update</link>
+			<description>&lt;p&gt;OK, we have already reached Q2 2019! Right smack in the middle of summer. Not long ago, &lt;a href="https://kamranicus.com/posts/2019-04-28-quarterly-1-update"&gt;I posted my first quarterly update&lt;/a&gt; and promised to also send the first quarterly newsletter &lt;em&gt;this quarter&lt;/em&gt;. Well, &lt;a href="https://kamranicus.com/newsletter"&gt;if you've subscribed&lt;/a&gt; you should have a fresh email soon in your inbox which includes a ton of interesting links and some content that is &lt;em&gt;not&lt;/em&gt; included in this post (hey, I have to add value somehow!).&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2019-07-12-quarterly-2-update</guid>
+			<pubDate>Wed, 12 Jun 2019 14:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;OK, we have already reached Q2 2019! Right smack in the middle of summer. Not long ago, &lt;a href="https://kamranicus.com/posts/2019-04-28-quarterly-1-update"&gt;I posted my first quarterly update&lt;/a&gt; and promised to also send the first quarterly newsletter &lt;em&gt;this quarter&lt;/em&gt;. Well, &lt;a href="https://kamranicus.com/newsletter"&gt;if you've subscribed&lt;/a&gt; you should have a fresh email soon in your inbox which includes a ton of interesting links and some content that is &lt;em&gt;not&lt;/em&gt; included in this post (hey, I have to add value somehow!).&lt;/p&gt;
+&lt;h2 id="progress-on-yearly-goals"&gt;Progress on yearly goals&lt;/h2&gt;
+&lt;p&gt;Let's see what updates there have been to my goals. To make it easy, I've only included &lt;em&gt;new updates&lt;/em&gt;, so check out &lt;a href="https://kamranicus.com/posts/2019-04-28-quarterly-1-update"&gt;Q1 for a review&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="primary-goals"&gt;Primary Goals&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Professional&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;✅ Publish 4 Pluralsight guides on React &amp;amp; TypeScript by May
+&lt;ul&gt;
+&lt;li&gt;I was just approved to write my 4th Pluralsight guide. Yes! It'll be out in August.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;✅ Speak at NDC MN on a TypeScript topic
+&lt;ul&gt;
+&lt;li&gt;I spoke! You can &lt;a href="https://www.youtube.com/watch?v=mIejhIX7ObE"&gt;watch the recording on YouTube&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;⌛ Publish 5 technical articles on the blog about Azure, TypeScript, or React
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;1 of 5 down.&lt;/em&gt; I recently wrote about &lt;a href="https://kamranicus.com/posts/2019-06-26-typescript-safe-destructuring-patterns"&gt;Handling Safe Destructuring in TypeScript&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Personal&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;☑️ Passive income should account for 2% of earnings, 1099 income for 5%
+&lt;ul&gt;
+&lt;li&gt;Partially complete!&lt;/li&gt;
+&lt;li&gt;Passive income as a % of W-2: &lt;strong&gt;3.3%&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;1099 income as a % of W-2: &lt;strong&gt;2.3%&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Total side earnings:&lt;/strong&gt; 5.6%!&lt;/li&gt;
+&lt;li&gt;This is awesome for not pursuing some more lucrative gigs this year so far. I've been focusing on monetizing KTOMG which has an opportunity cost but for me it's definitely worth doing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;✅ Replace my PCs at home with a single good Ultrabook/Notebook and a NAS
+&lt;ul&gt;
+&lt;li&gt;Marking as done; no need to get a NAS, I just upgraded to two 1TB SSDs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;⌛ Push 3 substantive updates to KTOMG throughout the year: Steam review revamp, Raven 4 upgrade, and Linux hosting
+&lt;ul&gt;
+&lt;li&gt;Migration completed to RavenDB 4 and the IGDB migration &lt;a href="https://twitter.com/keeptrackgames/status/1143354095027347457"&gt;is nearly complete&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;DIY&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;✅ &lt;del&gt;Learn how to cut trim/baseboard and&lt;/del&gt; finish the nursery
+&lt;ul&gt;
+&lt;li&gt;Let's leave this at just paint since I decided to leave the trim.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="stretch-goals"&gt;Stretch Goals&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Professional&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;✅ Set up a quarterly newsletter
+&lt;ul&gt;
+&lt;li&gt;Done! Sign up below or at &lt;a href="https://kamranicus.com/newsletter"&gt;https://kamranicus.com/newsletter&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;DIY&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;⛔ &lt;del&gt;Install luxury vinyl plank in my office&lt;/del&gt;
+&lt;ul&gt;
+&lt;li&gt;I think this will move to next year; &lt;a href="https://twitter.com/kamranayub/status/1143369429469880320"&gt;I did research&lt;/a&gt; and picked out some styles, did a cost estimate, but I don't think I'll get to it this year unless I do it during winter.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;⛔ &lt;del&gt;Replace baseboard/trim in my son's bedroom&lt;/del&gt; Paint son's bedroom trim.
+&lt;ul&gt;
+&lt;li&gt;I don't think I need to replace it; I may still paint it, though.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="unplanned-accomplishments"&gt;Unplanned Accomplishments&lt;/h2&gt;
+&lt;h3 id="professional"&gt;Professional&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Invited to speak.&lt;/strong&gt; This year was my first year where I was &lt;em&gt;invited to speak&lt;/em&gt; at a conference. I'll be at MDC in October talking about building flexible UIs again (an updated version &lt;a href="https://www.youtube.com/watch?v=mIejhIX7ObE"&gt;of my NDC talk&lt;/a&gt;). I also was invited to speak at the .NET User Group where I spoke about RavenDB 4 (video forthcoming).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;New role at work.&lt;/strong&gt; I was promoted to Lead Engineer and joined the &lt;a href="https://target.com"&gt;Target.com&lt;/a&gt; web platform team. That means I'm actively working behind-the-scenes to make Target.com faster and better for you. I think if I add up all the performance optimizations I've made across the site, it's up in the 2-3 second range which is HUGE. It's pretty fun and I'm surrounded by way smarter people than me which I really enjoy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;More writing.&lt;/strong&gt; In the last update, I mentioned I wrote an article about RavenDB indexes and that I had a second article in the works. Well, I published &lt;a href="https://www.codeproject.com/Articles/4553133/Whats-New-in-RavenDB-4-2"&gt;What's New in RavenDB 4.2&lt;/a&gt; in May! I also posted a non-freelance article on &lt;a href="https://kamranicus.com/posts/2019-05-22-ravendb-devops-automation-with-ansible"&gt;Automating RavenDB 4 with Ansible&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="personal"&gt;Personal&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;New blog.&lt;/strong&gt; Starting a brand new DIY/crafts-focused blog with my wife, who loves to knit and sew. I focus on home projects and she makes awesome things for us to wear. I'll have more to announce soon.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="diy"&gt;DIY&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;✅ Completed &lt;a href="https://twitter.com/kamranayub/status/1145410649121538048"&gt;a DIY window egress cover&lt;/a&gt;. I'm super happy with how it turned out. Guide forthcoming in Q3, which will be posted on the new blog 👌.&lt;/li&gt;
+&lt;li&gt;⌛ Cassie and I are refinishing an old dresser for our daughter, Saira. Progress will be posted on the new blog.&lt;/li&gt;
+&lt;li&gt;✅ Cassie completed her own DIY projects of repainting &lt;strong&gt;two&lt;/strong&gt; old stools!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="final-thoughts"&gt;Final thoughts&lt;/h2&gt;
+&lt;p&gt;Q2 went by quickly! We are in the dog days of summer and enjoying it quite a bit. Lots of trips, lots of friends, and still managing to hack away at projects and earn some side coin. The DIY stuff has been a lot of fun and I've appreciated learning new skills. Plus it's fun to work on shared projects with my wife!&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
 			<title>Automating RavenDB 4 with Ansible</title>
 			<link>https://kamranicus.com/posts/2019-05-22-ravendb-devops-automation-with-ansible</link>
 			<description>&lt;p&gt;I've finished migrating my database infrastructure for &lt;a href="https://ktomg.com"&gt;Keep Track of My Games&lt;/a&gt; from &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; 3.5 to 4.1 (&lt;a href="https://ravendb.net/features/ravendb-42-features"&gt;and soon, 4.2&lt;/a&gt;!).&lt;/p&gt;</description>
@@ -435,12 +539,12 @@ ansible_become_method=su
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Personal&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;☑️ Pay off all non-mortgage debt
+&lt;li&gt;⌛ Pay off all non-mortgage debt
 &lt;ul&gt;
 &lt;li&gt;I've paid off all loans under my name! 🎉 Cassie is up next. Neither of us have any credit card debt or car loans, it's just the student loans left.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;☑️ Passive income should account for 2% of earnings, 1099 income for 5%
+&lt;li&gt;⌛ Passive income should account for 2% of earnings, 1099 income for 5%
 &lt;ul&gt;
 &lt;li&gt;As a percentage of household W-2 income, passive income is at 1% and contracting income is at 1%, making a total of 2%. Not bad and I project passive income will be just at or higher than 2%. I am not quite as sure if contracting will end up being above 5% but I'll try!&lt;/li&gt;
 &lt;/ul&gt;
@@ -1716,36 +1820,6 @@ type Color {
 &lt;li&gt;Apollo Launchpad: &lt;a href="https://launchpad.graphql.com/kqx178pn57"&gt;https://launchpad.graphql.com/kqx178pn57&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Codesandbox: &lt;a href="https://codesandbox.io/s/24zx7k6z10"&gt;https://codesandbox.io/s/24zx7k6z10&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>RavenDB 4: Getting Started course is live!</title>
-			<link>https://kamranicus.com/posts/2018-02-08-ravendb-4-course-live</link>
-			<description>&lt;p&gt;It's here! &lt;a href="http://bit.ly/learnravendb4"&gt;Go and watch my new Pluralsight course&lt;/a&gt; now to learn about working with RavenDB 4! RavenDB is available for free, &lt;a href="https://ravendb.net/download"&gt;even for production use&lt;/a&gt;.&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2018-02-08-ravendb-4-course-live</guid>
-			<pubDate>Fri, 09 Feb 2018 01:04:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;It's here! &lt;a href="http://bit.ly/learnravendb4"&gt;Go and watch my new Pluralsight course&lt;/a&gt; now to learn about working with RavenDB 4! RavenDB is available for free, &lt;a href="https://ravendb.net/download"&gt;even for production use&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="what-youll-learn"&gt;What you'll learn&lt;/h2&gt;
-&lt;p&gt;You can &lt;a href="https://app.pluralsight.com/player?name=8b3d5a8b-83e2-4b63-883a-906cac0f705c&amp;amp;mode=live&amp;amp;clip=0&amp;amp;course=ravendb-4-getting-started&amp;amp;author=kamran-ayub"&gt;watch the course overview for free&lt;/a&gt;, if you prefer.&lt;/p&gt;
-&lt;p&gt;Otherwise, from the course page:&lt;/p&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;RavenDB is a cross-platform NoSQL distributed document database designed for small to enterprise-level applications. In this course, RavenDB 4: Getting Started, you’ll learn how to leverage RavenDB in the context of .NET application development. First, you’ll learn what RavenDB brings to the table and what problems it will help solve. Next, you’ll see how to create, update, and query data with the .NET client SDK. Finally, you’ll discover how to manage Raven using the first-class &amp;quot;Studio&amp;quot; UI experience. When you’re finished with this course, you’ll have a foundational knowledge of Raven enabling you to use it in your next NoSQL-based application.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The course is organized around a sample application (that is &lt;a href="https://github.com/kamranayub/pluralsight-ravendb-4-getting-started"&gt;publicly available&lt;/a&gt;) written in ASP.NET Core and C#. It's pretty simple, on purpose, to showcase the major features of Raven.&lt;/p&gt;
-&lt;h2 id="creation-process"&gt;Creation process&lt;/h2&gt;
-&lt;p&gt;This course is only around 2 hours compard to &lt;a href="https://www.packtpub.com/application-development/introduction-typescript-video"&gt;my TypeScript course&lt;/a&gt; which is a full 8 hours long but this time I decided to track my time more closely. The breakdown was roughly:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;Content&lt;/em&gt; (slides, research, etc.): 33 hours&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Planning&lt;/em&gt; (proposal, assessments, course wrap-up): 5 hours (?)&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Recording&lt;/em&gt;: 13 hours&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Code&lt;/em&gt;: 24 hours&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Editing&lt;/em&gt;: 30 hours&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;To be fair, the last 3-4 weeks I did not end up tracking time so I estimated that based on previous hours, I spent around 100 hours of work. I started the course in mid-October so it was about 4 months of work. In that time, we had a two week trip in Hawaii and we also closed on a new house (in addition to normal fatherly duties for my then 10 month old)--hence I finished a month later than I had initially planned. The funny thing is, RavenDB 4 went stable the &lt;strong&gt;same day&lt;/strong&gt; the course went live! So the timing worked out great.&lt;/p&gt;
-&lt;p&gt;As far as my workflow--I wrote all the code first for the course to fully understand what to teach and what would need to be covered. Then, I went one module at a time, working on content first then any code demos and then recording/editing. Even with all the code written, I still ended up moving some content around to make the flow more natural and introduce concepts in the right order.&lt;/p&gt;
-&lt;h2 id="whats-next"&gt;What's next?&lt;/h2&gt;
-&lt;p&gt;I plan to write a series of posts on Raven, maybe even do a few livestreams. Since I focused on the .NET SDK in the course I'd love to write a sample in Node, Go, and Python as well (these could be the subject of the livestreams). The course will be added to the official RavenDB site as a resource.&lt;/p&gt;
-&lt;p&gt;As far as Pluralsight goes--I won't be starting a course immediately since I need to get the new house (and office!) in order and get ready for my &lt;a href="https://kamranicus.com/posts/2017-12-18-workshop-bots-javascript-node-minnewebcon"&gt;April workshop on Node.js Bots in Azure&lt;/a&gt; and May session on &lt;a href="https://kamranicus.com/posts/2018-01-31-ndc-minnesota-react-typescript-talk"&gt;TypeScript/React at NDC&lt;/a&gt;. I also need to propose the course and get it accepted! I would love a follow-up course to dive deeper into building with Raven as this course really only scratches the surface.&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>
