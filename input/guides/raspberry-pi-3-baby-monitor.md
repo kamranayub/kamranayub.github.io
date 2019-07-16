@@ -49,6 +49,10 @@ This guide will show you how to build your own DIY baby monitor using a Raspberr
 
 ## Updates
 
+### 2019-06-08
+
+- Updated binary section to reflect instructions for Rasbian Buster
+
 ### 2018-01-11
 
 - Fixed picam extraction command typo because the archive contains the original filename as the top-level folder
@@ -211,10 +215,12 @@ Then the following, to execute the script we just made and create the required d
     chmod +x make_dirs.sh
     ./make_dirs.sh
 
-Now here is important! **Depending on the version of Raspbian/Debian on your Pi, you need the right binary file**! Thanks to [Andrew](#comment-3574356701) for pointing this out in the comments.
+Now here is important! **If you are using Jessie or Stetch on your Pi, you need the right binary file**! Thanks to [Andrew](#comment-3574356701) for pointing this out in the comments.
 
 - For Jessie: https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-jessie.tar.xz
 - For Stretch: https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-stretch.tar.xz
+
+If you are using Buster, you can follow the instructions verbatim from the [install guide for picam](https://github.com/iizukanao/picam/#installation) and use the latest binary (1.4.7 as of 8 July 2019).
 
 Now we install Picam directly using the link above:
 
