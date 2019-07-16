@@ -1,5 +1,5 @@
 Title: "2019 Goals Quarterly Update (Q2)"
-Published: 2019-06-12 09:00:00 -0500
+Published: 2019-07-12 09:00:00 -0500
 Lead: More writing, new DIY projects, upcoming conferences, and side earnings reached some thresholds!
 Tags:
 - Life
