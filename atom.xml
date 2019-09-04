@@ -4,8 +4,38 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2019</rights>
-	<updated>2019-08-13T04:29:19Z</updated>
+	<updated>2019-09-04T01:58:57Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2019-09-03-aspnetmvc5-asset-versioning-url-helper" />
+		<id>https://kamranicus.com/posts/2019-09-03-aspnetmvc5-asset-versioning-url-helper</id>
+		<title>Versioning Content URLs in ASP.NET MVC 5</title>
+		<updated>2019-09-04T01:37:00Z</updated>
+		<content>&lt;p&gt;I just published a new Nuget package, &lt;a href="https://www.nuget.org/packages/AspNet.Mvc.AssetVersioning"&gt;AspNet.Mvc.AssetVersioning&lt;/a&gt;. This package extends the MVC5 &lt;code&gt;&amp;#64;Url&lt;/code&gt; Razor helper with a new &lt;code&gt;VersionedContent&lt;/code&gt; method
+which appends a Base64-encoded SHA256 hash to the end of the URL for cache-busting.&lt;/p&gt;
+&lt;h2 id="versioning-in-asp.net-core"&gt;Versioning in ASP.NET Core&lt;/h2&gt;
+&lt;p&gt;In ASP.NET Core, you can version URLs using the &lt;a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/built-in/image-tag-helper?view=aspnetcore-2.2#asp-append-version"&gt;&lt;code&gt;asp-append-version&lt;/code&gt; tag helper&lt;/a&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;&amp;lt;script src=&amp;quot;~/scripts/foo.js&amp;quot; type=&amp;quot;text/javascript&amp;quot; asp-append-version=&amp;quot;true&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Which will output:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;&amp;lt;script src=&amp;quot;/scripts/foo.js?v=hash&amp;quot; type=&amp;quot;text/javascript&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="versioning-in-asp.net-mvc-5"&gt;Versioning in ASP.NET MVC 5&lt;/h2&gt;
+&lt;p&gt;Since I have not yet migrated to ASP.NET Core for &lt;a href="https://ktomg.com"&gt;Keep Track of My Games&lt;/a&gt;, I needed the same functionality in order to remove some old libraries that are not available in .NET Core. Now you can achieve the same thing using my &lt;a href="https://www.nuget.org/packages/AspNet.Mvc.AssetVersioning"&gt;package&lt;/a&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;&amp;#64;using System.Web.Mvc.AssetVersioning;
+
+&amp;lt;script src=&amp;quot;&amp;#64;Url.VersionedContent(&amp;quot;~/scripts/foo.js&amp;quot;)&amp;quot; type=&amp;quot;text/javascript&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This will output the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;&amp;lt;script src=&amp;quot;/scripts/foo?base64-encoded-hash&amp;quot; type=&amp;quot;text/javascript&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The helper will automatically cache hashes for files for the lifetime of the &lt;code&gt;HttpContext&lt;/code&gt;. So, basically, for the lifetime of the application pool. Restart the site/app pool to refresh the cache, which should happen on any new deployments.&lt;/p&gt;
+&lt;p&gt;You can simplify the &lt;code&gt;&amp;#64;using&lt;/code&gt; statement usage by adding the namespace to the &lt;code&gt;/configuration/system.web.webPages.razor/pages/namespaces&lt;/code&gt; section in the &lt;code&gt;Views/web.config&lt;/code&gt; file, as outlined in the GitHub repo &lt;a href="https://github.com/kamranayub/aspnetmvc5-asset-versioning"&gt;README&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Hope this helps someone else facing the same issue!&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;I just published a new Nuget package, &lt;a href="https://www.nuget.org/packages/AspNet.Mvc.AssetVersioning"&gt;AspNet.Mvc.AssetVersioning&lt;/a&gt;. This package extends the MVC5 &lt;code&gt;@Url&lt;/code&gt; Razor helper with a new &lt;code&gt;VersionedContent&lt;/code&gt; method
+which appends a Base64-encoded SHA256 hash to the end of the URL for cache-busting.&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2019-08-12-pluralsight-guide-testing-react-typescript-jest" />
 		<id>https://kamranicus.com/posts/2019-08-12-pluralsight-guide-testing-react-typescript-jest</id>
@@ -1533,44 +1563,5 @@ Indexing 45,000 entries           60 seconds      3 seconds
 &lt;/ul&gt;
 </content>
 		<summary>&lt;p&gt;Last week I had the opportunity to &lt;a href="https://kamranicus.com/posts/2017-12-18-workshop-bots-javascript-node-minnewebcon"&gt;give a half-day workshop&lt;/a&gt; at MinneWebCon. I had initially submitted the session as a 50 minute talk but the committee thought it would be better as a workshop.&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2018-04-29-ludum-dare-41-post-mortem" />
-		<id>https://kamranicus.com/posts/2018-04-29-ludum-dare-41-post-mortem</id>
-		<title>Ludum Dare 41 Post-Mortem</title>
-		<updated>2018-04-29T13:00:00Z</updated>
-		<content>&lt;p&gt;Whoo! Another year, another opportunity to participate in Ludum Dare with the &lt;a href="http://excaliburjs.com"&gt;Excalibur.js&lt;/a&gt; team. Last jam we made &lt;a href="https://blog.excaliburjs.com/post/161334104662/ludum-dare-38-postmortem"&gt;I Just Wanted Groceries&lt;/a&gt; (which I totally spaced on writing about). You can play our LD41 game &lt;a href="http://excaliburjs.com/ludum-41"&gt;Office Daydream&lt;/a&gt; right now.&lt;/p&gt;
-&lt;h2 id="the-jam"&gt;The jam&lt;/h2&gt;
-&lt;p&gt;&lt;a href="http://ldjam.com"&gt;Ludum Dare&lt;/a&gt; is a global game jam that has two modes: the Compo and the Jam. The Compo is for individuals and strict rules on content creation, limited to 48 hours. The Jam is for teams and is a bit looser on content rules (you can use premade assets) and lasts 72 hours. Since we are a team, we always do the jam but it's always interested me to try doing a Compo by myself at some point.&lt;/p&gt;
-&lt;h2 id="the-theme"&gt;The theme&lt;/h2&gt;
-&lt;p&gt;The theme this jam was not as great as we hoped--there were certainly some better ones in the running but it was a challenge and we made the most of it. The theme was &amp;quot;Combine 2 incompatible genres.&amp;quot;&lt;/p&gt;
-&lt;p&gt;First, we didn't like the term &amp;quot;incompatible&amp;quot; because that already presupposes the two genres you choose can't have been considered compatible today and that they would never be compatible in the future. But that's nonsense because I'd DEFINITELY play &lt;a href="https://ldjam.com/events/ludum-dare/41/jeff-from-accounting"&gt;this typing FPS&lt;/a&gt; for realsies if it ever made it into a production game.&lt;/p&gt;
-&lt;p&gt;Second, we like open-ended themes more than specifically scoped themes. For example, previous ones we participated in included &amp;quot;Under the Sea&amp;quot;, &amp;quot;A Small World&amp;quot;, and &amp;quot;Shapeshift.&amp;quot; These all leave much more open interpretations.&lt;/p&gt;
-&lt;p&gt;Still. The theme forced people to come up with some interesting combinations like this basketball + Connect 4 game. Constraints breed creativity, even if there were some really effing weird ones.&lt;/p&gt;
-&lt;h2 id="brainstorming"&gt;Brainstorming&lt;/h2&gt;
-&lt;p&gt;We played with a lot of combinations. We started by listing game genres, then movie genres, then music genres. Some we combos we liked but knew we didn't have time for, mainly RPG-based or turn-based.&lt;/p&gt;
-&lt;p&gt;It kept coming back to a runner + idle game theme. The dichotomies of a fast-paced runner with a casual idle game was attractive. They were incompatible in terms of mechanics and style. We didn't want to &amp;quot;mix&amp;quot; two genres, we really wanted to have a distinct separation between the genres.&lt;/p&gt;
-&lt;p&gt;We landed on either a librarian dreaming of things she read in the books she was putting away or a bored office worker. The office theme was strong and we didn't have enough time to build out a full themed set of art for different book genres.&lt;/p&gt;
-&lt;p&gt;And so, Office Daydream was born. You were just a person doing menial office tasks dreaming of being a motorcycle stunt action hero.&lt;/p&gt;
-&lt;h2 id="coding"&gt;Coding&lt;/h2&gt;
-&lt;p&gt;This jam was different from previous jams because we were at our teammate's cabin and were essentially on vacation. My wife and son were there, other spouses were present. We knew we'd only be working 8 hour days to spend evenings with family.&lt;/p&gt;
-&lt;p&gt;This turned out to work super well--and even when I had to leave halfway through on Sunday, the team managed to get everything done that we had scoped for. We ended up starting around 8-9am, taking an hour lunch break, and finishing around 5pm.&lt;/p&gt;
-&lt;p&gt;Some things we did ahead of time that ensured we met this schedule:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Spend Friday after theme announcement &lt;em&gt;just&lt;/em&gt; focusing on design and mechanics and idea generation to have a solid goal by the end of the night&lt;/li&gt;
-&lt;li&gt;Scoped all mechanics/design to a minimal goal (MVP) with stretch goals&lt;/li&gt;
-&lt;li&gt;Had all our tooling/setup in place beforehand so we could sit down and work immediately&lt;/li&gt;
-&lt;li&gt;Used Trello like we have in the past to manage work&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="design"&gt;Design&lt;/h2&gt;
-&lt;p&gt;We initially had thought you'd control the runner via keyboard and the office minigames with your mouse. But then we decided to use the mouse for all interaction because it forced you to focus on one thing at a time, making it harder.&lt;/p&gt;
-&lt;p&gt;We also didn't really know what we'd do for an &amp;quot;endgame&amp;quot; until we realized the theme decided for us. You're in an office. You typically work an 8 hour day. So, each minigame will last essentially a portion of that time and when you finish them, you end your work day successfully daydreaming.&lt;/p&gt;
-&lt;h2 id="assets"&gt;Assets&lt;/h2&gt;
-&lt;p&gt;I spent a little time and made the background for the runner portion. I went with a cyberpunk-ish/Bladerunner cityscape theme. It worked pretty well! Just simple fixed width skyscrapers that could be randomly tiled horizontally to make the background more dynamic.&lt;/p&gt;
-&lt;p&gt;I also found the motorcycle asset and designed the art for the paper collation minigame (the mug I did was replaced by Erik's better mug). I'm no artist and I'm very glad Erik took care of the rest of the art. If we need anyone else on the team, it's a dedicated artist.&lt;/p&gt;
-&lt;h2 id="the-end"&gt;The end&lt;/h2&gt;
-&lt;p&gt;Every game jam is a ton of fun and I always learn something new about game dev. It was nice not feeling the &amp;quot;crunch&amp;quot; of 12 hour days, I feel we might adopt the 8 hour cycle in future jams more often now that we know we can accomplish what we set out to build.&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;Whoo! Another year, another opportunity to participate in Ludum Dare with the &lt;a href="http://excaliburjs.com"&gt;Excalibur.js&lt;/a&gt; team. Last jam we made &lt;a href="https://blog.excaliburjs.com/post/161334104662/ludum-dare-38-postmortem"&gt;I Just Wanted Groceries&lt;/a&gt; (which I totally spaced on writing about). You can play our LD41 game &lt;a href="http://excaliburjs.com/ludum-41"&gt;Office Daydream&lt;/a&gt; right now.&lt;/p&gt;</summary>
 	</entry>
 </feed>
