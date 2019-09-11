@@ -4,8 +4,40 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2019</rights>
-	<updated>2019-09-04T01:58:57Z</updated>
+	<updated>2019-09-11T03:05:40Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2019-09-10-looks-good-to-us-blog-launch" />
+		<id>https://kamranicus.com/posts/2019-09-10-looks-good-to-us-blog-launch</id>
+		<title>Just Launched: Looks Good to Us DIY and Crafting Blog</title>
+		<updated>2019-09-10T14:10:00Z</updated>
+		<content>&lt;p&gt;My wife and I just started a crafting and DIY blog, &lt;a href="https://looksgoodtous.com"&gt;Looks Good to Us&lt;/a&gt; last week. We have new posts every Wednesday and you can subscribe to get weekly updates. You can also follow us on &lt;a href="https://twitter.com/looksgoodtous"&gt;Twitter&lt;/a&gt; and &lt;a href="https://instagram.com/looksgoodtous"&gt;Instagram&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="diy-sewing-and-knitting-oh-my"&gt;DIY, Sewing, and Knitting, Oh My!&lt;/h2&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/64663997-49d9fa00-d413-11e9-9039-23478f94a39c.png" class="img-fluid" alt="LGTU logo" /&gt;&lt;/p&gt;
+&lt;p&gt;While &lt;em&gt;this&lt;/em&gt; blog revolves around technology and personal topics, LGTU is focused on my and Cassie's shared hobby of crafts: I like home automation, DIY, and &amp;quot;Maker&amp;quot; activities, she likes knitting and sewing. She frankly does much more than I do, since I have like 5 hobbies and she mostly has just the two (good for her!). You can read about it in our &lt;a href="https://looksgoodtous.com/welcome"&gt;Welcome&lt;/a&gt; post.&lt;/p&gt;
+&lt;p&gt;There are two things I focused on with how I launched this new blog. I &lt;strong&gt;optimized for time&lt;/strong&gt; and &lt;strong&gt;avoided yak shaving.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id="optimize-for-time"&gt;Optimize for Time&lt;/h2&gt;
+&lt;p&gt;First, I optimized for frictionless writing. I needed something &lt;em&gt;fast&lt;/em&gt; and &lt;em&gt;collaborative&lt;/em&gt; because my wife is not a developer and I wanted to remove any excuse &lt;em&gt;not&lt;/em&gt; to write. So I used &lt;a href="https://ghost.org"&gt;Ghost&lt;/a&gt; and self-hosted it on a &lt;a href="https://marketplace.digitalocean.com/apps/ghost"&gt;Digital Ocean 1-click droplet&lt;/a&gt; (if you use it, help me out and &lt;a href="https://m.do.co/c/1026c3c0c89b"&gt;use my referral link&lt;/a&gt;). Digital Ocean is awesome and the process only took an evening and we were up and running. More on that later!&lt;/p&gt;
+&lt;p&gt;Ghost is amazing 🤩 It uses the same editor Medium does which my wife and I used when we wrote posts during &lt;a href="https://kamranicus.com/travel"&gt;our travels&lt;/a&gt;. I also love the seamless workflow for drafting, scheduling, and editing. It allows my wife and I to schedule out posts ahead of time, essentially self-imposing a deadline each week, as shown below:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/64664906-4b58f180-d416-11e9-974b-e98899fc93d3.png" class="img-fluid" alt="LGTU post pipeline" /&gt;&lt;/p&gt;
+&lt;p&gt;Congratulations, you get a sneak peek! The workflow is great and really removes all the barriers to writing that my lizard brain requires.&lt;/p&gt;
+&lt;h2 id="no-yak-shaving-allowed"&gt;No Yak Shaving Allowed&lt;/h2&gt;
+&lt;p&gt;The second thing I did differently, I didn't &lt;a href="https://www.hanselman.com/blog/YakShavingDefinedIllGetThatDoneAsSoonAsIShaveThisYak.aspx"&gt;shave any yaks&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&amp;quot;Yak shaving is what you are doing when you're doing some stupid, fiddly little task that bears no obvious relationship to what you're supposed to be working on, but yet a chain of twelve causal relations links what you're doing to the original meta-task.&amp;quot; - Scott Hanselman&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We developers are &lt;em&gt;great&lt;/em&gt; at yak shaving. I could have spent a month making a logo (I spent 30 mins), customizing the theme (I made one edit), and designing a CI/CD DevOps-y Git-integrated workflow (I just use Ghost). By the time the blog would have launched, it would be &lt;em&gt;perfect&lt;/em&gt; and also I would have wasted months (or years, if you shave a lot of yaks).&lt;/p&gt;
+&lt;p&gt;It reminds me of a quote I recently heard on a podcast:&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&amp;quot;If you aren't embarassed by your first version, you're launching too late.&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So I didn't sweat it. I talked to my wife and we came up with a rotating weekly cadence. We already have 4-5 weeks of content. At this rate, we could even think about switching to twice a week but frankly I want to just give us some breathing room in-between posts. The fact that each of us gets 2 weeks is perfect right now.&lt;/p&gt;
+&lt;h2 id="be-consistent"&gt;Be consistent&lt;/h2&gt;
+&lt;p&gt;The number one recommendation I keep hearing over and over from successful content creators is that &lt;strong&gt;consistency&lt;/strong&gt; is crucial to building an audience. Fostering a community is also incredibly important. I made sure that we can do both for LGTU by enabling comments and hooking up the blog subscription to &lt;a href="http://eepurl.com/gpjY_H"&gt;Mailchimp&lt;/a&gt; (my referral link again!), which is what I use for my own newsletter.&lt;/p&gt;
+&lt;p&gt;I need to do better for &lt;em&gt;this&lt;/em&gt; blog and it's on my list for this next year. I wish I could do it in an evening but due to the way all my source is in Markdown, I'll need to convert my posts for Ghost (they have a JSON import, though). It'll be added to my goals, don't worry. 😉&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;My wife and I just started a crafting and DIY blog, &lt;a href="https://looksgoodtous.com"&gt;Looks Good to Us&lt;/a&gt; last week. We have new posts every Wednesday and you can subscribe to get weekly updates. You can also follow us on &lt;a href="https://twitter.com/looksgoodtous"&gt;Twitter&lt;/a&gt; and &lt;a href="https://instagram.com/looksgoodtous"&gt;Instagram&lt;/a&gt;.&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2019-09-03-aspnetmvc5-asset-versioning-url-helper" />
 		<id>https://kamranicus.com/posts/2019-09-03-aspnetmvc5-asset-versioning-url-helper</id>
@@ -1532,36 +1564,5 @@ Indexing 45,000 entries           60 seconds      3 seconds
 &lt;p&gt;The goal of the workshop was to learn each of these patterns on a small scale so we can apply them to our larger projects. There is certainly already opportunities on my project at work to leverage what I learned--I'm hoping to spend some more time building out our project and then writing about some useful patterns.&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;A couple weeks ago I went to the in-person Frontend Masters workshop with Kent C. Dodds on Advanced React Patterns.&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2018-04-29-azure-nodejs-workshop-minnewebcon" />
-		<id>https://kamranicus.com/posts/2018-04-29-azure-nodejs-workshop-minnewebcon</id>
-		<title>Finished My First Workshop at MinneWebCon</title>
-		<updated>2018-04-30T00:56:00Z</updated>
-		<content>&lt;p&gt;Last week I had the opportunity to &lt;a href="https://kamranicus.com/posts/2017-12-18-workshop-bots-javascript-node-minnewebcon"&gt;give a half-day workshop&lt;/a&gt; at MinneWebCon. I had initially submitted the session as a 50 minute talk but the committee thought it would be better as a workshop.&lt;/p&gt;
-&lt;p&gt;The workshop outline and code is &lt;a href="https://github.com/kamranayub/workshop-nodejs-azure-bots"&gt;available on GitHub&lt;/a&gt;. I thought I'd write up a brief retrospective since it was my first workshop!&lt;/p&gt;
-&lt;h2 id="what-went-well"&gt;What went well&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Everyone was able to deploy a live bot and finished the workshop (huzzah!)&lt;/li&gt;
-&lt;li&gt;I was able to help answer some questions I hadn't anticipated&lt;/li&gt;
-&lt;li&gt;People paired up if they didn't have everything they needed on their computers&lt;/li&gt;
-&lt;li&gt;Azure Bot Service works pretty well and even when a couple people accidentally chose the wrong code template, they were able to redo the bot in a few minutes&lt;/li&gt;
-&lt;li&gt;People said they liked it, which always feels good!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="what-could-change"&gt;What could change&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;If it was a longer workshop, I'd rather build a custom sample bot rather than building off the pre-built Notes domain&lt;/li&gt;
-&lt;li&gt;I walked through some of the LUIS grammar via whiteboard but it would have been better to visualize the relationships better in slide form I think&lt;/li&gt;
-&lt;li&gt;At the end some folks wanted to see what a &amp;quot;real&amp;quot; bot looks like hooked up to real data. I showed what I did for &lt;a href="http://ktomg.com"&gt;KTOMG&lt;/a&gt; but ideally in a full workshop we'd use a live data source as you would in the real world.&lt;/li&gt;
-&lt;li&gt;The Azure Bot Service &amp;quot;web chat&amp;quot; blade was super finicky--it usually required people to sign out fully and sign back in to boot up the interface&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="what-i-learned"&gt;What I learned&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;I learned I enjoy giving workshops. Helping people accomplish something in a hands-on way is pretty cool.&lt;/li&gt;
-&lt;li&gt;Different people are on different levels and want different things out of the workshop. It was good I had some stretch goals.&lt;/li&gt;
-&lt;li&gt;Professionals want a way to see how what they learned will apply to their day-to-day work. I'd flesh this out more if I gave the workshop again. Showing how I wrote my bot in C# for &lt;a href="http://ktomg.com"&gt;KTOMG&lt;/a&gt; was helpful I think.&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-		<summary>&lt;p&gt;Last week I had the opportunity to &lt;a href="https://kamranicus.com/posts/2017-12-18-workshop-bots-javascript-node-minnewebcon"&gt;give a half-day workshop&lt;/a&gt; at MinneWebCon. I had initially submitted the session as a 50 minute talk but the committee thought it would be better as a workshop.&lt;/p&gt;</summary>
 	</entry>
 </feed>
