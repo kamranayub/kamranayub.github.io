@@ -4,8 +4,83 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
 	<rights>2019</rights>
-	<updated>2019-09-11T03:05:40Z</updated>
+	<updated>2019-09-17T12:32:27Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2019-09-12-using-storybook-in-a-monorepo" />
+		<id>https://kamranicus.com/posts/2019-09-12-using-storybook-in-a-monorepo</id>
+		<title>Using Storybook in a Monorepo</title>
+		<updated>2019-09-17T12:00:00Z</updated>
+		<content>&lt;p&gt;I'm currently working in a small monorepo and we have multiple packages set up for shared components, like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;packages/
+  atoms/
+  molecules/
+  organisms/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Each package has React components under a &lt;code&gt;src&lt;/code&gt; directory and since each directory &lt;em&gt;is&lt;/em&gt; a package, they also contain &lt;code&gt;node_modules&lt;/code&gt; (more on why that's important below).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;packages/
+  atoms/
+    node_modules/
+    src/
+      components/
+        Hello.js
+        Hello.stories.js
+    package.json
+  molecules/
+  organisms/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is different than other posts I've seen that use a root &lt;code&gt;stories/&lt;/code&gt; directory -- that is not how we'd like to set up our repo, we'd prefer stories to live right next to the components they describe.&lt;/p&gt;
+&lt;h2 id="setting-up-storybook"&gt;Setting Up Storybook&lt;/h2&gt;
+&lt;p&gt;You can follow the same steps on the &lt;a href="https://storybook.js.org/docs/guides/guide-react/"&gt;getting started page&lt;/a&gt; for setting up Storybook in a monorepo.&lt;/p&gt;
+&lt;p&gt;Once it's done, you should have a new folder at the root:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;.storybook/
+  config.js
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If not, make sure that gets created. We need to make some changes to &lt;code&gt;config.js&lt;/code&gt; to read stories within each package in the monorepo.&lt;/p&gt;
+&lt;h2 id="configuring-storybook-for-a-monorepo"&gt;Configuring Storybook for a Monorepo&lt;/h2&gt;
+&lt;p&gt;The key issue I ran into that prompted me to write about this is that we need to import stories using the &lt;a href="https://github.com/webpack/docs/wiki/context"&gt;Webpack context&lt;/a&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;require.context('../packages', true, /stories.jsx?$/);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This prompts Webpack to scan a &lt;code&gt;src&lt;/code&gt; directory for paths containing &lt;code&gt;stories.js&lt;/code&gt; or &lt;code&gt;stories.jsx&lt;/code&gt; anywhere in the string.&lt;/p&gt;
+&lt;p&gt;Since Webpack &lt;em&gt;statically analyzes&lt;/em&gt; this code it means we &lt;strong&gt;cannot&lt;/strong&gt; dynamically read the file system and iterate through each package directory (I tried that 😔).&lt;/p&gt;
+&lt;p&gt;There's another problem. Remember I mentioned each package directory has &lt;code&gt;node_modules&lt;/code&gt; and possibly other directories which means that the following paths will match the regular expression:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# some node modules (like Storybook itself) use Storybook
+./atoms/node_modules/&amp;#64;storybook__react/src/stories/blah.stories.js
+
+# code coverage reports, uses same paths!
+./molecules/lcov-report/_html/src/components/Hello.stories.js
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And you can imagine more paths like that can match. Webpack will attempt to import these files into the bundle it generates but these will most likely cause build errors. That isn't what we want! We need to &lt;em&gt;exclude&lt;/em&gt; everything but the &lt;code&gt;src&lt;/code&gt; directory in a package when matching files.&lt;/p&gt;
+&lt;p&gt;The solution, as it turns out is fairly straightforward, since we have a convention where each package has components within a &lt;code&gt;src&lt;/code&gt; directory, we really just need to match that inner &lt;code&gt;src&lt;/code&gt; after the package name, so we can write a regular expression like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;require.context('../packages', true, /^\.\/[^\/]+\/src\/.*stories\.jsx?$/);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let's break it down:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;^               # match beginning of path
+\.\/            # the path will begin with a &amp;quot;./&amp;quot;, like ./atoms
+[^\/]+          # get the first path segment (match characters up to first /)
+\/src\/         # ensure we match under the `src` directory
+.*              # match any character
+stories\.jsx?   # match anything with &amp;quot;stories.js(x)&amp;quot; in it
+$               # match end of string
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here's an example using my favorite regex tool &lt;a href="https://regexr.com"&gt;RegExr&lt;/a&gt; on which paths match and which don't:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/65041547-a4e08500-d91c-11e9-895d-7acaf4cc65a1.png" class="img-fluid" alt="regex example" /&gt;&lt;/p&gt;
+&lt;p&gt;Handy!&lt;/p&gt;
+&lt;h2 id="the-final-config"&gt;The Final Config&lt;/h2&gt;
+&lt;p&gt;Here's our final &lt;code&gt;config.js&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;import { configure } from '&amp;#64;storybook/react';
+
+function loadStories() {
+  const req = require.context('../packages', true, /^\.\/[^\/]+\/src\/.*stories\.jsx?$/);
+  req.keys().forEach(filename =&amp;gt; req(filename));
+}
+
+configure(loadStories, module);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I hope this helps someone else and saves them the few hours I spent performing the correct rites to get this to work!&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;I'm currently working in a small monorepo and we have multiple packages set up for shared components, like this:&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2019-09-10-looks-good-to-us-blog-launch" />
 		<id>https://kamranicus.com/posts/2019-09-10-looks-good-to-us-blog-launch</id>
@@ -1531,38 +1606,5 @@ Indexing 45,000 entries           60 seconds      3 seconds
 &lt;p&gt;Like I said in that tweet, it was completely surreal to be on the show. I'm still in shock I think and I'm not sure what to expect for response. If you listened, hopefully you learned something new. By next winter, I'll get that snow blower.&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;At the end of April I got the opportunity to record a show with .NET celebs Carl Franklin and Richard Campbell, hosts of the &lt;a href="http://dotnetrocks.com"&gt;.NET Rocks&lt;/a&gt; podcast. It's &lt;a href="https://dotnetrocks.com/?show=1541"&gt;live now&lt;/a&gt;.&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2018-04-29-advanced-react-patterns-workshop" />
-		<id>https://kamranicus.com/posts/2018-04-29-advanced-react-patterns-workshop</id>
-		<title>Frontend Masters: Advanced React Patterns Workshop</title>
-		<updated>2018-04-30T01:18:00Z</updated>
-		<content>&lt;p&gt;A couple weeks ago I went to the in-person Frontend Masters workshop with Kent C. Dodds on Advanced React Patterns.&lt;/p&gt;
-&lt;p&gt;I was looking forward to it, I've followed Kent for awhile and knew his workshops were well-received. I'm doing React at work and it was perfect timing for our project.&lt;/p&gt;
-&lt;h2 id="takeaways"&gt;Takeaways&lt;/h2&gt;
-&lt;p&gt;The gist of the workshop was state management and props passing patterns in React, to be able to build smarter, flexible components.&lt;/p&gt;
-&lt;p&gt;We centered around a toggle component that showcased each of the patterns, some isolated and some working in tandem.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Context API&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;I hadn't really been exposed to the context API before React 16.3 so this was brand new to me. They really have made it much easier to use now.&lt;/p&gt;
-&lt;p&gt;The Context API makes it straightforward to pass data around throughout your app without forcing you to pass props down through the component tree (called &amp;quot;props drilling&amp;quot;).&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Render Props&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;This pattern has come into fashion pretty recently I'd say. When I started learning React over a year ago I hadn't seen this pattern used much. Before attending the workshop I had used this pattern in practice in KTOMG to build analytics/social sharing providers that encapsulated some behavior like respecting Do Not Track across the site.&lt;/p&gt;
-&lt;p&gt;The pattern is useful for building flexible UI components where you can encapsulate behavior and state but delegate rendering (or parts of rendering) to the consumer.&lt;/p&gt;
-&lt;p&gt;Render props is powerful and in a lot of cases provides most of what you'd need in a flexible component.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Control Props&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;This is a pattern to delegate the setting of state to &amp;quot;control props.&amp;quot; This provides flexibility to a component to delegate control of its state to a consuming component vs. setting internal state only.&lt;/p&gt;
-&lt;p&gt;Whenever the component is intending to use &lt;code&gt;setState&lt;/code&gt;, it checks whether that state is &lt;em&gt;controlled&lt;/em&gt; (meaning, it's being passed in as a prop). If it is, it just calls a callback with what &lt;em&gt;would&lt;/em&gt; be the new state value. If it's not controlled, it goes ahead and sets state normally.&lt;/p&gt;
-&lt;p&gt;This is useful in situations where you as the caller want to control the state yourself--it means though that you basically have to know how the internal state works of the component you're controlling.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;State Reducer&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;This is a more advanced pattern Kent showed. The goal of this is to enable a consuming component to manipulate the internal state of a component by basically intercepting state changes.&lt;/p&gt;
-&lt;p&gt;It's a more flexible version of control props basically allowing your entire state to be controlled by a consumer.&lt;/p&gt;
-&lt;p&gt;There's an &lt;a href="https://github.com/kentcdodds/advanced-react-patterns-v2/blob/master/src/why/state-reducer.js"&gt;example in the workshop repo&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="rendux-exercise"&gt;Rendux Exercise&lt;/h2&gt;
-&lt;p&gt;I missed the last couple exercises going over Higher Order Components (HOCs) and this last exercise called &lt;a href="https://github.com/kentcdodds/advanced-react-patterns-v2/blob/master/src/exercises-final/13.js"&gt;Rendux&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The Rendux exercise uses the render props pattern to hook into a Redux store as a reusable component. Any time you need to access the store, you can use the &lt;code&gt;Rendux.Consumer&lt;/code&gt; component or &lt;code&gt;withRendux&lt;/code&gt; enhancer function. This is a different way to accomplish the similar Redux experience of using &lt;code&gt;Provider&lt;/code&gt; and the &lt;code&gt;connect&lt;/code&gt; enhancer.&lt;/p&gt;
-&lt;h2 id="putting-into-practice"&gt;Putting into practice&lt;/h2&gt;
-&lt;p&gt;The goal of the workshop was to learn each of these patterns on a small scale so we can apply them to our larger projects. There is certainly already opportunities on my project at work to leverage what I learned--I'm hoping to spend some more time building out our project and then writing about some useful patterns.&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;A couple weeks ago I went to the in-person Frontend Masters workshop with Kent C. Dodds on Advanced React Patterns.&lt;/p&gt;</summary>
 	</entry>
 </feed>
