@@ -2,6 +2,7 @@ Title: "NDC MN 2019: Designing a Flexible UI Architecture with React and GraphQL
 Published: 2019-02-01 21:38:00 -0500
 Lead: I was accepted once again to NDC Minnesota!
 Tags:
+- Talks
 - Architecture
 - GraphQL
 - TypeScript
@@ -15,6 +16,10 @@ Tags:
 [pubconf]: https://pubconf.io/
 
 I'm excited to [once again][previous] be invited to [speak at NDC Minnesota][talk]!
+
+**Update:** The recording is live:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mIejhIX7ObE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Here's the what I'm speaking about:
 
