@@ -5,8 +5,69 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2019</copyright>
-		<pubDate>Thu, 03 Oct 2019 03:21:56 GMT</pubDate>
-		<lastBuildDate>Thu, 03 Oct 2019 03:21:56 GMT</lastBuildDate>
+		<pubDate>Wed, 09 Oct 2019 04:06:23 GMT</pubDate>
+		<lastBuildDate>Wed, 09 Oct 2019 04:06:23 GMT</lastBuildDate>
+		<item>
+			<title>MDC 2019 Recording Live for Flexible UI Architecture with React and GraphQL</title>
+			<link>https://kamranicus.com/posts/2019-10-08-mdc-2019-flexible-ui-architecture-react-graphql</link>
+			<description>&lt;p&gt;I had the opportunity to speak at &lt;a href="https://mdc.ilmservices.com"&gt;MDC 2019&lt;/a&gt; recently and recorded my talk &lt;a href="https://www.youtube.com/watch?v=dCawL3nAnUA&amp;amp;list=PLmmRwaXW1nVTi2uv1vpy9B7pvI0X-vMc4&amp;amp;index=7&amp;amp;t=0s"&gt;Designing a Flexible UI Architecture with React and GraphQL&lt;/a&gt;. I think it's even better than the version I gave &lt;a href="https://kamranicus.com/posts/2019-02-01-ndc-minnesota-flexible-ui-with-react-graphql-typescript"&gt;at NDC MN&lt;/a&gt; earlier this year.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2019-10-08-mdc-2019-flexible-ui-architecture-react-graphql</guid>
+			<pubDate>Wed, 09 Oct 2019 03:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;I had the opportunity to speak at &lt;a href="https://mdc.ilmservices.com"&gt;MDC 2019&lt;/a&gt; recently and recorded my talk &lt;a href="https://www.youtube.com/watch?v=dCawL3nAnUA&amp;amp;list=PLmmRwaXW1nVTi2uv1vpy9B7pvI0X-vMc4&amp;amp;index=7&amp;amp;t=0s"&gt;Designing a Flexible UI Architecture with React and GraphQL&lt;/a&gt;. I think it's even better than the version I gave &lt;a href="https://kamranicus.com/posts/2019-02-01-ndc-minnesota-flexible-ui-with-react-graphql-typescript"&gt;at NDC MN&lt;/a&gt; earlier this year.&lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/dCawL3nAnUA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;h2 id="whats-the-talk-about"&gt;What's the talk about?&lt;/h2&gt;
+&lt;p&gt;Here's the abstract:&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;If your application suffers from hard-to-debug UI state, complex client-side business rules, and has trouble scaling to meet your performance needs you might be tearing your hair out. In this session I will share how we shifted the way we thought about our application using a 3 step process from the ground up. I’ll show you how we built a declarative “schema-driven UI” engine built on React and GraphQL that could manage business complexity and still scale to meet future business requirements.&lt;/p&gt;
+&lt;p&gt;I'll share our approach, some challenges we faced and advice for your own applications so you can design your own declarative schema-driven UI architecture that fits your business needs. Don’t fret if you don’t use React or GraphQL because this pattern can be introduced into any framework you might be using.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="what-did-people-say"&gt;What did people say?&lt;/h2&gt;
+&lt;p&gt;Like I said, I thought this went even better than the one I gave at NDC (&lt;a href="https://www.youtube.com/watch?v=mIejhIX7ObE&amp;amp;list=PLmmRwaXW1nVTi2uv1vpy9B7pvI0X-vMc4&amp;amp;index=2"&gt;recording&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;This last session was rated &lt;strong&gt;4.3/5&lt;/strong&gt; out of 25 ratings. 💖 Some specific feedback I got:&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&amp;quot;so much content!!!&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&amp;quot;useful approach&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&amp;quot;very handy guide to UI design with any technology&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;🙏 I was very happy to read these! I even had to cut out content to fit within 50 minutes.&lt;/p&gt;
+&lt;p&gt;I also had a couple people come up afterwards who said they thought the content was great and &amp;quot;impressive.&amp;quot; Great!&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&amp;quot;wish would of talked more generic graphQL and react to&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I &lt;em&gt;think&lt;/em&gt; this last comment was referring to maybe adding more introductory content around GraphQL/React. Totally fair but I think the case study and design methodology are the focal points and for an intermediate talk, I don't have enough time to introduce React much though I &lt;em&gt;do&lt;/em&gt; spend at least 5-8 minutes on why GraphQL was a good fit for this architecture.&lt;/p&gt;
+&lt;h2 id="what-did-i-change"&gt;What did I change?&lt;/h2&gt;
+&lt;p&gt;I made a few changes structurally to the presentation that I think made it even better this time around.&lt;/p&gt;
+&lt;h3 id="wrote-a-script"&gt;Wrote a script&lt;/h3&gt;
+&lt;p&gt;What! Actually this is something I've had to admit about myself. It's better if I write out my thoughts first to get them in order and be more articulate. I have time to mull it over and edit. I did this on my last two courses and it made a real difference in quality.&lt;/p&gt;
+&lt;p&gt;Each of the slides now has full speaker notes and I practiced reading through it several times to get the flow and points straight that I wanted to make.&lt;/p&gt;
+&lt;h3 id="cut-out-the-bio"&gt;Cut out the bio&lt;/h3&gt;
+&lt;p&gt;I got rid of the &amp;quot;about me&amp;quot; section and replaced with a single slide at the end with resources. I basically launch into the talk and &lt;em&gt;then at the end&lt;/em&gt; when people have heard what I have to say, they can look me up. This was some advice I came across online from somewhere (maybe &lt;a href="https://dev.to/tlakomy/what-i-wished-someone-told-me-about-speaking-at-tech-conferences-3opp"&gt;this&lt;/a&gt; or &lt;a href="https://www.youtube.com/watch?v=AzVr_nsKoZs&amp;amp;feature=youtu.be"&gt;even this meta talk&lt;/a&gt;) that I implemented.&lt;/p&gt;
+&lt;h3 id="start-with-the-point"&gt;Start with the point&lt;/h3&gt;
+&lt;p&gt;My teacher in high school gave me this advice about speaking:&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&amp;quot;Tell them what you want to tell them, tell them, then tell them what you told them.&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I didn't know it until later but this advice actually originated from &lt;a href="https://www.inc.com/john-baldoni/deliver-a-great-speech-aristotle-three-tips.html"&gt;Aristotle&lt;/a&gt;. I am reading some books on rhetoric currently so that was neat to learn.&lt;/p&gt;
+&lt;p&gt;Even though I &lt;em&gt;knew this&lt;/em&gt; intellectually it hit home more after we had an internal guest speaker at work, Frances Frei, talk about rebuilding trust. It was a lengthier version of her &lt;a href="https://www.youtube.com/watch?v=pVeq-0dIqpk"&gt;TED talk&lt;/a&gt; which I highly recommend.&lt;/p&gt;
+&lt;p&gt;She says if you're having a hard time getting your point across, it may be because you take a long, winding road to get to your point. Instead, just &lt;em&gt;start with your point&lt;/em&gt; and people will be more engaged.&lt;/p&gt;
+&lt;p&gt;So that's what I did, my second slide is the whole point of the presentation. Then I follow Aristotle's advice and summarize at the end.&lt;/p&gt;
+&lt;h3 id="divide-into-3-parts"&gt;Divide into 3 parts&lt;/h3&gt;
+&lt;p&gt;Everything is better in threes. I divided the talk into 3 main sections and I think that really helped keep the flow and structure solid in people's minds.&lt;/p&gt;
+&lt;h2 id="what-would-i-change"&gt;What would I change?&lt;/h2&gt;
+&lt;p&gt;Plenty. Each time I give a talk it surfaces more things I'd change.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I'd like to do more with the Adobe XD design I made: animations, callouts, etc.&lt;/li&gt;
+&lt;li&gt;I think I'll redo the GraphQL section next time.&lt;/li&gt;
+&lt;li&gt;I want to add a &amp;quot;post-mortem&amp;quot; section again, I took it out due to time but I might be able to save on time other places.&lt;/li&gt;
+&lt;li&gt;I would &lt;strong&gt;love&lt;/strong&gt; to show a minimal demo/sample using one of the libraries I mention.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I might have a chance to do these things, I've submitted the talk to several more conferences for 2020. Wish me luck!&lt;/p&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>Using Storybook in a Monorepo</title>
 			<link>https://kamranicus.com/posts/2019-09-12-using-storybook-in-a-monorepo</link>
@@ -811,6 +872,8 @@ their power. Be sure to check it out!&lt;/p&gt;
 			<guid>https://kamranicus.com/posts/2019-02-01-ndc-minnesota-flexible-ui-with-react-graphql-typescript</guid>
 			<pubDate>Sat, 02 Feb 2019 02:38:00 GMT</pubDate>
 			<content:encoded>&lt;p&gt;I'm excited to &lt;a href="/posts/2018-05-11-ndc-minnesota-typescript-react"&gt;once again&lt;/a&gt; be invited to &lt;a href="https://ndcminnesota.com/talk/designing-a-flexible-ui-architecture-with-react-and-graphql/"&gt;speak at NDC Minnesota&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; The recording is live:&lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/mIejhIX7ObE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
 &lt;p&gt;Here's the what I'm speaking about:&lt;/p&gt;
 &lt;h3 id="designing-a-flexible-ui-architecture-with-react-and-graphql"&gt;Designing a Flexible UI Architecture with React and GraphQL&lt;/h3&gt;
 &lt;blockquote class="blockquote"&gt;
@@ -1531,81 +1594,6 @@ export default {
 &lt;p&gt;Another person I spoke to suggested I pitch the talk to JSMN and speaking at meetups is &lt;a href="https://kamranicus.com/posts/2018-01-01-2018-a-new-year"&gt;on my 2018 goals list&lt;/a&gt; so &lt;strong&gt;of course&lt;/strong&gt; I will do that. They also let me know about the &lt;a href="https://www.midwestgamingclassic.com/"&gt;Midwest Gaming Classic&lt;/a&gt; which would be cool to bring some &lt;a href="http://excaliburjs.com"&gt;Excalibur&lt;/a&gt; talks to or just attend in general.&lt;/p&gt;
 &lt;p&gt;By the way, a friendly reminder I'll be talking about Node.js bots &lt;a href="https://www.meetup.com/Minneapolis-Azure-Cloud-Computing-Meetup/events/kdbbdpyxmbjb/"&gt;at the Minneapolis Azure meetup&lt;/a&gt; in September!&lt;/p&gt;
 &lt;p&gt;There were so many other great talks I went to, I will post a follow-up soon hopefully with links to the recordings if they're out by then.&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Follow-Up to .NET Rocks episode on RavenDB</title>
-			<link>https://kamranicus.com/posts/2018-05-01-dotnetrocks-ravendb-podcast</link>
-			<description>&lt;p&gt;At the end of April I got the opportunity to record a show with .NET celebs Carl Franklin and Richard Campbell, hosts of the &lt;a href="http://dotnetrocks.com"&gt;.NET Rocks&lt;/a&gt; podcast. It's &lt;a href="https://dotnetrocks.com/?show=1541"&gt;live now&lt;/a&gt;.&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2018-05-01-dotnetrocks-ravendb-podcast</guid>
-			<pubDate>Tue, 01 May 2018 11:00:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;At the end of April I got the opportunity to record a show with .NET celebs Carl Franklin and Richard Campbell, hosts of the &lt;a href="http://dotnetrocks.com"&gt;.NET Rocks&lt;/a&gt; podcast. It's &lt;a href="https://dotnetrocks.com/?show=1541"&gt;live now&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I tweeted about it afterwards:&lt;/p&gt;
-&lt;blockquote class="twitter-tweet" data-lang="en"&gt;&lt;p lang="en" dir="ltr"&gt;There really isn&amp;#39;t anything more surreal than being on a podcast you&amp;#39;ve listened to almost your entire career and then having to try to make sense and articulate your thoughts on said podcast. MAN, what a ride. 😆&lt;/p&gt;&amp;mdash; Kamran Ayub (&amp;#64;kamranayub) &lt;a href="https://twitter.com/kamranayub/status/989605608541376513?ref_src=twsrc%5Etfw"&gt;April 26, 2018&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
-&lt;p&gt;It was fun and surreal for sure but also nerve-wracking--it was my first podcast appearance!&lt;/p&gt;
-&lt;h2 id="how-it-came-about"&gt;How it came about&lt;/h2&gt;
-&lt;p&gt;A few months ago I emailed Carl and Richard about interest in doing an episode on RavenDB 4, this was right after I &lt;a href="https://kamranicus.com/posts/2018-02-08-ravendb-4-course-live"&gt;published my course&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I asked them if they'd have any appetite for a Raven 4 episode, that I just finished a course on it, and I've been a user since the 2.5 days. I suggested they could get Ayende or someone from the team on but that I'd be open to it, too. I didn't &lt;em&gt;really&lt;/em&gt; expect to be invited, after all...&lt;/p&gt;
-&lt;p&gt;After I sent it, I didn't think about it much. Then, a week ago, Richard emails back and says they'd like to do an episode with someone who's been a user, which means they invited me!&lt;/p&gt;
-&lt;p&gt;At this point, I'm honestly freaking out a little. Me? On .NET Rocks? Oh yes! Oh no. Oh man.&lt;/p&gt;
-&lt;p&gt;We recorded the episode a few days later and you &lt;a href="https://dotnetrocks.com/?show=1541"&gt;can listen now&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="hindsight-is-2020"&gt;Hindsight is 20/20&lt;/h2&gt;
-&lt;p&gt;By far my least favorite thing about speaking in public, or really speaking in general, is the analyzing that happens inevitably afterwards. Even when you know a subject, in the moment it can be tough to bring forward everything you've learned. I'm sure it gets better with practice.&lt;/p&gt;
-&lt;p&gt;But you &lt;em&gt;can&lt;/em&gt; follow-up with those things you missed. So I wanted to provide some thoughts and append to my answers on the show.&lt;/p&gt;
-&lt;h2 id="raven-4-performance"&gt;Raven 4 Performance&lt;/h2&gt;
-&lt;p&gt;On the show I was asked about performance and I offered that in some testing I did, I saw time to rebuild a full index go from 60 seconds in 3.5 to just only 3 seconds in Raven 4. That blew my mind.&lt;/p&gt;
-&lt;p&gt;I mentioned that I was seeing similar query times but that the &amp;quot;warm up&amp;quot; time on 3.5 was much larger. Here's some query performance tests I ran:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Query                             Raven 3.5.4     Raven 4.0.3
----                               ---             ---
-Get game by name (skyrim)         0ms (126ms)     1ms (20ms)
-Get game by name (mario)          2ms (716ms)     1ms    
-Get game by search (search)       32ms (470ms)    1ms
-Get game by genre (Array)         1ms (635ms)     1ms
-Indexing 45,000 entries           60 seconds      3 seconds
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;All times are for query duration (i.e. no network latency).&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The times in parenthesis are &amp;quot;warm up&amp;quot; (first query) times. You can see for the Raven 4 tests, there was little to zero measurable warm up time.&lt;/li&gt;
-&lt;li&gt;The first test showcases response time when there's only one game.&lt;/li&gt;
-&lt;li&gt;The second has multiple results&lt;/li&gt;
-&lt;li&gt;The third is a &amp;quot;search&amp;quot; operation which is a Lucene search&lt;/li&gt;
-&lt;li&gt;The fourth test is searching an array property for an exact match&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Other observations I saw:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Network latency locally was about 7ms in 4.0. Measured in Chrome dev tools within the Studio.&lt;/li&gt;
-&lt;li&gt;Querying while another index was rebuilding in 3.5 added significant overhead to all queries above (400-700ms). It had no visible impact on Raven 4.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;So from what I can gather on a limited set of tests is that Raven 4 is indeed &lt;em&gt;very fast&lt;/em&gt;.&lt;/p&gt;
-&lt;h2 id="memory-usage"&gt;Memory usage&lt;/h2&gt;
-&lt;p&gt;The guys asked me a good question: what is the memory performance of Raven 4 compared to its predecessors? I didn't have any hard data but I offered the anecdote that my current VM host only has 4GB of RAM and runs the website alongside the DB. This is a poor model for redundancy but I'm penny pinching until I move to .NET Core on Linux. Anyway, Raven 3.5 runs okay on low-end hardware and I expected Raven 4 to be even better.&lt;/p&gt;
-&lt;p&gt;After the show I just did some simple checks. Turns out, Raven 4 &lt;strong&gt;is&lt;/strong&gt; better.&lt;/p&gt;
-&lt;p&gt;The following numbers are sitting idle after having done several queries and tests mentioned above. Both have just have a dev version of my [Keep Track of My Games][http://ktomg.com] database running:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Raven Version      Commit       Working Set
-3.5.4              1.035GB      90MB
-4.0.3              607MB        260MB
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;So at a glance it looks like Raven 4 is better at managing physical memory (Commit) than 3.5.4 is. To do that it looks like it has a higher working set. Even totaled, 4.0 still allocates 22% less. For someone like me who wants to make the most out of a small cloud VM, this is good.&lt;/p&gt;
-&lt;h2 id="on-raven-vs.mongo"&gt;On Raven vs. Mongo&lt;/h2&gt;
-&lt;p&gt;I prepped for the show and in doing so I tried to study up on Mongo a bit. Like I said in the show, I'm definitely not an expert in it nor do I use it extensively. I've written some queries against it, modified documents, and that's about it!&lt;/p&gt;
-&lt;p&gt;It's easy for this question to turn into a war, people have strong opinions. I haven't had an opportunity to use Mongo much in practice. We use it for our app at work; it's used for some configuration, user sessions, and preferences. It works really well. I don't even think we have any indexes, it was designed before I joined the team.&lt;/p&gt;
-&lt;p&gt;Since I came from a .NET background, I tried Raven first and it met my needs. Raven 4 really has been impressing me as I use it more. When choosing between technologies I find it's best to just try each technology to see if it fits your use case. Ask yourself what you value most and measure that when testing.&lt;/p&gt;
-&lt;h2 id="challenges-moving-to-a-document-database"&gt;Challenges moving to a document database&lt;/h2&gt;
-&lt;p&gt;On the show I talked about a couple challenges people might have when moving from a relational to document-based database--document modeling and indexes. Those are both real challenges but I was wracking my brain to think of more.&lt;/p&gt;
-&lt;p&gt;After the recording I immediately realized there was a lot more to this I should have mentioned (dumb brain!). I think one thing I struggled with a lot when starting out with Raven was just patterns and practices. How do I do this one thing I used to do with EF?&lt;/p&gt;
-&lt;p&gt;One example I go over in &lt;a href="https://kamranicus.com/posts/2018-02-08-ravendb-4-course-live"&gt;my course&lt;/a&gt; is unique constraints. In EF, you'd just issue a query asking if an entity with a property equal to some value exists:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;context.DbSet&amp;lt;User&amp;gt;().Any(u =&amp;gt; u.Username == &amp;quot;kamranicus&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Great, all set. When I moved to Raven, I didn't understand the total implications at first about indexing and eventual consistency. This type of query in Raven &lt;strong&gt;is&lt;/strong&gt; possible, like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;session.Query&amp;lt;User&amp;gt;(x =&amp;gt; x.WaitForNonStaleResults())
-  .Any(u =&amp;gt; u.Username == &amp;quot;kamranicus&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The problem is that from the beginning the guidance is to avoid &lt;code&gt;WaitForNonStaleResults()&lt;/code&gt; at all costs since it has performance implications (see my course, I explain it). Well, if you &lt;em&gt;don't&lt;/em&gt; do it, then your query isn't guaranteed to bring back up-to-date results (i.e. eventually consistent) and you will not get the result you expect.&lt;/p&gt;
-&lt;p&gt;Instead, you have to lean on the fact that document operations are ACID-compliant and hack your brain to think of unique constraints as &lt;em&gt;actual documents.&lt;/em&gt; This is what the &lt;a href="https://ravendb.net/docs/article-page/3.5/Csharp/server/bundles/unique-constraints"&gt;unique constraints bundle&lt;/a&gt; was for in Raven 3.5 and below. Now in Raven 4, you'd use an &lt;a href="https://ayende.com/blog/180067/ravendb-4-0-interlocked-distributed-operations"&gt;interlocked distributed operation&lt;/a&gt;, which I've yet to try in practice.&lt;/p&gt;
-&lt;p&gt;I'm hoping to address more of these patterns/practices in a follow-up course.&lt;/p&gt;
-&lt;h2 id="enjoy-the-show"&gt;Enjoy the show&lt;/h2&gt;
-&lt;p&gt;Like I said in that tweet, it was completely surreal to be on the show. I'm still in shock I think and I'm not sure what to expect for response. If you listened, hopefully you learned something new. By next winter, I'll get that snow blower.&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>

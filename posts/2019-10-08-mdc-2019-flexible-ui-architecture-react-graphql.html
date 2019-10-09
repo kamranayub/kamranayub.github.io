@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 
-  <title>Kamranicus - NDC MN 2019: Designing a Flexible UI Architecture with React and GraphQL</title>
+  <title>Kamranicus - MDC 2019 Recording Live for Flexible UI Architecture with React and GraphQL</title>
   <meta name="description" content="Kamran Ayub" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Kamran Ayub">
@@ -21,9 +21,9 @@
   <meta name="msapplication-tooltip" content="Kamranicus" />
   <meta name="msapplication-starturl" content="/" />
 
-  <meta property="og:title" content="Kamranicus - NDC MN 2019: Designing a Flexible UI Architecture with React and GraphQL" /> 
+  <meta property="og:title" content="Kamranicus - MDC 2019 Recording Live for Flexible UI Architecture with React and GraphQL" /> 
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://kamranicus.com/posts/2019-02-01-ndc-minnesota-flexible-ui-with-react-graphql-typescript" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2019-10-08-mdc-2019-flexible-ui-architecture-react-graphql" />
   <meta property="og:site_name" content="Kamranicus" />
   <meta property="twitter:card" content="summary" />
   <meta property="twitter:creator" content="@kamranayub" />
@@ -107,18 +107,17 @@
     
 <div class="ui basic vertical segment">
     <h1 class="ui  huge header">
-      NDC MN 2019: Designing a Flexible UI Architecture with React and GraphQL
-        <div class="ui sub header">I was accepted once again to NDC Minnesota!</div>
+      MDC 2019 Recording Live for Flexible UI Architecture with React and GraphQL
+        <div class="ui sub header">The recorded version of my talk at MDC 2019 is now available. I received positive feedback and I think it had to do with some key changes I made.</div>
     </h1>
                 
     <div class="ui  sub header">        
-Published on Saturday, February 2, 2019<br>    </div>
+Published on Wednesday, October 9, 2019<br>    </div>
         <div class="ui basic vertical spaced segment">
                     <a role="button" href="/tags/Architecture" class="ui small compact button">Architecture</a>
                     <a role="button" href="/tags/GraphQL" class="ui small compact button">GraphQL</a>
                     <a role="button" href="/tags/React" class="ui small compact button">React</a>
                     <a role="button" href="/tags/Talks" class="ui small compact button">Talks</a>
-                    <a role="button" href="/tags/TypeScript" class="ui small compact button">TypeScript</a>
         </div>     
 </div>
     </div>
@@ -130,19 +129,59 @@ Published on Saturday, February 2, 2019<br>    </div>
       
 
 <div class="ui huge basic post content segment">
-  <p>I'm excited to <a href="/posts/2018-05-11-ndc-minnesota-typescript-react">once again</a> be invited to <a href="https://ndcminnesota.com/talk/designing-a-flexible-ui-architecture-with-react-and-graphql/">speak at NDC Minnesota</a>!</p>
-<p><strong>Update:</strong> The recording is live:</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/mIejhIX7ObE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Here's the what I'm speaking about:</p>
-<h3 id="designing-a-flexible-ui-architecture-with-react-and-graphql">Designing a Flexible UI Architecture with React and GraphQL</h3>
+  <p>I had the opportunity to speak at <a href="https://mdc.ilmservices.com">MDC 2019</a> recently and recorded my talk <a href="https://www.youtube.com/watch?v=dCawL3nAnUA&amp;list=PLmmRwaXW1nVTi2uv1vpy9B7pvI0X-vMc4&amp;index=7&amp;t=0s">Designing a Flexible UI Architecture with React and GraphQL</a>. I think it's even better than the version I gave <a href="https://kamranicus.com/posts/2019-02-01-ndc-minnesota-flexible-ui-with-react-graphql-typescript">at NDC MN</a> earlier this year.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dCawL3nAnUA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="whats-the-talk-about">What's the talk about?</h2>
+<p>Here's the abstract:</p>
 <blockquote class="blockquote">
-<p>Many line-of-business apps we build today are &quot;forms over data&quot; applications. That data has its own backend schema and business rules, used by systems across the company. As that data flexes and scales, so do the needs of our UIs. Trying to manually track and maintain those data type changes in our UIs is time consuming and inevitably leads to bugs that cause data quality issues and results in real business impact.</p>
-<p>Instead why don't we introduce our own UI schema that abstracts the myriad backend data sources with common sets of rules and metadata shared with both the client and server? I will show you how we designed and built a modern schema-driven UI architecture with React, Redux, TypeScript, and GraphQL that could manage business complexity and still scale to meet future data requirements.</p>
-<p>I'll share some lessons learned and advice for your own applications so you can design your own data-driven flexible UI architecture that fits your business needs.</p>
+<p>If your application suffers from hard-to-debug UI state, complex client-side business rules, and has trouble scaling to meet your performance needs you might be tearing your hair out. In this session I will share how we shifted the way we thought about our application using a 3 step process from the ground up. I’ll show you how we built a declarative “schema-driven UI” engine built on React and GraphQL that could manage business complexity and still scale to meet future business requirements.</p>
+<p>I'll share our approach, some challenges we faced and advice for your own applications so you can design your own declarative schema-driven UI architecture that fits your business needs. Don’t fret if you don’t use React or GraphQL because this pattern can be introduced into any framework you might be using.</p>
 </blockquote>
-<p>I'm real excited about this talk because it's the culmination of exactly a year's worth of learning and effort at my job--rewriting part of an application from AngularJS to React/TypeScript.</p>
-<p>In the process I became intimately familiar with how to build production React applications, using TypeScript with React more intensely, testing with Jest and <a href="https://cypress.io">Cypress</a>, and working with Apollo Server GraphQL (like fixing <a href="https://kamranicus.com/posts/2018-03-06-graphql-apollo-object-caching">weird bugs</a>). We solved some really interesting business problems that I'll dive into during the talk and ultimately created an elegant solution that has scaled nicely in terms of maintenance and agility for our product.</p>
-<p>Hope to see you there, please stop me and say hello! If you can, try to <a href="https://pubconf.io/">attend PubConf</a> too, it's a <strong>ton</strong> of fun.</p>
+<h2 id="what-did-people-say">What did people say?</h2>
+<p>Like I said, I thought this went even better than the one I gave at NDC (<a href="https://www.youtube.com/watch?v=mIejhIX7ObE&amp;list=PLmmRwaXW1nVTi2uv1vpy9B7pvI0X-vMc4&amp;index=2">recording</a>).</p>
+<p>This last session was rated <strong>4.3/5</strong> out of 25 ratings. 💖 Some specific feedback I got:</p>
+<blockquote class="blockquote">
+<p>&quot;so much content!!!&quot;</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>&quot;useful approach&quot;</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>&quot;very handy guide to UI design with any technology&quot;</p>
+</blockquote>
+<p>🙏 I was very happy to read these! I even had to cut out content to fit within 50 minutes.</p>
+<p>I also had a couple people come up afterwards who said they thought the content was great and &quot;impressive.&quot; Great!</p>
+<blockquote class="blockquote">
+<p>&quot;wish would of talked more generic graphQL and react to&quot;</p>
+</blockquote>
+<p>I <em>think</em> this last comment was referring to maybe adding more introductory content around GraphQL/React. Totally fair but I think the case study and design methodology are the focal points and for an intermediate talk, I don't have enough time to introduce React much though I <em>do</em> spend at least 5-8 minutes on why GraphQL was a good fit for this architecture.</p>
+<h2 id="what-did-i-change">What did I change?</h2>
+<p>I made a few changes structurally to the presentation that I think made it even better this time around.</p>
+<h3 id="wrote-a-script">Wrote a script</h3>
+<p>What! Actually this is something I've had to admit about myself. It's better if I write out my thoughts first to get them in order and be more articulate. I have time to mull it over and edit. I did this on my last two courses and it made a real difference in quality.</p>
+<p>Each of the slides now has full speaker notes and I practiced reading through it several times to get the flow and points straight that I wanted to make.</p>
+<h3 id="cut-out-the-bio">Cut out the bio</h3>
+<p>I got rid of the &quot;about me&quot; section and replaced with a single slide at the end with resources. I basically launch into the talk and <em>then at the end</em> when people have heard what I have to say, they can look me up. This was some advice I came across online from somewhere (maybe <a href="https://dev.to/tlakomy/what-i-wished-someone-told-me-about-speaking-at-tech-conferences-3opp">this</a> or <a href="https://www.youtube.com/watch?v=AzVr_nsKoZs&amp;feature=youtu.be">even this meta talk</a>) that I implemented.</p>
+<h3 id="start-with-the-point">Start with the point</h3>
+<p>My teacher in high school gave me this advice about speaking:</p>
+<blockquote class="blockquote">
+<p>&quot;Tell them what you want to tell them, tell them, then tell them what you told them.&quot;</p>
+</blockquote>
+<p>I didn't know it until later but this advice actually originated from <a href="https://www.inc.com/john-baldoni/deliver-a-great-speech-aristotle-three-tips.html">Aristotle</a>. I am reading some books on rhetoric currently so that was neat to learn.</p>
+<p>Even though I <em>knew this</em> intellectually it hit home more after we had an internal guest speaker at work, Frances Frei, talk about rebuilding trust. It was a lengthier version of her <a href="https://www.youtube.com/watch?v=pVeq-0dIqpk">TED talk</a> which I highly recommend.</p>
+<p>She says if you're having a hard time getting your point across, it may be because you take a long, winding road to get to your point. Instead, just <em>start with your point</em> and people will be more engaged.</p>
+<p>So that's what I did, my second slide is the whole point of the presentation. Then I follow Aristotle's advice and summarize at the end.</p>
+<h3 id="divide-into-3-parts">Divide into 3 parts</h3>
+<p>Everything is better in threes. I divided the talk into 3 main sections and I think that really helped keep the flow and structure solid in people's minds.</p>
+<h2 id="what-would-i-change">What would I change?</h2>
+<p>Plenty. Each time I give a talk it surfaces more things I'd change.</p>
+<ul>
+<li>I'd like to do more with the Adobe XD design I made: animations, callouts, etc.</li>
+<li>I think I'll redo the GraphQL section next time.</li>
+<li>I want to add a &quot;post-mortem&quot; section again, I took it out due to time but I might be able to save on time other places.</li>
+<li>I would <strong>love</strong> to show a minimal demo/sample using one of the libraries I mention.</li>
+</ul>
+<p>I might have a chance to do these things, I've submitted the talk to several more conferences for 2020. Wish me luck!</p>
 
 </div>
 
@@ -220,9 +259,9 @@ Published on Saturday, February 2, 2019<br>    </div>
 
 <script type="text/javascript">
     var disqus_shortname = 'kamranicus';
-    var disqus_identifier = '2019-02-01-ndc-minnesota-flexible-ui-with-react-graphql-typescript';
-    var disqus_title = 'NDC MN 2019: Designing a Flexible UI Architecture with React and GraphQL';
-    var disqus_url = 'https://kamranicus.com/posts/2019-02-01-ndc-minnesota-flexible-ui-with-react-graphql-typescript';
+    var disqus_identifier = '2019-10-08-mdc-2019-flexible-ui-architecture-react-graphql';
+    var disqus_title = 'MDC 2019 Recording Live for Flexible UI Architecture with React and GraphQL';
+    var disqus_url = 'https://kamranicus.com/posts/2019-10-08-mdc-2019-flexible-ui-architecture-react-graphql';
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
