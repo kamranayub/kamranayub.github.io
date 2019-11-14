@@ -36,6 +36,7 @@ This guide will show you how to build your own DIY baby monitor using a Raspberr
 - [Nightvision Support](#nightvision-support)
 - [Programmable LED Light](#programmable-led-light)
 - How To
+    - [YouTube Video Walkthrough](#video-walkthrough)
     - [Installing the Pi Camera](#installing-the-pi-camera)
     - [Configuring the Pi](#configuring-the-pi)
     - [Configuring Raspbian](#configuring-raspbian)
@@ -49,9 +50,16 @@ This guide will show you how to build your own DIY baby monitor using a Raspberr
 
 ## Updates
 
+### 2019-11-13
+
+- Add video walkthrough pitch
+- The Kinobo mini USB mic is discontinued, replaced with well-reviewed [Samson GO portable mic](https://amzn.to/2QnHJPb)
+- Add clarification for installing the right Binary distribution
+- Add clarification for `picam-viewer` installation
+
 ### 2019-06-08
 
-- Updated binary section to reflect instructions for Rasbian Buster
+- Updated Binary section to reflect instructions for Raspbian Buster
 
 ### 2018-01-11
 
@@ -76,8 +84,7 @@ Here's what you'll need, it's what I have and it works great:
   - **OR** [Raspberry Pi Zero W Canakit](https://www.amazon.com/gp/product/B071L2ZQZX/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B071L2ZQZX&linkCode=as2&tag=kamranicus-20&linkId=11a90708c6058c931d343f5a34243809) - $25
 - [Raspberry Pi Camera Module v2](https://www.amazon.com/gp/product/B01ER2SKFS/ref=as_li_tl?ie=UTF8&tag=kamranicus-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B01ER2SKFS&linkId=c4b2ac954d25538e792e193ff088faac) - $30
 - [MicroSD card](https://www.amazon.com/gp/product/B010Q57T02/ref=as_li_tl?ie=UTF8&tag=kamranicus-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B010Q57T02&linkId=6ad18aebc7e3dd06daf87ef2f40910a4) (8GB or higher) - $12
-- [Kinobo Mini Akiro USB condenser microphone](https://www.amazon.com/gp/product/B00NSOWWIS/ref=as_li_tl?ie=UTF8&tag=kamranicus-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00NSOWWIS&linkId=b66c7df0a0cac98747907f0815de7727) - $15
-  - Or, less flexible but smaller [Kinobo Makio USB microphone](https://www.amazon.com/gp/product/B00IR8R7WQ/ref=as_li_tl?ie=UTF8&tag=kamranicus-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00IR8R7WQ&linkId=177490daf1de57639c4d8a8c1793276d) - $3
+- [Samson GO USB omni/condenser microphone](https://amzn.to/2QnHJPb) - $30
 - [i2 Gear USB LED lamp](https://www.amazon.com/gp/product/B00D2ZDY2Q/ref=as_li_tl?ie=UTF8&tag=kamranicus-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00D2ZDY2Q&linkId=b5274841a23c61599f27a6b31c4111ca) (optional) - $5
 - [BESTEK phone mount](https://www.amazon.com/gp/product/B0126JQ9G6/ref=as_li_tl?ie=UTF8&tag=kamranicus-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B0126JQ9G6&linkId=9523b6886ba2aac0800fc3bacc4f9705) (optional) - $11
 - HDMI cable (temporary)
@@ -107,6 +114,12 @@ I have opted to use a simple flexible USB light that I can shine specifically wh
 ## Programmable LED Light
 
 While I opted for a simple on/off nightlight, you could potentially go crazy with a [BlinkStick Nano USB light](https://www.blinkstick.com/products/blinkstick-nano#mini-shop) that is programmable, so you could have it automatically turn on in low-light conditions, program light shows, or what have you.
+
+## Video Walkthrough
+
+If you'd like me to do a full video walkthrough of this guide for 2020, check out this video and let me know in the comments!
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/R6IbBpTFPJM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Installing the Pi Camera
 
@@ -215,18 +228,26 @@ Then the following, to execute the script we just made and create the required d
     chmod +x make_dirs.sh
     ./make_dirs.sh
 
+### Downloading the right version
+
 Now here is important! **If you are using Jessie or Stetch on your Pi, you need the right binary file**! Thanks to [Andrew](#comment-3574356701) for pointing this out in the comments.
+
+**Jessie or Stretch**
 
 - For Jessie: https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-jessie.tar.xz
 - For Stretch: https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-stretch.tar.xz
 
-If you are using Buster, you can follow the instructions verbatim from the [install guide for picam](https://github.com/iizukanao/picam/#installation) and use the latest binary (1.4.7 as of 8 July 2019).
-
 Now we install Picam directly using the link above:
 
-    wget <URL ABOVE> -O picam-1.4.6.tar.xz
-    tar xvf picam-1.4.6.tar.xz
-    cp picam-1.4.6-binary-<DIST ABOVE (jessie/stretch)>.tar.xz/picam ~/picam/
+    wget <URL ABOVE> -O picam.tar.xz
+    tar xvf picam.tar.xz
+    cp picam.tar.xz/picam ~/picam/
+
+**Buster**
+
+If you are using Buster, you can follow the instructions verbatim from the [install guide for picam](https://github.com/iizukanao/picam/#installation) and use the latest binary (1.4.8 as of 8 November 2019).
+
+### Configuring Picam
 
 We now have Picam installed! It's time to get a stream working.
 
@@ -421,7 +442,9 @@ We can optionally add a stream player to our web server. Follow the steps below:
 
     cd /var/www/html
     sudo git clone https://github.com/kamranayub/picam-viewer.git .
-    
+
+> **IMPORTANT:** Ensure you keep the period (`.`) at the end of that command! It will download the _contents_ of the Git repository into the current one.
+
 This will bring down a bare metal web player I put together. Feel free to edit it as you see fit. If you changed the URL to where the HLS stream is at on the server, you will need to edit *config.json*.
 
 Now, open a browser and visit your Raspberry Pi (e.g. http://babypi.local/):
