@@ -266,7 +266,7 @@ You see "card 1" and "device 0" so my microphone ID will be `hw:1,0`.
 
 Now, let's make a script we can run to start Picam. **Replace "hw:1,0" with your device ID above if it's different.**:
 
-    echo -e "sudo bash /home/pi/make_dirs.sh\nsudo /home/pi/picam/picam -o /run/shm/hls --time --alsadev hw:1,0 > /var/log/picam.log 2&>1" > run_picam.sh
+    echo -e "sudo bash /home/pi/make_dirs.sh\nsudo /home/pi/picam/picam -o /run/shm/hls --time --alsadev hw:1,0 > /var/log/picam.log 2>&1" > run_picam.sh
     chmod +x run_picam.sh
 
 This creates a `run_picam.sh` script in our root (`~`) directory and marks it as executable. The script starts Picam with a HLS stream output to the RAM drive (fast) and uses our microphone as the recording device. It also writes out the current timestamp in the bottom corner of the stream. There are a [ton of other options](https://github.com/iizukanao/picam) too including subtitles, etc. The default video resolution is 720p which is fine enough for a babycam.
@@ -297,7 +297,7 @@ For reference, this is my full `run_picam.sh` script for my Pi:
 
 ```bash
 sudo bash /home/pi/make_dirs.sh
-sudo /home/pi/picam/picam -o /run/shm/hls --samplerate 32000 --channels 2 --audiobitrate 96000 --videobitrate 4000000 --vfr --avclevel 3.1 --autoex --time --alsadev hw:1,0  >/var/log/picam.log 2>&1
+sudo /home/pi/picam/picam -o /run/shm/hls --samplerate 32000 --channels 2 --audiobitrate 96000 --videobitrate 4000000 --vfr --avclevel 3.1 --autoex --time --alsadev hw:1,0  > /var/log/picam.log 2>&1
 ```
 
 ## Running Picam at startup
@@ -392,9 +392,9 @@ In the editor, scroll down to right before `location / {` and add a new block ab
 
 This adds a new /hls URL that points to the /run/shm/hls directory Picam is outputting the stream to.
 
-Ensure nginx is started (it will start automatically):
+Restart nginx to allow the changes to take effect:
 
-    sudo /etc/init.d/nginx start
+    sudo /etc/init.d/nginx restart
     
 This starts the web server. Now you can browse (on the Pi or other device) to the root of the site and view the nginx welcome page.
 
