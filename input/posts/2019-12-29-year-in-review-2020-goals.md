@@ -1,5 +1,5 @@
 Title: "2019 Year in Review and 2020 Goals"
-Published: 2019-12-25 09:00:00 -0500
+Published: 2019-12-29 09:00:00 -0500
 Lead: New course, new blog, plus plans for the future!
 Tags:
 - Life
@@ -8,7 +8,7 @@ Tags:
 - Accomplishments
 ---
 
-That was fast. Last I checked in with you, half the year had already passed. Then I planned to do a third quarter update and suddenly it was the end of the year. I even have a draft of the third quarter newsletter and now I'm just rolling it into the year-end newsletter.
+That was fast. [Last I checked in with you](https://kamranicus.com/posts/2019-07-12-quarterly-2-update), half the year had already passed. Then I planned to do a third quarter update and suddenly it was the end of the year. I even have a draft of the third quarter newsletter and now I'm just rolling it into the year-end newsletter.
 
 Again let's start with a review of what I set out to do in 2019, as of [my last update](https://kamranicus.com/posts/2019-07-12-quarterly-2-update).
 
@@ -19,7 +19,7 @@ Again let's start with a review of what I set out to do in 2019, as of [my last 
 **Professional**
 
 - ✅ Publish 1 Pluralsight course on Azure or TypeScript or React ~~by September~~
-  - I just published [Contributing to an Open Source Project on GitHub](tbd) a week before January!
+  - I just published [Contributing to an Open Source Project on GitHub](tbd) right before the new year!
 - ✅ [Publish 4 Pluralsight guides](/guides) on React & TypeScript by May
 - ✅ [Speak at NDC MN](https://www.youtube.com/watch?v=mIejhIX7ObE) on a TypeScript topic
 - ⛔ Publish 5 technical articles on the blog about Azure, TypeScript, or React
@@ -81,8 +81,9 @@ I like including this because it goes to show you can't predict everything for t
 - 🏆 Wrote [freelance technical articles](https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes) for RavenDB
 - 🏆 Started [a new blog](https://kamranicus.com/posts/2019-09-10-looks-good-to-us-blog-launch) with Cassie
 - 🏆 Wrote [a small app](https://reachfi.app) for tracking my savings rate
-- 🏆 Reached a savings rate of **40%**, more than double last years. Maxed out 401k, HSA, daycare FSA, both our Roths, and partially contributed to Cassie's 403b and 457b. I still can't believe we were able to accomplish that, it's huge!
-- 🏆 Started a new role at work and was promoted, now working on [Target.com](https://target.com)
+- 🏆 Reached a savings rate of **40%**, more than double last year's. I still can't believe we were able to accomplish that, it's huge!
+- 🏆 Started a new role at work and was promoted
+- 🏆 Learned a ton about [Storybook](https://storybook.js.org) and how to use it [on large projects](https://kamranicus.com/posts/2019-09-12-using-storybook-in-a-monorepo)
 
 ## Reflection
 
@@ -92,38 +93,53 @@ Wow, I had a great 2019! There are quite a few partial or incomplete goals up th
 
 I feel like each year this list gets smaller and smaller -- which is good, I think. I would like to stay focused on what's important and will move the ball forward.
 
-By the way I should just mention that I haven't truly shared *the why* behind these goals. I have a why but I am not ready to blog about it yet. Just know I have 5-, 10-, 15-, and 20-year goals in mind when I write these and all these goals work towards those larger ones. You have to have [the why](https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action?language=en) nailed down to work towards, otherwise your goals exist in isolation.
+By the way I should just mention that I haven't truly shared *the why* behind these goals. I have a why but I am keeping that close to my chest. Just know I have 5-, 10-, 15-, and 20-year goals in mind when I write these and all these goals work towards those larger ones. You have to have [the why](https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action?language=en) nailed down to work towards, otherwise your goals exist in isolation.
 
-### Professional
+### Content
 
-- Publish 1 Pluralsight course
+I want to continue doing paid and free content creation in 2020. I feel like one course is a good goal to balance everything else but two would be great.
+
+- Publish 1 Pluralsight course, **Stretch:** 2 courses
+
+I have a couple paid opportunities to write and so I'd like to do at least two more. Tangential to that, I am tired of the friction of static site + Git + Markdown and would like to leverage [Ghost](https://ghost.org) since I've been really happy with it for the [LGTU](https://looksgoodtous.com) blog.
+
 - Write 2 articles on React, TypeScript, RavenDB, or Azure
 - Write 4 freelance articles
-- Speak at NDC MN and one other regional conference
+- Migrate to Ghost for this blog
 
-### Personal
+I enjoy speaking but I don't intend for it to take over my life. Doing one or two large conferences a year is enough for me! I would still _love_ to get a chance to speak outside Minnesota, so I've applied to KCDC, NEJS, and React NYC.
+
+- Speak at NDC MN and one other regional conference, **Stretch:** Speak outside MN.
+
+### Financial
+
+Now that I finished two major migrations for KTOMG, I want to work on getting my first paying user. To do that will require some more infrastructure work but I feel confident I can make it happen in 2020! I'm also feeling the friction of a heavy web front-end stack so I'd like to simplify it a bit.
 
 - Get [Keep Track of My Games](http://ktomg.com) to make a profit
+
+Right now LGTU doesn't cost us much, about $15 per month. I'd like to earn at least that much in affiliate revenue for 2020.
+
 - Get [Looks Good to Us](https://looksgoodtous.com) to make a profit
-- Passive and 1099 income should cover 10% of our annual expenses<sup>1</sup>
+
+I modified the financial goals from last year to take a different perspective. Rather than measuring side income in terms of W-2 income, I'm comparing it against our annual expenses which is much more under our control. In 2019, it covered 8% of our expenses which is **awesome.** We also maintained a respectable 40% savings rate (see also [The Gap](https://esimoney.com/the-gap-is-the-key-to-wealth/)) and I want to maintain that momentum going into 2020. It will actually be tougher since we have to buy a new (used) vehicle.
+
+- Passive and 1099 income should cover 10% of our annual expenses
 - Maintain a 40% annual savings rate
-- Migrate to Ghost for this blog
-- Have one [sponsor on GitHub](https://github.com/sponsors/kamranayub)
+
+I activated [my GitHub sponsor profile](https://github.com/sponsors/kamranayub). If you want to support me directly, that's a way to do it. I am not sure what to expect from this but I'll be _pleasantly_ surprised if I get at least one sponsor in 2020.
+
+- Have one sponsor on GitHub
 
 ### DIY
 
-- Finish last egress window cover
+I still feel like I'm in the "learning" phase of DIY but I am starting to get comfortable knowing what I want to do around the house. I have one specific project in mind I'm very motivated to do and it would teach me everything about framing and drywall in a small, controlled space. I'd like to build a closet around the sump pump in our basement family room (which is otherwise just exposed in plain sight 😑).
+
+- Finish the last egress window cover
 - Finish one basement-related project
-
-### Stretch
-
-- Publish 1 more Pluralsight course
-- Speak at a conference outside Minnesota
+- **Stretch**: Finish an upstairs home project
 
 ## Looking forward
 
-The theme of 2020 is "Do more of what works." Clearly, courses and freelance writing went well in 2019 so I'm continuing the trend. I already have two paid opportunities for articles for early 2020 so I increased the goal to four total. 
+I am pretty excited about what 2020 holds and how it will get me closer to my overall goals in life and family. Each year seems to be even better than the last and I hope the trend continues. I'm sure some of these goals won't be achieved in total but even making progress against them is a huge win.
 
-I would _love_ to do one course in first half of 2020 and another in back half of 2020 but it really depends on my other personal goal: making KTOMG profitable. To accomplish that, I'll be working pretty hard on adding some features and infrastructure to the site. It may be that I will only do one course again just so I can focus my effort on KTOMG.
-
-<sup>1</sup>: Last year I worded this goal differently, in relation to a % of total earnings or W-2 wages. Instead, I realized that was the wrong way to think about it: I should think of it in terms of _% of annual expenses._ That's what really matters since that's what we spend. This is why [The Gap](https://esimoney.com/the-gap-is-the-key-to-wealth/) is an important concept to understand.
+What are your goals for 2020? Do you have any specific things you want to get done?
