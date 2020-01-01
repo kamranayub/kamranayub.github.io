@@ -3,9 +3,225 @@
 	<link rel="self" href="https://kamranicus.com/" />
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus</title>
-	<rights>2019</rights>
-	<updated>2019-12-31T22:47:47Z</updated>
+	<rights>2020</rights>
+	<updated>2020-01-01T14:50:34Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2020-01-01-year-in-review-2020-goals" />
+		<id>https://kamranicus.com/posts/2020-01-01-year-in-review-2020-goals</id>
+		<title>2019 Year and Decade in Review plus 2020 Goals</title>
+		<updated>2020-01-01T05:08:00Z</updated>
+		<content>&lt;p&gt;That was fast. &lt;a href="https://kamranicus.com/posts/2019-07-12-quarterly-2-update"&gt;Last I checked in with you&lt;/a&gt;, half the year had already passed. Then I planned to do a third quarter update and suddenly it was the end of the year. I even have a draft of the third quarter newsletter and now I'm just rolling it into the year-end newsletter.&lt;/p&gt;
+&lt;h2 id="its-been-quite-a-decade"&gt;It's been quite a decade&lt;/h2&gt;
+&lt;p&gt;An entire decade is concluding and Twitter is a-fire with decade-in-review posts.&lt;/p&gt;
+&lt;p&gt;I am going to keep this quick, let's go over what happened since 2010!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🎓 I graduated from business school with a degree in MIS and a minor in Entrepreneurship.&lt;/li&gt;
+&lt;li&gt;💑 I married my wife, Cassie and 👶 we had two kids, Rami and Saira!&lt;/li&gt;
+&lt;li&gt;🏠 We bought a house.&lt;/li&gt;
+&lt;li&gt;✈ We took &lt;a href="https://kamranicus.com/posts/2015-05-21-5-things-for-6-months-abroad"&gt;a 6-month sabbatical&lt;/a&gt; in 2015 and lived in Europe. In the decade we &lt;a href="/travel"&gt;traveled&lt;/a&gt; around North America and Europe, visiting various US states, Montreal, Hawaii, Iceland, Britain, Ireland, Norway, the Netherlands, Morocco, France, and Italy.&lt;/li&gt;
+&lt;li&gt;🏢 I started full-time as an Application Developer at General Mills and am starting 2020 as a Lead Engineer at Target.&lt;/li&gt;
+&lt;li&gt;🌎 I started &lt;a href="https://keeptrackofmygames.com"&gt;Keep Track of My Games&lt;/a&gt; and started a new blog, &lt;a href="https://looksgoodtous.com"&gt;Looks Good to Us&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;👨‍🏫 I became an educator and released &lt;a href="/training"&gt;5 video courses&lt;/a&gt;, including &lt;a href="https://kamranicus.com/posts/2017-10-10-becoming-a-pluralsight-author"&gt;becoming a Pluralsight author&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;🎤 I was a public speaker and spoke &lt;a href="/events"&gt;at over 20+ community events&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;🎮 I helped develop and create &lt;a href="/projects"&gt;5 games&lt;/a&gt; and &lt;a href="https://keeptrackofmygames.com/users/kamranicus/lists/played"&gt;played many others&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;📱 I released &lt;a href="/projects"&gt;3 mobile apps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;💰 We achieved a 40%+ &lt;a href="https://www.mrmoneymustache.com/2012/01/13/the-shockingly-simple-math-behind-early-retirement/"&gt;savings rate&lt;/a&gt; after discovering the idea and community of &lt;a href="https://www.choosefi.com/welcome-to-financial-independence/"&gt;financial independence&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;🚗 We owned the same cars, a Corolla and Elantra, the entire decade. 😋&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Holy Shit.&lt;/strong&gt; I did a ton of stuff. I have a LOT to be proud of and thankful for. 🙏 The next decade will hopefully be even more rewarding for me and my family.&lt;/p&gt;
+&lt;h2 id="goals-in-review"&gt;2019 Goals in Review&lt;/h2&gt;
+&lt;p&gt;Again let's start with a review of what I set out to do in 2019, as of &lt;a href="https://kamranicus.com/posts/2019-07-12-quarterly-2-update"&gt;my last update&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="primary-goals"&gt;Primary Goals&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Professional&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;✅ Publish 1 Pluralsight course on Azure or TypeScript or React &lt;del&gt;by September&lt;/del&gt;
+&lt;ul&gt;
+&lt;li&gt;I just published &lt;a href="tbd"&gt;Contributing to an Open Source Project on GitHub&lt;/a&gt; right before the new year!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;✅ &lt;a href="/guides"&gt;Publish 4 Pluralsight guides&lt;/a&gt; on React &amp;amp; TypeScript by May&lt;/li&gt;
+&lt;li&gt;✅ &lt;a href="https://www.youtube.com/watch?v=mIejhIX7ObE"&gt;Speak at NDC MN&lt;/a&gt; on a TypeScript topic&lt;/li&gt;
+&lt;li&gt;⛔ Publish 5 technical articles on the blog about Azure, TypeScript, or React
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;2 out of 5&lt;/em&gt; ain't bad! Check out &lt;a href="https://kamranicus.com/posts/2019-06-26-typescript-safe-destructuring-patterns"&gt;safe destructuring in TypeScript&lt;/a&gt; and &lt;a href="https://kamranicus.com/posts/2019-09-12-using-storybook-in-a-monorepo"&gt;using Storybook in a monorepo&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Personal&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;⛔ Pay off all non-mortgage debt
+&lt;ul&gt;
+&lt;li&gt;We paid off most of it except Cassie's school loan, which will be gone by November 2020, if not sooner. Instead of paying it all off, we are saving for a car purchase (in cash) for March/April.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;✅ Passive income should account for 2% of earnings, 1099 income for 5%
+&lt;ul&gt;
+&lt;li&gt;Passive income as a % of W-2: &lt;strong&gt;2.08%&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;1099 income as a % of W-2: &lt;strong&gt;2.89%&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Total side earnings:&lt;/strong&gt; 4.97%!&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Total % of annual expenses:&lt;/strong&gt; 8%!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;✅ Replace my PCs at home with a single good Ultrabook/Notebook &lt;del&gt;and a NAS&lt;/del&gt;
+&lt;ul&gt;
+&lt;li&gt;As of yesterday, I completed upgrading my PC to SSDs-only and 32GB of RAM&lt;/li&gt;
+&lt;li&gt;I also bought a used Lenovo Yoga 720 laptop earlier in the year which I love&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;⛔ Push 3 substantive updates to KTOMG throughout the year: Steam review revamp, Raven 4 upgrade, and Linux hosting
+&lt;ul&gt;
+&lt;li&gt;I completed 2 major updates: RavenDB 4 upgrade and IGDB migration. I am partially done with the 3rd update.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;DIY&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;✅ &lt;del&gt;Learn how to cut trim/baseboard and&lt;/del&gt; finish the nursery
+&lt;ul&gt;
+&lt;li&gt;Let's leave this at just paint since I decided to leave the trim.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="stretch-goals"&gt;Stretch Goals&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Professional&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;✅ Set up a &lt;a href="https://kamranicus.com/newsletter"&gt;quarterly newsletter&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;But I need to actually send it out &lt;em&gt;every&lt;/em&gt; quarter 😅&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;⛔ Publish 1 more Pluralsight course on Azure or TypeScript or React&lt;/li&gt;
+&lt;li&gt;⛔ Publish 4 additional Pluralsight guides throughout the year&lt;/li&gt;
+&lt;li&gt;⛔ Participate in 1 Pluralsight Mentoring session&lt;/li&gt;
+&lt;li&gt;⛔ Become a Microsoft MVP with a focus on Azure/TypeScript content&lt;/li&gt;
+&lt;li&gt;⛔ Speak at a JSConf or ReactConf event
+&lt;ul&gt;
+&lt;li&gt;No luck but I &lt;a href="https://kamranicus.com/posts/2019-10-08-mdc-2019-flexible-ui-architecture-react-graphql"&gt;did speak at MDC 2019&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;⛔ Speak at the React MN meetup about TypeScript or GraphQL
+&lt;ul&gt;
+&lt;li&gt;I did speak at the .NET User Group on RavenDB, though!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;⛔ Record a YouTube video walkthrough of my &lt;a href="https://kamranicus.com/guides/raspberry-pi-3-baby-monitor"&gt;Raspberry Pi baby monitor&lt;/a&gt; written guide
+&lt;ul&gt;
+&lt;li&gt;I put out a feeler video instead, to see if there was any interest.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Personal&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;⛔ 1099 income should account for 12% or more (+2% over 2018) of W-2 income
+&lt;ul&gt;
+&lt;li&gt;Again, this wasn't my focus for 2019 and probably won't be for 2020 either. I'll readjust my goals accordingly.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;⛔ Travel completely free somewhere in the US with wife and 2 kids using miles/points
+&lt;ul&gt;
+&lt;li&gt;This summer we did a trip up to Voyageur National Park with friends and rented a cabin&lt;/li&gt;
+&lt;li&gt;This goal will be for Summer 2020 and 2021, as we are gearing up for a &lt;strong&gt;huge&lt;/strong&gt; trip in 2021, more info later!&lt;/li&gt;
+&lt;li&gt;We did earn 80,000 travel rewards points though, which will go towards those trips&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;⛔ Participate in Ludum Dare during the spring&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;DIY&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;⛔ &lt;del&gt;Install luxury vinyl plank in my office&lt;/del&gt;&lt;/li&gt;
+&lt;li&gt;⛔ &lt;del&gt;Replace baseboard/trim in my son's bedroom&lt;/del&gt; Paint son's bedroom trim.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="unplanned-accomplishments"&gt;Unplanned Accomplishments&lt;/h3&gt;
+&lt;p&gt;I like including this because it goes to show you can't predict everything for the year!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🏆 Wrote &lt;a href="https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes"&gt;freelance technical articles&lt;/a&gt; for RavenDB&lt;/li&gt;
+&lt;li&gt;🏆 Started &lt;a href="https://kamranicus.com/posts/2019-09-10-looks-good-to-us-blog-launch"&gt;a new blog&lt;/a&gt; with Cassie&lt;/li&gt;
+&lt;li&gt;🏆 Wrote &lt;a href="https://reachfi.app"&gt;a small app&lt;/a&gt; for tracking my savings rate&lt;/li&gt;
+&lt;li&gt;🏆 Reached a savings rate of &lt;strong&gt;40%&lt;/strong&gt;, more than double last year's. I still can't believe we were able to accomplish that, it's huge!&lt;/li&gt;
+&lt;li&gt;🏆 Started a new role at work and was promoted&lt;/li&gt;
+&lt;li&gt;🏆 Learned a ton about &lt;a href="https://storybook.js.org"&gt;Storybook&lt;/a&gt; and how to use it &lt;a href="https://kamranicus.com/posts/2019-09-12-using-storybook-in-a-monorepo"&gt;on large projects&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="reflection"&gt;Reflection&lt;/h2&gt;
+&lt;p&gt;Wow, I had a great 2019! There are quite a few partial or incomplete goals up there but all the important things were hit: new course, lots of writing, shoring up personal finances, in addition to some unplanned accomplishments like our new craft blog.&lt;/p&gt;
+&lt;h2 id="lets-go-2020"&gt;Let's Go 2020&lt;/h2&gt;
+&lt;p&gt;I feel like each year this list gets smaller and smaller -- which is good, I think. I would like to stay focused on what's important and will move the ball forward.&lt;/p&gt;
+&lt;p&gt;By the way I should just mention that I haven't truly shared &lt;em&gt;the why&lt;/em&gt; behind these goals. I have a why but I am keeping that close to my chest. Just know I have 5-, 10-, 15-, and 20-year goals in mind when I write these and all these goals work towards those larger ones. You have to have &lt;a href="https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action?language=en"&gt;the why&lt;/a&gt; nailed down to work towards, otherwise your goals exist in isolation.&lt;/p&gt;
+&lt;h3 id="content"&gt;Content&lt;/h3&gt;
+&lt;p&gt;I want to continue doing paid and free content creation in 2020. I feel like one course is a good goal to balance everything else but two would be great.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;👨‍🏫 Publish 1 Pluralsight course, &lt;strong&gt;Stretch:&lt;/strong&gt; 2 courses&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I have a couple paid opportunities to write and so I'd like to do at least two more. Tangential to that, I am tired of the friction of static site + Git + Markdown and would like to leverage &lt;a href="https://ghost.org"&gt;Ghost&lt;/a&gt; since I've been really happy with it for the &lt;a href="https://looksgoodtous.com"&gt;LGTU&lt;/a&gt; blog.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;✍ Write 2 articles on React, TypeScript, RavenDB, or Azure&lt;/li&gt;
+&lt;li&gt;✍ Write 4 freelance articles&lt;/li&gt;
+&lt;li&gt;👻 Migrate to Ghost for this blog&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I enjoy speaking but I don't intend for it to take over my life. Doing one or two large conferences a year is enough for me! I would still &lt;em&gt;love&lt;/em&gt; to get a chance to speak outside Minnesota, so I've applied to KCDC, NEJS, and React NYC.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🎤 Speak at NDC MN and one other regional conference, &lt;strong&gt;Stretch:&lt;/strong&gt; Speak outside MN.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="financial"&gt;Financial&lt;/h3&gt;
+&lt;p&gt;Now that I finished two major migrations for KTOMG, I want to work on getting my first paying user. To do that will require some more infrastructure work but I feel confident I can make it happen in 2020! I'm also feeling the friction of a heavy web front-end stack so I'd like to simplify it a bit.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;📈 Get &lt;a href="http://ktomg.com"&gt;Keep Track of My Games&lt;/a&gt; to make a profit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Right now LGTU doesn't cost us much, about $15 per month. I'd like to earn at least that much in affiliate revenue for 2020.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;📈 Get &lt;a href="https://looksgoodtous.com"&gt;Looks Good to Us&lt;/a&gt; to make a profit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I modified the financial goals from last year to take a different perspective. Rather than measuring side income in terms of W-2 income, I'm comparing it against our annual expenses which is much more under our control. In 2019, it covered 8% of our expenses which is &lt;strong&gt;awesome.&lt;/strong&gt; We also maintained a respectable 40% savings rate (see also &lt;a href="https://esimoney.com/the-gap-is-the-key-to-wealth/"&gt;The Gap&lt;/a&gt;) and I want to maintain that momentum going into 2020. It will actually be tougher since we have to buy a new (used) vehicle.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;💰 Passive and 1099 income should cover 10% of our annual expenses&lt;/li&gt;
+&lt;li&gt;💵 Maintain a 40% annual savings rate&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I activated &lt;a href="https://github.com/sponsors/kamranayub"&gt;my GitHub sponsor profile&lt;/a&gt;. If you want to support me directly, that's a way to do it. I am not sure what to expect from this but I'll be &lt;em&gt;pleasantly&lt;/em&gt; surprised if I get at least one sponsor in 2020.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🙏 Have one sponsor on GitHub&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="diy"&gt;DIY&lt;/h3&gt;
+&lt;p&gt;I still feel like I'm in the &amp;quot;learning&amp;quot; phase of DIY but I am starting to get comfortable knowing what I want to do around the house. I have one specific project in mind I'm very motivated to do and it would teach me everything about framing and drywall in a small, controlled space. I'd like to build a closet around the sump pump in our basement family room (which is otherwise just exposed in plain sight 😑).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🛠 Finish the last egress window cover&lt;/li&gt;
+&lt;li&gt;🛠 Finish one basement-related project&lt;/li&gt;
+&lt;li&gt;🛠 &lt;strong&gt;Stretch&lt;/strong&gt;: Finish an upstairs home project&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="looking-forward"&gt;Looking forward&lt;/h2&gt;
+&lt;p&gt;I am pretty excited about what 2020 holds and how it will get me closer to my overall goals in life and family. Each year seems to be even better than the last and I hope the trend continues. I'm sure some of these goals won't be achieved in total but even making progress against them is a huge win.&lt;/p&gt;
+&lt;p&gt;What are your goals for 2020? Do you have any specific things you want to get done?&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;That was fast. &lt;a href="https://kamranicus.com/posts/2019-07-12-quarterly-2-update"&gt;Last I checked in with you&lt;/a&gt;, half the year had already passed. Then I planned to do a third quarter update and suddenly it was the end of the year. I even have a draft of the third quarter newsletter and now I'm just rolling it into the year-end newsletter.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<link href="https://kamranicus.com/posts/2019-12-31-pluralsight-contributing-to-open-source" />
+		<id>https://kamranicus.com/posts/2019-12-31-pluralsight-contributing-to-open-source</id>
+		<title>Just Finished Contributing to an Open Source Project on GitHub Course</title>
+		<updated>2020-01-01T04:00:00Z</updated>
+		<content>&lt;p&gt;Since mid-October I've been working on my newest Pluralsight course and I can finally announce it's here! ✨ The &lt;a href="http://bit.ly/PSContributingToOpenSource"&gt;Contributing to an Open Source Project on GitHub&lt;/a&gt; course will teach you how to be an effective open source contributor by showing you how to work with others and work through common scenarios you'd find in the real-world. It distills most of the foundational concepts I've used in practice contributing to open source (and inner source) over the years and it was a fun course to build!&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/71635500-cd9a3b00-2bea-11ea-9729-a4b32d7a1284.png" class="img-fluid" alt="Course overview trailer screenshot" /&gt;&lt;/p&gt;
+&lt;p&gt;It's designed for folks new to open source, who may never have contributed before but are interested in how to get started. I cover tips for opening pull requests, finding issues to work on, working with maintainers, and tons of scenarios you might run into while contributing code.&lt;/p&gt;
+&lt;p&gt;If that sounds like something you're interested in, &lt;a href="http://bit.ly/PSContributingToOpenSource"&gt;check it out&lt;/a&gt;!&lt;/p&gt;
+&lt;h2 id="the-build-process"&gt;The build process&lt;/h2&gt;
+&lt;p&gt;I've &lt;a href="https://kamranicus.com/posts/2018-10-18-new-azure-pluralsight-courses"&gt;documented before&lt;/a&gt; how I track working on my courses and to that end nothing has changed. I use previous course Trello cards as a template for new ones. However, one thing that &lt;em&gt;may&lt;/em&gt; change in the future is switching to &lt;a href="http://notionhq.com"&gt;Notion&lt;/a&gt; instead which would allow me greater flexibility in organizing work.&lt;/p&gt;
+&lt;h2 id="estimates-are-hard"&gt;Estimates are hard&lt;/h2&gt;
+&lt;p&gt;Imagine my surprise when &lt;em&gt;halfway&lt;/em&gt; through the course, I blew through my course time budget:&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/2019-12-course-time-exceeded.png" class="img-fluid" alt="Total time was double than what I thought" /&gt;&lt;/p&gt;
+&lt;p&gt;By the end, I was double what I thought (pretty much &lt;em&gt;exactly&lt;/em&gt;). It just goes to show it's tough to estimate how long an individual course might take. Recall last time each Azure course was about 60 hours of work (for 120 total).&lt;/p&gt;
+&lt;p&gt;What I think contributed to the overtime:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Complex demo flows.&lt;/strong&gt; I felt very strongly that I show how to work within an &lt;em&gt;actual&lt;/em&gt; GitHub repository and in order to do so, I had to make it public and create several test accounts. I had multiple browser windows open in order to do the recordings because I couldn't effectively set up everything beforehand as each demo built on top of one another.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lots of content.&lt;/strong&gt; The draft produced course was actually around 2h15m or so and I was able to edit it down to 1h45m for the final production. When I do content planning I script out all the demos, what to cover, etc. so the end result is more polished but it's hard to estimate how long each clip will be when you do that.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Technical issues.&lt;/strong&gt; I upgraded to Camtasia 2019 and overall it was good except for the fact that it ran into some bugs like where I couldn't easily select a window to record, which meant each time I had to resize the window and recording outline manually to align properly. Furthermore, it seems like Camtasia chokes on anything more than 10 minutes long because it's just a bear when it starts getting long. Another author mentioned they do one Camtasia project per clip and I think that's what I'm going to do going forward. The UI lag was killing me.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I am pretty pleased with the end result but that extra time was squeezed into about 4-5 weeks which was pretty intense on my schedule.&lt;/p&gt;
+&lt;h2 id="final-thoughts"&gt;Final thoughts&lt;/h2&gt;
+&lt;p&gt;I'm excited to release this course because it's much less of a technical how-to and more of a holistic best practice course. I focused a lot on communication techniques and peppered the course with tips and tricks I've used in real-life.&lt;/p&gt;
+&lt;p&gt;I kept thinking of more things I could possibly do later for a second edition, for example I bet you could do an entire module on all the interpersonal topics related to open source. I actually didn't realize how comprehensive the Pluralsight catalog was already &lt;a href="https://pluralsight.pxf.io/6LdEG"&gt;covering communication skills&lt;/a&gt; so I'm glad I recommended those and I plan to go through them all myself.&lt;/p&gt;
+&lt;p&gt;If contributing to open source seems interesting you and you haven't had a lot of experience, I hope you find the course useful!&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;Since mid-October I've been working on my newest Pluralsight course and I can finally announce it's here! ✨ The &lt;a href="http://bit.ly/PSContributingToOpenSource"&gt;Contributing to an Open Source Project on GitHub&lt;/a&gt; course will teach you how to be an effective open source contributor by showing you how to work with others and work through common scenarios you'd find in the real-world. It distills most of the foundational concepts I've used in practice contributing to open source (and inner source) over the years and it was a fun course to build!&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2019-10-08-mdc-2019-flexible-ui-architecture-react-graphql" />
 		<id>https://kamranicus.com/posts/2019-10-08-mdc-2019-flexible-ui-architecture-react-graphql</id>
@@ -1425,174 +1641,5 @@ typing compared to the previous version but I'm willing to do that since in my c
 our app so it'll be real apparent if things don't work.&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;Here's a quick tip. Often in entry points of React applications, you have to do some bootstrapping with various providers from dependent modules like Material UI, Redux, JSS, and React Router. That's exactly the stack I'm using so that's what my example is based on.&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2018-07-02-handling-multiple-scalar-types-in-graphql" />
-		<id>https://kamranicus.com/posts/2018-07-02-handling-multiple-scalar-types-in-graphql</id>
-		<title>Handling Multiple Scalar Types in GraphQL</title>
-		<updated>2018-07-02T16:55:00Z</updated>
-		<content>&lt;p&gt;I've been using &lt;a href="https://graphql.org/"&gt;GraphQL&lt;/a&gt; for awhile now at work and I think it's pretty wonderful. I like how it has a consistent way to describe API contracts and has mechanisms to handle lots of different data fetching scenarios. Similar to other static type systems like TypeScript or Flow, in GraphQL you add type annotations to schemas for the server to enforce. If you need to describe a type as &amp;quot;this or that&amp;quot; like &amp;quot;string or integer&amp;quot;, this is what's called a &lt;strong&gt;type union.&lt;/strong&gt; The GraphQL spec supports type unions for objects but &lt;a href="https://github.com/facebook/graphql/issues/215"&gt;it doesn't yet support scalar type unions&lt;/a&gt; (since 2016).&lt;/p&gt;
-&lt;p&gt;This is unfortunate and since scalar type unions are not yet supported, here's an approach that works well with my preferred GraphQL server, &lt;a href="https://www.apollographql.com/"&gt;Apollo&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="describing-generic-values"&gt;Describing Generic Values&lt;/h2&gt;
-&lt;p&gt;In my scenario, we have multiple typeahead search fields that fetch values and pass them through our application untouched. There are half a dozen backend APIs that handle different kinds of data to search from and we use GraphQL to provide a consistent querying experience for the UI. Specifically, the raw &lt;code&gt;value&lt;/code&gt; represented by these APIs can be literally anything--we have no idea what it could be and also, &lt;strong&gt;we don't care.&lt;/strong&gt; This is key: the UI just passes this value through and eventually it gets saved back to these APIs, so we don't touch it.&lt;/p&gt;
-&lt;p&gt;The schema of this scenario looks something like:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;query search($text: String!, $start: Int!, $resourceId: String!): Options
-
-type Options {
-  total: Int!
-  start: Int!
-  page_size: Int!
-  options: [Option]!
-}
-
-type Option {
-  display_value: String!
-  value: ???
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Imagine a dropdown where the &lt;code&gt;display_value&lt;/code&gt; is what's shown to the user and &lt;code&gt;value&lt;/code&gt; is the backing data of the option. The user never sees it, it gets stored in state somewhere, and eventually when the user saves it gets passed back up.&lt;/p&gt;
-&lt;p&gt;Now, since we use TypeScript in the UI, I can easily describe the &lt;code&gt;value&lt;/code&gt; property like this on the client:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-typescript"&gt;interface Option {
-  display_value: string;
-  value: any;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;To tie this back to unions, if I had more concrete information about what values get returned by these APIs, I could be more specific using a &lt;strong&gt;type union&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-typescript"&gt;interface Option {
-  display_value: string;
-  value: string | number | boolean;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;On the GraphQL side to describe the &lt;code&gt;Option.value&lt;/code&gt; property, what would be &lt;strong&gt;ideal&lt;/strong&gt; is to do this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;type Option {
-  display_value: String!
-  value: String | Int | Boolean
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;or even:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;type Option {
-  display_value: String!
-  value: Any
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Unfortunately, neither of these type annotations are possible with the default GraphQL language specification. Many folks give up and just use &lt;code&gt;String&lt;/code&gt; but that actually causes bugs with our scenario (numbers get converted to strings and so on) so we need to blaze our own trail.&lt;/p&gt;
-&lt;h2 id="custom-scalar-types"&gt;Custom Scalar Types&lt;/h2&gt;
-&lt;p&gt;In Apollo and I assume most GraphQL implementations, &lt;a href="https://www.apollographql.com/docs/apollo-server/v2/features/scalars-enums.html"&gt;you can define your own custom scalar types&lt;/a&gt;. A scalar type is just a primitive type meaning it has no additional properties like a regular &amp;quot;object&amp;quot; would in GraphQL. One custom scalar we use often is the &lt;a href="https://github.com/taion/graphql-type-json"&gt;JSON scalar type&lt;/a&gt; for generic payloads but this doesn't work with primitive types like we need here.&lt;/p&gt;
-&lt;p&gt;What we need to do is define our own custom type that can resolve our value. In my case, I need an &lt;code&gt;Any&lt;/code&gt; type that really just passes the value through. This is &lt;em&gt;frowned upon&lt;/em&gt; in the GraphQL world because everything &lt;em&gt;should&lt;/em&gt; be able to be described statically. I agree with the philosophy but I'm also pragmatic and the real world always has exceptions to these guidelines. So let's make it work.&lt;/p&gt;
-&lt;p&gt;In your GraphQL schema, define your new scalar type:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;type Any
-
-type Option {
-  display_value: String!
-  value: Any
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now we've declared a new type, so we need to implement it using what's called a &lt;a href="https://www.apollographql.com/docs/apollo-server/v2/features/scalars-enums.html#graphqlscalartype"&gt;type resolver&lt;/a&gt;. The implementation for our &lt;code&gt;Any&lt;/code&gt; type is dead simple:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;// resolvers.js
-import { GraphQLScalarType } from &amp;quot;graphql&amp;quot;;
-
-export default {
-  Query: {
-    search() {
-      return ...
-    }
-  },
-  Any: new GraphQLScalarType({
-    name: &amp;quot;Any&amp;quot;,
-    description: &amp;quot;Literally anything&amp;quot;,
-    serialize(value) {
-      return value;
-    },
-    parseValue(value) {
-      return value;
-    },
-    parseLiteral(ast) {
-      return ast.value;
-    }
-  })
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;code&gt;ast.value&lt;/code&gt; is always a string but I haven't seen a case in consuming a GQL API where &lt;code&gt;parseLiteral&lt;/code&gt; comes into play--it may with the Introspection API. For our purposes, &lt;code&gt;serialize&lt;/code&gt; and &lt;code&gt;parseValue&lt;/code&gt; are the most important.&lt;/p&gt;
-&lt;p&gt;That's it! You can now pass any value for &lt;code&gt;value&lt;/code&gt; and Apollo will happily consume or return it. For context I'm showing it next to the query resolver.&lt;/p&gt;
-&lt;h2 id="custom-type-union-resolver"&gt;Custom Type Union Resolver&lt;/h2&gt;
-&lt;p&gt;Great! Now, can you imagine what this would look like if we needed to support a type union? We need to implement the three methods appropriately for the union. Let's make a &lt;code&gt;StringOrInt&lt;/code&gt; type and resolver:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;type StringOrInt
-
-type Option {
-  display_value: String!
-  value: StringOrInt
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;// resolvers.js
-import { GraphQLScalarType, Kind } from &amp;quot;graphql&amp;quot;;
-
-export default {
-  Query: {
-    search() {
-      return ...
-    }
-  },
-  StringOrInt: new GraphQLScalarType({
-    name: &amp;quot;StringOrInt&amp;quot;,
-    description: &amp;quot;A String or an Int union type&amp;quot;,
-    serialize(value) {
-      if (typeof value !== &amp;quot;string&amp;quot; &amp;amp;&amp;amp; typeof value !== &amp;quot;number&amp;quot;) {
-        throw new Error(&amp;quot;Value must be either a String or an Int&amp;quot;);
-      }
-
-      if (typeof value === &amp;quot;number&amp;quot; &amp;amp;&amp;amp; !Number.isInteger(value)) {
-        throw new Error(&amp;quot;Number value must be an Int&amp;quot;);
-      }
-
-      return value;
-    },
-    parseValue(value) {
-      if (typeof value !== &amp;quot;string&amp;quot; &amp;amp;&amp;amp; typeof value !== &amp;quot;number&amp;quot;) {
-        throw new Error(&amp;quot;Value must be either a String or an Int&amp;quot;);
-      }
-      
-      if (typeof value === &amp;quot;number&amp;quot; &amp;amp;&amp;amp; !Number.isInteger(value)) {
-        throw new Error(&amp;quot;Number value must be an Int&amp;quot;);
-      }
-
-      return value;
-    },
-    parseLiteral(ast) {
-
-      // Kinds: http://facebook.github.io/graphql/June2018/#sec-Type-Kinds
-      // ast.value is always a string
-      switch (ast.kind) {
-        case Kind.INT: return parseInt(ast.value, 10);
-        case Kind.STRING: return ast.value;
-        default:
-          throw new Error(&amp;quot;Value must be either a String or an Int&amp;quot;);
-      }
-    }
-  })
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This supports either a &lt;code&gt;String&lt;/code&gt; or an &lt;code&gt;Int&lt;/code&gt; scalar type union. There could be more validation cases you need to handle, I'll let you explore that. You can reference the &lt;a href="http://facebook.github.io/graphql/June2018/#sec-Type-Kinds"&gt;spec&lt;/a&gt; on what kinds of tokens there are to parse.&lt;/p&gt;
-&lt;p&gt;The downside with this approach is that you'll need to define a resolver for each kind of type union but that's better than having no option at all.&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;I've been using &lt;a href="https://graphql.org/"&gt;GraphQL&lt;/a&gt; for awhile now at work and I think it's pretty wonderful. I like how it has a consistent way to describe API contracts and has mechanisms to handle lots of different data fetching scenarios. Similar to other static type systems like TypeScript or Flow, in GraphQL you add type annotations to schemas for the server to enforce. If you need to describe a type as "this or that" like "string or integer", this is what's called a &lt;strong&gt;type union.&lt;/strong&gt; The GraphQL spec supports type unions for objects but &lt;a href="https://github.com/facebook/graphql/issues/215"&gt;it doesn't yet support scalar type unions&lt;/a&gt; (since 2016).&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2018-05-11-ndc-minnesota-typescript-react" />
-		<id>https://kamranicus.com/posts/2018-05-11-ndc-minnesota-typescript-react</id>
-		<title>That's a Wrap for NDC Minnesota</title>
-		<updated>2018-05-11T12:45:00Z</updated>
-		<content>&lt;p&gt;I gave my &lt;a href="https://ndcminnesota.com/talk/building-scalable-maintainable-apps-using-typescript-and-react/"&gt;Building Scalable, Maintainable Apps with TypeScript &amp;amp; React&lt;/a&gt; talk at NDC this last week and it was a blast. Had some really great conversations afterwards and feedback was positive, which is what any speaker can hope for.&lt;/p&gt;
-&lt;iframe src="https://player.vimeo.com/video/271363697" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
-&lt;p&gt;&lt;a href="https://vimeo.com/271363697"&gt;Building Scalable, Maintainable Apps Using TypeScript and React - Kamran Ayub&lt;/a&gt; from &lt;a href="https://vimeo.com/ndcconferences"&gt;NDC Conferences&lt;/a&gt; on &lt;a href="https://vimeo.com"&gt;Vimeo&lt;/a&gt;.&lt;/p&gt;
-&lt;blockquote class="twitter-tweet" data-conversation="none" data-lang="en"&gt;&lt;p lang="en" dir="ltr"&gt;Wish I could have stayed and come! Loved your talk about react/typescript.&lt;/p&gt;&amp;mdash; Phill Stewart (&amp;#64;HeWhoFreeks) &lt;a href="https://twitter.com/HeWhoFreeks/status/994710519364931584?ref_src=twsrc%5Etfw"&gt;May 10, 2018&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
-&lt;p&gt;Thanks Phill! This kind of feedback makes all the stress, planning, and nerve-wracking-ness about giving talks totally worth it. I guarantee every small bit of praise you give to a speaker, online or in-person, is very much appreciated.&lt;/p&gt;
-&lt;p&gt;I'm always a little cautious before this talk since it assumes some prior knowledge of TypeScript or React but I had folks come up to me and even though they hadn't had as much experience, it sparked them to learn more--which is &lt;em&gt;also&lt;/em&gt; what any speaker can hope for. Value can be provided to any skill level I think, whether it's from &amp;quot;Should I even learn this? Will it help me?&amp;quot; to &amp;quot;I've done this for a year but I haven't seen that pattern before,&amp;quot; which was my goal.&lt;/p&gt;
-&lt;p&gt;Back when I proposed my first course for Pluralsight I had pitched a TypeScript and React course but it was turned down since the curriculum has a lot of React and TypeScript courses &lt;em&gt;separately&lt;/em&gt;. I may still pitch it again because &lt;a href="https://app.pluralsight.com/library/search?q=react+typescript"&gt;there's still no one course that ties them together&lt;/a&gt; (or with Flow, for that matter). I had a good conversation with a gentleman about how there's not &lt;em&gt;that&lt;/em&gt; many resources out there on specifically patterns around TS and React, a primary motivation for this talk. There's certainly enough content for a 2-3 hour course and there's a specific course pattern called a &lt;a href="https://app.pluralsight.com/library/courses/electron-playbook/table-of-contents"&gt;playbook&lt;/a&gt; that this may fit.&lt;/p&gt;
-&lt;p&gt;Another person I spoke to suggested I pitch the talk to JSMN and speaking at meetups is &lt;a href="https://kamranicus.com/posts/2018-01-01-2018-a-new-year"&gt;on my 2018 goals list&lt;/a&gt; so &lt;strong&gt;of course&lt;/strong&gt; I will do that. They also let me know about the &lt;a href="https://www.midwestgamingclassic.com/"&gt;Midwest Gaming Classic&lt;/a&gt; which would be cool to bring some &lt;a href="http://excaliburjs.com"&gt;Excalibur&lt;/a&gt; talks to or just attend in general.&lt;/p&gt;
-&lt;p&gt;By the way, a friendly reminder I'll be talking about Node.js bots &lt;a href="https://www.meetup.com/Minneapolis-Azure-Cloud-Computing-Meetup/events/kdbbdpyxmbjb/"&gt;at the Minneapolis Azure meetup&lt;/a&gt; in September!&lt;/p&gt;
-&lt;p&gt;There were so many other great talks I went to, I will post a follow-up soon hopefully with links to the recordings if they're out by then.&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;I gave my &lt;a href="https://ndcminnesota.com/talk/building-scalable-maintainable-apps-using-typescript-and-react/"&gt;Building Scalable, Maintainable Apps with TypeScript &amp;amp; React&lt;/a&gt; talk at NDC this last week and it was a blast. Had some really great conversations afterwards and feedback was positive, which is what any speaker can hope for.&lt;/p&gt;</summary>
 	</entry>
 </feed>

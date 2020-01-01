@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 
-  <title>Kamranicus - MiniProfiler RavenDB Pull Request Accepted</title>
+  <title>Kamranicus - Migrating from disk drives to solid state drives</title>
   <meta name="description" content="Kamran Ayub" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Kamran Ayub">
@@ -21,9 +21,9 @@
   <meta name="msapplication-tooltip" content="Kamranicus" />
   <meta name="msapplication-starturl" content="/" />
 
-  <meta property="og:title" content="Kamranicus - MiniProfiler RavenDB Pull Request Accepted" /> 
+  <meta property="og:title" content="Kamranicus - Migrating from disk drives to solid state drives" /> 
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://kamranicus.com/posts/2013-12-05-miniprofiler-ravendb-pull-request-accepted" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2020-01-04-migrating-to-solid-state-ssds" />
   <meta property="og:site_name" content="Kamranicus" />
   <meta property="twitter:card" content="summary" />
   <meta property="twitter:creator" content="@kamranayub" />
@@ -107,15 +107,14 @@
     
 <div class="ui basic vertical segment">
     <h1 class="ui  huge header">
-      MiniProfiler RavenDB Pull Request Accepted
+      Migrating from disk drives to solid state drives
+        <div class="ui sub header">This past week or so I finally sat down and migrated my PC from old spinning disk drives to solid state. In this post I&#x27;ll share my process.</div>
     </h1>
                 
     <div class="ui  sub header">        
-Published on Thursday, December 5, 2013<br>    </div>
+    </div>
         <div class="ui basic vertical spaced segment">
-                    <a role="button" href="/tags/GitHub" class="ui small compact button">GitHub</a>
-                    <a role="button" href="/tags/Open-Source" class="ui small compact button">Open Source</a>
-                    <a role="button" href="/tags/RavenDB" class="ui small compact button">RavenDB</a>
+                    <a role="button" href="/tags/Hardware" class="ui small compact button">Hardware</a>
         </div>     
 </div>
     </div>
@@ -127,46 +126,58 @@ Published on Thursday, December 5, 2013<br>    </div>
       
 
 <div class="ui huge basic post content segment">
-  <p>I just got a notification that my <a href="https://github.com/MiniProfiler/dotnet/pull/15">pull request</a> for
-adding RavenDB support to MiniProfiler went through! It's always really cool to see your contributions
-get pulled in. The MiniProfiler guys were really easy-going, <a href="https://github.com/yellis">&#64;yellis</a> was even kind enough to take on
-the testing. That kind of acceptance for pull requests is great to see because it makes me feel good
-about contributing and is a bit less intimidating.</p>
-<!-- More -->
-<p>The &quot;official&quot; MiniProfiler RavenDB plugin does several things:</p>
+  <p>My PC is not that old but I've had the same hard drives for about 8 years (since 2012 or so). I had already upgraded my primary drive to be a 250GB SSD which had helped a lot but these days 250GB is not a lot.</p>
+<p>I was able to successfully migrate from one SSD and 3 spinning disk drives to 3 SSDs total, without re-imaging or re-installing anything. It's not hard to do but it can seem intimidating if you don't know the steps.</p>
+<h2 id="picking-out-the-drives">Picking out the drives</h2>
+<p>At <a href="https://microcenter.com">Micro Center</a> I picked out two Samsung 860 EVO SSDs 1TB each that were on clearance for about $200 total.</p>
+<p>I figured 2TB + 250GB of SSD was enough for my PC since I mainly do development now and some limited gaming. I need enough for about 5-8 AAA games (90GB each) and a dozen or so smaller games plus some storage for media streaming. I figured the worst case is I stick the extra spinning disks in an enclosure and create a NAS.</p>
+<p>One key thing to understand if you're looking at SSDs in 2020 and beyond is support for <a href="https://www.pcworld.com/article/2899351/everything-you-need-to-know-about-nvme.html">NVMe</a>. It's the latest storage bus for SSDs that provide the fastest possible speeds. Unfortunately, it's still fairly new so your motherboard needs to have support and mine does not, being about 8 years old. I wasn't at the point of doing a full upgrade again so I'm sticking with the older generation SSD, which is plenty fast for me.</p>
+<h2 id="going-from-multiple-spinning-disks">Going from multiple spinning disks</h2>
+<p>My previous state was as follows:</p>
 <ul>
-<li>Integrates with all existing MiniProfiler settings</li>
-<li>Displays the query duration just like you'd expect in a separate raven column
+<li>Old Disk 0: 250GB SSD (Primary OS)</li>
+<li>Old Disk 1: 1TB HDD (Development Work)</li>
+<li>Old Disk 2: 750GB HDD (Games/Media)</li>
+<li>Old Disk 3: 750GB HDD (Games/Media)</li>
+</ul>
+<p>These disks had varied amounts of free space but in total I think I had about 700GB free between all of them. The primary drive was 95% or so full, enough that I couldn't uninstall anything to get back more space.</p>
+<p>My desired future state was this:</p>
 <ul>
-<li>This let's you see the raven percentage individually just like SQL</li>
-<li>It matches the experience of using EF with MiniProfiler exactly</li>
+<li>New Disk 0: 1TB SSD (OS / Development)</li>
+<li>New Disk 1: 1TB SSD (Storage / Games)</li>
+<li>New Disk 3: 250GB SSD (Storage / Games)</li>
 </ul>
-</li>
-<li>Allows you to dig into the exact request details ala EF integration</li>
-<li>(not included) It's possible to also include the <em>results</em> of the request but in my pull request I don't because it was way too much
-overhead to include the full response in the web interface (displaying 50 complex objects in JSON slowed down the UI too much)
+<p>I don't think I <em>really</em> needed the extra 250GB but I didn't see a reason not to use a perfectly good drive.</p>
+<h2 id="playing-musical-chairs-files">Playing Musical <del>Chairs</del> Files</h2>
+<p>Do you notice something about the desired end state above? It's actually 500GB less space than what I had before.</p>
+<p>What this meant in practice was that I needed to move files around in order to properly clone the HDDs over to the new SSDs and then even after that, I had to move files manually over from the HDDs.</p>
+<p>So here's what I did:</p>
+<ol>
+<li>Identify the drive with the most storage space (e.g. <strong>Old Disk 1</strong> in my case)</li>
+<li>Copy over all &quot;loose&quot; files from other drives over to <strong>Old Disk 1</strong>. In my case, this left <strong>Old Disk 2</strong> empty as there was nothing really installed there.</li>
+<li>Format <strong>Old Disk 2</strong> completely so we can disconnect it</li>
+<li>Open up the PC, disconnect Disk 2, connect SSD <strong>New Disk 1</strong>.</li>
+<li>Boot up with Clonezilla Live USB</li>
+<li>Clone device-to-device <strong>Old Disk 1</strong> to <strong>New Disk 1</strong></li>
+<li><strong>Old Disk 1</strong> can now be formatted or disconnected!</li>
+</ol>
+<p>Repeat the same steps for the remaining drives, leaving the OS drive to the last. We want to be sure our cloning process is working.</p>
+<h2 id="moving-installation-folders">Moving Installation Folders</h2>
+<p>Copying loose files is easy -- music, TV, videos, movies, backups, etc. But moving <em>installations</em> of programs is a bit more work. For me, I had to reconfigure:</p>
 <ul>
-<li>You can just copy the query to see the results in Raven Studio anyway</li>
-<li>Possibly you could just display the query URL and open the request in a new tab</li>
+<li><a href="https://www.howtogeek.com/257472/how-to-painlessly-move-your-steam-library-to-another-folder-or-hard-drive/">Steam Library</a></li>
+<li><a href="https://www.windowscentral.com/how-install-apps-separate-drive-windows-10">Windows Games</a> (installed via Xbox Game Pass)</li>
+<li><a href="https://www.howtogeek.com/404999/how-to-move-fortnite-to-another-folder-drive-or-pc/">Epic Games</a></li>
 </ul>
-</li>
-</ul>
-<p>I have only just begun my exploration of RavenDB but one of the downsides from moving from EF was
-the excellent MiniProfiler integration. I was really surprised to find adding the same level
-of support to Raven was pretty straightforward in the latest iteration of MiniProfiler.</p>
-<p>There are two packages I found that added profiling to Raven, the <a href="https://github.com/ravendb/ravendb/tree/master/Raven.Client.MvcIntegration">&quot;official&quot; Raven profiler</a> and another
-<a href="http://blog.csainty.com/MvcMiniProfiler.RavenDb/">MiniProfiler plugin</a>, but both of those are lacking. The official one didn't seem to handle AJAX requests
-and the other only seemed to add profiling steps; it didn't provide any details about the request.
-I wanted <strong>full</strong> integration with MiniProfiler on the same level as EF and I didn't want to enable <em>two</em> profilers at once. I was
-already using MiniProfiler to profile my MVC app, I didn't want to enable Raven Profiler and MiniProfiler
-at the same time.</p>
-<p>There is <a href="https://github.com/ravendb/ravendb.contrib/tree/master/src/Raven.Client.Contrib.Profiling">a RavenDb.Contrib project</a> that added MiniProfiler integration on the level I wanted, but unfortunately it was not integrated
-tightly into the MiniProfiler codebase (it was using reflection and other hacks) and it also was not built against the latest version of the codebase
-that simplified the steps to create a new custom timing. Still, credit is due, because some of the formatting logic and general direction of my pull
-request was taken from that contrib project.</p>
-<p>I do not know what the release schedule is like for the next version of MiniProfiler, but I have my
-RavenDB-based branch compiled and am using it for my site currently. You can bring down my fork
-and compile it yourself too, if you're really interested in using it right now.</p>
+<p>I followed the linked guides above to do it all, it took <em>forever</em> to wait and wait for all the copying to finish but it did work.</p>
+<blockquote class="blockquote">
+<p>Note: I ran into an issue trying to move some games like Master Chief Collection. I got an error 0x80073d0b and <a href="https://answers.microsoft.com/en-us/windows/forum/apps_windows_10-winapps/windows-10-getting-error-0x80073d0b-when-moving/f42ecd3c-f386-4967-8df7-4887bd2f45e4?page=1&amp;auth=1">tried to follow some threads</a> on the problem but ended up simply uninstalling the games to re-download later.</p>
+</blockquote>
+<h2 id="cleaning-up-the-last-hard-drive">Cleaning up the last hard drive</h2>
+<p>I had <strong>Old Disk 2</strong> last to clean up; so I had to move more files around because <strong>New Disk 0</strong> had a lot more free space (750GB worth). I copied stuff from <strong>New Disk 1</strong> and <strong>Old Disk 2</strong> so I could finally format and erase <strong>Old Disk 2</strong>.</p>
+<p>Once I finished wiping the last HDD, I disconnected it and reconnected <strong>Old Disk 0</strong> which I then wiped in Windows and created a new logical volume.</p>
+<h2 id="the-final-state">The final state</h2>
+<p>After all was said and done, I reached the desired final state! Whew. It took about 4 days since I had to wait for a lot of copying to finish but it was worth it, my PC is <em>screaming</em> fast now.</p>
 
 </div>
 
@@ -244,9 +255,9 @@ and compile it yourself too, if you're really interested in using it right now.<
 
 <script type="text/javascript">
     var disqus_shortname = 'kamranicus';
-    var disqus_identifier = 'http://kamranicus.com/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/';
-    var disqus_title = 'MiniProfiler RavenDB Pull Request Accepted';
-    var disqus_url = 'https://kamranicus.com/posts/2013-12-05-miniprofiler-ravendb-pull-request-accepted';
+    var disqus_identifier = '2020-01-04-migrating-to-solid-state-ssds';
+    var disqus_title = 'Migrating from disk drives to solid state drives';
+    var disqus_url = 'https://kamranicus.com/posts/2020-01-04-migrating-to-solid-state-ssds';
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
@@ -266,30 +277,7 @@ and compile it yourself too, if you're really interested in using it right now.<
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
       <!-- Disqus -->
-<div id="disqus_thread"></div>
-
-<script type="text/javascript">
-    var disqus_shortname = 'kamranicus';
-    var disqus_identifier = 'http://kamranicus.com/blog/2013/12/05/miniprofiler-ravendb-pull-request-accepted/';
-    var disqus_title = 'MiniProfiler RavenDB Pull Request Accepted';
-    var disqus_url = 'https://kamranicus.com/posts/2013-12-05-miniprofiler-ravendb-pull-request-accepted';
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-    
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>    </div>
+    </div>
   </div>
 
   <div class="ui divider"></div>
