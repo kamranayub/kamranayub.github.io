@@ -1,6 +1,6 @@
 Title: "Just Finished Contributing to an Open Source Project on GitHub Course"
 Published: 2019-12-31 23:00:00 -0500
-Lead: I'm happy to announce I've finished my fourth Pluralsight course: Contributing to an Open Source Project on GitHub!
+Lead: "I'm happy to announce I've finished my fourth Pluralsight course: Contributing to an Open Source Project on GitHub!"
 Tags:
 - Courses
 - Pluralsight

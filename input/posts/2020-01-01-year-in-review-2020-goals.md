@@ -1,6 +1,6 @@
 Title: "2019 Year and Decade in Review plus 2020 Goals"
 Published: 2020-01-01 00:03:00 -0500
-Lead: An entire decade has finished which brought crazy life experiences. This last year brought a new course, new blog, plus plans for the future!
+Lead: "An entire decade has finished which brought crazy life experiences. This last year brought a new course, new blog, plus plans for the future!"
 Tags:
 - Life
 - Goals
