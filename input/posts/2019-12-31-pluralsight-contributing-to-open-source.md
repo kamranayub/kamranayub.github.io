@@ -1,5 +1,5 @@
 Title: "Just Finished Contributing to an Open Source Project on GitHub Course"
-Published: 2019-12-23 9:00:00 -0500
+Published: 2019-12-31 23:00:00 -0500
 Lead: I'm happy to announce I've finished my fourth Pluralsight course: Contributing to an Open Source Project on GitHub!
 Tags:
 - Courses
@@ -10,7 +10,7 @@ Tags:
 
 Since mid-October I've been working on my newest Pluralsight course and I can finally announce it's here! ✨ The [Contributing to an Open Source Project on GitHub](http://bit.ly/PSContributingToOpenSource) course will teach you how to be an effective open source contributor by showing you how to work with others and work through common scenarios you'd find in the real-world. It distills most of the foundational concepts I've used in practice contributing to open source (and inner source) over the years and it was a fun course to build!
 
-![Course overview trailer screenshot](tbd)
+![Course overview trailer screenshot](https://user-images.githubusercontent.com/563819/71635500-cd9a3b00-2bea-11ea-9729-a4b32d7a1284.png)
 
 It's designed for folks new to open source, who may never have contributed before but are interested in how to get started. I cover tips for opening pull requests, finding issues to work on, working with maintainers, and tons of scenarios you might run into while contributing code. 
 

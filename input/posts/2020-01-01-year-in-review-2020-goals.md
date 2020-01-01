@@ -1,5 +1,5 @@
 Title: "2019 Year in Review and 2020 Goals"
-Published: 2019-12-29 09:00:00 -0500
+Published: False
 Lead: New course, new blog, plus plans for the future!
 Tags:
 - Life
