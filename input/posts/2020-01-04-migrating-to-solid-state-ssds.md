@@ -1,5 +1,5 @@
 Title: "Migrating from disk drives to solid state drives"
-Published: False
+Published: 9999-01-01 00:00:00 -0500
 Lead: This past week or so I finally sat down and migrated my PC from old spinning disk drives to solid state. In this post I'll share my process.
 Tags:
 - Hardware
