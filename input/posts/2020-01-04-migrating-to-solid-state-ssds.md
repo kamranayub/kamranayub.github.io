@@ -1,8 +1,10 @@
 Title: "Migrating from disk drives to solid state drives"
-Published: False
-Lead: "This past week or so I finally sat down and migrated my PC from old spinning disk drives to solid state. In this post I'll share my process."
+Published: 2020-01-04 20:00:00 -0500
+Lead: "My slow disk drives were driving me up the wall so I finally sat down and migrated over to an all-SSD setup without reinstalling anything"
 Tags:
 - Hardware
+- How To
+- PC
 ---
 
 If you measure the age of tech in dog years, my PC is old. 👴 It's a Frankenstein's monster, with some parts being relatively new like my Radeon R9 390 and other parts originally from my initial 2012 build. My hard drives were one of those OG parts. I had already upgraded my primary drive to be a 250GB SSD which helped but these days 250GB is not a lot (but [it ought to be](https://www.computerworld.com/article/2534312/the--640k--quote-won-t-go-away----but-did-gates-really-say-it-.html)). I also was running with 16GB of RAM and when recording courses or browsing a single fucking website in Chrome, my PC decided that it was too old for that shit and I was constantly in disk paging hell since my pagefile was too big for the SSD and was stored on a spinning disk.
