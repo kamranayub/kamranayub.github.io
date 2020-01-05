@@ -5,8 +5,76 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2020</copyright>
-		<pubDate>Sun, 05 Jan 2020 03:14:24 GMT</pubDate>
-		<lastBuildDate>Sun, 05 Jan 2020 03:14:24 GMT</lastBuildDate>
+		<pubDate>Sun, 05 Jan 2020 03:16:30 GMT</pubDate>
+		<lastBuildDate>Sun, 05 Jan 2020 03:16:30 GMT</lastBuildDate>
+		<item>
+			<title>Migrating from disk drives to solid state drives</title>
+			<link>https://kamranicus.com/posts/2020-01-04-migrating-to-solid-state-ssds</link>
+			<description>&lt;p&gt;If you measure the age of tech in dog years, my PC is old. 👴 It's a Frankenstein's monster, with some parts being relatively new like my Radeon R9 390 and other parts originally from my initial 2012 build. My hard drives were one of those OG parts. I had already upgraded my primary drive to be a 250GB SSD which helped but these days 250GB is not a lot (but &lt;a href="https://www.computerworld.com/article/2534312/the--640k--quote-won-t-go-away----but-did-gates-really-say-it-.html"&gt;it ought to be&lt;/a&gt;). I also was running with 16GB of RAM and when recording courses or browsing a single fucking website in Chrome, my PC decided that it was too old for that shit and I was constantly in disk paging hell since my pagefile was too big for the SSD and was stored on a spinning disk.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2020-01-04-migrating-to-solid-state-ssds</guid>
+			<pubDate>Sun, 05 Jan 2020 01:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;If you measure the age of tech in dog years, my PC is old. 👴 It's a Frankenstein's monster, with some parts being relatively new like my Radeon R9 390 and other parts originally from my initial 2012 build. My hard drives were one of those OG parts. I had already upgraded my primary drive to be a 250GB SSD which helped but these days 250GB is not a lot (but &lt;a href="https://www.computerworld.com/article/2534312/the--640k--quote-won-t-go-away----but-did-gates-really-say-it-.html"&gt;it ought to be&lt;/a&gt;). I also was running with 16GB of RAM and when recording courses or browsing a single fucking website in Chrome, my PC decided that it was too old for that shit and I was constantly in disk paging hell since my pagefile was too big for the SSD and was stored on a spinning disk.&lt;/p&gt;
+&lt;p&gt;This made me feel like grabbing my computer by its britches and lobbing it straight through my basement window so that any wayward frogs could hop joyfully on its carcass. Instead I spent some money. First, I installed 32GB of RAM. That helped. Then I was able to exorcise my 3 spinning disk drives and replaced them with 3 SSDs total, without re-imaging or re-installing anything. That can seem intimidating if you don't know the steps so I wanted to share how I successfully accomplished the feat.&lt;/p&gt;
+&lt;h2 id="picking-out-the-drives"&gt;Picking out the drives&lt;/h2&gt;
+&lt;p&gt;At my local &lt;a href="https://microcenter.com"&gt;Micro Center&lt;/a&gt; I picked out two &lt;a href="https://amzn.to/39EnZxD"&gt;Samsung 860 EVO SSDs 1TB&lt;/a&gt; drives that were each on clearance for about $200 total.&lt;/p&gt;
+&lt;p&gt;I figured 2TB + 250GB of SSD ought to be enough for my PC since I mainly do development now and some limited gaming. I need enough for about 5-8 AAA games and a dozen or so smaller games plus some storage for my media server. In the worst case I can stick the extra disks in a NAS.&lt;/p&gt;
+&lt;p&gt;One key thing to understand if you're looking at SSDs in 2020 and beyond is support for &lt;a href="https://www.pcworld.com/article/2899351/everything-you-need-to-know-about-nvme.html"&gt;NVMe&lt;/a&gt;. It's the latest storage tech for SSDs that provides the fastest possible speed. Unfortunately, being my rig is an old dog, I cannot teach it new tricks. Until next time, Fido. 🐶&lt;/p&gt;
+&lt;h2 id="going-from-multiple-spinning-disks"&gt;Going from multiple spinning disks&lt;/h2&gt;
+&lt;p&gt;This is what I had:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Old Disk 0: 250GB SSD (Primary OS)&lt;/li&gt;
+&lt;li&gt;Old Disk 1: 1TB HDD (Development Work)&lt;/li&gt;
+&lt;li&gt;Old Disk 2: 750GB HDD (Games/Media)&lt;/li&gt;
+&lt;li&gt;Old Disk 3: 750GB HDD (Games/Media)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These disks had varied amounts of free space but in total I think I had about 700GB free between all of them. The primary drive was 95% or so full, enough that I couldn't get back more space.&lt;/p&gt;
+&lt;p&gt;I wanted to move to this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;New Disk 0: 1TB SSD (OS / Development)&lt;/li&gt;
+&lt;li&gt;New Disk 1: 1TB SSD (Storage / Games)&lt;/li&gt;
+&lt;li&gt;New Disk 3: 250GB SSD (Storage / Games)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I don't think I &lt;em&gt;really&lt;/em&gt; need the extra 250GB but 🤷‍♂️.&lt;/p&gt;
+&lt;h2 id="playing-musical-chairs-files"&gt;Playing Musical &lt;del&gt;Chairs&lt;/del&gt; Files&lt;/h2&gt;
+&lt;p&gt;Do you notice something about the desired end state above? It's actually &lt;strong&gt;500GB less space&lt;/strong&gt; than what I had before. I'm becoming a minimalist in my old age.&lt;/p&gt;
+&lt;p&gt;What this meant in practice was that I needed to move files around in order to properly clone the HDDs over to the new SSDs and then &lt;em&gt;even after that&lt;/em&gt;, I had to move files manually over from the HDDs.&lt;/p&gt;
+&lt;p&gt;The general idea was to move files over drive-by-drive to empty some less-used drives so I could disconnect them, then use some software to clone the migrated files from the old HDDs over to the new SSDs.&lt;/p&gt;
+&lt;p&gt;Step-by-step here's what I did at a high level:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Identify the drive with the most storage space (e.g. &lt;strong&gt;Old Disk 1&lt;/strong&gt; in my case)&lt;/li&gt;
+&lt;li&gt;Copy over all &amp;quot;loose&amp;quot; files from other drives over to &lt;strong&gt;Old Disk 1&lt;/strong&gt;, things like music, code, videos, etc. In my case, this left &lt;strong&gt;Old Disk 2&lt;/strong&gt; empty as there was nothing really installed there.&lt;/li&gt;
+&lt;li&gt;Format &lt;strong&gt;Old Disk 2&lt;/strong&gt; in Windows 10 completely so we can disconnect it (see &lt;a href="https://www.easeus.com/partition-master/format-hard-drive-in-windows-10.html"&gt;3 ways to format a disk in Windows 10&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Open up the PC, disconnect HDD &lt;strong&gt;Old Disk 2&lt;/strong&gt;, connect SSD &lt;strong&gt;New Disk 1&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Boot up with &lt;a href="https://clonezilla.org/clonezilla-live.php"&gt;Clonezilla Live USB&lt;/a&gt; drive plugged in&lt;/li&gt;
+&lt;li&gt;Clone device-to-device &lt;strong&gt;Old Disk 1&lt;/strong&gt; to &lt;strong&gt;New Disk 1&lt;/strong&gt; (see &lt;a href="https://clonezilla.org/show-live-doc-content.php?topic=clonezilla-live/doc/03_Disk_to_disk_clone"&gt;how to clone small disk to larger disk&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Old Disk 1&lt;/strong&gt; can now be formatted or disconnected!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Repeat the same steps for the remaining drives, leaving the OS drive to the last. I wanted to be sure my cloning process is working. After booting up in Windows 10, I'd verify the new drive worked and then shutdown to disconnect the old drive.&lt;/p&gt;
+&lt;h2 id="moving-program-or-game-installation-folders"&gt;Moving program or game installation folders&lt;/h2&gt;
+&lt;p&gt;Copying loose files is easy -- music, TV, videos, movies, backups, etc. But moving &lt;em&gt;installations&lt;/em&gt; of programs is a bit more work what with Windows Registry settings, etc. I had to reconfigure:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://support.office.com/en-us/article/change-the-location-of-your-onedrive-folder-f386fb81-1461-40a7-be2c-712676b2c4ae"&gt;One Drive&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.howtogeek.com/257472/how-to-painlessly-move-your-steam-library-to-another-folder-or-hard-drive/"&gt;Steam Library&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.windowscentral.com/how-install-apps-separate-drive-windows-10"&gt;Windows Games&lt;/a&gt; (installed via Xbox Game Pass)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.howtogeek.com/404999/how-to-move-fortnite-to-another-folder-drive-or-pc/"&gt;Epic Games&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I followed the linked guides above to do it all, it took &lt;em&gt;forever&lt;/em&gt; to wait and wait for all the copying to finish but it did work.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Note: I ran into an issue trying to move some games like Master Chief Collection. I got an error 0x80073d0b and &lt;a href="https://answers.microsoft.com/en-us/windows/forum/apps_windows_10-winapps/windows-10-getting-error-0x80073d0b-when-moving/f42ecd3c-f386-4967-8df7-4887bd2f45e4?page=1&amp;amp;auth=1"&gt;tried to follow some threads&lt;/a&gt; on the problem but ended up simply uninstalling the games to re-download later. What luxury. 🤵&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If you have other programs like Adobe Creative Cloud and such, be sure to move the installation location (carefully).&lt;/p&gt;
+&lt;h2 id="extending-the-partitions-to-non-adjacent-unallocated-space"&gt;Extending the partitions to non-adjacent unallocated space&lt;/h2&gt;
+&lt;p&gt;When you use &lt;a href="https://clonezilla.org/clonezilla-live.php"&gt;Clonezilla&lt;/a&gt; device-to-device cloning, it clones the full MBR and partition records. This means, my 250GB SSD had 2 partitions (the main one, 249.5GB and a 500MB recovery partition) and when it was cloned to a &lt;strong&gt;1 TB drive&lt;/strong&gt; there was 700GB (ish) of unallocated space.&lt;/p&gt;
+&lt;p&gt;These partitions are shown in Disk Management in Windows 10. Normally, you can &lt;a href="https://www.partitionwizard.com/resizepartition/how-to-merge-unallocated-spaces.html"&gt;extend a partition into the next unallocated space&lt;/a&gt;. However, because the first partition of 249.5GB &lt;em&gt;was not adjacent to the unallocated 700GB block&lt;/em&gt; I had to use a special free tool called &lt;a href="https://www.partitionwizard.com/resizepartition/how-to-merge-unallocated-spaces.html"&gt;MiniTool Partition Wizard&lt;/a&gt; to &amp;quot;extend&amp;quot; the first partition to use the unallocated space because Disk Management in Windows 10 doesn't allow you to do that.&lt;/p&gt;
+&lt;p&gt;That was 10 minutes I didn't expect to spend but luckily Partition Wizard came to the rescue. 🤗&lt;/p&gt;
+&lt;h2 id="cleaning-up-the-last-hard-drive"&gt;Cleaning up the last hard drive&lt;/h2&gt;
+&lt;p&gt;I had &lt;strong&gt;Old Disk 2&lt;/strong&gt; last to clean up; so I had to move more files around because &lt;strong&gt;New Disk 0&lt;/strong&gt; had a lot more free space (750GB worth). I copied stuff from &lt;strong&gt;New Disk 1&lt;/strong&gt; and &lt;strong&gt;Old Disk 2&lt;/strong&gt; so I could finally format and erase &lt;strong&gt;Old Disk 2&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Once I finished wiping the last HDD, I disconnected it and reconnected &lt;strong&gt;Old Disk 0&lt;/strong&gt; which I then wiped in Windows and created &lt;a href="https://www.partitionwizard.com/help/create-partition.html"&gt;a new logical volume&lt;/a&gt;. Again, I had to use Partition Wizard because Windows 10 &lt;em&gt;would not delete the recovery partition&lt;/em&gt; (for good reason because it didn't realize I one-upped it and migrated to a new better, faster, stronger drive).&lt;/p&gt;
+&lt;h2 id="the-final-state"&gt;The final state&lt;/h2&gt;
+&lt;p&gt;&lt;img src="images/2020-01-04-ssds.png" class="img-fluid" alt="my new hard drives" /&gt;&lt;/p&gt;
+&lt;p&gt;After all was said and done, I reached the desired final state! Whew. It took about 4 days since I had to wait for a lot of copying to finish but it was worth it, my PC is &lt;em&gt;screaming&lt;/em&gt; fast now.&lt;/p&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>2019 Year and Decade in Review plus 2020 Goals</title>
 			<link>https://kamranicus.com/posts/2020-01-01-year-in-review-2020-goals</link>
@@ -1518,129 +1586,6 @@ const getUserConfirmation = (dialogKey, callback) =&amp;gt; {
 &lt;p&gt;You can play with the &lt;a href="https://codesandbox.io/s/myw173jyq8"&gt;fully working CRA-based demo&lt;/a&gt; with Material UI on CodeSandbox or the &lt;a href="https://github.com/kamranayub/example-react-router-transition-ui/tree/master/"&gt;corresponding GitHub repo&lt;/a&gt;. The demo has a few more features like passing &lt;code&gt;title&lt;/code&gt; and &lt;code&gt;message&lt;/code&gt; content as well as using the &lt;code&gt;(location: Location) =&amp;gt; boolean | string&lt;/code&gt; overload that &lt;code&gt;Prompt&lt;/code&gt; &lt;code&gt;message&lt;/code&gt; prop supports to decide whether to allow transitions based on target location (we use this for our app).&lt;/p&gt;
 &lt;p&gt;It wouldn't take much to change this HOC to leverage the render props pattern, for example, to show &lt;em&gt;whatever you want&lt;/em&gt; by passing down &lt;code&gt;show&lt;/code&gt;. Reuse it across your app!&lt;/p&gt;
 &lt;p&gt;This was an interesting issue to solve and it wasn't as easy as I hoped initially. I hope this helps other people! This could probably be packaged up as a customizable HOC with a little work. Maybe when I have a spare moment I'll stream making a package out of this. Remember to follow me on &lt;a href="https://twitch.tv/kamranicus"&gt;Twitch&lt;/a&gt;!&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Flattening Deeply Nested Components in React</title>
-			<link>https://kamranicus.com/posts/2018-07-07-react-nesting-components-flat</link>
-			<description>&lt;p&gt;Here's a quick tip. Often in entry points of React applications, you have to do some bootstrapping with various providers from dependent modules like Material UI, Redux, JSS, and React Router. That's exactly the stack I'm using so that's what my example is based on.&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2018-07-07-react-nesting-components-flat</guid>
-			<pubDate>Sat, 07 Jul 2018 15:33:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;Here's a quick tip. Often in entry points of React applications, you have to do some bootstrapping with various providers from dependent modules like Material UI, Redux, JSS, and React Router. That's exactly the stack I'm using so that's what my example is based on.&lt;/p&gt;
-&lt;p&gt;Normally, you would do this to bootstrap your &lt;code&gt;App&lt;/code&gt; component:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;React.render(
-  &amp;lt;Provider store={store}&amp;gt;
-    &amp;lt;ConnectedRouter history={history}&amp;gt;
-      &amp;lt;JssProvider jss={jss} generateClassName={generateClassName}&amp;gt;
-        &amp;lt;MuiThemeProvider theme={theme}&amp;gt;
-          &amp;lt;MuiPickersUtilsProvider utils={MomentUtils}&amp;gt;
-            &amp;lt;App /&amp;gt; {/* FINALLY */}
-          &amp;lt;/MuiPickersUtilsProvider&amp;gt;
-        &amp;lt;/MuiThemeProvider&amp;gt;
-      &amp;lt;/JssProvider&amp;gt;
-    &amp;lt;/ConnectedRouter&amp;gt;
-  &amp;lt;/Provider&amp;gt;
-)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;It feels like I'm in Dante's Inferno creating the 9 circles of hell. I'm being dramatic of course--this is readable and probably fine. But there are situations with nesting even worse than this. If you're interested in how to flatten this out, read on.&lt;/p&gt;
-&lt;h2 id="recompose"&gt;Recompose&lt;/h2&gt;
-&lt;p&gt;I like the &lt;a href="#recompose"&gt;recompose&lt;/a&gt; utility library, it adds some functional helpers to React apps. One helper that we'll leverage here is called &lt;code&gt;nest&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;import { nest } from &amp;quot;recompose&amp;quot;;
-
-const AppProviders = nest(
-  Provider,
-  ConnectedRouter,
-  JssProvider,
-  MuiThemeProvider,
-  MuiPickersUtilsProvider
-);
-
-ReactDOM.render(
-  &amp;lt;AppProviders 
-    store={store} 
-    history={history} 
-    jss={jss} 
-    generateClassName={generateClassName} 
-    theme={theme} 
-    utils={MomentUtils}
-  &amp;gt;    
-    &amp;lt;App /&amp;gt; {/* That's a bit better */}
-  &amp;lt;/AppProviders&amp;gt;,
-  document.getElementById('root')
-)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This actually works. What's happening here is that &lt;code&gt;nest&lt;/code&gt; will take each component you give it and nest one after the other, in order of top to bottom. What you can do then is pass props that &lt;strong&gt;get passed to each nested component&lt;/strong&gt;. This is the important bit and as it turns out will cause warnings in the console because some components have prop validation that will get angry at you if you pass them props they don't expect.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;index.js:2178 Warning: Failed prop type: The following properties are not supported: `store`, `history`, `jss`, `generateClassName`, `utils`. Please remove them.
-    in MuiThemeProvider (created by nest(Provider, ConnectedRouter, JssProvider, MuiThemeProvider, MuiPickersUtilsProvider))
-    in nest(Provider, ConnectedRouter, JssProvider, MuiThemeProvider, MuiPickersUtilsProvider)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Oopsie. &lt;code&gt;nest&lt;/code&gt; does accept stateless components as arguments, though. Let's do that!&lt;/p&gt;
-&lt;h2 id="nest-with-stateless-components"&gt;Nest with Stateless Components&lt;/h2&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;import { nest } from &amp;quot;recompose&amp;quot;;
-
-// Nest providers in this order (top to bottom)
-const withProviders = wrap(
-  ({ children }) =&amp;gt; &amp;lt;Provider store={store}&amp;gt;{children}&amp;lt;/Provider&amp;gt;,
-  ({ children }) =&amp;gt; &amp;lt;ConnectedRouter history={history}&amp;gt;{children}&amp;lt;/ConnectedRouter&amp;gt;,
-  ({ children }) =&amp;gt; (
-    &amp;lt;JssProvider jss={jss} generateClassName={generateClassName}&amp;gt;
-      {children}
-    &amp;lt;/JssProvider&amp;gt;
-  ),
-  ({ children }) =&amp;gt; &amp;lt;MuiThemeProvider theme={theme}&amp;gt;{children}&amp;lt;/MuiThemeProvider&amp;gt;,
-  ({ children }) =&amp;gt; (
-    &amp;lt;MuiPickersUtilsProvider utils={MomentUtils}&amp;gt;{children}&amp;lt;/MuiPickersUtilsProvider&amp;gt;
-  )
-);
-
-ReactDOM.render(
-  React.createElement(withProviders(App)), 
-  document.getElementById('root')
-);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Alright. This also works. Buuuuut, I mean, c'mon, this somehow seems &lt;em&gt;worse&lt;/em&gt;, right?&lt;/p&gt;
-&lt;p&gt;Is there a middle-ground of readability and less duplicated code? Of course! Let's just write a little helper to take pairs of components and their props and pass that to &lt;code&gt;nest&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id="nesting-with-componentprop-pairs"&gt;Nesting with Component/Prop Pairs&lt;/h2&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;// Nest components in this order (top to bottom)
-const AppProviders = nestPairs(
-  [Provider, { store }],
-  [ConnectedRouter, { history }],
-  [JssProvider, { jss, generateClassName }],
-  [MuiThemeProvider, { theme }],
-  [MuiPickersUtilsProvider, { utils: MomentUtils }]
-);
-
-ReactDOM.render(
-  &amp;lt;AppProviders&amp;gt;
-    &amp;lt;App /&amp;gt;
-  &amp;lt;/AppProviders&amp;gt;, 
-  document.getElementById('root'));
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Hey! That looks more readable &lt;em&gt;and&lt;/em&gt; solves the prop passing issue. This is what &lt;code&gt;nestPairs&lt;/code&gt; looks like:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;function nestPairs(...componentPropPairs) {
-  return nest.apply(
-    this,
-    componentPropPairs.map(([ComponentClass, props]) =&amp;gt; 
-      ({ children }) =&amp;gt; 
-        React.createElement(ComponentClass, { ...props, children })
-    )
-  );
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;And in TypeScript (what I'm using):&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-typescript"&gt;function nestPairs(this: any, ...componentPropPairs: Array&amp;lt;[React.ComponentType, any]&amp;gt;) {
-  return nest.apply(
-    this,
-    componentPropPairs.map(([ComponentClass, props]): React.StatelessComponent&amp;lt;
-      any
-    &amp;gt; =&amp;gt; ({ children }) =&amp;gt; React.createElement&amp;lt;any&amp;gt;(ComponentClass, { ...props, children }))
-  );
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We are taking the array pairs and mapping them to stateless components with all the blanks filled in. This keeps the input
-relatively simple while still allowing custom props per component. In TypeScript, the downside is that you lose the strong
-typing compared to the previous version but I'm willing to do that since in my case, this is only used in the entrypoint of
-our app so it'll be real apparent if things don't work.&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>
