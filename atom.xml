@@ -2,9 +2,9 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<link rel="self" href="https://kamranicus.com/" />
 	<id>https://kamranicus.com/</id>
-	<title>Kamranicus</title>
+	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2020</rights>
-	<updated>2020-01-05T03:16:30Z</updated>
+	<updated>2020-01-31T20:34:45Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
 	<entry>
 		<link href="https://kamranicus.com/posts/2020-01-04-migrating-to-solid-state-ssds" />
