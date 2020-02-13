@@ -3,7 +3,7 @@ using Wyam.Web.Pipelines;
 Settings[Keys.Host] = "kamranicus.com";
 Settings[Keys.LinksUseHttps] = true;
 
-Settings[BlogKeys.Title] = "Kamranicus";
+Settings[BlogKeys.Title] = "Kamranicus | Kamran Ayub";
 Settings[BlogKeys.Description] = "Kamran Ayub";
 Settings[BlogKeys.Intro] = "I'm a technologist, speaker, and Pluralsight author and I specialize in building full-stack solutions with a focus on modern web technology and cloud native architecture.";
 Settings["FeedUrl"] = "http://feeds.feedburner.com/Kamranicus";
