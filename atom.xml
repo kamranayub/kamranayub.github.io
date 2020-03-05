@@ -4,8 +4,20 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2020</rights>
-	<updated>2020-03-05T03:59:22Z</updated>
+	<updated>2020-03-05T22:14:53Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2020-03-05-throttling-outgoing-requests-nodejs-dotnet-core" />
+		<id>https://kamranicus.com/posts/2020-03-05-throttling-outgoing-requests-nodejs-dotnet-core</id>
+		<title>Throttling Outgoing Requests in Node.js and .NET Core</title>
+		<updated>2020-03-05T14:00:00Z</updated>
+		<content>&lt;p&gt;I have published two articles recently on a problem I was running into working on &lt;a href="https://keeptrackofmygames.com"&gt;Keep Track of My Games&lt;/a&gt;. In order to sync user's Steam collections, I have to call the &lt;a href="https://developer.valvesoftware.com/wiki/Steam_Web_API"&gt;Steam Web API&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The Steam Web API implements &amp;quot;rate limiting&amp;quot; meaning that if you call it too many times too quickly it returns a &lt;code&gt;HTTP 429 Too Many Requests&lt;/code&gt; response. According to &lt;a href="https://steamcommunity.com/dev/apiterms"&gt;the terms&lt;/a&gt; the rate limit is 100,000 requests per day, which is pretty generous. But if you're thinking of syncing 2000 users every 15 minutes, that puts you &lt;strong&gt;two times&lt;/strong&gt; over the limit! So you need a throttling mechanism to defer processing once you reach the limit. In most scenarios like this, public APIs will return some useful HTTP headers that let you know what your current request count is but in this case, the Steam API does no such thing (it's a bit dated).&lt;/p&gt;
+&lt;p&gt;There are a few ways to rate limit or &lt;em&gt;throttle&lt;/em&gt; outgoing requests to an API like this but most approaches don't work with &lt;strong&gt;clustering&lt;/strong&gt; meaning multiple isolated clients. Approaches like using &lt;a href="https://codeburst.io/throttling-concurrent-outgoing-http-requests-in-net-core-404b5acd987b"&gt;slim semaphore&lt;/a&gt; or &lt;a href="https://www.npmjs.com/package/limiter"&gt;limiter&lt;/a&gt; don't cut it because those only work &lt;strong&gt;in-memory&lt;/strong&gt;. We need a backing store to coordinate counting requests across a cluster. &lt;a href="https://npmjs.com/package/bottleneck"&gt;Bottleneck&lt;/a&gt; is one npm package that supports this but it can only use Redis. Since I don't use Redis (and I'm using C#) that wasn't an option for me. Instead I turned to RavenDB for the solution and it's been working out well!&lt;/p&gt;
+&lt;p&gt;I wrote up two guides on achieving this using RavenDB, &lt;a href="https://www.codeproject.com/Articles/5260137/Throttling-Outgoing-HTTP-Requests-in-a-Distributed"&gt;one for .NET&lt;/a&gt; and &lt;a href="https://www.codeproject.com/Articles/5260913/Throttling-Outgoing-Requests-in-Node-js"&gt;one for Node.js&lt;/a&gt;, so if you're curious how I solved the problem then check them out!&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;I have published two articles recently on a problem I was running into working on &lt;a href="https://keeptrackofmygames.com"&gt;Keep Track of My Games&lt;/a&gt;. In order to sync user's Steam collections, I have to call the &lt;a href="https://developer.valvesoftware.com/wiki/Steam_Web_API"&gt;Steam Web API&lt;/a&gt;.&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2020-03-04-azure-devops-remote-command-failure" />
 		<id>https://kamranicus.com/posts/2020-03-04-azure-devops-remote-command-failure</id>
@@ -1404,83 +1416,5 @@ their power. Be sure to check it out!&lt;/p&gt;
 &lt;p&gt;Looking forward to the next guide, which I'll pick up next week hopefully!&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;I just published my first Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/b7An9"&gt;How to Statically Type React Components with TypeScript&lt;/a&gt;. I cover the basics of how to annotate React components, props, state, and events with TypeScript. Go ahead and check it out!&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2018-10-18-new-azure-pluralsight-courses" />
-		<id>https://kamranicus.com/posts/2018-10-18-new-azure-pluralsight-courses</id>
-		<title>Two New Pluralsight Courses on Azure Storage Published</title>
-		<updated>2018-10-26T03:22:00Z</updated>
-		<content>&lt;p&gt;The first week of October I released not one but &lt;strong&gt;TWO&lt;/strong&gt; Pluralsight courses I've been hard at work on the past few months:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Implementing Azure CDN with Azure Storage&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://bit.ly/PSAzureStorageCDN"&gt;&lt;img src="https://user-images.githubusercontent.com/563819/47162935-95932a80-d2ba-11e8-8d95-a037ca745333.png" class="img-fluid" alt="Azure CDN course link" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://bit.ly/PSAzureStorageCDN"&gt;Watch the course now&lt;/a&gt;. This course covers a lot of how Azure CDN works and various ways to integrate it with Azure blob service. I walk through how Azure CDN works at a high-level, then dive down into ways to automate the creation of CDN profiles/endpoints and how to serve content from blob storage. I cover Azure PowerShell, Azure CLI, REST, and ARM templates. I also spend a whole module on serving content securely using Shared Access Signature (SAS) tokens in different ways including pass-through authentication, hidden SAS authentication, and CDN token authentication.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Configuring CORS with Azure Storage&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://bit.ly/PSAzureStorageCORS"&gt;&lt;img src="https://user-images.githubusercontent.com/563819/47162956-9f1c9280-d2ba-11e8-9109-b93dfe96dee5.png" class="img-fluid" alt="Azure CORS course link" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://bit.ly/PSAzureStorageCORS"&gt;Watch the course now&lt;/a&gt;. This course covers configuring Cross-Origin Resource Sharing (CORS) with Azure Storage accounts. First, we spend time on what CORS is, how it works, what it's &lt;strong&gt;not&lt;/strong&gt; (hint: it's not a way to do authentication!), and then how Azure evaluates CORS rules internally. Then I walk through several automation scenarios in Azure PowerShell, Azure CLI, and REST. By the way, I've &lt;a href="https://github.com/kamranayub/azure-storage-rest-postman"&gt;open sourced a Postman collection&lt;/a&gt; that handles signing Azure Storage REST requests, if you're interested.&lt;/p&gt;
-&lt;h2 id="building-two-courses-at-once"&gt;Building two courses at once&lt;/h2&gt;
-&lt;p&gt;As you may know, I &lt;a href="https://kamranicus.com/posts/2018-02-08-ravendb-4-course-live"&gt;released a RavenDB 4 course&lt;/a&gt; earlier this year so this was not my first experience making a course. But it &lt;strong&gt;was&lt;/strong&gt; my first time doing two courses at once!&lt;/p&gt;
-&lt;p&gt;The genesis of these courses was sparked by meeting with a Pluralsight &amp;quot;author success manager&amp;quot; (aka ASM) at NDC MN on the speaker boat cruise (which reminds me, &lt;a href="https://ndcminnesota.com/"&gt;register for NDC MN 2019&lt;/a&gt;!). I was meeting her to get some author swag! We got into a conversation about what courses I'd do in the future and I mentioned I was thinking of diversifying my next set. She asked, &amp;quot;Do you know anything about Microsoft Azure?&amp;quot; and I was like, &amp;quot;Yeah!&amp;quot; 😎&lt;/p&gt;
-&lt;p&gt;We decided early on that because these two courses were similar that I could potentially do both at once. I was really happy my ASM believed I could do it but I wasn't sure &lt;em&gt;I&lt;/em&gt; could. I knew that I had a hard deadline of November as that's when the next baby comes along (it's &lt;em&gt;too&lt;/em&gt; close now...). At the time we were discussing it, it was May/June. These courses were a little special in that they are considered &amp;quot;partner&amp;quot; courses with Microsoft so they involved back-and-forth with Microsoft that would extend the course timelines.&lt;/p&gt;
-&lt;p&gt;Still, the opportunity to do &lt;strong&gt;two&lt;/strong&gt; courses was not something I'd be offered every time and it would be in-line with my &lt;a href="https://kamranicus.com/posts/2018-01-01-2018-a-new-year#goals"&gt;2018 stretch goal&lt;/a&gt; of doing two additional courses. So I said yes. But I knew I had to plan these courses differently than my first due to the tighter timelines.&lt;/p&gt;
-&lt;p&gt;By the time the proposal process finished and after a vacation in August, the actual timeline I ended up working with was mid-August to October 8. &lt;strong&gt;It was about 2 months less than I thought I'd have!&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id="tracking-time"&gt;Tracking time&lt;/h2&gt;
-&lt;p&gt;Let me start by telling you that building these two courses took exactly &lt;strong&gt;112 hours&lt;/strong&gt;. I &lt;strong&gt;know&lt;/strong&gt; this because I was religiously tracking time. I had also created a task plan for each course at the start, here's what my Trello cards looked like:&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/47169134-553aa900-d2c8-11e8-8cb2-5608d42ab953.png" class="img-fluid" alt="Trello cards" /&gt;&lt;/p&gt;
-&lt;p&gt;You can see the duration for each card and the number of tasks I was tracking. I used the Trello Power-Up, &lt;a href="https://trello.com/power-ups/59cf411fe342369bca2565b9/timecamp"&gt;TimeCamp&lt;/a&gt;, to track time by just clicking a button on the Trello card. I really liked how easy this was; I always had my cards up anytime I worked on the courses and I'd just flip between them tracking time.&lt;/p&gt;
-&lt;p&gt;Now, using this data, I can actually see what hours over time look like for each course (note the timescales differ):&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;CDN With Storage&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/47540021-bd752600-d898-11e8-809f-1057dac567d3.png" class="img-fluid" alt="Hours over time" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;CORS with Storage&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/47540071-ec8b9780-d898-11e8-84bc-cc8672ca1d71.png" class="img-fluid" alt="Hours over time" /&gt;&lt;/p&gt;
-&lt;p&gt;A few observations:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;The red dotted line was my hours budget.&lt;/strong&gt; Based on the proposal and scope of work, I budgeted 60h for each course. You can see I went over my budget for the CDN course since there was a 3rd module but my CORS course was well under budget at 45h, so overall I feel really good about the planning that went into the courses.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Production ramped up in September.&lt;/strong&gt; If you notice, I did not start the CDN course actively until Aug 18 and the CORS course actively until the 4th of Sep. By looking at the flat lines, you can see when I submitted a module and waited for review. I didn't really start crunching until Sep 11. By the way, that last bit Oct 1 to Oct 9 was the final module for the CDN course. Phew. 😅&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;em&gt;Why did I even put a hours budget?&lt;/em&gt; Pluralsight pays a course completion fee for every produced course and this fee varies by course. I wanted to see if I could target a specific hourly bill rate with the fee I agreed to. I ended up exceeding my target rate which is a good thing--it means even if these courses made zero royalties, I was already compensated for the work put into producing them. I &lt;strong&gt;do&lt;/strong&gt; get royalties for these, though so that's just a bonus.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Why were the first module reviews so long?&lt;/em&gt; Both courses were subject to Microsoft Subject Matter Expert (SME) review and that took awhile to work through. After the first modules, it was a much faster turnaround.&lt;/p&gt;
-&lt;h2 id="planning-tasks"&gt;Planning tasks&lt;/h2&gt;
-&lt;p&gt;The task planning was straightforward. I planned out each step of the production process:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Proposal tasks&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;for each module&lt;/strong&gt;
-&lt;ol&gt;
-&lt;li&gt;Content tasks&lt;/li&gt;
-&lt;li&gt;Recording tasks&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;Post-production tasks&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;In practice, here's what that looks like:&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/47169804-173e8480-d2ca-11e8-954d-fa04cb8f8dad.png" class="img-fluid" alt="Trello tasks" /&gt;&lt;/p&gt;
-&lt;p&gt;This was really helpful--not only to plan but also to track progress day-to-day.&lt;/p&gt;
-&lt;p&gt;Knowing these numbers will help me properly plan for courses down the road.&lt;/p&gt;
-&lt;h2 id="producing-the-course"&gt;Producing the course&lt;/h2&gt;
-&lt;h3 id="content-creation"&gt;Content creation&lt;/h3&gt;
-&lt;p&gt;As you maybe could guess from the time pattern above, I would work on one module for one course and once submitted, flip to the other course. This worked out well, in fact I finished some modules before feedback for the previous one came back to me.&lt;/p&gt;
-&lt;p&gt;And this time, I actually wrote script. I knew I couldn't wing it every single time I sat down to record with such a compressed timeline since that would make each recording session take 2-3x longer with my retakes. I'd write my script in the Notes section of the PowerPoint. Sometimes I'd vary slightly when recording from what I had written but since I write very conversationally it wasn't a big issue. It helped reduce the retakes &lt;strong&gt;a lot&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;I started each module by finishing the content first, starting with a rough entire module slide deck, then filling out the content for each clip. The order and names of the clips would generally change as I discovered better ways to flow the content but the objectives almost always stayed the same (it definitely helps to be clear on your module objectives during the proposal process).&lt;/p&gt;
-&lt;h3 id="recording-demos"&gt;Recording demos&lt;/h3&gt;
-&lt;p&gt;The way I recorded demos also changed a bit. This time, I divided demos into sections (with slide-based script and screenshots which doubled as a transcript) and narrated first then ran through the visual steps (or vice versa). This made it much easier to cut together and keep me focused. If I didn't do this, it would be hard to maintain the position of the mouse or if I encountered an issue, backtracking and editing together two disparate parts. I had to let go a bit of some of my perfectionist nature--sometimes I wished I could just redo entire clips but I knew I didn't have much time. The peer reviews came back very positive so I feel pretty good about the end product regardless!&lt;/p&gt;
-&lt;p&gt;One thing I'd definitely do again is to &lt;a href="https://github.com/kamranayub/pluralsight-azure-cdn-with-storage/blob/master/.vscode/settings.json"&gt;set up a custom VS Code settings file&lt;/a&gt; for the materials folder. It allowed me to always keep a consistent VS Code experience and turned off a bunch of stuff that would make it tougher to edit. I've found for all three of my courses, VS Code works for any code demos--it has the terminal, files, everything, it's super clean and super fast.&lt;/p&gt;
-&lt;p&gt;I just saw this tip today, too! Heck yeah!&lt;/p&gt;
-&lt;blockquote class="twitter-tweet" data-lang="en"&gt;&lt;p lang="en" dir="ltr"&gt;One thing &lt;a href="https://twitter.com/code?ref_src=twsrc%5Etfw"&gt;&amp;#64;code&lt;/a&gt; has going for it is the ability to create &amp;quot;profiles&amp;quot; by supplying CLI args when you open it. Combine it with an alias and 💥 I can open VSCode with my screencast settings in an instant. Thanks for the tip &lt;a href="https://twitter.com/avanslaars?ref_src=twsrc%5Etfw"&gt;&amp;#64;avanslaars&lt;/a&gt; and &lt;a href="https://twitter.com/jlengstorf?ref_src=twsrc%5Etfw"&gt;&amp;#64;jlengstorf&lt;/a&gt; &lt;a href="https://t.co/3RfdeSvHHO"&gt;pic.twitter.com/3RfdeSvHHO&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kyle Shevlin (&amp;#64;kyleshevlin) &lt;a href="https://twitter.com/kyleshevlin/status/1055666040401670145?ref_src=twsrc%5Etfw"&gt;October 26, 2018&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
-&lt;h3 id="working-with-a-big-monitor"&gt;Working with a big monitor&lt;/h3&gt;
-&lt;p&gt;There &lt;em&gt;was&lt;/em&gt; an issue I needed to work through right away which was how I record on an Ultrawide screen. &lt;a href="https://www.amazon.com/gp/product/B01N6S1P2D?&amp;amp;_encoding=UTF8&amp;amp;tag=kamranicus-20&amp;amp;linkCode=ur2&amp;amp;linkId=5427a9094117f6bab8eaccbcc18af141&amp;amp;camp=1789&amp;amp;creative=9325"&gt;I love my monitor&lt;/a&gt; (affiliate link). But it makes it a huge pain to record applications and presentations because they need to be recorded at 1280x720.&lt;/p&gt;
-&lt;p&gt;What I ended up doing was two things:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Record PowerPoint using a secondary output to my PC.&lt;/strong&gt; Wait, what? Well, my monitor has multiple outputs including DVI, HDMI, and DisplayPort. I ended up plugging &lt;em&gt;both&lt;/em&gt; my DisplayPort (primary) and HDMI (secondary) into my PC so that I could &lt;em&gt;extend&lt;/em&gt; my desktop onto the HDMI output at 1280x720. This made it pretty straightforward to put PowerPoint presentations on that &amp;quot;monitor&amp;quot; and record. Because Presenter View in PowerPoint shows you the slides, it worked well. I &lt;em&gt;would&lt;/em&gt; have preferred a proper chromeless borderless window that PowerPoint could present on but that isn't available. The windowed mode has a ton of chrome, has no presenter view, and is awkward to deal with.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Use a window resizer tool.&lt;/strong&gt; I would recommend the tool &lt;a href="http://www.brianapps.net/sizer/"&gt;Sizer&lt;/a&gt; by Brian. It works with Windows 10 just fine and allows you to set presets for different window sizes and switch to them quickly for the active application. This allowed me to easily record applications wherever they were on my monitor and even overlay them on top of each other to quickly switch apps without stopping the recording.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="would-i-do-anything-differently"&gt;Would I do anything differently?&lt;/h2&gt;
-&lt;p&gt;Well, it's clear with enough planning and ideally &lt;em&gt;3 months&lt;/em&gt; of time, it's very reasonable for me to tackle two short courses simultaneously. Compressing down to 2 months was tough on my evenings though in retrospect I should have done a few more hours a week nearer the beginning to ease the load on the last bits.&lt;/p&gt;
-&lt;p&gt;Overall, I'm happy with the result and would do it again. A &lt;strong&gt;huge&lt;/strong&gt; thanks to my supportive Pluralsight team who encouraged me to do it and provided everything I needed to succeed.&lt;/p&gt;
-&lt;h2 id="whats-next"&gt;What's next?&lt;/h2&gt;
-&lt;p&gt;Course-wise, nothing for awhile, honestly. Producing two courses puts me at &lt;strong&gt;3 Pluralsight courses&lt;/strong&gt; for &lt;em&gt;my first year&lt;/em&gt; which I think is pretty amazing. The new baby is coming in the next couple weeks and I'll be busy with that for 6-8 months. The first months of having an infant will consist of sleepless nights, toddler wrangling, and extreme tiredness. Instead of committing to new courses during that turbulent time, I will be focusing on &lt;a href="http://excaliburjs.com"&gt;Excalibur&lt;/a&gt; and &lt;a href="https://keeptrackofmygames.com"&gt;Keep Track of My Games&lt;/a&gt; work. Oh, and home improvements, which I'd like to write more about. I also plan to propose some talks for 2019! I want to say that any new coursework won't be planned until the back half of 2019. We'll see if I can stay put that long 😊&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;The first week of October I released not one but &lt;strong&gt;TWO&lt;/strong&gt; Pluralsight courses I've been hard at work on the past few months:&lt;/p&gt;</summary>
 	</entry>
 </feed>
