@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 
-  <title>Kamranicus | Kamran Ayub - Extending PowerShell Pester with Custom Assertions</title>
+  <title>Kamranicus | Kamran Ayub - Catching Errors with External Commands in PowerShell and Azure DevOps</title>
   <meta name="description" content="Kamran Ayub" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Kamran Ayub">
@@ -21,9 +21,9 @@
   <meta name="msapplication-tooltip" content="Kamranicus | Kamran Ayub" />
   <meta name="msapplication-starturl" content="/" />
 
-  <meta property="og:title" content="Kamranicus | Kamran Ayub - Extending PowerShell Pester with Custom Assertions" /> 
+  <meta property="og:title" content="Kamranicus | Kamran Ayub - Catching Errors with External Commands in PowerShell and Azure DevOps" /> 
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://kamranicus.com/posts/2016-08-16-posh-pester-extend-custom-assertions" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2020-03-04-azure-devops-remote-command-failure" />
   <meta property="og:site_name" content="Kamranicus" />
   <meta property="twitter:card" content="summary" />
   <meta property="twitter:creator" content="@kamranayub" />
@@ -107,15 +107,16 @@
     
 <div class="ui basic vertical segment">
     <h1 class="ui  huge header">
-      Extending PowerShell Pester with Custom Assertions
+      Catching Errors with External Commands in PowerShell and Azure DevOps
+        <div class="ui sub header">When calling an external command with PowerShell, how do you capture a printed error message?</div>
     </h1>
                 
     <div class="ui  sub header">        
-Published on Wednesday, August 17, 2016<br>    </div>
+Published on Thursday, March 5, 2020<br>    </div>
         <div class="ui basic vertical spaced segment">
-                    <a role="button" href="/tags/OSS" class="ui small compact button">OSS</a>
+                    <a role="button" href="/tags/Azure" class="ui small compact button">Azure</a>
+                    <a role="button" href="/tags/DevOps" class="ui small compact button">DevOps</a>
                     <a role="button" href="/tags/PowerShell" class="ui small compact button">PowerShell</a>
-                    <a role="button" href="/tags/Testing" class="ui small compact button">Testing</a>
         </div>     
 </div>
     </div>
@@ -127,93 +128,53 @@ Published on Wednesday, August 17, 2016<br>    </div>
       
 
 <div class="ui huge basic post content segment">
-  <p>After the initial release of <a href="http://kamranicus.com/blog/2016/08/12/posh-openweathermap-powershell-module/">my OpenWeatherMap PowerShell module</a> I decided it might be a good idea to write some tests. This was my first time using <a href="https://github.com/pester/Pester">Pester</a>, a BDD-style testing framework for PowerShell. Coming from <a href="http://jasmine.github.io/">Jasmine</a> Javascript unit testing, I felt right at home.</p>
-<!-- More -->
-<p>Now because my module deals a lot with dates, I wanted to use an assertion that simplified some of the logic of testing a date. For example, this is what it looks like validating a DateTime:</p>
-<pre><code class="language-powershell">$Result.Time.Year   | Should Be 2015
-$Result.Time.Month  | Should Be 8
-$Result.Time.Day    | Should Be 15
-
-$Result.Time.Hour   | Should Be 13
-$Result.Time.Minute | Should Be 56
-$Result.Time.Second | Should Be 32
+  <p>Here's a quick tip for a problem I ran into within my Azure DevOps pipeline. I have a job task that executes a PowerShell script (Inline) and that script invokes a <code>git push</code> command to an Azure Kudu Git endpoint that deploys my site:</p>
+<pre><code>git push -u kudu HEAD:$env:GITBRANCH
 </code></pre>
-<p>The other way would be to compare formatted date strings:</p>
-<pre><code class="language-powershell">$Result.Time.ToString(&quot;MM/dd/yyyy HH:mm:ss&quot;) | Should Be &quot;08/15/2015 13:56:32&quot;
+<p>I have multiple stages in my pipeline where <code>GITBRANCH</code> environment variable gets set to <code>dev</code>, <code>master</code>, etc. depending on the target environment I'm deploying to.</p>
+<p>The Git command will print this kind of output within the task log:</p>
+<pre><code>remote: Updating branch 'master'.
+remote: Updating submodules.
+remote: Preparing deployment for commit id 'xxx'.
+remote: Running custom deployment command...
+remote: Running deployment command...
+remote: Handling .NET Web Application deployment.
 </code></pre>
-<p>Which is fine. However, using it as a learning opportunity, I wanted to write my own assertion for Pester, <code>BeDate</code> so I could do:</p>
-<pre><code class="language-powershell">$Result.Time | Should BeDate &quot;08/15/2015 13:56:32&quot;
+<p>The problem becomes that even when the remote build <strong>fails</strong>, the <code>git push</code> command technically executes successfully with exit code 0 so PowerShell's <code>$LASTEXITCODE</code> check doesn't fail.</p>
+<pre><code>##[debug]$LASTEXITCODE: 0
+##[debug]Exit code: 0
 </code></pre>
-<p>In C# using NUnit or MSTest, writing custom assertions is pretty straightforward. However, Pester essentially uses a convention where it loads up commands in its module starting with <code>Pester</code> and also having a couple failure message handlers.</p>
-<p>So, for example, our <code>BeDate</code> assertion is defined as:</p>
-<pre><code class="language-powershell">Function PesterBeDate($Value, $Expected) {
-    $Expected = [System.DateTime]::Parse($Expected)
+<p>Since the command executed successfully, Azure does not fail the pipeline and I don't get notified when my builds actually fail.</p>
+<p>To fix this, we need to somehow capture the output (but still preserve the logs) and check for a specific error string in the output to manually fail the pipeline.</p>
+<p>We're looking for a log message like this in the output:</p>
+<pre><code>remote: An error has occurred during web site deployment.
+remote:
+remote: Error - Changes committed to remote repository but deployment to website failed.
+</code></pre>
+<p>If the string <code>An error has occurred during web site deployment</code> is present in the command output, we can fail the build.</p>
+<p>So in our PowerShell script, we can take advantage of a neat cmdlet called <a href="tee-object">Tee-Object</a> which I had never heard of, inspired by <a href="so-capture-output">this StackOverflow answer</a>.</p>
+<pre><code class="language-powershell">cmd /c &quot;git push&quot; '2&gt;&amp;1' | Tee-Object -Variable pushOutput
 
-    $Value.Year   | Should Be $Expected.Year
-    $Value.Month  | Should Be $Expected.Month
-    $Value.Day    | Should Be $Expected.Day
-
-    $Value.Hour   | Should Be $Expected.Hour
-    $Value.Minute | Should Be $Expected.Minute
-    $Value.Second | Should Be $Expected.Second
-}
-
-Function PesterBeDateFailureMessage($Value, $Expected) {
-    if (-not (($expected -is [string]) -and ($value -is [System.DateTime])))
-    {
-        return &quot;Expected: {$expected}`nBut was:  {$value}&quot;
-    }
-    
-    return &quot;Expected: $Expected\nBut was: $($Value.ToString('MM/dd/YYYY h:mm:ss'))&quot;
-}
-
-Function NotPesterBeDateFailureMessage($Value, $Expected) {
-    return PesterBeDateFailureMessage -Value $Value -Expected $Expected
+if ($null -ne ($pushOutput | ? { $_ -match 'An error has occurred during web site deployment' })) {
+  Write-Error 'Build failed'
+} else {
+  Write-Verbose 'Build succeeded'
 }
 </code></pre>
-<p>Now, I don't actually think my <code>PesterBeDateFailureMessage</code> cmdlet ever runs because I'm using the basic <code>Be</code> assertion but whatever--this is the convention.</p>
-<p>So, how we do we get Pester to see these functions? Well, like I said, it searches for the assertions <strong>in the scope of the module</strong>. That means if I define these in my own file, it won't see them.</p>
-<h2 id="defining-functions-inside-a-modules-scope">Defining functions inside a module's scope</h2>
-<p>We can use a weird PowerShell &quot;hack&quot; to actually declare these functions <em>inside the scope of the Pester module</em> if we want.</p>
-<pre><code class="language-powershell">$pesterModule = Import-Module Pester -PassThru
-
-. $pesterModule {
-    function PesterBeDate { }
-    # etc
-}
-</code></pre>
-<p>This is what Dave Wyatt suggested <a href="https://github.com/pester/Pester/issues/590#issuecomment-239977094">when I asked about it</a>. Cool, we <strong>could</strong> do that but I would prefer if we could keep my custom assertions separated from my tests since I'd have to include this in my <strong>.Tests.ps1</strong> files.</p>
-<h2 id="using-local-modules-and-extending-pester">Using local modules and extending Pester</h2>
-<p>The  implication the previous solution has is that the caller (user) has Pester installed globally. Over the years, as a programming community we decided that's a sub-optimal outlook on life hence we have package managers like Nuget and NPM. To my knowledge, there's not yet a <code>package.json</code> equivalent to a PowerShell &quot;project&quot; besides the Module Manifest (psd1). Ideally, I would be able to type <code>Install-Module</code> in the current directory, PowerShellGet would identify the dependencies (perhaps from psd1 manifest?), and download them. Alas, it doesn't so we can do it ourselves.</p>
-<p>To achieve maximum contributability (is that a word?) I decided to roll my own little build script that would bring down the Pester module locally to the project and then extend Pester's assertions by manually copying in my own code.</p>
-<p>This only takes a few lines of Powershell:</p>
-<pre><code class="language-powershell">$PesterVersion = '3.4.2'
-
-# Save-module locally
-Save-Module -Name Pester -Path '.modules\' -RequiredVersion $PesterVersion
-
-# Copy custom assertions
-Copy-Item -Path '.\Assertions\*.ps1' -Destination &quot;.\.modules\Pester\$PesterVersion\Functions\Assertions&quot;
-
-# Import local Pester module so we can extend built-in assertions
-Import-Module &quot;.\.modules\Pester\$PesterVersion\Pester.psd1&quot;
-
-# Run tests
-Invoke-Pester -Script &quot;.\OpenWeatherMap.Tests.ps1&quot;
-</code></pre>
-<p>So this is fairly straightforward:</p>
-<ol>
-<li>Use <code>Save-Module</code> cmdlet to unzip and copy the Pester module locally to a <strong>.modules</strong> folder that we'll exclude from source control</li>
-<li>Copy my <code>*.ps1</code> assertion files under *<em>Assertions*</em> to the local Pester assertions directory</li>
-<li>Import the local Pester module explicitly (this will load our new assertions)</li>
-<li>Invoke Pester on our test script (if you don't qualify it, it will run all the tests in the Pester module also!)</li>
-</ol>
-<p>Now we achieve both desired effects:</p>
-<ol>
-<li>Our repository is now self-contained and can be contributed to without any global dependencies (besides PowerShell 5)</li>
-<li>We can keep our custom assertions separated</li>
-</ol>
-<p>If you want to see the final product, <a href="https://github.com/kamranayub/posh-openweathermap">give my OpenWeatherMap module a gander</a>!</p>
+<p>What <code>Tee-Object</code> does is redirect output to <em>two places</em> (like a T, get it? 🐺) so we get our output both logged <em>and</em> stored in a variable (a PowerShell string array).</p>
+<p>What we can then do is operate against our variable <code>$pushOutput</code> and match any lines that contain our target string. If there's a match, it will <em>not equal</em> <code>$null</code> so the condition will pass and we can write an error.</p>
+<blockquote class="blockquote">
+<p><strong>⚠ HUGE ISSUE ALERT:</strong> Normally you would not need to include the <code>cmd /c</code> and <code>'2&gt;&amp;1'</code> portions of the script to execute the <code>git push</code> but because life is unfair, you can actually run into <a href="gh-tee-object-issue">a specific edge case</a> with git commands where <code>Tee-Object</code> does <strong>not</strong> create a variable when all the output directed to it is stderr output (which is unintuitively the case with a <code>git push</code> to Azure Kudu). It took me several hours of trial and error with different commands to stumble upon <a href="so-tee-not-working">this StackOverflow answer</a> that mentioned the edge case. By using <code>cmd /c</code> and then utilizing its redirection with <code>2&gt;&amp;1</code> it turns it <a href="so-capture-output">all into stderr into stdout</a> for PowerShell's consumption.</p>
+</blockquote>
+<p>This will properly fail the Azure pipeline now if our remote build fails, hurray! 🤩</p>
+<p>Hopefully this helps the one person running into the same issues I did!</p>
+<h3 id="links">Links</h3>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/tee-object">Microsoft Docs: PowerShell - Tee-Object</a></li>
+<li><a href="https://stackoverflow.com/questions/47523222/tee-object-variable-not-sending-to-stdout">StackOverflow: Tee-Object variable not sending to stdout</a></li>
+<li><a href="https://stackoverflow.com/a/35980675/109458">StackOverflow: How do I capture the output into a variable from an external process in PowerShell?</a></li>
+<li><a href="https://github.com/PowerShell/PowerShell/issues/5560">GitHub PowerShell/PowerShell Issue #5560: Tee-Object should clear the -Variable target variable if no success-stream input is received</a></li>
+</ul>
 
 </div>
 
@@ -291,9 +252,9 @@ Invoke-Pester -Script &quot;.\OpenWeatherMap.Tests.ps1&quot;
 
 <script type="text/javascript">
     var disqus_shortname = 'kamranicus';
-    var disqus_identifier = 'http://kamranicus.com/blog/2016/08/17/posh-pester-extend-custom-assertions/';
-    var disqus_title = 'Extending PowerShell Pester with Custom Assertions';
-    var disqus_url = 'https://kamranicus.com/posts/2016-08-16-posh-pester-extend-custom-assertions';
+    var disqus_identifier = '2020-03-04-azure-devops-remote-command-failure';
+    var disqus_title = 'Catching Errors with External Commands in PowerShell and Azure DevOps';
+    var disqus_url = 'https://kamranicus.com/posts/2020-03-04-azure-devops-remote-command-failure';
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
@@ -313,30 +274,7 @@ Invoke-Pester -Script &quot;.\OpenWeatherMap.Tests.ps1&quot;
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
       <!-- Disqus -->
-<div id="disqus_thread"></div>
-
-<script type="text/javascript">
-    var disqus_shortname = 'kamranicus';
-    var disqus_identifier = 'http://kamranicus.com/blog/2016/08/17/posh-pester-extend-custom-assertions/';
-    var disqus_title = 'Extending PowerShell Pester with Custom Assertions';
-    var disqus_url = 'https://kamranicus.com/posts/2016-08-16-posh-pester-extend-custom-assertions';
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-    
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>    </div>
+    </div>
   </div>
 
   <div class="ui divider"></div>

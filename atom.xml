@@ -4,8 +4,63 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2020</rights>
-	<updated>2020-02-13T04:18:27Z</updated>
+	<updated>2020-03-05T03:59:22Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2020-03-04-azure-devops-remote-command-failure" />
+		<id>https://kamranicus.com/posts/2020-03-04-azure-devops-remote-command-failure</id>
+		<title>Catching Errors with External Commands in PowerShell and Azure DevOps</title>
+		<updated>2020-03-05T01:00:00Z</updated>
+		<content>&lt;p&gt;Here's a quick tip for a problem I ran into within my Azure DevOps pipeline. I have a job task that executes a PowerShell script (Inline) and that script invokes a &lt;code&gt;git push&lt;/code&gt; command to an Azure Kudu Git endpoint that deploys my site:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git push -u kudu HEAD:$env:GITBRANCH
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I have multiple stages in my pipeline where &lt;code&gt;GITBRANCH&lt;/code&gt; environment variable gets set to &lt;code&gt;dev&lt;/code&gt;, &lt;code&gt;master&lt;/code&gt;, etc. depending on the target environment I'm deploying to.&lt;/p&gt;
+&lt;p&gt;The Git command will print this kind of output within the task log:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;remote: Updating branch 'master'.
+remote: Updating submodules.
+remote: Preparing deployment for commit id 'xxx'.
+remote: Running custom deployment command...
+remote: Running deployment command...
+remote: Handling .NET Web Application deployment.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The problem becomes that even when the remote build &lt;strong&gt;fails&lt;/strong&gt;, the &lt;code&gt;git push&lt;/code&gt; command technically executes successfully with exit code 0 so PowerShell's &lt;code&gt;$LASTEXITCODE&lt;/code&gt; check doesn't fail.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;##[debug]$LASTEXITCODE: 0
+##[debug]Exit code: 0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Since the command executed successfully, Azure does not fail the pipeline and I don't get notified when my builds actually fail.&lt;/p&gt;
+&lt;p&gt;To fix this, we need to somehow capture the output (but still preserve the logs) and check for a specific error string in the output to manually fail the pipeline.&lt;/p&gt;
+&lt;p&gt;We're looking for a log message like this in the output:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;remote: An error has occurred during web site deployment.
+remote:
+remote: Error - Changes committed to remote repository but deployment to website failed.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If the string &lt;code&gt;An error has occurred during web site deployment&lt;/code&gt; is present in the command output, we can fail the build.&lt;/p&gt;
+&lt;p&gt;So in our PowerShell script, we can take advantage of a neat cmdlet called &lt;a href="tee-object"&gt;Tee-Object&lt;/a&gt; which I had never heard of, inspired by &lt;a href="so-capture-output"&gt;this StackOverflow answer&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-powershell"&gt;cmd /c &amp;quot;git push&amp;quot; '2&amp;gt;&amp;amp;1' | Tee-Object -Variable pushOutput
+
+if ($null -ne ($pushOutput | ? { $_ -match 'An error has occurred during web site deployment' })) {
+  Write-Error 'Build failed'
+} else {
+  Write-Verbose 'Build succeeded'
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;What &lt;code&gt;Tee-Object&lt;/code&gt; does is redirect output to &lt;em&gt;two places&lt;/em&gt; (like a T, get it? 🐺) so we get our output both logged &lt;em&gt;and&lt;/em&gt; stored in a variable (a PowerShell string array).&lt;/p&gt;
+&lt;p&gt;What we can then do is operate against our variable &lt;code&gt;$pushOutput&lt;/code&gt; and match any lines that contain our target string. If there's a match, it will &lt;em&gt;not equal&lt;/em&gt; &lt;code&gt;$null&lt;/code&gt; so the condition will pass and we can write an error.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;⚠ HUGE ISSUE ALERT:&lt;/strong&gt; Normally you would not need to include the &lt;code&gt;cmd /c&lt;/code&gt; and &lt;code&gt;'2&amp;gt;&amp;amp;1'&lt;/code&gt; portions of the script to execute the &lt;code&gt;git push&lt;/code&gt; but because life is unfair, you can actually run into &lt;a href="gh-tee-object-issue"&gt;a specific edge case&lt;/a&gt; with git commands where &lt;code&gt;Tee-Object&lt;/code&gt; does &lt;strong&gt;not&lt;/strong&gt; create a variable when all the output directed to it is stderr output (which is unintuitively the case with a &lt;code&gt;git push&lt;/code&gt; to Azure Kudu). It took me several hours of trial and error with different commands to stumble upon &lt;a href="so-tee-not-working"&gt;this StackOverflow answer&lt;/a&gt; that mentioned the edge case. By using &lt;code&gt;cmd /c&lt;/code&gt; and then utilizing its redirection with &lt;code&gt;2&amp;gt;&amp;amp;1&lt;/code&gt; it turns it &lt;a href="so-capture-output"&gt;all into stderr into stdout&lt;/a&gt; for PowerShell's consumption.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This will properly fail the Azure pipeline now if our remote build fails, hurray! 🤩&lt;/p&gt;
+&lt;p&gt;Hopefully this helps the one person running into the same issues I did!&lt;/p&gt;
+&lt;h3 id="links"&gt;Links&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/tee-object"&gt;Microsoft Docs: PowerShell - Tee-Object&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://stackoverflow.com/questions/47523222/tee-object-variable-not-sending-to-stdout"&gt;StackOverflow: Tee-Object variable not sending to stdout&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://stackoverflow.com/a/35980675/109458"&gt;StackOverflow: How do I capture the output into a variable from an external process in PowerShell?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/PowerShell/PowerShell/issues/5560"&gt;GitHub PowerShell/PowerShell Issue #5560: Tee-Object should clear the -Variable target variable if no success-stream input is received&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+		<summary>&lt;p&gt;Here's a quick tip for a problem I ran into within my Azure DevOps pipeline. I have a job task that executes a PowerShell script (Inline) and that script invokes a &lt;code&gt;git push&lt;/code&gt; command to an Azure Kudu Git endpoint that deploys my site:&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2020-01-04-migrating-to-solid-state-ssds" />
 		<id>https://kamranicus.com/posts/2020-01-04-migrating-to-solid-state-ssds</id>
@@ -1427,164 +1482,5 @@ their power. Be sure to check it out!&lt;/p&gt;
 &lt;p&gt;Course-wise, nothing for awhile, honestly. Producing two courses puts me at &lt;strong&gt;3 Pluralsight courses&lt;/strong&gt; for &lt;em&gt;my first year&lt;/em&gt; which I think is pretty amazing. The new baby is coming in the next couple weeks and I'll be busy with that for 6-8 months. The first months of having an infant will consist of sleepless nights, toddler wrangling, and extreme tiredness. Instead of committing to new courses during that turbulent time, I will be focusing on &lt;a href="http://excaliburjs.com"&gt;Excalibur&lt;/a&gt; and &lt;a href="https://keeptrackofmygames.com"&gt;Keep Track of My Games&lt;/a&gt; work. Oh, and home improvements, which I'd like to write more about. I also plan to propose some talks for 2019! I want to say that any new coursework won't be planned until the back half of 2019. We'll see if I can stay put that long 😊&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;The first week of October I released not one but &lt;strong&gt;TWO&lt;/strong&gt; Pluralsight courses I've been hard at work on the past few months:&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2018-07-26-react-router-custom-transition-ui" />
-		<id>https://kamranicus.com/posts/2018-07-26-react-router-custom-transition-ui</id>
-		<title>Showing Custom UI on React Router Transitions</title>
-		<updated>2018-07-26T13:00:00Z</updated>
-		<content>&lt;p&gt;We had a recent requirement on our project to prompt the user with a custom modal when they have some pending changes to save in our application. The intention was to ensure they saved their changes as it affected other parts of the data they're working on and we need to recompute business rules (fun, huh?).&lt;/p&gt;
-&lt;p&gt;Since we're leveraging &lt;a href="https://reacttraining.com/react-router/web/guides/philosophy"&gt;React Router v4&lt;/a&gt;, I looked into what was provided out of the box to see how customizable it was.&lt;/p&gt;
-&lt;h2 id="the-prompt-component"&gt;The Prompt Component&lt;/h2&gt;
-&lt;p&gt;React Router core has a component called &lt;a href="https://reacttraining.com/react-router/core/api/Prompt"&gt;&lt;code&gt;Prompt&lt;/code&gt;&lt;/a&gt;. The purpose of this component is to &lt;a href="https://reacttraining.com/react-router/web/example/preventing-transitions"&gt;show a dialog to the user during a router transition&lt;/a&gt;. The &lt;code&gt;when&lt;/code&gt; prop can be set to enable/disable this functionality dynamically which is great. You can also pass a &lt;code&gt;message&lt;/code&gt; that will get displayed or a function that takes a &lt;code&gt;location&lt;/code&gt; and returns &lt;code&gt;true&lt;/code&gt; to allow navigation or a message to prevent.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;&amp;lt;Prompt when={true} message=&amp;quot;Please save your changes before proceeding&amp;quot; /&amp;gt;
-&amp;lt;Prompt when={true} message={location =&amp;gt; location.pathname === &amp;quot;/foo&amp;quot; ? true : &amp;quot;Denied&amp;quot;} /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/43242206-4b62f540-9065-11e8-80bb-d4ca944cc9ea.png" class="img-fluid" alt="The default prompt" /&gt;&lt;/p&gt;
-&lt;p&gt;However, I noticed a few caveats with this component. First, the default prompt is the browser prompt and when you click 'Okay' it &lt;em&gt;allows navigation&lt;/em&gt; which is exactly the opposite of what I want. Second, you can't render custom UI directly through &lt;code&gt;Prompt&lt;/code&gt;--it just takes a &lt;code&gt;message&lt;/code&gt;. Why? If you &lt;a href="https://github.com/ReactTraining/react-router/blob/e6f9017c947b3ae49affa24cc320d0a86f765b55/packages/react-router/modules/Prompt.js#L30"&gt;dive down&lt;/a&gt; into the code, it leverages the &lt;a href="https://www.npmjs.com/package/history"&gt;history&lt;/a&gt; npm package which just delegates to that browser prompt. The good news is, the &lt;code&gt;history&lt;/code&gt; package allows you to override the UI generation via &lt;a href="https://www.npmjs.com/package/history#customizing-the-confirm-dialog"&gt;&lt;code&gt;getUserConfirmation&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;import createHistory from &amp;quot;history/browserHistory&amp;quot;;
-
-const history = createHistory({
-  getUserConfirmation(message, callback) {
-    // Show some custom dialog to the user and call
-    // callback(true) to continue the transiton, or
-    // callback(false) to abort it.
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This is helpful, using this we can always prevent the transition if needed. So, given that we can't use &lt;code&gt;Prompt&lt;/code&gt; directly to render custom React UI but we &lt;em&gt;can&lt;/em&gt; override the core handler for showing the prompt, is there a way to connect the two? Of course.&lt;/p&gt;
-&lt;h2 id="overriding-getuserconfirmation"&gt;Overriding getUserConfirmation&lt;/h2&gt;
-&lt;p&gt;First, let's test our assumption out and see if we can log the message we get from &lt;code&gt;Prompt&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Using the regular &lt;code&gt;BrowserRouter&lt;/code&gt; component from &lt;code&gt;react-router-dom&lt;/code&gt;, pass the &lt;code&gt;getUserConfirmation&lt;/code&gt; prop:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;const getUserConfirmation = (message, callback) =&amp;gt; {
-  console.log(message);
-  callback(false);
-}
-
-&amp;lt;BrowserRouter getUserConfirmation={getUserConfirmation}&amp;gt;
-...
-&amp;lt;/BrowserRouter&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;If like me you are using &lt;code&gt;connected-react-router&lt;/code&gt;, we can still customize the &lt;code&gt;createHistory&lt;/code&gt; call as shown above:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;...
-import { createBrowserHistory } from 'history'
-import { applyMiddleware, compose, createStore } from 'redux'
-import { connectRouter, routerMiddleware } from 'connected-react-router'
-...
-const history = createBrowserHistory({
-  getUserConfirmation(message, callback) {
-    console.log(message);
-    callback(false);
-  }
-})
-
-const store = createStore(
-  connectRouter(history)(rootReducer), // new root reducer with router state
-  initialState,
-  compose(
-    applyMiddleware(
-      routerMiddleware(history), // for dispatching history actions
-      // ... other middlewares ...
-    ),
-  ),
-)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Then our Prompt:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;// MyComponent.js
-&amp;lt;Prompt when={true} message=&amp;quot;Please save your changes before proceeding&amp;quot; /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;If you set this up, when you try to navigate away from the page, you will not be able to and the message will be logged to the console.&lt;/p&gt;
-&lt;p&gt;Great! Now you may be thinking, &amp;quot;We can just pass anything and it'll get passed through!&amp;quot; But you'd be wrong because that's what I thought too.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;const MyCustomDialogComponent = () =&amp;gt; &amp;lt;div /&amp;gt;
-
-&amp;lt;Prompt
-  when={true}
-  message={MyCustomDialogComponent}
-/&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;If you try this, nothing will be logged to the console and navigation will not be blocked. React Router uses prop-types to validate &lt;code&gt;message&lt;/code&gt; is a string (phooey!).&lt;/p&gt;
-&lt;p&gt;So, we have to stick with strings. Is there another way besides doing a bunch of work to add support for this in &lt;code&gt;react-router&lt;/code&gt; directly (which'd be neat!)?&lt;/p&gt;
-&lt;h2 id="using-a-hoc-with-a-global-symbol-based-trigger"&gt;Using a HOC with a Global Symbol-based Trigger&lt;/h2&gt;
-&lt;p&gt;I landed on this approach as it seemed to be the less hacky way to achieve this. Essentially, since we can pass a string only to the &lt;code&gt;getUserConfirmation&lt;/code&gt;, I pass in the key for a global &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol"&gt;Symbol&lt;/a&gt; and store a global trigger to signal to the React dialog component to show.&lt;/p&gt;
-&lt;p&gt;If you haven't used &lt;code&gt;Symbol&lt;/code&gt; before, it is a primitive type in JavaScript introduced in ES6. What's neat about them is you can &amp;quot;register&amp;quot; them globally and they will be able to be looked up from other modules loaded within the same &amp;quot;code realm&amp;quot; (roughly the execution context of the engine). Well-known global symbols are built-in like &lt;code&gt;Symbol.iterator&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Why a &lt;code&gt;Symbol&lt;/code&gt; vs. just a regular string? A &lt;code&gt;Symbol&lt;/code&gt;-based property won't be &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol#Symbols_and_for...in_iteration"&gt;enumerable&lt;/a&gt; (like using &lt;code&gt;Object.keys&lt;/code&gt;) so it's kind of a way to do basic &amp;quot;private&amp;quot; properties. They can still be enumerated with other methods like &lt;code&gt;Object.getOwnPropertySymbols&lt;/code&gt;. It creates a nice barrier between things your app might care about and walls it off unless someone explictly asks for that property.&lt;/p&gt;
-&lt;p&gt;So what does this end up looking like? We create a HOC that has basic state and a method that will show the dialog when triggered (user attempts to navigate away). The &lt;code&gt;getUserConfirmation&lt;/code&gt; handler will receive the Symbol key and invoke the callback on the global object (&lt;code&gt;window&lt;/code&gt;) with that Symbol property.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;// PreventNavigationDialog.js
-class PreventNavigationDialog extends React.Component {
-
-  state = { open: false };
-
-  constructor() {
-    super();
-
-    // NOTE: Don't actually use Date.now. In the example
-    // repo, I use the `cuid` package
-    this.__trigger = Symbol.for(`__PreventNavigationDialog_${Date.now()}`);
-  }
-
-  componentDidMount() {
-    window[this.__trigger] = this.show;
-  }
-
-  componentWillUnmount() {
-    delete window[this.__trigger];
-  }
-
-  render() {
-    const { when } = this.props;
-    const { open } = this.state;
-
-    return (
-      &amp;lt;React.Fragment&amp;gt;
-        &amp;lt;Prompt when={when} message={Symbol.keyFor(this.__trigger)} /&amp;gt;
-        {open &amp;amp;&amp;amp; &amp;lt;div onClick={this.close}&amp;gt;Test dialog&amp;lt;/div&amp;gt;}
-      &amp;lt;/React.Fragment&amp;gt;
-    );
-  }
-
-  show = allowTransitionCallback =&amp;gt; {
-    this.setState({ open: true }, () =&amp;gt; allowTransitionCallback(false));
-  };
-
-  close = () =&amp;gt; {
-    this.setState({ open: false });
-  };
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;// index.js
-
-const getUserConfirmation = (dialogKey, callback) =&amp;gt; {
-
-  // use &amp;quot;message&amp;quot; as Symbol-based key
-  const dialogTrigger = window[Symbol.for(dialogKey)];
-
-  if (dialogTrigger) {
-    // delegate to dialog and pass callback through
-    return dialogTrigger(callback);
-  }
-
-  // Fallback to allowing navigation
-  callback(true);
-}
-
-&amp;lt;BrowserRouter getUserConfirmation={getUserConfirmation}&amp;gt;
-...
-&amp;lt;/BrowserRouter&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Okay, a bit going on here!&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;First, define our shared Symbol. Using &lt;code&gt;Symbol.for&lt;/code&gt; will register the Symbol globally so it can be accessed across the page. We assign it a unique key for lookup (I recommend &lt;a href="https://www.npmjs.com/package/cuid"&gt;&lt;code&gt;cuid&lt;/code&gt;&lt;/a&gt; for real world usage).&lt;/li&gt;
-&lt;li&gt;Next, define our HOC with some basic state. It takes in a &lt;code&gt;when&lt;/code&gt; prop just like &lt;code&gt;Prompt&lt;/code&gt; (and passes it down). It also has a simple &lt;code&gt;open&lt;/code&gt; flag.&lt;/li&gt;
-&lt;li&gt;When our HOC mounts, it registers our &lt;code&gt;show&lt;/code&gt; trigger globally. It cleans up in case it is unmounted.&lt;/li&gt;
-&lt;li&gt;Modify &lt;code&gt;getUserConfirmation&lt;/code&gt; to check and see if a dialog trigger callback exists and call it if so. Since we assign it when the HOC mounts, it will set the state of the dialog.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The nice thing about this design is that we're allowing for multiple potential dialog prompts across the app. We can even have multiple instances of this component without conflict using the uniqueness nature of Symbols. I'm not a huge fan of using &lt;code&gt;window&lt;/code&gt; but it has its uses--it's tough to avoid &lt;em&gt;something&lt;/em&gt; due to how we need to access it in &lt;code&gt;getUserConfirmation&lt;/code&gt; and we can't pass anything but a string.&lt;/p&gt;
-&lt;h2 id="demo-and-code"&gt;Demo and Code&lt;/h2&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/43242522-2e47c664-9067-11e8-8799-0e2c9723bf9f.png" class="img-fluid" alt="End result" /&gt;&lt;/p&gt;
-&lt;p&gt;You can play with the &lt;a href="https://codesandbox.io/s/myw173jyq8"&gt;fully working CRA-based demo&lt;/a&gt; with Material UI on CodeSandbox or the &lt;a href="https://github.com/kamranayub/example-react-router-transition-ui/tree/master/"&gt;corresponding GitHub repo&lt;/a&gt;. The demo has a few more features like passing &lt;code&gt;title&lt;/code&gt; and &lt;code&gt;message&lt;/code&gt; content as well as using the &lt;code&gt;(location: Location) =&amp;gt; boolean | string&lt;/code&gt; overload that &lt;code&gt;Prompt&lt;/code&gt; &lt;code&gt;message&lt;/code&gt; prop supports to decide whether to allow transitions based on target location (we use this for our app).&lt;/p&gt;
-&lt;p&gt;It wouldn't take much to change this HOC to leverage the render props pattern, for example, to show &lt;em&gt;whatever you want&lt;/em&gt; by passing down &lt;code&gt;show&lt;/code&gt;. Reuse it across your app!&lt;/p&gt;
-&lt;p&gt;This was an interesting issue to solve and it wasn't as easy as I hoped initially. I hope this helps other people! This could probably be packaged up as a customizable HOC with a little work. Maybe when I have a spare moment I'll stream making a package out of this. Remember to follow me on &lt;a href="https://twitch.tv/kamranicus"&gt;Twitch&lt;/a&gt;!&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;We had a recent requirement on our project to prompt the user with a custom modal when they have some pending changes to save in our application. The intention was to ensure they saved their changes as it affected other parts of the data they're working on and we need to recompute business rules (fun, huh?).&lt;/p&gt;</summary>
 	</entry>
 </feed>
