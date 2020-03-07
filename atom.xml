@@ -4,8 +4,44 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2020</rights>
-	<updated>2020-03-05T22:14:53Z</updated>
+	<updated>2020-03-07T04:27:38Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2020-03-06-frontend-masters-react-native" />
+		<id>https://kamranicus.com/posts/2020-03-06-frontend-masters-react-native</id>
+		<title>Frontend Masters Workshop: React Native Recap</title>
+		<updated>2020-03-07T02:20:00Z</updated>
+		<content>&lt;p&gt;Today I attended the local Frontend Masters &lt;a href="https://frontendmasters.com/workshops/react-native-v2/"&gt;in-person workshop&lt;/a&gt; for React Native by &lt;a href="https://twitter.com/kadikraman"&gt;Kadi Kraman&lt;/a&gt;. First, I have to point out her last name is my first name with a couple letters swapped. Too funny. Next, it was great! 🎉 I had a lot of fun.&lt;/p&gt;
+&lt;p&gt;I've &lt;a href="https://github.com/kamranayub/sample-react-native-workshop-expo-ts"&gt;posted my lab repository&lt;/a&gt; on GitHub for anyone else to peruse, notably I followed along in TypeScript as a way to better explore the APIs and see how the TypeScript experience was.&lt;/p&gt;
+&lt;h3 id="the-workshop"&gt;The workshop&lt;/h3&gt;
+&lt;p&gt;Kadi works at Formidable Labs as an engineer and she specializes in React Native applications. Her workshop was focused on getting started with React Native and we built a &amp;quot;color theme&amp;quot; app that allows you to view color schemes and add a new one. Since I use React daily, it definitely felt familiar but Kadi went over a lot of the foundational concepts just in case attendees weren't as familiar.&lt;/p&gt;
+&lt;h3 id="what-i-took-away"&gt;What I took away&lt;/h3&gt;
+&lt;p&gt;Using React day-to-day I feel like I know it pretty well but I had never sat down to actually look into React Native. What I appreciate about workshops like this is the ability to take dedicated time and go end-to-end with something, with an instructor who knows their subject and can help you not waste time.&lt;/p&gt;
+&lt;p&gt;As far as the &lt;em&gt;motivation&lt;/em&gt; to learn it, first, I'm always interested in learning new things. I'm a lifelong learner. But second, I was interested in comparing it to my experience building native Windows Phone apps &lt;a href="https://kamranicus.com/projects"&gt;back in the day&lt;/a&gt; as well as some passing familiarity with &lt;a href="https://ionicframework.com/"&gt;Ionic&lt;/a&gt;, &lt;a href="https://dotnet.microsoft.com/apps/xamarin"&gt;Xamarin&lt;/a&gt; and &lt;a href="https://cordova.apache.org/"&gt;Cordova&lt;/a&gt; apps.&lt;/p&gt;
+&lt;p&gt;I was &lt;em&gt;very impressed&lt;/em&gt; by how quick it was to run an app using the Expo CLI. I had the app running on my phone within a few minutes. That's awesome! Installing traditional React Native was definitely more of a chore, even when I had Xcode installed previously.&lt;/p&gt;
+&lt;p&gt;The workshop covered a lot of topics, enough to build out simple applications and I especially liked the familiar &lt;code&gt;fetch&lt;/code&gt; examples without having to bring in complicated dependencies. In other words, coding in React Native was very familiar for a traditional React developer. I felt like the workshop taught me enough where I could fumble around and build out the app more without feeling like I was overwhelmed.&lt;/p&gt;
+&lt;p&gt;I think I would attend an Advanced React Native workshop in the future because of course my mind went to all sorts of questions that were beyond the scope of what time we had:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;How do you change the UI in response to the running platform? e.g. show the &amp;quot;Floating Action Button&amp;quot; in Android vs. a button in iOS&lt;/li&gt;
+&lt;li&gt;How hard &lt;em&gt;is it&lt;/em&gt; to add a native module?&lt;/li&gt;
+&lt;li&gt;How do you handle device storage? That was a huge pain for me in Windows Phone (multithreading + I/O, ugh).&lt;/li&gt;
+&lt;li&gt;How do you write tests? React Native Testing Library and Detox were mentioned but we didn't have time to cover them&lt;/li&gt;
+&lt;li&gt;How do you bring in a design system that can work well cross-platform? I was glad she mentioned &lt;code&gt;styled-components&lt;/code&gt; is supported and I also see &lt;a href="https://github.com/callstack/react-native-paper"&gt;Paper&lt;/a&gt; seems well-established.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;So Marc, if you're reading this, invite Kadi again next year for some Advanced React Native 😎&lt;/p&gt;
+&lt;h3 id="any-improvements-or-feedback"&gt;Any improvements or feedback?&lt;/h3&gt;
+&lt;p&gt;I appreciated Kadi's attention to realism -- she did go ahead and run through the installation steps as a new developer would and there &lt;em&gt;were&lt;/em&gt; roadblocks she ran into that she showed how to resolve. At the same time, it &lt;em&gt;would&lt;/em&gt; have been nice to get to testing in a one-day workshop and the installation process took time away from other subjects so it's a balancing act there. I could see this being a two-day workshop in the future, to cover animations, testing, storage, and deployment on day two.&lt;/p&gt;
+&lt;p&gt;The exercises were just right I think -- they were helpful in reinforcing what we learned and were at just the right spots. I enjoyed the stretch goals!&lt;/p&gt;
+&lt;p&gt;I love the trend of instructors providing a full workshop site (the &lt;a href="https://www.learnpython.dev/"&gt;Python Fundamentals workshop&lt;/a&gt; was also like this) and I actually really liked how Kadi simply presented from the site itself versus slides. It meant we could follow along, read ahead, or work at our own pace if we needed to without missing anything. Everything was in one place. It was easy to copy code samples and click links for further reading. Her pace was perfect when going through the demos. It was at the right level for someone with previous React experience but I could see by the hook section where it could lose folks who haven't done a lot of hooks-based development. There were a lot of questions pertaining to hook semantics that came up! I can relate since even I get tripped up by them.&lt;/p&gt;
+&lt;h3 id="would-i-use-react-native"&gt;Would I use React Native?&lt;/h3&gt;
+&lt;p&gt;I was keenly interested in what it might look like to build a React Native app for &lt;a href="https://keeptrackofmygames.com"&gt;Keep Track of My Games&lt;/a&gt; and after taking the workshop, I feel more confident it could work out well. I can't say I'm 100% on board yet though since it's still true that when you need to get down to the nitty-gritty, you might be writing Objective-C/Swift or Java/Kotlin and &lt;em&gt;that's&lt;/em&gt; what sends shivers down my back. I love learning! &lt;em&gt;But I also have limited time!&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The biggest question going into the workshop was, &lt;strong&gt;how much could I try to share between my React web code and React Native code&lt;/strong&gt;? I think the answer is, not much, unless I changed my web code to use something like &lt;a href="https://github.com/necolas/react-native-web"&gt;React Native for Web&lt;/a&gt;. What I &lt;em&gt;could&lt;/em&gt; share are logic modules though but you couldn't share 3rd party React modules unless they &lt;em&gt;also&lt;/em&gt; targeted React Native.&lt;/p&gt;
+&lt;p&gt;One thing to consider about Xamarin in particular is that when using &lt;a href="https://docs.microsoft.com/en-us/xamarin/xamarin-forms/"&gt;Xamarin.Forms&lt;/a&gt; it's C# and .NET up and down &lt;em&gt;the entire stack including the UI&lt;/em&gt;. In talking with my friend who has done a lot of Xamarin development you don't get to ignore XCode or Android Studio but at the same time you don't need to go and learn 2-4 languages to write native modules.&lt;/p&gt;
+&lt;p&gt;At the end of the day, it'll probably come down to how complicated I think the KTOMG app would get (I'd say, not that complicated...). I think overall the fact is &lt;em&gt;building native mobile apps is hard&lt;/em&gt;. Overall the React Native developer experience felt really productive to build out this app. That's an important factor for me, with limited time to spend wrestling with cross-platform tooling.&lt;/p&gt;
+&lt;p&gt;The closest parallel I can draw for mobile development was my experience building my Gatsby-based &lt;a href="https://reachfi.app"&gt;savings tracker app&lt;/a&gt;. Since that is a Progressive Web App (PWA) using traditional React and Material UI, I &lt;em&gt;loved&lt;/em&gt; the experience. I had a fully-working app in a weekend. But the &lt;a href="https://www.simicart.com/blog/pwa-app-stores/"&gt;deployment of PWAs to app stores&lt;/a&gt; is still in a sub-optimal state. Honestly, I hope to rewrite the KTOMG frontend to be a PWA anyway and maybe by the time I do that, PWAs will be first-class citizens on mobile platforms and my decision will be made for me. Always bet on the web... right?&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;Today I attended the local Frontend Masters &lt;a href="https://frontendmasters.com/workshops/react-native-v2/"&gt;in-person workshop&lt;/a&gt; for React Native by &lt;a href="https://twitter.com/kadikraman"&gt;Kadi Kraman&lt;/a&gt;. First, I have to point out her last name is my first name with a couple letters swapped. Too funny. Next, it was great! 🎉 I had a lot of fun.&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2020-03-05-throttling-outgoing-requests-nodejs-dotnet-core" />
 		<id>https://kamranicus.com/posts/2020-03-05-throttling-outgoing-requests-nodejs-dotnet-core</id>
@@ -1399,22 +1435,5 @@ their power. Be sure to check it out!&lt;/p&gt;
 &lt;p&gt;It's &lt;strong&gt;still a lot&lt;/strong&gt; but what's life without a little ambition? I can top 2018 if I work at it. As for the baby, I accomplished everything last year without compromising time with my family. I am confident I can do the same in 2019 if I focus on it!&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;Wow, what a year! &lt;a href="https://kamranicus.com/posts/2018-01-01-2018-a-new-year"&gt;At the start of 2018 I laid out my goals&lt;/a&gt; and I ended up crushing them! I hadn't heard of &lt;a href="https://syntax.fm/show/067/hasty-treat-goal-setting"&gt;&lt;em&gt;SMART&lt;/em&gt; goal setting yet&lt;/a&gt; but they ended up fitting the acronym: &lt;strong&gt;S&lt;/strong&gt;pecific, &lt;strong&gt;M&lt;/strong&gt;easurable, &lt;strong&gt;A&lt;/strong&gt;chievable, &lt;strong&gt;R&lt;/strong&gt;ealistic, and &lt;strong&gt;T&lt;/strong&gt;ime-bound.&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2018-12-20-typescript-react-components-pluralsight-guide" />
-		<id>https://kamranicus.com/posts/2018-12-20-typescript-react-components-pluralsight-guide</id>
-		<title>New Pluralsight Guide: How to Statically Type React Components with TypeScript</title>
-		<updated>2018-12-21T03:22:00Z</updated>
-		<content>&lt;p&gt;I just published my first Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/b7An9"&gt;How to Statically Type React Components with TypeScript&lt;/a&gt;. I cover the basics of how to annotate React components, props, state, and events with TypeScript. Go ahead and check it out!&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;As you may know if you &lt;a href="https://twitter.com/kamranayub"&gt;follow me on social media&lt;/a&gt;, baby #2 dropped in November so I'm taking a good amount of time before I commit to a big contract like &lt;a href="https://kamranicus.com/posts/2018-10-18-new-azure-pluralsight-courses"&gt;doing two Pluralsight courses at once&lt;/a&gt;. That was well worth it but quite a feat.&lt;/p&gt;
-&lt;p&gt;Still--I'm not one to sit around long and evenings are still protected time. One thing I love about doing Pluralsight work is that they have a myriad of opportunities besides just doing video courses. One of them is assessments, which I did a few months back, by writing questions for the JavaScript ES6 assessment (I worked with 2 other authors on that). Another recent opportunity has been &lt;a href="https://pluralsight.pxf.io/9e5XW"&gt;Guides&lt;/a&gt; which are in their infancy. I imagine the team has big plans for that section of the site.&lt;/p&gt;
-&lt;p&gt;I reached out to my ASM last week and said I'd be interested in some low-key work and guides came up as a good activity, so I took a look and &lt;em&gt;lo and behold&lt;/em&gt; I had struck some gold. It turns out, they need some guides around using React with TypeScript.&lt;/p&gt;
-&lt;p&gt;And you know what I think about that. &lt;a href="/events"&gt;I like it a lot&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;So I offered to start with the first objective I thought I could tackle. It took me about 4 hours and that included planning and rewriting it once to adhere to the standards/guidelines. I think next time I'll be able to get it down to 2-3 hours. I'm always willing to try these opportunities 2-3 times before deciding if they're worth the investment. The time tracking I started doing for the last courses helps immensely!&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/2018-12-20-22-31-34.png" class="img-fluid" alt="Didn't take long at all" /&gt;&lt;/p&gt;
-&lt;p&gt;Looking forward to the next guide, which I'll pick up next week hopefully!&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;I just published my first Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/b7An9"&gt;How to Statically Type React Components with TypeScript&lt;/a&gt;. I cover the basics of how to annotate React components, props, state, and events with TypeScript. Go ahead and check it out!&lt;/p&gt;</summary>
 	</entry>
 </feed>
