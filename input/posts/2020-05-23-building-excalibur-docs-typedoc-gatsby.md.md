@@ -1,6 +1,6 @@
-Title: "Frontend Masters Workshop: React Native Recap"
-Published: 2020-03-06 21:20:00 -0500
-Lead: "I attended the Frontend Masters workshop on React Native with Kadi Kraman and here's what I learned"
+Title: "Building a TypeDoc-powered Gatsby Documentation Site"
+Published: 2020-05-23 9:00:00 -0500
+Lead: "We recently migrated our user-facing documentation to Gatsby and it's still powered by TypeDoc "
 Tags:
 - React Native
 - React
@@ -22,5 +22,5 @@ Since we could separate user-facing documentation into separate `.md` files
 This approach has been working well for us in the past years but recently we have been preparing to level up our documentation for the 1.0 release. Awhile back, I converted our site to be statically generated using [Gatsby.js](https://gatsbyjs.org) and this has proved to be a good decision. Gatsby allows us to customize all the aspects of the site including the way we generate documentation.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE0MDg1ODQzOV19
+eyJoaXN0b3J5IjpbLTE1MjA1MzM0ODddfQ==
 -->
