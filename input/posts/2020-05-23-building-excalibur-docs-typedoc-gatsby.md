@@ -28,6 +28,7 @@ We needed to do something different and _ideally_ have these user docs hosted wi
 
  Awhile back, I converted our site to be statically generated using [Gatsby.js](https://gatsbyjs.org) and this has proved to be a good decision. Gatsby allows us to customize all the aspects of the site including the way we generate documentation.
 
+Gatsby uses a GraphQL-based sourcing architecture where you can add any kind of "source" of data
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NjE3NzkzNzAsLTY3OTE3OTEyXX0=
+eyJoaXN0b3J5IjpbLTExODkxOTI5NjksLTY3OTE3OTEyXX0=
 -->
