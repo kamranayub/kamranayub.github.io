@@ -30,7 +30,11 @@ We needed to do something different and _ideally_ have these user docs hosted wi
 
 Gatsby uses a GraphQL-based sourcing architecture where you can add any kind of "source" of data--this could be Wordpress, the GitHub API, or basically _any_ external piece of data you wanted. These source plugins take the data from one place and _transform_ it into GraphQL nodes that Gatsby can understand and make available to your pages statically. This makes Gatsby incredibly versatile and customizable using a consistent architecture.
 
-Gatsby also has the idea of _transformers_. Transformers take input, usually an Abstract Syntax Tree (AST) and run it through processors that make changes. For example, there's [gatsby-transformer-remark]([https://www.gatsbyjs.org/packages/gatsby-transformer-remark/](https://www.gatsbyjs.org/packages/gatsby-transformer-remark/) that takes Markdown AST and adds Remark Markdown support.
+Gatsby also has the idea of _transformers_. Transformers take input, usually an Abstract Syntax Tree (AST) and run it through processors that make changes. For example, there's [gatsby-transformer-remark]([https://www.gatsbyjs.org/packages/gatsby-transformer-remark/](https://www.gatsbyjs.org/packages/gatsby-transformer-remark/)) that takes Markdown AST and parses it using Remark.
+
+Using a combination of _sources_ and _transformers_ you can basically take a transform one source of data into whatever you want as the output.
+
+##
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgyOTk3ODc1LC02NzkxNzkxMl19
+eyJoaXN0b3J5IjpbMzA0NDAxNDUxLC02NzkxNzkxMl19
 -->
