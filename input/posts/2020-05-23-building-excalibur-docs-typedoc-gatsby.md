@@ -19,7 +19,8 @@ Since we could separate user-facing documentation into separate `.md` files, Typ
 This approach has been working well for us in the past years but there were several downsides:
 
 - The "user" documentation was locked into the TypeDoc site and theme
-- While TypeDoc was customizable, it was still hard to do more complex things like custom components (think MDX)
+- While TypeDoc was customizable, it was still hard to do more complex things like custom components (think MDX) or rendering
+- It just wasn't cohesive--we had a main site and you'd expect to find docs hosted under there. It would take a lot of work to customize the TypeDoc theme enough to make it feel l
 
 recently we have been preparing to level up our documentation for the 1.0 release.
 
@@ -28,5 +29,5 @@ recently we have been preparing to level up our documentation for the 1.0 releas
  Awhile back, I converted our site to be statically generated using [Gatsby.js](https://gatsbyjs.org) and this has proved to be a good decision. Gatsby allows us to customize all the aspects of the site including the way we generate documentation.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg0MTkyNzE5NywtNjc5MTc5MTJdfQ==
+eyJoaXN0b3J5IjpbMTczOTMxODkyMSwtNjc5MTc5MTJdfQ==
 -->
