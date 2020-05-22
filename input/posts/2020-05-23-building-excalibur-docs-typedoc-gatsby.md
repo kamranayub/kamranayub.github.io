@@ -14,12 +14,19 @@ I help maintain the [Excalibur.js](https://excaliburjs.com) web-based game engin
 
 Using TypeDoc, we could build richer documentation with embedded Markdown documents. It also has a compelling feature to do [link to API symbols](http://typedoc.org/guides/doccomments/#symbol-references) using a `[[symbolName]]` or `{@link symbolName}` syntax. This was awesome because we could write "user-facing" documentation and easily create maintainable links to the raw API symbols.
 
-Since we could separate user-facing documentation into separate `.md` files, TypeDoc allowed us to use `[[include: file.md]]` directives.
+Since we could separate user-facing documentation into separate `.md` files, TypeDoc allowed us to use `[[include:file.md]]` directives to keep our documentation separate from the source code.
+
+This approach has been working well for us in the past years but there were several downsides:
+
+- The "user" documentation was locked into the TypeDoc site and theme
+- While TypeDoc was customizable, it was still hard to do more complex things like custom components (think MDX)
+
+recently we have been preparing to level up our documentation for the 1.0 release.
 
 ## Migrating to Gatsby.js
 
-This approach has been working well for us in the past years but recently we have been preparing to level up our documentation for the 1.0 release. Awhile back, I converted our site to be statically generated using [Gatsby.js](https://gatsbyjs.org) and this has proved to be a good decision. Gatsby allows us to customize all the aspects of the site including the way we generate documentation.
+ Awhile back, I converted our site to be statically generated using [Gatsby.js](https://gatsbyjs.org) and this has proved to be a good decision. Gatsby allows us to customize all the aspects of the site including the way we generate documentation.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY3OTE3OTEyXX0=
+eyJoaXN0b3J5IjpbLTg0MTkyNzE5NywtNjc5MTc5MTJdfQ==
 -->
