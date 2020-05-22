@@ -1,12 +1,11 @@
 Title: "Building a TypeDoc-powered Gatsby Documentation Site"
-Published: 2020-05-23 9:00:00 -0500
-Lead: "We recently migrated our user-facing documentation to Gatsby and it's still powered by TypeDoc "
+Published: false
+Lead: "We recently migrated our user-facing documentation to Gatsby and it's still powered by TypeDoc symbols"
 Tags:
-- React Native
-- React
 - JavaScript
 - TypeScript
-- Workshops
+- Excalibur
+- Gatsby
 ---
 
 I help maintain the [Excalibur.js](https://excaliburjs.com) web-based game engine. We started Excalibur back in 2011 and it was always written from the ground up in TypeScript. Since Excalibur hasn't yet reached 1.0, all of our documentation has been in the source code. Luckily, early on we started to adopt a tool called [Typedoc](https://typedoc.org) which could generate a rich documentation site for TypeScript-based projects.
@@ -22,5 +21,5 @@ Since we could separate user-facing documentation into separate `.md` files
 This approach has been working well for us in the past years but recently we have been preparing to level up our documentation for the 1.0 release. Awhile back, I converted our site to be statically generated using [Gatsby.js](https://gatsbyjs.org) and this has proved to be a good decision. Gatsby allows us to customize all the aspects of the site including the way we generate documentation.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MjA1MzM0ODddfQ==
+eyJoaXN0b3J5IjpbLTM0NTQyMDMwNV19
 -->
