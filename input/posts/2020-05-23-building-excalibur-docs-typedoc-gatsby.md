@@ -32,9 +32,11 @@ Gatsby uses a GraphQL-based sourcing architecture where you can add any kind of 
 
 Gatsby also has the idea of _transformers_. Transformers take input, usually an Abstract Syntax Tree (AST) and run it through processors that make changes. For example, there's [gatsby-transformer-remark]([https://www.gatsbyjs.org/packages/gatsby-transformer-remark/](https://www.gatsbyjs.org/packages/gatsby-transformer-remark/)) that takes Markdown AST and parses it using Remark.
 
-Using a combination of _sources_ and _transformers_ you can basically take a transform one source of data into whatever you want as the output.
+Using a combination of _sources_ and _transformers_ you can basically transform one source of data into whatever you want as the output.
 
-##
+## Creating a TypeDoc Gatsby Source
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzA0NDAxNDUxLC02NzkxNzkxMl19
+eyJoaXN0b3J5IjpbLTk3MjkwODk2MiwtNjc5MTc5MTJdfQ==
 -->
