@@ -7,9 +7,9 @@ Tags:
 - JavaScript
 ---
 
-I recently was engaged to write an article on how RavenDB indexing compares to MongoDB and PostgreSQL. I had a lot of fun writing it because I finally got to 
+I recently was engaged to write an article on how RavenDB indexing compares to MongoDB and PostgreSQL. I had a lot of fun writing it because I finally got to dive deeper into how MongoDB and PostgreSQL query engines work under the covers. I was actually surprised to be honest, I thought that MongoDB was more similar to RavenDB but it ended up being quite different.
 
-I enjoy working with RavenDB and as you might know, even have a [Getting Started course](http://bit.ly/PSRavenDB4) on it so I was happy to work with HN to write an article on the subject.
+Ready to learn more about RavenDB? Check out my [Getting Started course](http://bit.ly/PSRavenDB4) on it so I was happy to work with HN to write an article on the subject.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU1Mjk0NjI1NF19
+eyJoaXN0b3J5IjpbLTE1NjE0OTgzNzNdfQ==
 -->
