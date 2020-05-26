@@ -4,7 +4,7 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2020</rights>
-	<updated>2020-05-26T15:02:04Z</updated>
+	<updated>2020-05-26T15:04:20Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
 	<entry>
 		<link href="https://kamranicus.com/posts/2020-05-21-storybook-for-game-engines" />
@@ -1299,16 +1299,13 @@ their power. Be sure to check it out!&lt;/p&gt;
 		<id>https://kamranicus.com/posts/2020-05-26-ravendb-indexing-mongodb-postgresql</id>
 		<title>Role of Indexing in RavenDB vs. MongoDB and PostgreSQL</title>
 		<updated>2019-04-04T13:30:00Z</updated>
-		<content>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.codeproject.com/Articles/1348454/Data-Modeling-with-Indexes-in-RavenDB"&gt;Data Modeling with Indexes in RavenDB&lt;/a&gt;
-went live today on CodeProject and covers how indexes work in Raven and some simple to advanced use cases to show off
-their power. Be sure to check it out!&lt;/p&gt;
-&lt;p&gt;I'm excited to be working with HN to bring some more articles to a wider audience so I'll be sure to share when any other articles go live.&lt;/p&gt;
+		<content>&lt;p&gt;I recently was engaged to write an article on how RavenDB indexing compares to MongoDB and PostgreSQL. I had a lot of fun writing it because I finally got to&lt;/p&gt;
+&lt;p&gt;I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;
 &lt;!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAxNzY1NDg3N119
+eyJoaXN0b3J5IjpbMTU1Mjk0NjI1NF19
 --&gt;
 </content>
-		<summary>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;</summary>
+		<summary>&lt;p&gt;I recently was engaged to write an article on how RavenDB indexing compares to MongoDB and PostgreSQL. I had a lot of fun writing it because I finally got to&lt;/p&gt;</summary>
 	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2019-02-21-typescript-react-getting-started-pluralsight-guide" />
