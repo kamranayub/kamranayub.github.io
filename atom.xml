@@ -4,22 +4,8 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2020</rights>
-	<updated>2020-05-26T15:09:47Z</updated>
+	<updated>2020-05-26T15:12:32Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
-	<entry>
-		<link href="https://kamranicus.com/posts/2020-05-26-ravendb-indexing-mongodb-postgresql" />
-		<id>https://kamranicus.com/posts/2020-05-26-ravendb-indexing-mongodb-postgresql</id>
-		<title>Role of Indexing in RavenDB vs. MongoDB and PostgreSQL</title>
-		<updated>2020-05-26T15:00:00Z</updated>
-		<content>&lt;p&gt;I recently was engaged to write an article on how RavenDB indexing compares to MongoDB and PostgreSQL. I had a lot of fun writing it because I finally got to dive deeper into how MongoDB and PostgreSQL query engines work under the covers. I was actually surprised to be honest, I thought that MongoDB was more similar to RavenDB but it ended up being quite different.&lt;/p&gt;
-&lt;p&gt;Read more about &lt;a href=""&gt;the role indexing plays in RavenDB vs. MongoDB and PostgreSQL&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Ready to learn more about RavenDB? Check out my &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; course on Pluralsight.&lt;/p&gt;
-&lt;!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2OTQzNjYyMDNdfQ==
---&gt;
-</content>
-		<summary>&lt;p&gt;I recently was engaged to write an article on how RavenDB indexing compares to MongoDB and PostgreSQL. I had a lot of fun writing it because I finally got to dive deeper into how MongoDB and PostgreSQL query engines work under the covers. I was actually surprised to be honest, I thought that MongoDB was more similar to RavenDB but it ended up being quite different.&lt;/p&gt;</summary>
-	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2020-05-21-storybook-for-game-engines" />
 		<id>https://kamranicus.com/posts/2020-05-21-storybook-for-game-engines</id>
@@ -71,6 +57,20 @@ eyJoaXN0b3J5IjpbLTE2OTQzNjYyMDNdfQ==
 &lt;p&gt;Let me know in the comments if you've used this workflow and how it's been working for you!&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;Do you use &lt;a href="https://storybook.js.org"&gt;Storybook&lt;/a&gt;? Do you use it to test game engines? Didn't think so! But we do for &lt;a href="https://excaliburjs.com"&gt;Excalibur.js&lt;/a&gt; and I presented how and why we did it. The genesis for the talk came from a workflow I've been using recently that you can implement in your own projects which I call "Storyflow."&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<link href="https://kamranicus.com/posts/2020-05-26-ravendb-indexing-mongodb-postgresql" />
+		<id>https://kamranicus.com/posts/2020-05-26-ravendb-indexing-mongodb-postgresql</id>
+		<title>Role of Indexing in RavenDB vs. MongoDB and PostgreSQL</title>
+		<updated>2020-05-25T15:00:00Z</updated>
+		<content>&lt;p&gt;I recently was engaged to write an article on how RavenDB indexing compares to MongoDB and PostgreSQL. I had a lot of fun writing it because I finally got to dive deeper into how MongoDB and PostgreSQL query engines work under the covers. I was actually surprised to be honest, I thought that MongoDB was more similar to RavenDB but it ended up being quite different.&lt;/p&gt;
+&lt;p&gt;Read more about &lt;a href="%5Bhttps://ravendb.net/articles/nosql-document-database-indexing%5D(https://ravendb.net/articles/nosql-document-database-indexing)"&gt;the role indexing plays in RavenDB vs. MongoDB and PostgreSQL&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If this interests you be sure to check out my &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started with RavenDB 4&lt;/a&gt; course on Pluralsight.&lt;/p&gt;
+&lt;!--stackedit_data:
+eyJoaXN0b3J5IjpbMzUzNjI3NzgxXX0=
+--&gt;
+</content>
+		<summary>&lt;p&gt;I recently was engaged to write an article on how RavenDB indexing compares to MongoDB and PostgreSQL. I had a lot of fun writing it because I finally got to dive deeper into how MongoDB and PostgreSQL query engines work under the covers. I was actually surprised to be honest, I thought that MongoDB was more similar to RavenDB but it ended up being quite different.&lt;/p&gt;</summary>
 	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2020-03-06-frontend-masters-react-native" />
