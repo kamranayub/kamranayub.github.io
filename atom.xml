@@ -4,8 +4,60 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2020</rights>
-	<updated>2020-05-22T16:51:11Z</updated>
+	<updated>2020-05-26T13:53:32Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2020-05-21-storybook-for-game-engines" />
+		<id>https://kamranicus.com/posts/2020-05-21-storybook-for-game-engines</id>
+		<title>Storyflow: Using Storybook to Build a Better... Game Engine?</title>
+		<updated>2020-05-26T13:30:00Z</updated>
+		<content>&lt;p&gt;Do you use &lt;a href="https://storybook.js.org"&gt;Storybook&lt;/a&gt;? Do you use it to test game engines? Didn't think so! But we do for &lt;a href="https://excaliburjs.com"&gt;Excalibur.js&lt;/a&gt; and I presented how and why we did it. The genesis for the talk came from a workflow I've been using recently that you can implement in your own projects which I call &amp;quot;Storyflow.&amp;quot;&lt;/p&gt;
+&lt;h3 id="watch-the-talk"&gt;Watch the Talk&lt;/h3&gt;
+&lt;p&gt;I gave this talk at MN Dev Con on May 4 and again at React Minneapolis on May 21:&lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/biSFvQmMJsc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;h3 id="what-is-storyflow"&gt;What is Storyflow?&lt;/h3&gt;
+&lt;p&gt;The Storybook workflow (ahem, &lt;em&gt;Storyflow&lt;/em&gt;) we follow puts Storybook stories at the center of our workflow. The concept is simple in practice: write your unit and functional tests &lt;em&gt;against Storybook&lt;/em&gt; instead of importing directly from component files like other workflows.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/2020-05-21-storyflow.png" class="img-fluid" alt="Storyflow: write tests against Storybook" /&gt;&lt;/p&gt;
+&lt;p&gt;The &amp;quot;normal&amp;quot; component-based workflow goes like:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Write my component in &lt;code&gt;MyComponent.js&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Write my unit test, &lt;code&gt;MyComponent.test.js&lt;/code&gt; and import &lt;code&gt;MyComponent&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Write a functional test, against my running app, which may test one aspect of &lt;code&gt;MyComponent&lt;/code&gt; in use or maybe a few different behaviors/states&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;But with &lt;a href="https://storybook.js.org"&gt;Storybook&lt;/a&gt; the workflow instead flips the script and centers your testing on isolated components through stories:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Write my component in &lt;code&gt;MyComponent.js&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Write my Storybook story &lt;code&gt;DefaultState&lt;/code&gt; in &lt;code&gt;MyComponent.stories.js&lt;/code&gt; and import &lt;code&gt;MyComponent&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Write my unit test, &lt;code&gt;MyComponent.test.js&lt;/code&gt; &lt;strong&gt;and import &lt;code&gt;DefaultState&lt;/code&gt; from stories&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Write a functional test against &lt;code&gt;DefaultState&lt;/code&gt; story in Storybook&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;It's comes down to a &lt;em&gt;slight&lt;/em&gt; shift in thinking. Without Storybook, normally you'd be putting your component into different states &lt;em&gt;within&lt;/em&gt; your unit tests. &lt;em&gt;With&lt;/em&gt; Storybook, you're already showcasing your component in different states, which makes your unit tests a lot trimmer. Finally, you can add UI testing on top of it to ensure your component works in the browser (without having to manually verify in Storybook).&lt;/p&gt;
+&lt;p&gt;There are 3 major benefits we've seen from this:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;One source of truth for all our tests (stories)&lt;/li&gt;
+&lt;li&gt;Incentivizes writing more stories&lt;/li&gt;
+&lt;li&gt;Promotes more testability&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="one-source-of-truth"&gt;One source of truth&lt;/h3&gt;
+&lt;p&gt;Since your unit and functional tests are run against stories, Storybook becomes the source of truth for any tests. Contrast that to developing without stories, where each test could render components in different states and the only way to know would be to examine each test. Having a published Storybook as a static site makes things a lot more discoverable.&lt;/p&gt;
+&lt;h3 id="incentivizes-writing-more-stories"&gt;Incentivizes writing more stories&lt;/h3&gt;
+&lt;p&gt;Since tests are written &lt;em&gt;against&lt;/em&gt; stories, in order to write more tests... you'll need to write more stories. Having more stories means better documentation (even if it's just code!).&lt;/p&gt;
+&lt;h3 id="promotes-more-testability"&gt;Promotes more testability&lt;/h3&gt;
+&lt;p&gt;In order to write a solid Storybook story, it has to run in isolation. That means that you will likely lift up more heavy concerns like data fetching, state management, and other stuff higher and have more atomic reusable components. We actually still write stories against our &amp;quot;container&amp;quot; components but it requires a lot more mocking using &lt;a href="https://storybook.js.org/docs/basics/writing-stories/#decorators"&gt;Storybook decorators&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="example"&gt;Example&lt;/h2&gt;
+&lt;p&gt;If you're curious to see this in action, I have a &lt;a href="https://github.com/kamranayub/example-storyflow"&gt;GitHub repository&lt;/a&gt; set up you can clone and run and I showcase this workflow within the video above.&lt;/p&gt;
+&lt;p&gt;You can view a working demo on CodeSandbox using the repository!&lt;/p&gt;
+&lt;iframe
+     src="https://codesandbox.io/embed/github/kamranayub/example-storyflow/tree/master/?fontsize=14&amp;hidenavigation=1&amp;module=%2Fsrc%2FLoginForm.stories.js&amp;theme=dark"
+     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     title="storybook-testing-example"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts allow-autoplay"
+   &gt;&lt;/iframe&gt;
+&lt;p&gt;Let me know in the comments if you've used this workflow and how it's been working for you!&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;Do you use &lt;a href="https://storybook.js.org"&gt;Storybook&lt;/a&gt;? Do you use it to test game engines? Didn't think so! But we do for &lt;a href="https://excaliburjs.com"&gt;Excalibur.js&lt;/a&gt; and I presented how and why we did it. The genesis for the talk came from a workflow I've been using recently that you can implement in your own projects which I call "Storyflow."&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2020-03-06-frontend-masters-react-native" />
 		<id>https://kamranicus.com/posts/2020-03-06-frontend-masters-react-native</id>
@@ -1280,160 +1332,5 @@ their power. Be sure to check it out!&lt;/p&gt;
 		<content>&lt;p&gt;I just published my second Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/x5PN5"&gt;Composing React Components with TypeScript&lt;/a&gt;. I cover the basics of how to compose React components using common patterns like specialization, higher-order components (HOCs), and render props with TypeScript. Go ahead and check it out!&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;I just published my second Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/x5PN5"&gt;Composing React Components with TypeScript&lt;/a&gt;. I cover the basics of how to compose React components using common patterns like specialization, higher-order components (HOCs), and render props with TypeScript. Go ahead and check it out!&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2018-12-20-year-in-review-2019-goals" />
-		<id>https://kamranicus.com/posts/2018-12-20-year-in-review-2019-goals</id>
-		<title>2018 Year in Review and 2019 Goals</title>
-		<updated>2018-12-21T05:01:00Z</updated>
-		<content>&lt;p&gt;Wow, what a year! &lt;a href="https://kamranicus.com/posts/2018-01-01-2018-a-new-year"&gt;At the start of 2018 I laid out my goals&lt;/a&gt; and I ended up crushing them! I hadn't heard of &lt;a href="https://syntax.fm/show/067/hasty-treat-goal-setting"&gt;&lt;em&gt;SMART&lt;/em&gt; goal setting yet&lt;/a&gt; but they ended up fitting the acronym: &lt;strong&gt;S&lt;/strong&gt;pecific, &lt;strong&gt;M&lt;/strong&gt;easurable, &lt;strong&gt;A&lt;/strong&gt;chievable, &lt;strong&gt;R&lt;/strong&gt;ealistic, and &lt;strong&gt;T&lt;/strong&gt;ime-bound.&lt;/p&gt;
-&lt;h2 id="goals-in-review"&gt;Goals in Review&lt;/h2&gt;
-&lt;p&gt;Let's review my 2018 and goals and see how I stacked up.&lt;/p&gt;
-&lt;h2 id="primary-goals"&gt;Primary Goals&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;✅ &lt;del&gt;Publish 1 more Pluralsight course&lt;/del&gt; (&lt;a href="https://kamranicus.com/posts/2018-10-18-new-azure-pluralsight-courses"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;✅ &lt;del&gt;Host a half-day workshop (scheduled for April)&lt;/del&gt; (&lt;a href="https://kamranicus.com/posts/2018-04-29-azure-nodejs-workshop-minnewebcon"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;✅ &lt;del&gt;Participate in a LD game jam&lt;/del&gt; (&lt;a href="https://kamranicus.com/posts/2018-04-29-ludum-dare-41-post-mortem"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;✅ &lt;del&gt;Attend and present at 2 conferences&lt;/del&gt; (&lt;a href="https://kamranicus.com/posts/2018-04-29-azure-nodejs-workshop-minnewebcon"&gt;DONE&lt;/a&gt; and &lt;a href="https://kamranicus.com/posts/2018-05-11-ndc-minnesota-typescript-react"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;✅ &lt;del&gt;Attend and present at a local user group&lt;/del&gt; (&lt;a href="https://twitter.com/kamranayub/status/1037840790414864384"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;✅ &lt;del&gt;Finish KTOMG UI revamp with React&lt;/del&gt; (&lt;a href="https://twitter.com/kamranayub/status/1055344465991344128"&gt;DONE&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;⛔ Continue doing code livestreams&lt;/li&gt;
-&lt;li&gt;⛔ Publish another Pi guide for a project I have in mind&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="stretch-goals"&gt;Stretch Goals&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;⛔ Become a Microsoft MVP
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Nominated, but nope.&lt;/strong&gt; Unfortunately, somehow my MVP nomination fell through the cracks and I didn't hear back until September this year. They advised me to re-submit. 😞&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;☑️ Publish 2 more Pluralsight courses
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://kamranicus.com/posts/2018-10-18-new-azure-pluralsight-courses"&gt;Yes! Almost.&lt;/a&gt; I ended up doing two courses at once this year.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;⛔ Host a full-day workshop
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Nope.&lt;/strong&gt; Work's been busy with a new release so while I want to start this soon, it won't be in 2018.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;⛔ Stream 10 sessions
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Nope.&lt;/strong&gt; Ended up not having the time/energy to do this.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="retro"&gt;Retro&lt;/h2&gt;
-&lt;p&gt;I'm definitely proud of what I accomplished in 2018--especially the dual-wielding courses. That was a risky proposition but with proper tracking and progress checkpoints, I managed to do it in almost as many hours as it took for me to do my first course.&lt;/p&gt;
-&lt;p&gt;It's clear my stretch goals were definite stretches! For my evenings, I have a few choices of what to do: laze about, contract work, &lt;a href="https://keeptrackofmygames.com"&gt;Keep Track of My Games&lt;/a&gt;, open source, house work. You may be surprised to know a lot of the time I do end up lazing about--but it's with my wife or friends, watching shows, playing board games, or generally enjoying people's company. So I don't think it's &lt;em&gt;necessarily&lt;/em&gt; unproductive! Still, those choices don't leave a ton of room for Twitch streaming. I'm just not positive it'll be a value-add activity for me, so I'm leaving it off my 2019 goals.&lt;/p&gt;
-&lt;p&gt;The MVP goal was very disappointing. Eventually after 10 months, the program manager responded to my email and said to just try again as the window was lost. It's supposed to be a 90-day window but for some reason I just got lost in the process. &lt;strong&gt;It will&lt;/strong&gt; be on my 2019 goals again. New for 2019 is the requirement that you be nominated--luckily I have some MVP colleagues that are willing to put in a word for me! &lt;a href="https://twitter.com/kamranayub"&gt;Get in touch&lt;/a&gt; if you want to throw your weight in, too.&lt;/p&gt;
-&lt;p&gt;Workshop? Just didn't have a chance. The half-day workshop was awesome and I'd do it again. In 2019 I may work on a React/TypeScript workshop and pitch it to Frontend Masters or to conferences. It may turn into a 2020 goal.&lt;/p&gt;
-&lt;h2 id="other-year-end-accomplishments"&gt;Other Year-End Accomplishments&lt;/h2&gt;
-&lt;p&gt;It's always the case you end up doing things you never planned. Here's what else I ended up accomplishing:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Hustle and passive income accounted for over 10% of my yearly earnings.&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;This was a goal I had in mind but didn't write down for 2018. I wanted to try and see if I could make my gig/passive income account for at least 10% of my earnings and &lt;strong&gt;it did!&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/2018-12-20-23-15-14.png" class="img-fluid" alt="Hustlin and bustlin" /&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;a href="https://kamranicus.com/posts/2018-12-20-typescript-react-components-pluralsight-guide"&gt;Published first Pluralsight guide&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;My first guide around TypeScript/React came out this last week!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;a href="https://kamranicus.com/posts/2018-05-01-dotnetrocks-ravendb-podcast"&gt;Appeared on .NET Rocks to talk about RavenDB 4&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;How awesome is that?! Have been a fan for years and it was surreal to be on there.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;a href="https://www.youtube.com/watch?v=bqP2O3VHjQ8"&gt;Appeared on Script &amp;amp; Style webcast to talk about Excalibur.js and web games&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://twitter.com/toddhgardner"&gt;Todd Gardner&lt;/a&gt; invited me on with my friend &lt;a href="https://twitter.com/erikonarheim"&gt;Erik&lt;/a&gt; to discuss building web games and our open source experience with &lt;a href="https://github.com/excaliburjs/Excalibur"&gt;Excalibur.js&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Bought a house&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Found a good house for a good deal in a great neighborhood next to a school. The first project was done in May, which was to &lt;a href="https://twitter.com/kamranayub/status/999037691382632449"&gt;build an office wall&lt;/a&gt;! I'm super enthusiastic about learning to DIY and I can't recommend the &lt;a href="https://www.youtube.com/channel/UCnorhjQR4zJkT7AVNhu395Q"&gt;Home RenoVision&lt;/a&gt; YT channel enough as a learning resource.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Had another kid&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Baby girl in November, she's awesome!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Released React rewrite of &lt;a href="https://keeptrackofmygames.com"&gt;KTOMG&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;This was huge! At least a 8-10 month endeavor. I still have plenty of work to do with KTOMG but at least that's out of the way.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Finished some games:&lt;/strong&gt; Far Cry 5, Destiny 2 (story), Telltale's Game of Thrones.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Still working through Red Dead 2, AC: Syndicate, LoZ: BoW, and Witcher 3. They're all long, gimme some slack!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Published 13 blog posts&lt;/strong&gt;. Whoo!&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Traveled to New England and Montreal with family&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Using &lt;a href="https://www.choosefi.com/009-travel-rewards-travel-world-free-ultimate-guide/"&gt;travel rewards&lt;/a&gt;, the flights were free and hotels were split with a family friend. We rented a car and drove from Boston around New England up to Montreal and back. It was awesome.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Went through our finances with a fine-toothed comb&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;This probably deserves its own post but I had a wake-up call of sorts and determined to eliminate a bunch of needless expenses we had been accumulating over the years. My wife and I are already fairly frugal people but didn't have a framework or the tools around it we needed. &lt;a href="https://www.choosefi.com/"&gt;Now we do&lt;/a&gt; and I'm super excited about it. I hope to do a post on it sometime in 2019. This aligns with me and my wife's 5- and 10-year plans for our family so I'm glad we started now.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="im-coming-for-you-2019"&gt;I'm Coming for You, 2019&lt;/h2&gt;
-&lt;p&gt;With the SMART framework in mind, let's see if I can establish some goals to accomplish in 2019. Keeping in check that I have a new baby daughter, I'll need to focus on the &lt;strong&gt;Attainable&lt;/strong&gt; and &lt;strong&gt;Realistic&lt;/strong&gt; portions of the acronym.&lt;/p&gt;
-&lt;h3 id="primary-goals-1"&gt;Primary Goals&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Professional&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Publish 1 Pluralsight course on Azure or TypeScript or React by September&lt;/li&gt;
-&lt;li&gt;Publish 4 Pluralsight guides on React &amp;amp; TypeScript by May&lt;/li&gt;
-&lt;li&gt;Speak at NDC MN on a TypeScript topic&lt;/li&gt;
-&lt;li&gt;Publish 5 technical articles on the blog about Azure, TypeScript, or React&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Personal&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Pay off all non-mortgage debt&lt;/li&gt;
-&lt;li&gt;Passive income should account for 2% of earnings, 1099 income for 5%&lt;/li&gt;
-&lt;li&gt;Replace my PCs at home with single good Ultrabook/Notebook and a NAS&lt;/li&gt;
-&lt;li&gt;Push 3 substantive updates to KTOMG throughout the year: Steam review revamp, Raven 4 upgrade, and Linux hosting&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;DIY&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Learn how to cut trim/baseboard and finish the nursery&lt;/li&gt;
-&lt;li&gt;Finish my office decor/storage, maybe paint it too&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="stretch-goals-1"&gt;Stretch Goals&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Professional&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Set up a quarterly newsletter&lt;/li&gt;
-&lt;li&gt;Publish 1 more Pluralsight course on Azure or TypeScript or React&lt;/li&gt;
-&lt;li&gt;Publish 4 additional Pluralsight guides throughout the year&lt;/li&gt;
-&lt;li&gt;Participate in 1 Pluralsight Mentoring session&lt;/li&gt;
-&lt;li&gt;Become a Microsoft MVP with a focus on Azure/TypeScript content&lt;/li&gt;
-&lt;li&gt;Speak at a JSConf or ReactConf event&lt;/li&gt;
-&lt;li&gt;Speak at the React MN meetup about TypeScript or GraphQL&lt;/li&gt;
-&lt;li&gt;Record a YouTube video walkthrough of my &lt;a href="https://kamranicus.com/guides/raspberry-pi-3-baby-monitor"&gt;Raspberry Pi baby monitor&lt;/a&gt; written guide&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Personal&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;1099 income should account for 12% or more (+2% over 2018)&lt;/li&gt;
-&lt;li&gt;Travel completely free somewhere in the US with wife and 2 kids using miles/points&lt;/li&gt;
-&lt;li&gt;Participate in Ludum Dare during the spring&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;DIY&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Install &lt;a href="https://www.youtube.com/watch?v=OJqk2iS_jyQ"&gt;luxury vinyl plank&lt;/a&gt; in my office&lt;/li&gt;
-&lt;li&gt;Replace baseboard/trim in my son's bedroom&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;There you have it! These &lt;em&gt;seem&lt;/em&gt; pretty doable to me as I am well-positioned to accomplish most of them this next year. For 2019 I split the goals into sub-groups to organize them better. Focusing on professional growth, personal goals, and DIY skills!&lt;/p&gt;
-&lt;p&gt;It's &lt;strong&gt;still a lot&lt;/strong&gt; but what's life without a little ambition? I can top 2018 if I work at it. As for the baby, I accomplished everything last year without compromising time with my family. I am confident I can do the same in 2019 if I focus on it!&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;Wow, what a year! &lt;a href="https://kamranicus.com/posts/2018-01-01-2018-a-new-year"&gt;At the start of 2018 I laid out my goals&lt;/a&gt; and I ended up crushing them! I hadn't heard of &lt;a href="https://syntax.fm/show/067/hasty-treat-goal-setting"&gt;&lt;em&gt;SMART&lt;/em&gt; goal setting yet&lt;/a&gt; but they ended up fitting the acronym: &lt;strong&gt;S&lt;/strong&gt;pecific, &lt;strong&gt;M&lt;/strong&gt;easurable, &lt;strong&gt;A&lt;/strong&gt;chievable, &lt;strong&gt;R&lt;/strong&gt;ealistic, and &lt;strong&gt;T&lt;/strong&gt;ime-bound.&lt;/p&gt;</summary>
 	</entry>
 </feed>
