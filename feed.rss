@@ -5,8 +5,8 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2020</copyright>
-		<pubDate>Tue, 26 May 2020 13:53:32 GMT</pubDate>
-		<lastBuildDate>Tue, 26 May 2020 13:53:32 GMT</lastBuildDate>
+		<pubDate>Tue, 26 May 2020 15:02:04 GMT</pubDate>
+		<lastBuildDate>Tue, 26 May 2020 15:02:04 GMT</lastBuildDate>
 		<item>
 			<title>Storyflow: Using Storybook to Build a Better... Game Engine?</title>
 			<link>https://kamranicus.com/posts/2020-05-21-storybook-for-game-engines</link>
@@ -1296,6 +1296,22 @@ their power. Be sure to check it out!&lt;/p&gt;
 </content:encoded>
 		</item>
 		<item>
+			<title>Role of Indexing in RavenDB vs. MongoDB and PostgreSQL</title>
+			<link>https://kamranicus.com/posts/2020-05-26-ravendb-indexing-mongodb-postgresql</link>
+			<description>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2020-05-26-ravendb-indexing-mongodb-postgresql</guid>
+			<pubDate>Thu, 04 Apr 2019 13:30:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.codeproject.com/Articles/1348454/Data-Modeling-with-Indexes-in-RavenDB"&gt;Data Modeling with Indexes in RavenDB&lt;/a&gt;
+went live today on CodeProject and covers how indexes work in Raven and some simple to advanced use cases to show off
+their power. Be sure to check it out!&lt;/p&gt;
+&lt;p&gt;I'm excited to be working with HN to bring some more articles to a wider audience so I'll be sure to share when any other articles go live.&lt;/p&gt;
+&lt;!--stackedit_data:
+eyJoaXN0b3J5IjpbMTAxNzY1NDg3N119
+--&gt;
+</content:encoded>
+		</item>
+		<item>
 			<title>New Pluralsight Guide: Getting Started With React and TypeScript </title>
 			<link>https://kamranicus.com/posts/2019-02-21-typescript-react-getting-started-pluralsight-guide</link>
 			<description>&lt;p&gt;I just published my third Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/3Y65d"&gt;Getting Started with React and TypeScript&lt;/a&gt;. I cover a few different ways to start up a new React project with TypeScript including create-react-app, from scratch, and bundling with Webpack/Parcel.&lt;/p&gt;</description>
@@ -1323,15 +1339,6 @@ their power. Be sure to check it out!&lt;/p&gt;
 &lt;p&gt;I'm real excited about this talk because it's the culmination of exactly a year's worth of learning and effort at my job--rewriting part of an application from AngularJS to React/TypeScript.&lt;/p&gt;
 &lt;p&gt;In the process I became intimately familiar with how to build production React applications, using TypeScript with React more intensely, testing with Jest and &lt;a href="https://cypress.io"&gt;Cypress&lt;/a&gt;, and working with Apollo Server GraphQL (like fixing &lt;a href="https://kamranicus.com/posts/2018-03-06-graphql-apollo-object-caching"&gt;weird bugs&lt;/a&gt;). We solved some really interesting business problems that I'll dive into during the talk and ultimately created an elegant solution that has scaled nicely in terms of maintenance and agility for our product.&lt;/p&gt;
 &lt;p&gt;Hope to see you there, please stop me and say hello! If you can, try to &lt;a href="https://pubconf.io/"&gt;attend PubConf&lt;/a&gt; too, it's a &lt;strong&gt;ton&lt;/strong&gt; of fun.&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>New Pluralsight Guide: Composing React Components with TypeScript</title>
-			<link>https://kamranicus.com/posts/2019-01-21-typescript-composing-react-components-pluralsight-guide</link>
-			<description>&lt;p&gt;I just published my second Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/x5PN5"&gt;Composing React Components with TypeScript&lt;/a&gt;. I cover the basics of how to compose React components using common patterns like specialization, higher-order components (HOCs), and render props with TypeScript. Go ahead and check it out!&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2019-01-21-typescript-composing-react-components-pluralsight-guide</guid>
-			<pubDate>Tue, 22 Jan 2019 01:31:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;I just published my second Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/x5PN5"&gt;Composing React Components with TypeScript&lt;/a&gt;. I cover the basics of how to compose React components using common patterns like specialization, higher-order components (HOCs), and render props with TypeScript. Go ahead and check it out!&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>

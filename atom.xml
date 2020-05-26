@@ -4,7 +4,7 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2020</rights>
-	<updated>2020-05-26T13:53:32Z</updated>
+	<updated>2020-05-26T15:02:04Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
 	<entry>
 		<link href="https://kamranicus.com/posts/2020-05-21-storybook-for-game-engines" />
@@ -1295,6 +1295,22 @@ their power. Be sure to check it out!&lt;/p&gt;
 		<summary>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;</summary>
 	</entry>
 	<entry>
+		<link href="https://kamranicus.com/posts/2020-05-26-ravendb-indexing-mongodb-postgresql" />
+		<id>https://kamranicus.com/posts/2020-05-26-ravendb-indexing-mongodb-postgresql</id>
+		<title>Role of Indexing in RavenDB vs. MongoDB and PostgreSQL</title>
+		<updated>2019-04-04T13:30:00Z</updated>
+		<content>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.codeproject.com/Articles/1348454/Data-Modeling-with-Indexes-in-RavenDB"&gt;Data Modeling with Indexes in RavenDB&lt;/a&gt;
+went live today on CodeProject and covers how indexes work in Raven and some simple to advanced use cases to show off
+their power. Be sure to check it out!&lt;/p&gt;
+&lt;p&gt;I'm excited to be working with HN to bring some more articles to a wider audience so I'll be sure to share when any other articles go live.&lt;/p&gt;
+&lt;!--stackedit_data:
+eyJoaXN0b3J5IjpbMTAxNzY1NDg3N119
+--&gt;
+</content>
+		<summary>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
 		<link href="https://kamranicus.com/posts/2019-02-21-typescript-react-getting-started-pluralsight-guide" />
 		<id>https://kamranicus.com/posts/2019-02-21-typescript-react-getting-started-pluralsight-guide</id>
 		<title>New Pluralsight Guide: Getting Started With React and TypeScript </title>
@@ -1323,14 +1339,5 @@ their power. Be sure to check it out!&lt;/p&gt;
 &lt;p&gt;Hope to see you there, please stop me and say hello! If you can, try to &lt;a href="https://pubconf.io/"&gt;attend PubConf&lt;/a&gt; too, it's a &lt;strong&gt;ton&lt;/strong&gt; of fun.&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;I'm excited to &lt;a href="/posts/2018-05-11-ndc-minnesota-typescript-react"&gt;once again&lt;/a&gt; be invited to &lt;a href="https://ndcminnesota.com/talk/designing-a-flexible-ui-architecture-with-react-and-graphql/"&gt;speak at NDC Minnesota&lt;/a&gt;!&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2019-01-21-typescript-composing-react-components-pluralsight-guide" />
-		<id>https://kamranicus.com/posts/2019-01-21-typescript-composing-react-components-pluralsight-guide</id>
-		<title>New Pluralsight Guide: Composing React Components with TypeScript</title>
-		<updated>2019-01-22T01:31:00Z</updated>
-		<content>&lt;p&gt;I just published my second Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/x5PN5"&gt;Composing React Components with TypeScript&lt;/a&gt;. I cover the basics of how to compose React components using common patterns like specialization, higher-order components (HOCs), and render props with TypeScript. Go ahead and check it out!&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;I just published my second Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/x5PN5"&gt;Composing React Components with TypeScript&lt;/a&gt;. I cover the basics of how to compose React components using common patterns like specialization, higher-order components (HOCs), and render props with TypeScript. Go ahead and check it out!&lt;/p&gt;</summary>
 	</entry>
 </feed>
