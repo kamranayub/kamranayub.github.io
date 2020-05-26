@@ -5,8 +5,8 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2020</copyright>
-		<pubDate>Tue, 26 May 2020 15:04:20 GMT</pubDate>
-		<lastBuildDate>Tue, 26 May 2020 15:04:20 GMT</lastBuildDate>
+		<pubDate>Tue, 26 May 2020 15:07:23 GMT</pubDate>
+		<lastBuildDate>Tue, 26 May 2020 15:07:23 GMT</lastBuildDate>
 		<item>
 			<title>Storyflow: Using Storybook to Build a Better... Game Engine?</title>
 			<link>https://kamranicus.com/posts/2020-05-21-storybook-for-game-engines</link>
@@ -1283,6 +1283,19 @@ ansible_become_method=su
 </content:encoded>
 		</item>
 		<item>
+			<title>Role of Indexing in RavenDB vs. MongoDB and PostgreSQL</title>
+			<link>https://kamranicus.com/posts/2020-05-26-ravendb-indexing-mongodb-postgresql</link>
+			<description>&lt;p&gt;I recently was engaged to write an article on how RavenDB indexing compares to MongoDB and PostgreSQL. I had a lot of fun writing it because I finally got to dive deeper into how MongoDB and PostgreSQL query engines work under the covers. I was actually surprised to be honest, I thought that MongoDB was more similar to RavenDB but it ended up being quite different.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2020-05-26-ravendb-indexing-mongodb-postgresql</guid>
+			<pubDate>Thu, 04 Apr 2019 13:30:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;I recently was engaged to write an article on how RavenDB indexing compares to MongoDB and PostgreSQL. I had a lot of fun writing it because I finally got to dive deeper into how MongoDB and PostgreSQL query engines work under the covers. I was actually surprised to be honest, I thought that MongoDB was more similar to RavenDB but it ended up being quite different.&lt;/p&gt;
+&lt;p&gt;Ready to learn more about RavenDB? Check out my &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;
+&lt;!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE1NjE0OTgzNzNdfQ==
+--&gt;
+</content:encoded>
+		</item>
+		<item>
 			<title>Data Modeling with Indexes in RavenDB</title>
 			<link>https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes</link>
 			<description>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;</description>
@@ -1293,19 +1306,6 @@ ansible_become_method=su
 went live today on CodeProject and covers how indexes work in Raven and some simple to advanced use cases to show off
 their power. Be sure to check it out!&lt;/p&gt;
 &lt;p&gt;I'm excited to be working with HN to bring some more articles to a wider audience so I'll be sure to share when any other articles go live.&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Role of Indexing in RavenDB vs. MongoDB and PostgreSQL</title>
-			<link>https://kamranicus.com/posts/2020-05-26-ravendb-indexing-mongodb-postgresql</link>
-			<description>&lt;p&gt;I recently was engaged to write an article on how RavenDB indexing compares to MongoDB and PostgreSQL. I had a lot of fun writing it because I finally got to&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2020-05-26-ravendb-indexing-mongodb-postgresql</guid>
-			<pubDate>Thu, 04 Apr 2019 13:30:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;I recently was engaged to write an article on how RavenDB indexing compares to MongoDB and PostgreSQL. I had a lot of fun writing it because I finally got to&lt;/p&gt;
-&lt;p&gt;I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;
-&lt;!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU1Mjk0NjI1NF19
---&gt;
 </content:encoded>
 		</item>
 		<item>
