@@ -10,9 +10,9 @@ Tags:
 
 I recently was engaged to write an article on how RavenDB indexing compares to MongoDB and PostgreSQL. I had a lot of fun writing it because I finally got to dive deeper into how MongoDB and PostgreSQL query engines work under the covers. I was actually surprised to be honest, I thought that MongoDB was more similar to RavenDB but it ended up being quite different.
 
-Read more about [the role indexing plays in RavenDB vs. MongoDB and PostgreSQL]([https://ravendb.net/articles/nosql-document-database-indexing](https://ravendb.net/articles/nosql-document-database-indexing)).
+Read more about [the role indexing plays in RavenDB vs. MongoDB and PostgreSQL](https://ravendb.net/articles/nosql-document-database-indexing)
 
 If this interests you be sure to check out my [Getting Started with RavenDB 4](http://bit.ly/PSRavenDB4) course on Pluralsight.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzUzNjI3NzgxXX0=
+eyJoaXN0b3J5IjpbMTk4Nzc5OTgyM119
 -->
