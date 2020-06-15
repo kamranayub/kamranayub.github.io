@@ -94,8 +94,18 @@ But we're still missing something important: parsing symbol links in our Markdow
 
 ## Parsing TypeDoc Symbol Links in Markdown
 
-We write our user documentation using MDX, which is Markdown and React. For example, here's one snippet of document from the 
+We write our user documentation using MDX, which is Markdown and React. For example, here's one snippet of document from the [Introduction page](https://excaliburjs.com/docs/intro):
+
+```md
+To create a new game, create a new instance of [[Engine]] and pass in
+the configuration ([[EngineOptions]]). Excalibur only supports a single
+instance of a game at a time, so it is safe to use globally.
+You can then call [[Engine.start|start]] which starts the game and optionally accepts
+a [[Loader]] which you can use to [load assets](/docs/assets) like sprites and sounds.
+```
+
+Notice how we have multiple symbol links denoted by the `[[ ]]` syntax, including some with aliases
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk5ODQ5NzQ1MCwtODkwNjI5OTQsLTk3Mj
+eyJoaXN0b3J5IjpbLTE4NDI3MDg4OCwtODkwNjI5OTQsLTk3Mj
 kwODk2MiwtNjc5MTc5MTJdfQ==
 -->
