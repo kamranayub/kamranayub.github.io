@@ -104,8 +104,10 @@ You can then call [[Engine.start|start]] which starts the game and optionally ac
 a [[Loader]] which you can use to [load assets](/docs/assets) like sprites and sounds.
 ```
 
-Notice how we have multiple symbol links denoted by the `[[ ]]` syntax, including some with aliases
+Notice how we have multiple symbol links denoted by the `[[ ]]` syntax, including some with aliases like `[[Engine.start|start]]`.
+
+If you run this through a Markdown parser, the only link that gets transformed is the "load assets" link because Somehow, we need to take the GraphQL TypeDoc source node(s) we generated and then run our Markdown through a _transformer_ to convert these links to Markdown links.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NDI3MDg4OCwtODkwNjI5OTQsLTk3Mj
-kwODk2MiwtNjc5MTc5MTJdfQ==
+eyJoaXN0b3J5IjpbNTI0NzM2Njg2LC04OTA2Mjk5NCwtOTcyOT
+A4OTYyLC02NzkxNzkxMl19
 -->
