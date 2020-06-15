@@ -92,8 +92,10 @@ With this source package, it is enough to where you could build a custom Gatsby-
 
 But we're still missing something important: parsing symbol links in our Markdown documentation.
 
-## 
+## Parsing TypeDoc Symbol Links in Markdown
+
+We write our user documentation using MDX, which is Markdown and React. For example, here's one snippet of document from the 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMjEyMTM1NTEsLTg5MDYyOTk0LC05Nz
-I5MDg5NjIsLTY3OTE3OTEyXX0=
+eyJoaXN0b3J5IjpbMTk5ODQ5NzQ1MCwtODkwNjI5OTQsLTk3Mj
+kwODk2MiwtNjc5MTc5MTJdfQ==
 -->
