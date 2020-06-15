@@ -82,12 +82,18 @@ export const pageQuery = graphql`
 `
 
 export default function MyPage({ data: { typedoc } }) {
-	const typedocContent = JSON.parse(typedoc?.edges?.[0].node.internal.content;
+	const typedocContent = JSON.parse(typedoc?.edges?.[0].node.internal.content);
 	
 	// do something with that data...
 }
 ```
+
+With this source package, it is enough to where you could build a custom Gatsby-based TypeDoc site since you now have complete access to the entire TypeDoc structure for your project. We didn't need to go that far, since we are happy with the TypeDoc default theme we use.
+
+But we're still missing something important: parsing symbol links in our Markdown documentation.
+
+## 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODUwNjU5ODY1LC04OTA2Mjk5NCwtOTcyOT
-A4OTYyLC02NzkxNzkxMl19
+eyJoaXN0b3J5IjpbLTIxMjEyMTM1NTEsLTg5MDYyOTk0LC05Nz
+I5MDg5NjIsLTY3OTE3OTEyXX0=
 -->
