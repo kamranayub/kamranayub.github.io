@@ -195,9 +195,16 @@ export default function MyPage({ data: { typedoc } }) {
 <p>With this source package, it is enough to where you could build a custom Gatsby-based TypeDoc site since you now have complete access to the entire TypeDoc structure for your project. We didn't need to go that far, since we are happy with the TypeDoc default theme we use.</p>
 <p>But we're still missing something important: parsing symbol links in our Markdown documentation.</p>
 <h2 id="parsing-typedoc-symbol-links-in-markdown">Parsing TypeDoc Symbol Links in Markdown</h2>
-<p>We write our user documentation using MDX, which is Markdown and React. For example, here's one snippet of document from the</p>
+<p>We write our user documentation using MDX, which is Markdown and React. For example, here's one snippet of document from the <a href="https://excaliburjs.com/docs/intro">Introduction page</a>:</p>
+<pre><code class="language-md">To create a new game, create a new instance of [[Engine]] and pass in
+the configuration ([[EngineOptions]]). Excalibur only supports a single
+instance of a game at a time, so it is safe to use globally.
+You can then call [[Engine.start|start]] which starts the game and optionally accepts
+a [[Loader]] which you can use to [load assets](/docs/assets) like sprites and sounds.
+</code></pre>
+<p>Notice how we have multiple symbol links denoted by the <code>[[ ]]</code> syntax, including some with aliases</p>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk5ODQ5NzQ1MCwtODkwNjI5OTQsLTk3Mj
+eyJoaXN0b3J5IjpbLTE4NDI3MDg4OCwtODkwNjI5OTQsLTk3Mj
 kwODk2MiwtNjc5MTc5MTJdfQ==
 -->
 
