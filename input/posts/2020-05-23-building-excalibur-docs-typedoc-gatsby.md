@@ -40,8 +40,31 @@ When we migrated our user documentation, we didn't want to lose the ability to l
 
 For that purpose, I made an npm package [gatsby-source-typedoc](https://npmjs.com/package/gatsby-source-typedoc). This will allow you to run TypeDoc against a TypeScript project and it will take the generated structure and store it as a GraphQL node for querying within your Gatsby app.
 
-For example, here's what [Excalibur's Gatsby config looks like](
+For example, here's what [Excalibur's Gatsby config looks like]() [https://github.com/excaliburjs/excaliburjs.github.io/blob/site/gatsby-config.js#L10](https://github.com/excaliburjs/excaliburjs.github.io/blob/site/gatsby-config.js#L10):
+
+```js
+plugins: [
+  {
+    resolve: 'gatsby-source-typedoc',
+    options: {
+      src: [
+        `${__dirname}/ex/edge/src/engine/index.ts`,
+        `${__dirname}/ex/edge/src/engine/globals.d.ts`,
+        `${__dirname}/ex/edge/src/engine/files.d.ts`,
+        `${__dirname}/ex/edge/src/engine/excalibur.d.ts`,
+      ],
+      typedoc: {
+        target: 'es5',
+        mode: 'modules',
+        experimentalDecorators: true,
+        excludePrivate: true,
+        tsconfig: `${__dirname}/ex/edge/src/engine/tsconfig.json`,
+      },
+    },
+  },
+]
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc1ODM4MjAyMCwtOTcyOTA4OTYyLC02Nz
-kxNzkxMl19
+eyJoaXN0b3J5IjpbLTExMzExMzc4MDgsLTk3MjkwODk2MiwtNj
+c5MTc5MTJdfQ==
 -->
