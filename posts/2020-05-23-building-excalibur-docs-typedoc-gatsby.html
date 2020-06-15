@@ -203,10 +203,11 @@ You can then call [[Engine.start|start]] which starts the game and optionally ac
 a [[Loader]] which you can use to [load assets](/docs/assets) like sprites and sounds.
 </code></pre>
 <p>Notice how we have multiple symbol links denoted by the <code>[[ ]]</code> syntax, including some with aliases like <code>[[Engine.start|start]]</code>.</p>
-<p>If you run this through a Markdown parser, the only link that gets transformed is the &quot;load assets&quot; link because Somehow, we need to take the GraphQL TypeDoc source node(s) we generated and then run our Markdown through a <em>transformer</em> to convert these links to Markdown links.</p>
+<p>If you run this through a Markdown parser, the only link that gets transformed is the &quot;load assets&quot; link because by default, Markdown has no idea what the <code>[[ ]]</code> syntax is! Somehow, we need to take the GraphQL TypeDoc source node(s) we generated and then run our Markdown through a <em>transformer</em> to convert these links to Markdown links.</p>
+<p>To accomplish this, I released two packages: <a href="https://www.npmjs.com/package/remark-typedoc-symbol-links">remark-typedoc-symbol-links</a> and <a href="https://www.npmjs.com/package/gatsby-remark-typedoc-symbol-links">https://www.npmjs.com/package/gatsby-remark-typedoc-symbol-links</a></p>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTI0NzM2Njg2LC04OTA2Mjk5NCwtOTcyOT
-A4OTYyLC02NzkxNzkxMl19
+eyJoaXN0b3J5IjpbLTE2MTY2NjcwOTcsLTg5MDYyOTk0LC05Nz
+I5MDg5NjIsLTY3OTE3OTEyXX0=
 -->
 
 </div>
