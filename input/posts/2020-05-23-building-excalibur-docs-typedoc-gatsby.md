@@ -106,8 +106,10 @@ a [[Loader]] which you can use to [load assets](/docs/assets) like sprites and s
 
 Notice how we have multiple symbol links denoted by the `[[ ]]` syntax, including some with aliases like `[[Engine.start|start]]`.
 
-If you run this through a Markdown parser, the only link that gets transformed is the "load assets" link because Somehow, we need to take the GraphQL TypeDoc source node(s) we generated and then run our Markdown through a _transformer_ to convert these links to Markdown links.
+If you run this through a Markdown parser, the only link that gets transformed is the "load assets" link because by default, Markdown has no idea what the `[[ ]]` syntax is! Somehow, we need to take the GraphQL TypeDoc source node(s) we generated and then run our Markdown through a _transformer_ to convert these links to Markdown links.
+
+To accomplish this, I released two packages: [remark-typedoc-symbol-links](https://www.npmjs.com/package/remark-typedoc-symbol-links) and [https://www.npmjs.com/package/gatsby-remark-typedoc-symbol-links](https://www.npmjs.com/package/gatsby-remark-typedoc-symbol-links)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTI0NzM2Njg2LC04OTA2Mjk5NCwtOTcyOT
-A4OTYyLC02NzkxNzkxMl19
+eyJoaXN0b3J5IjpbLTE2MTY2NjcwOTcsLTg5MDYyOTk0LC05Nz
+I5MDg5NjIsLTY3OTE3OTEyXX0=
 -->
