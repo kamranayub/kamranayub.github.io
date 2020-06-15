@@ -82,10 +82,12 @@ export const pageQuery = graphql`
 `
 
 export default function MyPage({ data: { typedoc } }) {
-	const { edges:
+	const typedocContent = JSON.parse(typedoc?.edges?.[0].node.internal.content;
+	
+	// do something with that data...
 }
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg5MDYyOTk0LC05NzI5MDg5NjIsLTY3OT
-E3OTEyXX0=
+eyJoaXN0b3J5IjpbODUwNjU5ODY1LC04OTA2Mjk5NCwtOTcyOT
+A4OTYyLC02NzkxNzkxMl19
 -->
