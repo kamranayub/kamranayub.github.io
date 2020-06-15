@@ -65,8 +65,14 @@ plugins: [
 ]
 ```
 
-One improvement I think I could make is being able to run TypeDoc on the generated declaration files vs. having to re-compile the project (since we already do that)
+This will then allow you to query for the TypeDoc JSON content in a Gatsby page:
+
+```js
+export const pageQuery = graphql`
+	allTypedoc: 
+`
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMTg5OTMwMDUsLTk3MjkwODk2MiwtNj
+eyJoaXN0b3J5IjpbLTIxMzg2OTQyNTgsLTk3MjkwODk2MiwtNj
 c5MTc5MTJdfQ==
 -->
