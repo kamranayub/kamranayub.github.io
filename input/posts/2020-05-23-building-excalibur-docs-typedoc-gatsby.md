@@ -69,10 +69,19 @@ This will then allow you to query for the TypeDoc JSON content in a Gatsby page:
 
 ```js
 export const pageQuery = graphql`
-	allTypedoc: 
+	typedoc: allTypedoc {
+		edges {
+			node {
+				id
+				internal {
+					contentRaw
+				}
+			}
+		}
+	}
 `
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMzg2OTQyNTgsLTk3MjkwODk2MiwtNj
+eyJoaXN0b3J5IjpbLTEyNjQyNDg3OTMsLTk3MjkwODk2MiwtNj
 c5MTc5MTJdfQ==
 -->
