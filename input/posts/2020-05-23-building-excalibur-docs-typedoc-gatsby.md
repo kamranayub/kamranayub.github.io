@@ -40,7 +40,7 @@ When we migrated our user documentation, we didn't want to lose the ability to l
 
 For that purpose, I made an npm package [gatsby-source-typedoc](https://npmjs.com/package/gatsby-source-typedoc). This will allow you to run TypeDoc against a TypeScript project and it will take the generated structure and store it as a GraphQL node for querying within your Gatsby app.
 
-For example, here's what [Excalibur's Gatsby config looks like]() [https://github.com/excaliburjs/excaliburjs.github.io/blob/site/gatsby-config.js#L10](https://github.com/excaliburjs/excaliburjs.github.io/blob/site/gatsby-config.js#L10):
+For example, here's what [Excalibur's Gatsby config looks like](https://github.com/excaliburjs/excaliburjs.github.io/blob/site/gatsby-config.js#L10):
 
 ```js
 plugins: [
@@ -64,7 +64,9 @@ plugins: [
   },
 ]
 ```
+
+One improvement I think I could make is being able to run TypeDoc on the generated declaration files vs. having to re-compile the project (since we already do that)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMzExMzc4MDgsLTk3MjkwODk2MiwtNj
+eyJoaXN0b3J5IjpbLTEwMTg5OTMwMDUsLTk3MjkwODk2MiwtNj
 c5MTc5MTJdfQ==
 -->
