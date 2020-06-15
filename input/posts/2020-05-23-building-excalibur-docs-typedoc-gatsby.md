@@ -82,10 +82,10 @@ export const pageQuery = graphql`
 `
 
 export default function MyPage({ data: { typedoc } }) {
-
+	const { edges:
 }
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzc3ODE2NDQsLTk3MjkwODk2MiwtNjc5MT
-c5MTJdfQ==
+eyJoaXN0b3J5IjpbLTg5MDYyOTk0LC05NzI5MDg5NjIsLTY3OT
+E3OTEyXX0=
 -->
