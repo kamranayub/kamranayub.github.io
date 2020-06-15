@@ -36,7 +36,8 @@ Using a combination of _sources_ and _transformers_ you can basically transform 
 
 ## Creating a TypeDoc Gatsby Source
 
-
+The first part of migrating our user documentation from TypeDoc was 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk3MjkwODk2MiwtNjc5MTc5MTJdfQ==
+eyJoaXN0b3J5IjpbOTI4MTg2NzIzLC05NzI5MDg5NjIsLTY3OT
+E3OTEyXX0=
 -->
