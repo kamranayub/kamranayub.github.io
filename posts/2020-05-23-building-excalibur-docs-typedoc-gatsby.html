@@ -214,9 +214,9 @@ a [[Loader]] which you can use to [load assets](/docs/assets) like sprites and s
 <li>Gatsby supports special Gatsby Transformer Remark plugins which have access to <em>both</em> the Gatsby API <strong>and</strong> the Markdown AST</li>
 <li>This pipeline uses <a href="https://github.com/unifiedjs/unified">unified.js</a> as the underlying API at the lowest level</li>
 </ul>
-<p>So, what I needed to do was to make a Gatsby Remark Transformer plug-in. Since Gatsby just delegates down to Remark, I was able to split this up into two packages, just in case someone wanted to use the Typedoc symbol transformer outside Gatsby. The symbol transformer</p>
+<p>So, what I needed to do was to make a Gatsby Remark Transformer plug-in. Since Gatsby just delegates down to Remark, I was able to split this up into two packages, just in case someone wanted to use the Typedoc symbol transformer outside Gatsby. The symbol transformer only needs one additional piece of input: the TypeDoc AST.</p>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjk1MzcxODAxLC04OTA2Mjk5NCwtOTcyOT
+eyJoaXN0b3J5IjpbMTM2NzA0MzE3LC04OTA2Mjk5NCwtOTcyOT
 A4OTYyLC02NzkxNzkxMl19
 -->
 
