@@ -74,14 +74,18 @@ export const pageQuery = graphql`
 			node {
 				id
 				internal {
-					contentRaw
+					content
 				}
 			}
 		}
 	}
 `
+
+export default function MyPage({ data: { typedoc } }) {
+
+}
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNjQyNDg3OTMsLTk3MjkwODk2MiwtNj
-c5MTc5MTJdfQ==
+eyJoaXN0b3J5IjpbMzc3ODE2NDQsLTk3MjkwODk2MiwtNjc5MT
+c5MTJdfQ==
 -->
