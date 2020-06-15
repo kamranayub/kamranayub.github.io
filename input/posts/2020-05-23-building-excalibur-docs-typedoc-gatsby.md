@@ -38,8 +38,10 @@ Using a combination of _sources_ and _transformers_ you can basically transform 
 
 When we migrated our user documentation, we didn't want to lose the ability to link to the API symbols using the convenient `[[symbol]]` syntax. In order to maintain that, we needed a way to source the TypeDoc JSON (or AST) into our Gatsby site.
 
-For that purpose, I made an npm package [gatsby-source-typedoc](https://npmjs.com/package/gats.
+For that purpose, I made an npm package [gatsby-source-typedoc](https://npmjs.com/package/gatsby-source-typedoc).
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgzMDg3NjE2NSwtOTcyOTA4OTYyLC02Nz
+eyJoaXN0b3J5IjpbMTkzMjY2OTgzMiwtOTcyOTA4OTYyLC02Nz
 kxNzkxMl19
 -->
