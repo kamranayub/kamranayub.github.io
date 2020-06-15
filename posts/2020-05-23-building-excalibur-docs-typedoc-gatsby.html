@@ -148,10 +148,11 @@
 <p>Gatsby also has the idea of <em>transformers</em>. Transformers take input, usually an Abstract Syntax Tree (AST) and run it through processors that make changes. For example, there's <a href="%5Bhttps://www.gatsbyjs.org/packages/gatsby-transformer-remark/%5D(https://www.gatsbyjs.org/packages/gatsby-transformer-remark/)">gatsby-transformer-remark</a> that takes Markdown AST and parses it using Remark.</p>
 <p>Using a combination of <em>sources</em> and <em>transformers</em> you can basically transform one source of data into whatever you want as the output.</p>
 <h2 id="creating-a-typedoc-gatsby-source">Creating a TypeDoc Gatsby Source</h2>
-<p>The first part of migrating our user documentation from TypeDoc was</p>
+<p>When we migrated our user documentation, we didn't want to lose the ability to link to the API symbols using the convenient <code>[[symbol]]</code> syntax. In order to maintain that, we needed a way to source the TypeDoc JSON (or AST) into our Gatsby site.</p>
+<p>For that purpose, I made an npm package [gatsby-source-typedoc](<a href="https://npmjs.com/package/gats.">https://npmjs.com/package/gats.</a></p>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTI4MTg2NzIzLC05NzI5MDg5NjIsLTY3OT
-E3OTEyXX0=
+eyJoaXN0b3J5IjpbMTgzMDg3NjE2NSwtOTcyOTA4OTYyLC02Nz
+kxNzkxMl19
 -->
 
 </div>
