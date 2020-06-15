@@ -116,7 +116,11 @@ Here is how this works in Gatsby, which was a completely new learning experience
 - Gatsby then runs it through `gatsby-plugin-mdx`
 - `gatsby-plugin-mdx` runs the Markdown through Remark, a Markdown parser
 - Remark supports plugins, that can take the Markdown AST (mdast) and modify it
+- Gatsby supports special Gatsby Transformer Remark plugins which have access to _both_ the Gatsby API **and** the Markdown AST
+- This pipeline uses [unified.js](https://github.com/unifiedjs/unified) as the underlying API at the lowest level
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDY5NjU3MjYzLC04OTA2Mjk5NCwtOTcyOT
-A4OTYyLC02NzkxNzkxMl19
+eyJoaXN0b3J5IjpbMTQ4NjY2OTM5NiwtODkwNjI5OTQsLTk3Mj
+kwODk2MiwtNjc5MTc5MTJdfQ==
 -->
