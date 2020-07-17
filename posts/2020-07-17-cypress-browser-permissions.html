@@ -229,14 +229,16 @@ describe(&quot;notifications&quot;, () =&gt; {
 <p>In Cypress, <a href="https://docs.cypress.io/api/plugins/browser-launch-api.html#Modify-browser-launch-arguments-preferences-and-extensions">you have control over the launch preferences for browsers</a>, so the magic lies in <em>what preferences to pass to each browser.</em></p>
 <p>This topic is not heavily documented <a href="https://github.com/cypress-io/cypress/issues/2671">as evidenced by this open issue in the Cypress repo</a> I came across while researching this. It has been open since 2018 with no one mentioning the ability to control launch preferences.</p>
 <p>Thanks to BrowserStack for <a href="https://www.browserstack.com/automate/handle-popups-alerts-prompts-in-automated-tests">documenting some of these permissions</a> as well as these StackOverflow posts:</p>
-<p>{% stackoverflow 55435198 %}</p>
-<p>{% stackoverflow 48007699 %}</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/55435198/selenium-python-allow-firefox-notifications">Selenium + Python Allow Firefox Notifications</a></li>
+<li><a href="https://stackoverflow.com/questions/48007699/how-to-allow-or-deny-notification-geo-location-microphone-camera-pop-up">How to allow or deny notification geo-location microphone camera pop up</a></li>
+</ul>
 <p>I was able to piece together the information needed to tackle this with a Cypress plugin. Since each browser family uses different preferences, I thought it would be best to abstract it.</p>
 <h3 id="whats-next">What's Next?</h3>
 <p>My hope is that this package is <em>actually short-lived</em> and the Cypress team can incorporate these permission settings into the core of the product, since it's such an important feature especially when testing new, modern APIs.</p>
 <p>There will be a <strong>full sample</strong> of using Cypress with this plugin (as well as other black magicks such as bypassing service workers and more!) in my <em>Testing Progressive Web Apps</em> course soon on <a href="https://bit.ly/KamranOnPluralsight">Pluralsight</a>. It should be released in August, you can follow me there to get notified when it releases. The sample app will be open source on GitHub so you'll be able to reference it 👍</p>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU0NzAxMDI5N119
+eyJoaXN0b3J5IjpbOTA3ODgxMjU0XX0=
 -->
 
 </div>
