@@ -4,8 +4,126 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2020</rights>
-	<updated>2020-07-17T03:26:32Z</updated>
+	<updated>2020-07-17T03:28:41Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2020-07-17-cypress-browser-permissions" />
+		<id>https://kamranicus.com/posts/2020-07-17-cypress-browser-permissions</id>
+		<title>Controlling Browser Permissions in Cypress End-to-End Tests</title>
+		<updated>2020-07-17T02:00:00Z</updated>
+		<content>&lt;p&gt;I am excited to release a new open source package &lt;a href="https://npmjs.com/package/cypress-browser-permissions"&gt;cypress-browser-permissions&lt;/a&gt;. 🎉 You can view it on GitHub at &lt;a href="https://github.com/kamranayub/cypress-browser-permissions"&gt;kamranayub/cypress-browser-permissions&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This package solves a real need when testing more sophisticated applications when using &lt;a href="https://cypress.io"&gt;Cypress&lt;/a&gt;, the end-to-end testing framework. It helps control the permission level of various browser features such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Desktop Notifications&lt;/li&gt;
+&lt;li&gt;Geolocation&lt;/li&gt;
+&lt;li&gt;Images&lt;/li&gt;
+&lt;li&gt;Camera&lt;/li&gt;
+&lt;li&gt;Microphone&lt;/li&gt;
+&lt;li&gt;etc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/87500464-2169f000-c622-11ea-8dbb-a480a6f137ac.png" class="img-fluid" alt="image" /&gt;&lt;/p&gt;
+&lt;h2 id="how-to-use-it"&gt;How to Use It&lt;/h2&gt;
+&lt;p&gt;To get started, you'll need to install the package and you'll need Cypress installed already.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;npm i cypress cypress-browser-permissions --save-dev
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If this is your first time installing Cypress, you'll need to run it once to generate a project structure:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;npx cypress open
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then, you need to initialize the plugin to hook it into Cypress' plugin pipeline. In &lt;code&gt;cypress/plugins/index.js&lt;/code&gt;, modify it as follows:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-diff"&gt;+ const { cypressBrowserPermissionsPlugin } = require('cypress-browser-permissions')
+
+/**
+ * &amp;#64;type {Cypress.PluginConfig}
+ */
+module.exports = (on, config) =&amp;gt; {
+  // `on` is used to hook into various events Cypress emits
+  // `config` is the resolved Cypress config
++ config = cypressBrowserPermissionsPlugin(on, config);
++ return config;
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now you will have the ability to control various permissions for Chrome, Edge, and Firefox using &lt;a href="https://docs.cypress.io/guides/guides/environment-variables.html"&gt;Cypress environment variables&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For example, if you want to just set permissions for your project you can do so in &lt;code&gt;cypress.json&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+  &amp;quot;env&amp;quot;: {
+    &amp;quot;browserPermissions&amp;quot;: {
+      &amp;quot;notifications&amp;quot;: &amp;quot;allow&amp;quot;,
+      &amp;quot;geolocation&amp;quot;: &amp;quot;allow&amp;quot;
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The plugin will read the permission settings and apply them when launching the browser. It will also reset between launches since modifying the browser profile is persisted across sessions.&lt;/p&gt;
+&lt;p&gt;You can read more about &lt;a href="https://github.com/kamranayub/cypress-browser-permissions"&gt;supported permissions and values in the README&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="writing-an-end-to-end-notification-test"&gt;Writing an End-to-End Notification Test&lt;/h3&gt;
+&lt;p&gt;So let's try it out! Once I finish my &lt;strong&gt;Testing Progressive Web Apps&lt;/strong&gt; &lt;a href="http://bit.ly/KamranOnPluralsight"&gt;Pluralsight course&lt;/a&gt;, it will come with an open source sample app. In the meantime, we can write a basic test to see if permissions are working. This same test is included in the repo.&lt;/p&gt;
+&lt;p&gt;First, we have an HTML file that uses &lt;code&gt;window.Notification&lt;/code&gt; to display a desktop notification:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;cypress/html/notification.html&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
+&amp;lt;head&amp;gt;
+    &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;
+    &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1.0&amp;quot;&amp;gt;
+    &amp;lt;title&amp;gt;Cypress Notification Test&amp;lt;/title&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+    &amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+        const n = new window.Notification('test', { body: 'This is a test!' })
+        n.addEventListener('show', (e) =&amp;gt; {
+            window.__CypressNotificationShown = e;
+        })
+    &amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can learn more about how the &lt;a href="https://developer.mozilla.org/en-US/docs/Web/API/notification"&gt;Notification API&lt;/a&gt; works but what we are doing is immediately triggering a notification. Once the browser shows the toast, it triggers the &lt;code&gt;show&lt;/code&gt; event on the &lt;code&gt;Notification&lt;/code&gt; instance. Since Cypress is awesome and we can hook directly into the &lt;code&gt;window&lt;/code&gt; object, we set a callback value globally that we can then inspect/wait for in our test.&lt;/p&gt;
+&lt;p&gt;If you have a blank Cypress project you do not even need a server as Cypress will automatically host the root of the project when there is no other configuration.&lt;/p&gt;
+&lt;p&gt;Save the &lt;code&gt;notification.html&lt;/code&gt; file under &lt;code&gt;cypress/html&lt;/code&gt; and then we can visit that page in the test.&lt;/p&gt;
+&lt;p&gt;We can create a test suite in &lt;code&gt;cypress/integration&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;cypress/integration/notification.test.js&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;import { isPermissionAllowed } from 'cypress-browser-permissions';
+
+describe(&amp;quot;notifications&amp;quot;, () =&amp;gt; {
+    it(&amp;quot;should be enabled&amp;quot;, () =&amp;gt; {
+        expect(isPermissionAllowed(&amp;quot;notifications&amp;quot;)).to.be.true;
+    })
+
+    // Only test notification showing in &amp;quot;headed&amp;quot; browsers, which also
+    // works in CI :tada:
+    Cypress.browser.isHeaded &amp;amp;&amp;amp; it(&amp;quot;should display desktop notification&amp;quot;, () =&amp;gt; {
+    
+        // Visit the page we created previously
+        cy.visit('/cypress/html/notification.html')
+        
+        // Wait for the window callback to populate with the event data
+        cy.window().its('__CypressNotificationShown').should('exist');
+    })
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we can run our tests:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;npx cypress open
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That's all! If &lt;code&gt;browserPermissions.notifications&lt;/code&gt; is set to &lt;code&gt;allow&lt;/code&gt; then our test should pass:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/87737665-3620c200-c7a1-11ea-8429-73bd40c99bed.png" class="img-fluid" alt="test run" /&gt;&lt;/p&gt;
+&lt;p&gt;And a notification will be shown!&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/87737706-52bcfa00-c7a1-11ea-893e-9f6f8dec1e2e.png" class="img-fluid" alt="toast" /&gt;&lt;/p&gt;
+&lt;h3 id="how-it-works"&gt;How It Works&lt;/h3&gt;
+&lt;p&gt;In Cypress, &lt;a href="https://docs.cypress.io/api/plugins/browser-launch-api.html#Modify-browser-launch-arguments-preferences-and-extensions"&gt;you have control over the launch preferences for browsers&lt;/a&gt;, so the magic lies in &lt;em&gt;what preferences to pass to each browser.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;This topic is not heavily documented &lt;a href="https://github.com/cypress-io/cypress/issues/2671"&gt;as evidenced by this open issue in the Cypress repo&lt;/a&gt; I came across while researching this. It has been open since 2018 with no one mentioning the ability to control launch preferences.&lt;/p&gt;
+&lt;p&gt;Thanks to BrowserStack for &lt;a href="https://www.browserstack.com/automate/handle-popups-alerts-prompts-in-automated-tests"&gt;documenting some of these permissions&lt;/a&gt; as well as these StackOverflow posts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://stackoverflow.com/questions/55435198/selenium-python-allow-firefox-notifications"&gt;Selenium + Python Allow Firefox Notifications&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://stackoverflow.com/questions/48007699/how-to-allow-or-deny-notification-geo-location-microphone-camera-pop-up"&gt;How to allow or deny notification geo-location microphone camera pop up&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I was able to piece together the information needed to tackle this with a Cypress plugin. Since each browser family uses different preferences, I thought it would be best to abstract it.&lt;/p&gt;
+&lt;h3 id="whats-next"&gt;What's Next?&lt;/h3&gt;
+&lt;p&gt;My hope is that this package is &lt;em&gt;actually short-lived&lt;/em&gt; and the Cypress team can incorporate these permission settings into the core of the product, since it's such an important feature especially when testing new, modern APIs.&lt;/p&gt;
+&lt;p&gt;There will be a &lt;strong&gt;full sample&lt;/strong&gt; of using Cypress with this plugin (as well as other black magicks such as bypassing service workers and more!) in my &lt;em&gt;Testing Progressive Web Apps&lt;/em&gt; course soon on &lt;a href="https://bit.ly/KamranOnPluralsight"&gt;Pluralsight&lt;/a&gt;. It should be released in August, you can follow me there to get notified when it releases. The sample app will be open source on GitHub so you'll be able to reference it 👍&lt;/p&gt;
+&lt;!--stackedit_data:
+eyJoaXN0b3J5IjpbMjEwNTMxMzE3OCwxMzYzNTUzODU5XX0=
+--&gt;
+</content>
+		<summary>&lt;p&gt;I am excited to release a new open source package &lt;a href="https://npmjs.com/package/cypress-browser-permissions"&gt;cypress-browser-permissions&lt;/a&gt;. 🎉 You can view it on GitHub at &lt;a href="https://github.com/kamranayub/cypress-browser-permissions"&gt;kamranayub/cypress-browser-permissions&lt;/a&gt;.&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2020-05-21-storybook-for-game-engines" />
 		<id>https://kamranicus.com/posts/2020-05-21-storybook-for-game-engines</id>
@@ -1316,26 +1434,5 @@ their power. Be sure to check it out!&lt;/p&gt;
 		<content>&lt;p&gt;I just published my third Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/3Y65d"&gt;Getting Started with React and TypeScript&lt;/a&gt;. I cover a few different ways to start up a new React project with TypeScript including create-react-app, from scratch, and bundling with Webpack/Parcel.&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;I just published my third Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/3Y65d"&gt;Getting Started with React and TypeScript&lt;/a&gt;. I cover a few different ways to start up a new React project with TypeScript including create-react-app, from scratch, and bundling with Webpack/Parcel.&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2019-02-01-ndc-minnesota-flexible-ui-with-react-graphql-typescript" />
-		<id>https://kamranicus.com/posts/2019-02-01-ndc-minnesota-flexible-ui-with-react-graphql-typescript</id>
-		<title>NDC MN 2019: Designing a Flexible UI Architecture with React and GraphQL</title>
-		<updated>2019-02-02T02:38:00Z</updated>
-		<content>&lt;p&gt;I'm excited to &lt;a href="/posts/2018-05-11-ndc-minnesota-typescript-react"&gt;once again&lt;/a&gt; be invited to &lt;a href="https://ndcminnesota.com/talk/designing-a-flexible-ui-architecture-with-react-and-graphql/"&gt;speak at NDC Minnesota&lt;/a&gt;!&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; The recording is live:&lt;/p&gt;
-&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/mIejhIX7ObE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
-&lt;p&gt;Here's the what I'm speaking about:&lt;/p&gt;
-&lt;h3 id="designing-a-flexible-ui-architecture-with-react-and-graphql"&gt;Designing a Flexible UI Architecture with React and GraphQL&lt;/h3&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Many line-of-business apps we build today are &amp;quot;forms over data&amp;quot; applications. That data has its own backend schema and business rules, used by systems across the company. As that data flexes and scales, so do the needs of our UIs. Trying to manually track and maintain those data type changes in our UIs is time consuming and inevitably leads to bugs that cause data quality issues and results in real business impact.&lt;/p&gt;
-&lt;p&gt;Instead why don't we introduce our own UI schema that abstracts the myriad backend data sources with common sets of rules and metadata shared with both the client and server? I will show you how we designed and built a modern schema-driven UI architecture with React, Redux, TypeScript, and GraphQL that could manage business complexity and still scale to meet future data requirements.&lt;/p&gt;
-&lt;p&gt;I'll share some lessons learned and advice for your own applications so you can design your own data-driven flexible UI architecture that fits your business needs.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;I'm real excited about this talk because it's the culmination of exactly a year's worth of learning and effort at my job--rewriting part of an application from AngularJS to React/TypeScript.&lt;/p&gt;
-&lt;p&gt;In the process I became intimately familiar with how to build production React applications, using TypeScript with React more intensely, testing with Jest and &lt;a href="https://cypress.io"&gt;Cypress&lt;/a&gt;, and working with Apollo Server GraphQL (like fixing &lt;a href="https://kamranicus.com/posts/2018-03-06-graphql-apollo-object-caching"&gt;weird bugs&lt;/a&gt;). We solved some really interesting business problems that I'll dive into during the talk and ultimately created an elegant solution that has scaled nicely in terms of maintenance and agility for our product.&lt;/p&gt;
-&lt;p&gt;Hope to see you there, please stop me and say hello! If you can, try to &lt;a href="https://pubconf.io/"&gt;attend PubConf&lt;/a&gt; too, it's a &lt;strong&gt;ton&lt;/strong&gt; of fun.&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;I'm excited to &lt;a href="/posts/2018-05-11-ndc-minnesota-typescript-react"&gt;once again&lt;/a&gt; be invited to &lt;a href="https://ndcminnesota.com/talk/designing-a-flexible-ui-architecture-with-react-and-graphql/"&gt;speak at NDC Minnesota&lt;/a&gt;!&lt;/p&gt;</summary>
 	</entry>
 </feed>
