@@ -148,9 +148,8 @@ This topic is not heavily documented [as evidenced by this open issue in the Cyp
 
 Thanks to BrowserStack for [documenting some of these permissions](https://www.browserstack.com/automate/handle-popups-alerts-prompts-in-automated-tests) as well as these StackOverflow posts:
 
-{% stackoverflow 55435198 %}
-
-{% stackoverflow 48007699 %}
+- [Selenium + Python Allow Firefox Notifications](https://stackoverflow.com/questions/55435198/selenium-python-allow-firefox-notifications)
+- [How to allow or deny notification geo-location microphone camera pop up](https://stackoverflow.com/questions/48007699/how-to-allow-or-deny-notification-geo-location-microphone-camera-pop-up)
 
 I was able to piece together the information needed to tackle this with a Cypress plugin. Since each browser family uses different preferences, I thought it would be best to abstract it.
 
@@ -160,5 +159,5 @@ My hope is that this package is _actually short-lived_ and the Cypress team can 
 
 There will be a **full sample** of using Cypress with this plugin (as well as other black magicks such as bypassing service workers and more!) in my _Testing Progressive Web Apps_ course soon on [Pluralsight](https://bit.ly/KamranOnPluralsight). It should be released in August, you can follow me there to get notified when it releases. The sample app will be open source on GitHub so you'll be able to reference it 👍 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU0NzAxMDI5N119
+eyJoaXN0b3J5IjpbOTA3ODgxMjU0XX0=
 -->
