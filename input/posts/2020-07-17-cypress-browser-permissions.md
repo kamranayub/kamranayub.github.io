@@ -1,5 +1,5 @@
 Title: "Controlling Browser Permissions in Cypress End-to-End Tests"
-Published: 2020-07-17 09:00:00 -0500
+Published: 2020-07-16 21:00:00 -0500
 Lead: I've released an open source package, `cypress-browser-permissions` that handles managing browser permissions in Cypress
 Tags:
 - Open Source
@@ -159,5 +159,5 @@ My hope is that this package is _actually short-lived_ and the Cypress team can 
 
 There will be a **full sample** of using Cypress with this plugin (as well as other black magicks such as bypassing service workers and more!) in my _Testing Progressive Web Apps_ course soon on [Pluralsight](https://bit.ly/KamranOnPluralsight). It should be released in August, you can follow me there to get notified when it releases. The sample app will be open source on GitHub so you'll be able to reference it 👍 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM2MzU1Mzg1OV19
+eyJoaXN0b3J5IjpbMjEwNTMxMzE3OCwxMzYzNTUzODU5XX0=
 -->
