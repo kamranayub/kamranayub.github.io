@@ -38,7 +38,13 @@ I kept getting this error:
 [0-0] 16: 0x13f5159  [/usr/local/bin/node]
 ```
 
-What was **wr
+What was **weird** is that the tests all passed!
+
+It did not turn out to be a Selenium Grid issue, as I wasn't using that but it turned out to be another simple fix (i.e. nothing to do with memory size).
+
+**I was missing the `@wdio/sync` package from my package dependencies after I split out my e2e tests into a separate folder.**
+
+Once I added `@wdio/sync` back, things worked. The telltale sign was that the tests were taking 1 minute
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzk1Mjg4ODYzXX0=
+eyJoaXN0b3J5IjpbMTU2MzM1NDY3XX0=
 -->
