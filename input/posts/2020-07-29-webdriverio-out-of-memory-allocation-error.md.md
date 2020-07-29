@@ -1,5 +1,5 @@
 Title: "JavaScript heap out of memory with WebdriverIO"
-Published: false
+Published: 2020-07-29 08:50:00 -0500
 Lead: I recently spent a few hours wrestling with a JavaScript out-of-memory heap error when running WebdriverIO in a continuous integration environment
 Tags:
 - WebdriverIO
@@ -48,17 +48,11 @@ Once I added `@wdio/sync` back, things worked.
 
 ```diff
 "dependencies": {
-
-"@wdio/cli": "6.1.24",
-
-"@wdio/local-runner": "6.1.24",
-
-"@wdio/mocha-framework": "6.1.19",
-
-"@wdio/spec-reporter": "6.1.23",
-
-"@wdio/sync": "6.1.14",
-
+  "@wdio/cli": "6.1.24",
+  "@wdio/local-runner": "6.1.24",
+  "@wdio/mocha-framework": "6.1.19",
+  "@wdio/spec-reporter": "6.1.23",
++ "@wdio/sync": "6.1.14"
 }
 ```
 
@@ -66,5 +60,5 @@ The telltale sign was that the tests were taking 1 minute when before I checked 
 
 Hope this helps anyone in a similar situation!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQxOTk5ODI3LC0xNzQ0OTE4MTAyXX0=
+eyJoaXN0b3J5IjpbLTU5MzA5MTc0LC0xNzQ0OTE4MTAyXX0=
 -->
