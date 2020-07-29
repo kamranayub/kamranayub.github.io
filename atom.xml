@@ -4,7 +4,7 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2020</rights>
-	<updated>2020-07-29T13:55:57Z</updated>
+	<updated>2020-07-29T13:58:06Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
 	<entry>
 		<link href="https://kamranicus.com/posts/2020-07-29-webdriverio-out-of-memory-allocation-error.md" />
@@ -39,7 +39,7 @@
 [0-0] 16: 0x13f5159  [/usr/local/bin/node]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;What was &lt;strong&gt;weird&lt;/strong&gt; is that the tests all passed!&lt;/p&gt;
-&lt;p&gt;It did not turn out to be a Selenium Grid issue, as I wasn't using that but it turned out to be another simple fix (i.e. nothing to do with memory size).&lt;/p&gt;
+&lt;p&gt;It did not &lt;a href="https://gregtyler.co.uk/blog/fatal-error-allocation-failed-error-with-webdriverio-and-cucumber"&gt;turn out to be a Selenium Grid issue&lt;/a&gt;, as I wasn't using that but it turned out to be another simple fix (i.e. nothing to do with memory size).&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;I was missing the &lt;code&gt;&amp;#64;wdio/sync&lt;/code&gt; package from my package dependencies after I split out my e2e tests into a separate folder.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Once I added &lt;code&gt;&amp;#64;wdio/sync&lt;/code&gt; back, things worked.&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-diff"&gt;&amp;quot;dependencies&amp;quot;: {
@@ -53,7 +53,8 @@
 &lt;p&gt;The telltale sign was that the tests were taking 1 minute when before I checked the logs and the tests used to run in 4 seconds. &lt;strong&gt;Ding, ding, ding!&lt;/strong&gt; It must not wait properly for the commands without the sync package and uses up more and more memory.&lt;/p&gt;
 &lt;p&gt;Hope this helps anyone in a similar situation!&lt;/p&gt;
 &lt;!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU5MzA5MTc0LC0xNzQ0OTE4MTAyXX0=
+eyJoaXN0b3J5IjpbLTExMDM0NTY0MzksLTE3NDQ5MTgxMDJdfQ
+==
 --&gt;
 </content>
 		<summary>&lt;p&gt;Throughout &lt;a href="https://bit.ly/KamranOnPluralsight"&gt;working on a course&lt;/a&gt; you usually run into bugs and issues that throw you for a loop for awhile. In this case, it was doubly frustrating because I had previously set up &lt;a href="https://webdriver.io"&gt;webdriverio&lt;/a&gt; to run in my continuous integration environment (GitHub Actions) and &lt;em&gt;it was working fine&lt;/em&gt;. Until it stopped working.&lt;/p&gt;</summary>
