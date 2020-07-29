@@ -7,7 +7,7 @@ Tags:
 - Testing
 ---
 
-Throughout working on a course you usually run into bugs and issues that throw you for a loop for awhile. In this case, it was doubly frustrating because I had previously set up [webdriverio](https://webdriver.io) to run in my continuous integration environment (GitHub Actions) and _it was working fine_. Until it stopped working.
+Throughout [working on a course](https://bit.ly/KamranOnPluralsight) you usually run into bugs and issues that throw you for a loop for awhile. In this case, it was doubly frustrating because I had previously set up [webdriverio](https://webdriver.io) to run in my continuous integration environment (GitHub Actions) and _it was working fine_. Until it stopped working.
 
 I kept getting this error:
 
@@ -44,7 +44,27 @@ It did not turn out to be a Selenium Grid issue, as I wasn't using that but it t
 
 **I was missing the `@wdio/sync` package from my package dependencies after I split out my e2e tests into a separate folder.**
 
-Once I added `@wdio/sync` back, things worked. The telltale sign was that the tests were taking 1 minute when before I checked the logs and the tests used to run in 4 seconds. **Ding, ding, ding!** It must not wait properly for the commands without the sync package and uses up more and more memory.
+Once I added `@wdio/sync` back, things worked. 
+
+```diff
+"dependencies": {
+
+"@wdio/cli": "6.1.24",
+
+"@wdio/local-runner": "6.1.24",
+
+"@wdio/mocha-framework": "6.1.19",
+
+"@wdio/spec-reporter": "6.1.23",
+
+"@wdio/sync": "6.1.14",
+
+}
+```
+
+The telltale sign was that the tests were taking 1 minute when before I checked the logs and the tests used to run in 4 seconds. **Ding, ding, ding!** It must not wait properly for the commands without the sync package and uses up more and more memory.
+
+Hope this helps anyone in a similar situation!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NDQ5MTgxMDJdfQ==
+eyJoaXN0b3J5IjpbMTQxOTk5ODI3LC0xNzQ0OTE4MTAyXX0=
 -->
