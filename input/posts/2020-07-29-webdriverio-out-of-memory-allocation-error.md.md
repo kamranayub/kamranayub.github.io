@@ -40,7 +40,7 @@ I kept getting this error:
 
 What was **weird** is that the tests all passed!
 
-It did not turn out to be a Selenium Grid issue, as I wasn't using that but it turned out to be another simple fix (i.e. nothing to do with memory size).
+It did not [turn out to be a Selenium Grid issue](https://gregtyler.co.uk/blog/fatal-error-allocation-failed-error-with-webdriverio-and-cucumber), as I wasn't using that but it turned out to be another simple fix (i.e. nothing to do with memory size).
 
 **I was missing the `@wdio/sync` package from my package dependencies after I split out my e2e tests into a separate folder.**
 
@@ -60,5 +60,6 @@ The telltale sign was that the tests were taking 1 minute when before I checked 
 
 Hope this helps anyone in a similar situation!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU5MzA5MTc0LC0xNzQ0OTE4MTAyXX0=
+eyJoaXN0b3J5IjpbLTExMDM0NTY0MzksLTE3NDQ5MTgxMDJdfQ
+==
 -->
