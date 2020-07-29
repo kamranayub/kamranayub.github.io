@@ -157,9 +157,12 @@
 [0-0] 15: 0xc2fb66 v8::internal::Builtin_CallSitePrototypeToString(int, unsigned long*, v8::internal::Isolate*) [/usr/local/bin/node]
 [0-0] 16: 0x13f5159  [/usr/local/bin/node]
 </code></pre>
-<p>What was **wr</p>
+<p>What was <strong>weird</strong> is that the tests all passed!</p>
+<p>It did not turn out to be a Selenium Grid issue, as I wasn't using that but it turned out to be another simple fix (i.e. nothing to do with memory size).</p>
+<p><strong>I was missing the <code>&#64;wdio/sync</code> package from my package dependencies after I split out my e2e tests into a separate folder.</strong></p>
+<p>Once I added <code>&#64;wdio/sync</code> back, things worked. The telltale sign was that the tests were taking 1 minute</p>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzk1Mjg4ODYzXX0=
+eyJoaXN0b3J5IjpbMTU2MzM1NDY3XX0=
 -->
 
 </div>
