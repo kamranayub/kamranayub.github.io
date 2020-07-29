@@ -114,7 +114,7 @@
     </h1>
                 
     <div class="ui  sub header">        
-    </div>
+Published on Wednesday, July 29, 2020<br>    </div>
         <div class="ui basic vertical spaced segment">
                     <a role="button" href="/tags/JavaScript" class="ui small compact button">JavaScript</a>
                     <a role="button" href="/tags/Testing" class="ui small compact button">Testing</a>
@@ -130,7 +130,7 @@
       
 
 <div class="ui huge basic post content segment">
-  <p>Throughout working on a course you usually run into bugs and issues that throw you for a loop for awhile. In this case, it was doubly frustrating because I had previously set up <a href="https://webdriver.io">webdriverio</a> to run in my continuous integration environment (GitHub Actions) and <em>it was working fine</em>. Until it stopped working.</p>
+  <p>Throughout <a href="https://bit.ly/KamranOnPluralsight">working on a course</a> you usually run into bugs and issues that throw you for a loop for awhile. In this case, it was doubly frustrating because I had previously set up <a href="https://webdriver.io">webdriverio</a> to run in my continuous integration environment (GitHub Actions) and <em>it was working fine</em>. Until it stopped working.</p>
 <p>I kept getting this error:</p>
 <pre><code>&lt;--- Last few GCs ---&gt;
 
@@ -160,9 +160,19 @@
 <p>What was <strong>weird</strong> is that the tests all passed!</p>
 <p>It did not turn out to be a Selenium Grid issue, as I wasn't using that but it turned out to be another simple fix (i.e. nothing to do with memory size).</p>
 <p><strong>I was missing the <code>&#64;wdio/sync</code> package from my package dependencies after I split out my e2e tests into a separate folder.</strong></p>
-<p>Once I added <code>&#64;wdio/sync</code> back, things worked. The telltale sign was that the tests were taking 1 minute when before I checked the logs and the tests used to run in 4 seconds. <strong>Ding, ding, ding!</strong> It must not wait properly for the commands without the sync package and uses up more and more memory.</p>
+<p>Once I added <code>&#64;wdio/sync</code> back, things worked.</p>
+<pre><code class="language-diff">&quot;dependencies&quot;: {
+  &quot;&#64;wdio/cli&quot;: &quot;6.1.24&quot;,
+  &quot;&#64;wdio/local-runner&quot;: &quot;6.1.24&quot;,
+  &quot;&#64;wdio/mocha-framework&quot;: &quot;6.1.19&quot;,
+  &quot;&#64;wdio/spec-reporter&quot;: &quot;6.1.23&quot;,
++ &quot;&#64;wdio/sync&quot;: &quot;6.1.14&quot;
+}
+</code></pre>
+<p>The telltale sign was that the tests were taking 1 minute when before I checked the logs and the tests used to run in 4 seconds. <strong>Ding, ding, ding!</strong> It must not wait properly for the commands without the sync package and uses up more and more memory.</p>
+<p>Hope this helps anyone in a similar situation!</p>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NDQ5MTgxMDJdfQ==
+eyJoaXN0b3J5IjpbLTU5MzA5MTc0LC0xNzQ0OTE4MTAyXX0=
 -->
 
 </div>
