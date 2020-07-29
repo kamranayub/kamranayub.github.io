@@ -44,7 +44,7 @@ It did not turn out to be a Selenium Grid issue, as I wasn't using that but it t
 
 **I was missing the `@wdio/sync` package from my package dependencies after I split out my e2e tests into a separate folder.**
 
-Once I added `@wdio/sync` back, things worked. The telltale sign was that the tests were taking 1 minute
+Once I added `@wdio/sync` back, things worked. The telltale sign was that the tests were taking 1 minute when before I checked the logs and the tests used to run in 4 seconds. **Ding, ding, ding!** It must not wait properly for the commands without the sync package and uses up more and more memory.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU2MzM1NDY3XX0=
+eyJoaXN0b3J5IjpbLTE3NDQ5MTgxMDJdfQ==
 -->
