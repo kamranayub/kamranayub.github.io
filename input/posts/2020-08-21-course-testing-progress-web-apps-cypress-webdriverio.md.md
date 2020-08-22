@@ -16,6 +16,9 @@ Today my new course [Testing Progressive Web Apps](https://bit.ly/PSPWATesting) 
 I learned quite a bit while developing this course because in order to test a PWA, you need to *have* a PWA in the first place!
 
 For the course I developed the [Carved Rock Fitness Order Tracker](https://bit.ly/PSPWATestingSample) which is an open source sample application for demo purposes.
+
+![image](https://user-images.githubusercontent.com/563819/90946131-9c77b080-e3ef-11ea-8fe7-7198ce0fab0f.png)
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTA4ODAzMzIzXX0=
+eyJoaXN0b3J5IjpbLTIzNzY2NzEwN119
 -->
