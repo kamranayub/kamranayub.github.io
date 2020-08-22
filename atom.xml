@@ -4,8 +4,19 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2020</rights>
-	<updated>2020-08-22T01:41:05Z</updated>
+	<updated>2020-08-22T01:43:16Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2020-08-21-course-testing-progress-web-apps-cypress-webdriverio.md" />
+		<link rel="enclosure" type="image" href="https://kamranicus.com/563819/87799786-42456780-c813-11ea-9e84-9a4ff71b72c8.png" />
+		<id>https://kamranicus.com/posts/2020-08-21-course-testing-progress-web-apps-cypress-webdriverio.md</id>
+		<title>New Course: Testing Progressive Web Apps on Pluralsight</title>
+		<updated>2020-08-22T01:00:00Z</updated>
+		<content>&lt;!--stackedit_data:
+eyJoaXN0b3J5IjpbLTkxNzA2NTA4XX0=
+--&gt;
+</content>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2020-07-29-webdriverio-out-of-memory-allocation-error.md" />
 		<id>https://kamranicus.com/posts/2020-07-29-webdriverio-out-of-memory-allocation-error.md</id>
@@ -1467,18 +1478,5 @@ ansible_become_method=su
 &lt;p&gt;Looking towards the summer (Q2), I'm also pretty excited for NDC MN, some course maintenance, and then re-focusing on KTOMG. This will also be our first summer that Cassie and the kids will have off together! So they will be visiting me at work more often and I'll be trying to spend time with them when I can. The grill is already out 🔥🍔&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;This is my first time trying a quarterly update on &lt;a href="https://kamranicus.com/posts/2018-12-20-year-in-review-2019-goals"&gt;my yearly goal setting&lt;/a&gt; but I was updating that old post with progress notes and decided I should just formally document progress every quarter instead of retrofitting an older post. That way if any goals &lt;em&gt;evolve&lt;/em&gt; (which some have!) then I can look back and see that change happening. Also this &lt;em&gt;forces&lt;/em&gt; me to post at least once every 4 months which may get me into the groove of writing more generally.&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes" />
-		<id>https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes</id>
-		<title>Data Modeling with Indexes in RavenDB</title>
-		<updated>2019-04-04T13:30:00Z</updated>
-		<content>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.codeproject.com/Articles/1348454/Data-Modeling-with-Indexes-in-RavenDB"&gt;Data Modeling with Indexes in RavenDB&lt;/a&gt;
-went live today on CodeProject and covers how indexes work in Raven and some simple to advanced use cases to show off
-their power. Be sure to check it out!&lt;/p&gt;
-&lt;p&gt;I'm excited to be working with HN to bring some more articles to a wider audience so I'll be sure to share when any other articles go live.&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;</summary>
 	</entry>
 </feed>
