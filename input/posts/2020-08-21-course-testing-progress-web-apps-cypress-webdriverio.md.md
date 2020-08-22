@@ -26,7 +26,11 @@ The is a fully-developed PWA which features:
 - Local notifications
 - Responsive design
 - Cypress and WebDriverIO tests
-- BrowserStack and Sauce Lab
+- Local and BrowserStack-powered tests
+
+The course uses this app as the basis of walking through how to handle all the various scenarios you'd encounter when testing a PWA like how to bypass service worker caching, notification permissions, and more.
+
+Since Cypress didn't offer a built-in way to control browser permissions in a standard way, I also released the [cypress-browser-permissions](
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTMzODM5NTg3XX0=
+eyJoaXN0b3J5IjpbMTQ5MzIyNTkyOV19
 -->
