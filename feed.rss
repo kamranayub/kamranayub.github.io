@@ -5,36 +5,8 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2020</copyright>
-		<pubDate>Sat, 22 Aug 2020 01:57:18 GMT</pubDate>
-		<lastBuildDate>Sat, 22 Aug 2020 01:57:18 GMT</lastBuildDate>
-		<item>
-			<title>New Course: Testing Progressive Web Apps on Pluralsight</title>
-			<link>https://kamranicus.com/posts/2020-08-21-course-testing-progress-web-apps-cypress-webdriverio.md</link>
-			<description>&lt;p&gt;Today my new course &lt;a href="https://bit.ly/PSPWATesting"&gt;Testing Progressive Web Apps&lt;/a&gt; has been published and I'm pretty excited for it (like usual!).&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2020-08-21-course-testing-progress-web-apps-cypress-webdriverio.md</guid>
-			<pubDate>Sat, 22 Aug 2020 01:00:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;Today my new course &lt;a href="https://bit.ly/PSPWATesting"&gt;Testing Progressive Web Apps&lt;/a&gt; has been published and I'm pretty excited for it (like usual!).&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/90946059-f7f56e80-e3ee-11ea-8f47-3d57e091e600.png" class="img-fluid" alt="course overview" /&gt;&lt;/p&gt;
-&lt;h2 id="what-i-learned"&gt;What I Learned&lt;/h2&gt;
-&lt;p&gt;I learned quite a bit while developing this course because in order to test a PWA, you need to &lt;em&gt;have&lt;/em&gt; a PWA in the first place!&lt;/p&gt;
-&lt;p&gt;For the course I developed the &lt;a href="https://bit.ly/PSPWATestingSample"&gt;Carved Rock Fitness Order Tracker&lt;/a&gt; which is an open source sample application for demo purposes.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/90946131-9c77b080-e3ef-11ea-8fe7-7198ce0fab0f.png" class="img-fluid" alt="Course sample demo app" /&gt;&lt;/p&gt;
-&lt;p&gt;The is a fully-developed PWA which features:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Offline support&lt;/li&gt;
-&lt;li&gt;Service worker caching&lt;/li&gt;
-&lt;li&gt;Local notifications&lt;/li&gt;
-&lt;li&gt;Responsive design&lt;/li&gt;
-&lt;li&gt;Cypress and WebDriverIO tests&lt;/li&gt;
-&lt;li&gt;Local and BrowserStack-powered tests&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The course uses this app as the basis of walking through how to handle all the various scenarios you'd encounter when testing a PWA like how to bypass service worker caching, notification permissions, and more.&lt;/p&gt;
-&lt;p&gt;Since Cypress didn't offer a built-in way to control browser permissions in a standard way, I also released the [cypress-browser-permissions](&lt;/p&gt;
-&lt;!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ5MzIyNTkyOV19
---&gt;
-</content:encoded>
-		</item>
+		<pubDate>Sat, 22 Aug 2020 14:40:38 GMT</pubDate>
+		<lastBuildDate>Sat, 22 Aug 2020 14:40:38 GMT</lastBuildDate>
 		<item>
 			<title>JavaScript heap out of memory with WebdriverIO</title>
 			<link>https://kamranicus.com/posts/2020-07-29-webdriverio-out-of-memory-allocation-error.md</link>
@@ -1495,6 +1467,19 @@ ansible_become_method=su
 &lt;p&gt;I have been thinking of what I want Kamranicus.com to be and how it should change to host my content and showcase different things but haven't landed on anything final yet. As you perhaps might notice, in the posts and guides I've enabled Adsense since there are some popular pieces of content on here and I actually earn a little from my Amazon affiliate links already.&lt;/p&gt;
 &lt;p&gt;I was also very excited and thankful for the opportunity to do some freelancing as it lit a fire under me to get me working with some business products like &lt;a href="http://fbuy.me/mou3m"&gt;Quickbooks&lt;/a&gt; (use my 50% off referral link) and &lt;a href="http://dochub.com"&gt;Dochub&lt;/a&gt; to better manage my side hustling. It &lt;em&gt;also&lt;/em&gt; derailed my focus on KTOMG for the spring since March-May has just been doing writing leaving much less time to get things done for KTOMG in a timely manner. Oh well!&lt;/p&gt;
 &lt;p&gt;Looking towards the summer (Q2), I'm also pretty excited for NDC MN, some course maintenance, and then re-focusing on KTOMG. This will also be our first summer that Cassie and the kids will have off together! So they will be visiting me at work more often and I'll be trying to spend time with them when I can. The grill is already out 🔥🍔&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Data Modeling with Indexes in RavenDB</title>
+			<link>https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes</link>
+			<description>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes</guid>
+			<pubDate>Thu, 04 Apr 2019 13:30:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.codeproject.com/Articles/1348454/Data-Modeling-with-Indexes-in-RavenDB"&gt;Data Modeling with Indexes in RavenDB&lt;/a&gt;
+went live today on CodeProject and covers how indexes work in Raven and some simple to advanced use cases to show off
+their power. Be sure to check it out!&lt;/p&gt;
+&lt;p&gt;I'm excited to be working with HN to bring some more articles to a wider audience so I'll be sure to share when any other articles go live.&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>
