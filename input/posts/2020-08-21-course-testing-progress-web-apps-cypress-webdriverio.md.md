@@ -17,8 +17,16 @@ I learned quite a bit while developing this course because in order to test a PW
 
 For the course I developed the [Carved Rock Fitness Order Tracker](https://bit.ly/PSPWATestingSample) which is an open source sample application for demo purposes.
 
-![image](https://user-images.githubusercontent.com/563819/90946131-9c77b080-e3ef-11ea-8fe7-7198ce0fab0f.png)
+![Course sample demo app](https://user-images.githubusercontent.com/563819/90946131-9c77b080-e3ef-11ea-8fe7-7198ce0fab0f.png)
 
+The is a fully-developed PWA which features:
+
+- Offline support
+- Service worker caching
+- Local notifications
+- Responsive design
+- Cypress and WebDriverIO tests
+- BrowserStack and Sauce Lab
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIzNzY2NzEwN119
+eyJoaXN0b3J5IjpbOTMzODM5NTg3XX0=
 -->
