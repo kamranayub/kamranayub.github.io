@@ -5,8 +5,8 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2020</copyright>
-		<pubDate>Sat, 22 Aug 2020 01:53:18 GMT</pubDate>
-		<lastBuildDate>Sat, 22 Aug 2020 01:53:18 GMT</lastBuildDate>
+		<pubDate>Sat, 22 Aug 2020 01:55:23 GMT</pubDate>
+		<lastBuildDate>Sat, 22 Aug 2020 01:55:23 GMT</lastBuildDate>
 		<item>
 			<title>New Course: Testing Progressive Web Apps on Pluralsight</title>
 			<link>https://kamranicus.com/posts/2020-08-21-course-testing-progress-web-apps-cypress-webdriverio.md</link>
@@ -18,9 +18,18 @@
 &lt;h2 id="what-i-learned"&gt;What I Learned&lt;/h2&gt;
 &lt;p&gt;I learned quite a bit while developing this course because in order to test a PWA, you need to &lt;em&gt;have&lt;/em&gt; a PWA in the first place!&lt;/p&gt;
 &lt;p&gt;For the course I developed the &lt;a href="https://bit.ly/PSPWATestingSample"&gt;Carved Rock Fitness Order Tracker&lt;/a&gt; which is an open source sample application for demo purposes.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/90946131-9c77b080-e3ef-11ea-8fe7-7198ce0fab0f.png" class="img-fluid" alt="image" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/90946131-9c77b080-e3ef-11ea-8fe7-7198ce0fab0f.png" class="img-fluid" alt="Course sample demo app" /&gt;&lt;/p&gt;
+&lt;p&gt;The is a fully-developed PWA which features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Offline support&lt;/li&gt;
+&lt;li&gt;Service worker caching&lt;/li&gt;
+&lt;li&gt;Local notifications&lt;/li&gt;
+&lt;li&gt;Responsive design&lt;/li&gt;
+&lt;li&gt;Cypress and WebDriverIO tests&lt;/li&gt;
+&lt;li&gt;BrowserStack and Sauce Lab&lt;/li&gt;
+&lt;/ul&gt;
 &lt;!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIzNzY2NzEwN119
+eyJoaXN0b3J5IjpbOTMzODM5NTg3XX0=
 --&gt;
 </content:encoded>
 		</item>

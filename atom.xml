@@ -4,7 +4,7 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2020</rights>
-	<updated>2020-08-22T01:53:18Z</updated>
+	<updated>2020-08-22T01:55:23Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
 	<entry>
 		<link href="https://kamranicus.com/posts/2020-08-21-course-testing-progress-web-apps-cypress-webdriverio.md" />
@@ -16,9 +16,18 @@
 &lt;h2 id="what-i-learned"&gt;What I Learned&lt;/h2&gt;
 &lt;p&gt;I learned quite a bit while developing this course because in order to test a PWA, you need to &lt;em&gt;have&lt;/em&gt; a PWA in the first place!&lt;/p&gt;
 &lt;p&gt;For the course I developed the &lt;a href="https://bit.ly/PSPWATestingSample"&gt;Carved Rock Fitness Order Tracker&lt;/a&gt; which is an open source sample application for demo purposes.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/90946131-9c77b080-e3ef-11ea-8fe7-7198ce0fab0f.png" class="img-fluid" alt="image" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/90946131-9c77b080-e3ef-11ea-8fe7-7198ce0fab0f.png" class="img-fluid" alt="Course sample demo app" /&gt;&lt;/p&gt;
+&lt;p&gt;The is a fully-developed PWA which features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Offline support&lt;/li&gt;
+&lt;li&gt;Service worker caching&lt;/li&gt;
+&lt;li&gt;Local notifications&lt;/li&gt;
+&lt;li&gt;Responsive design&lt;/li&gt;
+&lt;li&gt;Cypress and WebDriverIO tests&lt;/li&gt;
+&lt;li&gt;BrowserStack and Sauce Lab&lt;/li&gt;
+&lt;/ul&gt;
 &lt;!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIzNzY2NzEwN119
+eyJoaXN0b3J5IjpbOTMzODM5NTg3XX0=
 --&gt;
 </content>
 		<summary>&lt;p&gt;Today my new course &lt;a href="https://bit.ly/PSPWATesting"&gt;Testing Progressive Web Apps&lt;/a&gt; has been published and I'm pretty excited for it (like usual!).&lt;/p&gt;</summary>
