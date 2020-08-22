@@ -5,8 +5,8 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2020</copyright>
-		<pubDate>Sat, 22 Aug 2020 01:55:23 GMT</pubDate>
-		<lastBuildDate>Sat, 22 Aug 2020 01:55:23 GMT</lastBuildDate>
+		<pubDate>Sat, 22 Aug 2020 01:57:18 GMT</pubDate>
+		<lastBuildDate>Sat, 22 Aug 2020 01:57:18 GMT</lastBuildDate>
 		<item>
 			<title>New Course: Testing Progressive Web Apps on Pluralsight</title>
 			<link>https://kamranicus.com/posts/2020-08-21-course-testing-progress-web-apps-cypress-webdriverio.md</link>
@@ -26,10 +26,12 @@
 &lt;li&gt;Local notifications&lt;/li&gt;
 &lt;li&gt;Responsive design&lt;/li&gt;
 &lt;li&gt;Cypress and WebDriverIO tests&lt;/li&gt;
-&lt;li&gt;BrowserStack and Sauce Lab&lt;/li&gt;
+&lt;li&gt;Local and BrowserStack-powered tests&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;The course uses this app as the basis of walking through how to handle all the various scenarios you'd encounter when testing a PWA like how to bypass service worker caching, notification permissions, and more.&lt;/p&gt;
+&lt;p&gt;Since Cypress didn't offer a built-in way to control browser permissions in a standard way, I also released the [cypress-browser-permissions](&lt;/p&gt;
 &lt;!--stackedit_data:
-eyJoaXN0b3J5IjpbOTMzODM5NTg3XX0=
+eyJoaXN0b3J5IjpbMTQ5MzIyNTkyOV19
 --&gt;
 </content:encoded>
 		</item>
