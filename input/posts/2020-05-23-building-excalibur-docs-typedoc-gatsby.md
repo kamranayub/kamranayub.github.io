@@ -69,20 +69,15 @@ This will then allow you to query for the TypeDoc JSON content in a Gatsby page:
 
 ```js
 export const pageQuery = graphql`
-	typedoc: allTypedoc {
-		edges {
-			node {
-				id
-				internal {
-					content
-				}
-			}
-		}
-	}
+  typedoc(typedocId: { eq: "default" }) {
+    internal {
+      content
+    }
+  }
 `
 
 export default function MyPage({ data: { typedoc } }) {
-	const typedocContent = JSON.parse(typedoc?.edges?.[0].node.internal.content);
+	const typedocContent = JSON.parse(typedoc?.internal.content);
 	
 	// do something with that data...
 }
@@ -121,6 +116,6 @@ Here is how this works in Gatsby, which was a completely new learning experience
 
 So, what I needed to do was to make a Gatsby Remark Transformer plug-in. Since Gatsby just delegates down to Remark, I was able to split this up into two packages, just in case someone wanted to use the Typedoc symbol transformer outside Gatsby. The symbol transformer only needs one additional piece of input: the TypeDoc AST.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM2NzA0MzE3LC04OTA2Mjk5NCwtOTcyOT
-A4OTYyLC02NzkxNzkxMl19
+eyJoaXN0b3J5IjpbMTI2MzQ0NTE1NywxMzY3MDQzMTcsLTg5MD
+YyOTk0LC05NzI5MDg5NjIsLTY3OTE3OTEyXX0=
 -->
