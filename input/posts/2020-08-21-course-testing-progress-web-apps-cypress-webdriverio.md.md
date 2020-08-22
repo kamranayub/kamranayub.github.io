@@ -7,7 +7,9 @@ Tags:
 - Testing
 ---
 
-Today my new course [Testing Progressive Web Apps](https://bit.ly/PSPWATesting) 
+Today my new course [Testing Progressive Web Apps](https://bit.ly/PSPWATesting) has been published and I'm pretty excited for it (like usual!).
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQxODY5Nzg5NF19
+eyJoaXN0b3J5IjpbLTE5MTkzNzUyOTldfQ==
 -->
