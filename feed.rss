@@ -5,16 +5,17 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2020</copyright>
-		<pubDate>Sat, 22 Aug 2020 01:43:16 GMT</pubDate>
-		<lastBuildDate>Sat, 22 Aug 2020 01:43:16 GMT</lastBuildDate>
+		<pubDate>Sat, 22 Aug 2020 01:45:14 GMT</pubDate>
+		<lastBuildDate>Sat, 22 Aug 2020 01:45:14 GMT</lastBuildDate>
 		<item>
 			<title>New Course: Testing Progressive Web Apps on Pluralsight</title>
 			<link>https://kamranicus.com/posts/2020-08-21-course-testing-progress-web-apps-cypress-webdriverio.md</link>
-			<enclosure url="https://kamranicus.com/563819/87799786-42456780-c813-11ea-9e84-9a4ff71b72c8.png" length="0" type="image" />
+			<description>&lt;p&gt;Today my new course &lt;a href="https://bit.ly/PSPWATesting"&gt;Testing Progressive Web Apps&lt;/a&gt;&lt;/p&gt;</description>
 			<guid>https://kamranicus.com/posts/2020-08-21-course-testing-progress-web-apps-cypress-webdriverio.md</guid>
 			<pubDate>Sat, 22 Aug 2020 01:00:00 GMT</pubDate>
-			<content:encoded>&lt;!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkxNzA2NTA4XX0=
+			<content:encoded>&lt;p&gt;Today my new course &lt;a href="https://bit.ly/PSPWATesting"&gt;Testing Progressive Web Apps&lt;/a&gt;&lt;/p&gt;
+&lt;!--stackedit_data:
+eyJoaXN0b3J5IjpbMTQxODY5Nzg5NF19
 --&gt;
 </content:encoded>
 		</item>

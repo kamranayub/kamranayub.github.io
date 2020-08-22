@@ -4,18 +4,19 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2020</rights>
-	<updated>2020-08-22T01:43:16Z</updated>
+	<updated>2020-08-22T01:45:14Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
 	<entry>
 		<link href="https://kamranicus.com/posts/2020-08-21-course-testing-progress-web-apps-cypress-webdriverio.md" />
-		<link rel="enclosure" type="image" href="https://kamranicus.com/563819/87799786-42456780-c813-11ea-9e84-9a4ff71b72c8.png" />
 		<id>https://kamranicus.com/posts/2020-08-21-course-testing-progress-web-apps-cypress-webdriverio.md</id>
 		<title>New Course: Testing Progressive Web Apps on Pluralsight</title>
 		<updated>2020-08-22T01:00:00Z</updated>
-		<content>&lt;!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkxNzA2NTA4XX0=
+		<content>&lt;p&gt;Today my new course &lt;a href="https://bit.ly/PSPWATesting"&gt;Testing Progressive Web Apps&lt;/a&gt;&lt;/p&gt;
+&lt;!--stackedit_data:
+eyJoaXN0b3J5IjpbMTQxODY5Nzg5NF19
 --&gt;
 </content>
+		<summary>&lt;p&gt;Today my new course &lt;a href="https://bit.ly/PSPWATesting"&gt;Testing Progressive Web Apps&lt;/a&gt;&lt;/p&gt;</summary>
 	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2020-07-29-webdriverio-out-of-memory-allocation-error.md" />
