@@ -32,7 +32,11 @@ The course uses this app as the basis of walking through how to handle all the v
 
 Since Cypress didn't offer a built-in way to control browser permissions in a standard way, I also released the [cypress-browser-permissions](https://github.com/kamranayub/cypress-browser-permissions) which lets you manage browser permissions in a standard way for Chromium (Google Chrome, MS Edge) and Firefox.
 
-The sample was built using [Ionic Framework](https://ionicframework.com/) and it was my first time using the framework to build something (there's no better way to learn, right?). I was *extremely impressed* with how easy it was to build using the f
+The sample was built using [Ionic Framework](https://ionicframework.com/) and it was my first time using the framework to build something (there's no better way to learn, right?). I was *extremely impressed* with how easy it was to build using the framework and all the features provided out-of-the-box. I think there's even more that could be done using [Capacitor](https://capacitorjs.com/), which I'm not currently using, to provide abstractions over some of the native APIs like notifications, geolocation, etc.
+
+## How Much Work Was It?
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ1MTk1MTAxNCwxNDkzMjI1OTI5XX0=
+eyJoaXN0b3J5IjpbLTI3MDM0Njc1NSwxNDkzMjI1OTI5XX0=
 -->
