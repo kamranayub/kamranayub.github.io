@@ -36,7 +36,7 @@ The sample was built using [Ionic Framework](https://ionicframework.com/) and it
 
 ## How Much Work Was It?
 
-
+This was the first time I used [Clockify](https://clockify.me/) in earnest to track the various aspects of the course production. This meant I could track each checklist item (which is a bit too granular) but using tags I can group activities like content creatio
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI3MDM0Njc1NSwxNDkzMjI1OTI5XX0=
+eyJoaXN0b3J5IjpbMjA3MDk4NjM1NywxNDkzMjI1OTI5XX0=
 -->
