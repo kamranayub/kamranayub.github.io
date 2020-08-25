@@ -52,10 +52,10 @@ Clearly most of the time spent developing a course is in content creation and re
 
 This insight is good to have because it allows me to judge whether I should leverage some of Pluralsight's packaged services to do editing in the future. For example, if I spend 30 hours editing a 90 minute course and I am paid $X, I can do the math to determine whether hiring out editing is worth it.
 
-As far as content goes for this course, a **lot** of time was spent researching since testing PWAs using Cypress and WebDriverIO is not a common thing people tend to do it seems (and now, maybe my course will demystify a lot of it). The 88 hours of content creation includes lots of other things like writing tests, resea 
+As far as content goes for this course, a **lot** of time was spent researching since testing PWAs using Cypress and WebDriverIO is not a common thing people tend to do it seems (and now, maybe my course will demystify a lot of it). The 88 hours of content creation includes lots of other things like writing tests, researching bugs, waiting for CI runs, etc. While writing tests with Ionic, I discovered a [couple of Cypress bugs](https://github.com/cypress-io/cypress/issues?q=is%3Aissue+sort%3Aupdated-desc+author%3Akamranayub+is%3Aclosed) along the way which have all been fixed now as of the course publishing which is awesome!
 
 Relative to my previous courses, this one took about **twice** as long and I attribute it to that additional research and test implementation.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjIwNjgyOTUwLC0xNjI1NTQ2NzU1LDE0OT
+eyJoaXN0b3J5IjpbNjQ5MDQyMDg3LC0xNjI1NTQ2NzU1LDE0OT
 MyMjU5MjldfQ==
 -->
