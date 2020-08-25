@@ -46,8 +46,12 @@ More interesting perhaps is the breakdown of time spent on different aspects of 
 
 ![Breakdown of course development](https://user-images.githubusercontent.com/563819/91182905-67e64c00-e6b0-11ea-91cb-8db2bea7fcab.png)
 
-![Chart of ti](https://user-images.githubusercontent.com/563819/91182923-6f0d5a00-e6b0-11ea-9bc3-826d98e103cb.png)
+![Chart of time spent per aspect](https://user-images.githubusercontent.com/563819/91182923-6f0d5a00-e6b0-11ea-9bc3-826d98e103cb.png)
+
+Clearly most of the time spent developing a course is in content creation and research followed by editing. Interestingly, to develop the sample app was less than 15 hours of work although time spent tweaking and polishing throughout course development is also wrapped up in "Content".
+
+This i
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NDY4MTM3MjcsLTE2MjU1NDY3NTUsMT
-Q5MzIyNTkyOV19
+eyJoaXN0b3J5IjpbLTIzMjk0MDkzMiwtMTYyNTU0Njc1NSwxND
+kzMjI1OTI5XX0=
 -->
