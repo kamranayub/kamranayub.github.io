@@ -30,7 +30,9 @@ The is a fully-developed PWA which features:
 
 The course uses this app as the basis of walking through how to handle all the various scenarios you'd encounter when testing a PWA like how to bypass service worker caching, notification permissions, and more.
 
-Since Cypress didn't offer a built-in way to control browser permissions in a standard way, I also released the [cypress-browser-permissions](https://github.com/kamranayub/cypress-browser-permissions) which lets you manage browser permissions in a standard way for Chromium (Google Ch and Firefox.
+Since Cypress didn't offer a built-in way to control browser permissions in a standard way, I also released the [cypress-browser-permissions](https://github.com/kamranayub/cypress-browser-permissions) which lets you manage browser permissions in a standard way for Chromium (Google Chrome, MS Edge) and Firefox.
+
+The sample was built using [Ionic Framework](https://ionicframework.com/) and it was my first time using the framework to build something (there's no better way to learn, right?). I was *extremely impressed* with how easy it was to build using the f
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5NTM3ODEzMTUsMTQ5MzIyNTkyOV19
+eyJoaXN0b3J5IjpbLTQ1MTk1MTAxNCwxNDkzMjI1OTI5XX0=
 -->
