@@ -38,7 +38,12 @@ The sample was built using [Ionic Framework](https://ionicframework.com/) and it
 
 This was the first time I used [Clockify](https://clockify.me/) in earnest to track the various aspects of the course production. This meant I could track each checklist item (which is a bit too granular) but using tags I can group activities like content creation, coding, recording, and editing together.
 
+In total, I spent about 150 hours give or take (I didn't track assessment question quite as much) with a monthly breakdown like this:
 
+![Time spent by month](https://user-images.githubusercontent.com/563819/91182463-d080f900-e6af-11ea-85ad-80ac16be1aa7.png)
+
+More interesting perhaps is the breakdown of time spent on differen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MjU1NDY3NTUsMTQ5MzIyNTkyOV19
+eyJoaXN0b3J5IjpbMTIxNzM1NTMzMCwtMTYyNTU0Njc1NSwxND
+kzMjI1OTI5XX0=
 -->
