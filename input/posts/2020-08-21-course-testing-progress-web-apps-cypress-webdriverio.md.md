@@ -42,8 +42,10 @@ In total, I spent about 150 hours give or take (I didn't track assessment questi
 
 ![Time spent by month](https://user-images.githubusercontent.com/563819/91182463-d080f900-e6af-11ea-85ad-80ac16be1aa7.png)
 
-More interesting perhaps is the breakdown of time spent on differen
+More interesting perhaps is the breakdown of time spent on different aspects of course development:
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIxNzM1NTMzMCwtMTYyNTU0Njc1NSwxND
-kzMjI1OTI5XX0=
+eyJoaXN0b3J5IjpbLTEwMDM0Nzg3MDIsLTE2MjU1NDY3NTUsMT
+Q5MzIyNTkyOV19
 -->
