@@ -60,8 +60,10 @@ Relative to my previous courses, this one took about **twice** as long and I att
 
 I think that this course is fairly fast-paced. I don't stop much to ponder the implementation or explain details when going over the tests. For someone who just needs to know what goes into writing a test for a feature, I think it'll be a good pace. For someone else who wants to know _why_, the sample app is there for reference.
 
-If this course were produced solely by myself I think I'd split it up or make it longer, in order to explain how I built the sample or explain the
+If this course were produced solely by myself I think I'd split it up or make it longer, in order to explain how I built the sample or explain the details of why a test was written a certain way. However, the target length of a course is around 90 minutes and it was hard enough to edit down to meet that (it's 100 minutes).
+
+If I have a chance to update the course for a next edition (which is likely as Cypress already has released a new major version since I publi
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg1NzE5MzQ0MSwxNjE2OTM5MDkwLDY0OT
+eyJoaXN0b3J5IjpbMTg3NDk1NjE3OSwxNjE2OTM5MDkwLDY0OT
 A0MjA4NywtMTYyNTU0Njc1NV19
 -->
