@@ -48,10 +48,7 @@ More interesting perhaps is the breakdown of time spent on different aspects of 
 
 ![Chart of time spent per aspect](https://user-images.githubusercontent.com/563819/91182923-6f0d5a00-e6b0-11ea-9bc3-826d98e103cb.png)
 
-Clearly most of the time spent developing a course is in content creation and research followed by editpackage while developing the course.
-
-
-Interestingly, to develop the sample app was less than 15 hours of work although time spent tweaking and polishing throughout course development is also wrapped up in "Content".
+Most of the time spent developing a course is in content creation (88 hours) and research followed by editing (28 hours). Interestingly, to develop the sample app was less than 15 hours of work although time spent tweaking and polishing throughout course development is also wrapped up in "Content".
 
 This insight is good to have because it allows me to judge whether I should leverage some of Pluralsight's packaged services to do editing in the future. For example, if I spend 30 hours editing a 90 minute course and I am paid $X, I can do the math to determine whether hiring out editing is worth it.
 
@@ -61,6 +58,6 @@ Relative to my previous courses, this one took about **twice** as long and I att
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMDI2MTE4NzUsMTYxNjkzOTA5MCw2ND
-kwNDIwODcsLTE2MjU1NDY3NTVdfQ==
+eyJoaXN0b3J5IjpbODAzMzI4MDAxLDE2MTY5MzkwOTAsNjQ5MD
+QyMDg3LC0xNjI1NTQ2NzU1XX0=
 -->
