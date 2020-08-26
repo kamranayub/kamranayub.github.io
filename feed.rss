@@ -5,8 +5,56 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2020</copyright>
-		<pubDate>Wed, 26 Aug 2020 01:08:29 GMT</pubDate>
-		<lastBuildDate>Wed, 26 Aug 2020 01:08:29 GMT</lastBuildDate>
+		<pubDate>Wed, 26 Aug 2020 01:10:23 GMT</pubDate>
+		<lastBuildDate>Wed, 26 Aug 2020 01:10:23 GMT</lastBuildDate>
+		<item>
+			<title>New Course: Testing Progressive Web Apps on Pluralsight</title>
+			<link>https://kamranicus.com/posts/2020-08-25-course-testing-progress-web-apps-cypress-webdriverio.md</link>
+			<description>&lt;p&gt;Today my new course &lt;a href="https://bit.ly/PSPWATesting"&gt;Testing Progressive Web Apps&lt;/a&gt; has been published and I'm pretty excited for it (like usual!).&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2020-08-25-course-testing-progress-web-apps-cypress-webdriverio.md</guid>
+			<pubDate>Wed, 26 Aug 2020 01:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;Today my new course &lt;a href="https://bit.ly/PSPWATesting"&gt;Testing Progressive Web Apps&lt;/a&gt; has been published and I'm pretty excited for it (like usual!).&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/90946059-f7f56e80-e3ee-11ea-8f47-3d57e091e600.png" class="img-fluid" alt="course overview" /&gt;&lt;/p&gt;
+&lt;h2 id="what-i-learned"&gt;What I Learned&lt;/h2&gt;
+&lt;p&gt;I learned quite a bit while developing this course because in order to test a PWA, you need to &lt;em&gt;have&lt;/em&gt; a PWA in the first place!&lt;/p&gt;
+&lt;p&gt;For the course I developed the &lt;a href="https://bit.ly/PSPWATestingSample"&gt;Carved Rock Fitness Order Tracker&lt;/a&gt; which is an open source sample application for demo purposes.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/90946131-9c77b080-e3ef-11ea-8fe7-7198ce0fab0f.png" class="img-fluid" alt="Course sample demo app" /&gt;&lt;/p&gt;
+&lt;p&gt;The is a fully-developed PWA which features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Offline support&lt;/li&gt;
+&lt;li&gt;Service worker caching&lt;/li&gt;
+&lt;li&gt;Local notifications&lt;/li&gt;
+&lt;li&gt;Responsive design&lt;/li&gt;
+&lt;li&gt;Cypress and WebDriverIO tests&lt;/li&gt;
+&lt;li&gt;Local and BrowserStack-powered tests&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The course uses this app as the basis of walking through how to handle all the various scenarios you'd encounter when testing a PWA like how to bypass service worker caching, notification permissions, and more.&lt;/p&gt;
+&lt;p&gt;Since Cypress didn't offer a built-in way to control browser permissions in a standard way, I also released the &lt;a href="https://github.com/kamranayub/cypress-browser-permissions"&gt;cypress-browser-permissions&lt;/a&gt; which lets you manage browser permissions in a standard way for Chromium (Google Chrome, MS Edge) and Firefox.&lt;/p&gt;
+&lt;p&gt;The sample was built using &lt;a href="https://ionicframework.com/"&gt;Ionic Framework&lt;/a&gt; and it was my first time using the framework to build something (there's no better way to learn, right?). I was &lt;em&gt;extremely impressed&lt;/em&gt; with how easy it was to build using the framework and all the features provided out-of-the-box. I think there's even more that could be done using &lt;a href="https://capacitorjs.com/"&gt;Capacitor&lt;/a&gt;, which I'm not currently using, to provide abstractions over some of the native APIs like notifications, geolocation, etc.&lt;/p&gt;
+&lt;p&gt;In the course I use &lt;a href="https://netlify.com"&gt;Netlify&lt;/a&gt; to host deployment previews and for GitHub Actions &lt;a href="https://github.com/kamranayub/wait-for-netlify-action"&gt;I forked an existing action&lt;/a&gt; to make it work a bit better using the Netlify API to &amp;quot;wait&amp;quot; until a deployment preview commit was up and running before running tests against it.&lt;/p&gt;
+&lt;h2 id="how-much-work-was-it"&gt;How Much Work Was It?&lt;/h2&gt;
+&lt;p&gt;This was the first time I used &lt;a href="https://clockify.me/"&gt;Clockify&lt;/a&gt; in earnest to track the various aspects of the course production. This meant I could track each checklist item (which is a bit too granular) but using tags I can group activities like content creation, coding, recording, and editing together.&lt;/p&gt;
+&lt;p&gt;In total, I spent about 150 hours give or take (I didn't track assessment question quite as much) with a monthly breakdown like this:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/91182463-d080f900-e6af-11ea-85ad-80ac16be1aa7.png" class="img-fluid" alt="Time spent by month" /&gt;&lt;/p&gt;
+&lt;p&gt;More interesting perhaps is the breakdown of time spent on different aspects of course development:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/91182905-67e64c00-e6b0-11ea-91cb-8db2bea7fcab.png" class="img-fluid" alt="Breakdown of course development" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/91182923-6f0d5a00-e6b0-11ea-9bc3-826d98e103cb.png" class="img-fluid" alt="Chart of time spent per aspect" /&gt;&lt;/p&gt;
+&lt;p&gt;Most of the time spent developing a course is in content creation (88 hours) and research followed by editing (28 hours). Interestingly, to develop the sample app was less than 15 hours of work although time spent tweaking and polishing throughout course development is also wrapped up in &amp;quot;Content&amp;quot;.&lt;/p&gt;
+&lt;p&gt;This insight is good to have because it allows me to judge whether I should leverage some of Pluralsight's packaged services to do editing in the future. For example, if I spend 30 hours editing a 90 minute course and I am paid $X, I can do the math to determine whether hiring out editing is worth it.&lt;/p&gt;
+&lt;p&gt;As far as content goes for this course, a &lt;strong&gt;lot&lt;/strong&gt; of time was spent researching since testing PWAs using Cypress and WebDriverIO is not a common thing people tend to do it seems (and now, maybe my course will demystify a lot of it). The 88 hours of content creation includes lots of other things like writing tests, researching bugs, waiting for CI runs, etc. While writing tests with Ionic, I discovered a &lt;a href="https://github.com/cypress-io/cypress/issues?q=is%3Aissue+sort%3Aupdated-desc+author%3Akamranayub+is%3Aclosed"&gt;couple of Cypress bugs&lt;/a&gt; along the way which have all been fixed now as of the course publishing which is awesome!&lt;/p&gt;
+&lt;p&gt;Relative to my previous courses, this one took about &lt;strong&gt;twice&lt;/strong&gt; as long and I attribute it to that additional research and test implementationonic which was the first time I &lt;em&gt;actually&lt;/em&gt; used it to build something. It was twice as much as I anticipated but I think it worked out!&lt;/p&gt;
+&lt;h2 id="what-would-i-have-done-differently"&gt;What Would I Have Done Differently?&lt;/h2&gt;
+&lt;p&gt;I think that this course is fairly fast-paced. I don't stop much to ponder the implementation or explain details when going over the tests. For someone who just needs to know what goes into writing a test for a feature, I think it'll be a good pace. For someone else who wants to know &lt;em&gt;why&lt;/em&gt;, the sample app is there for reference.&lt;/p&gt;
+&lt;p&gt;If this course were produced solely by myself I think I'd split it up or make it longer, in order to explain how I built the sample or explain the details of why a test was written a certain way. However, the target length of a course is around 90 minutes and it was hard enough to edit down to meet that (it's 100 minutes).&lt;/p&gt;
+&lt;p&gt;If I have a chance to update the course for a next edition (which is likely as Cypress already has released a new major version since I published) I think I'd show the app side-by-side the test code which is something I did in the final module. I think this really made it super clear what we were testing -- and it worked well in that case because it was a BrowserStack device test. Originally, I had planned to have the Cypress test runner showing on the screen side-by-side but the way the test runner works didn't allow for that very effectively (with watch + reload and not a lot of room). However, recording the manual steps in BrowserStack and overlaying it on top may work in the future for the other test modules.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Overall I'm really happy with how the course turned out! I always have to remember that perfect is the enemy of good. That's one reason why I like doing Pluralsight courses -- I sign a contract saying I'll get it done and it forces me to prioritize what matters instead of fiddling with stuff forever.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://bit.ly/PSPWATesting"&gt;Check out the course&lt;/a&gt; if you have a subscription, at the moment individual subscriptions are 33% off so it's a good time to sign up if you haven't already!&lt;/p&gt;
+&lt;!--stackedit_data:
+eyJoaXN0b3J5IjpbLTIwMDU3Mzk1NjRdfQ==
+--&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>JavaScript heap out of memory with WebdriverIO</title>
 			<link>https://kamranicus.com/posts/2020-07-29-webdriverio-out-of-memory-allocation-error.md</link>
@@ -1467,19 +1515,6 @@ ansible_become_method=su
 &lt;p&gt;I have been thinking of what I want Kamranicus.com to be and how it should change to host my content and showcase different things but haven't landed on anything final yet. As you perhaps might notice, in the posts and guides I've enabled Adsense since there are some popular pieces of content on here and I actually earn a little from my Amazon affiliate links already.&lt;/p&gt;
 &lt;p&gt;I was also very excited and thankful for the opportunity to do some freelancing as it lit a fire under me to get me working with some business products like &lt;a href="http://fbuy.me/mou3m"&gt;Quickbooks&lt;/a&gt; (use my 50% off referral link) and &lt;a href="http://dochub.com"&gt;Dochub&lt;/a&gt; to better manage my side hustling. It &lt;em&gt;also&lt;/em&gt; derailed my focus on KTOMG for the spring since March-May has just been doing writing leaving much less time to get things done for KTOMG in a timely manner. Oh well!&lt;/p&gt;
 &lt;p&gt;Looking towards the summer (Q2), I'm also pretty excited for NDC MN, some course maintenance, and then re-focusing on KTOMG. This will also be our first summer that Cassie and the kids will have off together! So they will be visiting me at work more often and I'll be trying to spend time with them when I can. The grill is already out 🔥🍔&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Data Modeling with Indexes in RavenDB</title>
-			<link>https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes</link>
-			<description>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes</guid>
-			<pubDate>Thu, 04 Apr 2019 13:30:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.codeproject.com/Articles/1348454/Data-Modeling-with-Indexes-in-RavenDB"&gt;Data Modeling with Indexes in RavenDB&lt;/a&gt;
-went live today on CodeProject and covers how indexes work in Raven and some simple to advanced use cases to show off
-their power. Be sure to check it out!&lt;/p&gt;
-&lt;p&gt;I'm excited to be working with HN to bring some more articles to a wider audience so I'll be sure to share when any other articles go live.&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>
