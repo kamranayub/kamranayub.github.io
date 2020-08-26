@@ -166,27 +166,31 @@
 </li>
 </ul>
 <h2 id="updates">Updates</h2>
-<h3 id="section">2019-11-13</h3>
+<h3 id="section">2020-08-25</h3>
+<ul>
+<li>Command typo fixes by <a href="https://github.com/cowley05">cowley05</a> (<a href="https://github.com/kamranayub/kamranayub.github.io/pull/27">#27</a>)</li>
+</ul>
+<h3 id="section-1">2019-11-13</h3>
 <ul>
 <li>Add video walkthrough pitch</li>
 <li>The Kinobo mini USB mic is discontinued, replaced with well-reviewed <a href="https://amzn.to/2QnHJPb">Samson GO portable mic</a></li>
 <li>Add clarification for installing the right Binary distribution</li>
 <li>Add clarification for <code>picam-viewer</code> installation</li>
 </ul>
-<h3 id="section-1">2019-06-08</h3>
+<h3 id="section-2">2019-06-08</h3>
 <ul>
 <li>Updated Binary section to reflect instructions for Raspbian Buster</li>
 </ul>
-<h3 id="section-2">2018-01-11</h3>
+<h3 id="section-3">2018-01-11</h3>
 <ul>
 <li>Fixed picam extraction command typo because the archive contains the original filename as the top-level folder</li>
 </ul>
-<h3 id="section-3">2017-10-25</h3>
+<h3 id="section-4">2017-10-25</h3>
 <ul>
 <li>Thanks to <a href="#comment-3574356701">Andrew</a> for pointing out some differences between different Raspbian versions! I updated the Picam installation step.</li>
 <li>I updated my Picam arguments to be what I'm using now after some testing. The args I'm using seem pretty stable now.</li>
 </ul>
-<h3 id="section-4">2017-10-02</h3>
+<h3 id="section-5">2017-10-02</h3>
 <ul>
 <li>I missed the fact that the <code>/run/shm</code> directories are blown away on Pi restarts. The startup script now makes sure they exist (should fix slow feeds).</li>
 <li>I updated my picam-viewer web player to use Video.js now which should support more devices.</li>
@@ -327,7 +331,7 @@ card 1: Device [USB Audio Device], device 0: USB Audio [USB Audio]
 </code></pre>
 <p>You see &quot;card 1&quot; and &quot;device 0&quot; so my microphone ID will be <code>hw:1,0</code>.</p>
 <p>Now, let's make a script we can run to start Picam. <strong>Replace &quot;hw:1,0&quot; with your device ID above if it's different.</strong>:</p>
-<pre><code>echo -e &quot;sudo bash /home/pi/make_dirs.sh\nsudo /home/pi/picam/picam -o /run/shm/hls --time --alsadev hw:1,0 &gt; /var/log/picam.log 2&amp;&gt;1&quot; &gt; run_picam.sh
+<pre><code>echo -e &quot;sudo bash /home/pi/make_dirs.sh\nsudo /home/pi/picam/picam -o /run/shm/hls --time --alsadev hw:1,0 &gt; /var/log/picam.log 2&gt;&amp;1&quot; &gt; run_picam.sh
 chmod +x run_picam.sh
 </code></pre>
 <p>This creates a <code>run_picam.sh</code> script in our root (<code>~</code>) directory and marks it as executable. The script starts Picam with a HLS stream output to the RAM drive (fast) and uses our microphone as the recording device. It also writes out the current timestamp in the bottom corner of the stream. There are a <a href="https://github.com/iizukanao/picam">ton of other options</a> too including subtitles, etc. The default video resolution is 720p which is fine enough for a babycam.</p>
@@ -350,7 +354,7 @@ capturing started
 <p>Just press Ctrl-C to exit.</p>
 <p>For reference, this is my full <code>run_picam.sh</code> script for my Pi:</p>
 <pre><code class="language-bash">sudo bash /home/pi/make_dirs.sh
-sudo /home/pi/picam/picam -o /run/shm/hls --samplerate 32000 --channels 2 --audiobitrate 96000 --videobitrate 4000000 --vfr --avclevel 3.1 --autoex --time --alsadev hw:1,0  &gt;/var/log/picam.log 2&gt;&amp;1
+sudo /home/pi/picam/picam -o /run/shm/hls --samplerate 32000 --channels 2 --audiobitrate 96000 --videobitrate 4000000 --vfr --avclevel 3.1 --autoex --time --alsadev hw:1,0  &gt; /var/log/picam.log 2&gt;&amp;1
 </code></pre>
 <h2 id="running-picam-at-startup">Running Picam at startup</h2>
 <p><a href="http://www.stuffaboutcode.com/2012/06/raspberry-pi-run-program-at-start-up.html">There's a great post</a> on how to run a script at startup. We want Picam to run right away when the Pi boots up, so let's do that!</p>
@@ -425,8 +429,8 @@ exit 0
 }
 </code></pre>
 <p>This adds a new /hls URL that points to the /run/shm/hls directory Picam is outputting the stream to.</p>
-<p>Ensure nginx is started (it will start automatically):</p>
-<pre><code>sudo /etc/init.d/nginx start
+<p>Restart nginx to allow the changes to take effect:</p>
+<pre><code>sudo /etc/init.d/nginx restart
 </code></pre>
 <p>This starts the web server. Now you can browse (on the Pi or other device) to the root of the site and view the nginx welcome page.</p>
 <p>For example, type in <code>http://&lt;ip address&gt;/</code> to see the default homepage.</p>
