@@ -4,8 +4,108 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2020</rights>
-	<updated>2020-08-26T01:18:20Z</updated>
+	<updated>2020-08-26T01:20:21Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2020-08-25-course-testing-progress-web-apps-cypress-webdriverio" />
+		<id>https://kamranicus.com/posts/2020-08-25-course-testing-progress-web-apps-cypress-webdriverio</id>
+		<title>New Course: Testing Progressive Web Apps on Pluralsight</title>
+		<updated>2020-08-26T01:00:00Z</updated>
+		<content>&lt;p&gt;Today my new course &lt;a href="https://bit.ly/PSPWATesting"&gt;Testing Progressive Web Apps&lt;/a&gt; has been published and I'm pretty excited for it (like usual!).&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/90946059-f7f56e80-e3ee-11ea-8f47-3d57e091e600.png" class="img-fluid" alt="course overview" /&gt;&lt;/p&gt;
+&lt;h2 id="what-i-learned"&gt;What I Learned&lt;/h2&gt;
+&lt;p&gt;I learned quite a bit while developing this course because in order to test a PWA, you need to &lt;em&gt;have&lt;/em&gt; a PWA in the first place!&lt;/p&gt;
+&lt;p&gt;For the course I developed the &lt;a href="https://bit.ly/PSPWATestingSample"&gt;Carved Rock Fitness Order Tracker&lt;/a&gt; which is an open source sample application for demo purposes.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/90946131-9c77b080-e3ef-11ea-8fe7-7198ce0fab0f.png" class="img-fluid" alt="Course sample demo app" /&gt;&lt;/p&gt;
+&lt;p&gt;The is a fully-developed PWA which features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Offline support&lt;/li&gt;
+&lt;li&gt;Service worker caching&lt;/li&gt;
+&lt;li&gt;Local notifications&lt;/li&gt;
+&lt;li&gt;Responsive design&lt;/li&gt;
+&lt;li&gt;Cypress and WebDriverIO tests&lt;/li&gt;
+&lt;li&gt;Local and BrowserStack-powered tests&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The course uses this app as the basis of walking through how to handle all the various scenarios you'd encounter when testing a PWA like how to bypass service worker caching, notification permissions, and more.&lt;/p&gt;
+&lt;p&gt;Since Cypress didn't offer a built-in way to control browser permissions in a standard way, I also released the &lt;a href="https://github.com/kamranayub/cypress-browser-permissions"&gt;cypress-browser-permissions&lt;/a&gt; which lets you manage browser permissions in a standard way for Chromium (Google Chrome, MS Edge) and Firefox.&lt;/p&gt;
+&lt;p&gt;The sample was built using &lt;a href="https://ionicframework.com/"&gt;Ionic Framework&lt;/a&gt; and it was my first time using the framework to build something (there's no better way to learn, right?). I was &lt;em&gt;extremely impressed&lt;/em&gt; with how easy it was to build using the framework and all the features provided out-of-the-box. I think there's even more that could be done using &lt;a href="https://capacitorjs.com/"&gt;Capacitor&lt;/a&gt;, which I'm not currently using, to provide abstractions over some of the native APIs like notifications, geolocation, etc.&lt;/p&gt;
+&lt;p&gt;In the course I use &lt;a href="https://netlify.com"&gt;Netlify&lt;/a&gt; to host deployment previews and for GitHub Actions &lt;a href="https://github.com/kamranayub/wait-for-netlify-action"&gt;I forked an existing action&lt;/a&gt; to make it work a bit better using the Netlify API to &amp;quot;wait&amp;quot; until a deployment preview commit was up and running before running tests against it.&lt;/p&gt;
+&lt;h2 id="how-much-work-was-it"&gt;How Much Work Was It?&lt;/h2&gt;
+&lt;p&gt;This was the first time I used &lt;a href="https://clockify.me/"&gt;Clockify&lt;/a&gt; in earnest to track the various aspects of the course production. This meant I could track each checklist item (which is a bit too granular) but using tags I can group activities like content creation, coding, recording, and editing together.&lt;/p&gt;
+&lt;p&gt;In total, I spent about 150 hours give or take (I didn't track assessment question quite as much) with a monthly breakdown like this:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/91182463-d080f900-e6af-11ea-85ad-80ac16be1aa7.png" class="img-fluid" alt="Time spent by month" /&gt;&lt;/p&gt;
+&lt;p&gt;More interesting perhaps is the breakdown of time spent on different aspects of course development:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/91182905-67e64c00-e6b0-11ea-91cb-8db2bea7fcab.png" class="img-fluid" alt="Breakdown of course development" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/91182923-6f0d5a00-e6b0-11ea-9bc3-826d98e103cb.png" class="img-fluid" alt="Chart of time spent per aspect" /&gt;&lt;/p&gt;
+&lt;p&gt;Most of the time spent developing a course is in content creation (88 hours) and research followed by editing (28 hours). Interestingly, to develop the sample app was less than 15 hours of work although time spent tweaking and polishing throughout course development is also wrapped up in &amp;quot;Content&amp;quot;.&lt;/p&gt;
+&lt;p&gt;This insight is good to have because it allows me to judge whether I should leverage some of Pluralsight's packaged services to do editing in the future. For example, if I spend 30 hours editing a 90 minute course and I am paid $X, I can do the math to determine whether hiring out editing is worth it.&lt;/p&gt;
+&lt;p&gt;As far as content goes for this course, a &lt;strong&gt;lot&lt;/strong&gt; of time was spent researching since testing PWAs using Cypress and WebDriverIO is not a common thing people tend to do it seems (and now, maybe my course will demystify a lot of it). The 88 hours of content creation includes lots of other things like writing tests, researching bugs, waiting for CI runs, etc. While writing tests with Ionic, I discovered a &lt;a href="https://github.com/cypress-io/cypress/issues?q=is%3Aissue+sort%3Aupdated-desc+author%3Akamranayub+is%3Aclosed"&gt;couple of Cypress bugs&lt;/a&gt; along the way which have all been fixed now as of the course publishing which is awesome!&lt;/p&gt;
+&lt;p&gt;Relative to my previous courses, this one took about &lt;strong&gt;twice&lt;/strong&gt; as long and I attribute it to that additional research and test implementationonic which was the first time I &lt;em&gt;actually&lt;/em&gt; used it to build something. It was twice as much as I anticipated but I think it worked out!&lt;/p&gt;
+&lt;h2 id="what-would-i-have-done-differently"&gt;What Would I Have Done Differently?&lt;/h2&gt;
+&lt;p&gt;I think that this course is fairly fast-paced. I don't stop much to ponder the implementation or explain details when going over the tests. For someone who just needs to know what goes into writing a test for a feature, I think it'll be a good pace. For someone else who wants to know &lt;em&gt;why&lt;/em&gt;, the sample app is there for reference.&lt;/p&gt;
+&lt;p&gt;If this course were produced solely by myself I think I'd split it up or make it longer, in order to explain how I built the sample or explain the details of why a test was written a certain way. However, the target length of a course is around 90 minutes and it was hard enough to edit down to meet that (it's 100 minutes).&lt;/p&gt;
+&lt;p&gt;If I have a chance to update the course for a next edition (which is likely as Cypress already has released a new major version since I published) I think I'd show the app side-by-side the test code which is something I did in the final module. I think this really made it super clear what we were testing -- and it worked well in that case because it was a BrowserStack device test. Originally, I had planned to have the Cypress test runner showing on the screen side-by-side but the way the test runner works didn't allow for that very effectively (with watch + reload and not a lot of room). However, recording the manual steps in BrowserStack and overlaying it on top may work in the future for the other test modules.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Overall I'm really happy with how the course turned out! I always have to remember that perfect is the enemy of good. That's one reason why I like doing Pluralsight courses -- I sign a contract saying I'll get it done and it forces me to prioritize what matters instead of fiddling with stuff forever.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://bit.ly/PSPWATesting"&gt;Check out the course&lt;/a&gt; if you have a subscription, at the moment individual subscriptions are 33% off so it's a good time to sign up if you haven't already!&lt;/p&gt;
+&lt;!--stackedit_data:
+eyJoaXN0b3J5IjpbLTIwMDU3Mzk1NjRdfQ==
+--&gt;
+</content>
+		<summary>&lt;p&gt;Today my new course &lt;a href="https://bit.ly/PSPWATesting"&gt;Testing Progressive Web Apps&lt;/a&gt; has been published and I'm pretty excited for it (like usual!).&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<link href="https://kamranicus.com/posts/2020-07-29-webdriverio-out-of-memory-allocation-error" />
+		<id>https://kamranicus.com/posts/2020-07-29-webdriverio-out-of-memory-allocation-error</id>
+		<title>JavaScript heap out of memory with WebdriverIO</title>
+		<updated>2020-07-29T13:50:00Z</updated>
+		<content>&lt;p&gt;Throughout &lt;a href="https://bit.ly/KamranOnPluralsight"&gt;working on a course&lt;/a&gt; you usually run into bugs and issues that throw you for a loop for awhile. In this case, it was doubly frustrating because I had previously set up &lt;a href="https://webdriver.io"&gt;webdriverio&lt;/a&gt; to run in my continuous integration environment (GitHub Actions) and &lt;em&gt;it was working fine&lt;/em&gt;. Until it stopped working.&lt;/p&gt;
+&lt;p&gt;I kept getting this error:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;--- Last few GCs ---&amp;gt;
+
+[168:0x5ba0970]   105925 ms: Mark-sweep (reduce) 2046.6 (2050.9) -&amp;gt; 2045.7 (2050.9) MB, 588.4 / 0.0 ms  (average mu = 0.053, current mu = 0.021) allocation failure scavenge might not succeed
+
+[0-0] 
+&amp;lt;--- JS stacktrace ---&amp;gt;
+
+[0-0] FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+[0-0]  1: 0xa3ac30 node::Abort() [/usr/local/bin/node]
+[0-0]  2: 0x98a45d node::FatalError(char const*, char const*) [/usr/local/bin/node]
+[0-0]  3: 0xbae25e v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [/usr/local/bin/node]
+[0-0]  4: 0xbae5d7 v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [/usr/local/bin/node]
+[0-0]  5: 0xd56125  [/usr/local/bin/node]
+[0-0]  6: 0xd56acb v8::internal::Heap::RecomputeLimits(v8::internal::GarbageCollector) [/usr/local/bin/node]
+[0-0]  7: 0xd6481c v8::internal::Heap::PerformGarbageCollection(v8::internal::GarbageCollector, v8::GCCallbackFlags) [/usr/local/bin/node]
+[0-0]  8: 0xd65684 v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/usr/local/bin/node]
+[0-0]  9: 0xd680fc v8::internal::Heap::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/usr/local/bin/node]
+[0-0] 10: 0xd2f3aa v8::internal::Factory::AllocateRaw(int, v8::internal::AllocationType, v8::internal::AllocationAlignment) [/usr/local/bin/node]
+[0-0] 11: 0xd29254 v8::internal::FactoryBase&amp;lt;v8::internal::Factory&amp;gt;::AllocateRawWithImmortalMap(int, v8::internal::AllocationType, v8::internal::Map, v8::internal::AllocationAlignment) [/usr/local/bin/node]
+[0-0] 12: 0xd2a789 v8::internal::FactoryBase&amp;lt;v8::internal::Factory&amp;gt;::NewStruct(v8::internal::InstanceType, v8::internal::AllocationType) [/usr/local/bin/node]
+[0-0] 13: 0xd36be6 v8::internal::Factory::NewStackTraceFrame(v8::internal::Handle&amp;lt;v8::internal::FrameArray&amp;gt;, int) [/usr/local/bin/node]
+[0-0] 14: 0xc28a98  [/usr/local/bin/node]
+[0-0] 15: 0xc2fb66 v8::internal::Builtin_CallSitePrototypeToString(int, unsigned long*, v8::internal::Isolate*) [/usr/local/bin/node]
+[0-0] 16: 0x13f5159  [/usr/local/bin/node]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;What was &lt;strong&gt;weird&lt;/strong&gt; is that the tests all passed!&lt;/p&gt;
+&lt;p&gt;It did not &lt;a href="https://gregtyler.co.uk/blog/fatal-error-allocation-failed-error-with-webdriverio-and-cucumber"&gt;turn out to be a Selenium Grid issue&lt;/a&gt;, as I wasn't using that but it turned out to be another simple fix (i.e. nothing to do with memory size).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;I was missing the &lt;code&gt;&amp;#64;wdio/sync&lt;/code&gt; package from my package dependencies after I split out my e2e tests into a separate folder.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Once I added &lt;code&gt;&amp;#64;wdio/sync&lt;/code&gt; back, things worked.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-diff"&gt;&amp;quot;dependencies&amp;quot;: {
+  &amp;quot;&amp;#64;wdio/cli&amp;quot;: &amp;quot;6.1.24&amp;quot;,
+  &amp;quot;&amp;#64;wdio/local-runner&amp;quot;: &amp;quot;6.1.24&amp;quot;,
+  &amp;quot;&amp;#64;wdio/mocha-framework&amp;quot;: &amp;quot;6.1.19&amp;quot;,
+  &amp;quot;&amp;#64;wdio/spec-reporter&amp;quot;: &amp;quot;6.1.23&amp;quot;,
++ &amp;quot;&amp;#64;wdio/sync&amp;quot;: &amp;quot;6.1.14&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The telltale sign was that the tests were taking 1 minute when before I checked the logs and the tests used to run in 4 seconds. &lt;strong&gt;Ding, ding, ding!&lt;/strong&gt; It must not wait properly for the commands without the sync package and uses up more and more memory.&lt;/p&gt;
+&lt;p&gt;Hope this helps anyone in a similar situation!&lt;/p&gt;
+&lt;!--stackedit_data:
+eyJoaXN0b3J5IjpbLTExMDM0NTY0MzldfQ==
+--&gt;
+</content>
+		<summary>&lt;p&gt;Throughout &lt;a href="https://bit.ly/KamranOnPluralsight"&gt;working on a course&lt;/a&gt; you usually run into bugs and issues that throw you for a loop for awhile. In this case, it was doubly frustrating because I had previously set up &lt;a href="https://webdriver.io"&gt;webdriverio&lt;/a&gt; to run in my continuous integration environment (GitHub Actions) and &lt;em&gt;it was working fine&lt;/em&gt;. Until it stopped working.&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2020-07-17-cypress-browser-permissions" />
 		<link rel="enclosure" type="image" href="https://kamranicus.com/563819/87799786-42456780-c813-11ea-9e84-9a4ff71b72c8.png" />
@@ -1414,27 +1514,5 @@ ansible_become_method=su
 &lt;p&gt;Looking towards the summer (Q2), I'm also pretty excited for NDC MN, some course maintenance, and then re-focusing on KTOMG. This will also be our first summer that Cassie and the kids will have off together! So they will be visiting me at work more often and I'll be trying to spend time with them when I can. The grill is already out 🔥🍔&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;This is my first time trying a quarterly update on &lt;a href="https://kamranicus.com/posts/2018-12-20-year-in-review-2019-goals"&gt;my yearly goal setting&lt;/a&gt; but I was updating that old post with progress notes and decided I should just formally document progress every quarter instead of retrofitting an older post. That way if any goals &lt;em&gt;evolve&lt;/em&gt; (which some have!) then I can look back and see that change happening. Also this &lt;em&gt;forces&lt;/em&gt; me to post at least once every 4 months which may get me into the groove of writing more generally.&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes" />
-		<id>https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes</id>
-		<title>Data Modeling with Indexes in RavenDB</title>
-		<updated>2019-04-04T13:30:00Z</updated>
-		<content>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.codeproject.com/Articles/1348454/Data-Modeling-with-Indexes-in-RavenDB"&gt;Data Modeling with Indexes in RavenDB&lt;/a&gt;
-went live today on CodeProject and covers how indexes work in Raven and some simple to advanced use cases to show off
-their power. Be sure to check it out!&lt;/p&gt;
-&lt;p&gt;I'm excited to be working with HN to bring some more articles to a wider audience so I'll be sure to share when any other articles go live.&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2019-02-21-typescript-react-getting-started-pluralsight-guide" />
-		<id>https://kamranicus.com/posts/2019-02-21-typescript-react-getting-started-pluralsight-guide</id>
-		<title>New Pluralsight Guide: Getting Started With React and TypeScript </title>
-		<updated>2019-02-22T03:16:00Z</updated>
-		<content>&lt;p&gt;I just published my third Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/3Y65d"&gt;Getting Started with React and TypeScript&lt;/a&gt;. I cover a few different ways to start up a new React project with TypeScript including create-react-app, from scratch, and bundling with Webpack/Parcel.&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;I just published my third Pluralsight guide: &lt;a href="https://pluralsight.pxf.io/3Y65d"&gt;Getting Started with React and TypeScript&lt;/a&gt;. I cover a few different ways to start up a new React project with TypeScript including create-react-app, from scratch, and bundling with Webpack/Parcel.&lt;/p&gt;</summary>
 	</entry>
 </feed>
