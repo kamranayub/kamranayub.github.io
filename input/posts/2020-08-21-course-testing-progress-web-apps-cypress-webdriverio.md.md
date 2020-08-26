@@ -34,6 +34,8 @@ Since Cypress didn't offer a built-in way to control browser permissions in a st
 
 The sample was built using [Ionic Framework](https://ionicframework.com/) and it was my first time using the framework to build something (there's no better way to learn, right?). I was *extremely impressed* with how easy it was to build using the framework and all the features provided out-of-the-box. I think there's even more that could be done using [Capacitor](https://capacitorjs.com/), which I'm not currently using, to provide abstractions over some of the native APIs like notifications, geolocation, etc.
 
+
+
 ## How Much Work Was It?
 
 This was the first time I used [Clockify](https://clockify.me/) in earnest to track the various aspects of the course production. This meant I could track each checklist item (which is a bit too granular) but using tags I can group activities like content creation, coding, recording, and editing together.
@@ -64,8 +66,12 @@ If this course were produced solely by myself I think I'd split it up or make it
 
 If I have a chance to update the course for a next edition (which is likely as Cypress already has released a new major version since I published) I think I'd show the app side-by-side the test code which is something I did in the final module. I think this really made it super clear what we were testing -- and it worked well in that case because it was a BrowserStack device test. Originally, I had planned to have the Cypress test runner showing on the screen side-by-side but the way the test runner works didn't allow for that very effectively (with watch + reload and not a lot of room). However, recording the manual steps in BrowserStack and overlaying it on top may work in the future for the other test modules.
 
+## Conclusion
+
 Overall I'm really happy with how the course turned out! I always have to remember that perfect is the enemy of good. That's one reason why I like doing Pluralsight courses -- I sign a contract saying I'll get it done and it forces me to prioritize what matters instead of fiddling with stuff forever.
+
+[Check out the course](https://bit.ly/PSPWATesting) if you have a subscription, at the moment individual subscriptions are 33% off so it's a good time to sign up if you haven't already!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ0ODI1MTU4MCwxNjE2OTM5MDkwLDY0OT
-A0MjA4NywtMTYyNTU0Njc1NV19
+eyJoaXN0b3J5IjpbLTE4Nzc3Njc0MDcsMTYxNjkzOTA5MCw2ND
+kwNDIwODcsLTE2MjU1NDY3NTVdfQ==
 -->
