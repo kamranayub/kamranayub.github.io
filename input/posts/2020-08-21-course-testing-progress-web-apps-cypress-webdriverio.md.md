@@ -34,7 +34,7 @@ Since Cypress didn't offer a built-in way to control browser permissions in a st
 
 The sample was built using [Ionic Framework](https://ionicframework.com/) and it was my first time using the framework to build something (there's no better way to learn, right?). I was *extremely impressed* with how easy it was to build using the framework and all the features provided out-of-the-box. I think there's even more that could be done using [Capacitor](https://capacitorjs.com/), which I'm not currently using, to provide abstractions over some of the native APIs like notifications, geolocation, etc.
 
-
+In the course I use [Netlify](https://netlify.com) to host deployment previews and for GitHub Actions [I forked an existing action](https://github.com/kamranayub/wait-for-netlify-action) to make it work a bit better using the Netlify API to "wait" until a deployment preview commit was up and running before running tests against it.
 
 ## How Much Work Was It?
 
@@ -72,6 +72,6 @@ Overall I'm really happy with how the course turned out! I always have to rememb
 
 [Check out the course](https://bit.ly/PSPWATesting) if you have a subscription, at the moment individual subscriptions are 33% off so it's a good time to sign up if you haven't already!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4Nzc3Njc0MDcsMTYxNjkzOTA5MCw2ND
-kwNDIwODcsLTE2MjU1NDY3NTVdfQ==
+eyJoaXN0b3J5IjpbLTIwMjQzMzUzOCwxNjE2OTM5MDkwLDY0OT
+A0MjA4NywtMTYyNTU0Njc1NV19
 -->
