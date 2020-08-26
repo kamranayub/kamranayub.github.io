@@ -54,10 +54,12 @@ This insight is good to have because it allows me to judge whether I should leve
 
 As far as content goes for this course, a **lot** of time was spent researching since testing PWAs using Cypress and WebDriverIO is not a common thing people tend to do it seems (and now, maybe my course will demystify a lot of it). The 88 hours of content creation includes lots of other things like writing tests, researching bugs, waiting for CI runs, etc. While writing tests with Ionic, I discovered a [couple of Cypress bugs](https://github.com/cypress-io/cypress/issues?q=is%3Aissue+sort%3Aupdated-desc+author%3Akamranayub+is%3Aclosed) along the way which have all been fixed now as of the course publishing which is awesome!
 
-Relative to my previous courses, this one took about **twice** as long and I attribute it to that additional research and test implementationonic which was the first time I *actually* used it to build something.
+Relative to my previous courses, this one took about **twice** as long and I attribute it to that additional research and test implementationonic which was the first time I *actually* used it to build something. It was twice as much as I anticipated but I think it worked out!
 
+## What Would I Have Done Differently?
 
+I think that this course moves along at a fairly fas
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODAzMzI4MDAxLDE2MTY5MzkwOTAsNjQ5MD
-QyMDg3LC0xNjI1NTQ2NzU1XX0=
+eyJoaXN0b3J5IjpbLTE2MjUwOTExNDMsMTYxNjkzOTA5MCw2ND
+kwNDIwODcsLTE2MjU1NDY3NTVdfQ==
 -->
