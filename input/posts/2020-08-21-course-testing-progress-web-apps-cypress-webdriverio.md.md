@@ -62,8 +62,8 @@ I think that this course is fairly fast-paced. I don't stop much to ponder the i
 
 If this course were produced solely by myself I think I'd split it up or make it longer, in order to explain how I built the sample or explain the details of why a test was written a certain way. However, the target length of a course is around 90 minutes and it was hard enough to edit down to meet that (it's 100 minutes).
 
-If I have a chance to update the course for a next edition (which is likely as Cypress already has released a new major version since I published) I think one thing I did in a later clip in the course was show the app side-by-side the test code. I think this really made it super clear what we were testing -- and it worked well in that case because it was a BrowserStack device test. Originally, I had planned to have the Cypress tests shown on the screen side-by-side but the way the test runner works didn't allow for that very effectively. However, recording the manual steps in BrowserStack and overlaying it on top may wo
+If I have a chance to update the course for a next edition (which is likely as Cypress already has released a new major version since I published) I think I'd show the app side-by-side the test code which is something I did in the final module. I think this really made it super clear what we were testing -- and it worked well in that case because it was a BrowserStack device test. Originally, I had planned to have the Cypress test runner showing on the screen side-by-side but the way the test runner works didn't allow for that very effectively (with watch + reload and not a lot of room). However, recording the manual steps in BrowserStack and overlaying it on top may work in the future for the other test modules.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM0NTE1MTA5NywxNjE2OTM5MDkwLDY0OT
-A0MjA4NywtMTYyNTU0Njc1NV19
+eyJoaXN0b3J5IjpbLTE1NjMzNjM1MTYsMTYxNjkzOTA5MCw2ND
+kwNDIwODcsLTE2MjU1NDY3NTVdfQ==
 -->
