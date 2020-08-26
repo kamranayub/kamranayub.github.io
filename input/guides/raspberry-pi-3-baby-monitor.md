@@ -50,6 +50,10 @@ This guide will show you how to build your own DIY baby monitor using a Raspberr
 
 ## Updates
 
+### 2020-08-25
+
+- Command typo fixes by [cowley05](https://github.com/cowley05) ([#27](https://github.com/kamranayub/kamranayub.github.io/pull/27))
+
 ### 2019-11-13
 
 - Add video walkthrough pitch
