@@ -58,8 +58,10 @@ Relative to my previous courses, this one took about **twice** as long and I att
 
 ## What Would I Have Done Differently?
 
-I think that this course moves along at a fairly fas
+I think that this course is fairly fast-paced. I don't stop much to ponder the implementation or explain details when going over the tests. For someone who just needs to know what goes into writing a test for a feature, I think it'll be a good pace. For someone else who wants to know _why_, the sample app is there for reference.
+
+If this course were produced solely by myself I think I'd split it up or make it longer, in order to explain how I built the sample or explain the
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MjUwOTExNDMsMTYxNjkzOTA5MCw2ND
-kwNDIwODcsLTE2MjU1NDY3NTVdfQ==
+eyJoaXN0b3J5IjpbMTg1NzE5MzQ0MSwxNjE2OTM5MDkwLDY0OT
+A0MjA4NywtMTYyNTU0Njc1NV19
 -->
