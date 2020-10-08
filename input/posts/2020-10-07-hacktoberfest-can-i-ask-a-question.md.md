@@ -34,7 +34,13 @@ If one of these is true, the project is considered opted-in to Hacktoberfest.
 
 Now since we at Excalibur have always opted-in each year, I can tell you that **we expect people to ask questions!** We try to triage and choose potential Hacktoberfest issues ahead of time (heh, in "Preptember") but we know that people will likely have questions.
 
-After all, first-time contributors can't be expected to have answers to everything, of course you will need some help along th
+After all, first-time contributors can't be expected to have answers to everything, of course you will need some help along the way. This is especially true for anything beyond mere typos.
+
+## But will my question be welcomed?
+
+Now this is getting at a different issue, unrelated to Hacktoberfest specifically and more related to toxicity in the open source world.
+
+Here's what I recommend to help answer this question:
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNTAxNzE0NTksMTgyNTE1Nzg1OV19
+eyJoaXN0b3J5IjpbLTE4NTQ0MTU5ODYsMTgyNTE1Nzg1OV19
 -->
