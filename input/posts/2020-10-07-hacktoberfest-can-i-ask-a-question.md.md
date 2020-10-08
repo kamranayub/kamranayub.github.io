@@ -6,6 +6,7 @@ Tags:
 - Open Source
 ---
 
+
 I have a friend who is doing their first open source contribution through [Hacktoberfest](https://hacktoberfest.digitalocean.com/) this year, which is a yearly event to encourage open source participation.
 
 In their email, they asked:
@@ -54,9 +55,13 @@ At that point, maintainers should see your interest and expect that you'll have 
 
 If you have questions right away, like about the design, proposal, or a general question, the issue is where I'd ask. However, in the CONTRIBUTING document of the project, it may tell you where the best place to get help is (a Discord, Slack, Google Group, Gitter, whatever!).
 
-Once you create a fork, clone the project, and make your branch, you'll be exploring the code. On a new project, I always visualize this process like spelunking a cave system. You reveal one area, and then reveal the next, and that might have any number of offshoot paths or trails back to previous areas, etc. You can get lost in a cave and you can get lost in a codebase.
+Once you create a fork, clone the project, and make your branch, you'll be exploring the code.
 
 If you have a draft pull request (and I always recommend starting with a draft!) then that is where I'd start asking questions about the approach, feedback on your current solution, etc. A draft pull request is like your writing drafts -- do you send them to your friends to read or an editor? Of course! So get feedback early in the process.
+
+## Exploring the cave
+
+On a new project, I always visualize exploring the codebase like exploring a cave system (or "spelunking" if you're a fancypants). You reveal one area, then reveal the next and that might have any number of offshoot paths or trails back to previous areas, etc. You can get lost in a codebase just as you would a cave system.
 
 ## What to avoid
 
@@ -64,9 +69,9 @@ I can't speak for all maintainers but I think it's safe to say that generally ma
 
 When you don't ask questions you may end up going down a road that could lead to maintainbility or design issues you haven't foreseen. This makes total sense because using our cave example, the maintainers have already explored the whole cave. They've probably even mentally walled off areas with DO NOT ENTER police tape (because there be dragons there). Whereas you, the eager new cave spelunker, will happily wander past the invisible tape and step into an eternal abyss that is hard to recover from. Of course we don't want that!
 
-When you ask questions while you are working on a larger contribution, it's like asking for the maintainer to fill in parts of the map of the cave, refill your flashlight batteries, and tell you, "This is the safe path through. Avoid this one, though!" 
+When you ask questions while you are working on a larger contribution, it's like asking for the maintainer to fill in parts of the cave map, throw you some new flashlight batteries, and tell you, "This is the safe path through. Avoid this one, though!" 
 
-That beats trying to find your way around when your flashlight is dead! And it results in more agreeable outcome for everyone.
+That beats trying to find your way around when your flashlight is dead and it results in a more agreeable outcome for everyone. Huzzah.
 
 ## Always Be Asking
 
@@ -74,9 +79,10 @@ I'd be **surprised** if you didn't have a question about a new codebase. Actuall
 
 I get it, though. You might be listening to that voice in your head, "You can't ask a question like this, it's a silly question, I will look like a fool, and what will they think of me?" **Don't listen!** 
 
-It is not a sign of weakness to ask questions, it is how we learn. Doesn't matter if you're brand new to open source, new in your role, or a Principal Engineer -- we ask questions to understand better so **Always Be Asking**. If anyone (person, company, etc.) expresses to you that asking a question is some sign of weakness, run the other way.
+Listen, **it is not a sign of weakness to ask questions, it is how we learn.** Doesn't matter if you're brand new to open source, new in your role, or a Principal Engineer -- we ask questions to understand better so **Always Be Asking**. If anyone (person, company, etc.) expresses to you that asking a question is some sign of weakness, run the other way.
 
 If this is your first time contributing to open source, first, how exciting! Second, I lay out everything I just mentioned in more detail in my course on [Contributing to an Open Source Project on GitHub](https://bit.ly/PSContributingToOpenSource). It's an A-to-Z guide geared toward new open source contributors with practical scenarios, workflows, and a guided process on choosing the right project for you to work on.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc2MTIyMTg0NywxODI1MTU3ODU5XX0=
+eyJoaXN0b3J5IjpbMTg2ODM5MjI4OSwtNzYxMjIxODQ3LDE4Mj
+UxNTc4NTldfQ==
 -->
