@@ -22,17 +22,17 @@ The short answers are **YES** and **NO** (*hopefully*). Here is my longer answer
 
 There was a little bit of drama this year because historically projects did not necessarily opt into Hacktoberfest and were being spammed with low-effort PRs (or outright useless PRs). However, the [rules have changed](https://hacktoberfest.digitalocean.com/hacktoberfest-update) and now repositories can opt-in in several ways:
 
-They have a `hacktoberfest` topic in their GitHub project, like this:
+They can have a `hacktoberfest` topic in their GitHub project, like this:
 
 ![Screenshot of a repository with "hacktoberfest" topic](https://user-images.githubusercontent.com/563819/95412517-bd885800-08ee-11eb-883a-6620f19d0c0e.png)
 
-Or, maintainers are using the `hacktoberfest-accepted`  when accepting PRs or issues, like this:
+Or, maintainers can mark accepted PRs with the `hacktoberfest-accepted`, like this:
 
 ![hacktoberfest-accepted label](https://user-images.githubusercontent.com/563819/95412776-5919c880-08ef-11eb-8a63-f58f6bc4e3e4.png)
 
 If one of these is true, the project is considered opted-in to Hacktoberfest.
 
-My expectation as a contributor would be that if a project opted into Hacktoberfest, especially with the **topic** approach, they are expecting to help you with making quality contributions.
+My expectation as a contributor would be that if a project opted into Hacktoberfest, especially with the **topic** approach, they are *expecting* to help you with making quality contributions.
 
 Now since we at [Excalibur](https://github.com/excaliburjs/Excalibur) have always opted-in each year, I can tell you that **we expect people to ask questions!** We try to triage and choose potential Hacktoberfest issues ahead of time (heh, in "Preptember") but we know that people will likely have questions.
 
@@ -68,5 +68,5 @@ It is not a sign of weakness to ask questions, it is how we learn. Doesn't matte
 
 If this is your first time contributing to open source, first, how exciting! Second, I lay out everything I just mentioned in more detail in my course on [Contributing to an Open Source Project on GitHub](https://bit.ly/PSContributingToOpenSource). It's an A-to-Z guide geared toward new open source contributors with practical scenarios, workflows, and a guided process on choosing the right project for you to work on.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk1OTUwMjE0LDE4MjUxNTc4NTldfQ==
+eyJoaXN0b3J5IjpbLTIxMDUzODE2NzcsMTgyNTE1Nzg1OV19
 -->
