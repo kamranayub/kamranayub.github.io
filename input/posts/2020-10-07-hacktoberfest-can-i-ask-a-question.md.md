@@ -66,11 +66,11 @@ When you don't ask questions you may end up going down a road that could lead to
 
 When you ask questions while you are working on a larger contribution, it's like asking for the maintainer to fill in parts of the map of the cave, refill your flashlight batteries, and tell you, "This is the safe path through. Avoid this one, though!" 
 
-That beats trying to find your way around when your flashlight is dead!
+That beats trying to find your way around when your flashlight is dead! And it results in more agreeable outcome for everyone.
 
 ## Always Be Asking
 
-At some point, I'd be **surprised** if you didn't have a question about a new codebase. 
+I'd be **surprised** if you didn't have a question about a new codebase. Actually, it would be unbelievable. Of course you will.
 
 I get it, though. You might be listening to that voice in your head, "You can't ask a question like this, it's a silly question, I will look like a fool, and what will they think of me?" **Don't listen!** 
 
@@ -78,5 +78,5 @@ It is not a sign of weakness to ask questions, it is how we learn. Doesn't matte
 
 If this is your first time contributing to open source, first, how exciting! Second, I lay out everything I just mentioned in more detail in my course on [Contributing to an Open Source Project on GitHub](https://bit.ly/PSContributingToOpenSource). It's an A-to-Z guide geared toward new open source contributors with practical scenarios, workflows, and a guided process on choosing the right project for you to work on.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwODgyMDU2MDEsMTgyNTE1Nzg1OV19
+eyJoaXN0b3J5IjpbLTE2MjgxMjUyNTksMTgyNTE1Nzg1OV19
 -->
