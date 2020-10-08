@@ -5,8 +5,57 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2020</copyright>
-		<pubDate>Thu, 08 Oct 2020 04:38:28 GMT</pubDate>
-		<lastBuildDate>Thu, 08 Oct 2020 04:38:28 GMT</lastBuildDate>
+		<pubDate>Thu, 08 Oct 2020 04:40:31 GMT</pubDate>
+		<lastBuildDate>Thu, 08 Oct 2020 04:40:31 GMT</lastBuildDate>
+		<item>
+			<title>Hacktoberfest: Can I ask a question?</title>
+			<link>https://kamranicus.com/posts/2020-10-07-hacktoberfest-can-i-ask-a-question.md</link>
+			<description>&lt;p&gt;I have a friend who is doing their first open source contribution through &lt;a href="https://hacktoberfest.digitalocean.com/"&gt;Hacktoberfest&lt;/a&gt; this year, which is a yearly event to encourage open source participation.&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2020-10-07-hacktoberfest-can-i-ask-a-question.md</guid>
+			<pubDate>Thu, 08 Oct 2020 04:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;I have a friend who is doing their first open source contribution through &lt;a href="https://hacktoberfest.digitalocean.com/"&gt;Hacktoberfest&lt;/a&gt; this year, which is a yearly event to encourage open source participation.&lt;/p&gt;
+&lt;p&gt;In their email, they asked:&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Is there any etiquette or expectation for how much coding help one can ask for when taking up an issue and contributing?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;What a good question! Imagine yourself feeling pretty psyched to take on a Hacktoberfest issue and when you start to dig in to understand the codebase, you start to feel intimidated.&lt;/p&gt;
+&lt;p&gt;Is it OK to ask for help? Would that be rude to the maintainers?&lt;/p&gt;
+&lt;p&gt;The short answers are &lt;strong&gt;YES&lt;/strong&gt; and &lt;strong&gt;NO&lt;/strong&gt; (&lt;em&gt;hopefully&lt;/em&gt;). Here is my longer answer!&lt;/p&gt;
+&lt;h2 id="hacktoberfest-projects-expect-newcomers"&gt;Hacktoberfest projects expect newcomers&lt;/h2&gt;
+&lt;p&gt;There was a little bit of drama this year because historically projects did not necessarily opt into Hacktoberfest and were being spammed with low-effort PRs (or outright useless PRs). However, the &lt;a href="https://hacktoberfest.digitalocean.com/hacktoberfest-update"&gt;rules have changed&lt;/a&gt; and now repositories can opt-in in several ways:&lt;/p&gt;
+&lt;p&gt;They can have a &lt;code&gt;hacktoberfest&lt;/code&gt; topic in their GitHub project, like this:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/95412517-bd885800-08ee-11eb-883a-6620f19d0c0e.png" class="img-fluid" alt="Screenshot of a repository with &amp;quot;hacktoberfest&amp;quot; topic" /&gt;&lt;/p&gt;
+&lt;p&gt;Or, maintainers can mark accepted PRs with the &lt;code&gt;hacktoberfest-accepted&lt;/code&gt;, like this:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/95412776-5919c880-08ef-11eb-8a63-f58f6bc4e3e4.png" class="img-fluid" alt="hacktoberfest-accepted label" /&gt;&lt;/p&gt;
+&lt;p&gt;If one of these is true, the project is considered opted-in to Hacktoberfest.&lt;/p&gt;
+&lt;p&gt;My expectation as a contributor would be that if a project opted into Hacktoberfest, especially with the &lt;strong&gt;topic&lt;/strong&gt; approach, they are &lt;em&gt;expecting&lt;/em&gt; to help you with making quality contributions.&lt;/p&gt;
+&lt;p&gt;Now since we at &lt;a href="https://github.com/excaliburjs/Excalibur"&gt;Excalibur&lt;/a&gt; have always opted-in each year, I can tell you that &lt;strong&gt;we expect people to ask questions!&lt;/strong&gt; We try to triage and choose potential Hacktoberfest issues ahead of time (heh, in &amp;quot;Preptember&amp;quot;) but we know that people will likely have questions.&lt;/p&gt;
+&lt;p&gt;After all, first-time contributors can't be expected to have answers to everything, of course you will need some help along the way. This is especially true for anything beyond mere typos.&lt;/p&gt;
+&lt;h2 id="but-will-my-question-be-welcomed"&gt;But will my question be welcomed?&lt;/h2&gt;
+&lt;p&gt;Now this is getting at a different issue, unrelated to Hacktoberfest specifically and more related to toxicity in the open source world. And let's be real: open source can be toxic.&lt;/p&gt;
+&lt;p&gt;Here's what I recommend to help avoid a toxic project until it's too late: &amp;quot;scout&amp;quot; a potential project beforehand. Does it have a Code of Conduct? Do the maintainers seem to follow it? How do they react to external contributors asking questions? Are they helpful? How do they review their own code?&lt;/p&gt;
+&lt;p&gt;Doing some prep work on your part beforehand I think will help having to ask this question in the first place.&lt;/p&gt;
+&lt;h2 id="where-should-i-ask"&gt;Where should I ask?&lt;/h2&gt;
+&lt;p&gt;The approach I recommend is to first ask within issues, assuming there's a Hacktoberfest issue you're taking. This is also where you'd volunteer to take the issue (like, &amp;quot;🙋‍♂️ Hey, I'd love to try and take this on!&amp;quot;).&lt;/p&gt;
+&lt;p&gt;At that point, maintainers should see your interest and expect that you'll have questions as you get farther into it.&lt;/p&gt;
+&lt;p&gt;If you have questions right away, like about the design, proposal, or a general question, the issue is where I'd ask. However, in the CONTRIBUTING document of the project, it may tell you where the best place to get help is (a Discord, Slack, Google Group, Gitter, whatever!).&lt;/p&gt;
+&lt;p&gt;Once you create a fork, clone the project, and make your branch, you'll be exploring the code. On a new project, I always visualize this process like spelunking a cave system. You reveal one area, and then reveal the next, and that might have any number of offshoot paths or trails back to previous areas, etc. You can get lost in a cave and you can get lost in a codebase.&lt;/p&gt;
+&lt;p&gt;If you have a draft pull request (and I always recommend starting with a draft!) then that is where I'd start asking questions about the approach, feedback on your current solution, etc. A draft pull request is like your writing drafts -- do you send them to your friends to read or an editor? Of course! So get feedback early in the process.&lt;/p&gt;
+&lt;h2 id="what-to-avoid"&gt;What to avoid&lt;/h2&gt;
+&lt;p&gt;I can't speak for all maintainers but I think it's safe to say that generally maintainers welcome quality contributions (of any kind!).&lt;/p&gt;
+&lt;p&gt;When you don't ask questions you may end up going down a road that could lead to maintainbility or design issues you haven't foreseen. This makes total sense because using our cave example, the maintainers have already explored the whole cave. They've probably even mentally walled off areas with DO NOT ENTER police tape (because there be dragons there). Whereas you, the eager new cave spelunker, will happily wander past the invisible tape and step into an eternal abyss that is hard to recover from. Of course we don't want that!&lt;/p&gt;
+&lt;p&gt;When you ask questions while you are working on a larger contribution, it's like asking for the maintainer to fill in parts of the map of the cave, refill your flashlight batteries, and tell you, &amp;quot;This is the safe path through. Avoid this one, though!&amp;quot;&lt;/p&gt;
+&lt;p&gt;That beats trying to find your way around when your flashlight is dead! And it results in more agreeable outcome for everyone.&lt;/p&gt;
+&lt;h2 id="always-be-asking"&gt;Always Be Asking&lt;/h2&gt;
+&lt;p&gt;I'd be &lt;strong&gt;surprised&lt;/strong&gt; if you didn't have a question about a new codebase. Actually, it would be unbelievable. Of course you will.&lt;/p&gt;
+&lt;p&gt;I get it, though. You might be listening to that voice in your head, &amp;quot;You can't ask a question like this, it's a silly question, I will look like a fool, and what will they think of me?&amp;quot; &lt;strong&gt;Don't listen!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;It is not a sign of weakness to ask questions, it is how we learn. Doesn't matter if you're brand new to open source, new in your role, or a Principal Engineer -- we ask questions to understand better so &lt;strong&gt;Always Be Asking&lt;/strong&gt;. If anyone (person, company, etc.) expresses to you that asking a question is some sign of weakness, run the other way.&lt;/p&gt;
+&lt;p&gt;If this is your first time contributing to open source, first, how exciting! Second, I lay out everything I just mentioned in more detail in my course on &lt;a href="https://bit.ly/PSContributingToOpenSource"&gt;Contributing to an Open Source Project on GitHub&lt;/a&gt;. It's an A-to-Z guide geared toward new open source contributors with practical scenarios, workflows, and a guided process on choosing the right project for you to work on.&lt;/p&gt;
+&lt;!--stackedit_data:
+eyJoaXN0b3J5IjpbLTc2MTIyMTg0NywxODI1MTU3ODU5XX0=
+--&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>New Course: Testing Progressive Web Apps on Pluralsight</title>
 			<link>https://kamranicus.com/posts/2020-08-25-course-testing-progress-web-apps-cypress-webdriverio</link>
@@ -1382,138 +1431,6 @@ ansible_become_method=su
 &lt;blockquote class="blockquote"&gt;
 &lt;p&gt;If you are still learning RavenDB 4, &lt;a href="https://bit.ly/PSRavenDB4"&gt;check out my Getting Started with RavenDB 4&lt;/a&gt; Pluralsight course! It covers the basics like how to get around the Studio, connect with .NET, and more. Using my link won't cost you anything extra but I will get credit for your subscription which helps me out!&lt;/p&gt;
 &lt;/blockquote&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>2019 Goals Quarterly Update (Q1)</title>
-			<link>https://kamranicus.com/posts/2019-04-28-quarterly-1-update</link>
-			<description>&lt;p&gt;This is my first time trying a quarterly update on &lt;a href="https://kamranicus.com/posts/2018-12-20-year-in-review-2019-goals"&gt;my yearly goal setting&lt;/a&gt; but I was updating that old post with progress notes and decided I should just formally document progress every quarter instead of retrofitting an older post. That way if any goals &lt;em&gt;evolve&lt;/em&gt; (which some have!) then I can look back and see that change happening. Also this &lt;em&gt;forces&lt;/em&gt; me to post at least once every 4 months which may get me into the groove of writing more generally.&lt;/p&gt;</description>
-			<guid>https://kamranicus.com/posts/2019-04-28-quarterly-1-update</guid>
-			<pubDate>Sun, 28 Apr 2019 04:00:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;This is my first time trying a quarterly update on &lt;a href="https://kamranicus.com/posts/2018-12-20-year-in-review-2019-goals"&gt;my yearly goal setting&lt;/a&gt; but I was updating that old post with progress notes and decided I should just formally document progress every quarter instead of retrofitting an older post. That way if any goals &lt;em&gt;evolve&lt;/em&gt; (which some have!) then I can look back and see that change happening. Also this &lt;em&gt;forces&lt;/em&gt; me to post at least once every 4 months which may get me into the groove of writing more generally.&lt;/p&gt;
-&lt;h2 id="progress-on-yearly-goals"&gt;Progress on yearly goals&lt;/h2&gt;
-&lt;p&gt;Here are the goals I originally laid out and progress notes for each! At the end I also listed some unplanned accomplishments so I can track those too.&lt;/p&gt;
-&lt;h3 id="primary-goals"&gt;Primary Goals&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Professional&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;⌛ Publish 1 Pluralsight course on Azure or TypeScript or React (&lt;del&gt;September&lt;/del&gt; Q4)
-&lt;ul&gt;
-&lt;li&gt;I have maintenance updates coming in before July but no plans for a course; targeting after summer. Adjusted the target date.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;☑️ Publish 4 Pluralsight guides on React &amp;amp; TypeScript by May
-&lt;ul&gt;
-&lt;li&gt;I was able to publish &lt;a href="https://kamranicus.com/guides"&gt;3 PS guides&lt;/a&gt; but didn't do a 4th because I actually got an unforeseen opportunity to &lt;a href="https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes"&gt;write a freelance article for RavenDB&lt;/a&gt;! I am marking this goal as completed with a bonus objective!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;✅ Speak at NDC MN on a TypeScript topic
-&lt;ul&gt;
-&lt;li&gt;I was &lt;a href="https://kamranicus.com/posts/2019-02-01-ndc-minnesota-flexible-ui-with-react-graphql-typescript"&gt;accepted to speak&lt;/a&gt; at NDC MN in May.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;⌛ Publish 5 technical articles on the blog about Azure, TypeScript, or React
-&lt;ul&gt;
-&lt;li&gt;I need to plan this out more specifically, though I have a couple ideas! I did post about &lt;a href="https://dev.to/kamranayub/copying-to-the-clipboard-using-react-typescript-material-ui-4fdb"&gt;Copying to clipboard using React and TypeScript&lt;/a&gt; on dev.to.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Personal&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;⌛ Pay off all non-mortgage debt
-&lt;ul&gt;
-&lt;li&gt;I've paid off all loans under my name! 🎉 Cassie is up next. Neither of us have any credit card debt or car loans, it's just the student loans left.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;⌛ Passive income should account for 2% of earnings, 1099 income for 5%
-&lt;ul&gt;
-&lt;li&gt;As a percentage of household W-2 income, passive income is at 1% and contracting income is at 1%, making a total of 2%. Not bad and I project passive income will be just at or higher than 2%. I am not quite as sure if contracting will end up being above 5% but I'll try!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;☑️ Replace my PCs at home with a single good Ultrabook/Notebook and a NAS
-&lt;ul&gt;
-&lt;li&gt;I sold my secondary PC, decided to keep my main PC but instead got a quieter case for recording. I also picked up a used Lenovo Yoga 720 laptop as my personal on-the-go machine. No NAS quite yet, though. I also discovered I have enough parts for yet another entry-level PC but something is up with the motherboard/parts and it won't turn on correctly 🤷‍♂️.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;⌛ Push 3 substantive updates to KTOMG throughout the year: Steam review revamp, Raven 4 upgrade, and Linux hosting
-&lt;ul&gt;
-&lt;li&gt;This is my focus for the summer, after NDC. I am nearly done migrating to RavenDB 4!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;DIY&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;☑️ Learn how to cut trim/baseboard and finish the nursery
-&lt;ul&gt;
-&lt;li&gt;I finished the nursery but decided to &lt;em&gt;paint&lt;/em&gt; the trim/baseboard instead of replacing it outright, for now.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;⌛ Finish my office decor/storage, maybe paint it too
-&lt;ul&gt;
-&lt;li&gt;I am in the process of selling my old furniture so I can create a &amp;quot;maker&amp;quot; space for me and my kids. I still would like to paint it.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="stretch-goals"&gt;Stretch Goals&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Professional&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;⌛ Set up a quarterly newsletter
-&lt;ul&gt;
-&lt;li&gt;I am working on this! Look, I now have a mailing list sign up under each post!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Publish 1 more Pluralsight course on Azure or TypeScript or React&lt;/li&gt;
-&lt;li&gt;Publish 4 additional Pluralsight guides throughout the year&lt;/li&gt;
-&lt;li&gt;Participate in 1 Pluralsight Mentoring session&lt;/li&gt;
-&lt;li&gt;Become a Microsoft MVP with a focus on Azure/TypeScript content&lt;/li&gt;
-&lt;li&gt;⌛ Speak at a JSConf or ReactConf event
-&lt;ul&gt;
-&lt;li&gt;So far have not been accepted to any that I've applied to but 🤞&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Speak at the React MN meetup about TypeScript or GraphQL&lt;/li&gt;
-&lt;li&gt;Record a YouTube video walkthrough of my &lt;a href="https://kamranicus.com/guides/raspberry-pi-3-baby-monitor"&gt;Raspberry Pi baby monitor&lt;/a&gt; written guide&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Personal&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;1099 income should account for 12% or more (+2% over 2018)&lt;/li&gt;
-&lt;li&gt;⌛ Travel completely free somewhere in the US with wife and 2 kids using miles/points
-&lt;ul&gt;
-&lt;li&gt;We earned our 50K bonus miles from our Chase Sapphire Preferred card (&lt;a href="https://www.choosefi.com/all-articles/travel-rewards/"&gt;you should too!&lt;/a&gt;) but not sure if we will go anywhere using them yet or wait. I was proud of this one because we used the card to pay off my daughter's birth bills, earn the 50K bonus miles, &lt;em&gt;and&lt;/em&gt; are saving the receipts for &lt;a href="https://www.choosefi.com/use-your-hsa-to-provide-income-in-retirement/"&gt;a future tax-free HSA reimbursement&lt;/a&gt;. That was a nice hack!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;⛔ Participate in Ludum Dare during the spring
-&lt;ul&gt;
-&lt;li&gt;This is a no-go, just didn't have the time. Perhaps in fall/winter!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;DIY&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Install &lt;a href="https://www.youtube.com/watch?v=OJqk2iS_jyQ"&gt;luxury vinyl plank&lt;/a&gt; in my office&lt;/li&gt;
-&lt;li&gt;Replace baseboard/trim in my son's bedroom&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="unplanned-accomplishments"&gt;Unplanned Accomplishments&lt;/h2&gt;
-&lt;h3 id="professional"&gt;Professional&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Freelance writing for RavenDB.&lt;/strong&gt; I was excited to have the opportunity to work with Hibernating Rhinos, creators of RavenDB, to write two articles on RavenDB. &lt;a href="(https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes)"&gt;One was published in April&lt;/a&gt;, the other will be published in May.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;I made a little app.&lt;/strong&gt; Without much fanfare, &lt;a href="https://reachfi.app/update/2019-02-19-initial-release/"&gt;I released an app&lt;/a&gt; that helps track your savings rate. I'd love to spend more time building it out but it's not a heavy focus right now.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Released an OSS project.&lt;/strong&gt; I released a small &lt;a href="https://www.gatsbyjs.org/packages/gatsby-source-typedoc/?=gatsby-source-type"&gt;gatsby source plugin&lt;/a&gt; for generating TypeDoc to source in a Gatsby app for Excalibur's new docs site.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="personal"&gt;Personal&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Finished 3 books.&lt;/strong&gt; Through Audible and the library, I finished some books: &lt;a href="https://www.goodreads.com/book/show/30835567-hit-refresh"&gt;Hit Refresh&lt;/a&gt;, &lt;a href="https://www.goodreads.com/book/show/35068719-meet-the-frugalwoods"&gt;Meet the Frugalwoods&lt;/a&gt;, and &lt;a href="https://www.goodreads.com/book/show/19288043-gone-girl"&gt;Gone Girl&lt;/a&gt;. I am currently listening to &lt;a href="https://www.goodreads.com/book/show/40187317-mission-critical"&gt;Mission Critical, a Gray Man book&lt;/a&gt; and reading &lt;a href="https://www.goodreads.com/book/show/110312.Conceptual_Blockbusting"&gt;Conceptual Blockbusting&lt;/a&gt; along with &lt;a href="https://www.goodreads.com/book/show/4845.Code_Complete"&gt;Code Complete&lt;/a&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Finished over 60 episodes of ChooseFI&lt;/strong&gt;. It's &lt;a href="https://twitter.com/kamranayub/status/1082390375560593408"&gt;no secret&lt;/a&gt; I love the ChooseFI podcast (and &lt;a href="https://podcasts.apple.com/us/podcast/choosefi/id1187770032"&gt;I'm not alone&lt;/a&gt;). As of this week I'm on episode 67R which means I'm about halfway through the back catalog. &lt;strong&gt;That's about 70 hours of content!&lt;/strong&gt; It's just a fantastic source of information on all aspects of &amp;quot;life optimization&amp;quot; like finance, mindfulness, happiness, and growth. I recommend it whenever I can and if it impacts others the same way it impacted me, then I'll continue singing its praises.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="final-thoughts"&gt;Final thoughts&lt;/h2&gt;
-&lt;p&gt;It's been a busy Q1! I owe thanks to &lt;a href="https://todoist.com"&gt;Todoist&lt;/a&gt;, that has transformed how we do things around our household between my wife and I. I've actually enjoyed writing quite a bit though now I feel the itch to come up with content for the blog.&lt;/p&gt;
-&lt;p&gt;I have been thinking of what I want Kamranicus.com to be and how it should change to host my content and showcase different things but haven't landed on anything final yet. As you perhaps might notice, in the posts and guides I've enabled Adsense since there are some popular pieces of content on here and I actually earn a little from my Amazon affiliate links already.&lt;/p&gt;
-&lt;p&gt;I was also very excited and thankful for the opportunity to do some freelancing as it lit a fire under me to get me working with some business products like &lt;a href="http://fbuy.me/mou3m"&gt;Quickbooks&lt;/a&gt; (use my 50% off referral link) and &lt;a href="http://dochub.com"&gt;Dochub&lt;/a&gt; to better manage my side hustling. It &lt;em&gt;also&lt;/em&gt; derailed my focus on KTOMG for the spring since March-May has just been doing writing leaving much less time to get things done for KTOMG in a timely manner. Oh well!&lt;/p&gt;
-&lt;p&gt;Looking towards the summer (Q2), I'm also pretty excited for NDC MN, some course maintenance, and then re-focusing on KTOMG. This will also be our first summer that Cassie and the kids will have off together! So they will be visiting me at work more often and I'll be trying to spend time with them when I can. The grill is already out 🔥🍔&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>
