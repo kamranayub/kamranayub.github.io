@@ -52,7 +52,9 @@ The approach I recommend is to first ask within issues, assuming there's a Hackt
 
 At that point, maintainers should see your interest and expect that you'll have questions as you get farther into it.
 
+If you have questions right away, like about the design, proposal, or a general question, the issue is where I'd ask.
 
+Once you create a fork, clone the project, and make your branch, you'll be exploring the code. On a new project, I always visualize this process like spelunking a cave system. You reveal one area, and then reveal the next, and that might have any number of offshoot paths or trails back to previous areas, etc.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM4Mzc4MDAyOCwxODI1MTU3ODU5XX0=
+eyJoaXN0b3J5IjpbLTk5MTY5NTA3LDE4MjUxNTc4NTldfQ==
 -->
