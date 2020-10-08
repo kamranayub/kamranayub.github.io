@@ -62,7 +62,7 @@ If you have a draft pull request (and I always recommend starting with a draft!)
 
 I can't speak for all maintainers but I think it's safe to say that generally maintainers welcome quality contributions (of any kind!).
 
-When you don't ask questions you may end up going down a road that could lead to maintainbility or design issues you haven't fores
+When you don't ask questions you may end up going down a road that could lead to maintainbility or design issues you haven't foreseen. This makes total sense because using our cave example, the maintainers have already explored the whole cave. They've probably even mentally walled off areas with DO NOT ENTER police tape (because there be dragons there). Whereas you, the eager new cave spelunker, will happily wander past the invisible tape and step into an eternal abyss that is hard to recover from.
 
 ## Always Be Asking
 
@@ -74,5 +74,5 @@ It is not a sign of weakness to ask questions, it is how we learn. Doesn't matte
 
 If this is your first time contributing to open source, first, how exciting! Second, I lay out everything I just mentioned in more detail in my course on [Contributing to an Open Source Project on GitHub](https://bit.ly/PSContributingToOpenSource). It's an A-to-Z guide geared toward new open source contributors with practical scenarios, workflows, and a guided process on choosing the right project for you to work on.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjczMDc4ODk1LDE4MjUxNTc4NTldfQ==
+eyJoaXN0b3J5IjpbLTE0ODE4NDg1NjcsMTgyNTE1Nzg1OV19
 -->
