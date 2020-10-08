@@ -1,11 +1,3 @@
-Title: "Hacktoberfest: Can I ask a question?"
-Published: 2020-10-07 23:00:00 -0500
-Lead: A friend contacted me about how they should approach asking questions for their very first Hacktoberfest / open source contribution.
-Tags:
-- Hacktoberfest
-- Open Source
----
-
 
 I have a friend who is doing their first open source contribution through [Hacktoberfest](https://hacktoberfest.digitalocean.com/) this year, which is a yearly event to encourage open source participation.
 
@@ -63,15 +55,22 @@ If you have a draft pull request (and I always recommend starting with a draft!)
 
 On a new project, I always visualize exploring the codebase like exploring a cave system (or "spelunking" if you're a fancypants). You reveal one area, then reveal the next and that might have any number of offshoot paths or trails back to previous areas, etc. You can get lost in a codebase just as you would a cave system.
 
+![Photo of a cave by Joshua Sortino (unsplash)](https://user-images.githubusercontent.com/563819/95415964-3ee3e880-08f7-11eb-8290-4987f6d85952.jpg)
+<figcaption>Photo by <a href="https://unsplash.com/@sortino?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Joshua Sortino</a> on <a href="https://unsplash.com/wallpapers/nature/cave?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></figcaption>
+
+A maintainer is the cave guide. Or maybe just someone who's really been in and out of the cave a ton. Or maybe **really, really** likes this one area of the cave and knows it blindfolded. The metaphor sort of falls apart because who made the cave, anyway? Nevermind. 🤫
+
+When you ask questions while you are working on a codebase (of any size), it's like you are wandering into the cave and _then_ asking for the maintainer to fill in parts of the cave map, throw you some new flashlight batteries, and tell you, "This is the safe path through. Avoid this one, though!"
+
+Being a newcomer though brings fresh perspective. You might find parts of the cave no one has been through in awhile that could use some dusting. Maybe there's a new pathway the cave has opened up that could be faster than an existing pathway that's well-trodden. You get the picture -- when you ask questions, you may inspire new and better solutions to existing problems maintainers haven't considered.
+
+It's definitely fun to explore a cave on your own at first but it won't be long until your flashlight dies. Ask for help and recharge those batteries! It results in a more agreeable outcome for everyone. Huzzah.
+
 ## What to avoid
 
 I can't speak for all maintainers but I think it's safe to say that generally maintainers welcome quality contributions (of any kind!).
 
-When you don't ask questions you may end up going down a road that could lead to maintainbility or design issues you haven't foreseen. This makes total sense because using our cave example, the maintainers have already explored the whole cave. They've probably even mentally walled off areas with DO NOT ENTER police tape (because there be dragons there). Whereas you, the eager new cave spelunker, will happily wander past the invisible tape and step into an eternal abyss that is hard to recover from. Of course we don't want that!
-
-When you ask questions while you are working on a larger contribution, it's like asking for the maintainer to fill in parts of the cave map, throw you some new flashlight batteries, and tell you, "This is the safe path through. Avoid this one, though!" 
-
-That beats trying to find your way around when your flashlight is dead and it results in a more agreeable outcome for everyone. Huzzah.
+When you don't ask questions you may end up going down a road that could lead to maintainbility or design issues you haven't foreseen. Remember: this might be your first (and only) time in the cave, it's better to go in prepared!
 
 ## Always Be Asking
 
@@ -83,6 +82,6 @@ Listen, **it is not a sign of weakness to ask questions, it is how we learn.** D
 
 If this is your first time contributing to open source, first, how exciting! Second, I lay out everything I just mentioned in more detail in my course on [Contributing to an Open Source Project on GitHub](https://bit.ly/PSContributingToOpenSource). It's an A-to-Z guide geared toward new open source contributors with practical scenarios, workflows, and a guided process on choosing the right project for you to work on.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg2ODM5MjI4OSwtNzYxMjIxODQ3LDE4Mj
-UxNTc4NTldfQ==
+eyJoaXN0b3J5IjpbLTY5OTAxNjE5NiwxODY4MzkyMjg5LC03Nj
+EyMjE4NDcsMTgyNTE1Nzg1OV19
 -->
