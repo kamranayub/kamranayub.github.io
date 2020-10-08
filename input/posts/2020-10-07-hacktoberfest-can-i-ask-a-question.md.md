@@ -12,13 +12,13 @@ In their email, they asked:
 
 > Is there any etiquette or expectation for how much coding help one can ask for when taking up an issue and contributing?
 
-What a good question! Imagine yourself feeling pretty psyched to take on a Hacktoberfest issue and when you start to dig around, understand the codebase, you start to realize there could be several solutions and are starting to feel intimidated. 
+What a good question! Imagine yourself feeling pretty psyched to take on a Hacktoberfest issue and when you start to dig in to understand the codebase, you start to feel intimidated. 
 
 Is it OK to ask for help? Would that be rude to the maintainers? 
 
-The short answers are **YES** and **NO**. Here is my longer answer!
+The short answers are **YES** and **NO** (*hopefully*). Here is my longer answer!
 
-## If the project is participating in Hacktoberfest, this is expected!
+## Hacktoberfest projects expect newcomers
 
 There was a little bit of drama this year because historically projects did not necessarily opt into Hacktoberfest and were being spammed with low-effort PRs (or outright useless PRs). However, the [rules have changed](https://hacktoberfest.digitalocean.com/hacktoberfest-update) and now repositories can opt-in in several ways:
 
@@ -68,5 +68,5 @@ It is not a sign of weakness to ask questions, it is how we learn. Doesn't matte
 
 If this is your first time contributing to open source, first, how exciting! Second, I lay out everything I just mentioned in more detail in my course on [Contributing to an Open Source Project on GitHub](https://bit.ly/PSContributingToOpenSource). It's an A-to-Z guide geared toward new open source contributors with practical scenarios, workflows, and a guided process on choosing the right project for you to work on.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMTU0OTU2NzQsMTgyNTE1Nzg1OV19
+eyJoaXN0b3J5IjpbMTk1OTUwMjE0LDE4MjUxNTc4NTldfQ==
 -->
