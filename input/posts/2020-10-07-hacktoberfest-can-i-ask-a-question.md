@@ -1,4 +1,12 @@
 
+Title:  "Hacktoberfest:  Can  I  ask  a  question?"
+Published:  2020-10-08 08:00:00  -0500
+Lead:  A  friend  contacted  me  about  how  they  should  approach  asking  questions  for  their  very  first  Hacktoberfest  /  open  source  contribution.
+Tags:
+-  Hacktoberfest
+-  Open  Source
+---
+
 I have a friend who is doing their first open source contribution through [Hacktoberfest](https://hacktoberfest.digitalocean.com/) this year, which is a yearly event to encourage open source participation.
 
 In their email, they asked:
@@ -83,5 +91,6 @@ Listen, **it is not a sign of weakness to ask questions, it is how we learn.** D
 
 If this is your first time contributing to open source, first, how exciting! Second, I lay out everything I just mentioned in more detail in my course on [Contributing to an Open Source Project on GitHub](https://bit.ly/PSContributingToOpenSource). It's an A-to-Z guide geared toward new open source contributors with practical scenarios, workflows, and a guided process on choosing the right project for you to work on.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcxNzI5MDQ4NywtNjk5MDE2MTk2XX0=
+eyJoaXN0b3J5IjpbLTM4MjIwMTUzMSwtNzE3MjkwNDg3LC02OT
+kwMTYxOTZdfQ==
 -->
