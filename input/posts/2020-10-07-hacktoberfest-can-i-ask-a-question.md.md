@@ -56,7 +56,7 @@ If you have questions right away, like about the design, proposal, or a general 
 
 Once you create a fork, clone the project, and make your branch, you'll be exploring the code. On a new project, I always visualize this process like spelunking a cave system. You reveal one area, and then reveal the next, and that might have any number of offshoot paths or trails back to previous areas, etc. You can get lost in a cave and you can get lost in a codebase.
 
-At some point, I'd be **surprised** if you didn't have a question. You might be listening to a voice in your head, "You can't ask a question like this, it's a silly question, I will look like a fool, and what will they think of me?" **Don't listen!** It is not a sign of strength to not ask questions, it is a sign of being open minded and curious, it's always been the mark of some of the best people I've worked with. Doesn't matter if you're brand new to open source, new in your role, or a Principal Engineer -- we ask questions to understand better, Always Be Asking. If any
+At some point, I'd be **surprised** if you didn't have a question. You might be listening to a voice in your head, "You can't ask a question like this, it's a silly question, I will look like a fool, and what will they think of me?" **Don't listen!** It is not a sign of weakness to ask questions, it is how we learn, it's always been the mark of some of the best people I've worked with. Doesn't matter if you're brand new to open source, new in your role, or a Principal Engineer -- we ask questions to understand better, Always Be Asking. If anyone (person, company, etc.) expresses to you that asking a question is some sign of weakness, run the other way.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgwMjQ3MTU2LDE4MjUxNTc4NTldfQ==
+eyJoaXN0b3J5IjpbNjMzNzMyMjcsMTgyNTE1Nzg1OV19
 -->
