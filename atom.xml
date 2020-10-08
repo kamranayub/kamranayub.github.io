@@ -4,7 +4,7 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2020</rights>
-	<updated>2020-10-08T04:57:29Z</updated>
+	<updated>2020-10-08T13:22:26Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
 	<entry>
 		<link href="https://kamranicus.com/posts/hacktoberfest-can-i-ask-a-question" />
@@ -34,13 +34,14 @@
 &lt;p&gt;Here's what I recommend to help avoid a toxic project until it's too late: &amp;quot;scout&amp;quot; a potential project beforehand. Does it have a Code of Conduct? Do the maintainers seem to follow it? How do they react to external contributors asking questions? Are they helpful? How do they review their own code?&lt;/p&gt;
 &lt;p&gt;Doing some prep work on your part beforehand I think will help having to ask this question in the first place.&lt;/p&gt;
 &lt;h2 id="where-should-i-ask"&gt;Where should I ask?&lt;/h2&gt;
-&lt;p&gt;The approach I recommend is to first ask within issues, assuming there's a Hacktoberfest issue you're taking. This is also where you'd volunteer to take the issue (like, &amp;quot;🙋‍♂️ Hey, I'd love to try and take this on!&amp;quot;).&lt;/p&gt;
-&lt;p&gt;At that point, maintainers should see your interest and expect that you'll have questions as you get farther into it.&lt;/p&gt;
-&lt;p&gt;If you have questions right away, like about the design, proposal, or a general question, the issue is where I'd ask. However, in the CONTRIBUTING document of the project, it may tell you where the best place to get help is (a Discord, Slack, Google Group, Gitter, whatever!).&lt;/p&gt;
-&lt;p&gt;Once you create a fork, clone the project, and make your branch, you'll be exploring the code.&lt;/p&gt;
+&lt;p&gt;Start with the CONTRIBUTING document of the project or the CODE_OF_CONDUCT document. An actively maintained project that works with external contributors will typically lay out the expectations for issues and pull requests and may tell you where the best place to get help is. With the recent &lt;a href="https://github.blog/2020-05-06-new-from-satellite-2020-github-codespaces-github-discussions-securing-code-in-private-repositories-and-more/"&gt;introduction of GitHub Discussions&lt;/a&gt;, that may also be the first place to look if the project is opted-into the beta.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/95463793-d6b8f500-093e-11eb-9f77-2e3997cd5dc0.png" class="img-fluid" alt="Screenshot of GitHub Discussions" /&gt;&lt;/p&gt;
+&lt;figcaption&gt;GitHub Discussions is slowly being made available on a opt-in basis&lt;/figcaption&gt;
+&lt;p&gt;If there's no clear place to start, I recommend first asking within issues, assuming there's a Hacktoberfest issue you're taking. This is also where you'd volunteer to take the issue (like, &amp;quot;🙋‍♂️ Hey, I'd love to try and take this on!&amp;quot;).&lt;/p&gt;
+&lt;p&gt;At that point, maintainers should see your interest and expect that you'll have questions as you get farther into it. If you have questions right away, like about the design, proposal, or a general question, the issue is where I'd ask.&lt;/p&gt;
 &lt;p&gt;If you have a draft pull request (and I always recommend starting with a draft!) then that is where I'd start asking questions about the approach, feedback on your current solution, etc. A draft pull request is like your writing drafts -- do you send them to your friends to read or an editor? Of course! So get feedback early in the process.&lt;/p&gt;
-&lt;h2 id="exploring-the-cave"&gt;Exploring the cave&lt;/h2&gt;
-&lt;p&gt;On a new project, I always visualize exploring the codebase like exploring a cave system (or &amp;quot;spelunking&amp;quot; if you're a fancypants). You reveal one area, then reveal the next and that might have any number of offshoot paths or trails back to previous areas, etc. You can get lost in a codebase just as you would a cave system.&lt;/p&gt;
+&lt;h2 id="time-to-explore-the-cave-dont-go-it-alone"&gt;Time to explore the cave, don't go it alone!&lt;/h2&gt;
+&lt;p&gt;I like to think of exploring a codebase like exploring a cave system (or &amp;quot;spelunking&amp;quot; if you're a fancypants). You reveal one area, then reveal the next and that might have any number of offshoot paths or trails back to previous areas, etc. You can get lost in a codebase just as you would a cave system.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/95415964-3ee3e880-08f7-11eb-8290-4987f6d85952.jpg" class="img-fluid" alt="Photo of a cave by Joshua Sortino (unsplash)" /&gt;&lt;/p&gt;
 &lt;figcaption&gt;Photo by &lt;a href="https://unsplash.com/&amp;#64;sortino?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText"&gt;Joshua Sortino&lt;/a&gt; on &lt;a href="https://unsplash.com/wallpapers/nature/cave?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt;&lt;/figcaption&gt;
 &lt;p&gt;A maintainer is the cave guide. Or maybe just someone who's really been in and out of the cave a ton. Or maybe &lt;strong&gt;really, really&lt;/strong&gt; likes this one area of the cave and knows it blindfolded. The metaphor sort of falls apart because who made the cave, anyway? Nevermind. 🤫&lt;/p&gt;
@@ -56,7 +57,7 @@
 &lt;p&gt;Listen, &lt;strong&gt;it is not a sign of weakness to ask questions, it is how we learn.&lt;/strong&gt; Doesn't matter if you're brand new to open source, new in your role, or a Principal Engineer -- we ask questions to understand better so &lt;strong&gt;Always Be Asking&lt;/strong&gt;. If anyone (person, company, etc.) expresses to you that asking a question is some sign of weakness, run the other way.&lt;/p&gt;
 &lt;p&gt;If this is your first time contributing to open source, first, how exciting! Second, I lay out everything I just mentioned in more detail in my course on &lt;a href="https://bit.ly/PSContributingToOpenSource"&gt;Contributing to an Open Source Project on GitHub&lt;/a&gt;. It's an A-to-Z guide geared toward new open source contributors with practical scenarios, workflows, and a guided process on choosing the right project for you to work on.&lt;/p&gt;
 &lt;!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY5OTAxNjE5Nl19
+eyJoaXN0b3J5IjpbLTcxNzI5MDQ4NywtNjk5MDE2MTk2XX0=
 --&gt;
 </content>
 		<summary>&lt;p&gt;I have a friend who is doing their first open source contribution through &lt;a href="https://hacktoberfest.digitalocean.com/"&gt;Hacktoberfest&lt;/a&gt; this year, which is a yearly event to encourage open source participation.&lt;/p&gt;</summary>
