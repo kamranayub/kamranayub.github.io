@@ -40,7 +40,9 @@ After all, first-time contributors can't be expected to have answers to everythi
 
 Now this is getting at a different issue, unrelated to Hacktoberfest specifically and more related to toxicity in the open source world.
 
-Here's what I recommend to help answer this question:
+Here's what I recommend to help answer this question: "scout" a potential project beforehand. Does it have a Code of Conduct? Do the maintainers seem to follow it? How do they react to external contributors asking questions? Are they helpful? How do they review their own code?
+
+Doing some prep work on your part beforehand I think will help ha
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NTQ0MTU5ODYsMTgyNTE1Nzg1OV19
+eyJoaXN0b3J5IjpbLTQxNzUyMjQ3OSwxODI1MTU3ODU5XX0=
 -->
