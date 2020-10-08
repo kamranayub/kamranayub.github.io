@@ -1,5 +1,5 @@
-Title: "Hacktoberfest: What happens when you have a question?"
-Published: false
+Title: "Hacktoberfest: Can I ask a question?"
+Published: 2020-10-07 23:00:00 -0500
 Lead: A friend contacted me about how they should approach asking questions for their very first Hacktoberfest / open source contribution.
 Tags:
 - Hacktoberfest
@@ -78,5 +78,5 @@ It is not a sign of weakness to ask questions, it is how we learn. Doesn't matte
 
 If this is your first time contributing to open source, first, how exciting! Second, I lay out everything I just mentioned in more detail in my course on [Contributing to an Open Source Project on GitHub](https://bit.ly/PSContributingToOpenSource). It's an A-to-Z guide geared toward new open source contributors with practical scenarios, workflows, and a guided process on choosing the right project for you to work on.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MjgxMjUyNTksMTgyNTE1Nzg1OV19
+eyJoaXN0b3J5IjpbLTc2MTIyMTg0NywxODI1MTU3ODU5XX0=
 -->
