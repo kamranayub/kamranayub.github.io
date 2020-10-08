@@ -20,17 +20,17 @@ The short answers are **YES** and **NO**. Here is my longer answer!
 
 ## If the project is participating in Hacktoberfest, this is expected!
 
-There was a little bit of drama this year because historically projects did not necessarily opt into Hacktoberfest and were being spammed with low-effort PRs (or outright useless PRs). However, the rules have changed and now repositories can opt-in in several ways:
+There was a little bit of drama this year because historically projects did not necessarily opt into Hacktoberfest and were being spammed with low-effort PRs (or outright useless PRs). However, the [rules have changed](https://hacktoberfest.digitalocean.com/hacktoberfest-update) and now repositories can opt-in in several ways:
 
 They have a `hacktoberfest` topic in their GitHub project, like this:
 
 ![Screenshot of a repository with "hacktoberfest" topic](https://user-images.githubusercontent.com/563819/95412517-bd885800-08ee-11eb-883a-6620f19d0c0e.png)
 
-Or, they are using the `hacktoberfest-accepted`  when accepting PRs, like this:
+Or, maintainers are using the `hacktoberfest-accepted`  when accepting PRs or issues, like this:
 
+![hacktoberfest-accepted label](https://user-images.githubusercontent.com/563819/95412776-5919c880-08ef-11eb-8a63-f58f6bc4e3e4.png)
 
-
-
+If one of these is true, the 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMTczODU0MjYsMTgyNTE1Nzg1OV19
+eyJoaXN0b3J5IjpbNzQ1MjE3ODIxLDE4MjUxNTc4NTldfQ==
 -->
