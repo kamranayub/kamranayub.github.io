@@ -54,7 +54,9 @@ At that point, maintainers should see your interest and expect that you'll have 
 
 If you have questions right away, like about the design, proposal, or a general question, the issue is where I'd ask.
 
-Once you create a fork, clone the project, and make your branch, you'll be exploring the code. On a new project, I always visualize this process like spelunking a cave system. You reveal one area, and then reveal the next, and that might have any number of offshoot paths or trails back to previous areas, etc.
+Once you create a fork, clone the project, and make your branch, you'll be exploring the code. On a new project, I always visualize this process like spelunking a cave system. You reveal one area, and then reveal the next, and that might have any number of offshoot paths or trails back to previous areas, etc. You can get lost in a cave and you can get lost in a codebase.
+
+At some point, I'd be **surprised** if you didn't have a question. You might be listening to a voice in your head, "You can't ask a question like this, it's a silly question, I will look like a fool, and what will they think of me?" **Don't listen!** It is not a sign of 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk5MTY5NTA3LDE4MjUxNTc4NTldfQ==
+eyJoaXN0b3J5IjpbLTUzNDQ2NzczOSwxODI1MTU3ODU5XX0=
 -->
