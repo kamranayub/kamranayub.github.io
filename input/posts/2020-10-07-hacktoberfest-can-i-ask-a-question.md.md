@@ -52,11 +52,13 @@ The approach I recommend is to first ask within issues, assuming there's a Hackt
 
 At that point, maintainers should see your interest and expect that you'll have questions as you get farther into it.
 
-If you have questions right away, like about the design, proposal, or a general question, the issue is where I'd ask.
+If you have questions right away, like about the design, proposal, or a general question, the issue is where I'd ask. However, in the CONTRIBUTING document of the project, it may tell you where the best place to get help is (a Discord, Slack, Google Group, Gitter, whatever!).
 
 Once you create a fork, clone the project, and make your branch, you'll be exploring the code. On a new project, I always visualize this process like spelunking a cave system. You reveal one area, and then reveal the next, and that might have any number of offshoot paths or trails back to previous areas, etc. You can get lost in a cave and you can get lost in a codebase.
 
-At some point, I'd be **surprised** if you didn't have a question. You might be listening to a voice in your head, "You can't ask a question like this, it's a silly question, I will look like a fool, and what will they think of me?" **Don't listen!** It is not a sign of weakness to ask questions, it is how we learn, it's always been the mark of some of the best people I've worked with. Doesn't matter if you're brand new to open source, new in your role, or a Principal Engineer -- we ask questions to understand better, Always Be Asking. If anyone (person, company, etc.) expresses to you that asking a question is some sign of weakness, run the other way.
+At the point where you are re
+
+At some point, I'd be **surprised** if you didn't have a question. You might be listening to a voice in your head, "You can't ask a question like this, it's a silly question, I will look like a fool, and what will they think of me?" **Don't listen!** It is not a sign of weakness to ask questions, it is how we learn. Doesn't matter if you're brand new to open source, new in your role, or a Principal Engineer -- we ask questions to understand better so **Always Be Asking**. If anyone (person, company, etc.) expresses to you that asking a question is some sign of weakness, run the other way.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjMzNzMyMjcsMTgyNTE1Nzg1OV19
+eyJoaXN0b3J5IjpbLTE5NTk1NDk0NCwxODI1MTU3ODU5XX0=
 -->
