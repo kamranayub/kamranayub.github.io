@@ -66,7 +66,7 @@ I get it, though. You might be listening to that voice in your head, "You can't 
 
 It is not a sign of weakness to ask questions, it is how we learn. Doesn't matter if you're brand new to open source, new in your role, or a Principal Engineer -- we ask questions to understand better so **Always Be Asking**. If anyone (person, company, etc.) expresses to you that asking a question is some sign of weakness, run the other way.
 
-If this is your first time contributing to open source, first, how exciting! Second, I lay out everything I just mentioned in more detail in my course on Contributing to Open Source Projects on GitHub. It's an A to Z guide geared toward new open source contributors (but not necessarily new to coding
+If this is your first time contributing to open source, first, how exciting! Second, I lay out everything I just mentioned in more detail in my course on [Contributing to an Open Source Project on GitHub](https://bit.ly/PSContributingToOpenSource). It's an A-to-Z guide geared toward new open source contributors with practical scenarios, workflows, and a guided process on choosing the right project for you to work on.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU2MjkyNjY3OCwxODI1MTU3ODU5XX0=
+eyJoaXN0b3J5IjpbLTIwMTU0OTU2NzQsMTgyNTE1Nzg1OV19
 -->
