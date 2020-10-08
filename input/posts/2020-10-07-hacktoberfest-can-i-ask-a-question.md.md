@@ -56,11 +56,17 @@ If you have questions right away, like about the design, proposal, or a general 
 
 Once you create a fork, clone the project, and make your branch, you'll be exploring the code. On a new project, I always visualize this process like spelunking a cave system. You reveal one area, and then reveal the next, and that might have any number of offshoot paths or trails back to previous areas, etc. You can get lost in a cave and you can get lost in a codebase.
 
-If you have a draft pull request (and I always recommend starting with a draft!) then that is where I'd start asking questions about the approach, feedback on your current solution, etc. A draft pull request is like your writing drafts -- do you send them to your friends to read or an editor? Of course! So get feedback early in the process, jus
+If you have a draft pull request (and I always recommend starting with a draft!) then that is where I'd start asking questions about the approach, feedback on your current solution, etc. A draft pull request is like your writing drafts -- do you send them to your friends to read or an editor? Of course! So get feedback early in the process.
 
 ## Always Be Asking
 
-At some point, I'd be **surprised** if you didn't have a question. You might be listening to a voice in your head, "You can't ask a question like this, it's a silly question, I will look like a fool, and what will they think of me?" **Don't listen!** It is not a sign of weakness to ask questions, it is how we learn. Doesn't matter if you're brand new to open source, new in your role, or a Principal Engineer -- we ask questions to understand better so **Always Be Asking**. If anyone (person, company, etc.) expresses to you that asking a question is some sign of weakness, run the other way.
+At some point, I'd be **surprised** if you didn't have a question about a new codebase. 
+
+I get it, though. You might be listening to that voice in your head, "You can't ask a question like this, it's a silly question, I will look like a fool, and what will they think of me?" **Don't listen!** 
+
+It is not a sign of weakness to ask questions, it is how we learn. Doesn't matter if you're brand new to open source, new in your role, or a Principal Engineer -- we ask questions to understand better so **Always Be Asking**. If anyone (person, company, etc.) expresses to you that asking a question is some sign of weakness, run the other way.
+
+If you have even more questions about this, I encourage you to watch my course on Contributing to Open Source Projects on GitHub since I go through all of this with practical example
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNTk5Mjc0NDksMTgyNTE1Nzg1OV19
+eyJoaXN0b3J5IjpbMTA3MzM0MTM0OSwxODI1MTU3ODU5XX0=
 -->
