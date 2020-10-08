@@ -4,13 +4,13 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2020</rights>
-	<updated>2020-10-08T13:22:26Z</updated>
+	<updated>2020-10-08T13:29:43Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
 	<entry>
-		<link href="https://kamranicus.com/posts/hacktoberfest-can-i-ask-a-question" />
-		<id>https://kamranicus.com/posts/hacktoberfest-can-i-ask-a-question</id>
-		<title>Kamranicus | Kamran Ayub</title>
-		<updated>2020-10-07T00:00:00Z</updated>
+		<link href="https://kamranicus.com/posts/2020-10-07-hacktoberfest-can-i-ask-a-question" />
+		<id>https://kamranicus.com/posts/2020-10-07-hacktoberfest-can-i-ask-a-question</id>
+		<title>Hacktoberfest:  Can  I  ask  a  question?</title>
+		<updated>2020-10-08T13:00:00Z</updated>
 		<content>&lt;p&gt;I have a friend who is doing their first open source contribution through &lt;a href="https://hacktoberfest.digitalocean.com/"&gt;Hacktoberfest&lt;/a&gt; this year, which is a yearly event to encourage open source participation.&lt;/p&gt;
 &lt;p&gt;In their email, they asked:&lt;/p&gt;
 &lt;blockquote class="blockquote"&gt;
@@ -57,7 +57,8 @@
 &lt;p&gt;Listen, &lt;strong&gt;it is not a sign of weakness to ask questions, it is how we learn.&lt;/strong&gt; Doesn't matter if you're brand new to open source, new in your role, or a Principal Engineer -- we ask questions to understand better so &lt;strong&gt;Always Be Asking&lt;/strong&gt;. If anyone (person, company, etc.) expresses to you that asking a question is some sign of weakness, run the other way.&lt;/p&gt;
 &lt;p&gt;If this is your first time contributing to open source, first, how exciting! Second, I lay out everything I just mentioned in more detail in my course on &lt;a href="https://bit.ly/PSContributingToOpenSource"&gt;Contributing to an Open Source Project on GitHub&lt;/a&gt;. It's an A-to-Z guide geared toward new open source contributors with practical scenarios, workflows, and a guided process on choosing the right project for you to work on.&lt;/p&gt;
 &lt;!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcxNzI5MDQ4NywtNjk5MDE2MTk2XX0=
+eyJoaXN0b3J5IjpbLTM4MjIwMTUzMSwtNzE3MjkwNDg3LC02OT
+kwMTYxOTZdfQ==
 --&gt;
 </content>
 		<summary>&lt;p&gt;I have a friend who is doing their first open source contribution through &lt;a href="https://hacktoberfest.digitalocean.com/"&gt;Hacktoberfest&lt;/a&gt; this year, which is a yearly event to encourage open source participation.&lt;/p&gt;</summary>
