@@ -30,7 +30,11 @@ Or, maintainers are using the `hacktoberfest-accepted`  when accepting PRs or is
 
 ![hacktoberfest-accepted label](https://user-images.githubusercontent.com/563819/95412776-5919c880-08ef-11eb-8a63-f58f6bc4e3e4.png)
 
-If one of these is true, the 
+If one of these is true, the project is considered opted-in to Hacktoberfest.
+
+Now since we at Excalibur have always opted-in each year, I can tell you that **we expect people to ask questions!** We try to triage and choose potential Hacktoberfest issues ahead of time (heh, in "Preptember") but we know that people will likely have questions.
+
+After all, first-time contributors can't be expected to have answers to everything, of course you will need some help along th
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzQ1MjE3ODIxLDE4MjUxNTc4NTldfQ==
+eyJoaXN0b3J5IjpbLTEyNTAxNzE0NTksMTgyNTE1Nzg1OV19
 -->
