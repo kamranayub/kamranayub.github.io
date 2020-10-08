@@ -32,6 +32,8 @@ Or, maintainers are using the `hacktoberfest-accepted`  when accepting PRs or is
 
 If one of these is true, the project is considered opted-in to Hacktoberfest.
 
+My expectation as a contributor would be that if a project opted into Hacktoberfest, especially with the **topic** approach, they are expecting to help you with making quality contributions. In other words
+
 Now since we at Excalibur have always opted-in each year, I can tell you that **we expect people to ask questions!** We try to triage and choose potential Hacktoberfest issues ahead of time (heh, in "Preptember") but we know that people will likely have questions.
 
 After all, first-time contributors can't be expected to have answers to everything, of course you will need some help along the way. This is especially true for anything beyond mere typos.
@@ -42,7 +44,7 @@ Now this is getting at a different issue, unrelated to Hacktoberfest specificall
 
 Here's what I recommend to help answer this question: "scout" a potential project beforehand. Does it have a Code of Conduct? Do the maintainers seem to follow it? How do they react to external contributors asking questions? Are they helpful? How do they review their own code?
 
-Doing some prep work on your part beforehand I think will help ha
+Doing some prep work on your part beforehand I think will help having to ask this question in the first place.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQxNzUyMjQ3OSwxODI1MTU3ODU5XX0=
+eyJoaXN0b3J5IjpbMzE2MDAxMzAzLDE4MjUxNTc4NTldfQ==
 -->
