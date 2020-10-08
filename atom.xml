@@ -4,7 +4,7 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2020</rights>
-	<updated>2020-08-26T01:22:20Z</updated>
+	<updated>2020-10-08T03:38:36Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
 	<entry>
 		<link href="https://kamranicus.com/posts/2020-08-25-course-testing-progress-web-apps-cypress-webdriverio" />
@@ -53,6 +53,58 @@ eyJoaXN0b3J5IjpbLTIwMDU3Mzk1NjRdfQ==
 --&gt;
 </content>
 		<summary>&lt;p&gt;Today my new course &lt;a href="https://bit.ly/PSPWATesting"&gt;Testing Progressive Web Apps&lt;/a&gt; has been published and I'm pretty excited for it (like usual!).&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<link href="https://kamranicus.com/posts/2020-07-29-webdriverio-out-of-memory-allocation-error" />
+		<id>https://kamranicus.com/posts/2020-07-29-webdriverio-out-of-memory-allocation-error</id>
+		<title>JavaScript heap out of memory with WebdriverIO</title>
+		<updated>2020-07-29T13:50:00Z</updated>
+		<content>&lt;p&gt;Throughout &lt;a href="https://bit.ly/KamranOnPluralsight"&gt;working on a course&lt;/a&gt; you usually run into bugs and issues that throw you for a loop for awhile. In this case, it was doubly frustrating because I had previously set up &lt;a href="https://webdriver.io"&gt;webdriverio&lt;/a&gt; to run in my continuous integration environment (GitHub Actions) and &lt;em&gt;it was working fine&lt;/em&gt;. Until it stopped working.&lt;/p&gt;
+&lt;p&gt;I kept getting this error:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;--- Last few GCs ---&amp;gt;
+
+[168:0x5ba0970]   105925 ms: Mark-sweep (reduce) 2046.6 (2050.9) -&amp;gt; 2045.7 (2050.9) MB, 588.4 / 0.0 ms  (average mu = 0.053, current mu = 0.021) allocation failure scavenge might not succeed
+
+[0-0] 
+&amp;lt;--- JS stacktrace ---&amp;gt;
+
+[0-0] FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+[0-0]  1: 0xa3ac30 node::Abort() [/usr/local/bin/node]
+[0-0]  2: 0x98a45d node::FatalError(char const*, char const*) [/usr/local/bin/node]
+[0-0]  3: 0xbae25e v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [/usr/local/bin/node]
+[0-0]  4: 0xbae5d7 v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [/usr/local/bin/node]
+[0-0]  5: 0xd56125  [/usr/local/bin/node]
+[0-0]  6: 0xd56acb v8::internal::Heap::RecomputeLimits(v8::internal::GarbageCollector) [/usr/local/bin/node]
+[0-0]  7: 0xd6481c v8::internal::Heap::PerformGarbageCollection(v8::internal::GarbageCollector, v8::GCCallbackFlags) [/usr/local/bin/node]
+[0-0]  8: 0xd65684 v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/usr/local/bin/node]
+[0-0]  9: 0xd680fc v8::internal::Heap::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/usr/local/bin/node]
+[0-0] 10: 0xd2f3aa v8::internal::Factory::AllocateRaw(int, v8::internal::AllocationType, v8::internal::AllocationAlignment) [/usr/local/bin/node]
+[0-0] 11: 0xd29254 v8::internal::FactoryBase&amp;lt;v8::internal::Factory&amp;gt;::AllocateRawWithImmortalMap(int, v8::internal::AllocationType, v8::internal::Map, v8::internal::AllocationAlignment) [/usr/local/bin/node]
+[0-0] 12: 0xd2a789 v8::internal::FactoryBase&amp;lt;v8::internal::Factory&amp;gt;::NewStruct(v8::internal::InstanceType, v8::internal::AllocationType) [/usr/local/bin/node]
+[0-0] 13: 0xd36be6 v8::internal::Factory::NewStackTraceFrame(v8::internal::Handle&amp;lt;v8::internal::FrameArray&amp;gt;, int) [/usr/local/bin/node]
+[0-0] 14: 0xc28a98  [/usr/local/bin/node]
+[0-0] 15: 0xc2fb66 v8::internal::Builtin_CallSitePrototypeToString(int, unsigned long*, v8::internal::Isolate*) [/usr/local/bin/node]
+[0-0] 16: 0x13f5159  [/usr/local/bin/node]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;What was &lt;strong&gt;weird&lt;/strong&gt; is that the tests all passed!&lt;/p&gt;
+&lt;p&gt;It did not &lt;a href="https://gregtyler.co.uk/blog/fatal-error-allocation-failed-error-with-webdriverio-and-cucumber"&gt;turn out to be a Selenium Grid issue&lt;/a&gt;, as I wasn't using that but it turned out to be another simple fix (i.e. nothing to do with memory size).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;I was missing the &lt;code&gt;&amp;#64;wdio/sync&lt;/code&gt; package from my package dependencies after I split out my e2e tests into a separate folder.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Once I added &lt;code&gt;&amp;#64;wdio/sync&lt;/code&gt; back, things worked.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-diff"&gt;&amp;quot;dependencies&amp;quot;: {
+  &amp;quot;&amp;#64;wdio/cli&amp;quot;: &amp;quot;6.1.24&amp;quot;,
+  &amp;quot;&amp;#64;wdio/local-runner&amp;quot;: &amp;quot;6.1.24&amp;quot;,
+  &amp;quot;&amp;#64;wdio/mocha-framework&amp;quot;: &amp;quot;6.1.19&amp;quot;,
+  &amp;quot;&amp;#64;wdio/spec-reporter&amp;quot;: &amp;quot;6.1.23&amp;quot;,
++ &amp;quot;&amp;#64;wdio/sync&amp;quot;: &amp;quot;6.1.14&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The telltale sign was that the tests were taking 1 minute when before I checked the logs and the tests used to run in 4 seconds. &lt;strong&gt;Ding, ding, ding!&lt;/strong&gt; It must not wait properly for the commands without the sync package and uses up more and more memory.&lt;/p&gt;
+&lt;p&gt;Hope this helps anyone in a similar situation!&lt;/p&gt;
+&lt;!--stackedit_data:
+eyJoaXN0b3J5IjpbLTExMDM0NTY0MzldfQ==
+--&gt;
+</content>
+		<summary>&lt;p&gt;Throughout &lt;a href="https://bit.ly/KamranOnPluralsight"&gt;working on a course&lt;/a&gt; you usually run into bugs and issues that throw you for a loop for awhile. In this case, it was doubly frustrating because I had previously set up &lt;a href="https://webdriver.io"&gt;webdriverio&lt;/a&gt; to run in my continuous integration environment (GitHub Actions) and &lt;em&gt;it was working fine&lt;/em&gt;. Until it stopped working.&lt;/p&gt;</summary>
 	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2020-07-17-cypress-browser-permissions" />
@@ -1462,18 +1514,5 @@ ansible_become_method=su
 &lt;p&gt;Looking towards the summer (Q2), I'm also pretty excited for NDC MN, some course maintenance, and then re-focusing on KTOMG. This will also be our first summer that Cassie and the kids will have off together! So they will be visiting me at work more often and I'll be trying to spend time with them when I can. The grill is already out 🔥🍔&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;This is my first time trying a quarterly update on &lt;a href="https://kamranicus.com/posts/2018-12-20-year-in-review-2019-goals"&gt;my yearly goal setting&lt;/a&gt; but I was updating that old post with progress notes and decided I should just formally document progress every quarter instead of retrofitting an older post. That way if any goals &lt;em&gt;evolve&lt;/em&gt; (which some have!) then I can look back and see that change happening. Also this &lt;em&gt;forces&lt;/em&gt; me to post at least once every 4 months which may get me into the groove of writing more generally.&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes" />
-		<id>https://kamranicus.com/posts/2019-04-04-ravendb-data-modeling-with-indexes</id>
-		<title>Data Modeling with Indexes in RavenDB</title>
-		<updated>2019-04-04T13:30:00Z</updated>
-		<content>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.codeproject.com/Articles/1348454/Data-Modeling-with-Indexes-in-RavenDB"&gt;Data Modeling with Indexes in RavenDB&lt;/a&gt;
-went live today on CodeProject and covers how indexes work in Raven and some simple to advanced use cases to show off
-their power. Be sure to check it out!&lt;/p&gt;
-&lt;p&gt;I'm excited to be working with HN to bring some more articles to a wider audience so I'll be sure to share when any other articles go live.&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;I recently had an opportunity to work with &lt;a href="http://ayende.com"&gt;Ayende&lt;/a&gt; from Hibernating Rhinos and creator of &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; to take some posts of his regarding data modeling with indexes and bring them to a wider audience. I enjoy working with RavenDB and as you might know, even have a &lt;a href="http://bit.ly/PSRavenDB4"&gt;Getting Started course&lt;/a&gt; on it so I was happy to work with HN to write an article on the subject.&lt;/p&gt;</summary>
 	</entry>
 </feed>
