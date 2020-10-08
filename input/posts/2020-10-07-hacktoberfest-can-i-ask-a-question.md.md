@@ -12,8 +12,11 @@ In their email, they asked:
 
 > Is there any etiquette or expectation for how much coding help one can ask for when taking up an issue and contributing?
 
-What a good question! Imagine yourself feeling pretty psyched to take on a Hacktoberfest issue and when you start to d
+What a good question! Imagine yourself feeling pretty psyched to take on a Hacktoberfest issue and when you start to dig around, understand the codebase, you start to realize there could be several solutions and are starting to feel intimidated. 
 
+Is it OK to ask for help? Would that be rude to the maintainers? 
+
+The short answers are **Y
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQxMDkwODQ3M119
+eyJoaXN0b3J5IjpbLTYxOTYxOTYxM119
 -->
