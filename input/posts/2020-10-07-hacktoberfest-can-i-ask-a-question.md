@@ -41,19 +41,20 @@ Doing some prep work on your part beforehand I think will help having to ask thi
 
 ## Where should I ask?
 
-The approach I recommend is to first ask within issues, assuming there's a Hacktoberfest issue you're taking. This is also where you'd volunteer to take the issue (like, "🙋‍♂️ Hey, I'd love to try and take this on!").
+Start with the CONTRIBUTING document of the project or the CODE_OF_CONDUCT document. An actively maintained project that works with external contributors will typically lay out the expectations for issues and pull requests and may tell you where the best place to get help is. With the recent [introduction of GitHub Discussions](https://github.blog/2020-05-06-new-from-satellite-2020-github-codespaces-github-discussions-securing-code-in-private-repositories-and-more/), that may also be the first place to look if the project is opted-into the beta.
 
-At that point, maintainers should see your interest and expect that you'll have questions as you get farther into it.
+![Screenshot of GitHub Discussions](https://user-images.githubusercontent.com/563819/95463793-d6b8f500-093e-11eb-9f77-2e3997cd5dc0.png)
+<figcaption>GitHub Discussions is slowly being made available on a opt-in basis</figcaption>
 
-If you have questions right away, like about the design, proposal, or a general question, the issue is where I'd ask. However, in the CONTRIBUTING document of the project, it may tell you where the best place to get help is (a Discord, Slack, Google Group, Gitter, whatever!).
+If there's no clear place to start, I recommend first asking within issues, assuming there's a Hacktoberfest issue you're taking. This is also where you'd volunteer to take the issue (like, "🙋‍♂️ Hey, I'd love to try and take this on!").
 
-Once you create a fork, clone the project, and make your branch, you'll be exploring the code.
+At that point, maintainers should see your interest and expect that you'll have questions as you get farther into it. If you have questions right away, like about the design, proposal, or a general question, the issue is where I'd ask.
 
 If you have a draft pull request (and I always recommend starting with a draft!) then that is where I'd start asking questions about the approach, feedback on your current solution, etc. A draft pull request is like your writing drafts -- do you send them to your friends to read or an editor? Of course! So get feedback early in the process.
 
-## Exploring the cave
+## Time to explore the cave, don't go it alone!
 
-On a new project, I always visualize exploring the codebase like exploring a cave system (or "spelunking" if you're a fancypants). You reveal one area, then reveal the next and that might have any number of offshoot paths or trails back to previous areas, etc. You can get lost in a codebase just as you would a cave system.
+I like to think of exploring a codebase like exploring a cave system (or "spelunking" if you're a fancypants). You reveal one area, then reveal the next and that might have any number of offshoot paths or trails back to previous areas, etc. You can get lost in a codebase just as you would a cave system.
 
 ![Photo of a cave by Joshua Sortino (unsplash)](https://user-images.githubusercontent.com/563819/95415964-3ee3e880-08f7-11eb-8290-4987f6d85952.jpg)
 <figcaption>Photo by <a href="https://unsplash.com/@sortino?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Joshua Sortino</a> on <a href="https://unsplash.com/wallpapers/nature/cave?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></figcaption>
@@ -82,5 +83,5 @@ Listen, **it is not a sign of weakness to ask questions, it is how we learn.** D
 
 If this is your first time contributing to open source, first, how exciting! Second, I lay out everything I just mentioned in more detail in my course on [Contributing to an Open Source Project on GitHub](https://bit.ly/PSContributingToOpenSource). It's an A-to-Z guide geared toward new open source contributors with practical scenarios, workflows, and a guided process on choosing the right project for you to work on.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY5OTAxNjE5Nl19
+eyJoaXN0b3J5IjpbLTcxNzI5MDQ4NywtNjk5MDE2MTk2XX0=
 -->
