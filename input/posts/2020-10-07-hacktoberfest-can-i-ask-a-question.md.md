@@ -16,11 +16,15 @@ What a good question! Imagine yourself feeling pretty psyched to take on a Hackt
 
 Is it OK to ask for help? Would that be rude to the maintainers? 
 
-The short answers are **YES** and **NO**.
+The short answers are **YES** and **NO**. Here is my longer answer!
 
 ## If the project is participating in Hacktoberfest, this is expected!
 
-There was a little bit of drama this year because historically projects did not necessarily opt into Hacktoberfest and were being spammed with low-effort PRs (or outright useless PRs). However, the rules have changed and now repositories can opt-in
+There was a little bit of drama this year because historically projects did not necessarily opt into Hacktoberfest and were being spammed with low-effort PRs (or outright useless PRs). However, the rules have changed and now repositories can opt-in in several ways:
+
+They have a `hacktoberfest` topic in their GitHub project, like this:
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzg3MTU0OTIyXX0=
+eyJoaXN0b3J5IjpbNjcyMTc3NTEwXX0=
 -->
