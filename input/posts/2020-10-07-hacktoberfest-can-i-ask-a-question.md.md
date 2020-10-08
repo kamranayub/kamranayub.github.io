@@ -26,9 +26,11 @@ They have a `hacktoberfest` topic in their GitHub project, like this:
 
 ![Screenshot of a repository with "hacktoberfest" topic](https://user-images.githubusercontent.com/563819/95412517-bd885800-08ee-11eb-883a-6620f19d0c0e.png)
 
-Or, they are using the `hacktoberfest-accepted` label, like this:
+Or, they are using the `hacktoberfest-accepted`  when accepting PRs, like this:
+
+
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgyNTE1Nzg1OV19
+eyJoaXN0b3J5IjpbLTExMTczODU0MjYsMTgyNTE1Nzg1OV19
 -->
