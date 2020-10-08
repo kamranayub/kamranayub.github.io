@@ -45,6 +45,14 @@ Now this is getting at a different issue, unrelated to Hacktoberfest specificall
 Here's what I recommend to help avoid a toxic project until it's too late: "scout" a potential project beforehand. Does it have a Code of Conduct? Do the maintainers seem to follow it? How do they react to external contributors asking questions? Are they helpful? How do they review their own code?
 
 Doing some prep work on your part beforehand I think will help having to ask this question in the first place.
+
+## Where should I ask?
+
+The approach I recommend is to first ask within issues, assuming there's a Hacktoberfest issue you're taking. This is also where you'd volunteer to take the issue (like, "🙋‍♂️ Hey, I'd love to try and take this on!").
+
+At that point, maintainers should see your interest and expect that you'll have questions as you get farther into it.
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQzNDUwMTMwNywxODI1MTU3ODU5XX0=
+eyJoaXN0b3J5IjpbMTM4Mzc4MDAyOCwxODI1MTU3ODU5XX0=
 -->
