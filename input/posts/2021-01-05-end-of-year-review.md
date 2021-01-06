@@ -32,11 +32,13 @@ Despite the hurt and the sadness, both in our local community and the world as a
 
 ## 2020 Goals in Review
 
-The first thing I want to say, to anyone, is that if you are writing or reflecting on your own 2020 and you got less done than you planned... give yourself a break. Our way of life was upended, the pandemic has affected all of us in some way or another. If you got _anything_ done, you should be proud.
+The first thing I want to say, to anyone, is that if you are writing or reflecting on your own 2020 and you got less done than you planned... give yourself a break. Our way of life was upended, the pandemic has affected all of us in some way or another. If you got _anything_ done, you should be proud. For many, having motivation to "get things done" and "be productive" was far from their minds.
 
-Let's review what I had set out to do for 2020 and where I ended up. 
+Let's review what I had set out to do for 2020 and where I ended up.
+
+
 
 ## 2021 Goals
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyOTc5OTA0MDJdfQ==
+eyJoaXN0b3J5IjpbMjIyODQzMTU5XX0=
 -->
