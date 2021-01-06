@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 
-  <title>Kamranicus | Kamran Ayub - I forked fastJSON</title>
+  <title>Kamranicus | Kamran Ayub - 2020 End of Year Review</title>
   <meta name="description" content="Kamran Ayub" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Kamran Ayub">
@@ -23,9 +23,9 @@
   <meta name="msapplication-tooltip" content="Kamranicus | Kamran Ayub" />
   <meta name="msapplication-starturl" content="/" />
 
-  <meta property="og:title" content="Kamranicus | Kamran Ayub - I forked fastJSON" /> 
+  <meta property="og:title" content="Kamranicus | Kamran Ayub - 2020 End of Year Review" /> 
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://kamranicus.com/posts/2013-03-05-i-forked-fastjson" />
+  <meta property="og:url" content="https://kamranicus.com/posts/2021-01-05-end-of-year-review" />
   <meta property="og:site_name" content="Kamranicus" />
   <meta property="twitter:card" content="summary" />
   <meta property="twitter:creator" content="@kamranayub" />
@@ -109,13 +109,17 @@
     
 <div class="ui basic vertical segment">
     <h1 class="ui  huge header">
-      I forked fastJSON
+      2020 End of Year Review
+        <div class="ui sub header">Well, that didn&#x27;t go quite as expected...</div>
     </h1>
                 
     <div class="ui  sub header">        
-Published on Tuesday, March 5, 2013<br>    </div>
+    </div>
         <div class="ui basic vertical spaced segment">
-                    <a role="button" href="/tags/Open-Source" class="ui small compact button">Open Source</a>
+                    <a role="button" href="/tags/Accomplishments" class="ui small compact button">Accomplishments</a>
+                    <a role="button" href="/tags/Goals" class="ui small compact button">Goals</a>
+                    <a role="button" href="/tags/Life" class="ui small compact button">Life</a>
+                    <a role="button" href="/tags/Year-in-Review" class="ui small compact button">Year in Review</a>
         </div>     
 </div>
     </div>
@@ -127,16 +131,9 @@ Published on Tuesday, March 5, 2013<br>    </div>
       
 
 <div class="ui huge basic post content segment">
-  <p>My Windows Phone app mainly deals with talking to a web API. I've previously had good experience using RestSharp but now with the new <code>async/await</code> features, I've been trying to only use <code>Task</code>-based stuff. I gotta say, I'm loving it.</p>
-<p>RestSharp for WP does not natively support async/await but you can wrap it yourself. However, why not just use <code>HttpClient</code>? So that's what I did. I ripped out RestSharp and replaced it with <a href="https://github.com/neuecc/AsyncOAuth">AsyncOAuth</a> (which depends on HttpClient).</p>
-<p>Besides OAuth, the other issue you'll run into is what serializer/deserializer to use. You could go with JSON.NET, or ServiceStack, but those are two extremes... one being very flexible and other being very inflexible. I needed an in-between but also something very fast and that's exactly what <a href="http://www.codeproject.com/Articles/159450/fastJSON">fastJSON</a> is.</p>
-<p>Of course, it's fast because of the same reason SS is fast: it doesn't do any fancy property matching. When you're dealing with APIs, it's rare that the response they send back matches exactly with your object model and properties (especially C#). That's why the name variance feature of the larger libraries is awesome.</p>
-<p>So, I did what any good developer would, I dug in and added it. I also added <code>rootElement</code> support (for contained responses).</p>
-<p>You can find my changes in my <a href="https://github.com/kamranayub/fastJSON">fastJSON fork</a> on GitHub. I also went ahead and organized the solution a bit, as the original source was a bit hard to get running. I also created a Nuget package for my changes and pushed that (<a href="https://nuget.org/packages/fastJSON-kayub">fastJSON-kayub</a>).</p>
-<p>I don't necessarily intend to keep my changes in-sync. It would be preferable if my changes were pulled into the original... and it wouldn't hurt to use my new organization (since it's easy for others to pull down and build), but if that never happens, I'm fine with that.</p>
-<h3 id="note-on-name-variance">Note on Name Variance</h3>
-<p>The name variance is interesting. In R#, the code was written to <code>yield return</code> each variant so as soon as one matches, it returns. In fastJSON, the matching is done in the opposite direction, fastJSON will try to match the JSON key to an object's properties... so it makes it difficult to use what R# had written originally. I modified the code to allow for optional variant matching to speed things up. Without that, the name variance increased deserialization time by <strong>a ton</strong>. However, in my case, I really only needed ProperCase matching... which only increases the time by about 2x.</p>
-<p>That's why I made the decision to opt-out of name variance by default and when enabled, only enable ProperCase by default as that's probably the most common.</p>
+  <!--stackedit_data:
+eyJoaXN0b3J5IjpbLTEyMDA4MTA5OTddfQ==
+-->
 
 </div>
 
@@ -214,9 +211,9 @@ Published on Tuesday, March 5, 2013<br>    </div>
 
 <script type="text/javascript">
     var disqus_shortname = 'kamranicus';
-    var disqus_identifier = '65';
-    var disqus_title = 'I forked fastJSON';
-    var disqus_url = 'https://kamranicus.com/posts/2013-03-05-i-forked-fastjson';
+    var disqus_identifier = '2021-01-05-end-of-year-review';
+    var disqus_title = '2020 End of Year Review';
+    var disqus_url = 'https://kamranicus.com/posts/2021-01-05-end-of-year-review';
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
@@ -236,30 +233,7 @@ Published on Tuesday, March 5, 2013<br>    </div>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
       <!-- Disqus -->
-<div id="disqus_thread"></div>
-
-<script type="text/javascript">
-    var disqus_shortname = 'kamranicus';
-    var disqus_identifier = '65';
-    var disqus_title = 'I forked fastJSON';
-    var disqus_url = 'https://kamranicus.com/posts/2013-03-05-i-forked-fastjson';
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-    
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>    </div>
+    </div>
   </div>
 
   <div class="ui divider"></div>
