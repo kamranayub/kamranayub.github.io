@@ -143,7 +143,7 @@ I do not yet have a good system around applying to CFPs. I did _start_ something
 
 I just put out a poll this week about what topics might interest people and I have two solid ideas of what I'd love to speak about. I think in the interest of doing an **incremental** improvement to this habit, I will choose **one topic** I'm passionate about and have that fuel my CFPs for 2021 to see how it goes.
 
-### Habits I want to form or continue doing
+### Habits I want to continue doing
 
 These all contribute to the type of person I want to be in general: a happy, optimistic person that takes care of his mental health, wealth, and wellness.
 
@@ -154,8 +154,12 @@ These all contribute to the type of person I want to be in general: a happy, opt
 - 🍕 Weekly meal planning (we've been doing this for 2 years now)
 - 💸 Monthly savings and investments
 
-I have already started many of these habits, some since the summer so I want to ensure I continue doing .
+I have already started many of these habits, some since the summer so I want to ensure I continue doing them.
+
+## So what are my goals?
+
+I don't have any to list on here! But now maybe you can see: I don't have to list any 🤯 As long as I continue to invest in my habits and systems, _naturally
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MzE4NzA4ODUsOTI5ODc5MTYwLC0xNj
-Y1MjkwMDY3XX0=
+eyJoaXN0b3J5IjpbLTcxMjEyNDI1NSw5Mjk4NzkxNjAsLTE2Nj
+UyOTAwNjddfQ==
 -->
