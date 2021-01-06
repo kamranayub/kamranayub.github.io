@@ -103,7 +103,7 @@ In *The Practice*, Seth shares his many years of wisdom on what it means to ship
 
 With that in mind, for 2021 I want to try and focus on **improving the systems that are working for me**, **introducing new systems**, and **breaking out of bad habits that work against me**. Now of course, in order to know what habits you want to build and break, you need some vision of what you want in the future. The type of person you want to be.
 
-For myself in 2021, I'd like to be **a speaker**, a **DIYer**, a **technology instructor**, and **an entrepreneur** (in no specific). This is also very close to who I see myself as now (with some exceptions). Knowing this, when I have a decision to make I can say to myself, "Is this what someone who is a (speaker|DIYer|instructor|entrepreneur) would do?" I can also start to ensure I have the right systems and habits in place to become the type of person I want to be.
+For myself in 2021, I'd like to be **a speaker**, a **writer**, a **DIYer**, a **technology instructor**, and **an entrepreneur** (in no specific). This is also very close to who I see myself as now (with some exceptions). Knowing this, when I have a decision to make I can say to myself, "Is this what someone who is a (speaker|DIYer|instructor|entrepreneur) would do?" I can also start to ensure I have the right systems and habits in place to become the type of person I want to be.
 
 Let's look at some concrete examples by looking at the systems I already have in place.
 
@@ -119,15 +119,17 @@ In 2021, I would love to improve this system even more by applying for a course 
 
 #### 🔨 Seasonal DIY projects
 
-_Contributes to being a DIYer and instructor_
+_Contributes to being a DIYer, writer, and instructor_
 
 In 2020 having seasonal DIY projects helped a lot. I knew for Spring/Summer, I wanted to finish the egress window cover and do outdoor improvements (we planted a tree!) and Fall/Winter to do indoor projects.
+
+Due to working at home I no longer have a commute. The schedule I
 
 While I _did_ blog quite a bit in 2020 about my DIY learnings, I only started leveraging Instagram near the end of my project. Now in 2021, I would like to use Instagram to do more real-time sharing of progress and maintain the blogging cadence to do the more full write-ups.
 
 #### 📝 Consistent schedule for freelance writing
 
-_Contributes to being 
+_Contributes to being a writer_
 
 Taking on RavenDB as a client to write for wasn't something I planned but it's been working out well and I ended up doing about 1 article a quarter in 2020. In 2021 I've already lined up all the articles I'll be writing for the year with them and this is something I'd like to ramp up if I find I have the time in the future.
 
@@ -141,6 +143,6 @@ I do not yet have a good system around applying to CFPs. I did _start_ something
 
 I just put out a poll this week about what topics might interest people and I have two solid ideas of what I'd love to speak about. I think in the interest of doing an **incremental** improvement to this habit, I will choose **one topic** I'm passionate about and have that fuel my CFPs for 2021 to see how it goes.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIzMTk2OTY0Myw5Mjk4NzkxNjAsLTE2Nj
-UyOTAwNjddfQ==
+eyJoaXN0b3J5IjpbLTE4Mzk1MDE3MzIsOTI5ODc5MTYwLC0xNj
+Y1MjkwMDY3XX0=
 -->
