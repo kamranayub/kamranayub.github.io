@@ -107,7 +107,7 @@ For myself in 2021, I'd like to be **a speaker**, a **DIYer**, a **technology in
 
 Let's look at some concrete examples by looking at the systems I already have in place.
 
-### Systems that are working
+### Systems I have in place
 
 #### 🎥 Having a pipeline of work for Pluralsight
 
@@ -123,7 +123,13 @@ _Contributes to being a DIYer and instructor_
 
 In 2020 having seasonal DIY projects helped a lot. I knew for Spring/Summer, I wanted to finish the egress window cover and do outdoor improvements (we planted a tree!) and Fall/Winter to do indoor projects.
 
-### Systems that need improvement
+While I _did_ blog quite a bit in 2020 about my DIY learnings, I only started leveraging Instagram near the end of my project. Now in 2021, I would like to use Instagram to do more real-time sharing of progress and maintain the blogging cadence to do the more full write-ups.
+
+#### 📝 Consistent schedule for freelance writing
+
+Taking on 
+
+### Systems I want to put in place
 
 #### 🎤 Having speaking gigs lined up
 
@@ -132,13 +138,7 @@ _Contributes to being a speaker_
 I do not yet have a good system around applying to CFPs. I did _start_ something in 2020, maintaining an active checklist of conferences and dates to apply to. I already have TODOs for applying to 2021 conferences. But I need to build a habit of forming my talk abstracts going into the year so that I can just shop them around, rather than doing it so ad-hoc like I have before. In other words, I need to be more intentional about this.
 
 I just put out a poll this week about what topics might interest people and I have two solid ideas of what I'd love to speak about. I think in the interest of doing an **incremental** improvement to this habit, I will choose **one topic** I'm passionate about and have that fuel my CFPs for 2021 to see how it goes.
-
-#### 🔨 Sharing and documenting DIY journey
-
-_Contributes to being a DIYer and instructor_
-
-While I _did_ blog quite a bit in 2020 about my DIY learnings, I only started leveraging Instagram near the end of my project. Now in 2021, I would like to use Instagram to do more real-time sharing of progress and maintain the blogging cadence to do the more full write-ups.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTA3MTc1NDcxLDkyOTg3OTE2MCwtMTY2NT
-I5MDA2N119
+eyJoaXN0b3J5IjpbMTg0ODA3NDEzOSw5Mjk4NzkxNjAsLTE2Nj
+UyOTAwNjddfQ==
 -->
