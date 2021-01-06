@@ -71,7 +71,7 @@ Let's review what I had set out to do for 2020 and where I ended up.
 - ✅ Finish the last egress window cover
   - I did it and [blogged about how I built it](https://looksgoodtous.com/diy-custom-framed-egress-window-cover/).
 - ✅Finish one basement-related project
-  - I actually did **two** projects technically, a closet around a
+  - I actually did **two** projects technically, [a closet around a sump pump](https://looksgoodtous.com/tag/stair-storage-series/) and a new doorway to our utility room.
 - ❌ **Stretch**: Finish an upstairs home project
 
 ### Unplanned Accomplishments
@@ -80,9 +80,12 @@ I like including this because it goes to show you can't predict everything for t
 
 - 🏆 Released an open source package for [managing browser permissions in Cypress](https://kamranicus.com/posts/2020-07-17-cypress-browser-permissions)
 - 🏆 Released [two Typedoc Gatsby plugins for Excalibur docs generation](https://github.com/kamranayub?tab=repositories&q=gatsby&type=source&language=)
+- 🏆 I built another small wall and installed a door to our utility room
+- 🏆 I designed Cassie's new sewing/craft room
+- 🏆 I did some mockups for a new kitchen remodel and renova
 
 ## 2021 Goals
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNzkzNTQwMjAsOTI5ODc5MTYwLC0xNj
-Y1MjkwMDY3XX0=
+eyJoaXN0b3J5IjpbMTEzOTQ4NzEwLDkyOTg3OTE2MCwtMTY2NT
+I5MDA2N119
 -->
