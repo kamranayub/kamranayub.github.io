@@ -90,18 +90,20 @@ I like including this because it goes to show you can't predict everything for t
 
 When I start these year-end posts I forget about how much I _actually_ accomplished in 2020, wow! I have a system I started in 2019 where I track work for my "hustling" on Trello. This lets me easily bring up what I've accomplished for the year which makes me feel great! It also is just an effective way to manage and plan my pipelines of work (more on that below).
 
-## 2021 Systems and Habits (no goals?!)
+## Two Impactful Books of 2020
 
 In 2020, there were two books I read that made an impact on me. [Atomic Habits by James Clear](https://www.amazon.com/gp/product/0735211299/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0735211299&linkCode=as2&tag=kamranicus-20&linkId=a2011094da6e2c411fab9235f8b5876d) and [The Practice: Shipping Creative Work](https://www.amazon.com/gp/product/0593328973/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0593328973&linkCode=as2&tag=kamranicus-20&linkId=18c80c1b7d5dab9f9ef3ebe8526eb311) by Seth Godin (affiliate links). 
 
-In *Atomic Habits*, James speaks about the power of habits and systems in lieu of having goals. The idea is that you cannot effectively reach your goals without having the proper habits in place to achieve them. And once you have a system in place or develop a habit, you will naturally reach goals because that is just **who you are as a person**.
+In *Atomic Habits*, James speaks about the power of habits and systems in lieu of having goals. The idea is that you cannot effectively reach your goals without having the proper habits in place to achieve them. And once you have a system in place or develop a habit, you will naturally reach goals because that is just **who you are as a person**. This is a book to keep physically as a reference as it has useful summaries of tools and techniques to help build and break habits.
 
 In *The Practice*, Seth shares his many years of wisdom on what it means to ship creative work effectively to build "a practice." In other words, what does it take to move from being an *amateur* (in the pure sense of the word) to being a *professional*? Hint: you just keep shipping and iterating and making things better, even when you don't want to. I don't believe the book promotes what you might call "hustle porn" because there's no dictation of how fast/much you have to work, like 50 hour weeks. Instead it is about the work itself, doing good work, not striving for perfection on everything, and _shipping_ your work to customers. I really appreciated all the bits of wisdom in the book, it read like a meditation almost. It's not for everyone but it doesn't need to be (another lesson from the book). I tend to love [his newsletter](https://seths.blog) and [podcast](https://www.akimbo.link/). It's one of the only newsletters I read daily and ensure hits my Inbox.
+
+## 2021 Habits a
 
 With that in mind, for 2021 I want to try and focus on **improving the systems that are working for me**, **introducing new systems**, and **breaking out of bad habits that work against me**. Now of course, in order to know what habits you want to build and break, you need some vision of what you want in the future. The type of person you want to be.
 
 For myself in 2021, I'd like to be **a speaker**, a **DIYer**, a **technology instructor**, and **an entrepreneur** (not in any specific order). So now, with the decisions that I make, I can say to myself, "Is this what someone who is a (speaker|DIYer|instructor|entrepreneur) would do?" I can also start to ensure I have the right systems and habits in place to become the type of person I want to be.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjQwMjg3MTU1LDkyOTg3OTE2MCwtMTY2NT
-I5MDA2N119
+eyJoaXN0b3J5IjpbLTIwNzM3NzUyOSw5Mjk4NzkxNjAsLTE2Nj
+UyOTAwNjddfQ==
 -->
