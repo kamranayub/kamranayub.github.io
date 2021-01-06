@@ -39,7 +39,7 @@ Let's review what I had set out to do for 2020 and where I ended up.
 ### Content
 
 - ✅ Publish 1 Pluralsight course: I published [Testing Progressive Web Apps](https://kamranicus.com/posts/2020-08-25-course-testing-progress-web-apps-cypress-webdriverio)!
-  - ❌ **Stretch:** 2 courses. I didn't release two courses but I **did** update my [Azure CORS with Storage](https://bit.ly/PSAzureStorageCORS) course
+  - ⛔ **Stretch:** 2 courses. I didn't release two courses but I **did** update my [Azure CORS with Storage](https://bit.ly/PSAzureStorageCORS) course
 - ✅ Write 2 articles on React, TypeScript, RavenDB, or Azure
   -  [Why You Don't Need Types in JSDoc When Documenting TypeScript](https://dev.to/kamranayub/why-you-don-t-need-types-in-jsdoc-when-documenting-typescript-1pb0)
   - [Using Storybook to Build a Better... Game Engine?](https://dev.to/kamranayub/storyflow-using-storybook-to-build-a-better-game-engine-296l)
@@ -48,14 +48,14 @@ Let's review what I had set out to do for 2020 and where I ended up.
   -  Throttling Requests Using RavenDB for [.NET](https://www.codeproject.com/Articles/5260137/Throttling-Outgoing-HTTP-Requests-in-a-Distributed) and [Node.js](https://www.codeproject.com/Articles/5260913/Throttling-Outgoing-Requests-in-Node-js)
   - [Role of Indexing in RavenDB, MongoDB, and PostgreSQL](https://kamranicus.com/posts/2020-05-26-ravendb-indexing-mongodb-postgresql)
   - [What's New in RavenDB 5.0](https://ravendb.net/articles/whats-new-in-ravendb-50)
-- ❌ Migrate to Ghost for this blog
+- ⛔ Migrate to Ghost for this blog
   - No dice, I spent much less time on this blog and focused more on the DIY blog (see below!)
-- b Speak at NDC MN and one other regional conference
+- 🌓 Speak at NDC MN and one other regional conference
   - I actually spoke instead [at MDC in May](https://bit.ly/StorybookForGameEnginesMDC2020) virtually and then the [React Minneapolis user group](https://www.meetup.com/React-Minneapolis-Meetup/events/270736371/) and I even did an ad-hoc talk at THAT.us conference 
 
 ### Financial
 
-- ❌ Get [Keep Track of My Games](http://ktomg.com) to make a profit
+- ⛔ Get [Keep Track of My Games](http://ktomg.com) to make a profit
   - Still no dice yet, I focused on starting a community with Discord integration in 2020
 - ✅  Get [Looks Good to Us](https://looksgoodtous.com) to make a profit
   - LGTU has not made a _profit_ but it has earned _revenue_ which is still an impressive feat for a 1-year old blog! It earned exactly $16 but there is still earnings yet to be paid out that bring it into the $20-30 range. That's **almost** profitable 😂
@@ -72,7 +72,8 @@ Let's review what I had set out to do for 2020 and where I ended up.
   - I did it and [blogged about how I built it](https://looksgoodtous.com/diy-custom-framed-egress-window-cover/).
 - ✅Finish one basement-related project
   - I actually did **two** projects technically, [a closet around a sump pump](https://looksgoodtous.com/tag/stair-storage-series/) and a new doorway to our utility room.
-- ❌ **Stretch**: Finish an upstairs home project
+- ⛔ **Stretch**: Finish an upstairs home project
+  - The basement projects took about 3 months to complete and that took me to the end of 2020.
 
 ### Unplanned Accomplishments
 
@@ -84,8 +85,8 @@ I like including this because it goes to show you can't predict everything for t
 - 🏆 I designed Cassie's new sewing/craft room
 - 🏆 I did some mockups for a future main floor renovation
 
-## 2021 Goals
+## 2021 Systems and
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI0NjA3MDM2Nyw5Mjk4NzkxNjAsLTE2Nj
-UyOTAwNjddfQ==
+eyJoaXN0b3J5IjpbLTE1MzUwOTQ3MDcsOTI5ODc5MTYwLC0xNj
+Y1MjkwMDY3XX0=
 -->
