@@ -39,12 +39,12 @@ Let's review what I had set out to do for 2020 and where I ended up.
 ### Content
 
 - ✅ Publish 1 Pluralsight course: I published [Testing Progressive Web Apps](https://kamranicus.com/posts/2020-08-25-course-testing-progress-web-apps-cypress-webdriverio)!
-  - ❌ **Stretch:** 2 courses 
+  - ❌ **Stretch:** 2 courses. I didn't release two courses but I **did** update my [Azure CORS with Storage](https://bit.ly/PSAzureStorageCORS) course
 - ✍ Write 2 articles on React, TypeScript, RavenDB, or Azure
 - ✅ Write 4 freelance articles
   -  Throttling Requests Using RavenDB for [.NET](https://www.codeproject.com/Articles/5260137/Throttling-Outgoing-HTTP-Requests-in-a-Distributed) and [Node.js](https://www.codeproject.com/Articles/5260913/Throttling-Outgoing-Requests-in-Node-js)
   - [Role of Indexing in RavenDB, MongoDB, and PostgreSQL](https://kamranicus.com/posts/2020-05-26-ravendb-indexing-mongodb-postgresql)
-  - 
+  - [What's New in RavenDB 5.0](https://ravendb.net/articles/whats-new-in-ravendb-50)
 - 👻 Migrate to Ghost for this blog
 
 I enjoy speaking but I don't intend for it to take over my life. Doing one or two large conferences a year is enough for me! I would still _love_ to get a chance to speak outside Minnesota, so I've applied to KCDC, NEJS, and React NYC.
@@ -80,5 +80,5 @@ I still feel like I'm in the "learning" phase of DIY but I am starting to get co
 
 ## 2021 Goals
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkyMDE5NjgwNl19
+eyJoaXN0b3J5IjpbMjA0NzA3NTA3Nl19
 -->
