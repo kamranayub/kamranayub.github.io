@@ -56,10 +56,9 @@ Let's review what I had set out to do for 2020 and where I ended up.
 ### Financial
 
 - ❌ Get [Keep Track of My Games](http://ktomg.com) to make a profit
--❌  Get [Looks Good to Us](https://looksgoodtous.com) to make a profit
-
-I modified the financial goals from last year to take a different perspective. Rather than measuring side income in terms of W-2 income, I'm comparing it against our annual expenses which is much more under our control. In 2019, it covered 8% of our expenses which is **awesome.** We also maintained a respectable 40% savings rate (see also [The Gap](https://esimoney.com/the-gap-is-the-key-to-wealth/)) and I want to maintain that momentum going into 2020. It will actually be tougher since we have to buy a new (used) vehicle.
-
+  - Still no dice yet, I focused on starting a community with Discord integration in 2020
+- ❌  Get [Looks Good to Us](https://looksgoodtous.com) to make a profit
+  - LGTU has not made a _profit_ but it has earned _revenue_ which is still an impressive feat for a 1-year old blog! It earned 
 - 💰 Passive and 1099 income should cover 10% of our annual expenses
 - 💵 Maintain a 40% annual savings rate
 
@@ -84,5 +83,5 @@ I like including this because it goes to show you can't predict everything for t
 
 ## 2021 Goals
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ2NjIzMzIxOV19
+eyJoaXN0b3J5IjpbLTE2NjUyOTAwNjddfQ==
 -->
