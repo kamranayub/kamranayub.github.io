@@ -36,9 +36,46 @@ The first thing I want to say, to anyone, is that if you are writing or reflecti
 
 Let's review what I had set out to do for 2020 and where I ended up.
 
+### Content
 
+- ✅ Publish 1 Pluralsight course: I published Testing Progressive Web Apps!
+  - ❌ **Stretch:** 2 courses 
+- ✍ Write 2 articles on React, TypeScript, RavenDB, or Azure
+- ✍ Write 4 freelance articles
+- 👻 Migrate to Ghost for this blog
+
+I enjoy speaking but I don't intend for it to take over my life. Doing one or two large conferences a year is enough for me! I would still _love_ to get a chance to speak outside Minnesota, so I've applied to KCDC, NEJS, and React NYC.
+
+- 🎤 Speak at NDC MN and one other regional conference, **Stretch:** Speak outside MN.
+
+### Financial
+
+Now that I finished two major migrations for KTOMG, I want to work on getting my first paying user. To do that will require some more infrastructure work but I feel confident I can make it happen in 2020! I'm also feeling the friction of a heavy web front-end stack so I'd like to simplify it a bit.
+
+- 📈 Get [Keep Track of My Games](http://ktomg.com) to make a profit
+
+Right now LGTU doesn't cost us much, about $15 per month. I'd like to earn at least that much in affiliate revenue for 2020.
+
+- 📈 Get [Looks Good to Us](https://looksgoodtous.com) to make a profit
+
+I modified the financial goals from last year to take a different perspective. Rather than measuring side income in terms of W-2 income, I'm comparing it against our annual expenses which is much more under our control. In 2019, it covered 8% of our expenses which is **awesome.** We also maintained a respectable 40% savings rate (see also [The Gap](https://esimoney.com/the-gap-is-the-key-to-wealth/)) and I want to maintain that momentum going into 2020. It will actually be tougher since we have to buy a new (used) vehicle.
+
+- 💰 Passive and 1099 income should cover 10% of our annual expenses
+- 💵 Maintain a 40% annual savings rate
+
+I activated [my GitHub sponsor profile](https://github.com/sponsors/kamranayub). If you want to support me directly, that's a way to do it. I am not sure what to expect from this but I'll be _pleasantly_ surprised if I get at least one sponsor in 2020.
+
+- 🙏 Have one sponsor on GitHub
+
+### DIY
+
+I still feel like I'm in the "learning" phase of DIY but I am starting to get comfortable knowing what I want to do around the house. I have one specific project in mind I'm very motivated to do and it would teach me everything about framing and drywall in a small, controlled space. I'd like to build a closet around the sump pump in our basement family room (which is otherwise just exposed in plain sight 😑).
+
+- 🛠 Finish the last egress window cover
+- 🛠 Finish one basement-related project
+- 🛠 **Stretch**: Finish an upstairs home project
 
 ## 2021 Goals
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjIyODQzMTU5XX0=
+eyJoaXN0b3J5IjpbMTc1NTEwMzY0M119
 -->
