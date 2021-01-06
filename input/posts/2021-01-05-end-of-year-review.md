@@ -51,7 +51,7 @@ Let's review what I had set out to do for 2020 and where I ended up.
 - ⛔ Migrate to Ghost for this blog
   - No dice, I spent much less time on this blog and focused more on the DIY blog (see below!)
 - 🌓 Speak at NDC MN and one other regional conference
-  - To give myself credit, I applied at over 11 conferences in 2020. I was scheduled to travel to NDC London in April and I was very disappointed that trip was canceled. 
+  - To give myself credit, I applied to over 11 conferences in 2020 but I didn't apply to NDC MN mainly due to a feeling of overcommitment and general feelings of unease/stress/anxiety.
   - I actually spoke instead [at MDC in May](https://bit.ly/StorybookForGameEnginesMDC2020) virtually and then the [React Minneapolis user group](https://www.meetup.com/React-Minneapolis-Meetup/events/270736371/) and I even did an ad-hoc talk at THAT.us conference 
 
 ### Financial
@@ -96,6 +96,6 @@ When I start these year-end posts I forget about how much I _actually_ accomplis
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ1NDk3OTcwMCw5Mjk4NzkxNjAsLTE2Nj
+eyJoaXN0b3J5IjpbMTc5OTg1MDQ2Nyw5Mjk4NzkxNjAsLTE2Nj
 UyOTAwNjddfQ==
 -->
