@@ -18,7 +18,7 @@ The pandemic has been a terrible event and we have friends who have suffered hea
 
 The first thing I want to say, to anyone, is that if you are writing or reflecting on your own 2020 and you got less done than you planned... give yourself a break. Our way of life was upended, the pandemic has affected all of us in some way or another. If you got _anything_ done, you should be proud.
 
-In my 2020 year start post, I mentioned this:
+Let's review what I had set out to do for 2020 and where I ended up. I'm an optimistic and positive person and even though 2020 was a dumpster fire in the world view, there were many moments for us as a family and me as an individual that were still positive.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE2NDg1NDQ5N119
+eyJoaXN0b3J5IjpbLTE1OTA1NDg2NV19
 -->
