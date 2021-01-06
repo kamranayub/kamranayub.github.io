@@ -40,7 +40,8 @@ Let's review what I had set out to do for 2020 and where I ended up.
 
 - ✅ Publish 1 Pluralsight course: I published [Testing Progressive Web Apps](https://kamranicus.com/posts/2020-08-25-course-testing-progress-web-apps-cypress-webdriverio)!
   - ❌ **Stretch:** 2 courses. I didn't release two courses but I **did** update my [Azure CORS with Storage](https://bit.ly/PSAzureStorageCORS) course
-- ✍ Write 2 articles on React, TypeScript, RavenDB, or Azure
+- ✅ Write 2 articles on React, TypeScript, RavenDB, or Azure
+  -  Why You Don't Need Types in JSDoc
 - ✅ Write 4 freelance articles
   -  Throttling Requests Using RavenDB for [.NET](https://www.codeproject.com/Articles/5260137/Throttling-Outgoing-HTTP-Requests-in-a-Distributed) and [Node.js](https://www.codeproject.com/Articles/5260913/Throttling-Outgoing-Requests-in-Node-js)
   - [Role of Indexing in RavenDB, MongoDB, and PostgreSQL](https://kamranicus.com/posts/2020-05-26-ravendb-indexing-mongodb-postgresql)
@@ -80,5 +81,5 @@ I still feel like I'm in the "learning" phase of DIY but I am starting to get co
 
 ## 2021 Goals
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA0NzA3NTA3Nl19
+eyJoaXN0b3J5IjpbLTE0MjQyNjc1ODldfQ==
 -->
