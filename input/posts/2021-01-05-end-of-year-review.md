@@ -16,7 +16,7 @@ I am thankful that no family members close to me have been taken by the virus bu
 
 The pandemic has been a terrible event and we have friends who have suffered health-wise and job-wise from it. I can't express how thankful I feel that we've been able to stay healthy as a family and remained at our jobs. I hope that continues in 2021. Cassie has certainly taken it the hardest being in a school setting where she's had to work from home and trying to help kids in need remotely over Zoom is proving to be stressful and difficult. There are many jobs where being present physically is important and hers is one of them as a social worker. Even though she's back at school, it still doesn't feel safe and I think we've learned that almost no one is appropriately prepared for when teachers or students test positive -- with mixed messages or delayed communication, or lack of communication altogether. It's super unfortunate.
 
-I'm an optimistic and positive person and even though 2020 was a dumpster fire for the world, it helps me to focus on the many moments for me as an individual and us a family that were positive. My work turned 100% remote which for _me_ was a positive and a long-term goal
+I'm an optimistic and positive person and even though 2020 was a dumpster fire for the world, it helps me to focus on the many moments for me as an individual and us a family that were positive. My work turned 100% remote which for _me_ was a positive and a long-time goal that I'd love to maintain going forward. We spent a lot of time exploring locally, in Minneapolis. I think we visited at least a dozen new-to-us parks and outdoor areas around the metro. We discovered a renewed love of biking and we included the kids. This was amazing for our wellness and was a fun family activity in the evenings and during t
 
 ## 2020 Goals in Review
 
@@ -26,5 +26,5 @@ Let's review what I had set out to do for 2020 and where I ended up.
 
 ## 2021 Goals
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQyMjUxOTEwN119
+eyJoaXN0b3J5IjpbLTEzMDY4NDA2MzNdfQ==
 -->
