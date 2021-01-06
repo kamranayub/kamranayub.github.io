@@ -14,9 +14,11 @@ I am thankful that no family members close to me have been taken by the virus bu
 
 The pandemic has been a terrible event and we have friends who have suffered health-wise and job-wise from it. I can't express how thankful I feel that we've been able to stay healthy as a family and remained at our jobs. I hope that continues in 2021. Cassie has certainly taken it the hardest being in a school setting where she's had to work from home and trying to help kids in need remotely over Zoom is proving to be stressful and difficult. There are many jobs where being present physically is important and hers is one of them as a social worker. Even though she's back at school, it still doesn't feel safe and I think we've learned that almost no one is appropriately prepared for when teachers or students test positive -- with mixed messages or delayed communication, or lack of communication altogether. It's super unfortunate.
 
-## So did I get anything done?
+## 2020 Goals in Review
 
-The first thing I want to say, to anyone, is that if you are writing or reflecting on your own 2020 and you got less done than you planned... give yourself a break. Our way of life was upended, the pandemic has affected all of us in some way or another
+The first thing I want to say, to anyone, is that if you are writing or reflecting on your own 2020 and you got less done than you planned... give yourself a break. Our way of life was upended, the pandemic has affected all of us in some way or another. If you got _anything_ done, you should be proud.
+
+In my 2020 year start post, I mentioned this:
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MzIxODQxODZdfQ==
+eyJoaXN0b3J5IjpbMTE2NDg1NDQ5N119
 -->
