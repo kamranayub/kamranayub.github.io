@@ -114,8 +114,14 @@ _Contributes to being an instructor_
 
 Since 2018 or so, I have tried to ensure that I maintain a pipeline of active work through Pluralsight. What this has meant so far has really been to ensure I apply for at least **one** course opportunity a year, if not more. I also try to do some smaller gigs with them such as assessment reviews, writing, or in the future, other types of content.
 
-In 2021, I would love to improve this system even more by applying for a course opportunity twi
+In 2021, I would love to improve this system even more by applying for a course opportunity **twice** a year, once in January (which I did!) and once in September.
+
+### Systems that need improvement
+
+#### 🎤 Having speaking gigs lined up
+
+I a
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM4MTc2MTI1Niw5Mjk4NzkxNjAsLTE2Nj
+eyJoaXN0b3J5IjpbLTg5MDg1NTIwOSw5Mjk4NzkxNjAsLTE2Nj
 UyOTAwNjddfQ==
 -->
