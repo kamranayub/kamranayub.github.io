@@ -92,12 +92,14 @@ When I start these year-end posts I forget about how much I _actually_ accomplis
 
 ## 2021 Systems and Habits (no goals?!)
 
-In 2020 I read the book [Atomic Habits by James Clear](https://www.amazon.com/gp/product/0735211299/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0735211299&linkCode=as2&tag=kamranicus-20&linkId=a2011094da6e2c411fab9235f8b5876d) (affiliate link). In the book, he speaks about the power of habits and systems in lieu of having goals. The idea is that you cannot effectively reach your goals without having the proper habits in place to achieve them. And once you have a system in place or develop a habit, you will naturally reach goals because that is just **who you are as a person**.
+In 2020, there were two books I read that made an impact on me. [Atomic Habits by James Clear](https://www.amazon.com/gp/product/0735211299/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0735211299&linkCode=as2&tag=kamranicus-20&linkId=a2011094da6e2c411fab9235f8b5876d) and [The Practice] by Seth Godin (affiliate links). 
+
+In Atomic Habits, James speaks about the power of habits and systems in lieu of having goals. The idea is that you cannot effectively reach your goals without having the proper habits in place to achieve them. And once you have a system in place or develop a habit, you will naturally reach goals because that is just **who you are as a person**.
 
 With that in mind, for 2021 I want to try and focus on **improving the systems that are working for me**, **introducing new systems**, and **breaking out of bad habits that work against me**. Now of course, in order to know what habits you want to build and break, you need some vision of what you want in the future. The type of person you want to be.
 
 For myself in 2021, I'd like to be **a speaker**, a **DIYer**, a **technology instructor**, and **an entrepreneur** (not in any specific order). So now, with the decisions that I make, I can say to myself, "Is this what someone who is a (speaker|DIYer|instructor|entrepreneur) would do?" I can also start to ensure I have the right systems and habits in place to become the type of person I want to be.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MzY4MDY1MjQsOTI5ODc5MTYwLC0xNj
-Y1MjkwMDY3XX0=
+eyJoaXN0b3J5IjpbMTE4MjI1NzAwNiw5Mjk4NzkxNjAsLTE2Nj
+UyOTAwNjddfQ==
 -->
