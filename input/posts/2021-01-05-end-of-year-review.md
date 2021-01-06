@@ -143,14 +143,16 @@ I do not yet have a good system around applying to CFPs. I did _start_ something
 
 I just put out a poll this week about what topics might interest people and I have two solid ideas of what I'd love to speak about. I think in the interest of doing an **incremental** improvement to this habit, I will choose **one topic** I'm passionate about and have that fuel my CFPs for 2021 to see how it goes.
 
-### Habits I want to form
+### Habits I want to form or continue doing
 
-These all contribute to the type of person I want to be in general: a happy, optimistic person that takes care of his me
+These all contribute to the type of person I want to be in general: a happy, optimistic person that takes care of his mental health and wellness.
 
-- 🌞 Daily morning meditation
-- 💊 Daily vitamin supplements
+- 🌞 Daily morning meditation (I use [Headspace](https://www.headspace.com/))
+- 💊 Daily vitamin supplements (for us and the kiddos)
 - 🚶‍♂️ Daily exercise (walking or biking)
+
+I have already started these habits, some since the summer.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc0NjM5NDA4Niw5Mjk4NzkxNjAsLTE2Nj
+eyJoaXN0b3J5IjpbMTcwNTIyNjIyMCw5Mjk4NzkxNjAsLTE2Nj
 UyOTAwNjddfQ==
 -->
