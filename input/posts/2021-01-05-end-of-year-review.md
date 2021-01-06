@@ -49,8 +49,11 @@ Let's review what I had set out to do for 2020 and where I ended up.
   - [Role of Indexing in RavenDB, MongoDB, and PostgreSQL](https://kamranicus.com/posts/2020-05-26-ravendb-indexing-mongodb-postgresql)
   - [What's New in RavenDB 5.0](https://ravendb.net/articles/whats-new-in-ravendb-50)
 - ❌ Migrate to Ghost for this blog
+  - No dice, I spent much less time on this blog and focused more on the DIY blog (see below!)
 - ❌ Speak at NDC MN and one other regional conference
-  - I actually spoke instead at MDC in May virtually and then the React Minneapolis user group and I did an ad-hoc talk at THAT.us conference 
+  - I actually spoke instead [at MDC in May](https://bit.ly/StorybookForGameEnginesMDC2020) virtually and then the [React Minneapolis user group](https://www.meetup.com/React-Minneapolis-Meetup/events/270736371/) and I even did an ad-hoc talk at THAT.us conference 
+
+
 
 ### Financial
 
@@ -81,5 +84,5 @@ I still feel like I'm in the "learning" phase of DIY but I am starting to get co
 
 ## 2021 Goals
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNDM5MjMwMjJdfQ==
+eyJoaXN0b3J5IjpbLTg1ODQ5NDE4NV19
 -->
