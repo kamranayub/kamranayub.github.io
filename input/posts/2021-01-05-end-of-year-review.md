@@ -158,8 +158,8 @@ I have already started many of these habits, some since the summer so I want to 
 
 ## So what are my goals?
 
-I don't have any to list on here! But now maybe you can see: I don't have to list any 🤯 As long as I continue to invest in my habits and systems, _naturally
+I don't have any to list on here! But now maybe you can see: I don't have to list any 🤯 As long as I continue to invest in my habits and systems, _naturally_ there will be accomplishments produced. They are working towards who I want to become and so goals don't matter as much anymore. The important thing to reflect on and track will be _how well did the systems work?_ *What improvements did I make?* *Is there anything that I felt wasn't contributing to who I want to become?*
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcxMjEyNDI1NSw5Mjk4NzkxNjAsLTE2Nj
-UyOTAwNjddfQ==
+eyJoaXN0b3J5IjpbLTE1NzEwMDI4MTYsOTI5ODc5MTYwLC0xNj
+Y1MjkwMDY3XX0=
 -->
