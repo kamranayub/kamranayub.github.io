@@ -50,7 +50,7 @@ Let's review what I had set out to do for 2020 and where I ended up.
   - [What's New in RavenDB 5.0](https://ravendb.net/articles/whats-new-in-ravendb-50)
 - ❌ Migrate to Ghost for this blog
   - No dice, I spent much less time on this blog and focused more on the DIY blog (see below!)
-- ❌ Speak at NDC MN and one other regional conference
+- b Speak at NDC MN and one other regional conference
   - I actually spoke instead [at MDC in May](https://bit.ly/StorybookForGameEnginesMDC2020) virtually and then the [React Minneapolis user group](https://www.meetup.com/React-Minneapolis-Meetup/events/270736371/) and I even did an ad-hoc talk at THAT.us conference 
 
 ### Financial
@@ -82,10 +82,10 @@ I like including this because it goes to show you can't predict everything for t
 - 🏆 Released [two Typedoc Gatsby plugins for Excalibur docs generation](https://github.com/kamranayub?tab=repositories&q=gatsby&type=source&language=)
 - 🏆 I built another small wall and installed a door to our utility room
 - 🏆 I designed Cassie's new sewing/craft room
-- 🏆 I did some mockups for a new kitchen remodel and renova
+- 🏆 I did some mockups for a future main floor renovation
 
 ## 2021 Goals
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEzOTQ4NzEwLDkyOTg3OTE2MCwtMTY2NT
-I5MDA2N119
+eyJoaXN0b3J5IjpbMTI0NjA3MDM2Nyw5Mjk4NzkxNjAsLTE2Nj
+UyOTAwNjddfQ==
 -->
