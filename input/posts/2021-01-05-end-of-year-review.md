@@ -98,12 +98,14 @@ In *Atomic Habits*, James speaks about the power of habits and systems in lieu o
 
 In *The Practice*, Seth shares his many years of wisdom on what it means to ship creative work effectively to build "a practice." In other words, what does it take to move from being an *amateur* (in the pure sense of the word) to being a *professional*? Hint: you just keep shipping and iterating and making things better, even when you don't want to. I don't believe the book promotes what you might call "hustle porn" because there's no dictation of how fast/much you have to work, like 50 hour weeks. Instead it is about the work itself, doing good work, not striving for perfection on everything, and _shipping_ your work to customers. I really appreciated all the bits of wisdom in the book, it read like a meditation almost. It's not for everyone but it doesn't need to be (another lesson from the book). I tend to love [his newsletter](https://seths.blog) and [podcast](https://www.akimbo.link/). It's one of the only newsletters I read daily and ensure hits my Inbox.
 
-## 2021 Habits a
+## 2021 Habits and Systems (to reach my goals)
 
 With that in mind, for 2021 I want to try and focus on **improving the systems that are working for me**, **introducing new systems**, and **breaking out of bad habits that work against me**. Now of course, in order to know what habits you want to build and break, you need some vision of what you want in the future. The type of person you want to be.
 
-For myself in 2021, I'd like to be **a speaker**, a **DIYer**, a **technology instructor**, and **an entrepreneur** (not in any specific order). So now, with the decisions that I make, I can say to myself, "Is this what someone who is a (speaker|DIYer|instructor|entrepreneur) would do?" I can also start to ensure I have the right systems and habits in place to become the type of person I want to be.
+For myself in 2021, I'd like to be **a speaker**, a **DIYer**, a **technology instructor**, and **an entrepreneur** (in no specific). This is also very close to who I see myself as now (with some exceptions). Knowing this, when I have a decision to make I can say to myself, "Is this what someone who is a (speaker|DIYer|instructor|entrepreneur) would do?" I can also start to ensure I have the right systems and habits in place to become the type of person I want to be.
+
+Let's look at some concrete examples by t
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNzM3NzUyOSw5Mjk4NzkxNjAsLTE2Nj
-UyOTAwNjddfQ==
+eyJoaXN0b3J5IjpbLTQ3NzE5NzMxLDkyOTg3OTE2MCwtMTY2NT
+I5MDA2N119
 -->
