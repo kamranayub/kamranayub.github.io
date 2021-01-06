@@ -151,10 +151,11 @@ These all contribute to the type of person I want to be in general: a happy, opt
 - 💊 Daily vitamin supplements (for us and the kiddos)
 - 🚶‍♂️ Daily exercise (walking or biking)
 - 📖 Daily reading (We have Reading Time with the kids before bedtime)
-- 🍕 Weekly meal planning (we've been doing this for 2 y
+- 🍕 Weekly meal planning (we've been doing this for 2 years now)
+- 💸 Monthly savings and investments
 
-I have already started these habits, some since the summer.
+I have already started many of these habits, some since the summer so I want to ensure I continue doing .
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg4MDA1ODMxMSw5Mjk4NzkxNjAsLTE2Nj
-UyOTAwNjddfQ==
+eyJoaXN0b3J5IjpbLTE0MzE4NzA4ODUsOTI5ODc5MTYwLC0xNj
+Y1MjkwMDY3XX0=
 -->
