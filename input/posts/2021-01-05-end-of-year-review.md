@@ -120,8 +120,10 @@ In 2021, I would love to improve this system even more by applying for a course 
 
 #### 🎤 Having speaking gigs lined up
 
-I a
+I do not yet have a good system around applying to CFPs. I did _start_ something in 2020, maintaining an active checklist of conferences and dates to apply to. I already have TODOs for applying to 2021 conferences. But I need to build a habit of forming my talk abstracts going into the year so that I can just shop them around, rather than doing it so ad-hoc like I have before. In other words, I need to be more intentional about this.
+
+I just put out a poll this week about what topi
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg5MDg1NTIwOSw5Mjk4NzkxNjAsLTE2Nj
-UyOTAwNjddfQ==
+eyJoaXN0b3J5IjpbLTU3MjczOTQ0LDkyOTg3OTE2MCwtMTY2NT
+I5MDA2N119
 -->
