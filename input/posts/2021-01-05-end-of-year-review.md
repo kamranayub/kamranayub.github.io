@@ -145,14 +145,16 @@ I just put out a poll this week about what topics might interest people and I ha
 
 ### Habits I want to form or continue doing
 
-These all contribute to the type of person I want to be in general: a happy, optimistic person that takes care of his mental health and wellness.
+These all contribute to the type of person I want to be in general: a happy, optimistic person that takes care of his mental health, wealth, and wellness.
 
 - 🌞 Daily morning meditation (I use [Headspace](https://www.headspace.com/))
 - 💊 Daily vitamin supplements (for us and the kiddos)
 - 🚶‍♂️ Daily exercise (walking or biking)
+- 📖 Daily reading (We have Reading Time with the kids before bedtime)
+- 🍕 Weekly meal planning (we've been doing this for 2 y
 
 I have already started these habits, some since the summer.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTcwNTIyNjIyMCw5Mjk4NzkxNjAsLTE2Nj
+eyJoaXN0b3J5IjpbLTg4MDA1ODMxMSw5Mjk4NzkxNjAsLTE2Nj
 UyOTAwNjddfQ==
 -->
