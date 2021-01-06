@@ -61,8 +61,8 @@ Let's review what I had set out to do for 2020 and where I ended up.
   - LGTU has not made a _profit_ but it has earned _revenue_ which is still an impressive feat for a 1-year old blog! It earned exactly $16 but there is still earnings yet to be paid out that bring it into the $20-30 range. That's **almost** profitable 😂
 - ✅ Passive and 1099 income should cover 10% of our annual expenses
   - It actually covered **14%** of our expenses, including the lump minivan payment. With the van, we spent more in 2020 but without it, we spent less than 2019 💪
-- ✅ Maintain a 40% annual savings rate
-  - We blew past 40% and reached a **51%** savings rate for 2020 😲 How did we spend more and yet save more? Money-in increased for the year by **34%** on account of a promotion at the end of 2019 (which brought a higher mid-year bonus) and Cassie's salary step-up as a teacher.
+- ✅ Maintain a 40% [annual savings rate](https://reachfi.app/)
+  - We blew past 40% and reached a **51%** savings rate for 2020 😲 Even though we technically spent more in 2020, household income increased for the year by **34%** which resulted in higher savings. 📈 Want to track your own savings rate? Use my little ReachFI PWA app!
 - ✅ Have one sponsor [on GitHub](https://github.com/sponsors/kamranayub)
   - **I did it!** I had ONE sponsor in 2020 for ONE month for $5. 🙏
 
@@ -93,6 +93,6 @@ When I started this post I forgot about how much I _actually_ accomplished in 20
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU0NDEzMzU0LDkyOTg3OTE2MCwtMTY2NT
-I5MDA2N119
+eyJoaXN0b3J5IjpbMTAwNjM0ODIwMyw5Mjk4NzkxNjAsLTE2Nj
+UyOTAwNjddfQ==
 -->
