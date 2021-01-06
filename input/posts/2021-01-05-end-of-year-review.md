@@ -22,7 +22,7 @@ I'm an optimistic and positive person and even though 2020 was a dumpster fire f
 - 🌲 We spent a lot of time exploring locally, in Minneapolis. I think we visited at least a dozen new-to-us parks and outdoor areas around the metro. 
 - 🚲 We discovered a renewed love of biking and we included the kids. This was amazing for our wellness and was a fun family activity in the evenings and during the day.
 - 🚙 We bought a used minivan and we bought it _in cash_ instead of financing it which was a major accomplishment. We had saved for over a year to achieve that!
-- stop
+- ✊🏿 We partipated in protests and activism. At the site of the George Floyd murder, we stood in solidarity with others in our community to stand up for Black Lives. We tried to attend as many rallies as we could safely do
 
 ## 2020 Goals in Review
 
@@ -32,5 +32,5 @@ Let's review what I had set out to do for 2020 and where I ended up.
 
 ## 2021 Goals
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NDEwMDU4MV19
+eyJoaXN0b3J5IjpbLTE1NzIyMjAxNV19
 -->
