@@ -8,7 +8,7 @@ Tags:
 - Accomplishments
 ---
 
-
+It's time to reflect on the year and my what a year it's been. COVID-19 is not a joke and it's still important to stay safe
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMDA4MTA5OTddfQ==
+eyJoaXN0b3J5IjpbLTE4MjIxMDc3MzBdfQ==
 -->
