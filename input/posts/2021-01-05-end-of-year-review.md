@@ -96,12 +96,12 @@ In 2020, there were two books I read that made an impact on me. [Atomic Habits b
 
 In *Atomic Habits*, James speaks about the power of habits and systems in lieu of having goals. The idea is that you cannot effectively reach your goals without having the proper habits in place to achieve them. And once you have a system in place or develop a habit, you will naturally reach goals because that is just **who you are as a person**.
 
-In *The Practice*, Seth shares is many years of wisdom on what it means to ship creative work effectively to build "a practice." In other words, what does it take to move from being an amateur (in the pure sense of the word) to be
+In *The Practice*, Seth shares is many years of wisdom on what it means to ship creative work effectively to build "a practice." In other words, what does it take to move from being an *amateur* (in the pure sense of the word) to being a *professional*? Hint: you just keep shipping and iterating and making things better, even when you don't want to. I don't believe the book promotes what you might call "hustle porn" because there's no dictation of how fast/much you have to work, like 50 hour weeks. Instead it is about
 
 With that in mind, for 2021 I want to try and focus on **improving the systems that are working for me**, **introducing new systems**, and **breaking out of bad habits that work against me**. Now of course, in order to know what habits you want to build and break, you need some vision of what you want in the future. The type of person you want to be.
 
 For myself in 2021, I'd like to be **a speaker**, a **DIYer**, a **technology instructor**, and **an entrepreneur** (not in any specific order). So now, with the decisions that I make, I can say to myself, "Is this what someone who is a (speaker|DIYer|instructor|entrepreneur) would do?" I can also start to ensure I have the right systems and habits in place to become the type of person I want to be.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNzA1NjI3NDAsOTI5ODc5MTYwLC0xNj
-Y1MjkwMDY3XX0=
+eyJoaXN0b3J5IjpbLTQzMjkwNzQ3MCw5Mjk4NzkxNjAsLTE2Nj
+UyOTAwNjddfQ==
 -->
