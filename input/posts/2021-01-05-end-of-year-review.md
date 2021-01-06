@@ -104,8 +104,14 @@ With that in mind, for 2021 I want to try and focus on **improving the systems t
 
 For myself in 2021, I'd like to be **a speaker**, a **DIYer**, a **technology instructor**, and **an entrepreneur** (in no specific). This is also very close to who I see myself as now (with some exceptions). Knowing this, when I have a decision to make I can say to myself, "Is this what someone who is a (speaker|DIYer|instructor|entrepreneur) would do?" I can also start to ensure I have the right systems and habits in place to become the type of person I want to be.
 
-Let's look at some concrete examples by t
+Let's look at some concrete examples by looking at the systems I already have in place.
+
+### Systems that are working
+
+#### 🎥 Having a pipeline of work for Pluralsight
+
+Since 2018 or so, I have tried to ensure that I maintain a pipeline of active work through Pluralsight. What this has meant so far has really been to ensure I apply for at least **one** course opportunity a year, if not more. 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ3NzE5NzMxLDkyOTg3OTE2MCwtMTY2NT
-I5MDA2N119
+eyJoaXN0b3J5IjpbMTU0ODE3MjAxNCw5Mjk4NzkxNjAsLTE2Nj
+UyOTAwNjddfQ==
 -->
