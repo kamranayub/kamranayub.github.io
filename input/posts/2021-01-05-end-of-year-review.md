@@ -92,8 +92,10 @@ When I start these year-end posts I forget about how much I _actually_ accomplis
 
 ## 2021 Systems and Habits (no goals?!)
 
-In 2020 I read the book Atomic Habits by James Clear. In the book, he speaks about the power of habits and systems instead of having goals. The idea is that you cannot effectively reach your goals without having the proper habits in place to achieve them. And once you have a system in place or develop a habit, you will naturally reach goals because that is just **who you are as a person**.
+In 2020 I read the book [Atomic Habits by James Clear](https://www.amazon.com/gp/product/0735211299/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0735211299&linkCode=as2&tag=kamranicus-20&linkId=a2011094da6e2c411fab9235f8b5876d) (affiliate link). In the book, he speaks about the power of habits and systems in lieu of having goals. The idea is that you cannot effectively reach your goals without having the proper habits in place to achieve them. And once you have a system in place or develop a habit, you will naturally reach goals because that is just **who you are as a person**.
+
+With that in mind, for 2021 I want to try and focus on **improving the systems that are working for me** and **introducing new s
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNjk1ODEzNjksOTI5ODc5MTYwLC0xNj
-Y1MjkwMDY3XX0=
+eyJoaXN0b3J5IjpbLTY3MTk5ODk3NSw5Mjk4NzkxNjAsLTE2Nj
+UyOTAwNjddfQ==
 -->
