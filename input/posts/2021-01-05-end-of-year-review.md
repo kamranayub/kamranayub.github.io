@@ -85,6 +85,7 @@ I like including this because it goes to show you can't predict everything for t
 - 🏆 I built another small wall and installed a door to our utility room
 - 🏆 I designed Cassie's new sewing/craft room
 - 🏆 I did some mockups for a future main floor renovation
+- 🏆 We planted a tree in the front yard
 
 ### Reflection on accomplishments
 
@@ -116,7 +117,9 @@ Since 2018 or so, I have tried to ensure that I maintain a pipeline of active wo
 
 In 2021, I would love to improve this system even more by applying for a course opportunity **twice** a year, once in January (which I did!) and once in September.
 
-#### ha
+#### 🔨 Seasonal DIY projects
+
+In 2020 having seasonal DIY projects helped a lot. I knew for Spring/Summer, I wanted to finish the egress window cover and do outdoor improvements (we planted a tree!) and Fall/Win
 
 ### Systems that need improvement
 
@@ -128,6 +131,6 @@ I do not yet have a good system around applying to CFPs. I did _start_ something
 
 I just put out a poll this week about what topics might interest people and I have two solid ideas of what I'd love to speak about. I think in the interest of doing an **incremental** improvement to this habit, I will choose **one topic** I'm passionate about and have that fuel my CFPs for 2021 to see how it goes.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAwMjMxMjg5NSw5Mjk4NzkxNjAsLTE2Nj
-UyOTAwNjddfQ==
+eyJoaXN0b3J5IjpbLTE2ODY3NjAwMTAsOTI5ODc5MTYwLC0xNj
+Y1MjkwMDY3XX0=
 -->
