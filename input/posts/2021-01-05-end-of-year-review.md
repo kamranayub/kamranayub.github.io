@@ -57,8 +57,8 @@ Let's review what I had set out to do for 2020 and where I ended up.
 ### Financial
 
 - ⛔ Get [Keep Track of My Games](http://ktomg.com) to make a profit
-  - Still no dice yet, I focused on starting a community with Discord integration in 2020
-- ✅  Get [Looks Good to Us](https://looksgoodtous.com) to make a profit
+  - Still no dice yet, while it has earned _some_ revenue, I instead focused on starting a community with Discord integration in 2020
+- ⛔  Get [Looks Good to Us](https://looksgoodtous.com) to make a profit
   - LGTU has not made a _profit_ but it has earned _revenue_ which is still an impressive feat for a 1-year old blog! It earned exactly $16 but there is still earnings yet to be paid out that bring it into the $20-30 range. That's **almost** profitable 😂
 - ✅ Passive and 1099 income should cover 10% of our annual expenses
   - It actually covered **14%** of our expenses, including the lump minivan payment. With the van, we spent more in 2020 but without it, we spent less than 2019 💪
@@ -88,14 +88,12 @@ I like including this because it goes to show you can't predict everything for t
 
 ### Reflection on accomplishments
 
-When I start these year-end posts I forget about how much I _actually_ accomplished in 2020, wow! I have a system I started in 2019 where I track work for my "hustling" on Trello.
-
-
+When I start these year-end posts I forget about how much I _actually_ accomplished in 2020, wow! I have a system I started in 2019 where I track work for my "hustling" on Trello. This lets me easily bring up what I've accomplished for the year which makes me feel great! It also is just an effective way to manage and plan my pipelines of work (more on that below).
 
 ## 2021 Systems and Habits (no goals?!)
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc5OTg1MDQ2Nyw5Mjk4NzkxNjAsLTE2Nj
-UyOTAwNjddfQ==
+eyJoaXN0b3J5IjpbNzg0MTY4NzQ4LDkyOTg3OTE2MCwtMTY2NT
+I5MDA2N119
 -->
