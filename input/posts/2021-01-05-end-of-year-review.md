@@ -133,10 +133,12 @@ I do not yet have a good system around applying to CFPs. I did _start_ something
 
 I just put out a poll this week about what topics might interest people and I have two solid ideas of what I'd love to speak about. I think in the interest of doing an **incremental** improvement to this habit, I will choose **one topic** I'm passionate about and have that fuel my CFPs for 2021 to see how it goes.
 
-#### 🔨 Sharing and docu
+#### 🔨 Sharing and documenting DIY journey
 
 _Contributes to being a DIYer and instructor_
+
+While I _did_ blog quite a bit in 2020 about my DIY learnings, I only started leveraging Instagram near the end of my project. Now in 2021, I would like to use Instagram to do more real-time sharing of progress and maintain the blogging cadence to do the more full write-ups.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMTI1MTc0MzksOTI5ODc5MTYwLC0xNj
-Y1MjkwMDY3XX0=
+eyJoaXN0b3J5IjpbNTA3MTc1NDcxLDkyOTg3OTE2MCwtMTY2NT
+I5MDA2N119
 -->
