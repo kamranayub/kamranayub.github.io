@@ -59,8 +59,10 @@ Let's review what I had set out to do for 2020 and where I ended up.
   - Still no dice yet, I focused on starting a community with Discord integration in 2020
 - ❌  Get [Looks Good to Us](https://looksgoodtous.com) to make a profit
   - LGTU has not made a _profit_ but it has earned _revenue_ which is still an impressive feat for a 1-year old blog! It earned exactly $16 but there is still earnings yet to be paid out that bring it into the $20-30 range. That's **almost** profitable 😂
-- 💰 Passive and 1099 income should cover 10% of our annual expenses
-- 💵 Maintain a 40% annual savings rate
+- ✅ Passive and 1099 income should cover 10% of our annual expenses
+  - It actu
+- ✅ Maintain a 40% annual savings rate
+  - We blew past 40% and reached a 52% savings rate for 2020 😲
 
 I activated [my GitHub sponsor profile](https://github.com/sponsors/kamranayub). If you want to support me directly, that's a way to do it. I am not sure what to expect from this but I'll be _pleasantly_ surprised if I get at least one sponsor in 2020.
 
@@ -83,5 +85,6 @@ I like including this because it goes to show you can't predict everything for t
 
 ## 2021 Goals
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTI5ODc5MTYwLC0xNjY1MjkwMDY3XX0=
+eyJoaXN0b3J5IjpbMTY5MTkxNjY1OSw5Mjk4NzkxNjAsLTE2Nj
+UyOTAwNjddfQ==
 -->
