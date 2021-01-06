@@ -53,8 +53,6 @@ Let's review what I had set out to do for 2020 and where I ended up.
 - ❌ Speak at NDC MN and one other regional conference
   - I actually spoke instead [at MDC in May](https://bit.ly/StorybookForGameEnginesMDC2020) virtually and then the [React Minneapolis user group](https://www.meetup.com/React-Minneapolis-Meetup/events/270736371/) and I even did an ad-hoc talk at THAT.us conference 
 
-
-
 ### Financial
 
 Now that I finished two major migrations for KTOMG, I want to work on getting my first paying user. To do that will require some more infrastructure work but I feel confident I can make it happen in 2020! I'm also feeling the friction of a heavy web front-end stack so I'd like to simplify it a bit.
@@ -82,7 +80,14 @@ I still feel like I'm in the "learning" phase of DIY but I am starting to get co
 - 🛠 Finish one basement-related project
 - 🛠 **Stretch**: Finish an upstairs home project
 
+### Unplanned Accomplishments
+
+I like including this because it goes to show you can't predict everything for the year!
+
+- Released an open source package for managing browser permissions in Cypress
+- Released two related Gatsby plugins for Excalibur docs generation
+
 ## 2021 Goals
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg1ODQ5NDE4NV19
+eyJoaXN0b3J5IjpbNDk1NTM5NzM0XX0=
 -->
