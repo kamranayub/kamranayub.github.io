@@ -145,8 +145,12 @@ I just put out a poll this week about what topics might interest people and I ha
 
 ### Habits I want to form
 
-- Daily morning m
+These all contribute to the type of person I want to be in general: a happy, optimistic person that takes care of his me
+
+- 🌞 Daily morning meditation
+- 💊 Daily vitamin supplements
+- 🚶‍♂️ Daily exercise (walking or biking)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAwMTI1NTY4OSw5Mjk4NzkxNjAsLTE2Nj
+eyJoaXN0b3J5IjpbLTc0NjM5NDA4Niw5Mjk4NzkxNjAsLTE2Nj
 UyOTAwNjddfQ==
 -->
