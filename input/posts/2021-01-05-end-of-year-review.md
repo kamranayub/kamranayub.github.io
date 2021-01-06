@@ -55,13 +55,8 @@ Let's review what I had set out to do for 2020 and where I ended up.
 
 ### Financial
 
-Now that I finished two major migrations for KTOMG, I want to work on getting my first paying user. To do that will require some more infrastructure work but I feel confident I can make it happen in 2020! I'm also feeling the friction of a heavy web front-end stack so I'd like to simplify it a bit.
-
-- 📈 Get [Keep Track of My Games](http://ktomg.com) to make a profit
-
-Right now LGTU doesn't cost us much, about $15 per month. I'd like to earn at least that much in affiliate revenue for 2020.
-
-- 📈 Get [Looks Good to Us](https://looksgoodtous.com) to make a profit
+- ❌ Get [Keep Track of My Games](http://ktomg.com) to make a profit
+-❌  Get [Looks Good to Us](https://looksgoodtous.com) to make a profit
 
 I modified the financial goals from last year to take a different perspective. Rather than measuring side income in terms of W-2 income, I'm comparing it against our annual expenses which is much more under our control. In 2019, it covered 8% of our expenses which is **awesome.** We also maintained a respectable 40% savings rate (see also [The Gap](https://esimoney.com/the-gap-is-the-key-to-wealth/)) and I want to maintain that momentum going into 2020. It will actually be tougher since we have to buy a new (used) vehicle.
 
@@ -84,10 +79,10 @@ I still feel like I'm in the "learning" phase of DIY but I am starting to get co
 
 I like including this because it goes to show you can't predict everything for the year!
 
-- Released an open source package for managing browser permissions in Cypress
-- Released two related Gatsby plugins for Excalibur docs generation
+- 🏆 Released an open source package for [managing browser permissions in Cypress](https://kamranicus.com/posts/2020-07-17-cypress-browser-permissions)
+- 🏆 Released [two Typedoc Gatsby plugins for Excalibur docs generation](https://github.com/kamranayub?tab=repositories&q=gatsby&type=source&language=)
 
 ## 2021 Goals
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDk1NTM5NzM0XX0=
+eyJoaXN0b3J5IjpbMTQ2NjIzMzIxOV19
 -->
