@@ -62,11 +62,9 @@ Let's review what I had set out to do for 2020 and where I ended up.
 - ✅ Passive and 1099 income should cover 10% of our annual expenses
   - It actually covered **14%** of our expenses, including the lump minivan payment. With the van, we spent more in 2020 but without it, we spent less than 2019 💪
 - ✅ Maintain a 40% annual savings rate
-  - We blew past 40% and reached a **52%** savings rate for 2020 😲 How did we spend more and yet save more? Money-in rose from 2019 by a whopping 
-
-I activated [my GitHub sponsor profile](https://github.com/sponsors/kamranayub). If you want to support me directly, that's a way to do it. I am not sure what to expect from this but I'll be _pleasantly_ surprised if I get at least one sponsor in 2020.
-
-- 🙏 Have one sponsor on GitHub
+  - We blew past 40% and reached a **52%** savings rate for 2020 😲 How did we spend more and yet save more? Money-in rose from 2019 by a whopping **34%** on account of a promotion at the end of 2019 (which brought a higher mid-year bonus) and Cassie's salary step-up as a teacher.
+- ✅ Have one sponsor on GitHub
+  - **I did it!** I had ONE sponsor in 20
 
 ### DIY
 
@@ -85,6 +83,6 @@ I like including this because it goes to show you can't predict everything for t
 
 ## 2021 Goals
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTkwNTkzNjAwOSw5Mjk4NzkxNjAsLTE2Nj
-UyOTAwNjddfQ==
+eyJoaXN0b3J5IjpbLTExNzg1MjAxNjUsOTI5ODc5MTYwLC0xNj
+Y1MjkwMDY3XX0=
 -->
