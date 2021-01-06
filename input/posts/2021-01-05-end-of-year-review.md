@@ -127,7 +127,9 @@ While I _did_ blog quite a bit in 2020 about my DIY learnings, I only started le
 
 #### 📝 Consistent schedule for freelance writing
 
-Taking on 
+_Contributes to being 
+
+Taking on RavenDB as a client to write for wasn't something I planned but it's been working out well and I ended up doing about 1 article a quarter in 2020. In 2021 I've already lined up all the articles I'll be writing for the year with them and this is something I'd like to ramp up if I find I have the time in the future.
 
 ### Systems I want to put in place
 
@@ -139,6 +141,6 @@ I do not yet have a good system around applying to CFPs. I did _start_ something
 
 I just put out a poll this week about what topics might interest people and I have two solid ideas of what I'd love to speak about. I think in the interest of doing an **incremental** improvement to this habit, I will choose **one topic** I'm passionate about and have that fuel my CFPs for 2021 to see how it goes.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg0ODA3NDEzOSw5Mjk4NzkxNjAsLTE2Nj
+eyJoaXN0b3J5IjpbLTIzMTk2OTY0Myw5Mjk4NzkxNjAsLTE2Nj
 UyOTAwNjddfQ==
 -->
