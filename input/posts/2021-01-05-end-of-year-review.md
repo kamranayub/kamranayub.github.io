@@ -21,6 +21,8 @@ I'm an optimistic and positive person and even though 2020 was a dumpster fire f
 - 👩‍💻 My work turned 100% remote which for _me_ was a positive and a long-time goal that I want to maintain going forward. 
 - 🌲 We spent a lot of time exploring locally, in Minneapolis. I think we visited at least a dozen new-to-us parks and outdoor areas around the metro. 
 - 🚲 We discovered a renewed love of biking and we included the kids. This was amazing for our wellness and was a fun family activity in the evenings and during the day.
+- 🚙 We bought a used minivan and we bought it _in cash_ instead of financing it which was a major accomplishment. We had saved for over a year to achieve that!
+- 
 
 ## 2020 Goals in Review
 
@@ -30,5 +32,5 @@ Let's review what I had set out to do for 2020 and where I ended up.
 
 ## 2021 Goals
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAzMTg4Njg3MF19
+eyJoaXN0b3J5IjpbOTgwMTQ4ODg5XX0=
 -->
