@@ -114,7 +114,7 @@ Let's look at some concrete examples by looking at the systems I already have in
 
 #### 🎥 Having a pipeline of work for Pluralsight
 
-_Contributes to being an instructor_
+_Contributes to being an educator_
 
 Since 2018 or so, I have tried to ensure that I maintain a pipeline of active work through Pluralsight. What this has meant so far has really been to ensure I apply for at least **one** course opportunity a year, if not more. I also try to do some smaller gigs with them such as assessment reviews, writing, or in the future, other types of content.
 
@@ -122,7 +122,7 @@ In 2021, I would love to improve this system even more by applying for a course 
 
 #### 🔨 Seasonal DIY projects
 
-_Contributes to being a DIYer, writer, and instructor_
+_Contributes to being a DIYer and educator_
 
 In 2020 having seasonal DIY projects helped a lot. I knew for Spring/Summer, I wanted to finish the egress window cover and do outdoor improvements (we planted a tree!) and Fall/Winter to do indoor projects.
 
@@ -132,7 +132,7 @@ While I _did_ blog quite a bit in 2020 about my DIY learnings, I only started le
 
 #### 📝 Consistent schedule for freelance writing
 
-_Contributes to being a writer_
+_Contributes to being an educator_
 
 Taking on RavenDB as a client to write for wasn't something I planned but it's been working out well and I ended up doing about 1 article a quarter in 2020. In 2021 I've already lined up all the articles I'll be writing for the year with them and this is something I'd like to ramp up if I find I have the time in the future.
 
@@ -163,12 +163,12 @@ I have already started many of these habits, some since the summer so I want to 
 
 I don't have any to list on here! But now maybe you can see: I don't have to list any 🤯 As long as I continue to invest in my habits and systems, _naturally_ there will be accomplishments produced. For some of my systems, they are helping to build _a practice_ that will naturally build a body of work. That is want my previous **Unplanned Accomplishments** was _trying_ to tell me. 
 
-Do I have longer-term goals? Yes, I talked about "having a why" in the 2019 review. Some of it is around having more options, more freedom to choose what I work on, others reasons center around my family. I've talked to Cassie about all of that so have a North Star to guide us.
+Do I have longer-term goals? Yes, I talked about "[having a why](https://kamranicus.com/posts/2020-01-01-year-in-review-2020-goals)" in the 2019 review. Some of it is around having more options, more freedom to choose what I work on, others reasons center around my family. I've talked to Cassie about all of that so we have a North Star to guide us.
 
 In order to get there these habits and systems are helping me become the type of person I want to be so goals don't matter as much anymore. The important thing to reflect on and track will be _how well did the systems work? What improvements did I make? Is there anything that I felt wasn't contributing to who I want to become? Are they effective?_ Tweaking and improving the systems will inevitably lead to better and better results. That's the idea, anyway.
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjM1MzEzNjk1LDY1Mjc0MDgwMyw5Mjk4Nz
-kxNjAsLTE2NjUyOTAwNjddfQ==
+eyJoaXN0b3J5IjpbMjA4NzU5MDQ0Myw2NTI3NDA4MDMsOTI5OD
+c5MTYwLC0xNjY1MjkwMDY3XX0=
 -->
