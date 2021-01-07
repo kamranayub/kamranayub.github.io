@@ -75,6 +75,7 @@ Let's review what I had set out to do for 2020 and where I ended up.
   - I did it and [blogged about how I built it](https://looksgoodtous.com/diy-custom-framed-egress-window-cover/).
 - ✅Finish one basement-related project
   - I actually did **two** projects technically, [a closet around a sump pump](https://looksgoodtous.com/tag/stair-storage-series/) and a new doorway to our utility room.
+  - This was huge for me. Learning how to frame, drywall, tape, and mud was all brand new!
 - ⛔ **Stretch**: Finish an upstairs home project
   - The basement projects took about 3 months to complete and that took me to the end of 2020.
 
@@ -105,7 +106,7 @@ In *The Practice*, Seth shares his many years of wisdom on what it means to ship
 
 With that in mind, for 2021 I want to try and focus on **improving the systems that are working for me**, **introducing new systems**, and **breaking out of bad habits that work against me**. Now of course, in order to know what habits you want to build and break, you need some vision of what you want in the future. The type of person you want to be.
 
-For myself in 2021, I'd like to be **a speaker**, a **writer**, a **DIYer**, a **technology instructor**, and **an entrepreneur** (in no specific). This is also very close to who I see myself as now (with some exceptions). Knowing this, when I have a decision to make I can say to myself, "Is this what someone who is a (speaker|DIYer|instructor|entrepreneur) would do?" I can also start to ensure I have the right systems and habits in place to become the type of person I want to be.
+For myself in 2021, I'd like to be **a developer educator**, a **DIYer**, and **an entrepreneur** (in no specific). This is also very close to who I see myself as now (with some exceptions). Knowing this, when I have a decision to make I can say to myself, "Is this what someone who is a (speaker|DIYer|instructor|entrepreneur) would do?" I can also start to ensure I have the right systems and habits in place to become the type of person I want to be.
 
 Let's look at some concrete examples by looking at the systems I already have in place.
 
@@ -166,6 +167,6 @@ These habits and systems are helping me become the type of person I want to be s
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTcwNTUxOTI1LDY1Mjc0MDgwMyw5Mjk4Nz
-kxNjAsLTE2NjUyOTAwNjddfQ==
+eyJoaXN0b3J5IjpbLTk1ODQzMDI5OSw2NTI3NDA4MDMsOTI5OD
+c5MTYwLC0xNjY1MjkwMDY3XX0=
 -->
