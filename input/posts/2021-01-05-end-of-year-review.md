@@ -106,7 +106,7 @@ In *The Practice*, Seth shares his many years of wisdom on what it means to ship
 
 With that in mind, for 2021 I want to try and focus on **improving the systems that are working for me**, **introducing new systems**, and **breaking out of bad habits that work against me**. Now of course, in order to know what habits you want to build and break, you need some vision of what you want in the future. The type of person you want to be.
 
-In 2021 I'd like to work towards being **a developer educator**, **a DIYer**, and **an entrepreneur** (in no specific order). This is very close to how I see myself today though adding in DIYer is fairly new. Knowing this, when I have a decision to make I can say to myself, "Is this what someone who is an `(educator || DIYer || entrepreneur)` would do?" I can also start to ensure I have the right systems and habits in place to become the type of person I want to be.
+In 2021 I'd like to work towards being **a developer educator**, **a DIYer**, and **an entrepreneur** (in no specific order). This is very close to how I see myself today though adding in DIYer is fairly new. Knowing this, when I have a decision to make I can say to myself, "Is this what someone who is an `(educator || DIYer || entrepreneur)` would do?" I can also start to ensure I have the right systems and habits in place to become the type of person I want to be. There are other qualities I want to work towards: health and wealth, educated, 
 
 Let's look at some concrete examples by looking at the systems I already have in place and how they contribute towards that narrative.
 
@@ -167,6 +167,6 @@ These habits and systems are helping me become the type of person I want to be s
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAyNzk1NTQ0OSw2NTI3NDA4MDMsOTI5OD
-c5MTYwLC0xNjY1MjkwMDY3XX0=
+eyJoaXN0b3J5IjpbMzA1NzYyMTQ0LDY1Mjc0MDgwMyw5Mjk4Nz
+kxNjAsLTE2NjUyOTAwNjddfQ==
 -->
