@@ -104,7 +104,7 @@ In *The Practice*, Seth shares his many years of wisdom on what it means to ship
 
 ## 2021 Habits and Systems (to reach my goals)
 
-With that in mind, for 2021 I want to try and focus on **improving the systems that are working for me**, **introducing new systems**, and **breaking out of bad habits that work against me**. Now of course, in order to know what habits you want to build and break, you need some vision of what you want in the future. The type of person you want to be.
+With that in mind, for 2021 I want to try and focus on **improving the systems that are working for me**, **introducing new systems**, and **breaking out of bad habits that work against me**. Now of course, in order to know what habits you want to build and break, you need some vision of what you want in the future. The type of person you want to be. I know Kent C Dodds talks about his mission statement -- this is also an effective way to frame who you want to be. I can't say that I _exactly_ have that pinned down yet and but my hope is that by pr
 
 In 2021 I'd like to work towards being **a developer educator**, **a DIYer**, and **an entrepreneur** (in no specific order). This is very close to how I see myself today though adding in DIYer is fairly new. Knowing this, when I have a decision to make I can say to myself, "Is this what someone who is an `(educator || DIYer || entrepreneur)` would do?" I can also start to ensure I have the right systems and habits in place to become the type of person I want to be.
 
@@ -140,7 +140,7 @@ Taking on RavenDB as a client to write for wasn't something I planned but it's b
 
 #### 🎤 Having speaking gigs lined up
 
-_Contributes to being a speaker_
+_Contributes to being an educator_
 
 I do not yet have a good system around applying to CFPs. I did _start_ something in 2020, maintaining an active checklist of conferences and dates to apply to. I already have TODOs for applying to 2021 conferences. But I need to build a habit of forming my talk abstracts going into the year so that I can just shop them around, rather than doing it so ad-hoc like I have before. In other words, I need to be more intentional about this.
 
@@ -169,6 +169,6 @@ In order to get there these habits and systems are helping me become the type of
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA4NzU5MDQ0Myw2NTI3NDA4MDMsOTI5OD
+eyJoaXN0b3J5IjpbLTI1MDE5NjY2Miw2NTI3NDA4MDMsOTI5OD
 c5MTYwLC0xNjY1MjkwMDY3XX0=
 -->
