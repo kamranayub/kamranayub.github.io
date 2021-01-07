@@ -27,6 +27,8 @@ I'm an optimistic and positive person and even though 2020 was a dumpster fire f
 - 🚲 We discovered a renewed love of biking and we included the kids. This was amazing for our wellness and was a fun family activity in the evenings and during the day.
 - 🚙 We bought a used minivan and we bought it _in cash_ instead of financing it which was a major accomplishment. We had saved for over a year to achieve that!
 - ✊🏿 We partipated in protests and activism. At the site of the George Floyd murder, we stood in solidarity with others in our community to stand up for Black Lives. We tried to attend as many rallies as we could safely do and we even had the kids help clean up in the aftermath to show them what it means to be involved.
+- 🐱 We got a kitty named Gus, after Octavius from Cindarella
+- 🔨 I was able to finish some projects in the basement!
 
 Despite the hurt and the sadness, both in our local community and the world as a whole, we managed to carve out those positive moments for ourselves and that's something to be very thankful for.
 
@@ -164,6 +166,6 @@ These habits and systems are helping me become the type of person I want to be s
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjUyNzQwODAzLDkyOTg3OTE2MCwtMTY2NT
-I5MDA2N119
+eyJoaXN0b3J5IjpbOTcwNTUxOTI1LDY1Mjc0MDgwMyw5Mjk4Nz
+kxNjAsLTE2NjUyOTAwNjddfQ==
 -->
