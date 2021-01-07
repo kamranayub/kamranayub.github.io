@@ -163,12 +163,12 @@ I have already started many of these habits, some since the summer so I want to 
 
 I don't have any to list on here! But now maybe you can see: I don't have to list any 🤯 As long as I continue to invest in my habits and systems, _naturally_ there will be accomplishments produced. For some of my systems, they are helping to build _a practice_ that will naturally build a body of work. That is want my previous **Unplanned Accomplishments** was _trying_ to tell me. 
 
-Do I have longer-term goals? Yes, I talked about "the why" in the 2019 review. Some of it is around having more options, more freedom to 
+Do I have longer-term goals? Yes, I talked about "having a why" in the 2019 review. Some of it is around having more options, more freedom to choose what I work on, others reasons center around my family. I've talked to Cassie about all of that so have a North Star to guide us.
 
-These habits and systems are helping me become the type of person I want to be so goals don't matter as much anymore. The important thing to reflect on and track will be _how well did the systems work? What improvements did I make? Is there anything that I felt wasn't contributing to who I want to become? Are they effective?_ Tweaking and improving the systems will inevitably lead to better and better results. That's the idea, anyway.
+In order to get there these habits and systems are helping me become the type of person I want to be so goals don't matter as much anymore. The important thing to reflect on and track will be _how well did the systems work? What improvements did I make? Is there anything that I felt wasn't contributing to who I want to become? Are they effective?_ Tweaking and improving the systems will inevitably lead to better and better results. That's the idea, anyway.
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc5MTkyOTkzNiw2NTI3NDA4MDMsOTI5OD
-c5MTYwLC0xNjY1MjkwMDY3XX0=
+eyJoaXN0b3J5IjpbMjM1MzEzNjk1LDY1Mjc0MDgwMyw5Mjk4Nz
+kxNjAsLTE2NjUyOTAwNjddfQ==
 -->
