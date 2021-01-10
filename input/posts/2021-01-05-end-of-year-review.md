@@ -141,7 +141,7 @@ Taking on RavenDB as a client to write for wasn't something I planned but it's b
 
 _Contributes to being an indie hacker_
 
-I regularly worked on [Keep Track of My Games](https://keeptrackofmygames.com) in 2020 and I want to ensure that continues into 2021. I also created Kamranicus LLC and set up all of that for
+I regularly worked on [Keep Track of My Games](https://keeptrackofmygames.com) in 2020 and I want to ensure that continues into 2021. I also set up my LLC for the other income streams I have. This makes it much easier to track what I do on the side as a business separate from personal.
 
 ### Systems I want to put in place
 
@@ -183,7 +183,7 @@ In order to get there these habits and systems are helping me become the type of
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc0MTg4NzU2MiwyNTgyODk0OTEsMTE0Nz
-M1MDcxMCwtNDkwNTM0MTkxLDExMjk5ODU0MzQsNjUyNzQwODAz
-LDkyOTg3OTE2MCwtMTY2NTI5MDA2N119
+eyJoaXN0b3J5IjpbLTE5MzAyMTU5ODUsMjU4Mjg5NDkxLDExND
+czNTA3MTAsLTQ5MDUzNDE5MSwxMTI5OTg1NDM0LDY1Mjc0MDgw
+Myw5Mjk4NzkxNjAsLTE2NjUyOTAwNjddfQ==
 -->
