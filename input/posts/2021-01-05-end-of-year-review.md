@@ -149,7 +149,7 @@ I just put out a poll this week about what topics might interest people and I ha
 
 #### ✍ Consistent blogging schedule
 
-When we started Looks Good to Us we had a consistent 1 post per week schedule. I learned soon that I tend to like writing more guide/article-type content rather than pure "blog" (snapshot in time) content. As such, my posts tend to be on the order of 2000-2500 words and they are usually
+When we started Looks Good to Us we had a consistent 1 post per week schedule. I learned soon that I tend to like writing more guide/article-type content rather than pure "blog" (snapshot in time) content. As such, my posts tend to be on the order of 2000-2500 words and they are usually a series of posts for a project. My intent is to maybe try and aim for 1 short post on the 2 week schedule and 1 long-form post a month. To form that habit I have to probably schedu
 
 ### Habits I want to continue doing
 
@@ -177,7 +177,7 @@ In order to get there these habits and systems are helping me become the type of
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk1ODYzMTM3NSwyNTgyODk0OTEsMTE0Nz
+eyJoaXN0b3J5IjpbMTE4MDM0MDM0OCwyNTgyODk0OTEsMTE0Nz
 M1MDcxMCwtNDkwNTM0MTkxLDExMjk5ODU0MzQsNjUyNzQwODAz
 LDkyOTg3OTE2MCwtMTY2NTI5MDA2N119
 -->
