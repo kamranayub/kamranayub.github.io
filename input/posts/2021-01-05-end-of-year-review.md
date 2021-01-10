@@ -107,9 +107,9 @@ In *The Practice*, Seth shares his many years of wisdom on what it means to ship
 
 With that in mind, for 2021 I want to try and focus on **improving the systems that are working for me**, **introducing new systems**, and **breaking out of bad habits that work against me**. Now of course, in order to know what habits you want to build and break, you need some vision of what you want in the future. The type of person you want to be. I know [Kent C Dodds talks about his mission statement](https://kentcdodds.com/blog/2020-in-review) -- this is also an effective way to frame who you want to be. I can't say that I _exactly_ have that pinned down yet and but my hope is that by _being_ the type of person I want to be will help me discover what that purpose is. I know that a _good_ mission is in service of others, I just am not sure yet what that means for me other than educating through my courses right now.
 
-In 2021 I'd like to work towards being **a developer educator**, **a DIYer**, and **an entrepreneur** (in no specific order). It's important to note this isn't _all_ I want to be but where I want the focus to be. Knowing this, when I have a decision to make I can say to myself, "Is this what someone who is an `(educator || DIYer || entrepreneur)` would do?" I can also start to ensure I have the right systems and habits in place to become the type of person I want to be.
+In 2021 I'd like to work towards being **a developer educator**, **a DIYer**, and **an indie hacker** (in no specific order). It's important to note this isn't _all_ I want to be but where I want the focus to be. I thought of some other terms like "en Knowing this, when I have a decision to make I can say to myself, "Is this what someone who is an `(educator || DIYer || indie hacker)` would do?" I can also start to ensure I have the right systems and habits in place to become the type of person I want to be.
 
-Here are so some concrete examples by looking at the systems I already have in place related to these focus areas.
+Here are some concrete examples of the systems I already have in place related to these focus areas.
 
 ### Systems I have in place
 
@@ -177,7 +177,7 @@ In order to get there these habits and systems are helping me become the type of
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0OTk0OTc3OSwyNTgyODk0OTEsMTE0Nz
-M1MDcxMCwtNDkwNTM0MTkxLDExMjk5ODU0MzQsNjUyNzQwODAz
-LDkyOTg3OTE2MCwtMTY2NTI5MDA2N119
+eyJoaXN0b3J5IjpbOTIxMjg1MDAxLDI1ODI4OTQ5MSwxMTQ3Mz
+UwNzEwLC00OTA1MzQxOTEsMTEyOTk4NTQzNCw2NTI3NDA4MDMs
+OTI5ODc5MTYwLC0xNjY1MjkwMDY3XX0=
 -->
