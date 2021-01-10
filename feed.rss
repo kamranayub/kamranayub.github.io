@@ -5,8 +5,183 @@
 		<link>https://kamranicus.com/</link>
 		<description>Kamran Ayub</description>
 		<copyright>2021</copyright>
-		<pubDate>Sun, 10 Jan 2021 15:08:02 GMT</pubDate>
-		<lastBuildDate>Sun, 10 Jan 2021 15:08:02 GMT</lastBuildDate>
+		<pubDate>Sun, 10 Jan 2021 15:10:10 GMT</pubDate>
+		<lastBuildDate>Sun, 10 Jan 2021 15:10:10 GMT</lastBuildDate>
+		<item>
+			<title>2020 End of Year Review</title>
+			<link>https://kamranicus.com/posts/2021-01-05-end-of-year-review</link>
+			<description>&lt;p&gt;It's time to reflect on the year and my what a year it's been. I'll start by saying that COVID-19 is no joke and it's still just as important today to stay safe and mask up. 😷&lt;/p&gt;</description>
+			<guid>https://kamranicus.com/posts/2021-01-05-end-of-year-review</guid>
+			<pubDate>Sun, 10 Jan 2021 13:50:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;It's time to reflect on the year and my what a year it's been. I'll start by saying that COVID-19 is no joke and it's still just as important today to stay safe and mask up. 😷&lt;/p&gt;
+&lt;h2 id="thankfulness"&gt;Thankfulness&lt;/h2&gt;
+&lt;p&gt;I don't typically choose &amp;quot;themes&amp;quot; for the year but for 2020 I think it was chosen for me: &lt;strong&gt;thankfulness&lt;/strong&gt;. There was a lot to be thankful for myself and my family and friends during a horrible time.&lt;/p&gt;
+&lt;p&gt;I am thankful that no family members close to me have been taken by the virus but nearly everyone has gotten it, some with very minor symptoms, others with moderate symptoms, and still others with longer-term effects like fatigue and loss of smell/taste. It has passed through the household without lingering effects so far.&lt;/p&gt;
+&lt;p&gt;The pandemic has been a terrible event and we have friends who have suffered health-wise and job-wise from it. I'm thankful that we've been able to stay healthy as a family and remained at our jobs.&lt;/p&gt;
+&lt;h2 id="positives"&gt;2020 Positives&lt;/h2&gt;
+&lt;p&gt;I'm an optimistic and positive person and even though 2020 was a dumpster fire for the world at large, it helps me to focus on the many moments for me as an individual and us a family that were positive.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;👩‍💻 My work turned 100% remote which for &lt;em&gt;me&lt;/em&gt; was a positive and a long-time goal that I want to maintain going forward.&lt;/li&gt;
+&lt;li&gt;🌲 We spent a lot of time exploring locally, in Minneapolis. I think we visited at least a dozen new-to-us parks and outdoor areas around the metro.&lt;/li&gt;
+&lt;li&gt;🚲 We discovered a renewed love of biking and we included the kids. This was amazing for our wellness and was a fun family activity in the evenings and during the day.&lt;/li&gt;
+&lt;li&gt;🚙 We bought a used minivan and we bought it &lt;em&gt;in cash&lt;/em&gt; instead of financing it which was a major accomplishment. We had saved for over a year to achieve that!&lt;/li&gt;
+&lt;li&gt;✊🏿 We partipated in protests and activism. At the site of the George Floyd murder, we stood in solidarity with others in our community to stand up for Black Lives. We tried to attend as many rallies as we could safely do and we even had the kids help clean up in the aftermath to show them what it means to be involved.&lt;/li&gt;
+&lt;li&gt;🐱 We got a kitty named Gus, after Octavius from Cindarella&lt;/li&gt;
+&lt;li&gt;🔨 I was able to finish some projects in the basement!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Despite the hurt and the sadness, both in our local community and the world as a whole, we managed to carve out those positive moments for ourselves and that's something to be very thankful for.&lt;/p&gt;
+&lt;h2 id="goals-in-review"&gt;2020 Goals in Review&lt;/h2&gt;
+&lt;p&gt;The first thing I want to say, to anyone, is that if you are writing or reflecting on your own 2020 and you got less done than you planned... give yourself a break. Our way of life was upended, the pandemic has affected all of us in some way or another. If you got &lt;em&gt;anything&lt;/em&gt; done, you should be proud. For many, having motivation to &amp;quot;get things done&amp;quot; and &amp;quot;be productive&amp;quot; was far from their minds.&lt;/p&gt;
+&lt;p&gt;Let's review what I had set out to do for 2020 and where I ended up.&lt;/p&gt;
+&lt;h3 id="content"&gt;Content&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;✅ Publish 1 Pluralsight course: I published &lt;a href="https://kamranicus.com/posts/2020-08-25-course-testing-progress-web-apps-cypress-webdriverio"&gt;Testing Progressive Web Apps&lt;/a&gt;!
+&lt;ul&gt;
+&lt;li&gt;⛔ &lt;strong&gt;Stretch:&lt;/strong&gt; 2 courses. I didn't release two courses but I &lt;strong&gt;did&lt;/strong&gt; update my &lt;a href="https://bit.ly/PSAzureStorageCORS"&gt;Azure CORS with Storage&lt;/a&gt; course&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;✅ Write 2 articles on React, TypeScript, RavenDB, or Azure
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dev.to/kamranayub/why-you-don-t-need-types-in-jsdoc-when-documenting-typescript-1pb0"&gt;Why You Don't Need Types in JSDoc When Documenting TypeScript&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dev.to/kamranayub/storyflow-using-storybook-to-build-a-better-game-engine-296l"&gt;Using Storybook to Build a Better... Game Engine?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;See RavenDB ones below!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;✅ Write 4 freelance articles
+&lt;ul&gt;
+&lt;li&gt;Throttling Requests Using RavenDB for &lt;a href="https://www.codeproject.com/Articles/5260137/Throttling-Outgoing-HTTP-Requests-in-a-Distributed"&gt;.NET&lt;/a&gt; and &lt;a href="https://www.codeproject.com/Articles/5260913/Throttling-Outgoing-Requests-in-Node-js"&gt;Node.js&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://kamranicus.com/posts/2020-05-26-ravendb-indexing-mongodb-postgresql"&gt;Role of Indexing in RavenDB, MongoDB, and PostgreSQL&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ravendb.net/articles/whats-new-in-ravendb-50"&gt;What's New in RavenDB 5.0&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;⛔ Migrate to Ghost for this blog
+&lt;ul&gt;
+&lt;li&gt;No dice, I spent much less time on this blog and focused more on the DIY blog (see below!)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;🌓 Speak at NDC MN and one other regional conference
+&lt;ul&gt;
+&lt;li&gt;To give myself credit, I applied to over 11 conferences in 2020 but I didn't apply to NDC MN mainly due to a feeling of overcommitment and general feelings of unease/stress/anxiety.&lt;/li&gt;
+&lt;li&gt;I actually spoke instead &lt;a href="https://bit.ly/StorybookForGameEnginesMDC2020"&gt;at MDC in May&lt;/a&gt; virtually and then the &lt;a href="https://www.meetup.com/React-Minneapolis-Meetup/events/270736371/"&gt;React Minneapolis user group&lt;/a&gt; and I even did an ad-hoc talk at THAT.us conference&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="financial"&gt;Financial&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;⛔ Get &lt;a href="http://ktomg.com"&gt;Keep Track of My Games&lt;/a&gt; to make a profit
+&lt;ul&gt;
+&lt;li&gt;Still no dice yet, while it has earned &lt;em&gt;some&lt;/em&gt; revenue, I instead focused on starting a community with Discord integration in 2020&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;⛔  Get &lt;a href="https://looksgoodtous.com"&gt;Looks Good to Us&lt;/a&gt; to make a profit
+&lt;ul&gt;
+&lt;li&gt;LGTU has not made a &lt;em&gt;profit&lt;/em&gt; but it has earned &lt;em&gt;revenue&lt;/em&gt; which is still an impressive feat for a 1-year old blog! It earned exactly $16 but there is still earnings yet to be paid out that bring it into the $20-30 range. That's &lt;strong&gt;almost&lt;/strong&gt; profitable 😂&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;✅ Passive and 1099 income should cover 10% of our annual expenses
+&lt;ul&gt;
+&lt;li&gt;It actually covered &lt;strong&gt;14%&lt;/strong&gt; of our expenses, including the lump minivan payment. With the van, we spent more in 2020 but without it, we spent less than 2019 💪&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;✅ Maintain a 40% &lt;a href="https://reachfi.app/"&gt;annual savings rate&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;We blew past 40% and reached a &lt;strong&gt;51%&lt;/strong&gt; savings rate for 2020 😲 Even though we technically spent more in 2020, household income increased for the year by &lt;strong&gt;34%&lt;/strong&gt; which resulted in higher savings. 📈 Want to track your own savings rate? Use my free &lt;a href="https://reachfi.app/"&gt;ReachFI PWA app&lt;/a&gt;!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;✅ Have one sponsor &lt;a href="https://github.com/sponsors/kamranayub"&gt;on GitHub&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;I did it!&lt;/strong&gt; I had ONE sponsor in 2020 for ONE month for $5. 🙏&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="diy"&gt;DIY&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;✅ Finish the last egress window cover
+&lt;ul&gt;
+&lt;li&gt;I did it and &lt;a href="https://looksgoodtous.com/diy-custom-framed-egress-window-cover/"&gt;blogged about how I built it&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;✅Finish one basement-related project
+&lt;ul&gt;
+&lt;li&gt;I actually did &lt;strong&gt;two&lt;/strong&gt; projects technically, &lt;a href="https://looksgoodtous.com/tag/stair-storage-series/"&gt;a closet around a sump pump&lt;/a&gt; and a new doorway to our utility room.&lt;/li&gt;
+&lt;li&gt;This was huge for me. Learning how to frame, drywall, tape, and mud was all brand new!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;⛔ &lt;strong&gt;Stretch&lt;/strong&gt;: Finish an upstairs home project
+&lt;ul&gt;
+&lt;li&gt;The basement projects took about 3 months to complete and that took me to the end of 2020.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="unplanned-accomplishments"&gt;Unplanned Accomplishments&lt;/h3&gt;
+&lt;p&gt;I like including this because it goes to show you can't predict everything for the year!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🏆 Released an open source package for &lt;a href="https://kamranicus.com/posts/2020-07-17-cypress-browser-permissions"&gt;managing browser permissions in Cypress&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;🏆 Released &lt;a href="https://github.com/kamranayub?tab=repositories&amp;amp;q=gatsby&amp;amp;type=source&amp;amp;language="&gt;two Typedoc Gatsby plugins for Excalibur docs generation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;🏆 Published 15 posts on &lt;a href="https://looksgoodtous.com"&gt;Looks Good to Us&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;🏆 I built another small wall and installed a door to our utility room&lt;/li&gt;
+&lt;li&gt;🏆 I designed Cassie's new sewing/craft room and got better at using some architectural software&lt;/li&gt;
+&lt;li&gt;🏆 I did some mockups for a future main floor renovation&lt;/li&gt;
+&lt;li&gt;🏆 We planted a tree in the front yard&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="reflection-on-accomplishments"&gt;Reflection on accomplishments&lt;/h3&gt;
+&lt;p&gt;When I start these year-end posts I forget about how much I &lt;em&gt;actually&lt;/em&gt; accomplished in 2020, wow! I have a system I started in 2019 where I track work for my &amp;quot;hustling&amp;quot; on Trello. This lets me easily bring up what I've accomplished for the year which makes me feel great! It also is just an effective way to manage and plan my pipelines of work (more on that below).&lt;/p&gt;
+&lt;h2 id="two-impactful-books-of-2020"&gt;Two Impactful Books of 2020&lt;/h2&gt;
+&lt;p&gt;In 2020, I didn't end up reading as much as I usually do since I tend to listen to audiobooks but there were two books I read that made an impact on me. &lt;a href="https://www.amazon.com/gp/product/0735211299/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=0735211299&amp;amp;linkCode=as2&amp;amp;tag=kamranicus-20&amp;amp;linkId=a2011094da6e2c411fab9235f8b5876d"&gt;Atomic Habits by James Clear&lt;/a&gt; and &lt;a href="https://www.amazon.com/gp/product/0593328973/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=0593328973&amp;amp;linkCode=as2&amp;amp;tag=kamranicus-20&amp;amp;linkId=18c80c1b7d5dab9f9ef3ebe8526eb311"&gt;The Practice: Shipping Creative Work&lt;/a&gt; by Seth Godin (affiliate links).&lt;/p&gt;
+&lt;p&gt;In &lt;em&gt;Atomic Habits&lt;/em&gt;, James speaks about the power of habits and systems in lieu of having goals. The idea is that you cannot effectively reach your goals without having the proper habits in place to achieve them. And once you have a system in place or develop a habit, you will naturally reach goals because that is just &lt;strong&gt;who you are as a person&lt;/strong&gt;. This is a book to keep physically as a reference as it has useful summaries of tools and techniques to help build and break habits.&lt;/p&gt;
+&lt;p&gt;In &lt;em&gt;The Practice&lt;/em&gt;, Seth shares his many years of wisdom on what it means to ship creative work effectively to build &amp;quot;a practice.&amp;quot; In other words, what does it take to move from being an &lt;em&gt;amateur&lt;/em&gt; (in the pure sense of the word) to being a &lt;em&gt;professional&lt;/em&gt;? Hint: you just keep shipping and iterating and making things better, even when you don't want to. The book is about doing good work, not striving for perfection on everything, and &lt;em&gt;shipping&lt;/em&gt; your work to customers. I really appreciated all the bits of wisdom in the book, it read like a meditation almost. It's not for everyone but I tend to love &lt;a href="https://seths.blog"&gt;his newsletter&lt;/a&gt; and &lt;a href="https://www.akimbo.link/"&gt;podcast&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="habits-and-systems-to-reach-my-goals"&gt;2021 Habits and Systems (to reach my goals)&lt;/h2&gt;
+&lt;p&gt;With that in mind, for 2021 I want to try and focus on &lt;strong&gt;improving the systems that are working for me&lt;/strong&gt;, &lt;strong&gt;introducing new systems&lt;/strong&gt;, and &lt;strong&gt;breaking out of bad habits that work against me&lt;/strong&gt;. Now of course, in order to know what habits you want to build and break, you need some vision of what you want in the future. The type of person you want to be. I know &lt;a href="https://kentcdodds.com/blog/2020-in-review"&gt;Kent C Dodds talks about his mission statement&lt;/a&gt; -- this is also an effective way to frame who you want to be. I can't say that I &lt;em&gt;exactly&lt;/em&gt; have that pinned down yet and but my hope is that by &lt;em&gt;being&lt;/em&gt; the type of person I want to be will help me discover what that purpose is. I know that a &lt;em&gt;good&lt;/em&gt; mission is in service of others, I just am not sure yet what that means for me other than educating through my courses right now.&lt;/p&gt;
+&lt;p&gt;In 2021 I'd like to work towards being &lt;strong&gt;a developer educator&lt;/strong&gt;, &lt;strong&gt;a DIYer&lt;/strong&gt;, and &lt;strong&gt;an indie hacker&lt;/strong&gt; (in no specific order). It's important to note this isn't &lt;em&gt;all&lt;/em&gt; I want to be but where I want the focus to be. I thought of some other terms like &amp;quot;entrepreneur&amp;quot; or &amp;quot;solo founder&amp;quot; but I think &lt;a href="https://indiehackers.com"&gt;indie hacker&lt;/a&gt; embodies more of the approach I tend to take. Knowing this, when I have a decision to make I can say to myself, &amp;quot;Is this what someone who is an &lt;code&gt;(educator || DIYer || indie hacker)&lt;/code&gt; would do?&amp;quot; I can also start to ensure I have the right systems and habits in place to become the type of person I want to be.&lt;/p&gt;
+&lt;p&gt;Here are some concrete examples of the systems I already have in place related to these focus areas.&lt;/p&gt;
+&lt;h3 id="systems-i-have-in-place"&gt;Systems I have in place&lt;/h3&gt;
+&lt;h4 id="having-a-pipeline-of-work-for-pluralsight"&gt;🎥 Having a pipeline of work for Pluralsight&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Contributes to being an educator&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Since 2018 or so, I have tried to ensure that I maintain a pipeline of active work through Pluralsight. What this has meant so far has really been to ensure I apply for at least &lt;strong&gt;one&lt;/strong&gt; course opportunity a year, if not more. I also try to do some smaller gigs with them such as assessment reviews, writing, or in the future, other types of content.&lt;/p&gt;
+&lt;p&gt;In 2021, I would love to improve this system even more by applying for a course opportunity &lt;strong&gt;twice&lt;/strong&gt; a year, once in January (which I did!) and once in September.&lt;/p&gt;
+&lt;h4 id="seasonal-diy-projects"&gt;🔨 Seasonal DIY projects&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Contributes to being a DIYer and educator&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In 2020 having seasonal DIY projects helped a lot. I knew for Spring/Summer, I wanted to finish the egress window cover and do outdoor improvements (we planted a tree!) and Fall/Winter to do indoor projects.&lt;/p&gt;
+&lt;p&gt;Due to working at home I no longer have a commute. The schedule I have found that works well for my days is to do DIY projects before work in the morning. It gives me set tasks that I can do, it makes me sweat, and it feels great. I am usually a much more positive person the rest of the day!&lt;/p&gt;
+&lt;p&gt;While I &lt;em&gt;did&lt;/em&gt; blog quite a bit in 2020 about my DIY learnings, I only started leveraging Instagram near the end of my project. Now in 2021, I would like to use Instagram to do more real-time sharing of progress and maintain the blogging cadence to do the more full write-ups.&lt;/p&gt;
+&lt;h4 id="consistent-schedule-for-freelance-writing"&gt;📝 Consistent schedule for freelance writing&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Contributes to being an educator&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Taking on RavenDB as a client to write for wasn't something I planned but it's been working out well and I ended up doing about 1 article a quarter in 2020. In 2021 I've already lined up all the articles I'll be writing for the year with them and this is something I'd like to ramp up if I find I have the time in the future.&lt;/p&gt;
+&lt;h4 id="regular-cadence-for-working-on-apps"&gt;👨‍💻 Regular cadence for working on apps&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Contributes to being an indie hacker&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I regularly worked on &lt;a href="https://keeptrackofmygames.com"&gt;Keep Track of My Games&lt;/a&gt; in 2020 and I want to ensure that continues into 2021. I also set up my LLC for the other income streams I have. This makes it much easier to track what I do on the side as a business separate from personal.&lt;/p&gt;
+&lt;h3 id="systems-i-want-to-put-in-place"&gt;Systems I want to put in place&lt;/h3&gt;
+&lt;h4 id="having-speaking-gigs-lined-up"&gt;🎤 Having speaking gigs lined up&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Contributes to being an educator&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I do not yet have a good system around applying to CFPs. I did &lt;em&gt;start&lt;/em&gt; something in 2020, maintaining an active checklist of conferences and dates to apply to. I already have TODOs for applying to 2021 conferences. But I need to build a habit of forming my talk abstracts going into the year so that I can just shop them around, rather than doing it so ad-hoc like I have before. In other words, I need to be more intentional about this.&lt;/p&gt;
+&lt;p&gt;I just put out a poll this week about what topics might interest people and I have two solid ideas of what I'd love to speak about. I think in the interest of doing an &lt;strong&gt;incremental&lt;/strong&gt; improvement to this habit, I will choose &lt;strong&gt;one topic&lt;/strong&gt; I'm passionate about and have that fuel my CFPs for 2021 to see how it goes.&lt;/p&gt;
+&lt;h4 id="consistent-blogging-schedule"&gt;✍ Consistent blogging schedule&lt;/h4&gt;
+&lt;p&gt;When we started &lt;a href="https://looksgoodtous.com"&gt;Looks Good to Us&lt;/a&gt; we had a consistent 1 post per week schedule. I learned soon that I tend to like writing more guide/article-type content rather than quick thoughts. As such, my posts tend to be on the order of 2000-2500 words and they are usually a series of posts for a project. My intent is to maybe try and aim for 1 short post on the 2 week schedule and 1 long-form post a month. To form that habit I have to probably schedule time so I do it as I tend to only work on it ad-hoc while Cassie is much more habitual (and thus writes twice as many posts 😅).&lt;/p&gt;
+&lt;h3 id="habits-i-want-to-continue-doing"&gt;Habits I want to continue doing&lt;/h3&gt;
+&lt;p&gt;These all contribute to the type of person I want to be in general: a happy, optimistic person that takes care of his mental health, wealth, and wellness.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🌞 Daily morning meditation (I use &lt;a href="https://www.headspace.com/"&gt;Headspace&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;💊 Daily vitamin supplements (for us and the kiddos)&lt;/li&gt;
+&lt;li&gt;🚶‍♂️ Daily exercise (walking or biking)&lt;/li&gt;
+&lt;li&gt;📖 Daily reading (We have Reading Time with the kids before bedtime)&lt;/li&gt;
+&lt;li&gt;🍕 Weekly meal planning (we've been doing this for 2 years now)&lt;/li&gt;
+&lt;li&gt;✅ Task planning and outsourcing to &lt;a href="https://todoist.com"&gt;Todoist&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;💸 Monthly savings and investments&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I have already started many of these habits, some since the summer so I want to ensure I continue doing them.&lt;/p&gt;
+&lt;h2 id="so-what-are-my-goals"&gt;So what are my goals?&lt;/h2&gt;
+&lt;p&gt;I don't have any to list on here! But now maybe you can see: I don't have to list any 🤯 As long as I continue to invest in my habits and systems, &lt;em&gt;naturally&lt;/em&gt; there will be accomplishments produced. For some of my systems, they are helping to build &lt;em&gt;a practice&lt;/em&gt; that will naturally build a body of work. That is want my previous &lt;strong&gt;Unplanned Accomplishments&lt;/strong&gt; was &lt;em&gt;trying&lt;/em&gt; to tell me.&lt;/p&gt;
+&lt;p&gt;For example in 2020 I had a goal to do 2 speaking gigs. Well, if I &lt;em&gt;am&lt;/em&gt; a speaker, I will speak and it isn't so much about the number or the goal itself of 2 talks but that the fact that I talk &lt;em&gt;out of habit&lt;/em&gt;. It's more of a mindset shift than anything if that makes sense.&lt;/p&gt;
+&lt;p&gt;Do I still have medium (2-3 year) and longer-term (10 year) goals? Yes, I talked about &amp;quot;&lt;a href="https://kamranicus.com/posts/2020-01-01-year-in-review-2020-goals"&gt;having a why&lt;/a&gt;&amp;quot; in the 2019 review. Some of it is around having more options, more freedom to choose what I work on, others reasons center around my family. I've talked to Cassie about all of that so we have a North Star to guide us.&lt;/p&gt;
+&lt;p&gt;In order to get there these habits and systems are helping me become the type of person I want to be so short-term goals don't matter as much anymore. The important thing to reflect on and track will be &lt;em&gt;how well did the systems work? What improvements did I make? Is there anything that I felt wasn't contributing to who I want to become? Are they effective?&lt;/em&gt; Tweaking and improving the systems will inevitably lead to better and better results. That's the idea, anyway.&lt;/p&gt;
+&lt;p&gt;Have a healthy, safe, and fulfilling 2021!&lt;/p&gt;
+&lt;!--stackedit_data:
+eyJoaXN0b3J5IjpbMTY1MjkyNTgwNCwyNTgyODk0OTEsMTE0Nz
+M1MDcxMCwtNDkwNTM0MTkxLDExMjk5ODU0MzQsNjUyNzQwODAz
+LDkyOTg3OTE2MCwtMTY2NTI5MDA2N119
+--&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>Hacktoberfest:  Can  I  ask  a  question?</title>
 			<link>https://kamranicus.com/posts/2020-10-07-hacktoberfest-can-i-ask-a-question</link>
@@ -1357,88 +1532,6 @@ function transformSearchResults(
 &lt;p&gt;This type of mindset is a &lt;em&gt;shift in thinking&lt;/em&gt; when working with TypeScript, especially when you've come from JavaScript. It may be painful at first but ultimately it will lead to better, hopefully simpler code.&lt;/p&gt;
 &lt;p&gt;If you're interested in furthering your understanding of principles like Command-Query Separation and refactoring code, I highly recommend the &lt;a href="https://app.pluralsight.com/library/courses/encapsulation-solid/table-of-contents"&gt;Encapsulation and SOLID course&lt;/a&gt; by Mark Seeman from Pluralsight.&lt;/p&gt;
 &lt;p&gt;You can also check out my &lt;a href="https://dev.to/kamranayub/how-to-get-started-using-react-with-typescript-21c"&gt;collection of React and TypeScript content&lt;/a&gt;!&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Automating RavenDB 4 with Ansible</title>
-			<link>https://kamranicus.com/posts/2019-05-22-ravendb-devops-automation-with-ansible</link>
-			<description>&lt;p&gt;I've finished migrating my database infrastructure for &lt;a href="https://ktomg.com"&gt;Keep Track of My Games&lt;/a&gt; from &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; 3.5 to 4.1 (&lt;a href="https://ravendb.net/features/ravendb-42-features"&gt;and soon, 4.2&lt;/a&gt;!).&lt;/p&gt;</description>
-			<enclosure url="https://kamranicus.com/images/2019-05-22-masthead.jpg" length="0" type="image" />
-			<guid>https://kamranicus.com/posts/2019-05-22-ravendb-devops-automation-with-ansible</guid>
-			<pubDate>Thu, 23 May 2019 01:31:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;I've finished migrating my database infrastructure for &lt;a href="https://ktomg.com"&gt;Keep Track of My Games&lt;/a&gt; from &lt;a href="https://ravendb.net"&gt;RavenDB&lt;/a&gt; 3.5 to 4.1 (&lt;a href="https://ravendb.net/features/ravendb-42-features"&gt;and soon, 4.2&lt;/a&gt;!).&lt;/p&gt;
-&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
-&lt;p&gt;I thought I'd take a moment to lay out how I used &lt;a href="http://ansible.com"&gt;Ansible&lt;/a&gt;, a popular configuration automation tool, to stand up my RavenDB servers with a bit less manual work and to maintain easy upgrades.&lt;/p&gt;
-&lt;p&gt;Since I &lt;a href="https://www.vultr.com/?ref=7006849"&gt;use Vultr for hosting as it's fast and cheap&lt;/a&gt; I decided to &amp;quot;do it right&amp;quot; and plan for the future architecture of KTOMG which I hope to work towards this year, namely hosting on Linux only and cutting a ton of cost from my monthly hosting bill.&lt;/p&gt;
-&lt;p&gt;I believe it's important to treat your servers &lt;a href="https://medium.com/&amp;#64;Joachim8675309/devops-concepts-pets-vs-cattle-2380b5aab313"&gt;like cattle, not pets&lt;/a&gt;. Unfortunately, when I originally set up KTOMG on my Vultr VMs I didn't follow my own advice (remember dear reader: Do as I &lt;em&gt;say&lt;/em&gt; not as I &lt;em&gt;do&lt;/em&gt;). I had no automation scripts or configuration management, it was entirely bespoke (with documented steps, granted). I have used &lt;a href="http://ansible.com"&gt;Ansible&lt;/a&gt; in the past and knew it would be a good fit for configuring my new RavenDB VMs.&lt;/p&gt;
-&lt;h2 id="preparing-the-vm"&gt;Preparing the VM&lt;/h2&gt;
-&lt;p&gt;In order to execute Ansible in the first place, I needed to set up a fresh Ubuntu VM on Vultr. Typically, you don't want to just run as &lt;code&gt;root&lt;/code&gt; for everything in Linux. Instead, you set up dedicated users with permissions to do the things you need. This is the &lt;a href="https://en.wikipedia.org/wiki/Principle_of_least_privilege"&gt;principle of least privilege&lt;/a&gt;. I followed the steps outlined in this &lt;a href="https://www.vultr.com/docs/initial-secure-server-configuration-of-ubuntu-18-04"&gt;basic guide to securing Ubuntu 18.04&lt;/a&gt; to set up a deployment user (&lt;code&gt;deploy&lt;/code&gt;) with appropriate permissions and lock down SSH.&lt;/p&gt;
-&lt;p&gt;In Vultr as well I created &lt;a href="https://www.vultr.com/docs/vultr-firewall"&gt;a Firewall group&lt;/a&gt; for the databases that allows my custom SSH port through (from specific IPs) which provides another layer of security.&lt;/p&gt;
-&lt;p&gt;The last thing I did was &lt;a href="https://www.ubuntu.com/livepatch"&gt;enable Canonical Live Patch&lt;/a&gt; to hotpatch the servers without rebooting, which is free for 3 servers. I did try to set up unattended upgrades with Ansible but was running into strange apt locking issues.&lt;/p&gt;
-&lt;p&gt;Much of this VM setup could be automated at least partially with VM Startup Scripts, a feature Vultr offers. Since it only takes a couple minutes and I only have a few VMs, I didn't bother with that step.&lt;/p&gt;
-&lt;p&gt;Once you test logging in via SSH with your new &lt;code&gt;deploy&lt;/code&gt; user, you can configure Ansible to do the same.&lt;/p&gt;
-&lt;h2 id="setting-up-your-inventory"&gt;Setting Up Your Inventory&lt;/h2&gt;
-&lt;p&gt;Ansible has the idea of an &lt;a href="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html"&gt;inventory&lt;/a&gt; which is the sets of servers to configure. You can group them and provide ansible variables to each one as-needed.&lt;/p&gt;
-&lt;p&gt;Ansible also supports &lt;a href="https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html"&gt;dynamic inventory&lt;/a&gt; and &lt;a href="https://docs.ansible.com/ansible/latest/scenario_guides/guide_vultr.html"&gt;even supports Vultr&lt;/a&gt; as a source! I opted to not do this, again due to the limited number of VMs I needed to configure.&lt;/p&gt;
-&lt;p&gt;The inventory file looks something like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[dbservers]
-10.0.0.1 
-10.0.0.2
-
-[dbservers:vars]
-ansible_port=12345
-ansible_user=deploy
-ansible_become_user=ravensu
-ansible_become_method=su
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Each node is listed that you wish to configure followed by some shared &amp;quot;group&amp;quot; variables that you want to provide to Ansible (they are shared for each node, see &lt;a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#ansible-variable-precedence"&gt;variable precedence&lt;/a&gt;). In this case, we are connecting as the user &lt;code&gt;deploy&lt;/code&gt; on a custom SSH port.&lt;/p&gt;
-&lt;p&gt;What is &lt;code&gt;ansible_become_user&lt;/code&gt;? For the playbook we'll use, most if not all the tasks requires sudo permissions to configure. The way I accomplish this is by ensuring I &lt;em&gt;connect&lt;/em&gt; via SSH with my approved user (&lt;code&gt;deploy&lt;/code&gt;) who has low permissions, then at playbook runtime specify Ansible to &lt;a href="https://docs.ansible.com/ansible/latest/user_guide/become.html"&gt;become&lt;/a&gt; a sudo user (&lt;code&gt;ravensu&lt;/code&gt;) to execute any privileged tasks.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;code&gt;ansible_become_method=su&lt;/code&gt; was the only option that worked for me against my Vultr VMs and I'm unsure why. The default is &lt;code&gt;sudo&lt;/code&gt; but that wasn't working!&lt;/p&gt;
-&lt;h2 id="creating-the-playbook"&gt;Creating the Playbook&lt;/h2&gt;
-&lt;p&gt;In my example playbook, I only do a handful of tasks to set up a server. Possibly in the future, it'd be nice to even automate some of the cluster setup tasks you need to perform for Raven, scripted using the HTTP API. &lt;strong&gt;Bonus points:&lt;/strong&gt; Make a formal Ansible role!&lt;/p&gt;
-&lt;p&gt;At a high-level, the playbook does the following:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Install Docker on Linux&lt;/li&gt;
-&lt;li&gt;Copy RavenDB settings and certificates to the remote machine&lt;/li&gt;
-&lt;li&gt;Start a RavenDB 4 container with the appropriate volume mounts, networking configuration and environment variables set&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;View the playbook in my &lt;a href="https://github.com/kamranayub/ravendb-devops/blob/master/ansible/ravendb.yml"&gt;ravendb-devops&lt;/a&gt; repository.&lt;/p&gt;
-&lt;p&gt;I want to touch on a few key configuration settings:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Port Mapping:&lt;/strong&gt; The &lt;code&gt;published_ports&lt;/code&gt; maps the VM host ports (8081, 38889) to the container ports Raven will bind to (8080, 38888). I don't &lt;em&gt;think&lt;/em&gt; they need to be different but in experimenting with setting up Raven I ended up using different ports.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Settings:&lt;/strong&gt; I am providing a custom &lt;code&gt;settings.json&lt;/code&gt; file from the host machine. This contains pre-set config with IP addresses or DNS for what URLs to bind to and other server settings I wanted to customize.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Certificates:&lt;/strong&gt; Raven uses two different kinds of certificates for server administration: a Cluster certificate and an Admin Client certificate. The cluster certificate is for communicating between nodes securely. The Admin Client cert is for you to connect to Studio securely via your browser. Raven needs the private key so it can authenticate you to the Studio interface using Client Certificate Authentication. Both certs need to be copied to the remote host and we map the host &lt;code&gt;/var/db_cert&lt;/code&gt; to the container path &lt;code&gt;/opt/RavenDB/cert&lt;/code&gt; where Raven looks for certificates.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Raven Args:&lt;/strong&gt; The &lt;code&gt;RAVEN_ARGS&lt;/code&gt; env variable sets up some config needed such as the path to the custom &lt;code&gt;settings.json&lt;/code&gt; file we copy over, specifying no setup wizard experience, and what server URL to bind Raven to, in this case the private container address &lt;code&gt;172.17.0.2:8080&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Volumes:&lt;/strong&gt; Containers stop and start, they are ephemeral. We don't want to lose our data if a container is deleted either (during an upgrade to a new image, say). Raven stores data within the container at &lt;code&gt;/opt/RavenDB/Server/RavenData&lt;/code&gt; and we map that to our host path &lt;code&gt;/var/db&lt;/code&gt; so we can take backups, persist to SSD or block storage, etc.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;Remember:&lt;/strong&gt; Raven is running within a container, so we bind to a private IP. We then &lt;em&gt;map&lt;/em&gt; the container port (8080) to a host port (8081) to expose it. Why don't we bind to &lt;code&gt;10.0.0.1&lt;/code&gt;, the host IP? Because Raven can't see that from within a container and it'll fail to boot up. Instead, the DNS &lt;code&gt;*.ravendb.community&lt;/code&gt; can be used to set up a name that points to the private VM network IP and so you'll never need to expose Raven publicly outside your VM, besides the Studio interface to manage it (which you can lockdown to a limited IP range using Vultr).&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note about DNS:&lt;/strong&gt; Notice I am copying certificates over. Where did I get them? I actually generated them all through Setup Wizard in a &lt;strong&gt;fresh local RavenDB installation&lt;/strong&gt; so I could more easily set up a new cluster with certs and DNS already created. You can walk through the same steps with a local Docker container of RavenDB.&lt;/p&gt;
-&lt;p&gt;I found the following guides helpful when setting up RavenDB in a container:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://ravendb.net/docs/article-page/4.2/csharp/start/installation/setup-wizard"&gt;RavenDB Installation: Setup Wizard&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://ravendb.net/docs/article-page/4.2/csharp/start/installation/setup-examples/aws-docker-linux-vm"&gt;RavenDB: Docker on AWS Linux VM&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://ravendb.net/docs/article-page/4.2/csharp/start/installation/running-in-docker-container"&gt;RavenDB: Running in a Docker Container&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://hub.docker.com/r/ravendb/ravendb/"&gt;DockerHub for ravendb/ravendb&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="running-the-ansible-playbook"&gt;Running the Ansible Playbook&lt;/h2&gt;
-&lt;p&gt;Now that we have our &lt;code&gt;ravendb.yml&lt;/code&gt; playbook and &lt;code&gt;inventory&lt;/code&gt; file, we can run &lt;code&gt;ansible-playbook&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;ansible-playbook -i inventory -K ravendb.yml
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;-K&lt;/code&gt; flag will prompt for the &lt;code&gt;ansible_become_user&lt;/code&gt; password. This &lt;strong&gt;should not&lt;/strong&gt; be anywhere in plaintext in source control or your host machine. It either needs to be provided when running the command interactively or via &lt;a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html"&gt;Ansible Vault&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;You'll be promoted first for the &lt;code&gt;become_user&lt;/code&gt; password, then the SSH key phrase if necessary, and finally it will run through the playbook.&lt;/p&gt;
-&lt;h2 id="finishing-the-installation"&gt;Finishing the Installation&lt;/h2&gt;
-&lt;p&gt;If it was successful, everything will be &lt;code&gt;ok&lt;/code&gt; and you can then browse to the Studio in your local browser against your VM's public IP address (and hopefully, only allowing your IP via a firewall rule).&lt;/p&gt;
-&lt;p&gt;If the Studio prompts for your certificate, choose it, and now you can finish setting up the cluster:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Enter your license to activate the cluster&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://ravendb.net/docs/article-page/4.2/csharp/server/ongoing-tasks/backup-overview"&gt;Set up backups&lt;/a&gt;, which took all of 5 minutes to hook up to Azure Storage.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://ravendb.net/docs/article-page/4.2/csharp/server/security/authentication/certificate-management"&gt;Create client certs&lt;/a&gt; for your applications to &lt;a href="https://ravendb.net/docs/article-page/4.2/csharp/server/security/authentication/client-certificate-usage"&gt;connect to Raven programmatically&lt;/a&gt;. When creating a client certificate in the Studio, a zip file will be downloaded automatically after generating containing your &lt;code&gt;pfx&lt;/code&gt; file you can use in your app.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;While I've laid out what works for me if you deviate chances are you'll need to do a continuous trial-and-error process to successfully configure your Raven installation. But I hope this provides a nice starting point for configuring a production cluster! If you run into any issues, feel free to leave a comment so others can learn too.&lt;/p&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;If you are still learning RavenDB 4, &lt;a href="https://bit.ly/PSRavenDB4"&gt;check out my Getting Started with RavenDB 4&lt;/a&gt; Pluralsight course! It covers the basics like how to get around the Studio, connect with .NET, and more. Using my link won't cost you anything extra but I will get credit for your subscription which helps me out!&lt;/p&gt;
-&lt;/blockquote&gt;
 </content:encoded>
 		</item>
 	</channel>
