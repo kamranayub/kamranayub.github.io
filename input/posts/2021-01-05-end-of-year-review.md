@@ -97,7 +97,7 @@ When I start these year-end posts I forget about how much I _actually_ accomplis
 
 ## Two Impactful Books of 2020
 
-In 2020, there were two books I read that made an impact on me. [Atomic Habits by James Clear](https://www.amazon.com/gp/product/0735211299/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0735211299&linkCode=as2&tag=kamranicus-20&linkId=a2011094da6e2c411fab9235f8b5876d) and [The Practice: Shipping Creative Work](https://www.amazon.com/gp/product/0593328973/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0593328973&linkCode=as2&tag=kamranicus-20&linkId=18c80c1b7d5dab9f9ef3ebe8526eb311) by Seth Godin (affiliate links). 
+In 2020, I didn't end up reading as much as I usually do since I tend to listen to audiobooks but there were two books I read that made an impact on me. [Atomic Habits by James Clear](https://www.amazon.com/gp/product/0735211299/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0735211299&linkCode=as2&tag=kamranicus-20&linkId=a2011094da6e2c411fab9235f8b5876d) and [The Practice: Shipping Creative Work](https://www.amazon.com/gp/product/0593328973/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0593328973&linkCode=as2&tag=kamranicus-20&linkId=18c80c1b7d5dab9f9ef3ebe8526eb311) by Seth Godin (affiliate links). 
 
 In *Atomic Habits*, James speaks about the power of habits and systems in lieu of having goals. The idea is that you cannot effectively reach your goals without having the proper habits in place to achieve them. And once you have a system in place or develop a habit, you will naturally reach goals because that is just **who you are as a person**. This is a book to keep physically as a reference as it has useful summaries of tools and techniques to help build and break habits.
 
@@ -173,7 +173,7 @@ In order to get there these habits and systems are helping me become the type of
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjU4Mjg5NDkxLDExNDczNTA3MTAsLTQ5MD
-UzNDE5MSwxMTI5OTg1NDM0LDY1Mjc0MDgwMyw5Mjk4NzkxNjAs
-LTE2NjUyOTAwNjddfQ==
+eyJoaXN0b3J5IjpbLTExODM1Mjk2ODIsMjU4Mjg5NDkxLDExND
+czNTA3MTAsLTQ5MDUzNDE5MSwxMTI5OTg1NDM0LDY1Mjc0MDgw
+Myw5Mjk4NzkxNjAsLTE2NjUyOTAwNjddfQ==
 -->
