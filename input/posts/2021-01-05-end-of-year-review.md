@@ -18,9 +18,9 @@ I am thankful that no family members close to me have been taken by the virus bu
 
 The pandemic has been a terrible event and we have friends who have suffered health-wise and job-wise from it. I'm thankful that we've been able to stay healthy as a family and remained at our jobs.
 
-## 2020 Reflection
+## 2020 Positives
 
-I'm an optimistic and positive person and even though 2020 was a dumpster fire for the world, it helps me to focus on the many moments for me as an individual and us a family that were positive. 
+I'm an optimistic and positive person and even though 2020 was a dumpster fire for the world at large, it helps me to focus on the many moments for me as an individual and us a family that were positive. 
 
 - 👩‍💻 My work turned 100% remote which for _me_ was a positive and a long-time goal that I want to maintain going forward. 
 - 🌲 We spent a lot of time exploring locally, in Minneapolis. I think we visited at least a dozen new-to-us parks and outdoor areas around the metro. 
@@ -172,7 +172,7 @@ In order to get there these habits and systems are helping me become the type of
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMyMDA5ODgwNiwtNDkwNTM0MTkxLDExMj
+eyJoaXN0b3J5IjpbMTUyNTUyNzUyMSwtNDkwNTM0MTkxLDExMj
 k5ODU0MzQsNjUyNzQwODAzLDkyOTg3OTE2MCwtMTY2NTI5MDA2
 N119
 -->
