@@ -1,5 +1,5 @@
 Title: "2020 End of Year Review"
-Published: false
+Published: 2021-01-10 08:50:00  -0500
 Lead: "Reflections on 2020 and what's next for 2021"
 Tags:
 - Life
@@ -183,7 +183,7 @@ In order to get there these habits and systems are helping me become the type of
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAzODgyNjcyMSwyNTgyODk0OTEsMTE0Nz
+eyJoaXN0b3J5IjpbMTY1MjkyNTgwNCwyNTgyODk0OTEsMTE0Nz
 M1MDcxMCwtNDkwNTM0MTkxLDExMjk5ODU0MzQsNjUyNzQwODAz
 LDkyOTg3OTE2MCwtMTY2NTI5MDA2N119
 -->
