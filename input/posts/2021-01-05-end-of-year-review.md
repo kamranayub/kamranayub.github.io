@@ -147,6 +147,8 @@ I do not yet have a good system around applying to CFPs. I did _start_ something
 
 I just put out a poll this week about what topics might interest people and I have two solid ideas of what I'd love to speak about. I think in the interest of doing an **incremental** improvement to this habit, I will choose **one topic** I'm passionate about and have that fuel my CFPs for 2021 to see how it goes.
 
+#### ✍ Consistent blogging schedule
+
 ### Habits I want to continue doing
 
 These all contribute to the type of person I want to be in general: a happy, optimistic person that takes care of his mental health, wealth, and wellness.
@@ -173,7 +175,7 @@ In order to get there these habits and systems are helping me become the type of
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ3MDg5MDY5OCwyNTgyODk0OTEsMTE0Nz
-M1MDcxMCwtNDkwNTM0MTkxLDExMjk5ODU0MzQsNjUyNzQwODAz
-LDkyOTg3OTE2MCwtMTY2NTI5MDA2N119
+eyJoaXN0b3J5IjpbLTk4NzQ1Mjc3LDI1ODI4OTQ5MSwxMTQ3Mz
+UwNzEwLC00OTA1MzQxOTEsMTEyOTk4NTQzNCw2NTI3NDA4MDMs
+OTI5ODc5MTYwLC0xNjY1MjkwMDY3XX0=
 -->
