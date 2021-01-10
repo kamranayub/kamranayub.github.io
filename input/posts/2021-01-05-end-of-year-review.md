@@ -85,6 +85,7 @@ I like including this because it goes to show you can't predict everything for t
 
 - 🏆 Released an open source package for [managing browser permissions in Cypress](https://kamranicus.com/posts/2020-07-17-cypress-browser-permissions)
 - 🏆 Released [two Typedoc Gatsby plugins for Excalibur docs generation](https://github.com/kamranayub?tab=repositories&q=gatsby&type=source&language=)
+- 🏆 Published 
 - 🏆 I built another small wall and installed a door to our utility room
 - 🏆 I designed Cassie's new sewing/craft room
 - 🏆 I did some mockups for a future main floor renovation
@@ -172,7 +173,7 @@ In order to get there these habits and systems are helping me become the type of
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUyNTUyNzUyMSwtNDkwNTM0MTkxLDExMj
+eyJoaXN0b3J5IjpbMTE0NzM1MDcxMCwtNDkwNTM0MTkxLDExMj
 k5ODU0MzQsNjUyNzQwODAzLDkyOTg3OTE2MCwtMTY2NTI5MDA2
 N119
 -->
