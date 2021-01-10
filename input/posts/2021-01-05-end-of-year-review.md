@@ -101,7 +101,7 @@ In 2020, I didn't end up reading as much as I usually do since I tend to listen 
 
 In *Atomic Habits*, James speaks about the power of habits and systems in lieu of having goals. The idea is that you cannot effectively reach your goals without having the proper habits in place to achieve them. And once you have a system in place or develop a habit, you will naturally reach goals because that is just **who you are as a person**. This is a book to keep physically as a reference as it has useful summaries of tools and techniques to help build and break habits.
 
-In *The Practice*, Seth shares his many years of wisdom on what it means to ship creative work effectively to build "a practice." In other words, what does it take to move from being an *amateur* (in the pure sense of the word) to being a *professional*? Hint: you just keep shipping and iterating and making things better, even when you don't want to. I don't believe the book promotes what you might call "hustle porn" because there's no dictation of how fast/much you have to work, like 50 hour weeks. Instead it is about the work itself, doing good work, not striving for perfection on everything, and _shipping_ your work to customers. I really appreciated all the bits of wisdom in the book, it read like a meditation almost. It's not for everyone but it doesn't need to be (another lesson from the book). I tend to love [his newsletter](https://seths.blog) and [podcast](https://www.akimbo.link/). It's one of the only newsletters I read daily and ensure hits my Inbox.
+In *The Practice*, Seth shares his many years of wisdom on what it means to ship creative work effectively to build "a practice." In other words, what does it take to move from being an *amateur* (in the pure sense of the word) to being a *professional*? Hint: you just keep shipping and iterating and making things better, even when you don't want to. The book is about doing good work, not striving for perfection on everything, and _shipping_ your work to customers. I really appreciated all the bits of wisdom in the book, it read like a meditation almost. It's not for everyone but I tend to love [his newsletter](https://seths.blog) and [podcast](https://www.akimbo.link/).
 
 ## 2021 Habits and Systems (to reach my goals)
 
@@ -173,7 +173,7 @@ In order to get there these habits and systems are helping me become the type of
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExODM1Mjk2ODIsMjU4Mjg5NDkxLDExND
-czNTA3MTAsLTQ5MDUzNDE5MSwxMTI5OTg1NDM0LDY1Mjc0MDgw
-Myw5Mjk4NzkxNjAsLTE2NjUyOTAwNjddfQ==
+eyJoaXN0b3J5IjpbLTQ3MDg5MDY5OCwyNTgyODk0OTEsMTE0Nz
+M1MDcxMCwtNDkwNTM0MTkxLDExMjk5ODU0MzQsNjUyNzQwODAz
+LDkyOTg3OTE2MCwtMTY2NTI5MDA2N119
 -->
