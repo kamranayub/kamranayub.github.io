@@ -1,6 +1,6 @@
 Title: "2020 End of Year Review"
 Published: false
-Lead: "Well, that didn't go quite as expected..."
+Lead: "Reflections on 2020 and what's next for 2021"
 Tags:
 - Life
 - Goals
@@ -137,7 +137,7 @@ _Contributes to being an educator_
 
 Taking on RavenDB as a client to write for wasn't something I planned but it's been working out well and I ended up doing about 1 article a quarter in 2020. In 2021 I've already lined up all the articles I'll be writing for the year with them and this is something I'd like to ramp up if I find I have the time in the future.
 
-#### 👨‍💻 Maintaining apps and projects
+#### 👨‍💻 Regular cadence for working on apps
 
 _Contributes to being an indie hacker_
 
@@ -183,7 +183,7 @@ In order to get there these habits and systems are helping me become the type of
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MzAyMTU5ODUsMjU4Mjg5NDkxLDExND
-czNTA3MTAsLTQ5MDUzNDE5MSwxMTI5OTg1NDM0LDY1Mjc0MDgw
-Myw5Mjk4NzkxNjAsLTE2NjUyOTAwNjddfQ==
+eyJoaXN0b3J5IjpbMjAzODgyNjcyMSwyNTgyODk0OTEsMTE0Nz
+M1MDcxMCwtNDkwNTM0MTkxLDExMjk5ODU0MzQsNjUyNzQwODAz
+LDkyOTg3OTE2MCwtMTY2NTI5MDA2N119
 -->
