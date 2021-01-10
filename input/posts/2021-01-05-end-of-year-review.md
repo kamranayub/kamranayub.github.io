@@ -155,6 +155,7 @@ These all contribute to the type of person I want to be in general: a happy, opt
 - 🚶‍♂️ Daily exercise (walking or biking)
 - 📖 Daily reading (We have Reading Time with the kids before bedtime)
 - 🍕 Weekly meal planning (we've been doing this for 2 years now)
+- 
 - 💸 Monthly savings and investments
 
 I have already started many of these habits, some since the summer so I want to ensure I continue doing them.
@@ -169,6 +170,7 @@ In order to get there these habits and systems are helping me become the type of
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ5MDUzNDE5MSwxMTI5OTg1NDM0LDY1Mj
-c0MDgwMyw5Mjk4NzkxNjAsLTE2NjUyOTAwNjddfQ==
+eyJoaXN0b3J5IjpbMTU0OTI3NzIzOCwtNDkwNTM0MTkxLDExMj
+k5ODU0MzQsNjUyNzQwODAzLDkyOTg3OTE2MCwtMTY2NTI5MDA2
+N119
 -->
