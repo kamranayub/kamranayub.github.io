@@ -155,7 +155,7 @@ These all contribute to the type of person I want to be in general: a happy, opt
 - 🚶‍♂️ Daily exercise (walking or biking)
 - 📖 Daily reading (We have Reading Time with the kids before bedtime)
 - 🍕 Weekly meal planning (we've been doing this for 2 years now)
-- 
+- ✅ Task planning and outsourcing to [Todoist](https://todoist.com)
 - 💸 Monthly savings and investments
 
 I have already started many of these habits, some since the summer so I want to ensure I continue doing them.
@@ -164,13 +164,13 @@ I have already started many of these habits, some since the summer so I want to 
 
 I don't have any to list on here! But now maybe you can see: I don't have to list any 🤯 As long as I continue to invest in my habits and systems, _naturally_ there will be accomplishments produced. For some of my systems, they are helping to build _a practice_ that will naturally build a body of work. That is want my previous **Unplanned Accomplishments** was _trying_ to tell me. 
 
-Do I have longer-term goals? Yes, I talked about "[having a why](https://kamranicus.com/posts/2020-01-01-year-in-review-2020-goals)" in the 2019 review. Some of it is around having more options, more freedom to choose what I work on, others reasons center around my family. I've talked to Cassie about all of that so we have a North Star to guide us.
+Do I still have medium (2-3 year) and longer-term (10 year) goals? Yes, I talked about "[having a why](https://kamranicus.com/posts/2020-01-01-year-in-review-2020-goals)" in the 2019 review. Some of it is around having more options, more freedom to choose what I work on, others reasons center around my family. I've talked to Cassie about all of that so we have a North Star to guide us.
 
-In order to get there these habits and systems are helping me become the type of person I want to be so goals don't matter as much anymore. The important thing to reflect on and track will be _how well did the systems work? What improvements did I make? Is there anything that I felt wasn't contributing to who I want to become? Are they effective?_ Tweaking and improving the systems will inevitably lead to better and better results. That's the idea, anyway.
+In order to get there these habits and systems are helping me become the type of person I want to be so  goals don't matter as much anymore. The important thing to reflect on and track will be _how well did the systems work? What improvements did I make? Is there anything that I felt wasn't contributing to who I want to become? Are they effective?_ Tweaking and improving the systems will inevitably lead to better and better results. That's the idea, anyway.
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU0OTI3NzIzOCwtNDkwNTM0MTkxLDExMj
-k5ODU0MzQsNjUyNzQwODAzLDkyOTg3OTE2MCwtMTY2NTI5MDA2
-N119
+eyJoaXN0b3J5IjpbLTExODMwMTIwOTEsLTQ5MDUzNDE5MSwxMT
+I5OTg1NDM0LDY1Mjc0MDgwMyw5Mjk4NzkxNjAsLTE2NjUyOTAw
+NjddfQ==
 -->
