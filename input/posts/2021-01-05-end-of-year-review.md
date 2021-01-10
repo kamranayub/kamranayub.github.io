@@ -149,6 +149,8 @@ I just put out a poll this week about what topics might interest people and I ha
 
 #### ✍ Consistent blogging schedule
 
+When we started Looks Good to Us we had a consistent 1 post per week schedule. I learned soon that I tend to like writing more guide/article-type content rather than pure "blog" (snapshot in time) content. As such, my posts tend to be on the order of 2000-2500 words and they are usually
+
 ### Habits I want to continue doing
 
 These all contribute to the type of person I want to be in general: a happy, optimistic person that takes care of his mental health, wealth, and wellness.
@@ -175,7 +177,7 @@ In order to get there these habits and systems are helping me become the type of
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk4NzQ1Mjc3LDI1ODI4OTQ5MSwxMTQ3Mz
-UwNzEwLC00OTA1MzQxOTEsMTEyOTk4NTQzNCw2NTI3NDA4MDMs
-OTI5ODc5MTYwLC0xNjY1MjkwMDY3XX0=
+eyJoaXN0b3J5IjpbMTk1ODYzMTM3NSwyNTgyODk0OTEsMTE0Nz
+M1MDcxMCwtNDkwNTM0MTkxLDExMjk5ODU0MzQsNjUyNzQwODAz
+LDkyOTg3OTE2MCwtMTY2NTI5MDA2N119
 -->
