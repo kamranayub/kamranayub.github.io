@@ -63,7 +63,7 @@ Let's review what I had set out to do for 2020 and where I ended up.
 - ⛔  Get [Looks Good to Us](https://looksgoodtous.com) to make a profit
   - LGTU has not made a _profit_ but it has earned _revenue_ which is still an impressive feat for a 1-year old blog! It earned exactly $16 but there is still earnings yet to be paid out that bring it into the $20-30 range. That's **almost** profitable 😂
 - ✅ Passive and 1099 income should cover 10% of our annual expenses
-  - It actually covered **14%** of our expenses, including the lump minivan payment. With the van, we spent more in 2020 but without it, we spent less than 2019 💪
+  - It actually covered **19%** of our expenses (after subtracting Cassie's income), including the lump minivan payment. With the van, we spent more in 2020 but without it, we spent less than 2019 💪
 - ✅ Maintain a 40% [annual savings rate](https://reachfi.app/)
   - We blew past 40% and reached a **51%** savings rate for 2020 😲 Even though we technically spent more in 2020, household income increased for the year by **34%** which resulted in higher savings. 📈 Want to track your own savings rate? Use my free [ReachFI PWA app](https://reachfi.app/)!
 - ✅ Have one sponsor [on GitHub](https://github.com/sponsors/kamranayub)
@@ -183,7 +183,7 @@ In order to get there these habits and systems are helping me become the type of
 
 Have a healthy, safe, and fulfilling 2021!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY1MjkyNTgwNCwyNTgyODk0OTEsMTE0Nz
-M1MDcxMCwtNDkwNTM0MTkxLDExMjk5ODU0MzQsNjUyNzQwODAz
-LDkyOTg3OTE2MCwtMTY2NTI5MDA2N119
+eyJoaXN0b3J5IjpbMjEzMjAyMDM2MywxNjUyOTI1ODA0LDI1OD
+I4OTQ5MSwxMTQ3MzUwNzEwLC00OTA1MzQxOTEsMTEyOTk4NTQz
+NCw2NTI3NDA4MDMsOTI5ODc5MTYwLC0xNjY1MjkwMDY3XX0=
 -->
