@@ -4,7 +4,7 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2021</rights>
-	<updated>2021-01-11T05:37:09Z</updated>
+	<updated>2021-01-13T05:02:33Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
 	<entry>
 		<link href="https://kamranicus.com/posts/2021-01-05-end-of-year-review" />
@@ -749,7 +749,7 @@ if ($null -ne ($pushOutput | ? { $_ -match 'An error has occurred during web sit
 &lt;li&gt;Passive income as a % of W-2: &lt;strong&gt;2.08%&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;1099 income as a % of W-2: &lt;strong&gt;2.89%&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Total side earnings:&lt;/strong&gt; 4.97%!&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Total % of annual expenses:&lt;/strong&gt; 8%!&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Total % of annual expenses:&lt;/strong&gt; 11%!&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;✅ Replace my PCs at home with a single good Ultrabook/Notebook &lt;del&gt;and a NAS&lt;/del&gt;
@@ -879,6 +879,9 @@ if ($null -ne ($pushOutput | ? { $_ -match 'An error has occurred during web sit
 &lt;h2 id="looking-forward"&gt;Looking forward&lt;/h2&gt;
 &lt;p&gt;I am pretty excited about what 2020 holds and how it will get me closer to my overall goals in life and family. Each year seems to be even better than the last and I hope the trend continues. I'm sure some of these goals won't be achieved in total but even making progress against them is a huge win.&lt;/p&gt;
 &lt;p&gt;What are your goals for 2020? Do you have any specific things you want to get done?&lt;/p&gt;
+&lt;!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE5NDgwOTE1MzldfQ==
+--&gt;
 </content>
 		<summary>&lt;p&gt;That was fast. &lt;a href="https://kamranicus.com/posts/2019-07-12-quarterly-2-update"&gt;Last I checked in with you&lt;/a&gt;, half the year had already passed. Then I planned to do a third quarter update and suddenly it was the end of the year. I even have a draft of the third quarter newsletter and now I'm just rolling it into the year-end newsletter.&lt;/p&gt;</summary>
 	</entry>
