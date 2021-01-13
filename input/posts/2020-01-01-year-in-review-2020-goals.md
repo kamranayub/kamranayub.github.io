@@ -54,7 +54,7 @@ Again let's start with a review of what I set out to do in 2019, as of [my last 
   - Passive income as a % of W-2: **2.08%**
   - 1099 income as a % of W-2: **2.89%**
   - **Total side earnings:** 4.97%!
-  - **Total % of annual expenses:** 8%!
+  - **Total % of annual expenses:** 11%!
 - ✅ Replace my PCs at home with a single good Ultrabook/Notebook ~~and a NAS~~
   - As of yesterday, I completed upgrading my PC to SSDs-only and 32GB of RAM
   - I also bought a used Lenovo Yoga 720 laptop earlier in the year which I love
@@ -167,3 +167,6 @@ I still feel like I'm in the "learning" phase of DIY but I am starting to get co
 I am pretty excited about what 2020 holds and how it will get me closer to my overall goals in life and family. Each year seems to be even better than the last and I hope the trend continues. I'm sure some of these goals won't be achieved in total but even making progress against them is a huge win.
 
 What are your goals for 2020? Do you have any specific things you want to get done?
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE5NDgwOTE1MzldfQ==
+-->
