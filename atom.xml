@@ -4,7 +4,7 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2021</rights>
-	<updated>2021-01-16T05:06:48Z</updated>
+	<updated>2021-01-16T05:08:57Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
 	<entry>
 		<link href="https://kamranicus.com/posts/2021-01-15-building-excalibur-docs-typedoc-gatsby" />
@@ -97,7 +97,7 @@ a [[Loader]] which you can use to [load assets](/docs/assets) like sprites and s
 &lt;p&gt;I have just started production on a Pluralsight course for authoring Gatsby plugins where I hope to show you how you can do this in a step-by-step fashion for different use cases (it's a &amp;quot;playbook&amp;quot;-style course, just the essentials to get it done!).&lt;/p&gt;
 &lt;p&gt;If you're interested &lt;a href="http://bit.ly/kamranicusnewsletter"&gt;follow me&lt;/a&gt; to keep updated on progress as I produce the course!&lt;/p&gt;
 &lt;!--stackedit_data:
-eyJoaXN0b3J5IjpbNTI3MDgyNDEyXX0=
+eyJoaXN0b3J5IjpbLTE4Nzc2Mzg5MjRdfQ==
 --&gt;
 </content>
 		<summary>&lt;p&gt;I help maintain the &lt;a href="https://excaliburjs.com"&gt;Excalibur.js&lt;/a&gt; web-based game engine. Excalibur was written from the ground up in TypeScript. Luckily, early on we started to adopt a tool called &lt;a href="https://typedoc.org"&gt;Typedoc&lt;/a&gt; which could generate a rich API documentation site for TypeScript-based projects.&lt;/p&gt;</summary>
