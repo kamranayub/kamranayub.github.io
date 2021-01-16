@@ -119,13 +119,15 @@ The end result is symbol links in the documentation:
 
 🎉 Huzzah!
 
-## Want to make your Gatsby plugins?
+## Want to make your own Gatsby plugins?
+
+It was a learning experience for me to understand the way plugins were authored as there are a lot of moving parts and I was unfamiliar with the tools for working with AST and Remark. There is "documentation" in these sense of basic examples but I had to dive through other plugin source code to really
 
 I have just started production on a Pluralsight course for authoring Gatsby plugins where I hope to dive deeper into how to do this in a step-by-step fashion (it's a "playbook"-style course, just the essentials to get it done!).
 
 If you're interested [follow me](http://bit.ly/kamranicusnewsletter) to keep updated on the progress!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjEzNTY3MTc3NCwtMTkyNDAzMTc5LC0xMT
-QzMTg3NTI1LC03NjE3NDA2ODksMTI2MzQ0NTE1NywxMzY3MDQz
-MTcsLTg5MDYyOTk0LC05NzI5MDg5NjIsLTY3OTE3OTEyXX0=
+eyJoaXN0b3J5IjpbLTE5NzkwMDQ0MTMsLTE5MjQwMzE3OSwtMT
+E0MzE4NzUyNSwtNzYxNzQwNjg5LDEyNjM0NDUxNTcsMTM2NzA0
+MzE3LC04OTA2Mjk5NCwtOTcyOTA4OTYyLC02NzkxNzkxMl19
 -->
