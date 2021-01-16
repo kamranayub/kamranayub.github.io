@@ -206,18 +206,19 @@ a [[Loader]] which you can use to [load assets](/docs/assets) like sprites and s
 <li>This pipeline uses <a href="https://github.com/unifiedjs/unified">unified.js</a> as the underlying API at the lowest level</li>
 </ul>
 <p>So, what I needed to do was to make a Gatsby Remark Transformer plug-in. Since Gatsby just delegates down to Remark, I was able to split this up into two packages, just in case someone wanted to use the Typedoc symbol transformer outside Gatsby. The symbol transformer only needs one additional piece of input: the TypeDoc AST.</p>
+<h2 id="putting-it-all-together">Putting it all together</h2>
 <p>To hook this all up is a matter of configuring the plugins to work with each other, which is documented on the <a href="https://www.npmjs.com/package/gatsby-remark-typedoc-symbol-links">README of gatsby-remark-typedoc-symbol-links</a>. The approach differs if using with the Gatsby MDX plugin or Gatsby Remark transformer but they essentially do the same thing: pass the generated TypeDoc AST to the symbol link plugin.</p>
 <p>The end result is symbol links in the documentation:</p>
 <p><img src="https://user-images.githubusercontent.com/563819/104797271-6cf08880-5782-11eb-850d-53bf4c080348.png" class="img-fluid" alt="Screenshot of excalibur docs with symbol links" /></p>
 <p>🎉 Huzzah!</p>
 <h2 id="want-to-make-your-own-gatsby-plugins">Want to make your own Gatsby plugins?</h2>
-<p>It was a learning experience for me to understand the way plugins were authored as there are a lot of moving parts and I was unfamiliar with the tools for working with AST and Remark. There is &quot;documentation&quot; in these sense of basic examples but I had to dive through other plugin source code to really</p>
-<p>I have just started production on a Pluralsight course for authoring Gatsby plugins where I hope to dive deeper into how to do this in a step-by-step fashion (it's a &quot;playbook&quot;-style course, just the essentials to get it done!).</p>
-<p>If you're interested <a href="http://bit.ly/kamranicusnewsletter">follow me</a> to keep updated on the progress!</p>
+<p>It was a learning experience for me to understand the way plugins were authored as there are a lot of moving parts and I was unfamiliar with the tools for working with AST and Remark. There is &quot;documentation&quot; in these sense of basic examples but I had to dive through other plugin source code to really understand how to put it all together.</p>
+<p>I have just started production on a Pluralsight course for authoring Gatsby plugins where I hope to show you how you can do this in a step-by-step fashion for different use cases (it's a &quot;playbook&quot;-style course, just the essentials to get it done!).</p>
+<p>If you're interested <a href="http://bit.ly/kamranicusnewsletter">follow me</a> to keep updated on progress as I produce the course!</p>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5NzkwMDQ0MTMsLTE5MjQwMzE3OSwtMT
-E0MzE4NzUyNSwtNzYxNzQwNjg5LDEyNjM0NDUxNTcsMTM2NzA0
-MzE3LC04OTA2Mjk5NCwtOTcyOTA4OTYyLC02NzkxNzkxMl19
+eyJoaXN0b3J5IjpbNDU2ODcwMjI3LC0xOTI0MDMxNzksLTExND
+MxODc1MjUsLTc2MTc0MDY4OSwxMjYzNDQ1MTU3LDEzNjcwNDMx
+NywtODkwNjI5OTQsLTk3MjkwODk2MiwtNjc5MTc5MTJdfQ==
 -->
 
 </div>
