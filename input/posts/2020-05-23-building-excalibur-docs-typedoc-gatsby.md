@@ -119,13 +119,13 @@ The end result is symbol links in the documentation:
 
 🎉 Huzzah!
 
-## Interested in making your own Gatsby plugins?
+## Want to make your Gatsby plugins?
 
 I have just started production on a Pluralsight course for authoring Gatsby plugins where I hope to dive deeper into how to do this in a step-by-step fashion (it's a "playbook"-style course, just the essentials to get it done!).
 
-If you're interested [follow me](https://mailchi.mp/3229287b4712/kamranicus) to keep updated on the progress!
+If you're interested [follow me](http://bit.ly/kamranicusnewsletter) to keep updated on the progress!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwOTIzMjYxNjgsLTE5MjQwMzE3OSwtMT
-E0MzE4NzUyNSwtNzYxNzQwNjg5LDEyNjM0NDUxNTcsMTM2NzA0
-MzE3LC04OTA2Mjk5NCwtOTcyOTA4OTYyLC02NzkxNzkxMl19
+eyJoaXN0b3J5IjpbMjEzNTY3MTc3NCwtMTkyNDAzMTc5LC0xMT
+QzMTg3NTI1LC03NjE3NDA2ODksMTI2MzQ0NTE1NywxMzY3MDQz
+MTcsLTg5MDYyOTk0LC05NzI5MDg5NjIsLTY3OTE3OTEyXX0=
 -->
