@@ -206,10 +206,10 @@ a [[Loader]] which you can use to [load assets](/docs/assets) like sprites and s
 <li>This pipeline uses <a href="https://github.com/unifiedjs/unified">unified.js</a> as the underlying API at the lowest level</li>
 </ul>
 <p>So, what I needed to do was to make a Gatsby Remark Transformer plug-in. Since Gatsby just delegates down to Remark, I was able to split this up into two packages, just in case someone wanted to use the Typedoc symbol transformer outside Gatsby. The symbol transformer only needs one additional piece of input: the TypeDoc AST.</p>
-<p>The meat of it all is within the Remark transformer where I traverse the AST and parse out the tokens that make up the symbol li</p>
+<p>The meat of it all is <a href="https://github.com/kamranayub/remark-typedoc-symbol-links/blob/master/src/index.ts">within the Remark transformer</a> where I traverse the AST and parse out the tokens that make up the symbol links and perform the lookups to build the generated URLs. It could definitely use some optimizations! 😅</p>
 <h2 id="putting-it-all-together">Putting it all together</h2>
 <p>To hook this all up is a matter of configuring the plugins to work with each other, which is documented on the <a href="https://www.npmjs.com/package/gatsby-remark-typedoc-symbol-links">README of gatsby-remark-typedoc-symbol-links</a>. The approach differs if using with the Gatsby MDX plugin or Gatsby Remark transformer but they essentially do the same thing: pass the generated TypeDoc AST to the symbol link plugin.</p>
-<p>The end result is symbol links in the documentation:</p>
+<p>The end result is links to TypeDoc symbol pages in the MDX-based documentation:</p>
 <p><img src="https://user-images.githubusercontent.com/563819/104797271-6cf08880-5782-11eb-850d-53bf4c080348.png" class="img-fluid" alt="Screenshot of excalibur docs with symbol links" /></p>
 <p>🎉 Huzzah!</p>
 <h2 id="want-to-make-your-own-gatsby-plugins">Want to make your own Gatsby plugins?</h2>
@@ -217,9 +217,9 @@ a [[Loader]] which you can use to [load assets](/docs/assets) like sprites and s
 <p>I have just started production on a Pluralsight course for authoring Gatsby plugins where I hope to show you how you can do this in a step-by-step fashion for different use cases (it's a &quot;playbook&quot;-style course, just the essentials to get it done!).</p>
 <p>If you're interested <a href="http://bit.ly/kamranicusnewsletter">follow me</a> to keep updated on progress as I produce the course!</p>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE1ODM0Mjc5NywtMTkyNDAzMTc5LC0xMT
-QzMTg3NTI1LC03NjE3NDA2ODksMTI2MzQ0NTE1NywxMzY3MDQz
-MTcsLTg5MDYyOTk0LC05NzI5MDg5NjIsLTY3OTE3OTEyXX0=
+eyJoaXN0b3J5IjpbNzc0NDk1NjcyLC0xOTI0MDMxNzksLTExND
+MxODc1MjUsLTc2MTc0MDY4OSwxMjYzNDQ1MTU3LDEzNjcwNDMx
+NywtODkwNjI5OTQsLTk3MjkwODk2MiwtNjc5MTc5MTJdfQ==
 -->
 
 </div>
