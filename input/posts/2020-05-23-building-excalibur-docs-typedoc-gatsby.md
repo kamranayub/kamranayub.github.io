@@ -8,7 +8,7 @@ Tags:
 - Gatsby
 ---
 
-I help maintain the [Excalibur.js](https://excaliburjs.com) web-based game engine. We started Excalibur back in 2011 and it was always written from the ground up in TypeScript. Since Excalibur hasn't yet reached 1.0, all of our documentation has been in the source code. Luckily, early on we started to adopt a tool called [Typedoc](https://typedoc.org) which could generate a rich documentation site for TypeScript-based projects.
+I help maintain the [Excalibur.js](https://excaliburjs.com) web-based game engine. Excalibur was written from the ground up in TypeScript. Since Excalibur hasn't yet reached 1.0, all of our documentation has been in the source code. Luckily, early on we started to adopt a tool called [Typedoc](https://typedoc.org) which could generate a rich documentation site for TypeScript-based projects.
 
 ## Linking to API Symbols
 
@@ -116,6 +116,7 @@ Here is how this works in Gatsby, which was a completely new learning experience
 
 So, what I needed to do was to make a Gatsby Remark Transformer plug-in. Since Gatsby just delegates down to Remark, I was able to split this up into two packages, just in case someone wanted to use the Typedoc symbol transformer outside Gatsby. The symbol transformer only needs one additional piece of input: the TypeDoc AST.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI2MzQ0NTE1NywxMzY3MDQzMTcsLTg5MD
-YyOTk0LC05NzI5MDg5NjIsLTY3OTE3OTEyXX0=
+eyJoaXN0b3J5IjpbLTEwNDQzNzExMzksMTI2MzQ0NTE1NywxMz
+Y3MDQzMTcsLTg5MDYyOTk0LC05NzI5MDg5NjIsLTY3OTE3OTEy
+XX0=
 -->
