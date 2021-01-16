@@ -1,6 +1,6 @@
 Title: "Building a TypeDoc-powered Gatsby Documentation Site"
 Published: 2021-01-15 22:50:00 -0500
-Lead: "We recently migrated our user-facing documentation to Gatsby and it's still powered by TypeDoc symbols"
+Lead: "We recently migrated the Excalibur.js user-facing documentation to Gatsby and I built some Gatsby plugins to support linking to TypeDoc symbols with Markdown"
 Tags:
 - JavaScript
 - TypeScript
@@ -131,5 +131,5 @@ I have just started production on a Pluralsight course for authoring Gatsby plug
 
 If you're interested [follow me](http://bit.ly/kamranicusnewsletter) to keep updated on progress as I produce the course!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTI3MDgyNDEyXX0=
+eyJoaXN0b3J5IjpbLTE4Nzc2Mzg5MjRdfQ==
 -->
