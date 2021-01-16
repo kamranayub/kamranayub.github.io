@@ -80,7 +80,7 @@ export default function MyPage({ data: { typedoc } }) {
 
 With this source package, it is enough to where you could build a custom Gatsby-based TypeDoc site since you now have complete access to the entire TypeDoc structure for your project. We didn't need to go that far, since we are happy with the TypeDoc default theme we use.
 
-But we're still missing something important: parsing those special TypeDoc `[[symbol]]` links in our Markdown documentation.
+But we're still missing something important: parsing those special TypeDoc `[[symbol]]` links in our MDX-based documentation.
 
 ## Parsing TypeDoc Symbol Links in Markdown
 
@@ -111,7 +111,7 @@ Here is how this works in Gatsby, which was a completely new learning experience
 
 So, what I needed to do was to make a Gatsby Remark Transformer plug-in. Since Gatsby just delegates down to Remark, I was able to split this up into two packages, just in case someone wanted to use the Typedoc symbol transformer outside Gatsby. The symbol transformer only needs one additional piece of input: the TypeDoc AST.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU3ODYwODQxNSwtNzYxNzQwNjg5LDEyNj
+eyJoaXN0b3J5IjpbMTA4NTI5ODc4OSwtNzYxNzQwNjg5LDEyNj
 M0NDUxNTcsMTM2NzA0MzE3LC04OTA2Mjk5NCwtOTcyOTA4OTYy
 LC02NzkxNzkxMl19
 -->
