@@ -111,9 +111,9 @@ Here is how this works in Gatsby, which was a completely new learning experience
 
 So, what I needed to do was to make a Gatsby Remark Transformer plug-in. Since Gatsby just delegates down to Remark, I was able to split this up into two packages, just in case someone wanted to use the Typedoc symbol transformer outside Gatsby. The symbol transformer only needs one additional piece of input: the TypeDoc AST.
 
-To hook this all up is a matter of configuring the plugins to work with each other, which is documented on the README of 
+To hook this all up is a matter of configuring the plugins to work with each other, which is documented on the [README of gatsby-remark-typedoc-symbol-links](https://www.npmjs.com/package/gatsby-remark-typedoc-symbol-links). The approach differs if using with the MDX or Gatsby Remark transformer.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUwNjMzODA0MywtNzYxNzQwNjg5LDEyNj
+eyJoaXN0b3J5IjpbLTEyODYyNzc5OCwtNzYxNzQwNjg5LDEyNj
 M0NDUxNTcsMTM2NzA0MzE3LC04OTA2Mjk5NCwtOTcyOTA4OTYy
 LC02NzkxNzkxMl19
 -->
