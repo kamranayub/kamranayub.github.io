@@ -111,6 +111,8 @@ Here is how this works in Gatsby, which was a completely new learning experience
 
 So, what I needed to do was to make a Gatsby Remark Transformer plug-in. Since Gatsby just delegates down to Remark, I was able to split this up into two packages, just in case someone wanted to use the Typedoc symbol transformer outside Gatsby. The symbol transformer only needs one additional piece of input: the TypeDoc AST.
 
+## Putting it all together
+
 To hook this all up is a matter of configuring the plugins to work with each other, which is documented on the [README of gatsby-remark-typedoc-symbol-links](https://www.npmjs.com/package/gatsby-remark-typedoc-symbol-links). The approach differs if using with the Gatsby MDX plugin or Gatsby Remark transformer but they essentially do the same thing: pass the generated TypeDoc AST to the symbol link plugin.
 
 The end result is symbol links in the documentation:
@@ -121,13 +123,13 @@ The end result is symbol links in the documentation:
 
 ## Want to make your own Gatsby plugins?
 
-It was a learning experience for me to understand the way plugins were authored as there are a lot of moving parts and I was unfamiliar with the tools for working with AST and Remark. There is "documentation" in these sense of basic examples but I had to dive through other plugin source code to really
+It was a learning experience for me to understand the way plugins were authored as there are a lot of moving parts and I was unfamiliar with the tools for working with AST and Remark. There is "documentation" in these sense of basic examples but I had to dive through other plugin source code to really understand how to put it all together.
 
-I have just started production on a Pluralsight course for authoring Gatsby plugins where I hope to dive deeper into how to do this in a step-by-step fashion (it's a "playbook"-style course, just the essentials to get it done!).
+I have just started production on a Pluralsight course for authoring Gatsby plugins where I hope to show you how you can do this in a step-by-step fashion for different use cases (it's a "playbook"-style course, just the essentials to get it done!).
 
-If you're interested [follow me](http://bit.ly/kamranicusnewsletter) to keep updated on the progress!
+If you're interested [follow me](http://bit.ly/kamranicusnewsletter) to keep updated on progress as I produce the course!
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5NzkwMDQ0MTMsLTE5MjQwMzE3OSwtMT
-E0MzE4NzUyNSwtNzYxNzQwNjg5LDEyNjM0NDUxNTcsMTM2NzA0
-MzE3LC04OTA2Mjk5NCwtOTcyOTA4OTYyLC02NzkxNzkxMl19
+eyJoaXN0b3J5IjpbNDU2ODcwMjI3LC0xOTI0MDMxNzksLTExND
+MxODc1MjUsLTc2MTc0MDY4OSwxMjYzNDQ1MTU3LDEzNjcwNDMx
+NywtODkwNjI5OTQsLTk3MjkwODk2MiwtNjc5MTc5MTJdfQ==
 -->
