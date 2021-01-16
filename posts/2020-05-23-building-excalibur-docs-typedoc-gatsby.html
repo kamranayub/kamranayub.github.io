@@ -206,11 +206,12 @@ a [[Loader]] which you can use to [load assets](/docs/assets) like sprites and s
 <li>This pipeline uses <a href="https://github.com/unifiedjs/unified">unified.js</a> as the underlying API at the lowest level</li>
 </ul>
 <p>So, what I needed to do was to make a Gatsby Remark Transformer plug-in. Since Gatsby just delegates down to Remark, I was able to split this up into two packages, just in case someone wanted to use the Typedoc symbol transformer outside Gatsby. The symbol transformer only needs one additional piece of input: the TypeDoc AST.</p>
-<p>To hook this all up is a matter of configuring the plugins to work with each other, which is documented on the <a href="https://www.npmjs.com/package/gatsby-remark-typedoc-symbol-links">README of gatsby-remark-typedoc-symbol-links</a>. The approach differs if using with the MDX or Gatsby Remark transformer.</p>
+<p>To hook this all up is a matter of configuring the plugins to work with each other, which is documented on the <a href="https://www.npmjs.com/package/gatsby-remark-typedoc-symbol-links">README of gatsby-remark-typedoc-symbol-links</a>. The approach differs if using with the Gatsby MDX plugin or Gatsby Remark transformer but they essentially do the same thing: pass the generated TypeDoc AST to the symbol link plugin.</p>
+<p>The end result is symbol links in the documentation:</p>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyODYyNzc5OCwtNzYxNzQwNjg5LDEyNj
-M0NDUxNTcsMTM2NzA0MzE3LC04OTA2Mjk5NCwtOTcyOTA4OTYy
-LC02NzkxNzkxMl19
+eyJoaXN0b3J5IjpbLTExNDMxODc1MjUsLTc2MTc0MDY4OSwxMj
+YzNDQ1MTU3LDEzNjcwNDMxNywtODkwNjI5OTQsLTk3MjkwODk2
+MiwtNjc5MTc5MTJdfQ==
 -->
 
 </div>
