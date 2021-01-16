@@ -131,9 +131,9 @@
       
 
 <div class="ui huge basic post content segment">
-  <p>I help maintain the <a href="https://excaliburjs.com">Excalibur.js</a> web-based game engine. Excalibur was written from the ground up in TypeScript. Since Excalibur hasn't yet reached 1.0, all of our documentation has been in the source code. Luckily, early on we started to adopt a tool called <a href="https://typedoc.org">Typedoc</a> which could generate a rich documentation site for TypeScript-based projects.</p>
+  <p>I help maintain the <a href="https://excaliburjs.com">Excalibur.js</a> web-based game engine. Excalibur was written from the ground up in TypeScript. Luckily, early on we started to adopt a tool called <a href="https://typedoc.org">Typedoc</a> which could generate a rich API documentation site for TypeScript-based projects.</p>
 <h2 id="linking-to-api-symbols">Linking to API Symbols</h2>
-<p>Using TypeDoc, we could build richer documentation with embedded Markdown documents. It also has a compelling feature to do <a href="http://typedoc.org/guides/doccomments/#symbol-references">link to API symbols</a> using a <code>[[symbolName]]</code> or <code>{&#64;link symbolName}</code> syntax. This was awesome because we could write &quot;user-facing&quot; documentation and easily create maintainable links to the raw API symbols.</p>
+<p>TypeDoc, we could build richer documentation with embedded Markdown documents. It also has a compelling feature to do <a href="http://typedoc.org/guides/doccomments/#symbol-references">link to API symbols</a> using a <code>[[symbolName]]</code> or <code>{&#64;link symbolName}</code> syntax. This was awesome because we could write &quot;user-facing&quot; documentation and easily create maintainable links to the raw API symbols.</p>
 <p>Since we could separate user-facing documentation into separate <code>.md</code> files, TypeDoc allowed us to use <code>[[include:file.md]]</code> directives to keep our documentation separate from the source code.</p>
 <p>This approach has been working well for us in the past years but there were several downsides:</p>
 <ul>
@@ -211,9 +211,9 @@ a [[Loader]] which you can use to [load assets](/docs/assets) like sprites and s
 </ul>
 <p>So, what I needed to do was to make a Gatsby Remark Transformer plug-in. Since Gatsby just delegates down to Remark, I was able to split this up into two packages, just in case someone wanted to use the Typedoc symbol transformer outside Gatsby. The symbol transformer only needs one additional piece of input: the TypeDoc AST.</p>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNDQzNzExMzksMTI2MzQ0NTE1NywxMz
-Y3MDQzMTcsLTg5MDYyOTk0LC05NzI5MDg5NjIsLTY3OTE3OTEy
-XX0=
+eyJoaXN0b3J5IjpbLTMzNjQwMTk3MiwxMjYzNDQ1MTU3LDEzNj
+cwNDMxNywtODkwNjI5OTQsLTk3MjkwODk2MiwtNjc5MTc5MTJd
+fQ==
 -->
 
 </div>
