@@ -115,9 +115,15 @@ To hook this all up is a matter of configuring the plugins to work with each oth
 
 The end result is symbol links in the documentation:
 
+![Screenshot of excalibur docs with symbol links](https://user-images.githubusercontent.com/563819/104797271-6cf08880-5782-11eb-850d-53bf4c080348.png)
 
+🎉 Huzzah!
+
+## Interested in making your own Gatsby plugins?
+
+I have just 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNDMxODc1MjUsLTc2MTc0MDY4OSwxMj
-YzNDQ1MTU3LDEzNjcwNDMxNywtODkwNjI5OTQsLTk3MjkwODk2
-MiwtNjc5MTc5MTJdfQ==
+eyJoaXN0b3J5IjpbLTIwNzQ1MTg3MjEsLTExNDMxODc1MjUsLT
+c2MTc0MDY4OSwxMjYzNDQ1MTU3LDEzNjcwNDMxNywtODkwNjI5
+OTQsLTk3MjkwODk2MiwtNjc5MTc5MTJdfQ==
 -->
