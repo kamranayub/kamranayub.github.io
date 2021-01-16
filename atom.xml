@@ -4,8 +4,104 @@
 	<id>https://kamranicus.com/</id>
 	<title>Kamranicus | Kamran Ayub</title>
 	<rights>2021</rights>
-	<updated>2021-01-16T05:04:40Z</updated>
+	<updated>2021-01-16T05:06:48Z</updated>
 	<subtitle>Kamran Ayub</subtitle>
+	<entry>
+		<link href="https://kamranicus.com/posts/2021-01-15-building-excalibur-docs-typedoc-gatsby" />
+		<id>https://kamranicus.com/posts/2021-01-15-building-excalibur-docs-typedoc-gatsby</id>
+		<title>Building a TypeDoc-powered Gatsby Documentation Site</title>
+		<updated>2021-01-16T03:50:00Z</updated>
+		<content>&lt;p&gt;I help maintain the &lt;a href="https://excaliburjs.com"&gt;Excalibur.js&lt;/a&gt; web-based game engine. Excalibur was written from the ground up in TypeScript. Luckily, early on we started to adopt a tool called &lt;a href="https://typedoc.org"&gt;Typedoc&lt;/a&gt; which could generate a rich API documentation site for TypeScript-based projects.&lt;/p&gt;
+&lt;h2 id="linking-to-api-symbols"&gt;Linking to API Symbols&lt;/h2&gt;
+&lt;p&gt;TypeDoc has a compelling feature to &lt;a href="http://typedoc.org/guides/doccomments/#symbol-references"&gt;link to API symbols&lt;/a&gt; using a &lt;code&gt;[[symbolName]]&lt;/code&gt; or &lt;code&gt;{&amp;#64;link symbolName}&lt;/code&gt; syntax. This was awesome because we could write &amp;quot;user-facing&amp;quot; documentation and easily create maintainable links to the raw API symbols.&lt;/p&gt;
+&lt;p&gt;We separated user-facing documentation into separate &lt;code&gt;.md&lt;/code&gt; files and this approach had been working well for us in the past years but there were several downsides:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &amp;quot;user&amp;quot; documentation was locked into the TypeDoc site and theme&lt;/li&gt;
+&lt;li&gt;While TypeDoc was customizable, it was still hard to do more complex things like custom components (think MDX which is React + Markdown)&lt;/li&gt;
+&lt;li&gt;It wasn't cohesive--we had a separate main site and you'd expect to find docs there.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We needed to do something different and &lt;em&gt;ideally&lt;/em&gt; have these user docs hosted within the main site &lt;strong&gt;but still maintain the ability to easily link to API docs&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id="migrating-to-gatsby.js"&gt;Migrating to Gatsby.js&lt;/h2&gt;
+&lt;p&gt;Awhile back, I converted the site to be statically generated using &lt;a href="https://gatsbyjs.org"&gt;Gatsby.js&lt;/a&gt; and this has proved to be a good decision. Gatsby allows us to customize all the aspects of the site including the way we generate documentation.&lt;/p&gt;
+&lt;p&gt;Gatsby uses a GraphQL-based sourcing architecture where you can add any kind of &amp;quot;source&amp;quot; of data--this could be Wordpress, the GitHub API, or basically &lt;em&gt;any&lt;/em&gt; external piece of data you wanted. These source plugins take the data from one place and &lt;em&gt;transform&lt;/em&gt; it into GraphQL nodes that Gatsby can understand and make available to your pages statically. This makes Gatsby incredibly versatile and customizable using a consistent architecture.&lt;/p&gt;
+&lt;p&gt;Gatsby also has the idea of &lt;em&gt;transformers&lt;/em&gt;. Transformers take input, usually an Abstract Syntax Tree (AST) and run it through processors that make changes. For example, there's &lt;a href="%5Bhttps://www.gatsbyjs.org/packages/gatsby-transformer-remark/%5D(https://www.gatsbyjs.org/packages/gatsby-transformer-remark/)"&gt;gatsby-transformer-remark&lt;/a&gt; that takes Markdown AST and parses it using Remark.&lt;/p&gt;
+&lt;p&gt;Using a combination of &lt;em&gt;sources&lt;/em&gt; and &lt;em&gt;transformers&lt;/em&gt; you can basically transform one source of data into whatever you want as the output.&lt;/p&gt;
+&lt;h2 id="creating-a-typedoc-gatsby-source"&gt;Creating a TypeDoc Gatsby Source&lt;/h2&gt;
+&lt;p&gt;When we migrated our user documentation, we didn't want to lose the ability to link to the API symbols using the convenient &lt;code&gt;[[symbol]]&lt;/code&gt; syntax. In order to maintain that, we needed a way to source the TypeDoc JSON (or AST) into our Gatsby site.&lt;/p&gt;
+&lt;p&gt;For that purpose, I made an npm package &lt;a href="https://npmjs.com/package/gatsby-source-typedoc"&gt;gatsby-source-typedoc&lt;/a&gt;. This will allow you to run TypeDoc against a TypeScript project and it will take the generated structure and store it as a GraphQL node for querying within your Gatsby app.&lt;/p&gt;
+&lt;p&gt;For example, here's what &lt;a href="https://github.com/excaliburjs/excaliburjs.github.io/blob/site/gatsby-config.js#L10"&gt;Excalibur's Gatsby config looks like&lt;/a&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;plugins: [
+  {
+    resolve: 'gatsby-source-typedoc',
+    options: {
+      src: [
+        `${__dirname}/ex/edge/src/engine/index.ts`,
+        `${__dirname}/ex/edge/src/engine/globals.d.ts`,
+        `${__dirname}/ex/edge/src/engine/files.d.ts`,
+        `${__dirname}/ex/edge/src/engine/excalibur.d.ts`,
+      ],
+      typedoc: {=
+        excludePrivate: true,
+        tsconfig: `${__dirname}/ex/edge/src/engine/tsconfig.json`,
+      },
+    },
+  },
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This will then allow you to query for the TypeDoc JSON content in a Gatsby page:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-js"&gt;export const pageQuery = graphql`
+  typedoc(typedocId: { eq: &amp;quot;default&amp;quot; }) {
+    internal {
+      content
+    }
+  }
+`
+
+export default function MyPage({ data: { typedoc } }) {
+	const typedocContent = JSON.parse(typedoc?.internal.content);
+	
+	// do something with that data...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With this source package, it is enough to where you could build a custom Gatsby-based TypeDoc site since you now have complete access to the entire TypeDoc structure for your project. We didn't need to go that far, since we are happy with the TypeDoc default theme we use.&lt;/p&gt;
+&lt;p&gt;But we're still missing something important: parsing those special TypeDoc &lt;code&gt;[[symbol]]&lt;/code&gt; links in our MDX-based documentation.&lt;/p&gt;
+&lt;h2 id="parsing-typedoc-symbol-links-in-markdown"&gt;Parsing TypeDoc Symbol Links in Markdown&lt;/h2&gt;
+&lt;p&gt;We write our user documentation using MDX, which is Markdown and React. For example, here's one snippet of document from the &lt;a href="https://excaliburjs.com/docs/intro"&gt;Introduction page&lt;/a&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-md"&gt;To create a new game, create a new instance of [[Engine]] and pass in
+the configuration ([[EngineOptions]]). Excalibur only supports a single
+instance of a game at a time, so it is safe to use globally.
+You can then call [[Engine.start|start]] which starts the game and optionally accepts
+a [[Loader]] which you can use to [load assets](/docs/assets) like sprites and sounds.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notice how we have multiple symbol links denoted by the &lt;code&gt;[[ ]]&lt;/code&gt; syntax, including some with aliases like &lt;code&gt;[[Engine.start|start]]&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If you run this through a Markdown parser, the only link that gets transformed is the &amp;quot;load assets&amp;quot; link because by default, Markdown has no idea what the &lt;code&gt;[[ ]]&lt;/code&gt; syntax is! Somehow, we need to take the GraphQL TypeDoc source node(s) we generated and then run our Markdown through a &lt;em&gt;transformer&lt;/em&gt; to convert these links to Markdown links.&lt;/p&gt;
+&lt;p&gt;To accomplish this, I released two packages: &lt;a href="https://www.npmjs.com/package/remark-typedoc-symbol-links"&gt;remark-typedoc-symbol-links&lt;/a&gt; and &lt;a href="https://www.npmjs.com/package/gatsby-remark-typedoc-symbol-links"&gt;gatsby-remark-typedoc-symbol-links&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Here is how this works in Gatsby, which was a completely new learning experience for me:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Gatsby loads the MDX file&lt;/li&gt;
+&lt;li&gt;Gatsby then runs it through &lt;code&gt;gatsby-plugin-mdx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gatsby-plugin-mdx&lt;/code&gt; runs the Markdown through Remark, a Markdown parser&lt;/li&gt;
+&lt;li&gt;Remark supports plugins, that can take the Markdown AST (mdast) and modify it&lt;/li&gt;
+&lt;li&gt;Gatsby supports special Gatsby Transformer Remark plugins which have access to &lt;em&gt;both&lt;/em&gt; the Gatsby API &lt;strong&gt;and&lt;/strong&gt; the Markdown AST&lt;/li&gt;
+&lt;li&gt;This pipeline uses &lt;a href="https://github.com/unifiedjs/unified"&gt;unified.js&lt;/a&gt; as the underlying API at the lowest level&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So, what I needed to do was to make a Gatsby Remark Transformer plug-in. Since Gatsby just delegates down to Remark, I was able to split this up into two packages, just in case someone wanted to use the Typedoc symbol transformer outside Gatsby. The symbol transformer only needs one additional piece of input: the TypeDoc AST.&lt;/p&gt;
+&lt;p&gt;The meat of it all is &lt;a href="https://github.com/kamranayub/remark-typedoc-symbol-links/blob/master/src/index.ts"&gt;within the Remark transformer&lt;/a&gt; where I traverse the AST and parse out the tokens that make up the symbol links and perform the lookups to build the generated URLs. It could definitely use some optimizations! 😅&lt;/p&gt;
+&lt;h2 id="putting-it-all-together"&gt;Putting it all together&lt;/h2&gt;
+&lt;p&gt;To hook this all up is a matter of configuring the plugins to work with each other, which is documented on the &lt;a href="https://www.npmjs.com/package/gatsby-remark-typedoc-symbol-links"&gt;README of gatsby-remark-typedoc-symbol-links&lt;/a&gt;. The approach differs if using with the Gatsby MDX plugin or Gatsby Remark transformer but they essentially do the same thing: pass the generated TypeDoc AST to the symbol link plugin.&lt;/p&gt;
+&lt;p&gt;The end result is links to TypeDoc symbol pages in the MDX-based documentation:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/563819/104797271-6cf08880-5782-11eb-850d-53bf4c080348.png" class="img-fluid" alt="Screenshot of excalibur docs with symbol links" /&gt;&lt;/p&gt;
+&lt;p&gt;🎉 Huzzah!&lt;/p&gt;
+&lt;h2 id="want-to-make-your-own-gatsby-plugins"&gt;Want to make your own Gatsby plugins?&lt;/h2&gt;
+&lt;p&gt;It was a learning experience for me to understand the way plugins were authored as there are a lot of moving parts and I was unfamiliar with the tools for working with AST and Remark. There is &amp;quot;documentation&amp;quot; in these sense of basic examples but I had to dive through other plugin source code to really understand how to put it all together.&lt;/p&gt;
+&lt;p&gt;I have just started production on a Pluralsight course for authoring Gatsby plugins where I hope to show you how you can do this in a step-by-step fashion for different use cases (it's a &amp;quot;playbook&amp;quot;-style course, just the essentials to get it done!).&lt;/p&gt;
+&lt;p&gt;If you're interested &lt;a href="http://bit.ly/kamranicusnewsletter"&gt;follow me&lt;/a&gt; to keep updated on progress as I produce the course!&lt;/p&gt;
+&lt;!--stackedit_data:
+eyJoaXN0b3J5IjpbNTI3MDgyNDEyXX0=
+--&gt;
+</content>
+		<summary>&lt;p&gt;I help maintain the &lt;a href="https://excaliburjs.com"&gt;Excalibur.js&lt;/a&gt; web-based game engine. Excalibur was written from the ground up in TypeScript. Luckily, early on we started to adopt a tool called &lt;a href="https://typedoc.org"&gt;Typedoc&lt;/a&gt; which could generate a rich API documentation site for TypeScript-based projects.&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<link href="https://kamranicus.com/posts/2021-01-05-end-of-year-review" />
 		<id>https://kamranicus.com/posts/2021-01-05-end-of-year-review</id>
@@ -1224,316 +1320,5 @@ which appends a Base64-encoded SHA256 hash to the end of the URL for cache-busti
 &lt;p&gt;Q2 went by quickly! We are in the dog days of summer and enjoying it quite a bit. Lots of trips, lots of friends, and still managing to hack away at projects and earn some side coin. The DIY stuff has been a lot of fun and I've appreciated learning new skills. Plus it's fun to work on shared projects with my wife!&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;OK, we have already reached Q2 2019! Right smack in the middle of summer. Not long ago, &lt;a href="https://kamranicus.com/posts/2019-04-28-quarterly-1-update"&gt;I posted my first quarterly update&lt;/a&gt; and promised to also send the first quarterly newsletter &lt;em&gt;this quarter&lt;/em&gt;. Well, &lt;a href="https://kamranicus.com/newsletter"&gt;if you've subscribed&lt;/a&gt; you should have a fresh email soon in your inbox which includes a ton of interesting links and some content that is &lt;em&gt;not&lt;/em&gt; included in this post (hey, I have to add value somehow!).&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<link href="https://kamranicus.com/posts/2019-06-26-typescript-safe-destructuring-patterns" />
-		<id>https://kamranicus.com/posts/2019-06-26-typescript-safe-destructuring-patterns</id>
-		<title>Handling Safe Destructuring in TypeScript</title>
-		<updated>2019-06-26T13:00:00Z</updated>
-		<content>&lt;p&gt;When migrating from JavaScript to TypeScript, you will often run into scenarios that seem difficult to statically type related to destructuring objects.&lt;/p&gt;
-&lt;h2 id="destructuring-an-empty-object"&gt;Destructuring an empty object&lt;/h2&gt;
-&lt;p&gt;This pattern is showcased using the following code snippet, which is not actual code but &lt;em&gt;does&lt;/em&gt; reflect the semantics of the actual code we reviewed:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;function transformSearchResults(payload = {}, queryParams = {}) {
-  const { results } = payload;
-  const { searchTerm } = queryParams;
-
-  if (!results) {
-    return payload;
-  }
-
-  if (searchTerm &amp;amp;&amp;amp; isSearchPayload(payload)) {
-    payload.transformedResults = results.map(r =&amp;gt; ({
-      ...r,
-      anotherProp: true
-    }));
-  }
-
-  return payload;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This function essentially takes a payload, transforms it, and returns the modified payload object.&lt;/p&gt;
-&lt;p&gt;Specifically, notice in the function arguments the expressions &lt;code&gt;= {}&lt;/code&gt; which in JavaScript will set a default value of &lt;code&gt;{}&lt;/code&gt; for the parameter if it is &lt;code&gt;undefined&lt;/code&gt;. This is done because on the next 2 lines, we attempt to destructure and pull out some key props of the objects. If &lt;code&gt;payload&lt;/code&gt; or &lt;code&gt;queryParams&lt;/code&gt; is &lt;code&gt;undefined&lt;/code&gt; then the destructuring would blow up and &lt;em&gt;we don't want this code to blow up.&lt;/em&gt; That is pretty reasonable!&lt;/p&gt;
-&lt;h2 id="converting-to-typescript"&gt;Converting to TypeScript&lt;/h2&gt;
-&lt;p&gt;If we want to migrate this function to TypeScript, it would make sense to add a type annotation for each parameter like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-typescript"&gt;export interface ResponsePayload {
-  results: SearchResult[] | OtherResult[];
-}
-
-function transformSearchResults(
-  payload: ResponsePayload = {},
-  queryParams: QueryStringParams = {}
-)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We are trying to annotate our types properly by telling TypeScript what types we expect these parameters to be. We've declared our API type &lt;code&gt;ResponsePayload&lt;/code&gt; with a &lt;code&gt;results&lt;/code&gt; property.&lt;/p&gt;
-&lt;p&gt;But alas, TypeScript will throw an error immediately:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Property 'results' is missing in type '{}' but required in type 'ResponsePayload'. ts(2741)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;While this might seem wrong at first on the surface, TypeScript is actually pointing out a &lt;em&gt;code smell&lt;/em&gt; in this function.&lt;/p&gt;
-&lt;p&gt;The reason that TypeScript doesn't allow this is because the &lt;code&gt;ResponsePayload&lt;/code&gt; type has a &lt;code&gt;results&lt;/code&gt; property that is &lt;em&gt;required&lt;/em&gt; (cannot be undefined). We know this because we typed it that way, presumably because the API doesn't return undefined. If it did, we could change &lt;code&gt;results&lt;/code&gt; to be optional.&lt;/p&gt;
-&lt;p&gt;When converting destructuring code to TypeScript, you will be encouraged to consider the code more critically than before, otherwise you will run into type errors.&lt;/p&gt;
-&lt;p&gt;Here's what I ask in this situation:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Can the function be simplified to pass a specific primitive value for the parameter?&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;If I need to pass an object, can I refactor the function to avoid it?&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;These questions are dependent on the specific case but in the &lt;em&gt;majority&lt;/em&gt; of cases, you can usually remove the need to destructure by asking these questions.&lt;/p&gt;
-&lt;p&gt;For example, let's take it step-by-step.&lt;/p&gt;
-&lt;h2 id="simplifying-function-parameters"&gt;Simplifying Function Parameters&lt;/h2&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Can the function be simplified to pass a specific primitive value for the parameter?&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Here's the code again:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-typescript"&gt;function transformSearchResults(
-  payload: ResponsePayload = {}, 
-  queryParams: QueryStringParams = {}) 
-{
-  const { results } = payload;
-  const { searchTerm } = queryParams;
-
-  if (!results) {
-    return payload;
-  }
-
-  if (searchTerm &amp;amp;&amp;amp; isSearchPayload(payload)) {
-    payload.transformedResults = results.map(r =&amp;gt; ({
-      ...r,
-      anotherProp: true
-    }));
-  }
-
-  return payload;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;A quick look will tell us that the answer is &lt;strong&gt;No&lt;/strong&gt; for &lt;code&gt;payload&lt;/code&gt; but &lt;strong&gt;Yes&lt;/strong&gt; for &lt;code&gt;queryParams&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Only &lt;code&gt;results&lt;/code&gt; in &lt;code&gt;payload&lt;/code&gt; is used but &lt;code&gt;payload&lt;/code&gt; is also being mutated, so the function needs the object passed, let's set that aside.&lt;/p&gt;
-&lt;p&gt;For &lt;code&gt;queryParams&lt;/code&gt;, only &lt;code&gt;searchTerm&lt;/code&gt; is actually referenced, so let's simplify this function to pass only that:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-typescript"&gt;function transformSearchResults(
-  payload: ResponsePayload = {}, 
-  searchTerm?: string) 
-{
-  const { results } = payload;
-
-  if (!results) {
-    return payload;
-  }
-
-  if (searchTerm &amp;amp;&amp;amp; isSearchPayload(payload)) {
-    payload.transformedResults = results.map(r =&amp;gt; ({
-      ...r,
-      anotherProp: true
-    }));
-  }
-
-  return payload;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Great! The rest of the code remains the same and we eliminated one unnecessary destructuring.&lt;/p&gt;
-&lt;h2 id="approaches-to-refactoring-for-destructuring"&gt;Approaches to Refactoring for Destructuring&lt;/h2&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;If I need to pass an object, can I refactor the function to avoid it?&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Right now the function requires &lt;code&gt;payload&lt;/code&gt; to be provided directly. There are two approaches we could now take:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Specifying a default value for required properties&lt;/li&gt;
-&lt;li&gt;Removing the need to mutate an object so we can just pass &lt;code&gt;results&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id="providing-default-values-for-properties"&gt;Providing default values for properties&lt;/h3&gt;
-&lt;p&gt;If we intend to keep the logic in the function intact, we need to provide a value for all required properties of &lt;code&gt;ResponsePayload&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;We can do this inline within the function which works well for a small list of parameters:.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-typescript"&gt;function transformSearchResults(
-  payload: ResponsePayload = { results: [] }, 
-  searchTerm?: string)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;All fixed; since we provide a default value for &lt;code&gt;results&lt;/code&gt; which isn't &lt;code&gt;undefined&lt;/code&gt; TypeScript is happy.&lt;/p&gt;
-&lt;p&gt;We could also choose to provide a default object for more complex situations:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-typescript"&gt;const defaultPayload: ResponsePayload = {
-  results: []
-};
-
-function transformSearchResults(
-  payload: ResponsePayload = defaultPayload, 
-  searchTerm?: string)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This works just as well but introduces a dangling object that might not add a ton of value. Can we remove the need for providing &lt;code&gt;payload&lt;/code&gt; in the first place?&lt;/p&gt;
-&lt;h3 id="removing-the-object-altogether"&gt;Removing the object altogether&lt;/h3&gt;
-&lt;p&gt;The fact that the function mutates the original incoming object is a smell itself. There are cases where that makes sense but in this case, we are transforming results--we should just return the newly mapped results and &lt;em&gt;push the concern of mutating &lt;code&gt;payload&lt;/code&gt;&lt;/em&gt; to a higher-level.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-typescript"&gt;function transformSearchResults(
-  results: SearchResults[] | OtherResults[], 
-  searchTerm?: string) 
-{
-  if (searchTerm &amp;amp;&amp;amp; isSearchPayload(payload)) {
-    return results.map(r =&amp;gt; ({
-      ...r,
-      anotherProp: true
-    }));
-  }
-
-  return results;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;Nearly there.&lt;/em&gt; We will now receive an error because &lt;code&gt;isSearchPayload&lt;/code&gt; was testing the payload itself. We have two options:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Modify &lt;code&gt;isSearchPayload&lt;/code&gt; to inspect results&lt;/li&gt;
-&lt;li&gt;Push the concern of checking payload higher&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;We could certainly do option 1 but I like option 2 better. It will end up simplifying the &lt;code&gt;results&lt;/code&gt; typing even more because we can &lt;em&gt;know&lt;/em&gt; the results are &lt;em&gt;search results&lt;/em&gt;! This also makes the function name much more accurate:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-typescript"&gt;function transformSearchResults(
-  results: SearchResults[], 
-  searchTerm?: string) 
-{
-  if (searchTerm) {
-    return results.map(r =&amp;gt; ({
-      ...r,
-      anotherProp: true
-    }));
-  }
-
-  return results;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;There we go; we've totally removed the need for destructuring with this function by simplifying the requirements and avoiding mutation of objects.&lt;/p&gt;
-&lt;h3 id="where-did-the-complexity-go"&gt;Where did the complexity go?&lt;/h3&gt;
-&lt;p&gt;By refactoring the function we pushed two concerns higher in the call stack:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Is this a search payload (&lt;code&gt;isSearchPayload&lt;/code&gt;)?&lt;/li&gt;
-&lt;li&gt;Handling &lt;code&gt;transformedResults&lt;/code&gt; for &lt;code&gt;payload&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;That logic still has to exist somewhere but now it can be lifted higher. There is a principle at work here called the &lt;a href="https://en.wikipedia.org/wiki/Command%E2%80%93query_separation"&gt;Command-Query Separation&lt;/a&gt; principle, which says:&lt;/p&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&amp;quot;every method should either be a command that performs an action, or a query that returns data to the caller, but not both. In other words, &lt;strong&gt;Asking a question should not change the answer.&lt;/strong&gt;&amp;quot;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Before we refactored this function, it violated this principle because it both &lt;em&gt;returned new results&lt;/em&gt; (a query) &lt;strong&gt;and&lt;/strong&gt; had a side effect by mutating the object (a command). Now we've refactored it into a &amp;quot;query&amp;quot; function only.&lt;/p&gt;
-&lt;p&gt;If we had inspected the previous way this function was called, you would have seen this:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;function (payload?: ResponsePayload) {
-  if (!payload) {
-    throw new Error(&amp;quot;Missing response payload!&amp;quot;);
-  }
-
-  payload = transformSearchResults(payload, queryParams);
-
-  return payload;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This should raise a yellow flag since it is returning the object again which implies it may be mutating it (in other words, &amp;quot;it smells&amp;quot;).&lt;/p&gt;
-&lt;p&gt;Now that we've refactored the function above, some responsibilities have been pushed higher, which may result in a change like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-typescript"&gt;function (payload?: ResponsePayload) {
-  if (!payload) {
-    throw new Error(&amp;quot;Missing response payload!&amp;quot;);
-  }
-
-  if (isSearchPayload(payload)) {
-    return {
-      ...payload,
-      transformedResults: transformSearchResults(payload.results)
-    }
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We avoid mutating the payload directly instead opting to merge the new property in. We now have options to extract this logic, refactor it, etc. which you can decide!&lt;/p&gt;
-&lt;h2 id="handling-nested-destructuring"&gt;Handling Nested Destructuring&lt;/h2&gt;
-&lt;p&gt;If we're able to remove the need to destructure by simplifying functions that is a win but what if we really need to safely destructure and more specifically, in a nested way?&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-javascript"&gt;function handleData(data = {}) {
-  const { meta: { field1, field2, field3 } = {} } = data;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This is slightly more complicated and subsequently harder to type &lt;em&gt;and it should be&lt;/em&gt;. One thing I have come to appreciate about TypeScript is that it makes you feel the pain a little more which in turn encourages you to take a step back and question why the code is structured the way it is.&lt;/p&gt;
-&lt;p&gt;In this example, we can ask the same question we originally asked: &lt;em&gt;Do we really need &lt;code&gt;data&lt;/code&gt; or can we be more specific?&lt;/em&gt;&lt;/p&gt;
-&lt;h3 id="keeping-data"&gt;Keeping &lt;code&gt;data&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;Let's say we must keep &lt;code&gt;data&lt;/code&gt; as a parameter. If &lt;code&gt;meta&lt;/code&gt; and all the &lt;code&gt;field*&lt;/code&gt; properties &lt;em&gt;can truly be &lt;code&gt;undefined&lt;/code&gt;&lt;/em&gt; and are marked as so, this code will work.&lt;/p&gt;
-&lt;p&gt;As soon as one of them is non-optional, TypeScript will throw an error since we haven't provided defaults.&lt;/p&gt;
-&lt;p&gt;For example, let's say &lt;code&gt;data&lt;/code&gt; is typed as:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-typescript"&gt;interface Data {
-  meta: Metadata
-}
-
-interface Metadata {
-  field1: string;
-  field2: boolean;
-  field3: object;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;meta&lt;/code&gt; is not optional, it must be provided so the code above will throw an error as no default &lt;code&gt;meta&lt;/code&gt; value is provided and neither are the &lt;code&gt;field*&lt;/code&gt; defaults. Yikes!&lt;/p&gt;
-&lt;p&gt;The best approach is to do a refactoring like we did above to simplify the parameters, if possible.&lt;/p&gt;
-&lt;p&gt;The next best thing is to &lt;em&gt;remove the default&lt;/em&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-typescript"&gt;function handleData(data: Data) {
-  const { meta: { field1, field2, field3 } } = data;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This matches how we've described the types -- that no property can be &lt;code&gt;undefined&lt;/code&gt; so there's no &lt;em&gt;reason&lt;/em&gt; to use a default parameter anymore. If this matches what you expect, there's nothing additional to do.&lt;/p&gt;
-&lt;p&gt;What if in practice, things could potentially be &lt;code&gt;undefined&lt;/code&gt; but we still want to ensure the types remain &amp;quot;pure&amp;quot;?&lt;/p&gt;
-&lt;p&gt;Then we should push the &amp;quot;guarding&amp;quot; of potentially &lt;code&gt;undefined&lt;/code&gt; values higher up the stack:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-typescript"&gt;function checkData(data: Data | undefined) {
-  if (!data) {
-    throw new Error(&amp;quot;Data shouldn't be undefined&amp;quot;);
-  }
-
-  return handleData(data); // No longer can be undefined
-}
-
-function handleData(data: Data) {
-
-  // This is safe to do now
-  const { meta: { field1, field2, field3 } } = data;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In general, you should guard as close to the source as possible. This keeps downstream functions simpler and with TypeScript, you can ensure they get passed values that don't &lt;em&gt;need&lt;/em&gt; defaults to be provided.&lt;/p&gt;
-&lt;h3 id="supporting-partial-objects"&gt;Supporting partial objects&lt;/h3&gt;
-&lt;p&gt;Let's assume that &lt;code&gt;meta&lt;/code&gt; fields &lt;em&gt;can&lt;/em&gt; be partially available, we can simplify and statically type the function like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-typescript"&gt;interface Data {
-  meta: Partial&amp;lt;Metadata&amp;gt;
-}
-
-interface Metadata {
-  field1: string;
-  field2: boolean;
-  field3: object;
-}
-
-function (data: Data) {
-
-  // This is safe now as `meta` can be partially undefined
-  const { meta: { field1, field2, field3 } = {} } = data;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now we've &lt;em&gt;explicitly&lt;/em&gt; declared that &lt;code&gt;meta&lt;/code&gt; can be partially defined. This does two things:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;it allows the safe destructuring without compiler errors and,&lt;/li&gt;
-&lt;li&gt;it tells the reader to &lt;em&gt;expect&lt;/em&gt; to guard against partially defined fields.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Static types are documentation and now we've called out to expect that &lt;code&gt;meta&lt;/code&gt; can have partial fields. It also allows us to safely set the default object to &lt;code&gt;{}&lt;/code&gt; to avoid errors while destructuring.&lt;/p&gt;
-&lt;h2 id="the-last-resort-type-assertions"&gt;The last resort: type assertions&lt;/h2&gt;
-&lt;p&gt;There is a hammer we can use as a last resort. If we can't effectively refactor out destructuring or if we really need to force this pattern to avoid changing code, we can use type assertions:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-typescript"&gt;function transformSearchResults(
-  payload = {} as ResponsePayload,
-  queryParams = {} as QueryStringParams
-)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This will force TS to treat the empty object &lt;em&gt;as&lt;/em&gt; the types we want--but this introduces potential for bugs as now we are opting out of the type safety. We are putting the responsibility of checking for &lt;code&gt;undefined&lt;/code&gt; on the developer writing the function vs. the TypeScript compiler.&lt;/p&gt;
-&lt;p&gt;If you do this with ESLint rules enabled, you'll be greeted with an error:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Type assertion on object literals is forbidden, 
-use a type annotation instead. 
-eslint(&amp;#64;typescript-eslint/no-object-literal-type-assertion)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Again this is because it's best to &lt;em&gt;avoid this&lt;/em&gt; in the first place. In order to get this to compile, you'll need to disable the error:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-typescript"&gt;/*  eslint-disable-next-line &amp;#64;typescript-eslint/no-object-literal-type-assertion */
-function transformSearchResults(
-  payload = {} as ResponsePayload,
-  queryParams = {} as QueryStringParams
-)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;At least now, you can later search for these disabled errors as an indication to revisit and refactor later.&lt;/p&gt;
-&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
-&lt;p&gt;When migrating to TypeScript, you will run into a lot of issues like this that on the surface feel like you're battling the type system but what I hoped to get across is that &lt;em&gt;TypeScript is forcing you to think more explicitly about how your code is structured and what your intent is.&lt;/em&gt; It will force you to look &lt;em&gt;beyond&lt;/em&gt; the scope of a single function and think more holistically about usage and context.&lt;/p&gt;
-&lt;p&gt;When you find yourself trying to disable rules or workaround TypeScript errors through type assertions, you need to take a step back and ask:&lt;/p&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Is this the best way to structure this code or is TypeScript hinting that I may need to refactor it?&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;This type of mindset is a &lt;em&gt;shift in thinking&lt;/em&gt; when working with TypeScript, especially when you've come from JavaScript. It may be painful at first but ultimately it will lead to better, hopefully simpler code.&lt;/p&gt;
-&lt;p&gt;If you're interested in furthering your understanding of principles like Command-Query Separation and refactoring code, I highly recommend the &lt;a href="https://app.pluralsight.com/library/courses/encapsulation-solid/table-of-contents"&gt;Encapsulation and SOLID course&lt;/a&gt; by Mark Seeman from Pluralsight.&lt;/p&gt;
-&lt;p&gt;You can also check out my &lt;a href="https://dev.to/kamranayub/how-to-get-started-using-react-with-typescript-21c"&gt;collection of React and TypeScript content&lt;/a&gt;!&lt;/p&gt;
-</content>
-		<summary>&lt;p&gt;When migrating from JavaScript to TypeScript, you will often run into scenarios that seem difficult to statically type related to destructuring objects.&lt;/p&gt;</summary>
 	</entry>
 </feed>
