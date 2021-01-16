@@ -121,9 +121,9 @@ The end result is symbol links in the documentation:
 
 ## Interested in making your own Gatsby plugins?
 
-I have just 
+I have just started production on a course for authoring Gatsby plugins where I hope to dive deeper into how to do this in concrete steps (it's a "playbook"-style course, just the essentials to get it done!).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNzQ1MTg3MjEsLTExNDMxODc1MjUsLT
-c2MTc0MDY4OSwxMjYzNDQ1MTU3LDEzNjcwNDMxNywtODkwNjI5
-OTQsLTk3MjkwODk2MiwtNjc5MTc5MTJdfQ==
+eyJoaXN0b3J5IjpbMTIzNzg2NDE3NywtMTE0MzE4NzUyNSwtNz
+YxNzQwNjg5LDEyNjM0NDUxNTcsMTM2NzA0MzE3LC04OTA2Mjk5
+NCwtOTcyOTA4OTYyLC02NzkxNzkxMl19
 -->
