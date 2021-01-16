@@ -18,13 +18,13 @@ We separated user-facing documentation into separate `.md` files and this approa
 
 - The "user" documentation was locked into the TypeDoc site and theme
 - While TypeDoc was customizable, it was still hard to do more complex things like custom components (think MDX which is React + Markdown)
-- It just wasn't cohesive--we had a main site and you'd expect to find docs hosted under there. It would take a lot of work to customize the TypeDoc theme enough to make it feel like a natural part of the site.
+- It wasn't cohesive--we had a separate main site and you'd expect to find docs there.
 
 We needed to do something different and _ideally_ have these user docs hosted within the main site **but still maintain the ability to easily link to API docs**.
 
 ## Migrating to Gatsby.js
 
- Awhile back, I converted our site to be statically generated using [Gatsby.js](https://gatsbyjs.org) and this has proved to be a good decision. Gatsby allows us to customize all the aspects of the site including the way we generate documentation.
+ Awhile back, I converted the site to be statically generated using [Gatsby.js](https://gatsbyjs.org) and this has proved to be a good decision. Gatsby allows us to customize all the aspects of the site including the way we generate documentation.
 
 Gatsby uses a GraphQL-based sourcing architecture where you can add any kind of "source" of data--this could be Wordpress, the GitHub API, or basically _any_ external piece of data you wanted. These source plugins take the data from one place and _transform_ it into GraphQL nodes that Gatsby can understand and make available to your pages statically. This makes Gatsby incredibly versatile and customizable using a consistent architecture.
 
@@ -114,7 +114,7 @@ Here is how this works in Gatsby, which was a completely new learning experience
 
 So, what I needed to do was to make a Gatsby Remark Transformer plug-in. Since Gatsby just delegates down to Remark, I was able to split this up into two packages, just in case someone wanted to use the Typedoc symbol transformer outside Gatsby. The symbol transformer only needs one additional piece of input: the TypeDoc AST.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc2MTc0MDY4OSwxMjYzNDQ1MTU3LDEzNj
-cwNDMxNywtODkwNjI5OTQsLTk3MjkwODk2MiwtNjc5MTc5MTJd
-fQ==
+eyJoaXN0b3J5IjpbLTQ0MDU0MDUyNiwtNzYxNzQwNjg5LDEyNj
+M0NDUxNTcsMTM2NzA0MzE3LC04OTA2Mjk5NCwtOTcyOTA4OTYy
+LC02NzkxNzkxMl19
 -->
