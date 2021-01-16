@@ -110,8 +110,10 @@ Here is how this works in Gatsby, which was a completely new learning experience
 - This pipeline uses [unified.js](https://github.com/unifiedjs/unified) as the underlying API at the lowest level
 
 So, what I needed to do was to make a Gatsby Remark Transformer plug-in. Since Gatsby just delegates down to Remark, I was able to split this up into two packages, just in case someone wanted to use the Typedoc symbol transformer outside Gatsby. The symbol transformer only needs one additional piece of input: the TypeDoc AST.
+
+To hook this all up is a matter of configuring the plugins to work with each other, which is documented on the README of 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA4NTI5ODc4OSwtNzYxNzQwNjg5LDEyNj
+eyJoaXN0b3J5IjpbLTUwNjMzODA0MywtNzYxNzQwNjg5LDEyNj
 M0NDUxNTcsMTM2NzA0MzE3LC04OTA2Mjk5NCwtOTcyOTA4OTYy
 LC02NzkxNzkxMl19
 -->
