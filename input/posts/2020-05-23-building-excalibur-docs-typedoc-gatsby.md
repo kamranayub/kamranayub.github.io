@@ -12,14 +12,12 @@ I help maintain the [Excalibur.js](https://excaliburjs.com) web-based game engin
 
 ## Linking to API Symbols
 
- TypeDoc, we could build richer documentation with embedded Markdown documents. It also has a compelling feature to do [link to API symbols](http://typedoc.org/guides/doccomments/#symbol-references) using a `[[symbolName]]` or `{@link symbolName}` syntax. This was awesome because we could write "user-facing" documentation and easily create maintainable links to the raw API symbols.
+TypeDoc has a compelling feature to [link to API symbols](http://typedoc.org/guides/doccomments/#symbol-references) using a `[[symbolName]]` or `{@link symbolName}` syntax. This was awesome because we could write "user-facing" documentation and easily create maintainable links to the raw API symbols.
 
-Since we could separate user-facing documentation into separate `.md` files, TypeDoc allowed us to use `[[include:file.md]]` directives to keep our documentation separate from the source code.
-
-This approach has been working well for us in the past years but there were several downsides:
+We separated user-facing documentation into separate `.md` files and this approach had been working well for us in the past years but there were several downsides:
 
 - The "user" documentation was locked into the TypeDoc site and theme
-- While TypeDoc was customizable, it was still hard to do more complex things like custom components (think MDX) or rendering
+- While TypeDoc was customizable, it was still hard to do more complex things like custom components (think MDX which is React + Markdown)
 - It just wasn't cohesive--we had a main site and you'd expect to find docs hosted under there. It would take a lot of work to customize the TypeDoc theme enough to make it feel like a natural part of the site.
 
 We needed to do something different and _ideally_ have these user docs hosted within the main site **but still maintain the ability to easily link to API docs**.
@@ -116,7 +114,7 @@ Here is how this works in Gatsby, which was a completely new learning experience
 
 So, what I needed to do was to make a Gatsby Remark Transformer plug-in. Since Gatsby just delegates down to Remark, I was able to split this up into two packages, just in case someone wanted to use the Typedoc symbol transformer outside Gatsby. The symbol transformer only needs one additional piece of input: the TypeDoc AST.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMzNjQwMTk3MiwxMjYzNDQ1MTU3LDEzNj
+eyJoaXN0b3J5IjpbLTc2MTc0MDY4OSwxMjYzNDQ1MTU3LDEzNj
 cwNDMxNywtODkwNjI5OTQsLTk3MjkwODk2MiwtNjc5MTc5MTJd
 fQ==
 -->
