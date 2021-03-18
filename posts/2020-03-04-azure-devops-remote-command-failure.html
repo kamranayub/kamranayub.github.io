@@ -251,8 +251,17 @@ if ($null -ne ($pushOutput | ? { $_ -match 'An error has occurred during web sit
   </div>
 </div>
 
-<!--<div id="disqus_thread"></div>-->
+<div id="fastcomments-widget"></div>
 
+<script src="https://cdn.fastcomments.com/js/embed.min.js"></script>
+<script>
+    window.FastCommentsUI(document.getElementById('fastcomments-widget'), {
+        tenantId: 'kdnCBxO7N',
+        urlId: '2020-03-04-azure-devops-remote-command-failure',
+        url: 'https://kamranicus.com/posts/2020-03-04-azure-devops-remote-command-failure',
+        pageTitle: 'Catching Errors with External Commands in PowerShell and Azure DevOps'
+    });
+</script>
 
 
 

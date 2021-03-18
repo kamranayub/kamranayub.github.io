@@ -279,8 +279,17 @@ const AnswerText = ({ question, onAnswerChange }) =&gt;
   </div>
 </div>
 
-<!--<div id="disqus_thread"></div>-->
+<div id="fastcomments-widget"></div>
 
+<script src="https://cdn.fastcomments.com/js/embed.min.js"></script>
+<script>
+    window.FastCommentsUI(document.getElementById('fastcomments-widget'), {
+        tenantId: 'kdnCBxO7N',
+        urlId: '2017-11-17-dynamic-angularjs-components',
+        url: 'https://kamranicus.com/posts/2017-11-17-dynamic-angularjs-components',
+        pageTitle: 'Dynamic component rendering in AngularJS'
+    });
+</script>
 
 
 
