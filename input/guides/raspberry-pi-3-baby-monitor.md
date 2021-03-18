@@ -1,7 +1,6 @@
 ﻿Title: Building a Raspberry Pi 3 Baby Monitor
 Lead: Use a Raspberry Pi and a couple cheap components to create an HD livestream that you can view on any device within your home.
 ShowInNavbar: false
-Comments: true
 GitHubSource: https://github.com/kamranayub/kamranayub.github.io/blob/source/input/guides/raspberry-pi-3-baby-monitor.md
 ---
 
