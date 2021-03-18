@@ -1,7 +1,7 @@
 @{ 
   string Title = Model.String(BlogKeys.Title); 
-  string PageTitle = Context.String(BlogKeys.Title) + (string.IsNullOrWhiteSpace(Title)
-    ? string.Empty : " - " + Title); 
+  string PageTitle = (string.IsNullOrWhiteSpace(Title)
+    ? string.Empty : Title + " - ") + Context.String(BlogKeys.Title); 
 }
 <!DOCTYPE html>
 <html lang="en">
