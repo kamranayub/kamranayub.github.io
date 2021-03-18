@@ -121,7 +121,7 @@ While I opted for a simple on/off nightlight, you could potentially go crazy wit
 
 ## Video Walkthrough
 
-If you'd like me to do a full video walkthrough of this guide for 2020, check out this video and let me know in the comments!
+If you'd like me to do a full video walkthrough of this guide for 2021 (😅), check out this video and let me know in the comments!
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/R6IbBpTFPJM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
